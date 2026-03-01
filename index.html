@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SA Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2d3143;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c63ff;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Top nav */
+  .top-nav { display: flex; gap: 4px; margin-bottom: 28px; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+  .nav-btn {
+    padding: 10px 24px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Header */
+  header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+  header h1 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+  header h1 span { color: var(--accent); }
+  .updated { font-size: 0.75rem; color: var(--text-dim); }
+
+  /* Ticker tabs */
+  .tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab {
+    padding: 8px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Snapshot strip */
+  .snapshot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .snap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .snap-card .label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+  .snap-card .val { font-size: 1.25rem; font-weight: 700; margin-top: 2px; }
+
+  /* Chart container */
+  .chart-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .chart-wrap canvas { width: 100% !important; height: 280px !important; }
+
+  /* Score bars */
+  .scores { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .scores { grid-template-columns: 1fr; } }
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .score-card .title { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .score-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: var(--surface2);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+  }
+  .score-meta { display: flex; justify-content: space-between; align-items: center; }
+  .score-num { font-size: 1.6rem; font-weight: 800; }
+  .score-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  /* Indicator table */
+  .ind-section { margin-bottom: 24px; }
+  .ind-section h3 {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .ind-table {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+  }
+  .ind-table tr { border-bottom: 1px solid var(--border); }
+  .ind-table tr:last-child { border-bottom: none; }
+  .ind-table td, .ind-table th { padding: 11px 16px; font-size: 0.82rem; }
+  .ind-table td:first-child { color: var(--text-dim); width: 45%; }
+  .ind-table td:nth-child(2) { text-align: right; font-weight: 600; }
+  .ind-table td:nth-child(3) { text-align: right; width: 160px; }
+
+  /* Vol table specifics */
+  .vol-table { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; border-collapse: collapse; margin-bottom: 24px; }
+  .vol-table th { padding: 10px 12px; font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; text-align: right; border-bottom: 2px solid var(--border); background: var(--surface2); }
+  .vol-table th:first-child { text-align: left; }
+  .vol-table td { padding: 10px 12px; font-size: 0.82rem; text-align: right; border-bottom: 1px solid var(--border); }
+  .vol-table td:first-child { text-align: left; color: var(--text); font-weight: 600; }
+  .vol-table tr:last-child td { border-bottom: none; }
+  .vol-table tr:hover { background: var(--surface2); }
+
+  /* Z-score cell coloring */
+  .z-extreme-high { color: var(--red); font-weight: 700; }
+  .z-high { color: #fb923c; font-weight: 600; }
+  .z-elevated { color: var(--amber); }
+  .z-normal { color: var(--text-dim); }
+  .z-low { color: #34d399; }
+  .z-extreme-low { color: var(--green); font-weight: 700; }
+
+  /* Extremes alert box */
+  .extremes-box {
+    background: var(--surface);
+    border: 1px solid var(--red);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+  .extremes-box h3 { font-size: 0.72rem; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .extreme-item { font-size: 0.8rem; padding: 4px 0; display: flex; gap: 12px; }
+  .extreme-item .pair { font-weight: 700; min-width: 70px; }
+  .extreme-item .tenor { color: var(--text-dim); min-width: 30px; }
+  .extreme-item .metric { color: var(--text-dim); min-width: 60px; }
+
+  /* Signal badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .badge.bull { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge.bear { background: rgba(239,68,68,0.15); color: var(--red); }
+  .badge.neutral { background: rgba(245,158,11,0.12); color: var(--amber); }
+  .badge.overbought { background: rgba(239,68,68,0.15); color: var(--red); }
+  .badge.oversold { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  .page { display: none; }
+  .page.visible { display: block; }
+
+  footer { text-align: center; padding: 24px 0 12px; color: var(--text-dim); font-size: 0.65rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <button class="nav-btn active" data-page="momentum">Momentum</button>
+    <button class="nav-btn" data-page="fxvol">FX Vol</button>
+  </div>
+
+  <!-- ============ MOMENTUM PAGE ============ -->
+  <div class="page visible" id="page-momentum">
+    <header>
+      <h1><span>&gt;</span> Momentum Dashboard</h1>
+      <div class="updated" id="updated"></div>
+    </header>
+    <div class="tabs" id="tabs"></div>
+    <div class="snapshot" id="snapshot"></div>
+    <div class="chart-wrap"><canvas id="chart"></canvas></div>
+    <div class="scores" id="scores"></div>
+    <div id="indicators"></div>
+  </div>
+
+  <!-- ============ FXVOL PAGE ============ -->
+  <div class="page" id="page-fxvol">
+    <header>
+      <h1><span>&gt;</span> FX Volatility Dashboard</h1>
+      <div class="updated" id="fxvol-updated"></div>
+    </header>
+    <div id="fxvol-extremes"></div>
+    <div id="fxvol-tables"></div>
+  </div>
+
+  <footer>Data sourced from Bloomberg &middot; Static snapshot</footer>
+</div>
+
+<script>
+/* ========== PAGE NAV ========== */
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+    btn.classList.add('active');
+    document.getElementById('page-' + btn.dataset.page).classList.add('visible');
+  });
+});
+
+/* ========== MOMENTUM ========== */
+const SHORT_KEYS = [
+  "RSI (14d)", "SMA 5/20 spread", "MACD histogram",
+  "MACD cross", "ROC (14d)", "Price vs SMA-20"
+];
+let DATA = {};
+let chart = null;
+let activeTicker = null;
+
+function badgeClass(signal) {
+  const s = signal.toLowerCase();
+  if (s.includes('overbought')) return 'overbought';
+  if (s.includes('oversold')) return 'oversold';
+  if (s.includes('bull') || s.includes('golden')) return 'bull';
+  if (s.includes('bear') || s.includes('death')) return 'bear';
+  return 'neutral';
+}
+function scoreColor(score) {
+  if (score >= 70) return 'var(--green)';
+  if (score <= 30) return 'var(--red)';
+  return 'var(--amber)';
+}
+function renderTabs() {
+  const el = document.getElementById('tabs');
+  el.innerHTML = Object.keys(DATA).filter(k => k !== '_updated').map(t =>
+    `<button class="tab ${t === activeTicker ? 'active' : ''}" data-t="${t}">${t}</button>`
+  ).join('');
+  el.querySelectorAll('.tab').forEach(btn =>
+    btn.addEventListener('click', () => { activeTicker = btn.dataset.t; renderMomentum(); })
+  );
+}
+function renderSnapshot(d) {
+  const items = [
+    { label: 'Last Price', val: d.last.toFixed(d.last > 1000 ? 2 : 4) },
+    { label: 'SMA 5', val: d.sma5.toFixed(d.sma5 > 1000 ? 2 : 4) },
+    { label: 'SMA 20', val: d.sma20.toFixed(d.sma20 > 1000 ? 2 : 4) },
+    { label: 'SMA 50', val: d.sma50.toFixed(d.sma50 > 1000 ? 2 : 4) },
+    { label: 'SMA 200', val: d.sma200.toFixed(d.sma200 > 1000 ? 2 : 4) },
+  ];
+  document.getElementById('snapshot').innerHTML = items.map(i =>
+    `<div class="snap-card"><div class="label">${i.label}</div><div class="val">${i.val}</div></div>`
+  ).join('');
+}
+function renderChart(d) {
+  const ctx = document.getElementById('chart').getContext('2d');
+  const labels = d.prices.map(p => p.d);
+  const prices = d.prices.map(p => p.c);
+  function calcSMA(arr, w) {
+    return arr.map((_, i) => {
+      if (i < w - 1) return null;
+      let sum = 0; for (let j = i - w + 1; j <= i; j++) sum += arr[j];
+      return sum / w;
+    });
+  }
+  const sma20 = calcSMA(prices, 20);
+  const sma50 = calcSMA(prices, 50);
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Price', data: prices, borderColor: '#6c63ff', borderWidth: 2, pointRadius: 0, tension: 0.1 },
+        { label: 'SMA 20', data: sma20, borderColor: '#f59e0b', borderWidth: 1.2, pointRadius: 0, borderDash: [4,3], tension: 0.1 },
+        { label: 'SMA 50', data: sma50, borderColor: '#22c55e', borderWidth: 1.2, pointRadius: 0, borderDash: [6,3], tension: 0.1 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#8b8fa3', font: { size: 11, family: 'monospace' }, boxWidth: 14, padding: 16 } },
+        tooltip: { mode: 'index', intersect: false }
+      },
+      scales: {
+        x: { ticks: { color: '#8b8fa3', maxTicksLimit: 10, font: { size: 10 } }, grid: { color: '#2d3143' } },
+        y: { ticks: { color: '#8b8fa3', font: { size: 10 } }, grid: { color: '#2d3143' } }
+      },
+      interaction: { mode: 'nearest', axis: 'x', intersect: false }
+    }
+  });
+}
+function renderScores(d) {
+  const cards = [
+    { title: 'Short-Term Momentum', ...d.st },
+    { title: 'Long-Term Momentum', ...d.lt },
+  ];
+  document.getElementById('scores').innerHTML = cards.map(c => `
+    <div class="score-card">
+      <div class="title">${c.title}</div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:${c.score}%;background:${scoreColor(c.score)}"></div></div>
+      <div class="score-meta">
+        <div class="score-num" style="color:${scoreColor(c.score)}">${c.score}</div>
+        <span class="score-label badge ${badgeClass(c.label)}">${c.label}</span>
+      </div>
+    </div>
+  `).join('');
+}
+function renderIndicators(d) {
+  const shortRows = SHORT_KEYS.filter(k => d.ind[k]).map(k => {
+    const { v, s } = d.ind[k];
+    return `<tr><td>${k}</td><td>${v}</td><td><span class="badge ${badgeClass(s)}">${s}</span></td></tr>`;
+  }).join('');
+  const longKeys = Object.keys(d.ind).filter(k => !SHORT_KEYS.includes(k));
+  const longRows = longKeys.map(k => {
+    const { v, s } = d.ind[k];
+    return `<tr><td>${k}</td><td>${v}</td><td><span class="badge ${badgeClass(s)}">${s}</span></td></tr>`;
+  }).join('');
+  document.getElementById('indicators').innerHTML = `
+    <div class="ind-section"><h3>Short-Term Indicators</h3><table class="ind-table">${shortRows}</table></div>
+    <div class="ind-section"><h3>Long-Term Indicators</h3><table class="ind-table">${longRows}</table></div>
+  `;
+}
+function renderMomentum() {
+  const d = DATA[activeTicker];
+  renderTabs(); renderSnapshot(d); renderChart(d); renderScores(d); renderIndicators(d);
+}
+
+fetch('data.json').then(r => r.json()).then(data => {
+  DATA = data;
+  const tickers = Object.keys(data).filter(k => k !== '_updated');
+  activeTicker = tickers[0];
+  document.getElementById('updated').textContent = 'Last updated: ' + (data._updated || data[activeTicker].prices.slice(-1)[0].d);
+  renderMomentum();
+});
+
+
+/* ========== FX VOL ========== */
+function zClass(z) {
+  const az = Math.abs(z);
+  if (z > 0) {
+    if (az >= 2.0) return 'z-extreme-high';
+    if (az >= 1.5) return 'z-high';
+    if (az >= 1.0) return 'z-elevated';
+    return 'z-normal';
+  } else {
+    if (az >= 2.0) return 'z-extreme-low';
+    if (az >= 1.5) return 'z-low';
+    if (az >= 1.0) return 'z-elevated';
+    return 'z-normal';
+  }
+}
+function zDisplay(z) {
+  const s = (z >= 0 ? '+' : '') + z.toFixed(2);
+  const az = Math.abs(z);
+  let flag = '';
+  if (az >= 2.0) flag = ' ***';
+  else if (az >= 1.5) flag = ' **';
+  else if (az >= 1.0) flag = ' *';
+  return s + flag;
+}
+function fmtVal(v, dp) { return v >= 0 ? '+' + v.toFixed(dp) : v.toFixed(dp); }
+
+function renderFxvol(data) {
+  document.getElementById('fxvol-updated').textContent = 'Last updated: ' + data._updated;
+  const tenors = ['1M', '3M', '6M'];
+
+  // Collect extremes across all tenors
+  const extremes = [];
+  tenors.forEach(tenor => {
+    (data.tenors[tenor] || []).forEach(r => {
+      [['atm_z','ATM Vol'],['rr_z','25d RR'],['ratio_z','RR/ATM']].forEach(([f,label]) => {
+        if (Math.abs(r[f]) >= 1.5) {
+          extremes.push({ pair: r.pair, tenor, metric: label, z: r[f], dir: r[f] > 0 ? 'HIGH' : 'LOW' });
+        }
+      });
+    });
+  });
+
+  // Extremes alert
+  if (extremes.length > 0) {
+    document.getElementById('fxvol-extremes').innerHTML = `
+      <div class="extremes-box">
+        <h3>Extreme Readings (|z| >= 1.5)</h3>
+        ${extremes.map(e => `
+          <div class="extreme-item">
+            <span class="pair">${e.pair}</span>
+            <span class="tenor">${e.tenor}</span>
+            <span class="metric">${e.metric}</span>
+            <span class="${e.z > 0 ? 'z-extreme-high' : 'z-extreme-low'}">${zDisplay(e.z)}</span>
+            <span style="color:var(--text-dim)">(${e.dir})</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Tenor tables
+  let html = '';
+  tenors.forEach(tenor => {
+    const rows = data.tenors[tenor] || [];
+    html += `
+      <div class="ind-section">
+        <h3>${tenor} ATM Vol &amp; 25d Risk Reversals &mdash; Z-scores (3M lookback)</h3>
+        <table class="vol-table">
+          <thead>
+            <tr>
+              <th>Pair</th>
+              <th>ATM Vol</th>
+              <th>25d RR</th>
+              <th>RR/ATM</th>
+              <th>ATM z</th>
+              <th>RR z</th>
+              <th>Ratio z</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(r => `
+              <tr>
+                <td>${r.pair}</td>
+                <td>${r.atm_vol.toFixed(3)}</td>
+                <td>${fmtVal(r.rr_25d, 3)}</td>
+                <td>${fmtVal(r.rr_atm_ratio, 4)}</td>
+                <td class="${zClass(r.atm_z)}">${zDisplay(r.atm_z)}</td>
+                <td class="${zClass(r.rr_z)}">${zDisplay(r.rr_z)}</td>
+                <td class="${zClass(r.ratio_z)}">${zDisplay(r.ratio_z)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  });
+  document.getElementById('fxvol-tables').innerHTML = html;
+}
+
+fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
+</script>
+</body>
+</html>
