@@ -1,0 +1,196 @@
+{
+  "_updated": "2026-03-05 21:40",
+  "asset": "UST 10Y",
+  "periods": {
+    "6m": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.2611,
+        "fv": 4.15,
+        "spot": 4.13,
+        "misval": "-2 bps",
+        "zscore": -0.31,
+        "signal": "FAIR"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.0525,
+        "fv": 4.12,
+        "spot": 4.13,
+        "misval": "+2 bps",
+        "zscore": 0.2,
+        "signal": "FAIR"
+      },
+      {
+        "model": "VIX (Risk Premium)",
+        "r2": 0.0814,
+        "fv": 4.07,
+        "spot": 4.13,
+        "misval": "+6 bps",
+        "zscore": 0.76,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.3102,
+        "fv": 4.12,
+        "spot": 4.13,
+        "misval": "+1 bps",
+        "zscore": 0.14,
+        "signal": "FAIR"
+      }
+    ],
+    "1y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.7552,
+        "fv": 4.15,
+        "spot": 4.13,
+        "misval": "-2 bps",
+        "zscore": -0.4,
+        "signal": "FAIR"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.1203,
+        "fv": 4.21,
+        "spot": 4.13,
+        "misval": "-8 bps",
+        "zscore": -0.6,
+        "signal": "FAIR"
+      },
+      {
+        "model": "VIX (Risk Premium)",
+        "r2": 0.0128,
+        "fv": 4.23,
+        "spot": 4.13,
+        "misval": "-10 bps",
+        "zscore": -0.69,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.7627,
+        "fv": 4.14,
+        "spot": 4.13,
+        "misval": "-1 bps",
+        "zscore": -0.28,
+        "signal": "FAIR"
+      }
+    ],
+    "2y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.3316,
+        "fv": 4.12,
+        "spot": 4.13,
+        "misval": "+1 bps",
+        "zscore": -0.62,
+        "signal": "FAIR"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.5634,
+        "fv": 4.25,
+        "spot": 4.13,
+        "misval": "-12 bps",
+        "zscore": -0.48,
+        "signal": "FAIR"
+      },
+      {
+        "model": "VIX (Risk Premium)",
+        "r2": 0.013,
+        "fv": 4.22,
+        "spot": 4.13,
+        "misval": "-9 bps",
+        "zscore": -0.49,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.7633,
+        "fv": 4.19,
+        "spot": 4.13,
+        "misval": "-6 bps",
+        "zscore": -0.72,
+        "signal": "FAIR"
+      }
+    ],
+    "3y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.1078,
+        "fv": 4.05,
+        "spot": 4.13,
+        "misval": "+8 bps",
+        "zscore": -0.62,
+        "signal": "FAIR"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.4309,
+        "fv": 4.2,
+        "spot": 4.13,
+        "misval": "-7 bps",
+        "zscore": -0.4,
+        "signal": "FAIR"
+      },
+      {
+        "model": "VIX (Risk Premium)",
+        "r2": 0.0013,
+        "fv": 4.16,
+        "spot": 4.13,
+        "misval": "-3 bps",
+        "zscore": -0.56,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.4825,
+        "fv": 4.14,
+        "spot": 4.13,
+        "misval": "-1 bps",
+        "zscore": -0.59,
+        "signal": "FAIR"
+      }
+    ],
+    "5y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.8883,
+        "fv": 3.64,
+        "spot": 4.13,
+        "misval": "+49 bps",
+        "zscore": -0.4,
+        "signal": "FAIR"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.1479,
+        "fv": 3.62,
+        "spot": 4.13,
+        "misval": "+51 bps",
+        "zscore": -0.47,
+        "signal": "FAIR"
+      },
+      {
+        "model": "VIX (Risk Premium)",
+        "r2": 0.0622,
+        "fv": 3.32,
+        "spot": 4.13,
+        "misval": "+81 bps",
+        "zscore": 0.23,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.891,
+        "fv": 3.62,
+        "spot": 4.13,
+        "misval": "+51 bps",
+        "zscore": -0.05,
+        "signal": "FAIR"
+      }
+    ]
+  }
+}

@@ -211,8 +211,7 @@
   <div class="top-nav">
     <button class="nav-btn active" data-page="momentum">Momentum</button>
     <button class="nav-btn" data-page="fxvol">FX Vol</button>
-    <button class="nav-btn" data-page="eurusdfv">EURUSD FV</button>
-    <button class="nav-btn" data-page="ust10yfv">UST 10Y FV</button>
+    <button class="nav-btn" data-page="fairvalue">Fair Value</button>
   </div>
 
   <!-- ============ MOMENTUM PAGE ============ -->
@@ -238,75 +237,96 @@
     <div id="fxvol-tables"></div>
   </div>
 
-  
-  <!-- ============ EURUSD FAIR VALUE PAGE ============ -->
-  <div class="page" id="page-eurusdfv">
+  <!-- ============ FAIR VALUE PAGE ============ -->
+  <div class="page" id="page-fairvalue">
     <header>
-      <h1><span>&gt;</span> EURUSD Fair Value Models</h1>
+      <h1><span>&gt;</span> Fair Value Models</h1>
     </header>
 
-    <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
-      <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-      <div class="tabs" id="fv-period-tabs" style="margin-bottom:0;">
-        <button class="tab" data-p="6m">6M</button>
-        <button class="tab" data-p="1y">1Y</button>
-        <button class="tab" data-p="2y">2Y</button>
-        <button class="tab active" data-p="3y">3Y</button>
-        <button class="tab" data-p="5y">5Y</button>
+    <!-- Sub-tabs: Summary | EURUSD | UST 10Y -->
+    <div class="tabs" id="fv-sub-tabs" style="margin-bottom:24px;">
+      <button class="tab active" data-sub="summary">Summary</button>
+      <button class="tab" data-sub="eurusd">EURUSD</button>
+      <button class="tab" data-sub="ust10y">UST 10Y</button>
+    </div>
+
+    <!-- ── Summary sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-summary">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="summary-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab active" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div class="updated" id="fv-summary-updated" style="margin-bottom:16px;"></div>
+      <div id="fv-summary-table"></div>
+    </div>
+
+    <!-- ── EURUSD sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-eurusd" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="fv-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab active" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Real Rate Differential</div>
+        <img id="fv-img-realrate" src="eurusd_fv_realrate_3y.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
+        <img id="fv-img-tot" src="eurusd_fv_tot_3y.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Real Rate + ToT)</div>
+        <img id="fv-img-combined" src="eurusd_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
       </div>
     </div>
 
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Real Rate Differential</div>
-      <img id="fv-img-realrate" src="eurusd_fv_realrate_3y.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
-    </div>
-
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
-      <img id="fv-img-tot" src="eurusd_fv_tot_3y.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
-    </div>
-
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Real Rate + ToT)</div>
-      <img id="fv-img-combined" src="eurusd_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
-    </div>
-  </div>
-
-  <!-- ============ UST 10Y FAIR VALUE PAGE ============ -->
-  <div class="page" id="page-ust10yfv">
-    <header>
-      <h1><span>&gt;</span> UST 10Y Fair Value Models</h1>
-    </header>
-
-    <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
-      <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-      <div class="tabs" id="ust-period-tabs" style="margin-bottom:0;">
-        <button class="tab" data-p="6m">6M</button>
-        <button class="tab" data-p="1y">1Y</button>
-        <button class="tab" data-p="2y">2Y</button>
-        <button class="tab active" data-p="3y">3Y</button>
-        <button class="tab" data-p="5y">5Y</button>
+    <!-- ── UST 10Y sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-ust10y" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="ust-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab active" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
       </div>
-    </div>
 
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Yield (Policy Transmission)</div>
-      <img id="ust-img-policy" src="ust10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
-    </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Yield (Policy Transmission)</div>
+        <img id="ust-img-policy" src="ust10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+      </div>
 
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y Breakeven (Inflation Expectations)</div>
-      <img id="ust-img-inflation" src="ust10y_fv_inflation_3y.png" alt="Inflation Model" style="width:100%;border-radius:8px;" />
-    </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y Breakeven (Inflation Expectations)</div>
+        <img id="ust-img-inflation" src="ust10y_fv_inflation_3y.png" alt="Inflation Model" style="width:100%;border-radius:8px;" />
+      </div>
 
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: VIX (Risk Premium)</div>
-      <img id="ust-img-risk" src="ust10y_fv_risk_3y.png" alt="Risk Model" style="width:100%;border-radius:8px;" />
-    </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: VIX (Risk Premium)</div>
+        <img id="ust-img-risk" src="ust10y_fv_risk_3y.png" alt="Risk Model" style="width:100%;border-radius:8px;" />
+      </div>
 
-    <div class="chart-wrap" style="padding:12px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y Yield + Breakeven + VIX)</div>
-      <img id="ust-img-combined" src="ust10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y Yield + Breakeven + VIX)</div>
+        <img id="ust-img-combined" src="ust10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      </div>
     </div>
   </div>
 
@@ -550,7 +570,83 @@ function renderFxvol(data) {
 }
 
 fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
-/* ========== EURUSD FV ========== */
+/* ========== FAIR VALUE: Sub-tabs ========== */
+(function() {
+  const subTabs = document.querySelectorAll('#fv-sub-tabs .tab');
+  const subPages = document.querySelectorAll('.fv-subpage');
+  subTabs.forEach(t => t.addEventListener('click', () => {
+    subTabs.forEach(s => s.classList.remove('active'));
+    subPages.forEach(p => p.style.display = 'none');
+    t.classList.add('active');
+    document.getElementById('fv-sub-' + t.dataset.sub).style.display = 'block';
+  }));
+})();
+
+/* ========== FAIR VALUE: Summary table ========== */
+(function() {
+  let FV_DATA = [];
+  let summaryPeriod = '3y';
+
+  function sigBadge(signal) {
+    const s = signal.toLowerCase();
+    let cls = 'neutral';
+    if (s.includes('cheap')) cls = 'bull';
+    else if (s.includes('rich')) cls = 'bear';
+    return '<span class="badge ' + cls + '">' + signal + '</span>';
+  }
+
+  function renderSummary() {
+    let html = '<table class="vol-table"><thead><tr>' +
+      '<th>Asset</th><th>Model</th><th>R\u00b2</th><th>Fair Value</th>' +
+      '<th>Current</th><th>Misval</th><th>Z-score</th><th>Signal</th></tr></thead><tbody>';
+
+    FV_DATA.forEach(function(d) {
+      if (!d || !d.periods || !d.periods[summaryPeriod]) return;
+      const models = d.periods[summaryPeriod];
+      models.forEach(function(m, i) {
+        html += '<tr>';
+        if (i === 0) html += '<td rowspan="' + models.length + '" style="font-weight:700;">' + d.asset + '</td>';
+        html += '<td>' + m.model + '</td>';
+        html += '<td>' + m.r2.toFixed(3) + '</td>';
+        html += '<td>' + m.fv + '</td>';
+        html += '<td>' + m.spot + '</td>';
+        html += '<td>' + m.misval + '</td>';
+        html += '<td class="' + zClass(m.zscore) + '">' + zDisplay(m.zscore) + '</td>';
+        html += '<td>' + sigBadge(m.signal) + '</td>';
+        html += '</tr>';
+      });
+    });
+
+    html += '</tbody></table>';
+    document.getElementById('fv-summary-table').innerHTML = html;
+
+    const updated = FV_DATA.map(function(d) { return d ? d._updated : ''; }).filter(Boolean);
+    if (updated.length > 0) {
+      document.getElementById('fv-summary-updated').textContent = 'Last updated: ' + updated[0];
+    }
+  }
+
+  // Period switcher
+  const tabs = document.querySelectorAll('#summary-period-tabs .tab');
+  tabs.forEach(function(t) {
+    t.addEventListener('click', function() {
+      summaryPeriod = t.dataset.p;
+      tabs.forEach(function(s) { s.classList.toggle('active', s.dataset.p === summaryPeriod); });
+      renderSummary();
+    });
+  });
+
+  // Load both summary JSONs
+  Promise.all([
+    fetch('eurusd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('ust10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+  ]).then(function(results) {
+    FV_DATA = results.filter(Boolean);
+    renderSummary();
+  });
+})();
+
+/* ========== FAIR VALUE: EURUSD period switcher ========== */
 (function() {
   const tabs = document.querySelectorAll('#fv-period-tabs .tab');
   function switchPeriod(p) {
@@ -563,7 +659,7 @@ fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
   tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
 })();
 
-/* ========== UST 10Y FV ========== */
+/* ========== FAIR VALUE: UST 10Y period switcher ========== */
 (function() {
   const tabs = document.querySelectorAll('#ust-period-tabs .tab');
   function switchPeriod(p) {

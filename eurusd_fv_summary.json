@@ -1,0 +1,151 @@
+{
+  "_updated": "2026-03-05 21:40",
+  "asset": "EURUSD",
+  "periods": {
+    "6m": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.0044,
+        "fv": 1.1711,
+        "spot": 1.1603,
+        "misval": "-0.9%",
+        "zscore": -1.01,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0419,
+        "fv": 1.1797,
+        "spot": 1.1603,
+        "misval": "-1.7%",
+        "zscore": -1.84,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.0429,
+        "fv": 1.1799,
+        "spot": 1.1603,
+        "misval": "-1.7%",
+        "zscore": -1.86,
+        "signal": "CHEAP"
+      }
+    ],
+    "1y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.1328,
+        "fv": 1.1437,
+        "spot": 1.1603,
+        "misval": "+1.4%",
+        "zscore": 0.6,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.1057,
+        "fv": 1.1154,
+        "spot": 1.1603,
+        "misval": "+3.9%",
+        "zscore": 1.76,
+        "signal": "RICH"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.1641,
+        "fv": 1.1225,
+        "spot": 1.1603,
+        "misval": "+3.3%",
+        "zscore": 1.49,
+        "signal": "RICH"
+      }
+    ],
+    "2y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.7456,
+        "fv": 1.1253,
+        "spot": 1.1603,
+        "misval": "+3.0%",
+        "zscore": 0.97,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.5672,
+        "fv": 1.012,
+        "spot": 1.1603,
+        "misval": "+12.8%",
+        "zscore": 3.93,
+        "signal": "STRONG RICH"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.7796,
+        "fv": 1.0865,
+        "spot": 1.1603,
+        "misval": "+6.4%",
+        "zscore": 2.39,
+        "signal": "STRONG RICH"
+      }
+    ],
+    "3y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.6765,
+        "fv": 1.1272,
+        "spot": 1.1603,
+        "misval": "+2.8%",
+        "zscore": 0.84,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.4125,
+        "fv": 1.0447,
+        "spot": 1.1603,
+        "misval": "+10.0%",
+        "zscore": 3.15,
+        "signal": "STRONG RICH"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.6902,
+        "fv": 1.1095,
+        "spot": 1.1603,
+        "misval": "+4.4%",
+        "zscore": 1.56,
+        "signal": "RICH"
+      }
+    ],
+    "5y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.7673,
+        "fv": 1.1185,
+        "spot": 1.1603,
+        "misval": "+3.6%",
+        "zscore": 0.58,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0665,
+        "fv": 1.1001,
+        "spot": 1.1603,
+        "misval": "+5.2%",
+        "zscore": 0.91,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.7704,
+        "fv": 1.1172,
+        "spot": 1.1603,
+        "misval": "+3.7%",
+        "zscore": 0.75,
+        "signal": "FAIR"
+      }
+    ]
+  }
+}
