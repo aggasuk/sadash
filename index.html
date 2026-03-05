@@ -220,11 +220,26 @@
       <h1><span>&gt;</span> Momentum Dashboard</h1>
       <div class="updated" id="updated"></div>
     </header>
-    <div class="tabs" id="tabs"></div>
-    <div class="snapshot" id="snapshot"></div>
-    <div class="chart-wrap"><canvas id="chart"></canvas></div>
-    <div class="scores" id="scores"></div>
-    <div id="indicators"></div>
+
+    <!-- Momentum sub-tabs -->
+    <div class="tabs" id="mom-sub-tabs" style="margin-bottom:24px;">
+      <button class="tab active" data-sub="summary">Summary</button>
+      <button class="tab" data-sub="detail">Individual</button>
+    </div>
+
+    <!-- ── Summary sub-page ── -->
+    <div class="mom-subpage" id="mom-sub-summary">
+      <div id="mom-summary-table"></div>
+    </div>
+
+    <!-- ── Detail sub-page ── -->
+    <div class="mom-subpage" id="mom-sub-detail" style="display:none;">
+      <div class="tabs" id="tabs"></div>
+      <div class="snapshot" id="snapshot"></div>
+      <div class="chart-wrap"><canvas id="chart"></canvas></div>
+      <div class="scores" id="scores"></div>
+      <div id="indicators"></div>
+    </div>
   </div>
 
   <!-- ============ FXVOL PAGE ============ -->
@@ -532,12 +547,97 @@ function renderMomentum() {
   renderTabs(); renderSnapshot(d); renderChart(d); renderScores(d); renderIndicators(d);
 }
 
+/* ========== MOMENTUM: Sub-tabs ========== */
+(function() {
+  const subTabs = document.querySelectorAll('#mom-sub-tabs .tab');
+  const subPages = document.querySelectorAll('.mom-subpage');
+  subTabs.forEach(t => t.addEventListener('click', () => {
+    subTabs.forEach(s => s.classList.remove('active'));
+    subPages.forEach(p => p.style.display = 'none');
+    t.classList.add('active');
+    document.getElementById('mom-sub-' + t.dataset.sub).style.display = 'block';
+    // re-render chart when switching to detail (canvas sizing)
+    if (t.dataset.sub === 'detail' && activeTicker) renderMomentum();
+  }));
+})();
+
+function switchToDetail(ticker) {
+  activeTicker = ticker;
+  // switch sub-tab
+  document.querySelectorAll('#mom-sub-tabs .tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.sub === 'detail');
+  });
+  document.querySelectorAll('.mom-subpage').forEach(p => p.style.display = 'none');
+  document.getElementById('mom-sub-detail').style.display = 'block';
+  renderMomentum();
+}
+
+function renderMomSummary() {
+  const tickers = Object.keys(DATA).filter(k => k !== '_updated');
+  if (tickers.length === 0) return;
+
+  let rows = '';
+  tickers.forEach(t => {
+    const d = DATA[t];
+    const rsi14 = d.ind['RSI (14d)'];
+    const macdSig = d.ind['MACD histogram'];
+    const sma50_200 = d.ind['SMA 50/200'];
+
+    rows += '<tr style="cursor:pointer;" onclick="switchToDetail(\'' + t + '\')">';
+    rows += '<td>' + t + '</td>';
+    rows += '<td>' + d.last.toFixed(d.last > 1000 ? 2 : 4) + '</td>';
+
+    // ST score with color
+    const stColor = scoreColor(d.st.score);
+    rows += '<td style="font-weight:700;color:' + stColor + '">' + d.st.score + '</td>';
+    rows += '<td><span class="badge ' + badgeClass(d.st.label) + '">' + d.st.label + '</span></td>';
+
+    // LT score with color
+    const ltColor = scoreColor(d.lt.score);
+    rows += '<td style="font-weight:700;color:' + ltColor + '">' + d.lt.score + '</td>';
+    rows += '<td><span class="badge ' + badgeClass(d.lt.label) + '">' + d.lt.label + '</span></td>';
+
+    // RSI
+    if (rsi14) {
+      const rsiVal = parseFloat(rsi14.v);
+      const rsiColor = rsiVal > 70 ? 'var(--red)' : rsiVal < 30 ? 'var(--green)' : 'var(--text-dim)';
+      rows += '<td style="color:' + rsiColor + '">' + rsi14.v + '</td>';
+    } else {
+      rows += '<td>-</td>';
+    }
+
+    // MACD
+    if (macdSig) {
+      rows += '<td><span class="badge ' + badgeClass(macdSig.s) + '">' + macdSig.s + '</span></td>';
+    } else {
+      rows += '<td>-</td>';
+    }
+
+    // SMA 50/200
+    if (sma50_200) {
+      rows += '<td><span class="badge ' + badgeClass(sma50_200.s) + '">' + sma50_200.s.replace(' (BULLISH)','').replace(' (BEARISH)','') + '</span></td>';
+    } else {
+      rows += '<td>-</td>';
+    }
+
+    rows += '</tr>';
+  });
+
+  document.getElementById('mom-summary-table').innerHTML =
+    '<table class="vol-table"><thead><tr>' +
+    '<th>Ticker</th><th>Last</th>' +
+    '<th>ST</th><th>ST Signal</th>' +
+    '<th>LT</th><th>LT Signal</th>' +
+    '<th>RSI(14)</th><th>MACD</th><th>50/200</th>' +
+    '</tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
 fetch('data.json').then(r => r.json()).then(data => {
   DATA = data;
   const tickers = Object.keys(data).filter(k => k !== '_updated');
   activeTicker = tickers[0];
   document.getElementById('updated').textContent = 'Last updated: ' + (data._updated || data[activeTicker].prices.slice(-1)[0].d);
-  renderMomentum();
+  renderMomSummary();
 });
 
 
