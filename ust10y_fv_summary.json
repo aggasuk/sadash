@@ -1,67 +1,67 @@
 {
-  "_updated": "2026-03-05 21:40",
+  "_updated": "2026-03-05 23:37",
   "asset": "UST 10Y",
   "periods": {
     "6m": [
       {
         "model": "2Y Yield (Policy)",
-        "r2": 0.2611,
+        "r2": 0.2615,
         "fv": 4.15,
         "spot": 4.13,
-        "misval": "-2 bps",
-        "zscore": -0.31,
+        "misval": "-1 bps",
+        "zscore": -0.2,
         "signal": "FAIR"
       },
       {
         "model": "10Y Breakeven (Infl)",
-        "r2": 0.0525,
+        "r2": 0.0526,
         "fv": 4.12,
         "spot": 4.13,
-        "misval": "+2 bps",
-        "zscore": 0.2,
+        "misval": "+1 bps",
+        "zscore": 0.19,
         "signal": "FAIR"
       },
       {
         "model": "VIX (Risk Premium)",
-        "r2": 0.0814,
+        "r2": 0.0806,
         "fv": 4.07,
         "spot": 4.13,
         "misval": "+6 bps",
-        "zscore": 0.76,
+        "zscore": 0.83,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
-        "r2": 0.3102,
-        "fv": 4.12,
+        "r2": 0.3098,
+        "fv": 4.11,
         "spot": 4.13,
-        "misval": "+1 bps",
-        "zscore": 0.14,
+        "misval": "+2 bps",
+        "zscore": 0.31,
         "signal": "FAIR"
       }
     ],
     "1y": [
       {
         "model": "2Y Yield (Policy)",
-        "r2": 0.7552,
+        "r2": 0.7553,
         "fv": 4.15,
         "spot": 4.13,
-        "misval": "-2 bps",
-        "zscore": -0.4,
+        "misval": "-1 bps",
+        "zscore": -0.29,
         "signal": "FAIR"
       },
       {
         "model": "10Y Breakeven (Infl)",
-        "r2": 0.1203,
-        "fv": 4.21,
+        "r2": 0.1201,
+        "fv": 4.22,
         "spot": 4.13,
-        "misval": "-8 bps",
-        "zscore": -0.6,
+        "misval": "-9 bps",
+        "zscore": -0.63,
         "signal": "FAIR"
       },
       {
         "model": "VIX (Risk Premium)",
-        "r2": 0.0128,
+        "r2": 0.0127,
         "fv": 4.23,
         "spot": 4.13,
         "misval": "-10 bps",
@@ -74,7 +74,7 @@
         "fv": 4.14,
         "spot": 4.13,
         "misval": "-1 bps",
-        "zscore": -0.28,
+        "zscore": -0.16,
         "signal": "FAIR"
       }
     ],
@@ -85,16 +85,16 @@
         "fv": 4.12,
         "spot": 4.13,
         "misval": "+1 bps",
-        "zscore": -0.62,
+        "zscore": -0.58,
         "signal": "FAIR"
       },
       {
         "model": "10Y Breakeven (Infl)",
-        "r2": 0.5634,
-        "fv": 4.25,
+        "r2": 0.5633,
+        "fv": 4.26,
         "spot": 4.13,
-        "misval": "-12 bps",
-        "zscore": -0.48,
+        "misval": "-13 bps",
+        "zscore": -0.56,
         "signal": "FAIR"
       },
       {
@@ -103,16 +103,16 @@
         "fv": 4.22,
         "spot": 4.13,
         "misval": "-9 bps",
-        "zscore": -0.49,
+        "zscore": -0.46,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
-        "r2": 0.7633,
-        "fv": 4.19,
+        "r2": 0.7632,
+        "fv": 4.2,
         "spot": 4.13,
-        "misval": "-6 bps",
-        "zscore": -0.72,
+        "misval": "-7 bps",
+        "zscore": -0.84,
         "signal": "FAIR"
       }
     ],
@@ -123,16 +123,16 @@
         "fv": 4.05,
         "spot": 4.13,
         "misval": "+8 bps",
-        "zscore": -0.62,
+        "zscore": -0.59,
         "signal": "FAIR"
       },
       {
         "model": "10Y Breakeven (Infl)",
-        "r2": 0.4309,
-        "fv": 4.2,
+        "r2": 0.4308,
+        "fv": 4.22,
         "spot": 4.13,
-        "misval": "-7 bps",
-        "zscore": -0.4,
+        "misval": "-8 bps",
+        "zscore": -0.5,
         "signal": "FAIR"
       },
       {
@@ -141,16 +141,16 @@
         "fv": 4.16,
         "spot": 4.13,
         "misval": "-3 bps",
-        "zscore": -0.56,
+        "zscore": -0.54,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
         "r2": 0.4825,
-        "fv": 4.14,
+        "fv": 4.16,
         "spot": 4.13,
-        "misval": "-1 bps",
-        "zscore": -0.59,
+        "misval": "-3 bps",
+        "zscore": -0.72,
         "signal": "FAIR"
       }
     ],
@@ -158,37 +158,37 @@
       {
         "model": "2Y Yield (Policy)",
         "r2": 0.8883,
-        "fv": 3.64,
+        "fv": 3.63,
         "spot": 4.13,
-        "misval": "+49 bps",
-        "zscore": -0.4,
+        "misval": "+50 bps",
+        "zscore": -0.29,
         "signal": "FAIR"
       },
       {
         "model": "10Y Breakeven (Infl)",
         "r2": 0.1479,
-        "fv": 3.62,
+        "fv": 3.61,
         "spot": 4.13,
-        "misval": "+51 bps",
-        "zscore": -0.47,
+        "misval": "+53 bps",
+        "zscore": -0.39,
         "signal": "FAIR"
       },
       {
         "model": "VIX (Risk Premium)",
         "r2": 0.0622,
-        "fv": 3.32,
+        "fv": 3.3,
         "spot": 4.13,
-        "misval": "+81 bps",
-        "zscore": 0.23,
+        "misval": "+84 bps",
+        "zscore": 0.3,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
         "r2": 0.891,
-        "fv": 3.62,
+        "fv": 3.61,
         "spot": 4.13,
-        "misval": "+51 bps",
-        "zscore": -0.05,
+        "misval": "+52 bps",
+        "zscore": 0.11,
         "signal": "FAIR"
       }
     ]
