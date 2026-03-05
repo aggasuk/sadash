@@ -202,6 +202,19 @@
   .page { display: none; }
   .page.visible { display: block; }
 
+  /* Trade book */
+  .trade-table { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; border-collapse: collapse; }
+  .trade-table th { padding: 10px 12px; font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; text-align: left; border-bottom: 2px solid var(--border); background: var(--surface2); }
+  .trade-table td { padding: 10px 12px; font-size: 0.82rem; border-bottom: 1px solid var(--border); }
+  .trade-table tr:last-child td { border-bottom: none; }
+  .trade-table tr:hover { background: var(--surface2); }
+  .trade-table .dir-long { color: var(--green); font-weight: 600; }
+  .trade-table .dir-short { color: var(--red); font-weight: 600; }
+  .trade-btn { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); color: var(--text-dim); font-family: inherit; font-size: 0.72rem; cursor: pointer; transition: all 0.15s; }
+  .trade-btn:hover { border-color: var(--accent); color: var(--text); }
+  .trade-btn.del:hover { border-color: var(--red); color: var(--red); }
+  .trade-empty { padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+
   footer { text-align: center; padding: 24px 0 12px; color: var(--text-dim); font-size: 0.65rem; }
 </style>
 </head>
@@ -212,6 +225,7 @@
     <button class="nav-btn active" data-page="momentum">Momentum</button>
     <button class="nav-btn" data-page="fxvol">FX Vol</button>
     <button class="nav-btn" data-page="fairvalue">Fair Value</button>
+    <button class="nav-btn" data-page="trades">Trades</button>
   </div>
 
   <!-- ============ MOMENTUM PAGE ============ -->
@@ -414,6 +428,50 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ============ TRADES PAGE ============ -->
+  <div class="page" id="page-trades">
+    <header>
+      <h1><span>&gt;</span> Trade Book</h1>
+    </header>
+
+    <!-- Token gate -->
+    <div id="trades-auth" style="margin-bottom:24px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">GitHub Token Required</div>
+        <div style="display:flex;gap:8px;">
+          <input type="password" id="gh-token-input" placeholder="ghp_..." style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:0.82rem;outline:none;" />
+          <button id="gh-token-save" style="padding:10px 20px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:inherit;font-size:0.82rem;cursor:pointer;font-weight:600;">Unlock</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trade input + book (hidden until auth) -->
+    <div id="trades-main" style="display:none;">
+      <!-- Chat-like input -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:24px;">
+        <div style="display:flex;gap:8px;">
+          <span style="color:var(--accent);font-weight:700;font-size:1.1rem;padding-top:6px;">&gt;</span>
+          <input type="text" id="trade-input" placeholder='e.g. "bought 50k USDJPY at 150.25" or "closed USDJPY at 151"' style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:0.85rem;outline:none;" />
+          <button id="trade-add-btn" style="padding:10px 20px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:inherit;font-size:0.82rem;cursor:pointer;font-weight:600;">Add</button>
+        </div>
+        <div id="trade-parse-preview" style="margin-top:10px;font-size:0.75rem;color:var(--text-dim);display:none;"></div>
+        <div id="trade-error" style="margin-top:10px;font-size:0.75rem;color:var(--red);display:none;"></div>
+      </div>
+
+      <!-- Open positions -->
+      <div class="ind-section">
+        <h3>Open Positions</h3>
+        <div id="trades-open"></div>
+      </div>
+
+      <!-- Closed trades -->
+      <div class="ind-section">
+        <h3>Closed Trades</h3>
+        <div id="trades-closed"></div>
+      </div>
+    </div>
   </div>
 
   <footer>Data sourced from Bloomberg &middot; Static snapshot</footer>
@@ -872,6 +930,330 @@ fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
     tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
   }
   tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+})();
+
+/* ========== TRADES ========== */
+(function() {
+  const REPO_API = 'https://api.github.com/repos/aggasuk/trade-book/contents/trades.json';
+  let ghToken = localStorage.getItem('gh_token') || '';
+  let tradesCache = [];
+  let tradesSha = '';
+
+  // Ticker aliases
+  const ALIASES = {
+    'usdjpy':'USDJPY','yen':'USDJPY','jpy':'USDJPY',
+    'eurusd':'EURUSD','eur':'EURUSD',
+    'usdcnh':'USDCNH','cnh':'USDCNH','cny':'USDCNH',
+    'jgb':'JGB 10Y','jgb10y':'JGB 10Y','jgb 10y':'JGB 10Y',
+    'bund':'Bund 10Y','bund10y':'Bund 10Y','bund 10y':'Bund 10Y',
+    'ust':'UST 10Y','ust10y':'UST 10Y','ust 10y':'UST 10Y','treasury':'UST 10Y','treasuries':'UST 10Y',
+    'spx':'SPX','s&p':'SPX','sp500':'SPX',
+    'gold':'XAU','xau':'XAU',
+    'brent':'Brent','oil':'Brent','co1':'Brent',
+    'topix':'TOPIX','tpx':'TOPIX',
+    'kospi':'KOSPI',
+    'nasdaq':'NASDAQ','ndx':'NASDAQ','ccmp':'NASDAQ',
+    'nikkei':'Nikkei','nky':'Nikkei',
+    'audusd':'AUDUSD','aud':'AUDUSD',
+    'gbpusd':'GBPUSD','gbp':'GBPUSD','cable':'GBPUSD',
+    'nzdusd':'NZDUSD','nzd':'NZDUSD',
+    'usdsgd':'USDSGD','sgd':'USDSGD',
+    'usdthb':'USDTHB','thb':'USDTHB',
+    'usdinr':'USDINR','inr':'USDINR',
+    'usdkrw':'USDKRW','krw':'USDKRW',
+    'usdmyr':'USDMYR','myr':'USDMYR',
+    'usdhkd':'USDHKD','hkd':'USDHKD',
+  };
+
+  function resolveTicker(raw) {
+    const lower = raw.toLowerCase().trim();
+    if (ALIASES[lower]) return ALIASES[lower];
+    // Try without spaces
+    const nospace = lower.replace(/\s+/g, '');
+    if (ALIASES[nospace]) return ALIASES[nospace];
+    // Return as-is (uppercased)
+    return raw.trim().toUpperCase();
+  }
+
+  function parseTrade(text) {
+    const t = text.trim();
+    const lower = t.toLowerCase();
+
+    // Close pattern: "close/closed [ticker] at [price]"
+    const closeMatch = lower.match(/^(?:close|closed|exit|exited)\s+(.+?)\s+(?:at|@)\s+([\d.]+)/);
+    if (closeMatch) {
+      return { action: 'close', ticker: resolveTicker(closeMatch[1]), exitPrice: parseFloat(closeMatch[2]) };
+    }
+
+    // Entry patterns
+    // Pattern A: "bought/sold/long/short [size] [ticker] at [price]"
+    const patA = lower.match(/^(bought|sold|long|short|buy|sell)\s+(.+?)\s+(?:at|@)\s+([\d.]+)$/);
+    if (patA) {
+      const dir = ['bought','long','buy'].includes(patA[1]) ? 'long' : 'short';
+      // Split the middle part into size + ticker
+      const middle = patA[2].trim();
+      const parts = splitSizeTicker(middle);
+      return { action: 'add', direction: dir, ticker: resolveTicker(parts.ticker), size: parts.size, price: parseFloat(patA[3]) };
+    }
+
+    // Pattern B: "bought/sold [ticker] [size] at [price]" (ticker first)
+    const patB = lower.match(/^(bought|sold|long|short|buy|sell)\s+(.+?)\s+([\d.]+)$/);
+    if (patB) {
+      const dir = ['bought','long','buy'].includes(patB[1]) ? 'long' : 'short';
+      const middle = patB[2].replace(/\s+(?:at|@)\s*$/, '').trim();
+      const parts = splitSizeTicker(middle);
+      return { action: 'add', direction: dir, ticker: resolveTicker(parts.ticker), size: parts.size, price: parseFloat(patB[3]) };
+    }
+
+    return null;
+  }
+
+  function splitSizeTicker(str) {
+    // Try to find a size-like token: starts with number or $
+    // e.g. "50k USDJPY", "$5m dv01 JGB 10Y", "100 lots SPX"
+    const sizeMatch = str.match(/^(\$?[\d,.]+\s*[kmb]?(?:\s*dv01|\s*lots?)?)\s+(.+)$/i);
+    if (sizeMatch) return { size: sizeMatch[1].trim(), ticker: sizeMatch[2].trim() };
+
+    // Try ticker first: "USDJPY 50k"
+    const tickerFirst = str.match(/^([a-z\s]+?)\s+([\d$][\d,.]*\s*[kmb]?(?:\s*dv01|\s*lots?)?)$/i);
+    if (tickerFirst) return { size: tickerFirst[2].trim(), ticker: tickerFirst[1].trim() };
+
+    // No clear size — treat whole thing as ticker
+    return { size: '', ticker: str };
+  }
+
+  // GitHub API
+  async function loadTrades() {
+    const resp = await fetch(REPO_API, {
+      headers: { 'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (resp.status === 401 || resp.status === 403) throw new Error('Invalid token');
+    if (!resp.ok) throw new Error('GitHub API error: ' + resp.status);
+    const data = await resp.json();
+    tradesSha = data.sha;
+    const content = atob(data.content.replace(/\n/g, ''));
+    tradesCache = JSON.parse(content);
+    return tradesCache;
+  }
+
+  async function saveTrades(trades) {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(trades, null, 2))));
+    const resp = await fetch(REPO_API, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + ghToken,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Update trades ' + new Date().toISOString().slice(0,16),
+        content: content,
+        sha: tradesSha
+      })
+    });
+    if (!resp.ok) {
+      // SHA conflict — reload and retry
+      if (resp.status === 409) {
+        await loadTrades();
+        throw new Error('Conflict — please try again');
+      }
+      throw new Error('Save failed: ' + resp.status);
+    }
+    const result = await resp.json();
+    tradesSha = result.content.sha;
+    tradesCache = trades;
+  }
+
+  function fmtDate(iso) {
+    const d = new Date(iso);
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return d.getDate().toString().padStart(2,'0') + '-' + months[d.getMonth()];
+  }
+
+  function renderTrades() {
+    const open = tradesCache.filter(t => t.status === 'open');
+    const closed = tradesCache.filter(t => t.status === 'closed');
+
+    if (open.length === 0) {
+      document.getElementById('trades-open').innerHTML = '<div class="trade-empty">No open positions</div>';
+    } else {
+      let html = '<table class="trade-table"><thead><tr><th>Date</th><th>Ticker</th><th>Dir</th><th>Size</th><th>Entry</th><th>Notes</th><th></th></tr></thead><tbody>';
+      open.forEach(t => {
+        html += '<tr>';
+        html += '<td>' + fmtDate(t.ts) + '</td>';
+        html += '<td style="font-weight:600;">' + t.ticker + '</td>';
+        html += '<td class="dir-' + t.direction + '">' + (t.direction === 'long' ? 'Long' : 'Short') + '</td>';
+        html += '<td>' + (t.size || '-') + '</td>';
+        html += '<td>' + t.price + '</td>';
+        html += '<td style="color:var(--text-dim);font-size:0.75rem;">' + (t.notes || '') + '</td>';
+        html += '<td style="white-space:nowrap;"><button class="trade-btn" onclick="tradeClose(\'' + t.id + '\')">Close</button> <button class="trade-btn del" onclick="tradeDelete(\'' + t.id + '\')">✕</button></td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      document.getElementById('trades-open').innerHTML = html;
+    }
+
+    if (closed.length === 0) {
+      document.getElementById('trades-closed').innerHTML = '<div class="trade-empty">No closed trades</div>';
+    } else {
+      let html = '<table class="trade-table"><thead><tr><th>Date</th><th>Ticker</th><th>Dir</th><th>Size</th><th>Entry</th><th>Exit</th><th>Closed</th><th></th></tr></thead><tbody>';
+      closed.forEach(t => {
+        html += '<tr>';
+        html += '<td>' + fmtDate(t.ts) + '</td>';
+        html += '<td style="font-weight:600;">' + t.ticker + '</td>';
+        html += '<td class="dir-' + t.direction + '">' + (t.direction === 'long' ? 'Long' : 'Short') + '</td>';
+        html += '<td>' + (t.size || '-') + '</td>';
+        html += '<td>' + t.price + '</td>';
+        html += '<td>' + (t.exit_price || '-') + '</td>';
+        html += '<td style="color:var(--text-dim);font-size:0.75rem;">' + (t.exit_date ? fmtDate(t.exit_date) : '-') + '</td>';
+        html += '<td><button class="trade-btn del" onclick="tradeDelete(\'' + t.id + '\')">✕</button></td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      document.getElementById('trades-closed').innerHTML = html;
+    }
+  }
+
+  // Global functions for onclick handlers
+  window.tradeClose = async function(id) {
+    const price = prompt('Exit price:');
+    if (!price || isNaN(parseFloat(price))) return;
+    try {
+      await loadTrades();
+      const t = tradesCache.find(x => x.id === id);
+      if (t) {
+        t.status = 'closed';
+        t.exit_price = parseFloat(price);
+        t.exit_date = new Date().toISOString();
+        await saveTrades(tradesCache);
+      }
+      renderTrades();
+    } catch (e) {
+      alert('Error: ' + e.message);
+    }
+  };
+
+  window.tradeDelete = async function(id) {
+    if (!confirm('Delete this trade?')) return;
+    try {
+      await loadTrades();
+      tradesCache = tradesCache.filter(x => x.id !== id);
+      await saveTrades(tradesCache);
+      renderTrades();
+    } catch (e) {
+      alert('Error: ' + e.message);
+    }
+  };
+
+  // Auth
+  async function tryAuth() {
+    try {
+      await loadTrades();
+      document.getElementById('trades-auth').style.display = 'none';
+      document.getElementById('trades-main').style.display = 'block';
+      renderTrades();
+    } catch (e) {
+      document.getElementById('trades-auth').style.display = 'block';
+      document.getElementById('trades-main').style.display = 'none';
+      if (ghToken) {
+        localStorage.removeItem('gh_token');
+        ghToken = '';
+      }
+    }
+  }
+
+  document.getElementById('gh-token-save').addEventListener('click', () => {
+    ghToken = document.getElementById('gh-token-input').value.trim();
+    if (!ghToken) return;
+    localStorage.setItem('gh_token', ghToken);
+    tryAuth();
+  });
+
+  // Auto-auth if token exists
+  if (ghToken) tryAuth();
+
+  // Trade input
+  const input = document.getElementById('trade-input');
+  const preview = document.getElementById('trade-parse-preview');
+  const errEl = document.getElementById('trade-error');
+
+  // Live preview as user types
+  input.addEventListener('input', () => {
+    const parsed = parseTrade(input.value);
+    errEl.style.display = 'none';
+    if (!input.value.trim()) { preview.style.display = 'none'; return; }
+    if (parsed) {
+      if (parsed.action === 'close') {
+        preview.style.display = 'block';
+        preview.innerHTML = 'Will close <strong>' + parsed.ticker + '</strong> at <strong>' + parsed.exitPrice + '</strong>';
+      } else {
+        preview.style.display = 'block';
+        preview.innerHTML = '<strong>' + parsed.direction.toUpperCase() + '</strong> ' +
+          (parsed.size ? parsed.size + ' ' : '') +
+          '<strong>' + parsed.ticker + '</strong> at <strong>' + parsed.price + '</strong>';
+      }
+    } else {
+      preview.style.display = 'block';
+      preview.innerHTML = '<span style="color:var(--amber);">Could not parse — try: "bought 50k USDJPY at 150.25"</span>';
+    }
+  });
+
+  async function submitTrade() {
+    const text = input.value.trim();
+    if (!text) return;
+    const parsed = parseTrade(text);
+    if (!parsed) {
+      errEl.style.display = 'block';
+      errEl.textContent = 'Could not parse. Try: "bought 50k USDJPY at 150.25" or "closed USDJPY at 151"';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    try {
+      await loadTrades();
+
+      if (parsed.action === 'close') {
+        // Find matching open trade
+        const openTrades = tradesCache.filter(t => t.status === 'open' && t.ticker === parsed.ticker);
+        if (openTrades.length === 0) {
+          errEl.style.display = 'block';
+          errEl.textContent = 'No open position found for ' + parsed.ticker;
+          return;
+        }
+        // Close the most recent one
+        const target = openTrades[0];
+        target.status = 'closed';
+        target.exit_price = parsed.exitPrice;
+        target.exit_date = new Date().toISOString();
+      } else {
+        // Add new trade
+        tradesCache.unshift({
+          id: 't_' + Date.now(),
+          ts: new Date().toISOString(),
+          raw: text,
+          direction: parsed.direction,
+          ticker: parsed.ticker,
+          size: parsed.size || '',
+          price: parsed.price,
+          status: 'open',
+          exit_price: null,
+          exit_date: null,
+          notes: ''
+        });
+      }
+
+      await saveTrades(tradesCache);
+      renderTrades();
+      input.value = '';
+      preview.style.display = 'none';
+    } catch (e) {
+      errEl.style.display = 'block';
+      errEl.textContent = 'Error: ' + e.message;
+    }
+  }
+
+  document.getElementById('trade-add-btn').addEventListener('click', submitTrade);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitTrade(); });
 })();
 
 </script>
