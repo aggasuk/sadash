@@ -242,34 +242,32 @@
   <div class="page" id="page-eurusdfv">
     <header>
       <h1><span>&gt;</span> EURUSD Fair Value Models</h1>
-      <div class="updated" id="fv-updated"></div>
     </header>
 
-    <div style="margin-bottom:18px;">
+    <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
       <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-      <select id="fv-reg-select" style="background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-family:inherit;font-size:0.82rem;margin-left:6px;cursor:pointer;">
-        <option value="3" selected>3Y (default)</option>
-        <option value="1">1Y</option>
-        <option value="2">2Y</option>
-        <option value="5">5Y</option>
-        <option value="7">7Y</option>
-      </select>
-      <span style="font-size:0.68rem;color:var(--text-dim);margin-left:12px;">To update: Actions tab &rarr; Run workflow with selected window</span>
+      <div class="tabs" id="fv-period-tabs" style="margin-bottom:0;">
+        <button class="tab" data-p="6m">6M</button>
+        <button class="tab" data-p="1y">1Y</button>
+        <button class="tab" data-p="2y">2Y</button>
+        <button class="tab active" data-p="3y">3Y</button>
+        <button class="tab" data-p="5y">5Y</button>
+      </div>
     </div>
 
     <div class="chart-wrap" style="padding:12px;">
       <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Real Rate Differential</div>
-      <img id="fv-img-realrate" src="eurusd_fv_realrate.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
+      <img id="fv-img-realrate" src="eurusd_fv_realrate_3y.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
     </div>
 
     <div class="chart-wrap" style="padding:12px;">
       <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
-      <img id="fv-img-tot" src="eurusd_fv_tot.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
+      <img id="fv-img-tot" src="eurusd_fv_tot_3y.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
     </div>
 
     <div class="chart-wrap" style="padding:12px;">
       <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Real Rate + ToT)</div>
-      <img id="fv-img-combined" src="eurusd_fv_combined.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      <img id="fv-img-combined" src="eurusd_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
     </div>
   </div>
 
@@ -514,11 +512,17 @@ function renderFxvol(data) {
 
 fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
 /* ========== EURUSD FV ========== */
-// Cache-bust the FV images so they refresh after workflow runs
-const cacheBust = '?t=' + Date.now();
-document.getElementById('fv-img-realrate').src = 'eurusd_fv_realrate.png' + cacheBust;
-document.getElementById('fv-img-tot').src = 'eurusd_fv_tot.png' + cacheBust;
-document.getElementById('fv-img-combined').src = 'eurusd_fv_combined.png' + cacheBust;
+(function() {
+  const tabs = document.querySelectorAll('#fv-period-tabs .tab');
+  function switchPeriod(p) {
+    const cb = '?t=' + Date.now();
+    document.getElementById('fv-img-realrate').src = 'eurusd_fv_realrate_' + p + '.png' + cb;
+    document.getElementById('fv-img-tot').src = 'eurusd_fv_tot_' + p + '.png' + cb;
+    document.getElementById('fv-img-combined').src = 'eurusd_fv_combined_' + p + '.png' + cb;
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+})();
 
 </script>
 </body>
