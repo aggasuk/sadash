@@ -1,0 +1,196 @@
+{
+  "_updated": "2026-03-05 21:58",
+  "asset": "Bund 10Y",
+  "periods": {
+    "6m": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.8417,
+        "fv": 2.97,
+        "spot": 2.82,
+        "misval": "-15 bps",
+        "zscore": -4.1,
+        "signal": "STRONG RICH"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.1958,
+        "fv": 2.87,
+        "spot": 2.82,
+        "misval": "-4 bps",
+        "zscore": -0.54,
+        "signal": "FAIR"
+      },
+      {
+        "model": "V2X (Risk Premium)",
+        "r2": 0.0649,
+        "fv": 2.67,
+        "spot": 2.82,
+        "misval": "+15 bps",
+        "zscore": 1.64,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.8721,
+        "fv": 2.92,
+        "spot": 2.82,
+        "misval": "-10 bps",
+        "zscore": -2.93,
+        "signal": "STRONG RICH"
+      }
+    ],
+    "1y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.8224,
+        "fv": 2.9,
+        "spot": 2.82,
+        "misval": "-8 bps",
+        "zscore": -1.64,
+        "signal": "RICH"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.242,
+        "fv": 2.81,
+        "spot": 2.82,
+        "misval": "+1 bps",
+        "zscore": 0.1,
+        "signal": "FAIR"
+      },
+      {
+        "model": "V2X (Risk Premium)",
+        "r2": 0.1187,
+        "fv": 2.64,
+        "spot": 2.82,
+        "misval": "+19 bps",
+        "zscore": 1.83,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.8248,
+        "fv": 2.89,
+        "spot": 2.82,
+        "misval": "-7 bps",
+        "zscore": -1.42,
+        "signal": "RICH"
+      }
+    ],
+    "2y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.0476,
+        "fv": 2.53,
+        "spot": 2.82,
+        "misval": "+29 bps",
+        "zscore": 1.28,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.0059,
+        "fv": 2.53,
+        "spot": 2.82,
+        "misval": "+30 bps",
+        "zscore": 1.27,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "V2X (Risk Premium)",
+        "r2": 0.0059,
+        "fv": 2.57,
+        "spot": 2.82,
+        "misval": "+25 bps",
+        "zscore": 0.84,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.1228,
+        "fv": 2.55,
+        "spot": 2.82,
+        "misval": "+27 bps",
+        "zscore": 1.11,
+        "signal": "CHEAP"
+      }
+    ],
+    "3y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.0054,
+        "fv": 2.52,
+        "spot": 2.82,
+        "misval": "+31 bps",
+        "zscore": 1.19,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.0014,
+        "fv": 2.51,
+        "spot": 2.82,
+        "misval": "+31 bps",
+        "zscore": 1.19,
+        "signal": "CHEAP"
+      },
+      {
+        "model": "V2X (Risk Premium)",
+        "r2": 0.0234,
+        "fv": 2.58,
+        "spot": 2.82,
+        "misval": "+24 bps",
+        "zscore": 0.52,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.0239,
+        "fv": 2.58,
+        "spot": 2.82,
+        "misval": "+24 bps",
+        "zscore": 0.56,
+        "signal": "FAIR"
+      }
+    ],
+    "5y": [
+      {
+        "model": "2Y Yield (Policy)",
+        "r2": 0.8882,
+        "fv": 2.27,
+        "spot": 2.82,
+        "misval": "+55 bps",
+        "zscore": -1.55,
+        "signal": "RICH"
+      },
+      {
+        "model": "10Y Breakeven (Infl)",
+        "r2": 0.1445,
+        "fv": 1.71,
+        "spot": 2.82,
+        "misval": "+111 bps",
+        "zscore": -0.42,
+        "signal": "FAIR"
+      },
+      {
+        "model": "V2X (Risk Premium)",
+        "r2": 0.1051,
+        "fv": 1.38,
+        "spot": 2.82,
+        "misval": "+144 bps",
+        "zscore": 2.16,
+        "signal": "STRONG CHEAP"
+      },
+      {
+        "model": "Combined",
+        "r2": 0.9108,
+        "fv": 2.62,
+        "spot": 2.82,
+        "misval": "+21 bps",
+        "zscore": -1.69,
+        "signal": "RICH"
+      }
+    ]
+  }
+}

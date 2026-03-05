@@ -248,6 +248,8 @@
       <button class="tab active" data-sub="summary">Summary</button>
       <button class="tab" data-sub="eurusd">EURUSD</button>
       <button class="tab" data-sub="ust10y">UST 10Y</button>
+      <button class="tab" data-sub="bund10y">Bund 10Y</button>
+      <button class="tab" data-sub="jgb10y">JGB 10Y</button>
     </div>
 
     <!-- ── Summary sub-page ── -->
@@ -328,6 +330,75 @@
         <img id="ust-img-combined" src="ust10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
       </div>
     </div>
+
+    <!-- ── Bund 10Y sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-bund10y" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="bund-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab active" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Bund Yield (ECB Policy)</div>
+        <img id="bund-img-policy" src="bund10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y German Breakeven (Inflation)</div>
+        <img id="bund-img-inflation" src="bund10y_fv_inflation_3y.png" alt="Inflation Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: V2X (Risk Premium)</div>
+        <img id="bund-img-risk" src="bund10y_fv_risk_3y.png" alt="Risk Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y Bund + Breakeven + V2X)</div>
+        <img id="bund-img-combined" src="bund10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      </div>
+    </div>
+
+    <!-- ── JGB 10Y sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-jgb10y" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="jgb-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab active" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y JGB Yield (BOJ Policy)</div>
+        <img id="jgb-img-policy" src="jgb10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y Japan Breakeven (Inflation)</div>
+        <img id="jgb-img-inflation" src="jgb10y_fv_inflation_3y.png" alt="Inflation Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: VXJ (Risk Premium)</div>
+        <img id="jgb-img-risk" src="jgb10y_fv_risk_3y.png" alt="Risk Model" style="width:100%;border-radius:8px;" />
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y JGB + Breakeven + VXJ)</div>
+        <img id="jgb-img-combined" src="jgb10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      </div>
+    </div>
+
   </div>
 
   <footer>Data sourced from Bloomberg &middot; Static snapshot</footer>
@@ -636,10 +707,12 @@ fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
     });
   });
 
-  // Load both summary JSONs
+  // Load all summary JSONs
   Promise.all([
     fetch('eurusd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('ust10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('bund10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('jgb10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
   ]).then(function(results) {
     FV_DATA = results.filter(Boolean);
     renderSummary();
@@ -668,6 +741,34 @@ fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
     document.getElementById('ust-img-inflation').src = 'ust10y_fv_inflation_' + p + '.png' + cb;
     document.getElementById('ust-img-risk').src = 'ust10y_fv_risk_' + p + '.png' + cb;
     document.getElementById('ust-img-combined').src = 'ust10y_fv_combined_' + p + '.png' + cb;
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+})();
+
+/* ========== FAIR VALUE: Bund 10Y period switcher ========== */
+(function() {
+  const tabs = document.querySelectorAll('#bund-period-tabs .tab');
+  function switchPeriod(p) {
+    const cb = '?t=' + Date.now();
+    document.getElementById('bund-img-policy').src = 'bund10y_fv_policy_' + p + '.png' + cb;
+    document.getElementById('bund-img-inflation').src = 'bund10y_fv_inflation_' + p + '.png' + cb;
+    document.getElementById('bund-img-risk').src = 'bund10y_fv_risk_' + p + '.png' + cb;
+    document.getElementById('bund-img-combined').src = 'bund10y_fv_combined_' + p + '.png' + cb;
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+})();
+
+/* ========== FAIR VALUE: JGB 10Y period switcher ========== */
+(function() {
+  const tabs = document.querySelectorAll('#jgb-period-tabs .tab');
+  function switchPeriod(p) {
+    const cb = '?t=' + Date.now();
+    document.getElementById('jgb-img-policy').src = 'jgb10y_fv_policy_' + p + '.png' + cb;
+    document.getElementById('jgb-img-inflation').src = 'jgb10y_fv_inflation_' + p + '.png' + cb;
+    document.getElementById('jgb-img-risk').src = 'jgb10y_fv_risk_' + p + '.png' + cb;
+    document.getElementById('jgb-img-combined').src = 'jgb10y_fv_combined_' + p + '.png' + cb;
     tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
   }
   tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
