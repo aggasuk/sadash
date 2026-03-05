@@ -211,6 +211,7 @@
   <div class="top-nav">
     <button class="nav-btn active" data-page="momentum">Momentum</button>
     <button class="nav-btn" data-page="fxvol">FX Vol</button>
+    <button class="nav-btn" data-page="eurusdfv">EURUSD FV</button>
   </div>
 
   <!-- ============ MOMENTUM PAGE ============ -->
@@ -234,6 +235,42 @@
     </header>
     <div id="fxvol-extremes"></div>
     <div id="fxvol-tables"></div>
+  </div>
+
+  
+  <!-- ============ EURUSD FAIR VALUE PAGE ============ -->
+  <div class="page" id="page-eurusdfv">
+    <header>
+      <h1><span>&gt;</span> EURUSD Fair Value Models</h1>
+      <div class="updated" id="fv-updated"></div>
+    </header>
+
+    <div style="margin-bottom:18px;">
+      <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+      <select id="fv-reg-select" style="background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-family:inherit;font-size:0.82rem;margin-left:6px;cursor:pointer;">
+        <option value="3" selected>3Y (default)</option>
+        <option value="1">1Y</option>
+        <option value="2">2Y</option>
+        <option value="5">5Y</option>
+        <option value="7">7Y</option>
+      </select>
+      <span style="font-size:0.68rem;color:var(--text-dim);margin-left:12px;">To update: Actions tab &rarr; Run workflow with selected window</span>
+    </div>
+
+    <div class="chart-wrap" style="padding:12px;">
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Real Rate Differential</div>
+      <img id="fv-img-realrate" src="eurusd_fv_realrate.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
+    </div>
+
+    <div class="chart-wrap" style="padding:12px;">
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
+      <img id="fv-img-tot" src="eurusd_fv_tot.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
+    </div>
+
+    <div class="chart-wrap" style="padding:12px;">
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Real Rate + ToT)</div>
+      <img id="fv-img-combined" src="eurusd_fv_combined.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+    </div>
   </div>
 
   <footer>Data sourced from Bloomberg &middot; Static snapshot</footer>
@@ -476,6 +513,13 @@ function renderFxvol(data) {
 }
 
 fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
+/* ========== EURUSD FV ========== */
+// Cache-bust the FV images so they refresh after workflow runs
+const cacheBust = '?t=' + Date.now();
+document.getElementById('fv-img-realrate').src = 'eurusd_fv_realrate.png' + cacheBust;
+document.getElementById('fv-img-tot').src = 'eurusd_fv_tot.png' + cacheBust;
+document.getElementById('fv-img-combined').src = 'eurusd_fv_combined.png' + cacheBust;
+
 </script>
 </body>
 </html>
