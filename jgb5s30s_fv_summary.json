@@ -1,0 +1,196 @@
+{
+  "_updated": "2026-06-05 10:30",
+  "asset": "JGB 5s30s",
+  "periods": {
+    "6m": [
+      {
+        "model": "1Y1Y OIS (Policy)",
+        "r_squared": 0.017,
+        "fair_value_bps": 190.0,
+        "actual_bps": 198.8,
+        "misval_bps": 8.8,
+        "z_score": 0.98,
+        "signal": "FAIR"
+      },
+      {
+        "model": "UST 5s30s (Global)",
+        "r_squared": 0.1456,
+        "fair_value_bps": 196.4,
+        "actual_bps": 198.8,
+        "misval_bps": 2.4,
+        "z_score": 0.29,
+        "signal": "FAIR"
+      },
+      {
+        "model": "BOJ JGB (Supply)",
+        "r_squared": 0.003,
+        "fair_value_bps": 189.2,
+        "actual_bps": 198.8,
+        "misval_bps": 9.6,
+        "z_score": 1.05,
+        "signal": "STEEP"
+      },
+      {
+        "model": "Combined",
+        "r_squared": 0.2446,
+        "fair_value_bps": 199.6,
+        "actual_bps": 198.8,
+        "misval_bps": -0.8,
+        "z_score": -0.1,
+        "signal": "FAIR"
+      }
+    ],
+    "1y": [
+      {
+        "model": "1Y1Y OIS (Policy)",
+        "r_squared": 0.1866,
+        "fair_value_bps": 187.6,
+        "actual_bps": 198.8,
+        "misval_bps": 11.2,
+        "z_score": 1.18,
+        "signal": "STEEP"
+      },
+      {
+        "model": "UST 5s30s (Global)",
+        "r_squared": 0.0064,
+        "fair_value_bps": 191.6,
+        "actual_bps": 198.8,
+        "misval_bps": 7.2,
+        "z_score": 0.71,
+        "signal": "FAIR"
+      },
+      {
+        "model": "BOJ JGB (Supply)",
+        "r_squared": 0.1772,
+        "fair_value_bps": 187.7,
+        "actual_bps": 198.8,
+        "misval_bps": 11.1,
+        "z_score": 1.18,
+        "signal": "STEEP"
+      },
+      {
+        "model": "Combined",
+        "r_squared": 0.1897,
+        "fair_value_bps": 188.1,
+        "actual_bps": 198.8,
+        "misval_bps": 10.7,
+        "z_score": 1.14,
+        "signal": "STEEP"
+      }
+    ],
+    "2y": [
+      {
+        "model": "1Y1Y OIS (Policy)",
+        "r_squared": 0.2069,
+        "fair_value_bps": 195.5,
+        "actual_bps": 198.8,
+        "misval_bps": 3.3,
+        "z_score": -0.33,
+        "signal": "FAIR"
+      },
+      {
+        "model": "UST 5s30s (Global)",
+        "r_squared": 0.6664,
+        "fair_value_bps": 179.3,
+        "actual_bps": 198.8,
+        "misval_bps": 19.5,
+        "z_score": 1.66,
+        "signal": "STEEP"
+      },
+      {
+        "model": "BOJ JGB (Supply)",
+        "r_squared": 0.3821,
+        "fair_value_bps": 202.3,
+        "actual_bps": 198.8,
+        "misval_bps": -3.5,
+        "z_score": -0.47,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r_squared": 0.7396,
+        "fair_value_bps": 179.2,
+        "actual_bps": 198.8,
+        "misval_bps": 19.6,
+        "z_score": 1.65,
+        "signal": "STEEP"
+      }
+    ],
+    "3y": [
+      {
+        "model": "1Y1Y OIS (Policy)",
+        "r_squared": 0.5262,
+        "fair_value_bps": 203.3,
+        "actual_bps": 198.8,
+        "misval_bps": -4.5,
+        "z_score": -0.57,
+        "signal": "FAIR"
+      },
+      {
+        "model": "UST 5s30s (Global)",
+        "r_squared": 0.8028,
+        "fair_value_bps": 179.2,
+        "actual_bps": 198.8,
+        "misval_bps": 19.6,
+        "z_score": 1.64,
+        "signal": "STEEP"
+      },
+      {
+        "model": "BOJ JGB (Supply)",
+        "r_squared": 0.5003,
+        "fair_value_bps": 205.9,
+        "actual_bps": 198.8,
+        "misval_bps": -7.1,
+        "z_score": -0.64,
+        "signal": "FAIR"
+      },
+      {
+        "model": "Combined",
+        "r_squared": 0.8105,
+        "fair_value_bps": 178.1,
+        "actual_bps": 198.8,
+        "misval_bps": 20.7,
+        "z_score": 1.79,
+        "signal": "STEEP"
+      }
+    ],
+    "5y": [
+      {
+        "model": "1Y1Y OIS (Policy)",
+        "r_squared": 0.72,
+        "fair_value_bps": 220.4,
+        "actual_bps": 198.8,
+        "misval_bps": -21.6,
+        "z_score": -0.79,
+        "signal": "FAIR"
+      },
+      {
+        "model": "UST 5s30s (Global)",
+        "r_squared": 0.0708,
+        "fair_value_bps": 148.0,
+        "actual_bps": 198.8,
+        "misval_bps": 50.8,
+        "z_score": 1.02,
+        "signal": "STEEP"
+      },
+      {
+        "model": "BOJ JGB (Supply)",
+        "r_squared": 0.1426,
+        "fair_value_bps": 121.5,
+        "actual_bps": 198.8,
+        "misval_bps": 77.3,
+        "z_score": 1.73,
+        "signal": "STEEP"
+      },
+      {
+        "model": "Combined",
+        "r_squared": 0.8056,
+        "fair_value_bps": 203.0,
+        "actual_bps": 198.8,
+        "misval_bps": -4.2,
+        "z_score": -0.55,
+        "signal": "FAIR"
+      }
+    ]
+  }
+}

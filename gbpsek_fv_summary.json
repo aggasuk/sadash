@@ -1,0 +1,216 @@
+{
+  "_updated": "2026-06-05 10:28",
+  "asset": "GBPSEK",
+  "periods": {
+    "6m": [
+      {
+        "model": "GBP-SEK 2Y Rate Spread",
+        "r2": 0.3657,
+        "fv": 12.4865,
+        "spot": 12.5995,
+        "misval": "+0.9%",
+        "zscore": 1.08,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.0816,
+        "fv": 12.4874,
+        "spot": 12.5995,
+        "misval": "+0.9%",
+        "zscore": 0.88,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.0238,
+        "fv": 12.4443,
+        "spot": 12.5995,
+        "misval": "+1.2%",
+        "zscore": 1.18,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined (Rates + log(SPX) + Copper)",
+        "r2": 0.4698,
+        "fv": 12.4655,
+        "spot": 12.5995,
+        "misval": "+1.1%",
+        "zscore": 1.38,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ],
+    "1y": [
+      {
+        "model": "GBP-SEK 2Y Rate Spread",
+        "r2": 0.3548,
+        "fv": 12.6897,
+        "spot": 12.5995,
+        "misval": "-0.7%",
+        "zscore": -0.43,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.4592,
+        "fv": 12.2153,
+        "spot": 12.5995,
+        "misval": "+3.0%",
+        "zscore": 2.16,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.3104,
+        "fv": 12.336,
+        "spot": 12.5995,
+        "misval": "+2.1%",
+        "zscore": 1.4,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + log(SPX) + Copper)",
+        "r2": 0.7353,
+        "fv": 12.3417,
+        "spot": 12.5995,
+        "misval": "+2.0%",
+        "zscore": 2.06,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      }
+    ],
+    "2y": [
+      {
+        "model": "GBP-SEK 2Y Rate Spread",
+        "r2": 0.5338,
+        "fv": 13.0865,
+        "spot": 12.5995,
+        "misval": "-3.9%",
+        "zscore": -0.86,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.5191,
+        "fv": 12.1944,
+        "spot": 12.5995,
+        "misval": "+3.2%",
+        "zscore": 2.75,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.6537,
+        "fv": 12.0231,
+        "spot": 12.5995,
+        "misval": "+4.6%",
+        "zscore": 2.21,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + log(SPX) + Copper)",
+        "r2": 0.8372,
+        "fv": 12.3129,
+        "spot": 12.5995,
+        "misval": "+2.3%",
+        "zscore": 1.76,
+        "signal": "RICH",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "GBP-SEK 2Y Rate Spread",
+        "r2": 0.1061,
+        "fv": 13.1655,
+        "spot": 12.5995,
+        "misval": "-4.5%",
+        "zscore": -0.26,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.3338,
+        "fv": 12.5348,
+        "spot": 12.5995,
+        "misval": "+0.5%",
+        "zscore": 1.55,
+        "signal": "RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.4998,
+        "fv": 12.2295,
+        "spot": 12.5995,
+        "misval": "+2.9%",
+        "zscore": 2.14,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + log(SPX) + Copper)",
+        "r2": 0.7433,
+        "fv": 12.3532,
+        "spot": 12.5995,
+        "misval": "+2.0%",
+        "zscore": 1.87,
+        "signal": "RICH",
+        "signs_ok": true
+      }
+    ],
+    "5y": [
+      {
+        "model": "GBP-SEK 2Y Rate Spread",
+        "r2": 0.1061,
+        "fv": 13.1655,
+        "spot": 12.5995,
+        "misval": "-4.5%",
+        "zscore": -0.26,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.3338,
+        "fv": 12.5348,
+        "spot": 12.5995,
+        "misval": "+0.5%",
+        "zscore": 1.55,
+        "signal": "RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.4998,
+        "fv": 12.2295,
+        "spot": 12.5995,
+        "misval": "+2.9%",
+        "zscore": 2.14,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + log(SPX) + Copper)",
+        "r2": 0.7433,
+        "fv": 12.3532,
+        "spot": 12.5995,
+        "misval": "+2.0%",
+        "zscore": 1.87,
+        "signal": "RICH",
+        "signs_ok": true
+      }
+    ]
+  }
+}

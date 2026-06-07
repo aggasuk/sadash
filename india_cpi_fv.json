@@ -1,0 +1,703 @@
+{
+  "generated": "2026-05-06T09:22:40",
+  "live": {
+    "brent": 108.62,
+    "inr": 95.2913,
+    "ndf_1m": 41.0,
+    "ndf_3m": 126.54,
+    "ndf_6m": 231.74,
+    "ndf_12m": 402.29,
+    "cpi_latest": 3.4,
+    "cpi_latest_dt": "2026-03"
+  },
+  "rbi_baseline": {
+    "oil_usd": 70.0,
+    "usdinr": 87.0,
+    "cpi_fy27": 4.0,
+    "cpi_q1fy27": 4.0,
+    "cpi_q2fy27": 4.2,
+    "cpi_q3fy27": 4.0,
+    "cpi_q4fy27": 3.8,
+    "source": "RBI Feb 2026 MPC SoR (oil $70, USDINR 87, FY27 CPI ~4.0%)"
+  },
+  "regression": {
+    "spec1_simple": {
+      "spec": "CPI_YoY ~ a + b*BrentINR_YoY (contemporaneous)",
+      "n": 135,
+      "beta_brent_inr": 0.0024085407835133335,
+      "alpha": 4.690134141974752,
+      "r2": 0.0033660252100778942
+    },
+    "spec2_distlag": {
+      "spec": "CPI_YoY ~ a + sum(BrentINR_YoY lags 0/3/6) + sum(INR_YoY lags 0/3)",
+      "n": 129,
+      "alpha": 4.525103572620446,
+      "coefs": {
+        "BrentINR_YoY": 0.005890308234752045,
+        "BrentINR_YoY_L3": -0.0009099739187983856,
+        "BrentINR_YoY_L6": -0.002399847536847342,
+        "INR_YoY": 0.06112949434524732,
+        "INR_YoY_L3": -0.02314607913188232
+      },
+      "sum_beta_oil": 0.002580486779106318,
+      "sum_beta_inr": 0.037983415213365,
+      "r2": 0.020848805050139196
+    },
+    "spec3_pre": {
+      "window": "spec3_pre",
+      "n": 54,
+      "alpha": 4.194009504090169,
+      "coefs": {
+        "BrentINR_YoY": 0.008949495987039148,
+        "BrentINR_YoY_L3": -0.018108440509609025,
+        "BrentINR_YoY_L6": -0.015529154615194234,
+        "INR_YoY": 0.04861852850910584,
+        "INR_YoY_L3": -0.07051840346799132
+      },
+      "sum_beta_oil": -0.02468809913776411,
+      "sum_beta_inr": -0.021899874958885478,
+      "r2": 0.604724846663764
+    },
+    "spec3_post": {
+      "window": "spec3_post",
+      "n": 75,
+      "alpha": 4.7075186525705055,
+      "coefs": {
+        "BrentINR_YoY": -0.0016908428266474242,
+        "BrentINR_YoY_L3": 0.01229808222263907,
+        "BrentINR_YoY_L6": 0.004842910613413638,
+        "INR_YoY": -0.0488040888627586,
+        "INR_YoY_L3": 0.12653824292624957
+      },
+      "sum_beta_oil": 0.015450150009405285,
+      "sum_beta_inr": 0.07773415406349096,
+      "r2": 0.11321015156523395
+    },
+    "spec4_inr_oil": {
+      "spec": "INR_YoY ~ a + b*Brent_USD_YoY",
+      "n": 135,
+      "beta": -0.034277876093472444,
+      "alpha": 3.545260546371901,
+      "r2": 0.10209739430877773
+    },
+    "implied_10dol_to_cpi_bp": 2.6,
+    "implied_10dol_oil_pct": 10.04
+  },
+  "structural": {
+    "blocks": [
+      {
+        "block": "Fuel & Light",
+        "channel": "direct_fuel",
+        "bp_per_usd": 1.2
+      },
+      {
+        "block": "Transport (in Misc)",
+        "channel": "direct_fuel",
+        "bp_per_usd": 1.5
+      },
+      {
+        "block": "Food & Beverages (indirect)",
+        "channel": "indirect_food",
+        "bp_per_usd": 1.2
+      },
+      {
+        "block": "Core (input cost)",
+        "channel": "core_inputcost",
+        "bp_per_usd": 0.7
+      }
+    ],
+    "total_bp_per_usd": 4.6,
+    "by_channel": {
+      "direct_fuel": 2.7,
+      "indirect_food": 1.2,
+      "core_inputcost": 0.7
+    },
+    "fx_bp_per_pct_inr": 2.0
+  },
+  "passthrough": {
+    "low": 0.4,
+    "base": 0.65,
+    "high": 0.9
+  },
+  "default_scenarios": {
+    "low": [
+      105,
+      100,
+      95,
+      90,
+      85,
+      80
+    ],
+    "base": [
+      110,
+      110,
+      105,
+      100,
+      95,
+      95
+    ],
+    "high": [
+      120,
+      130,
+      125,
+      115,
+      110,
+      105
+    ]
+  },
+  "scenarios": {
+    "low": {
+      "passthrough": 0.4,
+      "inr_overlay": 1.0,
+      "scenario_path": [
+        105,
+        100,
+        95,
+        90,
+        85,
+        80
+      ],
+      "rbi_anchors": {
+        "oil": 70.0,
+        "inr": 87.0
+      },
+      "monthly": [
+        {
+          "month_offset": 1,
+          "month_label": "2026-04",
+          "brent_usd": 105,
+          "usdinr": 95.701,
+          "brent_inr": 10048.6,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 35.0,
+          "inr_delta_vs_rbi_pct": 10.0,
+          "channel_bp": {
+            "direct_fuel": 37.8,
+            "indirect_food": 16.8,
+            "core_inputcost": 9.8,
+            "fx_inr": 8.0
+          },
+          "structural_total_bp": 72.4,
+          "cpi_structural": 4.72,
+          "cpi_reduced_form": 5.18,
+          "cpi_blend": 4.77
+        },
+        {
+          "month_offset": 2,
+          "month_label": "2026-05",
+          "brent_usd": 100,
+          "usdinr": 96.129,
+          "brent_inr": 9612.9,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 30.0,
+          "inr_delta_vs_rbi_pct": 10.5,
+          "channel_bp": {
+            "direct_fuel": 32.4,
+            "indirect_food": 14.4,
+            "core_inputcost": 8.4,
+            "fx_inr": 8.4
+          },
+          "structural_total_bp": 63.6,
+          "cpi_structural": 4.64,
+          "cpi_reduced_form": 5.2,
+          "cpi_blend": 4.69
+        },
+        {
+          "month_offset": 3,
+          "month_label": "2026-06",
+          "brent_usd": 95,
+          "usdinr": 96.557,
+          "brent_inr": 9172.9,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 25.0,
+          "inr_delta_vs_rbi_pct": 11.0,
+          "channel_bp": {
+            "direct_fuel": 27.0,
+            "indirect_food": 12.0,
+            "core_inputcost": 7.0,
+            "fx_inr": 8.8
+          },
+          "structural_total_bp": 54.8,
+          "cpi_structural": 4.55,
+          "cpi_reduced_form": 5.13,
+          "cpi_blend": 4.61
+        },
+        {
+          "month_offset": 4,
+          "month_label": "2026-07",
+          "brent_usd": 90,
+          "usdinr": 96.907,
+          "brent_inr": 8721.7,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 20.0,
+          "inr_delta_vs_rbi_pct": 11.4,
+          "channel_bp": {
+            "direct_fuel": 21.6,
+            "indirect_food": 9.6,
+            "core_inputcost": 5.6,
+            "fx_inr": 9.1
+          },
+          "structural_total_bp": 45.9,
+          "cpi_structural": 4.66,
+          "cpi_reduced_form": 5.12,
+          "cpi_blend": 4.7
+        },
+        {
+          "month_offset": 5,
+          "month_label": "2026-08",
+          "brent_usd": 85,
+          "usdinr": 97.258,
+          "brent_inr": 8266.9,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 15.0,
+          "inr_delta_vs_rbi_pct": 11.8,
+          "channel_bp": {
+            "direct_fuel": 16.2,
+            "indirect_food": 7.2,
+            "core_inputcost": 4.2,
+            "fx_inr": 9.4
+          },
+          "structural_total_bp": 37.0,
+          "cpi_structural": 4.57,
+          "cpi_reduced_form": 5.05,
+          "cpi_blend": 4.62
+        },
+        {
+          "month_offset": 6,
+          "month_label": "2026-09",
+          "brent_usd": 80,
+          "usdinr": 97.609,
+          "brent_inr": 7808.7,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 10.0,
+          "inr_delta_vs_rbi_pct": 12.2,
+          "channel_bp": {
+            "direct_fuel": 10.8,
+            "indirect_food": 4.8,
+            "core_inputcost": 2.8,
+            "fx_inr": 9.8
+          },
+          "structural_total_bp": 28.2,
+          "cpi_structural": 4.48,
+          "cpi_reduced_form": 5.0,
+          "cpi_blend": 4.53
+        }
+      ],
+      "endpoint_cpi_blend": 4.53,
+      "endpoint_cpi_struct": 4.48,
+      "endpoint_cpi_rf": 5.0,
+      "peak_cpi_blend": 4.77,
+      "endpoint_vs_rbi_bp": 33.0,
+      "peak_vs_rbi_bp": 57.0
+    },
+    "base": {
+      "passthrough": 0.65,
+      "inr_overlay": 1.0,
+      "scenario_path": [
+        110,
+        110,
+        105,
+        100,
+        95,
+        95
+      ],
+      "rbi_anchors": {
+        "oil": 70.0,
+        "inr": 87.0
+      },
+      "monthly": [
+        {
+          "month_offset": 1,
+          "month_label": "2026-04",
+          "brent_usd": 110,
+          "usdinr": 95.701,
+          "brent_inr": 10527.1,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 40.0,
+          "inr_delta_vs_rbi_pct": 10.0,
+          "channel_bp": {
+            "direct_fuel": 70.2,
+            "indirect_food": 31.2,
+            "core_inputcost": 18.2,
+            "fx_inr": 13.0
+          },
+          "structural_total_bp": 132.6,
+          "cpi_structural": 5.33,
+          "cpi_reduced_form": 5.2,
+          "cpi_blend": 5.31
+        },
+        {
+          "month_offset": 2,
+          "month_label": "2026-05",
+          "brent_usd": 110,
+          "usdinr": 96.129,
+          "brent_inr": 10574.2,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 40.0,
+          "inr_delta_vs_rbi_pct": 10.5,
+          "channel_bp": {
+            "direct_fuel": 70.2,
+            "indirect_food": 31.2,
+            "core_inputcost": 18.2,
+            "fx_inr": 13.6
+          },
+          "structural_total_bp": 133.2,
+          "cpi_structural": 5.33,
+          "cpi_reduced_form": 5.25,
+          "cpi_blend": 5.32
+        },
+        {
+          "month_offset": 3,
+          "month_label": "2026-06",
+          "brent_usd": 105,
+          "usdinr": 96.557,
+          "brent_inr": 10138.5,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 35.0,
+          "inr_delta_vs_rbi_pct": 11.0,
+          "channel_bp": {
+            "direct_fuel": 61.4,
+            "indirect_food": 27.3,
+            "core_inputcost": 15.9,
+            "fx_inr": 14.3
+          },
+          "structural_total_bp": 118.9,
+          "cpi_structural": 5.19,
+          "cpi_reduced_form": 5.17,
+          "cpi_blend": 5.19
+        },
+        {
+          "month_offset": 4,
+          "month_label": "2026-07",
+          "brent_usd": 100,
+          "usdinr": 96.907,
+          "brent_inr": 9690.7,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 30.0,
+          "inr_delta_vs_rbi_pct": 11.4,
+          "channel_bp": {
+            "direct_fuel": 52.6,
+            "indirect_food": 23.4,
+            "core_inputcost": 13.7,
+            "fx_inr": 14.8
+          },
+          "structural_total_bp": 104.5,
+          "cpi_structural": 5.25,
+          "cpi_reduced_form": 5.16,
+          "cpi_blend": 5.24
+        },
+        {
+          "month_offset": 5,
+          "month_label": "2026-08",
+          "brent_usd": 95,
+          "usdinr": 97.258,
+          "brent_inr": 9239.5,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 25.0,
+          "inr_delta_vs_rbi_pct": 11.8,
+          "channel_bp": {
+            "direct_fuel": 43.9,
+            "indirect_food": 19.5,
+            "core_inputcost": 11.4,
+            "fx_inr": 15.3
+          },
+          "structural_total_bp": 90.1,
+          "cpi_structural": 5.1,
+          "cpi_reduced_form": 5.09,
+          "cpi_blend": 5.1
+        },
+        {
+          "month_offset": 6,
+          "month_label": "2026-09",
+          "brent_usd": 95,
+          "usdinr": 97.609,
+          "brent_inr": 9272.8,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 25.0,
+          "inr_delta_vs_rbi_pct": 12.2,
+          "channel_bp": {
+            "direct_fuel": 43.9,
+            "indirect_food": 19.5,
+            "core_inputcost": 11.4,
+            "fx_inr": 15.9
+          },
+          "structural_total_bp": 90.6,
+          "cpi_structural": 5.11,
+          "cpi_reduced_form": 5.07,
+          "cpi_blend": 5.1
+        }
+      ],
+      "endpoint_cpi_blend": 5.1,
+      "endpoint_cpi_struct": 5.11,
+      "endpoint_cpi_rf": 5.07,
+      "peak_cpi_blend": 5.32,
+      "endpoint_vs_rbi_bp": 90.0,
+      "peak_vs_rbi_bp": 112.0
+    },
+    "high": {
+      "passthrough": 0.9,
+      "inr_overlay": 1.02,
+      "scenario_path": [
+        120,
+        130,
+        125,
+        115,
+        110,
+        105
+      ],
+      "rbi_anchors": {
+        "oil": 70.0,
+        "inr": 87.0
+      },
+      "monthly": [
+        {
+          "month_offset": 1,
+          "month_label": "2026-04",
+          "brent_usd": 120,
+          "usdinr": 97.615,
+          "brent_inr": 11713.8,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 50.0,
+          "inr_delta_vs_rbi_pct": 12.2,
+          "channel_bp": {
+            "direct_fuel": 121.5,
+            "indirect_food": 54.0,
+            "core_inputcost": 31.5,
+            "fx_inr": 22.0
+          },
+          "structural_total_bp": 229.0,
+          "cpi_structural": 6.29,
+          "cpi_reduced_form": 5.34,
+          "cpi_blend": 6.19
+        },
+        {
+          "month_offset": 2,
+          "month_label": "2026-05",
+          "brent_usd": 130,
+          "usdinr": 98.052,
+          "brent_inr": 12746.7,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 60.0,
+          "inr_delta_vs_rbi_pct": 12.7,
+          "channel_bp": {
+            "direct_fuel": 145.8,
+            "indirect_food": 64.8,
+            "core_inputcost": 37.8,
+            "fx_inr": 22.9
+          },
+          "structural_total_bp": 271.3,
+          "cpi_structural": 6.71,
+          "cpi_reduced_form": 5.44,
+          "cpi_blend": 6.59
+        },
+        {
+          "month_offset": 3,
+          "month_label": "2026-06",
+          "brent_usd": 125,
+          "usdinr": 98.488,
+          "brent_inr": 12311.0,
+          "rbi_cpi_baseline": 4.0,
+          "oil_delta_vs_rbi_usd": 55.0,
+          "inr_delta_vs_rbi_pct": 13.2,
+          "channel_bp": {
+            "direct_fuel": 133.7,
+            "indirect_food": 59.4,
+            "core_inputcost": 34.6,
+            "fx_inr": 23.8
+          },
+          "structural_total_bp": 251.5,
+          "cpi_structural": 6.51,
+          "cpi_reduced_form": 5.35,
+          "cpi_blend": 6.4
+        },
+        {
+          "month_offset": 4,
+          "month_label": "2026-07",
+          "brent_usd": 115,
+          "usdinr": 98.846,
+          "brent_inr": 11367.2,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 45.0,
+          "inr_delta_vs_rbi_pct": 13.6,
+          "channel_bp": {
+            "direct_fuel": 109.4,
+            "indirect_food": 48.6,
+            "core_inputcost": 28.3,
+            "fx_inr": 24.5
+          },
+          "structural_total_bp": 210.8,
+          "cpi_structural": 6.31,
+          "cpi_reduced_form": 5.32,
+          "cpi_blend": 6.21
+        },
+        {
+          "month_offset": 5,
+          "month_label": "2026-08",
+          "brent_usd": 110,
+          "usdinr": 99.203,
+          "brent_inr": 10912.3,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 40.0,
+          "inr_delta_vs_rbi_pct": 14.0,
+          "channel_bp": {
+            "direct_fuel": 97.2,
+            "indirect_food": 43.2,
+            "core_inputcost": 25.2,
+            "fx_inr": 25.2
+          },
+          "structural_total_bp": 190.8,
+          "cpi_structural": 6.11,
+          "cpi_reduced_form": 5.25,
+          "cpi_blend": 6.02
+        },
+        {
+          "month_offset": 6,
+          "month_label": "2026-09",
+          "brent_usd": 105,
+          "usdinr": 99.561,
+          "brent_inr": 10453.9,
+          "rbi_cpi_baseline": 4.2,
+          "oil_delta_vs_rbi_usd": 35.0,
+          "inr_delta_vs_rbi_pct": 14.4,
+          "channel_bp": {
+            "direct_fuel": 85.0,
+            "indirect_food": 37.8,
+            "core_inputcost": 22.1,
+            "fx_inr": 26.0
+          },
+          "structural_total_bp": 170.9,
+          "cpi_structural": 5.91,
+          "cpi_reduced_form": 5.2,
+          "cpi_blend": 5.84
+        }
+      ],
+      "endpoint_cpi_blend": 5.84,
+      "endpoint_cpi_struct": 5.91,
+      "endpoint_cpi_rf": 5.2,
+      "peak_cpi_blend": 6.59,
+      "endpoint_vs_rbi_bp": 164.0,
+      "peak_vs_rbi_bp": 239.0
+    }
+  },
+  "episodes": [
+    {
+      "episode": "2014-15 collapse",
+      "start": "2014-06-30",
+      "end": "2016-01-31",
+      "n_months": 20,
+      "brent_start": 111.97,
+      "brent_end": 31.93,
+      "brent_pct": -71.5,
+      "brent_inr_pct": -67.9,
+      "inr_pct": 12.6,
+      "cpi_start": 6.77,
+      "cpi_end": 5.69,
+      "cpi_chg": -1.08,
+      "cpi_peak_swing": 0.62,
+      "implied_passthrough_bp_per_pct_brent_inr": 1.59
+    },
+    {
+      "episode": "2018 Q4 swing",
+      "start": "2018-09-30",
+      "end": "2019-01-31",
+      "n_months": 5,
+      "brent_start": 79.11,
+      "brent_end": 60.24,
+      "brent_pct": -23.9,
+      "brent_inr_pct": -25.5,
+      "inr_pct": -2.1,
+      "cpi_start": 3.7,
+      "cpi_end": 1.97,
+      "cpi_chg": -1.73,
+      "cpi_peak_swing": 0.0,
+      "implied_passthrough_bp_per_pct_brent_inr": 6.8
+    },
+    {
+      "episode": "2020 COVID",
+      "start": "2020-02-29",
+      "end": "2020-08-31",
+      "n_months": 7,
+      "brent_start": 55.48,
+      "brent_end": 45.02,
+      "brent_pct": -18.8,
+      "brent_inr_pct": -15.3,
+      "inr_pct": 4.4,
+      "cpi_start": 6.58,
+      "cpi_end": 6.69,
+      "cpi_chg": 0.11,
+      "cpi_peak_swing": 0.64,
+      "implied_passthrough_bp_per_pct_brent_inr": -0.72
+    },
+    {
+      "episode": "2022 Ukraine war",
+      "start": "2022-01-31",
+      "end": "2022-12-31",
+      "n_months": 12,
+      "brent_start": 85.57,
+      "brent_end": 81.34,
+      "brent_pct": -4.9,
+      "brent_inr_pct": 5.4,
+      "inr_pct": 10.9,
+      "cpi_start": 6.01,
+      "cpi_end": 5.72,
+      "cpi_chg": -0.29,
+      "cpi_peak_swing": 1.78,
+      "implied_passthrough_bp_per_pct_brent_inr": -5.36
+    }
+  ],
+  "backtest_2022": {
+    "anchor_month": "2022-01",
+    "cpi_base": 6.01,
+    "rows": [
+      {
+        "month": "2022-02",
+        "brent": 94.1,
+        "brent_inr_yoy": 55.7,
+        "cpi_actual": 6.07,
+        "cpi_predicted": 4.82,
+        "error": -1.25
+      },
+      {
+        "month": "2022-03",
+        "brent": 112.46,
+        "brent_inr_yoy": 79.3,
+        "cpi_actual": 6.95,
+        "cpi_predicted": 4.99,
+        "error": -1.96
+      },
+      {
+        "month": "2022-04",
+        "brent": 105.92,
+        "brent_inr_yoy": 65.8,
+        "cpi_actual": 7.79,
+        "cpi_predicted": 4.7,
+        "error": -3.09
+      },
+      {
+        "month": "2022-05",
+        "brent": 111.96,
+        "brent_inr_yoy": 73.1,
+        "cpi_actual": 7.04,
+        "cpi_predicted": 4.97,
+        "error": -2.07
+      },
+      {
+        "month": "2022-06",
+        "brent": 117.5,
+        "brent_inr_yoy": 69.9,
+        "cpi_actual": 7.01,
+        "cpi_predicted": 5.0,
+        "error": -2.01
+      },
+      {
+        "month": "2022-07",
+        "brent": 105.12,
+        "brent_inr_yoy": 51.1,
+        "cpi_actual": 6.71,
+        "cpi_predicted": 4.99,
+        "error": -1.72
+      }
+    ],
+    "rmse": 2.09
+  }
+}

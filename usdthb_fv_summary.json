@@ -1,0 +1,216 @@
+{
+  "_updated": "2026-06-05 10:29",
+  "asset": "USDTHB",
+  "periods": {
+    "6m": [
+      {
+        "model": "Gold (XAU)",
+        "r2": 0.126,
+        "fv": 32.0909,
+        "spot": 32.665,
+        "misval": "+1.8%",
+        "zscore": 0.99,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Dollar Index (DXY)",
+        "r2": 0.4352,
+        "fv": 32.2839,
+        "spot": 32.665,
+        "misval": "+1.2%",
+        "zscore": 0.82,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "US-TH 2Y Rate Spread",
+        "r2": 0.564,
+        "fv": 32.644,
+        "spot": 32.665,
+        "misval": "+0.1%",
+        "zscore": 0.06,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (XAU + DXY)",
+        "r2": 0.4445,
+        "fv": 32.3164,
+        "spot": 32.665,
+        "misval": "+1.1%",
+        "zscore": 0.76,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "1y": [
+      {
+        "model": "Gold (XAU)",
+        "r2": 0.2594,
+        "fv": 32.0287,
+        "spot": 32.665,
+        "misval": "+1.9%",
+        "zscore": 1.36,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Dollar Index (DXY)",
+        "r2": 0.1872,
+        "fv": 32.3844,
+        "spot": 32.665,
+        "misval": "+0.9%",
+        "zscore": 0.61,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "US-TH 2Y Rate Spread",
+        "r2": 0.1806,
+        "fv": 32.5568,
+        "spot": 32.665,
+        "misval": "+0.3%",
+        "zscore": 0.23,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (XAU + DXY)",
+        "r2": 0.4986,
+        "fv": 32.2859,
+        "spot": 32.665,
+        "misval": "+1.2%",
+        "zscore": 0.98,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "2y": [
+      {
+        "model": "Gold (XAU)",
+        "r2": 0.6559,
+        "fv": 31.9325,
+        "spot": 32.665,
+        "misval": "+2.2%",
+        "zscore": 1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Dollar Index (DXY)",
+        "r2": 0.5826,
+        "fv": 32.6347,
+        "spot": 32.665,
+        "misval": "+0.1%",
+        "zscore": 0.54,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "US-TH 2Y Rate Spread",
+        "r2": 0.0366,
+        "fv": 32.8298,
+        "spot": 32.665,
+        "misval": "-0.5%",
+        "zscore": 1.31,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined (XAU + DXY)",
+        "r2": 0.7261,
+        "fv": 32.074,
+        "spot": 32.665,
+        "misval": "+1.8%",
+        "zscore": 1.28,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "Gold (XAU)",
+        "r2": 0.7129,
+        "fv": 31.8699,
+        "spot": 32.665,
+        "misval": "+2.4%",
+        "zscore": 1.12,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Dollar Index (DXY)",
+        "r2": 0.5763,
+        "fv": 32.8382,
+        "spot": 32.665,
+        "misval": "-0.5%",
+        "zscore": 0.39,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "US-TH 2Y Rate Spread",
+        "r2": 0.0076,
+        "fv": 33.9625,
+        "spot": 32.665,
+        "misval": "-4.0%",
+        "zscore": 0.77,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (XAU + DXY)",
+        "r2": 0.7606,
+        "fv": 31.9921,
+        "spot": 32.665,
+        "misval": "+2.1%",
+        "zscore": 1.17,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "5y": [
+      {
+        "model": "Gold (XAU)",
+        "r2": 0.7129,
+        "fv": 31.8699,
+        "spot": 32.665,
+        "misval": "+2.4%",
+        "zscore": 1.12,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Dollar Index (DXY)",
+        "r2": 0.5763,
+        "fv": 32.8382,
+        "spot": 32.665,
+        "misval": "-0.5%",
+        "zscore": 0.39,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "US-TH 2Y Rate Spread",
+        "r2": 0.0076,
+        "fv": 33.9625,
+        "spot": 32.665,
+        "misval": "-4.0%",
+        "zscore": 0.77,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (XAU + DXY)",
+        "r2": 0.7606,
+        "fv": 31.9921,
+        "spot": 32.665,
+        "misval": "+2.1%",
+        "zscore": 1.17,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ]
+  }
+}

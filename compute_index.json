@@ -1,0 +1,72 @@
+{
+  "_updated": "2026-04-16 10:31",
+  "base_date": "2021-01-29",
+  "composite": {
+    "current": 122.31,
+    "yoy_pct": 4.93,
+    "ytd_pct": -0.63,
+    "1y_high": 138.24,
+    "1y_low": 115.52
+  },
+  "sub_indices": {
+    "Energy": {
+      "current": 124.74,
+      "yoy_pct": -2.96,
+      "weight": 0.4
+    },
+    "Hardware": {
+      "current": 122.2,
+      "yoy_pct": 13.36,
+      "weight": 0.35
+    },
+    "Facility": {
+      "current": 118.56,
+      "yoy_pct": 8.13,
+      "weight": 0.25
+    }
+  },
+  "components": {
+    "elec_ppi": {
+      "label": "Industrial Electricity (PPI)",
+      "current": 132.62,
+      "yoy_pct": 2.67,
+      "weight": 0.3
+    },
+    "natgas": {
+      "label": "Natural Gas (NG1)",
+      "current": 101.09,
+      "yoy_pct": -20.17,
+      "weight": 0.1
+    },
+    "semi_ppi": {
+      "label": "Semiconductors (PPI)",
+      "current": 124.96,
+      "yoy_pct": 15.93,
+      "weight": 0.25
+    },
+    "computer_ppi": {
+      "label": "Computer Equipment (PPI)",
+      "current": 115.31,
+      "yoy_pct": 6.94,
+      "weight": 0.1
+    },
+    "dc_hosting": {
+      "label": "Data Center Hosting (PPI)",
+      "current": 109.47,
+      "yoy_pct": 0.94,
+      "weight": 0.15
+    },
+    "copper": {
+      "label": "Copper (HG1)",
+      "current": 171.99,
+      "yoy_pct": 30.53,
+      "weight": 0.05
+    },
+    "dxy_inv": {
+      "label": "USD Purchasing Power (DXY inv)",
+      "current": 92.42,
+      "yoy_pct": 1.39,
+      "weight": 0.05
+    }
+  }
+}

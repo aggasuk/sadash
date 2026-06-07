@@ -1,0 +1,216 @@
+{
+  "_updated": "2026-06-05 10:28",
+  "asset": "EURGBP",
+  "periods": {
+    "6m": [
+      {
+        "model": "Rate Differential",
+        "r2": 0.2843,
+        "fv": 0.8679,
+        "spot": 0.8651,
+        "misval": "-0.3%",
+        "zscore": -0.83,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "GBP 2s30s",
+        "r2": 0.1676,
+        "fv": 0.8677,
+        "spot": 0.8651,
+        "misval": "-0.3%",
+        "zscore": -0.71,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "V2X (Risk)",
+        "r2": 0.145,
+        "fv": 0.8695,
+        "spot": 0.8651,
+        "misval": "-0.5%",
+        "zscore": -1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.3226,
+        "fv": 0.869,
+        "spot": 0.8651,
+        "misval": "-0.5%",
+        "zscore": -1.2,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "1y": [
+      {
+        "model": "Rate Differential",
+        "r2": 0.3207,
+        "fv": 0.8696,
+        "spot": 0.8651,
+        "misval": "-0.5%",
+        "zscore": -0.99,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "GBP 2s30s",
+        "r2": 0.1148,
+        "fv": 0.8657,
+        "spot": 0.8651,
+        "misval": "-0.1%",
+        "zscore": -0.24,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "V2X (Risk)",
+        "r2": 0.0092,
+        "fv": 0.8684,
+        "spot": 0.8651,
+        "misval": "-0.4%",
+        "zscore": -0.73,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.3422,
+        "fv": 0.8683,
+        "spot": 0.8651,
+        "misval": "-0.4%",
+        "zscore": -0.74,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "2y": [
+      {
+        "model": "Rate Differential",
+        "r2": 0.3493,
+        "fv": 0.8604,
+        "spot": 0.8651,
+        "misval": "+0.5%",
+        "zscore": -0.96,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "GBP 2s30s",
+        "r2": 0.5561,
+        "fv": 0.86,
+        "spot": 0.8651,
+        "misval": "+0.6%",
+        "zscore": 0.01,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "V2X (Risk)",
+        "r2": 0.0475,
+        "fv": 0.8538,
+        "spot": 0.8651,
+        "misval": "+1.3%",
+        "zscore": -0.44,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined",
+        "r2": 0.8179,
+        "fv": 0.8645,
+        "spot": 0.8651,
+        "misval": "+0.1%",
+        "zscore": -0.25,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "Rate Differential",
+        "r2": 0.3307,
+        "fv": 0.859,
+        "spot": 0.8651,
+        "misval": "+0.7%",
+        "zscore": -0.98,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "GBP 2s30s",
+        "r2": 0.1437,
+        "fv": 0.8598,
+        "spot": 0.8651,
+        "misval": "+0.6%",
+        "zscore": -0.45,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "V2X (Risk)",
+        "r2": 0.0187,
+        "fv": 0.8557,
+        "spot": 0.8651,
+        "misval": "+1.1%",
+        "zscore": -0.55,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined",
+        "r2": 0.6117,
+        "fv": 0.8658,
+        "spot": 0.8651,
+        "misval": "-0.1%",
+        "zscore": -0.56,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "5y": [
+      {
+        "model": "Rate Differential",
+        "r2": 0.3307,
+        "fv": 0.859,
+        "spot": 0.8651,
+        "misval": "+0.7%",
+        "zscore": -0.98,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "GBP 2s30s",
+        "r2": 0.1437,
+        "fv": 0.8598,
+        "spot": 0.8651,
+        "misval": "+0.6%",
+        "zscore": -0.45,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "V2X (Risk)",
+        "r2": 0.0187,
+        "fv": 0.8557,
+        "spot": 0.8651,
+        "misval": "+1.1%",
+        "zscore": -0.55,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined",
+        "r2": 0.6117,
+        "fv": 0.8658,
+        "spot": 0.8651,
+        "misval": "-0.1%",
+        "zscore": -0.56,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ]
+  }
+}

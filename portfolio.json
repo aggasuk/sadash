@@ -1,0 +1,98 @@
+{
+  "trades": [
+    {
+      "id": 1,
+      "date": "2026-03-22",
+      "currency": "EUR",
+      "description": "Rec EUR OIS H27-1Y vs Pay U26-1Y",
+      "spread_entry": -5.5,
+      "dv01_usd": 10000,
+      "direction": "rec_spread",
+      "rec_leg": {"start": "H27", "tenor": "1Y", "start_date": "2027-03-17", "maturity": "2028-03-17", "approx_tenor_from_spot": "2Y"},
+      "pay_leg": {"start": "U26", "tenor": "1Y", "start_date": "2026-09-16", "maturity": "2027-09-16", "approx_tenor_from_spot": "18M"},
+      "bucket_risk": {
+        "6M": 10000,
+        "1Y": -10000,
+        "18M": -20000,
+        "2Y": 20000
+      },
+      "equivalent": "Rec 1Y1Y vs Pay 6M1Y EUR OIS at -5.5bps",
+      "status": "open",
+      "notes": "Positioned for ECB front-end steepening"
+    },
+    {
+      "id": 2,
+      "date": "2026-03-25",
+      "currency": "NZD",
+      "description": "Rec NZD M6 3s5s10s Fly",
+      "fly_entry": -10.0,
+      "dv01_usd_wings": 10000,
+      "direction": "rec_fly",
+      "fly_convention": "2*5Y - 3Y - 10Y",
+      "start": "M6",
+      "start_date": "2026-06-17",
+      "legs": {
+        "3Y": {"direction": "pay", "tenor": "3Y", "maturity": "2029-06-17", "dv01": -10000},
+        "5Y": {"direction": "rec", "tenor": "5Y", "maturity": "2031-06-17", "dv01": 20000},
+        "10Y": {"direction": "pay", "tenor": "10Y", "maturity": "2036-06-17", "dv01": -10000}
+      },
+      "bucket_risk": {
+        "3Y": -10000,
+        "5Y": 20000,
+        "10Y": -10000
+      },
+      "equivalent": "Rec NZD 3s5s10s fly from Jun-26 at -10bp, 10k wings",
+      "status": "open",
+      "notes": "Belly cheap, expecting reversion"
+    },
+    {
+      "id": 3,
+      "date": "2026-03-25",
+      "currency": "SGD",
+      "description": "Rec SGD SORA M6 3s10s",
+      "spread_entry": 51.5,
+      "dv01_usd": 25000,
+      "direction": "rec_spread",
+      "rec_leg": {"tenor": "10Y", "start": "M6", "start_date": "2026-06-17", "maturity": "2036-06-17"},
+      "pay_leg": {"tenor": "3Y", "start": "M6", "start_date": "2026-06-17", "maturity": "2029-06-17"},
+      "bucket_risk": {
+        "3Y": -25000,
+        "10Y": 25000
+      },
+      "equivalent": "Rec 10Y Pay 3Y SGD SORA from Jun-26 at 51.5bps",
+      "status": "open",
+      "notes": "Flattener — expecting 3s10s to compress"
+    }
+  ],
+  "portfolio_summary": {
+    "last_updated": "2026-03-25",
+    "total_trades": 3,
+    "currencies": ["EUR", "NZD", "SGD"],
+    "net_dv01_by_bucket": {
+      "6M": 10000,
+      "1Y": -10000,
+      "18M": -20000,
+      "2Y": 20000,
+      "3Y": -35000,
+      "5Y": 20000,
+      "10Y": 15000
+    },
+    "net_dv01_by_ccy_bucket": {
+      "EUR": {
+        "6M": 10000,
+        "1Y": -10000,
+        "18M": -20000,
+        "2Y": 20000
+      },
+      "NZD": {
+        "3Y": -10000,
+        "5Y": 20000,
+        "10Y": -10000
+      },
+      "SGD": {
+        "3Y": -25000,
+        "10Y": 25000
+      }
+    }
+  }
+}

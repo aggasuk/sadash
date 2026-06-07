@@ -1,0 +1,174 @@
+{
+  "_updated": "2026-06-05 10:30",
+  "asset": "TPNBNK",
+  "spot": 671.72,
+  "jpy_1y1y": 1.665,
+  "jgb_10y": 2.676,
+  "periods": {
+    "6m": [
+      {
+        "model": "A: JPY 1Y1Y only",
+        "r2": 0.5164,
+        "fv": 619.06,
+        "spot": 671.72,
+        "misval": "+8.51%",
+        "misval_pct": 8.507,
+        "zscore": 1.53,
+        "signal": "RICH",
+        "beta": 0.4048,
+        "alpha": 5.75421
+      },
+      {
+        "model": "B: JPY 1Y1Y + JGB 10Y",
+        "r2": 0.5236,
+        "fv": 627.48,
+        "spot": 671.72,
+        "misval": "+7.05%",
+        "misval_pct": 7.05,
+        "zscore": 1.29,
+        "signal": "FAIR",
+        "beta_names": [
+          "jpy_1y1y",
+          "jgb_10y"
+        ],
+        "betas": [
+          0.27555,
+          0.08474
+        ],
+        "alpha": 5.75615
+      }
+    ],
+    "1y": [
+      {
+        "model": "A: JPY 1Y1Y only",
+        "r2": 0.9243,
+        "fv": 631.28,
+        "spot": 671.72,
+        "misval": "+6.41%",
+        "misval_pct": 6.406,
+        "zscore": 1.26,
+        "signal": "FAIR",
+        "beta": 0.56174,
+        "alpha": 5.51245
+      },
+      {
+        "model": "B: JPY 1Y1Y + JGB 10Y",
+        "r2": 0.9245,
+        "fv": 627.36,
+        "spot": 671.72,
+        "misval": "+7.07%",
+        "misval_pct": 7.071,
+        "zscore": 1.39,
+        "signal": "FAIR",
+        "beta_names": [
+          "jpy_1y1y",
+          "jgb_10y"
+        ],
+        "betas": [
+          0.60544,
+          -0.03297
+        ],
+        "alpha": 5.52169
+      }
+    ],
+    "2y": [
+      {
+        "model": "A: JPY 1Y1Y only",
+        "r2": 0.9483,
+        "fv": 635.96,
+        "spot": 671.72,
+        "misval": "+5.62%",
+        "misval_pct": 5.623,
+        "zscore": 0.78,
+        "signal": "FAIR",
+        "beta": 0.61484,
+        "alpha": 5.43143
+      },
+      {
+        "model": "B: JPY 1Y1Y + JGB 10Y",
+        "r2": 0.9513,
+        "fv": 651.06,
+        "spot": 671.72,
+        "misval": "+3.17%",
+        "misval_pct": 3.173,
+        "zscore": 0.35,
+        "signal": "FAIR",
+        "beta_names": [
+          "jpy_1y1y",
+          "jgb_10y"
+        ],
+        "betas": [
+          0.43777,
+          0.1276
+        ],
+        "alpha": 5.40827
+      }
+    ],
+    "3y": [
+      {
+        "model": "A: JPY 1Y1Y only",
+        "r2": 0.9564,
+        "fv": 654.43,
+        "spot": 671.72,
+        "misval": "+2.64%",
+        "misval_pct": 2.642,
+        "zscore": 0.34,
+        "signal": "FAIR",
+        "beta": 0.66884,
+        "alpha": 5.37015
+      },
+      {
+        "model": "B: JPY 1Y1Y + JGB 10Y",
+        "r2": 0.9565,
+        "fv": 658.02,
+        "spot": 671.72,
+        "misval": "+2.08%",
+        "misval_pct": 2.082,
+        "zscore": 0.26,
+        "signal": "FAIR",
+        "beta_names": [
+          "jpy_1y1y",
+          "jgb_10y"
+        ],
+        "betas": [
+          0.6329,
+          0.0267
+        ],
+        "alpha": 5.36402
+      }
+    ],
+    "5y": [
+      {
+        "model": "A: JPY 1Y1Y only",
+        "r2": 0.9155,
+        "fv": 761.15,
+        "spot": 671.72,
+        "misval": "-11.75%",
+        "misval_pct": -11.749,
+        "zscore": -0.63,
+        "signal": "FAIR",
+        "beta": 0.9128,
+        "alpha": 5.11501
+      },
+      {
+        "model": "B: JPY 1Y1Y + JGB 10Y",
+        "r2": 0.9407,
+        "fv": 860.45,
+        "spot": 671.72,
+        "misval": "-21.93%",
+        "misval_pct": -21.934,
+        "zscore": -1.72,
+        "signal": "CHEAP",
+        "beta_names": [
+          "jpy_1y1y",
+          "jgb_10y"
+        ],
+        "betas": [
+          -0.19772,
+          0.77686
+        ],
+        "alpha": 5.00778
+      }
+    ]
+  }
+}

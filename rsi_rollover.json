@@ -1,0 +1,84 @@
+{
+  "generated": "2026-06-05 10:26",
+  "params": {
+    "rsi_window": 14,
+    "lookback_bars": 10,
+    "min_drop": 3.0,
+    "ob_threshold": 70.0,
+    "os_threshold": 30.0,
+    "divergence_window": 14
+  },
+  "bearish": [
+    {
+      "ticker": "GJGB10 Index",
+      "category": "rates",
+      "last": 2.67,
+      "rsi_now": 55.4,
+      "rsi_yest": 55.9,
+      "rsi_peak": 78.3,
+      "peak_bars_ago": 10,
+      "drop": 22.9,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "KOSPI Index",
+      "category": "equity_commod",
+      "last": 8356.67,
+      "rsi_now": 63.9,
+      "rsi_yest": 71.7,
+      "rsi_peak": 76.7,
+      "peak_bars_ago": 2,
+      "drop": 12.8,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "NKY Index",
+      "category": "equity_commod",
+      "last": 66403.0,
+      "rsi_now": 63.2,
+      "rsi_yest": 69.3,
+      "rsi_peak": 75.1,
+      "peak_bars_ago": 2,
+      "drop": 11.8,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "TWSE Index",
+      "category": "equity_commod",
+      "last": 45175.79,
+      "rsi_now": 67.0,
+      "rsi_yest": 71.1,
+      "rsi_peak": 78.0,
+      "peak_bars_ago": 2,
+      "drop": 11.0,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "CCMP Index",
+      "category": "equity_commod",
+      "last": 26830.96,
+      "rsi_now": 67.5,
+      "rsi_yest": 68.1,
+      "rsi_peak": 75.1,
+      "peak_bars_ago": 2,
+      "drop": 7.6,
+      "divergence": false,
+      "st_label": "NEUTRAL",
+      "st_score": 50,
+      "strength": "MODERATE"
+    }
+  ],
+  "bullish": []
+}

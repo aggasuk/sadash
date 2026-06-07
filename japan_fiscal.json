@@ -1,0 +1,219 @@
+{
+  "generated": "2026-05-18 20:57",
+  "history": [
+    {
+      "fy": 2015,
+      "gg_balance_pct": -3.78,
+      "gg_primary_pct": -2.4,
+      "gg_debt_pct": 228.5,
+      "cg_balance_pct": -5.6,
+      "supplemental_yen_tn": 3.5
+    },
+    {
+      "fy": 2016,
+      "gg_balance_pct": -3.49,
+      "gg_primary_pct": -2.14,
+      "gg_debt_pct": 232.2,
+      "cg_balance_pct": -5.0,
+      "supplemental_yen_tn": 3.3
+    },
+    {
+      "fy": 2017,
+      "gg_balance_pct": -3.01,
+      "gg_primary_pct": -1.61,
+      "gg_debt_pct": 231.6,
+      "cg_balance_pct": -4.5,
+      "supplemental_yen_tn": 2.7
+    },
+    {
+      "fy": 2018,
+      "gg_balance_pct": -2.48,
+      "gg_primary_pct": -1.13,
+      "gg_debt_pct": 232.4,
+      "cg_balance_pct": -4.0,
+      "supplemental_yen_tn": 2.0
+    },
+    {
+      "fy": 2019,
+      "gg_balance_pct": -3.0,
+      "gg_primary_pct": -1.74,
+      "gg_debt_pct": 236.1,
+      "cg_balance_pct": -5.2,
+      "supplemental_yen_tn": 13.2
+    },
+    {
+      "fy": 2020,
+      "gg_balance_pct": -9.07,
+      "gg_primary_pct": -7.91,
+      "gg_debt_pct": 258.3,
+      "cg_balance_pct": -16.2,
+      "supplemental_yen_tn": 73.0
+    },
+    {
+      "fy": 2021,
+      "gg_balance_pct": -6.07,
+      "gg_primary_pct": -4.91,
+      "gg_debt_pct": 254.7,
+      "cg_balance_pct": -8.5,
+      "supplemental_yen_tn": 36.0
+    },
+    {
+      "fy": 2022,
+      "gg_balance_pct": -4.36,
+      "gg_primary_pct": -3.21,
+      "gg_debt_pct": 257.2,
+      "cg_balance_pct": -7.0,
+      "supplemental_yen_tn": 32.0
+    },
+    {
+      "fy": 2023,
+      "gg_balance_pct": -4.14,
+      "gg_primary_pct": -2.93,
+      "gg_debt_pct": 251.7,
+      "cg_balance_pct": -6.7,
+      "supplemental_yen_tn": 13.2
+    },
+    {
+      "fy": 2024,
+      "gg_balance_pct": -3.69,
+      "gg_primary_pct": -2.4,
+      "gg_debt_pct": 248.7,
+      "cg_balance_pct": -6.5,
+      "supplemental_yen_tn": 13.9
+    },
+    {
+      "fy": 2025,
+      "gg_balance_pct": -3.71,
+      "gg_primary_pct": -2.3,
+      "gg_debt_pct": 246.7,
+      "cg_balance_pct": -6.7,
+      "supplemental_yen_tn": 25.0
+    }
+  ],
+  "large_supp_years": [
+    2020,
+    2021,
+    2022,
+    2025
+  ],
+  "projection_fy26": {
+    "fy": 2026,
+    "gg_balance_pct": -3.3,
+    "gg_primary_pct": -1.8,
+    "gg_debt_pct": 244.4,
+    "cg_balance_pct": -6.0,
+    "nominal_gdp_yen_tn": 615.0,
+    "real_gdp_growth_pct": 0.7,
+    "planned_supplemental_yen_tn": 15.0,
+    "source": "Cabinet Office Medium-Term Projections (Jan-2026)"
+  },
+  "imf_projection_path": [
+    {
+      "fy": 2026,
+      "gg_balance_pct": -3.3,
+      "gg_primary_pct": -1.8,
+      "gg_debt_pct": 244.4
+    },
+    {
+      "fy": 2027,
+      "gg_balance_pct": -3.1,
+      "gg_primary_pct": -1.5,
+      "gg_debt_pct": 242.5
+    },
+    {
+      "fy": 2028,
+      "gg_balance_pct": -3.0,
+      "gg_primary_pct": -1.3,
+      "gg_debt_pct": 240.9
+    },
+    {
+      "fy": 2029,
+      "gg_balance_pct": -2.95,
+      "gg_primary_pct": -1.25,
+      "gg_debt_pct": 239.5
+    },
+    {
+      "fy": 2030,
+      "gg_balance_pct": -2.9,
+      "gg_primary_pct": -1.2,
+      "gg_debt_pct": 238.2
+    }
+  ],
+  "jgb_stock": {
+    "buckets": [
+      {
+        "name": "1-2Y",
+        "outstanding_yen_tn": 195.0,
+        "avg_coupon_pct": 0.32,
+        "avg_years_remaining": 1.5,
+        "market_yield_pct": 1.276,
+        "repricing_gap_pp": 0.956
+      },
+      {
+        "name": "2-5Y",
+        "outstanding_yen_tn": 280.0,
+        "avg_coupon_pct": 0.41,
+        "avg_years_remaining": 3.5,
+        "market_yield_pct": 1.753,
+        "repricing_gap_pp": 1.343
+      },
+      {
+        "name": "5-10Y",
+        "outstanding_yen_tn": 290.0,
+        "avg_coupon_pct": 0.55,
+        "avg_years_remaining": 7.5,
+        "market_yield_pct": 2.504,
+        "repricing_gap_pp": 1.954
+      },
+      {
+        "name": "10-20Y",
+        "outstanding_yen_tn": 240.0,
+        "avg_coupon_pct": 1.1,
+        "avg_years_remaining": 15.0,
+        "market_yield_pct": 4.069,
+        "repricing_gap_pp": 2.969
+      },
+      {
+        "name": "20Y+",
+        "outstanding_yen_tn": 295.0,
+        "avg_coupon_pct": 1.75,
+        "avg_years_remaining": 30.0,
+        "market_yield_pct": 4.096,
+        "repricing_gap_pp": 2.346
+      }
+    ],
+    "total_yen_tn": 1300.0,
+    "as_of": "2025-11-30",
+    "source": "MOF JGB January 2026 Newsletter"
+  },
+  "current_jgb_curve": {
+    "1Y": 1.133,
+    "2Y": 1.418,
+    "3Y": 1.674,
+    "5Y": 1.991,
+    "7Y": 2.458,
+    "10Y": 2.7359999999999998,
+    "15Y": 4.069,
+    "20Y": 3.714,
+    "30Y": 4.096,
+    "40Y": 4.339
+  },
+  "curve_as_of": "2026-05-18",
+  "params_default": {
+    "primary_deficit_pct": -1.5,
+    "supplemental_yen_tn": 15.0,
+    "nominal_gdp_growth_pct": 1.5,
+    "horizon_years": 10,
+    "starting_gdp_yen_tn": 615.0,
+    "starting_jgb_stock_yen_tn": 1300.0,
+    "starting_gg_debt_pct_gdp": 246.7,
+    "starting_total_debt_yen_tn": 1517.2
+  },
+  "notes": [
+    "GG = general government (central + local + social security funds). IMF/OECD standard.",
+    "CG = central government general account, MOF convention. Excludes SS surplus offset.",
+    "Supplementals are passed mid-fiscal-year \u2014 already included in historical CG and GG balances.",
+    "JGB stock and coupons are estimates; precise vintages need MOF Debt Management Report parse.",
+    "Bucket avg_years_remaining is mid-bucket assumption used for simulation rollover."
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "_updated": "2026-06-05 10:29",
+  "asset": "SGDTHB",
+  "periods": {
+    "6m": [
+      {
+        "model": "SG-TH 2Y Rate Spread",
+        "r2": 0.5086,
+        "fv": 25.4159,
+        "spot": 25.4202,
+        "misval": "+0.0%",
+        "zscore": 0.01,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "XAU",
+        "r2": 0.0081,
+        "fv": 24.9885,
+        "spot": 25.4202,
+        "misval": "+1.7%",
+        "zscore": 0.92,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "DXY",
+        "r2": 0.2075,
+        "fv": 25.1547,
+        "spot": 25.4202,
+        "misval": "+1.0%",
+        "zscore": 0.63,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + XAU + DXY)",
+        "r2": 0.6883,
+        "fv": 25.6487,
+        "spot": 25.4202,
+        "misval": "-0.9%",
+        "zscore": -0.9,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ],
+    "1y": [
+      {
+        "model": "SG-TH 2Y Rate Spread",
+        "r2": 0.1866,
+        "fv": 25.2279,
+        "spot": 25.4202,
+        "misval": "+0.8%",
+        "zscore": 0.62,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "XAU",
+        "r2": 0.1172,
+        "fv": 24.9834,
+        "spot": 25.4202,
+        "misval": "+1.7%",
+        "zscore": 1.22,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "DXY",
+        "r2": 0.026,
+        "fv": 25.1032,
+        "spot": 25.4202,
+        "misval": "+1.2%",
+        "zscore": 0.87,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + XAU + DXY)",
+        "r2": 0.3014,
+        "fv": 25.212,
+        "spot": 25.4202,
+        "misval": "+0.8%",
+        "zscore": 0.68,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ],
+    "2y": [
+      {
+        "model": "SG-TH 2Y Rate Spread",
+        "r2": 0.2606,
+        "fv": 24.9686,
+        "spot": 25.4202,
+        "misval": "+1.8%",
+        "zscore": 1.18,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "XAU",
+        "r2": 0.4175,
+        "fv": 24.9215,
+        "spot": 25.4202,
+        "misval": "+2.0%",
+        "zscore": 1.26,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "DXY",
+        "r2": 0.1666,
+        "fv": 25.2525,
+        "spot": 25.4202,
+        "misval": "+0.7%",
+        "zscore": 0.86,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + XAU + DXY)",
+        "r2": 0.451,
+        "fv": 24.7549,
+        "spot": 25.4202,
+        "misval": "+2.6%",
+        "zscore": 1.45,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "SG-TH 2Y Rate Spread",
+        "r2": 0.5424,
+        "fv": 24.8644,
+        "spot": 25.4202,
+        "misval": "+2.2%",
+        "zscore": 1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "XAU",
+        "r2": 0.5569,
+        "fv": 24.87,
+        "spot": 25.4202,
+        "misval": "+2.2%",
+        "zscore": 1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "DXY",
+        "r2": 0.2648,
+        "fv": 25.3707,
+        "spot": 25.4202,
+        "misval": "+0.2%",
+        "zscore": 0.74,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + XAU + DXY)",
+        "r2": 0.6522,
+        "fv": 24.66,
+        "spot": 25.4202,
+        "misval": "+3.0%",
+        "zscore": 1.5,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "5y": [
+      {
+        "model": "SG-TH 2Y Rate Spread",
+        "r2": 0.5424,
+        "fv": 24.8644,
+        "spot": 25.4202,
+        "misval": "+2.2%",
+        "zscore": 1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "XAU",
+        "r2": 0.5569,
+        "fv": 24.87,
+        "spot": 25.4202,
+        "misval": "+2.2%",
+        "zscore": 1.21,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "DXY",
+        "r2": 0.2648,
+        "fv": 25.3707,
+        "spot": 25.4202,
+        "misval": "+0.2%",
+        "zscore": 0.74,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Rates + XAU + DXY)",
+        "r2": 0.6522,
+        "fv": 24.66,
+        "spot": 25.4202,
+        "misval": "+3.0%",
+        "zscore": 1.5,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ]
+  }
+}

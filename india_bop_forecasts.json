@@ -1,0 +1,65 @@
+{
+  "DB": {
+    "FY26": {
+      "Exports": 448.7,
+      "Imports": 785.9,
+      "Trade": -337.2,
+      "Trade_GDP": -8.7,
+      "Invisibles": 301.9,
+      "Invisibles_GDP": 7.8,
+      "CA": -35.3,
+      "CA_GDP": -0.9,
+      "Capital": -11.2,
+      "Capital_GDP": -0.3,
+      "BOP": -45.0
+    },
+    "FY27": {
+      "Exports": 464.4,
+      "Imports": 868.4,
+      "Trade": -404.0,
+      "Trade_GDP": -9.6,
+      "Invisibles": 321.0,
+      "Invisibles_GDP": 7.6,
+      "CA": -83.0,
+      "CA_GDP": -2.0,
+      "Capital": 40.0,
+      "Capital_GDP": 0.9,
+      "BOP": -41.9
+    },
+    "FY28": {
+      "Exports": 473.7,
+      "Imports": 867.5,
+      "Trade": -393.8,
+      "Trade_GDP": -8.4,
+      "Invisibles": 349.1,
+      "Invisibles_GDP": 7.4,
+      "CA": -44.7,
+      "CA_GDP": -1.0,
+      "Capital": 65.0,
+      "Capital_GDP": 1.4,
+      "BOP": 19.9
+    }
+  },
+  "BofA": {
+    "FY26": {
+      "CA": -36.0,
+      "CA_GDP": -0.93,
+      "FDI": 4.5,
+      "FII": -14.3,
+      "CA_FDI_FII": -45.8,
+      "CA_FDI_FII_GDP": -1.18,
+      "BOP": -38.0,
+      "BOP_GDP": -0.98
+    },
+    "FY27": {
+      "CA": -88.0,
+      "CA_GDP": -2.1,
+      "FDI": 13.0,
+      "FII": 1.5,
+      "CA_FDI_FII": -73.5,
+      "CA_FDI_FII_GDP": -1.75,
+      "BOP": -18.5,
+      "BOP_GDP": -0.44
+    }
+  }
+}

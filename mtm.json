@@ -1,0 +1,142 @@
+{
+  "generated": "2026-06-05T10:25:42",
+  "trades": [
+    {
+      "id": "t_1775798684233",
+      "description": "Pay INR m6 3Y",
+      "currency": "INR",
+      "type": "outright",
+      "direction": "pay",
+      "entry_bps": null,
+      "current_bps": 658.92,
+      "pnl_bps": 32.42,
+      "pnl_usd": 486300.0,
+      "dv01_usd": 15000,
+      "details": {
+        "rate": 6.5892,
+        "method": "outright"
+      }
+    },
+    {
+      "id": "t_1775577342567",
+      "description": "Rec EUR OIS H7-1Y vs Pay U6-1Y",
+      "currency": "EUR",
+      "type": "spread",
+      "direction": "rec",
+      "entry_bps": -2.3,
+      "current_bps": 0.68,
+      "pnl_bps": -2.98,
+      "pnl_usd": -29780.0,
+      "dv01_usd": 10000,
+      "details": {
+        "18M": 2.83592,
+        "2Y": 2.8427,
+        "method": "spot_spread"
+      }
+    },
+    {
+      "id": "t_1775558027793",
+      "description": "Pay THB m6 1s2s3s fly",
+      "currency": "THB",
+      "type": "fly",
+      "direction": "pay",
+      "entry_bps": 2.75,
+      "current_bps": 4.28,
+      "pnl_bps": 1.53,
+      "pnl_usd": 45780.0,
+      "dv01_usd": 30000,
+      "details": {
+        "1Y": 1.31288,
+        "2Y": 1.50804,
+        "3Y": 1.66044,
+        "method": "fwd_fly"
+      }
+    },
+    {
+      "id": "t_1775478193056",
+      "description": "Pay USD m6 start 2Y",
+      "currency": "USD",
+      "type": "outright",
+      "direction": "pay",
+      "entry_bps": null,
+      "current_bps": 393.05,
+      "pnl_bps": 26.05,
+      "pnl_usd": 130235.0,
+      "dv01_usd": 5000,
+      "details": {
+        "rate": 3.93047,
+        "method": "outright"
+      }
+    },
+    {
+      "id": "t_1775478137579",
+      "description": "Pay USD m6 start 5s10s",
+      "currency": "USD",
+      "type": "spread",
+      "direction": "pay",
+      "entry_bps": 23.16,
+      "current_bps": 16.11,
+      "pnl_bps": -7.05,
+      "pnl_usd": -176275.0,
+      "dv01_usd": 25000,
+      "details": {
+        "5Y": 3.93202,
+        "10Y": 4.09311,
+        "method": "fwd_spread"
+      }
+    },
+    {
+      "id": "t_1711100001",
+      "description": "Rec EUR OIS H27-1Y vs Pay U26-1Y",
+      "currency": "EUR",
+      "type": "spread",
+      "direction": "rec",
+      "entry_bps": -5.5,
+      "current_bps": -1.13,
+      "pnl_bps": -4.37,
+      "pnl_usd": -43700.0,
+      "dv01_usd": 10000,
+      "details": {
+        "18M": 2.8732,
+        "2Y": 2.8619,
+        "method": "fwd_spread"
+      }
+    },
+    {
+      "id": "t_1711100002",
+      "description": "Rec NZD M6 3s5s10s Fly",
+      "currency": "NZD",
+      "type": "fly",
+      "direction": "rec",
+      "entry_bps": -10,
+      "current_bps": -17.76,
+      "pnl_bps": 7.76,
+      "pnl_usd": 77580.0,
+      "dv01_usd": 10000,
+      "details": {
+        "3Y": 3.73945,
+        "5Y": 3.91009,
+        "10Y": 4.25831,
+        "method": "fwd_fly"
+      }
+    },
+    {
+      "id": "t_1711100003",
+      "description": "Rec SGD SORA M6 3s10s",
+      "currency": "SGD",
+      "type": "spread",
+      "direction": "rec",
+      "entry_bps": 51.5,
+      "current_bps": 48.05,
+      "pnl_bps": 3.45,
+      "pnl_usd": 86325.0,
+      "dv01_usd": 25000,
+      "details": {
+        "3Y": 1.76556,
+        "10Y": 2.24603,
+        "method": "fwd_spread"
+      }
+    }
+  ],
+  "total_pnl_usd": 576465.0
+}

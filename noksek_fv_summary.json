@@ -1,0 +1,266 @@
+{
+  "_updated": "2026-06-05 10:28",
+  "asset": "NOKSEK",
+  "periods": {
+    "6m": [
+      {
+        "model": "Brent",
+        "r2": 0.8176,
+        "fv": 0.9742,
+        "spot": 1.0043,
+        "misval": "+3.0%",
+        "zscore": 2.02,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "NOK-SEK 2Y Rate Diff",
+        "r2": 0.7898,
+        "fv": 0.9856,
+        "spot": 1.0043,
+        "misval": "+1.9%",
+        "zscore": 1.18,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.2763,
+        "fv": 0.9947,
+        "spot": 1.0043,
+        "misval": "+1.0%",
+        "zscore": 0.32,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.3317,
+        "fv": 0.9926,
+        "spot": 1.0043,
+        "misval": "+1.2%",
+        "zscore": 0.41,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined (Brent + Rate Diff + Copper)",
+        "r2": 0.946,
+        "fv": 0.989,
+        "spot": 1.0043,
+        "misval": "+1.5%",
+        "zscore": 1.96,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ],
+    "1y": [
+      {
+        "model": "Brent",
+        "r2": 0.7699,
+        "fv": 0.9767,
+        "spot": 1.0043,
+        "misval": "+2.8%",
+        "zscore": 2.27,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "NOK-SEK 2Y Rate Diff",
+        "r2": 0.6739,
+        "fv": 0.9832,
+        "spot": 1.0043,
+        "misval": "+2.1%",
+        "zscore": 1.41,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.1486,
+        "fv": 0.9716,
+        "spot": 1.0043,
+        "misval": "+3.3%",
+        "zscore": 1.42,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.1892,
+        "fv": 0.9696,
+        "spot": 1.0043,
+        "misval": "+3.5%",
+        "zscore": 1.5,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Combined (Brent + Rate Diff + Copper)",
+        "r2": 0.8583,
+        "fv": 0.9787,
+        "spot": 1.0043,
+        "misval": "+2.5%",
+        "zscore": 2.58,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      }
+    ],
+    "2y": [
+      {
+        "model": "Brent",
+        "r2": 0.5668,
+        "fv": 0.9881,
+        "spot": 1.0043,
+        "misval": "+1.6%",
+        "zscore": 2.08,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "NOK-SEK 2Y Rate Diff",
+        "r2": 0.0027,
+        "fv": 0.9599,
+        "spot": 1.0043,
+        "misval": "+4.4%",
+        "zscore": 2.1,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.0159,
+        "fv": 0.9509,
+        "spot": 1.0043,
+        "misval": "+5.3%",
+        "zscore": 2.18,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.0184,
+        "fv": 0.9498,
+        "spot": 1.0043,
+        "misval": "+5.4%",
+        "zscore": 2.17,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Brent + Rate Diff + Copper)",
+        "r2": 0.7279,
+        "fv": 0.9705,
+        "spot": 1.0043,
+        "misval": "+3.4%",
+        "zscore": 2.6,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "Brent",
+        "r2": 0.4996,
+        "fv": 1.0058,
+        "spot": 1.0043,
+        "misval": "-0.2%",
+        "zscore": 1.14,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "NOK-SEK 2Y Rate Diff",
+        "r2": 0.3305,
+        "fv": 0.9442,
+        "spot": 1.0043,
+        "misval": "+6.0%",
+        "zscore": 2.04,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.3847,
+        "fv": 0.936,
+        "spot": 1.0043,
+        "misval": "+6.8%",
+        "zscore": 2.34,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.2303,
+        "fv": 0.9343,
+        "spot": 1.0043,
+        "misval": "+7.0%",
+        "zscore": 2.28,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Brent + Rate Diff + Copper)",
+        "r2": 0.7459,
+        "fv": 0.969,
+        "spot": 1.0043,
+        "misval": "+3.5%",
+        "zscore": 2.49,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ],
+    "5y": [
+      {
+        "model": "Brent",
+        "r2": 0.542,
+        "fv": 1.0246,
+        "spot": 1.0043,
+        "misval": "-2.0%",
+        "zscore": 0.53,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "NOK-SEK 2Y Rate Diff",
+        "r2": 0.3506,
+        "fv": 0.9499,
+        "spot": 1.0043,
+        "misval": "+5.4%",
+        "zscore": 2.04,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "log(SPX)",
+        "r2": 0.5344,
+        "fv": 0.9293,
+        "spot": 1.0043,
+        "misval": "+7.5%",
+        "zscore": 2.39,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      },
+      {
+        "model": "Copper (HG1)",
+        "r2": 0.2293,
+        "fv": 0.932,
+        "spot": 1.0043,
+        "misval": "+7.2%",
+        "zscore": 2.29,
+        "signal": "STRONG RICH",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined (Brent + Rate Diff + Copper)",
+        "r2": 0.7092,
+        "fv": 0.9741,
+        "spot": 1.0043,
+        "misval": "+3.0%",
+        "zscore": 2.31,
+        "signal": "FAIR (sign?)",
+        "signs_ok": false
+      }
+    ]
+  }
+}

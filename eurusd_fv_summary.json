@@ -1,0 +1,216 @@
+{
+  "_updated": "2026-06-05 10:27",
+  "asset": "EURUSD",
+  "periods": {
+    "6m": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.2552,
+        "fv": 1.1653,
+        "spot": 1.1616,
+        "misval": "-0.3%",
+        "zscore": -0.41,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.285,
+        "fv": 1.1643,
+        "spot": 1.1616,
+        "misval": "-0.2%",
+        "zscore": -0.3,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "BTP-Bund 10Y",
+        "r2": 0.4311,
+        "fv": 1.1678,
+        "spot": 1.1616,
+        "misval": "-0.5%",
+        "zscore": -0.76,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.4528,
+        "fv": 1.1671,
+        "spot": 1.1616,
+        "misval": "-0.5%",
+        "zscore": -0.69,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "1y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.0367,
+        "fv": 1.1641,
+        "spot": 1.1616,
+        "misval": "-0.2%",
+        "zscore": -0.32,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0358,
+        "fv": 1.1635,
+        "spot": 1.1616,
+        "misval": "-0.2%",
+        "zscore": -0.27,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "BTP-Bund 10Y",
+        "r2": 0.2631,
+        "fv": 1.1682,
+        "spot": 1.1616,
+        "misval": "-0.6%",
+        "zscore": -0.77,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.319,
+        "fv": 1.1672,
+        "spot": 1.1616,
+        "misval": "-0.5%",
+        "zscore": -0.66,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "2y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.4872,
+        "fv": 1.1027,
+        "spot": 1.1616,
+        "misval": "+5.1%",
+        "zscore": 1.14,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0332,
+        "fv": 1.1054,
+        "spot": 1.1616,
+        "misval": "+4.8%",
+        "zscore": 0.98,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "BTP-Bund 10Y",
+        "r2": 0.6044,
+        "fv": 1.1613,
+        "spot": 1.1616,
+        "misval": "+0.0%",
+        "zscore": -0.69,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.794,
+        "fv": 1.157,
+        "spot": 1.1616,
+        "misval": "+0.4%",
+        "zscore": -0.02,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "3y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.5547,
+        "fv": 1.1061,
+        "spot": 1.1616,
+        "misval": "+4.8%",
+        "zscore": 1.1,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0391,
+        "fv": 1.0892,
+        "spot": 1.1616,
+        "misval": "+6.2%",
+        "zscore": 1.07,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "BTP-Bund 10Y",
+        "r2": 0.5471,
+        "fv": 1.1509,
+        "spot": 1.1616,
+        "misval": "+0.9%",
+        "zscore": -0.78,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.6572,
+        "fv": 1.1432,
+        "spot": 1.1616,
+        "misval": "+1.6%",
+        "zscore": 0.2,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ],
+    "5y": [
+      {
+        "model": "2Y Real Rate Diff",
+        "r2": 0.6788,
+        "fv": 1.1061,
+        "spot": 1.1616,
+        "misval": "+4.8%",
+        "zscore": 0.85,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Terms of Trade Diff",
+        "r2": 0.0368,
+        "fv": 1.095,
+        "spot": 1.1616,
+        "misval": "+5.7%",
+        "zscore": 0.68,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "BTP-Bund 10Y",
+        "r2": 0.6476,
+        "fv": 1.1626,
+        "spot": 1.1616,
+        "misval": "-0.1%",
+        "zscore": -0.77,
+        "signal": "FAIR",
+        "signs_ok": true
+      },
+      {
+        "model": "Combined",
+        "r2": 0.7777,
+        "fv": 1.1434,
+        "spot": 1.1616,
+        "misval": "+1.6%",
+        "zscore": -0.06,
+        "signal": "FAIR",
+        "signs_ok": true
+      }
+    ]
+  }
+}

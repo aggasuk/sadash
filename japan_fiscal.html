@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Japan Fiscal Monitor</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --border: #2d3143;
+    --text: #e1e4ed;
+    --dim: #8b8fa3;
+    --accent: #6c63ff;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    background: var(--bg); color: var(--text); padding: 18px; line-height: 1.45;
+  }
+  h1 { font-size: 1.15rem; margin-bottom: 4px; }
+  h2 { font-size: 0.95rem; margin: 20px 0 8px; color: var(--accent); }
+  .dim { color: var(--dim); font-size: 0.78rem; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .kv { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.82rem; }
+  .kv .v { font-weight: 700; }
+  .pos { color: var(--green); }
+  .neg { color: var(--red); }
+  .amb { color: var(--amber); }
+  .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+  .ctl { display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; }
+  .ctl input[type=range] { width: 100%; }
+  .ctl .val { color: var(--accent); font-weight: 700; }
+  .plot { background: white; border-radius: 4px; margin-top: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 6px; }
+  th, td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: right; }
+  th { background: var(--surface2); text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  .note { color: var(--dim); font-size: 0.74rem; margin-top: 10px; font-style: italic; }
+  button {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 12px; cursor: pointer; font-family: inherit;
+    font-size: 0.78rem;
+  }
+  button:hover { background: var(--accent); color: white; }
+</style>
+</head>
+<body>
+
+<h1>&gt; Japan Fiscal Monitor</h1>
+<div class="dim" id="generated"></div>
+
+<h2>1. Historical fiscal balances (FY2015-FY2025)</h2>
+<div class="card">
+  <div id="plot_hist" class="plot" style="height:360px;"></div>
+  <div class="note">Solid = general govt (IMF/OECD, includes SS surplus offset). Dashed = central govt general account (MOF). Vertical bars = years with &gt;&yen;20tn supplemental budget.</div>
+</div>
+
+<h2>2. Debt-to-GDP history + IMF projection path</h2>
+<div class="card">
+  <div id="plot_debt" class="plot" style="height:320px;"></div>
+</div>
+
+<h2>3. JGB maturity profile — rollover repricing gap</h2>
+<div class="card">
+  <div id="plot_buckets" class="plot" style="height:340px;"></div>
+  <div id="bucket_table"></div>
+  <div class="note">As of <span id="stock_as_of"></span>. Source: MOF JGB January 2026 Newsletter. Avg coupons are estimates from issuance vintages.</div>
+</div>
+
+<h2>4. Debt-dynamics simulation</h2>
+<div class="card">
+  <div class="dim" style="margin-bottom:8px;">Hold primary deficit constant (% of GDP). Existing JGB stock matures by bucket and rolls at current JGB curve. Supplementals additive on top.</div>
+
+  <div class="controls">
+    <div class="ctl">
+      <label>Primary deficit (% of GDP)  <span class="val" id="v_pd">-1.5%</span></label>
+      <input type="range" id="s_pd" min="-5" max="1" step="0.1" value="-1.5">
+    </div>
+    <div class="ctl">
+      <label>Supplemental top-up (&yen;tn / yr)  <span class="val" id="v_supp">15</span></label>
+      <input type="range" id="s_supp" min="0" max="50" step="1" value="15">
+    </div>
+    <div class="ctl">
+      <label>Nominal GDP growth (% / yr)  <span class="val" id="v_g">1.5%</span></label>
+      <input type="range" id="s_g" min="-1" max="4" step="0.1" value="1.5">
+    </div>
+    <div class="ctl">
+      <label>Horizon (years)  <span class="val" id="v_h">10</span></label>
+      <input type="range" id="s_h" min="5" max="20" step="1" value="10">
+    </div>
+    <div class="ctl">
+      <label>Rate shock (bp, applied to all buckets)  <span class="val" id="v_rs">0</span></label>
+      <input type="range" id="s_rs" min="-100" max="200" step="10" value="0">
+    </div>
+    <div class="ctl" style="align-self:end;">
+      <button id="btn_reset">Reset to baseline</button>
+    </div>
+  </div>
+
+  <div id="plot_sim" class="plot" style="height:520px; margin-top:14px;"></div>
+  <div id="sim_summary" style="margin-top:8px; font-size:0.82rem;"></div>
+</div>
+
+<div class="note" style="margin-top:18px;">
+  Simulation models JGB-stock interest costs only (¥<span id="jgb_total"></span>tn). Total GG gross debt (¥<span id="tot_debt"></span>tn) includes treasury bills, FILP bonds, local govt, etc. — those evolve separately. Engine assumes uniform annual maturity within each bucket, snap-to-current-curve at rollover, and new issuance weighted across buckets per current outstanding mix.
+</div>
+
+<script>
+let DATA = null;
+
+function fmtPct(v) { return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
+function fmtN(v) { return v.toFixed(0); }
+function colorVal(v) { return v < 0 ? 'neg' : (v > 0 ? 'pos' : ''); }
+
+// -------- Historical chart --------
+function renderHistorical() {
+  const yrs = DATA.history.map(r => r.fy);
+  const gg = DATA.history.map(r => r.gg_balance_pct);
+  const gg_prim = DATA.history.map(r => r.gg_primary_pct);
+  const cg = DATA.history.map(r => r.cg_balance_pct);
+  // Projection path overlay
+  const proj_yrs = DATA.imf_projection_path.map(r => r.fy);
+  const proj_gg = DATA.imf_projection_path.map(r => r.gg_balance_pct);
+  const proj_prim = DATA.imf_projection_path.map(r => r.gg_primary_pct);
+
+  const shapes = DATA.large_supp_years.map(y => ({
+    type: 'rect', xref: 'x', yref: 'paper',
+    x0: y - 0.5, x1: y + 0.5, y0: 0, y1: 1,
+    fillcolor: '#f59e0b', opacity: 0.10, line: { width: 0 }
+  }));
+
+  Plotly.newPlot('plot_hist', [
+    { x: yrs, y: gg, mode: 'lines+markers', name: 'GG balance', line: { color: '#1f77b4', width: 2.5 } },
+    { x: yrs, y: gg_prim, mode: 'lines+markers', name: 'GG primary', line: { color: '#2ca02c', width: 2.5 } },
+    { x: yrs, y: cg, mode: 'lines+markers', name: 'CG balance (MOF)', line: { color: '#d62728', width: 2, dash: 'dash' } },
+    { x: proj_yrs, y: proj_gg, mode: 'lines', name: 'IMF proj GG', line: { color: '#1f77b4', width: 1.5, dash: 'dot' } },
+    { x: proj_yrs, y: proj_prim, mode: 'lines', name: 'IMF proj primary', line: { color: '#2ca02c', width: 1.5, dash: 'dot' } },
+  ], {
+    margin: { l: 50, r: 30, t: 20, b: 36 },
+    yaxis: { title: '% of GDP', zeroline: true, zerolinecolor: '#888' },
+    xaxis: { dtick: 1 },
+    template: 'plotly_white',
+    legend: { orientation: 'h', y: 1.15 },
+    shapes: shapes,
+    hovermode: 'x unified',
+  }, { displayModeBar: false, responsive: true });
+}
+
+// -------- Debt-to-GDP chart --------
+function renderDebt() {
+  const yrs = DATA.history.map(r => r.fy);
+  const debt = DATA.history.map(r => r.gg_debt_pct);
+  const supp = DATA.history.map(r => r.supplemental_yen_tn);
+  const proj_yrs = DATA.imf_projection_path.map(r => r.fy);
+  const proj_debt = DATA.imf_projection_path.map(r => r.gg_debt_pct);
+
+  Plotly.newPlot('plot_debt', [
+    { x: yrs, y: debt, type: 'scatter', mode: 'lines+markers', name: 'GG debt / GDP %', line: { color: '#1f77b4', width: 2.5 } },
+    { x: proj_yrs, y: proj_debt, type: 'scatter', mode: 'lines', name: 'IMF projection', line: { color: '#1f77b4', width: 2, dash: 'dot' } },
+    { x: yrs, y: supp, type: 'bar', name: 'Supplemental ¥tn (RH)', marker: { color: '#f59e0b', opacity: 0.6 }, yaxis: 'y2' },
+  ], {
+    margin: { l: 50, r: 60, t: 20, b: 36 },
+    yaxis: { title: 'Debt / GDP %' },
+    yaxis2: { title: 'Supp ¥tn', overlaying: 'y', side: 'right', showgrid: false },
+    xaxis: { dtick: 1 },
+    template: 'plotly_white',
+    legend: { orientation: 'h', y: 1.15 },
+    hovermode: 'x unified',
+  }, { displayModeBar: false, responsive: true });
+}
+
+// -------- Maturity profile chart --------
+function renderBuckets() {
+  const buckets = DATA.jgb_stock.buckets;
+  const names = buckets.map(b => b.name);
+  const outst = buckets.map(b => b.outstanding_yen_tn);
+  const coup = buckets.map(b => b.avg_coupon_pct);
+  const mkty = buckets.map(b => b.market_yield_pct);
+
+  Plotly.newPlot('plot_buckets', [
+    { x: names, y: outst, type: 'bar', name: 'Outstanding ¥tn', marker: { color: '#1f77b4' }, yaxis: 'y' },
+    { x: names, y: coup, type: 'scatter', mode: 'lines+markers', name: 'Avg coupon %', line: { color: '#2ca02c', width: 2 }, yaxis: 'y2' },
+    { x: names, y: mkty, type: 'scatter', mode: 'lines+markers', name: 'Market yield %', line: { color: '#d62728', width: 2 }, yaxis: 'y2' },
+  ], {
+    margin: { l: 50, r: 60, t: 20, b: 36 },
+    yaxis: { title: 'Outstanding ¥tn' },
+    yaxis2: { title: 'Yield %', overlaying: 'y', side: 'right', showgrid: false },
+    template: 'plotly_white',
+    legend: { orientation: 'h', y: 1.15 },
+    hovermode: 'x unified',
+  }, { displayModeBar: false, responsive: true });
+
+  // Bucket detail table
+  let html = '<table><thead><tr><th>Bucket</th><th>Outstanding ¥tn</th><th>Avg coupon</th><th>Market yield</th><th>Repricing gap</th></tr></thead><tbody>';
+  buckets.forEach(b => {
+    const gap = b.repricing_gap_pp;
+    const gapClass = gap > 1 ? 'neg' : (gap > 0 ? 'amb' : 'pos');
+    html += `<tr>
+      <td>${b.name}</td>
+      <td>${b.outstanding_yen_tn.toFixed(0)}</td>
+      <td>${b.avg_coupon_pct.toFixed(2)}%</td>
+      <td>${b.market_yield_pct.toFixed(2)}%</td>
+      <td class="${gapClass}">+${gap.toFixed(2)}pp</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('bucket_table').innerHTML = html;
+  document.getElementById('stock_as_of').textContent = DATA.jgb_stock.as_of;
+  document.getElementById('jgb_total').textContent = DATA.jgb_stock.total_yen_tn;
+  document.getElementById('tot_debt').textContent = DATA.params_default.starting_total_debt_yen_tn;
+}
+
+// -------- SIMULATION ENGINE --------
+// State: buckets array of {name, outstanding, avg_coupon, market_yield, avg_years_remaining}
+// Each year:
+//   1. Mature B/N of each bucket (N = avg_years_remaining)
+//   2. Interest saved = maturing × old_coupon; new_interest = maturing × market_yield
+//   3. New issuance to fund deficit, allocated across buckets per current weights
+//      (so weighted-coupon updates within each bucket)
+//   4. Update outstanding, weighted-coupons
+//   5. Compute total interest, total deficit, debt/GDP
+function simulate(inputs) {
+  const buckets = DATA.jgb_stock.buckets.map(b => ({
+    name: b.name,
+    outstanding: b.outstanding_yen_tn,
+    avg_coupon: b.avg_coupon_pct,
+    market_yield: b.market_yield_pct + inputs.rate_shock_bp / 100,
+    avg_years_remaining: b.avg_years_remaining,
+  }));
+  // Bucket weights for new issuance
+  const total_stock = buckets.reduce((s, b) => s + b.outstanding, 0);
+  const issuance_weights = buckets.map(b => b.outstanding / total_stock);
+  const weighted_new_coupon = buckets.reduce((s, b, i) => s + b.market_yield * issuance_weights[i], 0);
+
+  let gdp = inputs.starting_gdp;
+  let total_debt = inputs.starting_jgb_stock;  // tracking JGB stock for rollover
+  const results = [];
+  // Year 0 (current state)
+  const year0_interest = buckets.reduce((s, b) => s + b.outstanding * b.avg_coupon / 100, 0);
+  results.push({
+    year: 0,
+    gdp: gdp,
+    debt: total_debt,
+    debt_pct: total_debt / gdp * 100,
+    interest: year0_interest,
+    interest_pct: year0_interest / gdp * 100,
+    primary_deficit: 0,  // n/a year 0
+    supplemental: 0,
+    total_deficit_pct: 0,
+    avg_yield_on_stock: buckets.reduce((s, b) => s + b.outstanding * b.avg_coupon, 0) / total_stock,
+  });
+
+  for (let t = 1; t <= inputs.horizon; t++) {
+    // 1. Roll buckets
+    let interest_this_year = 0;
+    buckets.forEach(b => {
+      const maturing = b.outstanding / b.avg_years_remaining;
+      // Interest accrues at start-of-year on outstanding
+      interest_this_year += b.outstanding * b.avg_coupon / 100;
+      // After year-end, maturing repriced
+      const new_amount = maturing;  // assume rolled at same notional
+      const new_coupon = b.market_yield;
+      // Update weighted coupon for the bucket
+      // (old non-maturing + new rolled)
+      const non_maturing = b.outstanding - maturing;
+      const new_total = non_maturing + new_amount;
+      const new_weighted_coupon = (non_maturing * b.avg_coupon + new_amount * new_coupon) / new_total;
+      b.avg_coupon = new_weighted_coupon;
+      // Outstanding stays the same after rollover (assume full re-issuance of matured)
+    });
+
+    // 2. Primary deficit and supplemental (¥tn)
+    gdp = gdp * (1 + inputs.gdp_growth / 100);
+    const primary_def_yen = -inputs.primary_deficit_pct / 100 * gdp;  // negative=deficit
+    const supp_yen = inputs.supplemental;
+    const total_deficit_yen = interest_this_year + primary_def_yen + supp_yen;
+
+    // 3. New issuance for current year's deficit, distributed across buckets per weights
+    // (so the stock grows)
+    const new_issuance = Math.max(0, total_deficit_yen);
+    if (new_issuance > 0) {
+      buckets.forEach((b, i) => {
+        const alloc = new_issuance * issuance_weights[i];
+        const new_total = b.outstanding + alloc;
+        b.avg_coupon = (b.outstanding * b.avg_coupon + alloc * (b.market_yield)) / new_total;
+        b.outstanding = new_total;
+      });
+    } else if (total_deficit_yen < 0) {
+      // Surplus → reduce stock proportionally
+      buckets.forEach((b, i) => {
+        b.outstanding -= Math.abs(total_deficit_yen) * issuance_weights[i];
+      });
+    }
+
+    total_debt = buckets.reduce((s, b) => s + b.outstanding, 0);
+    const avg_yield_on_stock = buckets.reduce((s, b) => s + b.outstanding * b.avg_coupon, 0) / total_debt;
+
+    results.push({
+      year: t,
+      gdp: gdp,
+      debt: total_debt,
+      debt_pct: total_debt / gdp * 100,
+      interest: interest_this_year,
+      interest_pct: interest_this_year / gdp * 100,
+      primary_deficit_pct: -inputs.primary_deficit_pct,  // displayed positive=deficit
+      supplemental: supp_yen,
+      supplemental_pct: supp_yen / gdp * 100,
+      total_deficit_yen: total_deficit_yen,
+      total_deficit_pct: total_deficit_yen / gdp * 100,
+      avg_yield_on_stock: avg_yield_on_stock,
+    });
+  }
+
+  return results;
+}
+
+function renderSim() {
+  const pd = parseFloat(document.getElementById('s_pd').value);
+  const supp = parseFloat(document.getElementById('s_supp').value);
+  const g = parseFloat(document.getElementById('s_g').value);
+  const h = parseInt(document.getElementById('s_h').value);
+  const rs = parseInt(document.getElementById('s_rs').value);
+
+  document.getElementById('v_pd').textContent = pd.toFixed(1) + '%';
+  document.getElementById('v_supp').textContent = supp;
+  document.getElementById('v_g').textContent = g.toFixed(1) + '%';
+  document.getElementById('v_h').textContent = h;
+  document.getElementById('v_rs').textContent = (rs >= 0 ? '+' : '') + rs + 'bp';
+
+  const inputs = {
+    primary_deficit_pct: pd,
+    supplemental: supp,
+    gdp_growth: g,
+    horizon: h,
+    rate_shock_bp: rs,
+    starting_gdp: DATA.params_default.starting_gdp_yen_tn,
+    starting_jgb_stock: DATA.params_default.starting_jgb_stock_yen_tn,
+  };
+
+  const res = simulate(inputs);
+  const yrs = res.map(r => r.year);
+
+  Plotly.newPlot('plot_sim', [
+    { x: yrs, y: res.map(r => r.debt_pct), name: 'JGB stock / GDP %', mode: 'lines+markers', xaxis: 'x', yaxis: 'y', line: { color: '#1f77b4', width: 2.5 } },
+    { x: yrs, y: res.map(r => r.interest_pct), name: 'Interest payments % GDP', mode: 'lines+markers', xaxis: 'x2', yaxis: 'y2', line: { color: '#d62728', width: 2.5 } },
+    { x: yrs, y: res.map(r => r.avg_yield_on_stock), name: 'Avg yield on JGB stock %', mode: 'lines+markers', xaxis: 'x2', yaxis: 'y3', line: { color: '#2ca02c', width: 2.5, dash: 'dash' } },
+    { x: yrs.slice(1), y: res.slice(1).map(r => r.total_deficit_pct), name: 'Total deficit % GDP', mode: 'lines+markers', xaxis: 'x3', yaxis: 'y4', line: { color: '#9467bd', width: 2.5 } },
+    { x: yrs.slice(1), y: res.slice(1).map(r => r.primary_deficit_pct), name: 'Primary deficit % GDP', mode: 'lines', xaxis: 'x3', yaxis: 'y4', line: { color: '#666', width: 1.5, dash: 'dot' } },
+  ], {
+    grid: { rows: 3, columns: 1, pattern: 'independent' },
+    yaxis: { title: 'JGB / GDP %', domain: [0.70, 1.0] },
+    yaxis2: { title: 'Interest %GDP', domain: [0.36, 0.66] },
+    yaxis3: { title: 'Avg yield %', overlaying: 'y2', side: 'right', showgrid: false, domain: [0.36, 0.66] },
+    yaxis4: { title: 'Deficit %GDP', domain: [0.0, 0.30] },
+    xaxis: { domain: [0.0, 1.0], anchor: 'y', showticklabels: false },
+    xaxis2: { domain: [0.0, 1.0], anchor: 'y2', showticklabels: false },
+    xaxis3: { domain: [0.0, 1.0], anchor: 'y4', title: 'Years from now' },
+    margin: { l: 60, r: 60, t: 30, b: 40 },
+    template: 'plotly_white',
+    legend: { orientation: 'h', y: 1.05 },
+    hovermode: 'x unified',
+  }, { displayModeBar: false, responsive: true });
+
+  // Summary text
+  const r_end = res[res.length - 1];
+  const debtChg = r_end.debt_pct - res[0].debt_pct;
+  const intChg = r_end.interest_pct - res[0].interest_pct;
+  const debtClass = debtChg > 0 ? 'neg' : 'pos';
+  const intClass = intChg > 0 ? 'neg' : 'pos';
+  document.getElementById('sim_summary').innerHTML = `
+    <strong>After ${h} years:</strong>
+    JGB stock/GDP: <span class="${debtClass}">${r_end.debt_pct.toFixed(0)}%</span> (${debtChg >= 0 ? '+' : ''}${debtChg.toFixed(0)}pp) ·
+    Interest cost: <span class="${intClass}">${r_end.interest_pct.toFixed(2)}% GDP</span> (${intChg >= 0 ? '+' : ''}${intChg.toFixed(2)}pp from ${res[0].interest_pct.toFixed(2)}%) ·
+    Avg yield on stock: <span class="amb">${r_end.avg_yield_on_stock.toFixed(2)}%</span> (was ${res[0].avg_yield_on_stock.toFixed(2)}%) ·
+    Year-${h} total deficit: <span class="${r_end.total_deficit_pct > 0 ? 'neg' : 'pos'}">${r_end.total_deficit_pct.toFixed(1)}% GDP</span>
+  `;
+}
+
+// -------- Wire-up --------
+['s_pd', 's_supp', 's_g', 's_h', 's_rs'].forEach(id => {
+  document.getElementById(id).addEventListener('input', renderSim);
+});
+document.getElementById('btn_reset').addEventListener('click', () => {
+  document.getElementById('s_pd').value = DATA.params_default.primary_deficit_pct;
+  document.getElementById('s_supp').value = DATA.params_default.supplemental_yen_tn;
+  document.getElementById('s_g').value = DATA.params_default.nominal_gdp_growth_pct;
+  document.getElementById('s_h').value = DATA.params_default.horizon_years;
+  document.getElementById('s_rs').value = 0;
+  renderSim();
+});
+
+// -------- Init --------
+fetch('japan_fiscal.json?t=' + Date.now()).then(r => r.json()).then(d => {
+  DATA = d;
+  document.getElementById('generated').textContent = 'Generated: ' + d.generated + '. Curve as of: ' + d.curve_as_of;
+  renderHistorical();
+  renderDebt();
+  renderBuckets();
+  renderSim();
+});
+</script>
+
+</body>
+</html>
