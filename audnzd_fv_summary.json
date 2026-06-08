@@ -1,35 +1,35 @@
 {
-  "_updated": "2026-06-05 10:29",
+  "_updated": "2026-06-08 09:11",
   "asset": "AUDNZD",
   "periods": {
     "6m": [
       {
         "model": "AU-NZ 2Y Rate Spread",
-        "r2": 0.2247,
-        "fv": 1.1881,
-        "spot": 1.2152,
-        "misval": "+2.2%",
-        "zscore": 1.15,
+        "r2": 0.2216,
+        "fv": 1.1868,
+        "spot": 1.2159,
+        "misval": "+2.4%",
+        "zscore": 1.24,
         "signal": "FAIR",
         "signs_ok": true
       },
       {
         "model": "Iron Ore (SCO1)",
-        "r2": 0.0692,
-        "fv": 1.18,
-        "spot": 1.2152,
+        "r2": 0.0664,
+        "fv": 1.1803,
+        "spot": 1.2159,
         "misval": "+2.9%",
-        "zscore": 1.37,
+        "zscore": 1.39,
         "signal": "FAIR",
         "signs_ok": true
       },
       {
         "model": "Combined (Rates + IronOre)",
-        "r2": 0.4318,
-        "fv": 1.1738,
-        "spot": 1.2152,
-        "misval": "+3.4%",
-        "zscore": 2.06,
+        "r2": 0.4217,
+        "fv": 1.1714,
+        "spot": 1.2159,
+        "misval": "+3.7%",
+        "zscore": 2.2,
         "signal": "STRONG RICH",
         "signs_ok": true
       }
@@ -37,63 +37,63 @@
     "1y": [
       {
         "model": "AU-NZ 2Y Rate Spread",
-        "r2": 0.8084,
-        "fv": 1.1817,
-        "spot": 1.2152,
-        "misval": "+2.8%",
-        "zscore": 1.67,
+        "r2": 0.8041,
+        "fv": 1.1806,
+        "spot": 1.2159,
+        "misval": "+2.9%",
+        "zscore": 1.75,
         "signal": "RICH",
         "signs_ok": true
       },
       {
         "model": "Iron Ore (SCO1)",
-        "r2": 0.4515,
-        "fv": 1.1378,
-        "spot": 1.2152,
-        "misval": "+6.4%",
-        "zscore": 2.26,
+        "r2": 0.4336,
+        "fv": 1.1367,
+        "spot": 1.2159,
+        "misval": "+6.5%",
+        "zscore": 2.29,
         "signal": "STRONG RICH",
         "signs_ok": true
       },
       {
         "model": "Combined (Rates + IronOre)",
-        "r2": 0.8147,
-        "fv": 1.1771,
-        "spot": 1.2152,
-        "misval": "+3.1%",
-        "zscore": 1.94,
-        "signal": "RICH",
+        "r2": 0.8098,
+        "fv": 1.1761,
+        "spot": 1.2159,
+        "misval": "+3.3%",
+        "zscore": 2.02,
+        "signal": "STRONG RICH",
         "signs_ok": true
       }
     ],
     "2y": [
       {
         "model": "AU-NZ 2Y Rate Spread",
-        "r2": 0.7505,
-        "fv": 1.1722,
-        "spot": 1.2152,
-        "misval": "+3.5%",
-        "zscore": 1.81,
+        "r2": 0.7547,
+        "fv": 1.172,
+        "spot": 1.2159,
+        "misval": "+3.6%",
+        "zscore": 1.86,
         "signal": "RICH",
         "signs_ok": true
       },
       {
         "model": "Iron Ore (SCO1)",
-        "r2": 0.2532,
-        "fv": 1.1186,
-        "spot": 1.2152,
-        "misval": "+7.9%",
-        "zscore": 2.05,
+        "r2": 0.261,
+        "fv": 1.1179,
+        "spot": 1.2159,
+        "misval": "+8.1%",
+        "zscore": 2.09,
         "signal": "STRONG RICH",
         "signs_ok": true
       },
       {
         "model": "Combined (Rates + IronOre)",
-        "r2": 0.8016,
-        "fv": 1.1653,
-        "spot": 1.2152,
-        "misval": "+4.1%",
-        "zscore": 2.25,
+        "r2": 0.8009,
+        "fv": 1.1646,
+        "spot": 1.2159,
+        "misval": "+4.2%",
+        "zscore": 2.3,
         "signal": "STRONG RICH",
         "signs_ok": true
       }
@@ -101,19 +101,19 @@
     "3y": [
       {
         "model": "AU-NZ 2Y Rate Spread",
-        "r2": 0.6846,
-        "fv": 1.1611,
-        "spot": 1.2152,
+        "r2": 0.685,
+        "fv": 1.1607,
+        "spot": 1.2159,
         "misval": "+4.5%",
-        "zscore": 1.69,
+        "zscore": 1.73,
         "signal": "RICH",
         "signs_ok": true
       },
       {
         "model": "Iron Ore (SCO1)",
-        "r2": 0.0462,
-        "fv": 1.1185,
-        "spot": 1.2152,
+        "r2": 0.0466,
+        "fv": 1.1189,
+        "spot": 1.2159,
         "misval": "+8.0%",
         "zscore": 1.3,
         "signal": "FAIR (sign?)",
@@ -121,11 +121,11 @@
       },
       {
         "model": "Combined (Rates + IronOre)",
-        "r2": 0.7528,
-        "fv": 1.1634,
-        "spot": 1.2152,
-        "misval": "+4.3%",
-        "zscore": 2.01,
+        "r2": 0.7527,
+        "fv": 1.1626,
+        "spot": 1.2159,
+        "misval": "+4.4%",
+        "zscore": 2.06,
         "signal": "STRONG RICH",
         "signs_ok": true
       }
@@ -133,19 +133,19 @@
     "5y": [
       {
         "model": "AU-NZ 2Y Rate Spread",
-        "r2": 0.6846,
-        "fv": 1.1611,
-        "spot": 1.2152,
+        "r2": 0.685,
+        "fv": 1.1607,
+        "spot": 1.2159,
         "misval": "+4.5%",
-        "zscore": 1.69,
+        "zscore": 1.73,
         "signal": "RICH",
         "signs_ok": true
       },
       {
         "model": "Iron Ore (SCO1)",
-        "r2": 0.0462,
-        "fv": 1.1185,
-        "spot": 1.2152,
+        "r2": 0.0466,
+        "fv": 1.1189,
+        "spot": 1.2159,
         "misval": "+8.0%",
         "zscore": 1.3,
         "signal": "FAIR (sign?)",
@@ -153,11 +153,11 @@
       },
       {
         "model": "Combined (Rates + IronOre)",
-        "r2": 0.7528,
-        "fv": 1.1634,
-        "spot": 1.2152,
-        "misval": "+4.3%",
-        "zscore": 2.01,
+        "r2": 0.7527,
+        "fv": 1.1626,
+        "spot": 1.2159,
+        "misval": "+4.4%",
+        "zscore": 2.06,
         "signal": "STRONG RICH",
         "signs_ok": true
       }
