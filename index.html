@@ -1010,6 +1010,47 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── USDCHF sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-usdchf" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="usdchf-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDCHF</b> — drivers chosen empirically. <b>Rates</b> (US-CH 2Y diff &amp; US 5Y real, R²~0.65-0.73 at 2-3y)
+        say USDCHF is STRONG CHEAP (FV ~0.85-0.87 vs spot ~0.80). <b>Gold</b> (R²~0.74-0.80, stable every window)
+        is the safe-haven channel and says FAIR — it explains why CHF defies the rate gap. <b>VIX</b> is weak
+        (R²&lt;0.12) — risk runs through gold, not VIX. <b>Combined (Rate Diff + Gold)</b> = R²~0.81 stable; the
+        headline. EURUSD/DXY excluded (mechanical — USDCHF is inside DXY / = EURCHF÷EURUSD).
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: US-CH 2Y Rate Differential</div>
+        <img id="usdchf-img-rates" src="usdchf_fv_rates_2y.png" alt="Rate Differential Model" style="width:100%;border-radius:8px;" />
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: US 5Y Real Yield</div>
+        <img id="usdchf-img-real" src="usdchf_fv_real_2y.png" alt="US Real Yield Model" style="width:100%;border-radius:8px;" />
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Gold (log XAU)</div>
+        <img id="usdchf-img-gold" src="usdchf_fv_gold_2y.png" alt="Gold Model" style="width:100%;border-radius:8px;" />
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: VIX (weak — context only)</div>
+        <img id="usdchf-img-vix" src="usdchf_fv_vix_2y.png" alt="VIX Model" style="width:100%;border-radius:8px;" />
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Rate Diff + Gold)</div>
+        <img id="usdchf-img-combined" src="usdchf_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+      </div>
+    </div>
+
     <!-- ── EURNOK sub-page ── -->
     <div class="fv-subpage" id="fv-sub-eurnok" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -2737,6 +2778,7 @@ window.FV_NAV = (function() {
     fetch('usdthb_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audusd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audnzd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdchf_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eursek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('noksek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('gbpsek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -2871,6 +2913,21 @@ window.FV_NAV = (function() {
     document.getElementById('audnzd-img-rates').src = 'audnzd_fv_rates_' + p + '.png' + cb;
     document.getElementById('audnzd-img-ironore').src = 'audnzd_fv_ironore_' + p + '.png' + cb;
     document.getElementById('audnzd-img-combined').src = 'audnzd_fv_combined_' + p + '.png' + cb;
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+})();
+
+/* ========== FAIR VALUE: USDCHF period switcher ========== */
+(function() {
+  const tabs = document.querySelectorAll('#usdchf-period-tabs .tab');
+  function switchPeriod(p) {
+    const cb = '?t=' + Date.now();
+    document.getElementById('usdchf-img-rates').src = 'usdchf_fv_rates_' + p + '.png' + cb;
+    document.getElementById('usdchf-img-real').src = 'usdchf_fv_real_' + p + '.png' + cb;
+    document.getElementById('usdchf-img-gold').src = 'usdchf_fv_gold_' + p + '.png' + cb;
+    document.getElementById('usdchf-img-vix').src = 'usdchf_fv_vix_' + p + '.png' + cb;
+    document.getElementById('usdchf-img-combined').src = 'usdchf_fv_combined_' + p + '.png' + cb;
     tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
   }
   tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
