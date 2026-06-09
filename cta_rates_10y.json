@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-08T09:13:02",
+  "last_updated": "2026-06-09T10:31:44",
   "tenor": "10Y",
   "config": {
     "aum_usd": 1000000000,
@@ -13,77 +13,76 @@
   },
   "signals": [
     {
-      "rate": 4.1514,
-      "rate_vol_bp_day": 3.91,
+      "rate": 4.1552,
+      "rate_vol_bp_day": 3.9,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 57,
-        "ewma_short": 4.0758,
-        "ewma_long": 3.9743,
-        "flip_level": 2.5038
+        "days_since_flip": 58,
+        "ewma_short": 4.0833,
+        "ewma_long": 3.9802,
+        "flip_level": 2.4872
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 21,
-        "rate_12m_ago": 3.856
+        "days_since_flip": 22,
+        "rate_12m_ago": 3.8378
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 53,
+        "days_since_flip": 54,
         "donch_high_55d": 4.2374,
         "donch_low_55d": 3.8125
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 160953.0,
-      "current_dv01_usd": 160953.0,
+      "dv01_at_full_usd": 161518.0,
+      "current_dv01_usd": 161518.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "B",
-          "level": 3.856,
-          "bp_away": -29.5,
+          "level": 3.8378,
+          "bp_away": -31.7,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -128762.0
+          "flow_dv01_usd": -129214.0
         },
         {
           "signal": "C_dn",
           "level": 3.8125,
-          "bp_away": -33.9,
+          "bp_away": -34.3,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -64381.0
+          "flow_dv01_usd": -64607.0
         },
         {
           "signal": "A",
-          "level": 2.5038,
-          "bp_away": -164.8,
+          "level": 2.4872,
+          "bp_away": -166.8,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -128762.0
+          "flow_dv01_usd": -129214.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "B",
-        "level": 3.856,
-        "bp_away": -29.5,
+        "level": 3.8378,
+        "bp_away": -31.7,
         "comp_now": 1.0,
         "comp_after": 0.2,
         "delta_composite": -0.8,
         "action": "TRIM",
-        "flow_dv01_usd": -128762.0
+        "flow_dv01_usd": -129214.0
       },
       "history": {
         "dates": [
-          "2023-07-25",
           "2023-07-26",
           "2023-07-27",
           "2023-07-28",
@@ -832,10 +831,10 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
-          3.6328,
           3.6172,
           3.7422,
           3.6985,
@@ -1584,7 +1583,8 @@
           4.0892,
           4.0724,
           4.1198,
-          4.1514
+          4.1499,
+          4.1552
         ],
         "composite": [
           1.0,
@@ -1675,7 +1675,6 @@
           1.0,
           1.0,
           1.0,
-          1.0,
           0.2,
           -0.2,
           -0.2,
@@ -2316,6 +2315,7 @@
           1.0,
           1.0,
           0.2,
+          1.0,
           1.0,
           1.0,
           1.0,
@@ -2345,73 +2345,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 3.0813,
-      "rate_vol_bp_day": 5.17,
+      "rate": 3.108,
+      "rate_vol_bp_day": 5.16,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 63,
-        "ewma_short": 3.0626,
-        "ewma_long": 3.0361,
-        "flip_level": 2.651
+        "days_since_flip": 64,
+        "ewma_short": 3.0692,
+        "ewma_long": 3.0393,
+        "flip_level": 2.6048
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 71,
-        "rate_12m_ago": 2.5505
+        "days_since_flip": 72,
+        "rate_12m_ago": 2.54
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 63,
+        "days_since_flip": 64,
         "donch_high_55d": 3.221,
         "donch_low_55d": 2.9736
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 121930.0,
-      "current_dv01_usd": 121930.0,
+      "dv01_at_full_usd": 122074.0,
+      "current_dv01_usd": 122074.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 2.9736,
-          "bp_away": -10.8,
+          "bp_away": -13.4,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -48772.0
+          "flow_dv01_usd": -48830.0
         },
         {
           "signal": "A",
-          "level": 2.651,
-          "bp_away": -43.0,
+          "level": 2.6048,
+          "bp_away": -50.3,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -97544.0
+          "flow_dv01_usd": -97660.0
         },
         {
           "signal": "B",
-          "level": 2.5505,
-          "bp_away": -53.1,
+          "level": 2.54,
+          "bp_away": -56.8,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -97544.0
+          "flow_dv01_usd": -97660.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 2.9736,
-        "bp_away": -10.8,
+        "bp_away": -13.4,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -48772.0
+        "flow_dv01_usd": -48830.0
       },
       "history": {
         "dates": [
@@ -3093,7 +3093,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           3.29,
@@ -3774,7 +3775,8 @@
           3.071,
           3.0583,
           3.0813,
-          3.0813
+          3.108,
+          3.108
         ],
         "composite": [
           0.0,
@@ -4455,6 +4457,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -4464,73 +4467,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 4.4763,
-      "rate_vol_bp_day": 6.77,
+      "rate": 4.5352,
+      "rate_vol_bp_day": 6.76,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 66,
-        "ewma_short": 4.494,
-        "ewma_long": 4.4314,
-        "flip_level": 3.5251
+        "days_since_flip": 67,
+        "ewma_short": 4.503,
+        "ewma_long": 4.4367,
+        "flip_level": 3.4763
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 64,
-        "rate_12m_ago": 4.0333
+        "days_since_flip": 65,
+        "rate_12m_ago": 4.04
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 67,
+        "days_since_flip": 68,
         "donch_high_55d": 4.7311,
         "donch_low_55d": 4.2615
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 93050.0,
-      "current_dv01_usd": 93050.0,
+      "dv01_at_full_usd": 93123.0,
+      "current_dv01_usd": 93123.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 4.2615,
-          "bp_away": -21.5,
+          "bp_away": -27.4,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -37220.0
+          "flow_dv01_usd": -37249.0
         },
         {
           "signal": "B",
-          "level": 4.0333,
-          "bp_away": -44.3,
+          "level": 4.04,
+          "bp_away": -49.5,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -74440.0
+          "flow_dv01_usd": -74498.0
         },
         {
           "signal": "A",
-          "level": 3.5251,
-          "bp_away": -95.1,
+          "level": 3.4763,
+          "bp_away": -105.9,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -74440.0
+          "flow_dv01_usd": -74498.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 4.2615,
-        "bp_away": -21.5,
+        "bp_away": -27.4,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -37220.0
+        "flow_dv01_usd": -37249.0
       },
       "history": {
         "dates": [
@@ -5221,7 +5224,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           4.5797,
@@ -5911,7 +5915,8 @@
           4.5128,
           4.4743,
           4.4763,
-          4.4763
+          4.5352,
+          4.5352
         ],
         "composite": [
           0.0,
@@ -6601,6 +6606,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -6610,73 +6616,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 2.51,
-      "rate_vol_bp_day": 3.72,
+      "rate": 2.545,
+      "rate_vol_bp_day": 3.73,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 274,
-        "ewma_short": 2.4539,
-        "ewma_long": 2.3103,
-        "flip_level": 0.2304
+        "days_since_flip": 275,
+        "ewma_short": 2.4646,
+        "ewma_long": 2.3187,
+        "flip_level": 0.2056
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 287,
-        "rate_12m_ago": 1.1825
+        "days_since_flip": 288,
+        "rate_12m_ago": 1.185
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 237,
+        "days_since_flip": 238,
         "donch_high_55d": 2.584,
         "donch_low_55d": 2.025
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 169348.0,
-      "current_dv01_usd": 169348.0,
+      "dv01_at_full_usd": 168967.0,
+      "current_dv01_usd": 168967.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 2.025,
-          "bp_away": -48.5,
+          "bp_away": -52.0,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -67739.0
+          "flow_dv01_usd": -67587.0
         },
         {
           "signal": "B",
-          "level": 1.1825,
-          "bp_away": -132.7,
+          "level": 1.185,
+          "bp_away": -136.0,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -135478.0
+          "flow_dv01_usd": -135174.0
         },
         {
           "signal": "A",
-          "level": 0.2304,
-          "bp_away": -228.0,
+          "level": 0.2056,
+          "bp_away": -233.9,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -135478.0
+          "flow_dv01_usd": -135174.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 2.025,
-        "bp_away": -48.5,
+        "bp_away": -52.0,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -67739.0
+        "flow_dv01_usd": -67587.0
       },
       "history": {
         "dates": [
@@ -7367,7 +7373,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           1.0513,
@@ -8057,7 +8064,8 @@
           2.461,
           2.467,
           2.502,
-          2.51
+          2.534,
+          2.545
         ],
         "composite": [
           0.0,
@@ -8747,6 +8755,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -8756,83 +8765,83 @@
       "tenor": "10Y"
     },
     {
-      "rate": 5.019,
-      "rate_vol_bp_day": 5.65,
+      "rate": 5.0328,
+      "rate_vol_bp_day": 5.64,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 159,
-        "ewma_short": 5.0321,
-        "ewma_long": 5.0267,
-        "flip_level": 4.9489
+        "days_since_flip": 160,
+        "ewma_short": 5.0354,
+        "ewma_long": 5.0281,
+        "flip_level": 4.9228
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 148,
-        "rate_12m_ago": 4.125
+        "days_since_flip": 149,
+        "rate_12m_ago": 4.1023
       },
       "signal_c": {
         "value": -1,
-        "days_since_flip": 8,
+        "days_since_flip": 9,
         "donch_high_55d": 5.212,
         "donch_low_55d": 4.9413
       },
       "composite": 0.6,
       "composite_pct_2y": 65.8,
-      "dv01_at_full_usd": 111472.0,
-      "current_dv01_usd": 66883.0,
+      "dv01_at_full_usd": 111620.0,
+      "current_dv01_usd": 66972.0,
       "next_up_triggers": [
         {
           "signal": "C_up",
           "level": 5.212,
-          "bp_away": 19.3,
+          "bp_away": 17.9,
           "comp_now": 0.6,
           "comp_after": 1.0,
           "delta_composite": 0.4,
           "action": "ADD",
-          "flow_dv01_usd": 44589.0
+          "flow_dv01_usd": 44648.0
         }
       ],
       "next_down_triggers": [
         {
           "signal": "A",
-          "level": 4.9489,
-          "bp_away": -7.0,
+          "level": 4.9228,
+          "bp_away": -11.0,
           "comp_now": 0.6,
           "comp_after": -0.2,
           "delta_composite": -0.8,
           "action": "FLIP",
-          "flow_dv01_usd": -89178.0
+          "flow_dv01_usd": -89296.0
         },
         {
           "signal": "B",
-          "level": 4.125,
-          "bp_away": -89.4,
+          "level": 4.1023,
+          "bp_away": -93.1,
           "comp_now": 0.6,
           "comp_after": -0.2,
           "delta_composite": -0.8,
           "action": "FLIP",
-          "flow_dv01_usd": -89178.0
+          "flow_dv01_usd": -89296.0
         }
       ],
       "next_up_trigger": {
         "signal": "C_up",
         "level": 5.212,
-        "bp_away": 19.3,
+        "bp_away": 17.9,
         "comp_now": 0.6,
         "comp_after": 1.0,
         "delta_composite": 0.4,
         "action": "ADD",
-        "flow_dv01_usd": 44589.0
+        "flow_dv01_usd": 44648.0
       },
       "next_down_trigger": {
         "signal": "A",
-        "level": 4.9489,
-        "bp_away": -7.0,
+        "level": 4.9228,
+        "bp_away": -11.0,
         "comp_now": 0.6,
         "comp_after": -0.2,
         "delta_composite": -0.8,
         "action": "FLIP",
-        "flow_dv01_usd": -89178.0
+        "flow_dv01_usd": -89296.0
       },
       "history": {
         "dates": [
@@ -9524,7 +9533,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           4.995,
@@ -10215,7 +10225,8 @@
           5.0275,
           5.0015,
           5.0335,
-          5.019
+          5.0563,
+          5.0328
         ],
         "composite": [
           0.0,
@@ -10906,6 +10917,7 @@
           0.6,
           0.6,
           0.6,
+          0.6,
           0.6
         ]
       },
@@ -10915,87 +10927,86 @@
       "tenor": "10Y"
     },
     {
-      "rate": 4.2475,
-      "rate_vol_bp_day": 4.72,
+      "rate": 4.255,
+      "rate_vol_bp_day": 4.58,
       "signal_a": {
         "value": -1,
-        "days_since_flip": 2,
-        "ewma_short": 4.279,
-        "ewma_long": 4.2813,
-        "flip_level": 4.3137
+        "days_since_flip": 3,
+        "ewma_short": 4.2793,
+        "ewma_long": 4.2814,
+        "flip_level": 4.3108
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 66,
+        "days_since_flip": 67,
         "rate_12m_ago": 4.128
       },
       "signal_c": {
         "value": -1,
-        "days_since_flip": 7,
-        "donch_high_55d": 4.4675,
+        "days_since_flip": 8,
+        "donch_high_55d": 4.4575,
         "donch_low_55d": 4.2005
       },
       "composite": -0.2,
       "composite_pct_2y": 49.4,
-      "dv01_at_full_usd": 133375.0,
-      "current_dv01_usd": -26675.0,
+      "dv01_at_full_usd": 137675.0,
+      "current_dv01_usd": -27535.0,
       "next_up_triggers": [
         {
           "signal": "A",
-          "level": 4.3137,
-          "bp_away": 6.6,
+          "level": 4.3108,
+          "bp_away": 5.6,
           "comp_now": -0.2,
           "comp_after": 0.6,
           "delta_composite": 0.8,
           "action": "FLIP",
-          "flow_dv01_usd": 106700.0
+          "flow_dv01_usd": 110140.0
         },
         {
           "signal": "C_up",
-          "level": 4.4675,
-          "bp_away": 22.0,
+          "level": 4.4575,
+          "bp_away": 20.2,
           "comp_now": -0.2,
           "comp_after": 0.2,
           "delta_composite": 0.4,
           "action": "FLIP",
-          "flow_dv01_usd": 53350.0
+          "flow_dv01_usd": 55070.0
         }
       ],
       "next_down_triggers": [
         {
           "signal": "B",
           "level": 4.128,
-          "bp_away": -11.9,
+          "bp_away": -12.7,
           "comp_now": -0.2,
           "comp_after": -1.0,
           "delta_composite": -0.8,
           "action": "ADD",
-          "flow_dv01_usd": -106700.0
+          "flow_dv01_usd": -110140.0
         }
       ],
       "next_up_trigger": {
         "signal": "A",
-        "level": 4.3137,
-        "bp_away": 6.6,
+        "level": 4.3108,
+        "bp_away": 5.6,
         "comp_now": -0.2,
         "comp_after": 0.6,
         "delta_composite": 0.8,
         "action": "FLIP",
-        "flow_dv01_usd": 106700.0
+        "flow_dv01_usd": 110140.0
       },
       "next_down_trigger": {
         "signal": "B",
         "level": 4.128,
-        "bp_away": -11.9,
+        "bp_away": -12.7,
         "comp_now": -0.2,
         "comp_after": -1.0,
         "delta_composite": -0.8,
         "action": "ADD",
-        "flow_dv01_usd": -106700.0
+        "flow_dv01_usd": -110140.0
       },
       "history": {
         "dates": [
-          "2023-07-25",
           "2023-07-26",
           "2023-07-27",
           "2023-07-28",
@@ -11744,10 +11755,10 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
-          4.5525,
           4.565,
           4.5275,
           4.6425,
@@ -12496,7 +12507,8 @@
           4.2275,
           4.2275,
           4.2075,
-          4.2475
+          4.2775,
+          4.255
         ],
         "composite": [
           0.4,
@@ -12547,7 +12559,6 @@
           0.4,
           0.4,
           0.4,
-          0.4,
           0.6,
           0.6,
           0.6,
@@ -13247,6 +13258,7 @@
           0.6,
           0.6,
           0.6,
+          -0.2,
           -0.2,
           -0.2
         ]
@@ -13257,73 +13269,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 6.7275,
-      "rate_vol_bp_day": 7.35,
+      "rate": 6.7405,
+      "rate_vol_bp_day": 7.33,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 150,
-        "ewma_short": 6.8263,
+        "days_since_flip": 151,
+        "ewma_short": 6.8194,
         "ewma_long": 6.7542,
-        "flip_level": 5.7092
+        "flip_level": 5.8093
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 105,
-        "rate_12m_ago": 5.9145
+        "days_since_flip": 106,
+        "rate_12m_ago": 5.9075
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 205,
+        "days_since_flip": 206,
         "donch_high_55d": 7.07,
         "donch_low_55d": 6.5265
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 85717.0,
-      "current_dv01_usd": 85717.0,
+      "dv01_at_full_usd": 85977.0,
+      "current_dv01_usd": 85977.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 6.5265,
-          "bp_away": -20.1,
+          "bp_away": -21.4,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -34287.0
+          "flow_dv01_usd": -34391.0
         },
         {
           "signal": "B",
-          "level": 5.9145,
-          "bp_away": -81.3,
+          "level": 5.9075,
+          "bp_away": -83.3,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -68573.0
+          "flow_dv01_usd": -68781.0
         },
         {
           "signal": "A",
-          "level": 5.7092,
-          "bp_away": -101.8,
+          "level": 5.8093,
+          "bp_away": -93.1,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -68573.0
+          "flow_dv01_usd": -68781.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 6.5265,
-        "bp_away": -20.1,
+        "bp_away": -21.4,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -34287.0
+        "flow_dv01_usd": -34391.0
       },
       "history": {
         "dates": [
@@ -14007,7 +14019,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           6.7975,
@@ -14690,7 +14703,8 @@
           6.83,
           6.8315,
           6.7275,
-          6.7275
+          6.7425,
+          6.7405
         ],
         "composite": [
           0.0,
@@ -15373,6 +15387,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -15382,73 +15397,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 2.265,
-      "rate_vol_bp_day": 5.1,
+      "rate": 2.303,
+      "rate_vol_bp_day": 5.2,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 58,
-        "ewma_short": 2.2217,
-        "ewma_long": 2.2043,
-        "flip_level": 1.952
+        "days_since_flip": 59,
+        "ewma_short": 2.2327,
+        "ewma_long": 2.2087,
+        "flip_level": 1.8608
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 17,
-        "rate_12m_ago": 2.1265
+        "days_since_flip": 18,
+        "rate_12m_ago": 2.105
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 56,
+        "days_since_flip": 57,
         "donch_high_55d": 2.4585,
         "donch_low_55d": 2.0945
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 123526.0,
-      "current_dv01_usd": 123526.0,
+      "dv01_at_full_usd": 121178.0,
+      "current_dv01_usd": 121178.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "B",
-          "level": 2.1265,
-          "bp_away": -13.9,
+          "level": 2.105,
+          "bp_away": -19.8,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -98820.0
+          "flow_dv01_usd": -96942.0
         },
         {
           "signal": "C_dn",
           "level": 2.0945,
-          "bp_away": -17.1,
+          "bp_away": -20.8,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -49410.0
+          "flow_dv01_usd": -48471.0
         },
         {
           "signal": "A",
-          "level": 1.952,
-          "bp_away": -31.3,
+          "level": 1.8608,
+          "bp_away": -44.2,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -98820.0
+          "flow_dv01_usd": -96942.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "B",
-        "level": 2.1265,
-        "bp_away": -13.9,
+        "level": 2.105,
+        "bp_away": -19.8,
         "comp_now": 1.0,
         "comp_after": 0.2,
         "delta_composite": -0.8,
         "action": "TRIM",
-        "flow_dv01_usd": -98820.0
+        "flow_dv01_usd": -96942.0
       },
       "history": {
         "dates": [
@@ -16125,7 +16140,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           3.17,
@@ -16801,7 +16817,8 @@
           2.1789,
           2.1995,
           2.1905,
-          2.265
+          2.3035,
+          2.303
         ],
         "composite": [
           0.0,
@@ -17477,6 +17494,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -17486,73 +17504,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 4.2025,
-      "rate_vol_bp_day": 5.76,
+      "rate": 4.155,
+      "rate_vol_bp_day": 5.81,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 263,
-        "ewma_short": 4.0133,
-        "ewma_long": 3.8332,
-        "flip_level": 1.2235
+        "days_since_flip": 264,
+        "ewma_short": 4.0272,
+        "ewma_long": 3.8439,
+        "flip_level": 1.188
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 154,
-        "rate_12m_ago": 2.68
+        "days_since_flip": 155,
+        "rate_12m_ago": 2.66
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 182,
-        "donch_high_55d": 4.155,
+        "days_since_flip": 183,
+        "donch_high_55d": 4.207,
         "donch_low_55d": 3.5525
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 109410.0,
-      "current_dv01_usd": 109410.0,
+      "dv01_at_full_usd": 108332.0,
+      "current_dv01_usd": 108332.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 3.5525,
-          "bp_away": -65.0,
+          "bp_away": -60.2,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -43764.0
+          "flow_dv01_usd": -43333.0
         },
         {
           "signal": "B",
-          "level": 2.68,
-          "bp_away": -152.2,
+          "level": 2.66,
+          "bp_away": -149.5,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -87528.0
+          "flow_dv01_usd": -86666.0
         },
         {
           "signal": "A",
-          "level": 1.2235,
-          "bp_away": -297.9,
+          "level": 1.188,
+          "bp_away": -296.7,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -87528.0
+          "flow_dv01_usd": -86666.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 3.5525,
-        "bp_away": -65.0,
+        "bp_away": -60.2,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -43764.0
+        "flow_dv01_usd": -43333.0
       },
       "history": {
         "dates": [
@@ -18236,7 +18254,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           4.1125,
@@ -18919,7 +18938,8 @@
           4.01,
           4.13,
           4.155,
-          4.2025
+          4.207,
+          4.155
         ],
         "composite": [
           0.0,
@@ -19602,6 +19622,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ]
       },
@@ -19611,73 +19632,73 @@
       "tenor": "10Y"
     },
     {
-      "rate": 2.1975,
-      "rate_vol_bp_day": 5.27,
+      "rate": 2.27,
+      "rate_vol_bp_day": 5.23,
       "signal_a": {
         "value": 1,
-        "days_since_flip": 167,
-        "ewma_short": 2.1954,
-        "ewma_long": 2.0938,
-        "flip_level": 0.6207
+        "days_since_flip": 168,
+        "ewma_short": 2.2099,
+        "ewma_long": 2.1022,
+        "flip_level": 0.543
       },
       "signal_b": {
         "value": 1,
-        "days_since_flip": 59,
-        "rate_12m_ago": 1.7
+        "days_since_flip": 60,
+        "rate_12m_ago": 1.6875
       },
       "signal_c": {
         "value": 1,
-        "days_since_flip": 166,
+        "days_since_flip": 167,
         "donch_high_55d": 2.34,
         "donch_low_55d": 1.885
       },
       "composite": 1.0,
       "composite_pct_2y": 100.0,
-      "dv01_at_full_usd": 119641.0,
-      "current_dv01_usd": 119641.0,
+      "dv01_at_full_usd": 120502.0,
+      "current_dv01_usd": 120502.0,
       "next_up_triggers": [],
       "next_down_triggers": [
         {
           "signal": "C_dn",
           "level": 1.885,
-          "bp_away": -31.2,
+          "bp_away": -38.5,
           "comp_now": 1.0,
           "comp_after": 0.6,
           "delta_composite": -0.4,
           "action": "TRIM",
-          "flow_dv01_usd": -47856.0
+          "flow_dv01_usd": -48201.0
         },
         {
           "signal": "B",
-          "level": 1.7,
-          "bp_away": -49.7,
+          "level": 1.6875,
+          "bp_away": -58.2,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -95712.0
+          "flow_dv01_usd": -96402.0
         },
         {
           "signal": "A",
-          "level": 0.6207,
-          "bp_away": -157.7,
+          "level": 0.543,
+          "bp_away": -172.7,
           "comp_now": 1.0,
           "comp_after": 0.2,
           "delta_composite": -0.8,
           "action": "TRIM",
-          "flow_dv01_usd": -95712.0
+          "flow_dv01_usd": -96402.0
         }
       ],
       "next_up_trigger": null,
       "next_down_trigger": {
         "signal": "C_dn",
         "level": 1.885,
-        "bp_away": -31.2,
+        "bp_away": -38.5,
         "comp_now": 1.0,
         "comp_after": 0.6,
         "delta_composite": -0.4,
         "action": "TRIM",
-        "flow_dv01_usd": -47856.0
+        "flow_dv01_usd": -48201.0
       },
       "history": {
         "dates": [
@@ -20349,7 +20370,8 @@
           "2026-06-03",
           "2026-06-04",
           "2026-06-05",
-          "2026-06-08"
+          "2026-06-08",
+          "2026-06-09"
         ],
         "rates": [
           3.03,
@@ -21020,7 +21042,8 @@
           2.1775,
           2.2325,
           2.1975,
-          2.1975
+          2.2825,
+          2.27
         ],
         "composite": [
           0.0,
@@ -21633,6 +21656,7 @@
           1.0,
           1.0,
           0.2,
+          1.0,
           1.0,
           1.0,
           1.0,
