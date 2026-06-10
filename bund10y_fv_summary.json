@@ -1,118 +1,118 @@
 {
-  "_updated": "2026-06-10 08:52",
+  "_updated": "2026-06-10 17:12",
   "asset": "Bund 10Y",
   "periods": {
     "6m": [
       {
         "model": "2Y OIS (Policy)",
-        "r2": 0.8516,
+        "r2": 0.8519,
         "fv": 3.05,
-        "spot": 3.04,
-        "misval": "-1 bps",
-        "zscore": -0.13,
+        "spot": 3.05,
+        "misval": "-0 bps",
+        "zscore": -0.02,
         "signal": "FAIR"
       },
       {
         "model": "UST 10Y (Global)",
-        "r2": 0.7886,
+        "r2": 0.7899,
         "fv": 3.1,
-        "spot": 3.04,
-        "misval": "-6 bps",
-        "zscore": -1.16,
-        "signal": "RICH"
+        "spot": 3.05,
+        "misval": "-5 bps",
+        "zscore": -0.86,
+        "signal": "FAIR"
       },
       {
         "model": "ECB BS (QE/QT)",
-        "r2": 0.1192,
+        "r2": 0.1196,
         "fv": 2.98,
-        "spot": 3.04,
-        "misval": "+6 bps",
-        "zscore": 0.58,
+        "spot": 3.05,
+        "misval": "+7 bps",
+        "zscore": 0.67,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
-        "r2": 0.9077,
+        "r2": 0.9082,
         "fv": 3.07,
-        "spot": 3.04,
-        "misval": "-3 bps",
-        "zscore": -0.82,
+        "spot": 3.05,
+        "misval": "-2 bps",
+        "zscore": -0.5,
         "signal": "FAIR"
       }
     ],
     "1y": [
       {
         "model": "2Y OIS (Policy)",
-        "r2": 0.8603,
-        "fv": 3.07,
-        "spot": 3.04,
-        "misval": "-3 bps",
-        "zscore": -0.55,
+        "r2": 0.8604,
+        "fv": 3.08,
+        "spot": 3.05,
+        "misval": "-2 bps",
+        "zscore": -0.49,
         "signal": "FAIR"
       },
       {
         "model": "UST 10Y (Global)",
-        "r2": 0.245,
-        "fv": 2.96,
-        "spot": 3.04,
-        "misval": "+9 bps",
-        "zscore": 0.6,
+        "r2": 0.2452,
+        "fv": 2.95,
+        "spot": 3.05,
+        "misval": "+10 bps",
+        "zscore": 0.72,
         "signal": "FAIR"
       },
       {
         "model": "ECB BS (QE/QT)",
-        "r2": 0.0276,
+        "r2": 0.0275,
         "fv": 2.78,
-        "spot": 3.04,
-        "misval": "+26 bps",
-        "zscore": 1.69,
+        "spot": 3.05,
+        "misval": "+27 bps",
+        "zscore": 1.75,
         "signal": "CHEAP"
       },
       {
         "model": "Combined",
-        "r2": 0.9183,
+        "r2": 0.9185,
         "fv": 3.11,
-        "spot": 3.04,
-        "misval": "-7 bps",
-        "zscore": -1.5,
+        "spot": 3.05,
+        "misval": "-6 bps",
+        "zscore": -1.38,
         "signal": "RICH"
       }
     ],
     "2y": [
       {
         "model": "2Y OIS (Policy)",
-        "r2": 0.0037,
+        "r2": 0.0038,
         "fv": 2.63,
-        "spot": 3.04,
-        "misval": "+41 bps",
-        "zscore": 1.5,
+        "spot": 3.05,
+        "misval": "+42 bps",
+        "zscore": 1.56,
         "signal": "CHEAP"
       },
       {
         "model": "UST 10Y (Global)",
         "r2": 0.1001,
-        "fv": 2.72,
-        "spot": 3.04,
-        "misval": "+32 bps",
-        "zscore": 0.93,
-        "signal": "FAIR"
+        "fv": 2.71,
+        "spot": 3.05,
+        "misval": "+34 bps",
+        "zscore": 1.04,
+        "signal": "CHEAP"
       },
       {
         "model": "ECB BS (QE/QT)",
         "r2": 0.4736,
         "fv": 2.81,
-        "spot": 3.04,
-        "misval": "+23 bps",
-        "zscore": 0.92,
+        "spot": 3.05,
+        "misval": "+24 bps",
+        "zscore": 0.97,
         "signal": "FAIR"
       },
       {
         "model": "Combined",
         "r2": 0.8548,
-        "fv": 3.09,
-        "spot": 3.04,
-        "misval": "-4 bps",
-        "zscore": -0.5,
+        "fv": 3.08,
+        "spot": 3.05,
+        "misval": "-3 bps",
+        "zscore": -0.35,
         "signal": "FAIR"
       }
     ],
@@ -121,36 +121,36 @@
         "model": "2Y OIS (Policy)",
         "r2": 0.0036,
         "fv": 2.56,
-        "spot": 3.04,
-        "misval": "+48 bps",
-        "zscore": 1.55,
+        "spot": 3.05,
+        "misval": "+49 bps",
+        "zscore": 1.61,
         "signal": "CHEAP"
       },
       {
         "model": "UST 10Y (Global)",
         "r2": 0.1736,
-        "fv": 2.69,
-        "spot": 3.04,
-        "misval": "+36 bps",
-        "zscore": 0.83,
+        "fv": 2.68,
+        "spot": 3.05,
+        "misval": "+37 bps",
+        "zscore": 0.95,
         "signal": "FAIR"
       },
       {
         "model": "ECB BS (QE/QT)",
         "r2": 0.1169,
         "fv": 2.65,
-        "spot": 3.04,
-        "misval": "+39 bps",
-        "zscore": 1.43,
+        "spot": 3.05,
+        "misval": "+40 bps",
+        "zscore": 1.49,
         "signal": "CHEAP"
       },
       {
         "model": "Combined",
-        "r2": 0.7072,
-        "fv": 2.98,
-        "spot": 3.04,
-        "misval": "+7 bps",
-        "zscore": 0.22,
+        "r2": 0.7073,
+        "fv": 2.97,
+        "spot": 3.05,
+        "misval": "+8 bps",
+        "zscore": 0.39,
         "signal": "FAIR"
       }
     ],
@@ -158,37 +158,37 @@
       {
         "model": "2Y OIS (Policy)",
         "r2": 0.7604,
-        "fv": 2.4,
-        "spot": 3.04,
+        "fv": 2.41,
+        "spot": 3.05,
         "misval": "+64 bps",
-        "zscore": -1.59,
+        "zscore": -1.58,
         "signal": "RICH"
       },
       {
         "model": "UST 10Y (Global)",
         "r2": 0.939,
-        "fv": 2.87,
-        "spot": 3.04,
-        "misval": "+17 bps",
-        "zscore": -0.57,
+        "fv": 2.86,
+        "spot": 3.05,
+        "misval": "+19 bps",
+        "zscore": -0.42,
         "signal": "FAIR"
       },
       {
         "model": "ECB BS (QE/QT)",
         "r2": 0.5088,
         "fv": 2.79,
-        "spot": 3.04,
-        "misval": "+25 bps",
-        "zscore": 1.2,
+        "spot": 3.05,
+        "misval": "+26 bps",
+        "zscore": 1.25,
         "signal": "CHEAP"
       },
       {
         "model": "Combined",
         "r2": 0.9673,
-        "fv": 3.06,
-        "spot": 3.04,
-        "misval": "-1 bps",
-        "zscore": -2.22,
+        "fv": 3.05,
+        "spot": 3.05,
+        "misval": "-0 bps",
+        "zscore": -2.08,
         "signal": "STRONG RICH"
       }
     ]
