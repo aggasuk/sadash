@@ -1286,23 +1286,55 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <!-- ============ CTA RATES PAGE ============ -->
   <div class="page" id="page-cta">
     <header>
-      <h1><span>&gt;</span> CTA Rates Signals &mdash; G10 + Asia EM</h1>
+      <h1><span>&gt;</span> CTA Rates &mdash; Global Bonds Trend Tracker</h1>
       <div class="updated" id="cta-updated"></div>
     </header>
-    <div style="margin-bottom:18px; font-size:13px; color:var(--muted); line-height:1.6;">
-      <b>Model:</b> 3-signal trend-follower ensemble. <b>A</b>=20d vs 60d EWMA cross, <b>B</b>=12M TSMOM (return sign), <b>C</b>=55d Donchian breakout.
-      Composite = 0.4A + 0.4B + 0.2C &isin; [-1,+1]. Positive = CTA paying fixed (long rates).
-      Rows highlighted yellow had a signal flip in the last 7 days &mdash; flow doesn&rsquo;t complete in one day, expect persistence.
-      <em>Click a currency row to expand the chart.</em>
+
+    <!-- aggregate strip -->
+    <div id="cta-agg-strip" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;"></div>
+
+    <!-- controls -->
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;">
+      <span style="font-size:0.75rem;color:var(--text-dim);">Days ahead:</span>
+      <div class="tabs" id="cta-horizon-tabs" style="margin-bottom:0;">
+        <button class="tab" data-h="1">1</button>
+        <button class="tab active" data-h="5">5</button>
+        <button class="tab" data-h="10">10</button>
+        <button class="tab" data-h="15">15</button>
+      </div>
+      <span style="font-size:0.75rem;color:var(--text-dim);">Type:</span>
+      <div class="tabs" id="cta-type-tabs" style="margin-bottom:0;">
+        <button class="tab active" data-y="bps">bps chg from spot</button>
+        <button class="tab" data-y="yield">yield level</button>
+      </div>
     </div>
-    <div class="tabs" id="cta-tenor-tabs" style="margin-bottom:18px;">
-      <button class="tab" data-t="2y">2Y</button>
-      <button class="tab active" data-t="5y">5Y</button>
-      <button class="tab" data-t="10y">10Y</button>
+
+    <div style="margin-bottom:14px;font-size:12.5px;color:var(--muted);line-height:1.55;">
+      <b>Model:</b> 3-speed EWMA trend (10/30, 20/60, 40/120; tanh response) + 12M TSMOM anchor, vol-scaled.
+      <b>+DV01 = long duration.</b> Threshold cells show the level that would generate an x-SD flow over the next N days
+      (0SD = level at which CTAs do nothing &mdash; not spot when signals are rolling). Cell shading = sign of the flow
+      (green = CTA buying, red = selling), intensity = probability of the level being touched within the horizon.
+      Aggregate calibrated to street holdings tallies (~$109m/bp at the 95th pctile). <em>Click a row for the chart.</em>
     </div>
-    <div class="cta-subpage" id="cta-sub-2y" style="display:none;"></div>
-    <div class="cta-subpage" id="cta-sub-5y"></div>
-    <div class="cta-subpage" id="cta-sub-10y" style="display:none;"></div>
+
+    <div id="cta-dm-table" style="margin-bottom:20px;"></div>
+    <div id="cta-drill" class="chart-wrap" style="display:none;padding:12px;margin-bottom:20px;"></div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:20px;">
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Aggregate net duration ($m/bp) &mdash; 1Y</div>
+        <div style="position:relative;height:250px;"><canvas id="cta-agg-chart"></canvas></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Realized 5d flow by market ($m/bp)</div>
+        <div style="position:relative;height:250px;"><canvas id="cta-flow-chart"></canvas></div>
+      </div>
+    </div>
+
+    <div id="cta-scen" style="margin-bottom:20px;"></div>
+
+    <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 8px;">EM Asia IRS &mdash; trend-follower lens (same model; not in aggregate &mdash; read SD, not $)</div>
+    <div id="cta-em-table"></div>
   </div>
 
     <!-- ============ STUDIES PAGE ============ -->
@@ -3649,229 +3681,244 @@ window.FVDETAIL = (function() {
 })();
 
 
-/* ========== CTA RATES (Asia 5Y IRS trend signals) ========== */
+/* ========== CTA RATES v2 (GS-style global bonds trend tracker) ========== */
 (function() {
-  function fmtRate(v) { return (v == null || isNaN(v)) ? '-' : v.toFixed(3) + '%'; }
-  function fmtSig(v) {
-    if (v == null) return '-';
-    var s = v >= 0 ? '+' : '';
-    return s + v.toFixed(2);
-  }
-  function sigColor(v) {
-    if (v == null || isNaN(v)) return 'var(--muted)';
-    if (v >= 0.67) return '#10b981';     // strong long
-    if (v >= 0.34) return '#6ee7b7';     // mild long
-    if (v > -0.34) return '#94a3b8';     // neutral
-    if (v > -0.67) return '#fca5a5';     // mild short
-    return '#ef4444';                    // strong short
-  }
-  function pillHTML(v) {
-    var label = (v > 0 ? '+1' : (v < 0 ? '-1' : '0'));
-    var bg = v > 0 ? 'rgba(16,185,129,0.15)' : (v < 0 ? 'rgba(239,68,68,0.15)' : 'rgba(148,163,184,0.15)');
-    var col = v > 0 ? '#10b981' : (v < 0 ? '#ef4444' : '#94a3b8');
-    return '<span style="display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; background:'+bg+'; color:'+col+';">'+label+'</span>';
+  var D = null;            // cta_rates.json
+  var H = '5';             // horizon (days ahead)
+  var TYPE = 'bps';        // 'bps' | 'yield'
+  var drillKey = null;
+  var aggChart = null, flowChart = null, drillTop = null, drillBot = null;
+  var TICK = '#94a3b8', GRID = 'rgba(148,163,184,0.12)';
+  var REGION_NAMES = { NA: 'NA', EU: 'Europe', AP: 'Asia/Pac', EM: 'EM Asia' };
+
+  function fmtM(v) { return (v / 1e6).toFixed(1); }
+
+  function cellStyle(c) {
+    if (!c || c.bps === null) return 'color:var(--text-dim);';
+    if (c.sd === 0) return 'background:rgba(148,163,184,0.12);color:var(--text);';
+    var buy = c.sd > 0;                       // +SD flow = CTA buying duration
+    var rgb = buy ? '22,163,74' : '220,38,38';
+    var p = c.prob || 0;
+    var a = p < 0.25 ? 0.10 : p < 0.5 ? 0.25 : p < 0.75 ? 0.45 : p < 0.9 ? 0.65 : 0.85;
+    return 'background:rgba(' + rgb + ',' + a + ');color:' + (a > 0.5 ? '#fff' : 'var(--text)') + ';';
   }
 
-  var FRESH_FLIP_DAYS = 7;
-  var CTA_CHART_INSTANCES = {};
-
-  function fmtTrigger(t, color) {
-    if (!t) return '<td style="text-align:right;color:var(--muted);">&mdash;</td>';
-    var bpStr = (t.bp_away>0?'+':'')+t.bp_away+'bp';
-    var actionColors = {ADD:'#10b981', TRIM:'#f59e0b', FLIP:'#ef4444', OPEN:'#10b981', CLOSE:'#f59e0b', HOLD:'#94a3b8'};
-    var aCol = actionColors[t.action] || 'var(--muted)';
-    var flowStr = '';
-    if (t.flow_dv01_usd != null) {
-      var f = t.flow_dv01_usd / 1000;
-      flowStr = ' <span style="color:'+aCol+';font-weight:600;font-size:11px;">'+(t.action||'')+' '+(f>=0?'+':'')+f.toFixed(0)+'k</span>';
-    }
-    return '<td style="text-align:right;font-family:monospace;color:'+color+';white-space:nowrap;">'
-         + fmtRate(t.level) + ' <span style="color:var(--muted);font-size:11px;">('+t.signal+', '+bpStr+')</span>'
-         + flowStr + '</td>';
+  function cellText(c) {
+    if (!c || c.bps === null) return '--';
+    if (TYPE === 'yield') return Number(c.level).toFixed(2) + '%';
+    return (c.bps > 0 ? '+' : '') + Math.round(c.bps) + 'bp';
   }
 
-  function recentFlip(s) {
-    var d = Math.min(
-      s.signal_a.days_since_flip != null ? s.signal_a.days_since_flip : 9999,
-      s.signal_b.days_since_flip != null ? s.signal_b.days_since_flip : 9999,
-      s.signal_c.days_since_flip != null ? s.signal_c.days_since_flip : 9999
-    );
-    return d <= FRESH_FLIP_DAYS ? d : null;
+  function expBar(sd) {
+    var w = Math.min(Math.abs(sd) / 3, 1) * 34;
+    var color = sd >= 0 ? '#16a34a' : '#dc2626';
+    return '<div style="display:flex;align-items:center;gap:6px;">' +
+      '<span style="min-width:38px;font-weight:700;color:' + color + ';">' + (sd > 0 ? '+' : '') + sd.toFixed(2) + '</span>' +
+      '<div style="width:70px;height:8px;background:rgba(148,163,184,0.15);border-radius:4px;position:relative;">' +
+        '<div style="position:absolute;top:0;height:8px;border-radius:4px;background:' + color + ';' +
+        (sd >= 0 ? 'left:35px;' : 'left:' + (35 - w) + 'px;') + 'width:' + w + 'px;"></div>' +
+        '<div style="position:absolute;left:35px;top:-1px;width:1px;height:10px;background:var(--text-dim);"></div>' +
+      '</div></div>';
   }
 
-  function sigCell(s, key) {
-    var v = s[key].value;
-    var d = s[key].days_since_flip;
-    var fresh = (d != null && d <= FRESH_FLIP_DAYS);
-    var ds = (d != null) ? d+'d' : '';
-    var dStyle = fresh ? 'color:#f59e0b;font-weight:700;' : 'color:var(--muted);';
-    return '<td style="text-align:center;white-space:nowrap;">'+pillHTML(v)+
-           '<span style="'+dStyle+'font-size:10px;margin-left:4px;">'+ds+'</span></td>';
+  function speedStrip(speeds) {
+    return speeds.map(function(s) {
+      var c = s.resp > 0.15 ? '#16a34a' : s.resp < -0.15 ? '#dc2626' : '#94a3b8';
+      return '<span title="' + s.speed + ' EWMA: resp ' + s.resp + ', flipped ' + s.days_since_flip + 'd ago"' +
+        ' style="display:inline-block;width:9px;height:9px;border-radius:2px;background:' + c + ';margin-right:3px;"></span>';
+    }).join('');
   }
 
-  function renderTenorTable(sigs, tenor, region, containerId) {
-    var rows = sigs.filter(function(s){ return s.region === region; });
-    var html = '<h3 style="margin:8px 0 8px;color:var(--text-dim);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase;">'+region+'</h3>';
-    html += '<div class="chart-wrap" style="padding:12px;overflow-x:auto;">';
-    html += '<table class="data-table" style="width:100%;font-size:12px;white-space:nowrap;">';
-    html += '<thead><tr>'
-         +  '<th style="text-align:left;">CCY</th>'
-         +  '<th style="text-align:right;">Rate</th>'
-         +  '<th style="text-align:right;">Vol bp/d</th>'
-         +  '<th style="text-align:center;">Comp</th>'
-         +  '<th style="text-align:center;">2Y %</th>'
-         +  '<th style="text-align:right;">DV01 $k</th>'
-         +  '<th style="text-align:center;">A</th>'
-         +  '<th style="text-align:center;">B</th>'
-         +  '<th style="text-align:center;">C</th>'
-         +  '<th style="text-align:right;">Next ↑</th>'
-         +  '<th style="text-align:right;">Next ↓</th>'
-         +  '</tr></thead><tbody>';
-    var totalDV01 = 0;
-    rows.forEach(function(s) {
-      var comp = s.composite;
-      var col = sigColor(comp);
-      var dv01 = (s.current_dv01_usd != null) ? s.current_dv01_usd/1000 : null;
-      if (dv01 != null) totalDV01 += s.current_dv01_usd;
-      var dv01Col = (dv01 == null) ? 'var(--muted)' : (dv01 >= 0 ? '#10b981' : '#ef4444');
-      var freshDays = recentFlip(s);
-      var rowStyle = freshDays != null ? 'background:rgba(245,158,11,0.10);cursor:pointer;' : 'cursor:pointer;';
-      var freshTag = freshDays != null ? ' <span title="signal flipped '+freshDays+'d ago" style="color:#f59e0b;font-size:10px;">⚑'+freshDays+'d</span>' : '';
-      var rowId = 'cta-row-'+tenor+'-'+s.currency;
-      html += '<tr id="'+rowId+'" style="'+rowStyle+'" data-tenor="'+tenor+'" data-ccy="'+s.currency+'">';
-      html += '<td style="text-align:left;font-weight:700;">'+s.currency+freshTag+'</td>';
-      html += '<td style="text-align:right;font-family:monospace;">'+fmtRate(s.rate)+'</td>';
-      html += '<td style="text-align:right;font-family:monospace;color:var(--muted);">'+(s.rate_vol_bp_day!=null?s.rate_vol_bp_day.toFixed(2):'-')+'</td>';
-      html += '<td style="text-align:center;"><span style="font-weight:700;color:'+col+';">'+fmtSig(comp)+'</span></td>';
-      html += '<td style="text-align:center;color:var(--muted);font-size:11px;">'+(s.composite_pct_2y!=null?s.composite_pct_2y.toFixed(0)+'%':'-')+'</td>';
-      html += '<td style="text-align:right;font-family:monospace;font-weight:600;color:'+dv01Col+';">'+(dv01!=null?(dv01>=0?'+':'')+dv01.toFixed(0):'-')+'</td>';
-      html += sigCell(s, 'signal_a');
-      html += sigCell(s, 'signal_b');
-      html += sigCell(s, 'signal_c');
-      html += fmtTrigger(s.next_up_trigger, '#10b981');
-      html += fmtTrigger(s.next_down_trigger, '#ef4444');
-      html += '</tr>';
-      html += '<tr id="'+rowId+'-chart" class="cta-chart-row" style="display:none;"><td colspan="11" style="padding:0;">'
-           +  '<div class="cta-chart-host" style="padding:14px 8px;background:var(--surface2);border-radius:6px;margin:6px 0;">'
-           +  '<div style="font-size:12px;color:var(--muted);margin-bottom:8px;" id="cta-info-'+tenor+'-'+s.currency+'"></div>'
-           +  '<canvas id="cta-canvas-'+tenor+'-'+s.currency+'" style="max-height:280px;"></canvas>'
-           +  '</div></td></tr>';
-    });
-    var totK = totalDV01/1000;
-    var totCol = (totK >= 0 ? '#10b981' : '#ef4444');
-    html += '<tr style="border-top:2px solid var(--border);font-weight:700;">';
-    html += '<td colspan="5" style="text-align:right;">'+region+' total DV01</td>';
-    html += '<td style="text-align:right;font-family:monospace;color:'+totCol+';">'+(totK>=0?'+':'')+totK.toFixed(0)+'k</td>';
-    html += '<td colspan="5"></td></tr>';
-    html += '</tbody></table></div>';
-    document.getElementById(containerId).innerHTML = html;
-  }
-
-  function renderTenorPage(data, tenor) {
-    var sub = document.getElementById('cta-sub-'+tenor);
-    if (!sub) return;
-    sub.innerHTML = '<div id="cta-dm-'+tenor+'"></div><div id="cta-em-'+tenor+'" style="margin-top:18px;"></div>';
-    var sigs = data.signals || [];
-    renderTenorTable(sigs, tenor, 'DM', 'cta-dm-'+tenor);
-    renderTenorTable(sigs, tenor, 'EM', 'cta-em-'+tenor);
-    // Wire row clicks (only on summary rows, not chart rows)
-    sub.querySelectorAll('tr[data-ccy]').forEach(function(tr) {
-      tr.addEventListener('click', function() {
-        var ccy = tr.dataset.ccy;
-        var t = tr.dataset.tenor;
-        var chartRow = document.getElementById('cta-row-'+t+'-'+ccy+'-chart');
-        if (!chartRow) return;
-        var open = chartRow.style.display !== 'none';
-        chartRow.style.display = open ? 'none' : 'table-row';
-        if (!open) drawCTAChart(data, ccy, t);
+  function buildTable(markets, elId, isEM) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var h = '<table class="vol-table"><thead><tr>' +
+      '<th style="text-align:left;">Region</th><th style="text-align:left;">Market</th>' +
+      '<th>Last</th><th>Exposure SD</th><th>DV01 $m</th><th>Speeds</th>' +
+      '<th>-2SD</th><th>-1SD</th><th>0SD</th><th>+1SD</th><th>+2SD</th>' +
+      '<th>1SD flow $m</th><th>5d flow $m</th></tr></thead><tbody>';
+    var lastReg = null;
+    markets.forEach(function(m) {
+      var th = {};
+      (m.thresholds[H] || []).forEach(function(c) { th[c.sd] = c; });
+      var reg = m.region === lastReg ? '' : (REGION_NAMES[m.region] || m.region);
+      lastReg = m.region;
+      h += '<tr class="cta-row" data-key="' + m.key + '" data-em="' + (isEM ? 1 : 0) + '" style="cursor:pointer;">' +
+        '<td style="text-align:left;color:var(--text-dim);font-size:0.75rem;">' + reg + '</td>' +
+        '<td style="text-align:left;font-weight:700;white-space:nowrap;">' + m.name + '</td>' +
+        '<td>' + m['yield'].toFixed(2) + '%</td>' +
+        '<td>' + expBar(m.exp_sd) + '</td>' +
+        '<td style="font-weight:600;color:' + (m.pos_dv01 >= 0 ? '#16a34a' : '#dc2626') + ';">' + fmtM(m.pos_dv01) + '</td>' +
+        '<td style="white-space:nowrap;">' + speedStrip(m.speeds) + '</td>';
+      [-2, -1, 0, 1, 2].forEach(function(sd) {
+        var c = th[sd];
+        h += '<td style="white-space:nowrap;' + cellStyle(c) + '"' +
+          (c && c.prob !== null ? ' title="P(touch) ' + Math.round(c.prob * 100) + '%"' : '') + '>' +
+          cellText(c) + '</td>';
       });
+      h += '<td>' + fmtM(m.sd_flow[H]) + '</td>' +
+        '<td style="color:' + (m.flow_5d >= 0 ? '#16a34a' : '#dc2626') + ';">' + (m.flow_5d / 1e6).toFixed(2) + '</td></tr>';
+    });
+    el.innerHTML = h + '</tbody></table>';
+    el.querySelectorAll('.cta-row').forEach(function(tr) {
+      tr.addEventListener('click', function() { drill(tr.dataset.key, tr.dataset.em === '1'); });
     });
   }
 
-  function drawCTAChart(data, ccy, tenor) {
-    var s = (data.signals || []).find(function(x){ return x.currency === ccy; });
-    if (!s) return;
-    var key = tenor+'-'+ccy;
-    if (CTA_CHART_INSTANCES[key]) return;  // already drawn
-
-    var info = document.getElementById('cta-info-'+tenor+'-'+ccy);
-    if (info) {
-      var freshA = (s.signal_a.days_since_flip!=null)?' ['+s.signal_a.days_since_flip+'d]':'';
-      var freshB = (s.signal_b.days_since_flip!=null)?' ['+s.signal_b.days_since_flip+'d]':'';
-      var freshC = (s.signal_c.days_since_flip!=null)?' ['+s.signal_c.days_since_flip+'d]':'';
-      var aInfo = 'A: EWMA20='+s.signal_a.ewma_short.toFixed(3)+', EWMA60='+s.signal_a.ewma_long.toFixed(3)+', flip@'+fmtRate(s.signal_a.flip_level)+freshA;
-      var bInfo = 'B: 12M ago='+fmtRate(s.signal_b.rate_12m_ago)+freshB;
-      var cInfo = 'C: 55d hi='+fmtRate(s.signal_c.donch_high_55d)+', lo='+fmtRate(s.signal_c.donch_low_55d)+freshC;
-      var dvInfo = (s.current_dv01_usd!=null)?' &middot; <strong>DV01 $'+(s.current_dv01_usd/1000).toFixed(0)+'k</strong> (vol '+s.rate_vol_bp_day.toFixed(2)+'bp/d)':'';
-      info.innerHTML = aInfo+' &middot; '+bInfo+' &middot; '+cInfo+dvInfo;
+  function aggStrip() {
+    var a = D.aggregate;
+    var wz = a.whipsaw_z, wzc = Math.abs(wz) >= 2 ? '#dc2626' : Math.abs(wz) >= 1 ? '#ea580c' : 'var(--text)';
+    function card(label, val, sub, color) {
+      return '<div class="chart-wrap" style="padding:10px 16px;min-width:150px;">' +
+        '<div style="font-size:0.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;">' + label + '</div>' +
+        '<div style="font-size:1.25rem;font-weight:800;color:' + (color || 'var(--text)') + ';">' + val + '</div>' +
+        (sub ? '<div style="font-size:0.7rem;color:var(--text-dim);">' + sub + '</div>' : '') + '</div>';
     }
+    document.getElementById('cta-agg-strip').innerHTML =
+      card('Net duration', '$' + fmtM(a.net_dv01) + 'm/bp', 'shorter than ' + a.pctile_1y.toFixed(0) + '% of past 1y',
+           a.net_dv01 >= 0 ? '#16a34a' : '#dc2626') +
+      card('5d flow', '$' + fmtM(a.flow_5d) + 'm/bp', '10d: $' + fmtM(a.flow_10d) + 'm') +
+      card('Whipsaw z (10d)', (wz > 0 ? '+' : '') + wz.toFixed(1) + 'σ', '|z|>2 = violent reversal', wzc) +
+      card('NA', '$' + fmtM(a.by_region.NA) + 'm', '', a.by_region.NA >= 0 ? '#16a34a' : '#dc2626') +
+      card('Europe', '$' + fmtM(a.by_region.EU) + 'm', '', a.by_region.EU >= 0 ? '#16a34a' : '#dc2626') +
+      card('Asia/Pac', '$' + fmtM(a.by_region.AP) + 'm', '', a.by_region.AP >= 0 ? '#16a34a' : '#dc2626');
+  }
 
-    var cv = document.getElementById('cta-canvas-'+tenor+'-'+ccy);
-    if (!cv || typeof Chart === 'undefined') return;
-    var hist = s.history || {};
-    var labels = hist.dates || [];
-    var rates = hist.rates || [];
-    var comp = hist.composite || [];
-    var compBg = comp.map(function(v) { return sigColor(v); });
-    CTA_CHART_INSTANCES[key] = new Chart(cv.getContext('2d'), {
+  function scenTable() {
+    var h = '<div class="chart-wrap" style="padding:12px;">' +
+      '<div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">' +
+      'Flow scenarios &mdash; avg daily flow over next 10 days (DM aggregate, $m/bp)</div>' +
+      '<table class="vol-table"><thead><tr>';
+    D.aggregate.scenarios.forEach(function(s) { h += '<th>' + s.name + '</th>'; });
+    h += '</tr></thead><tbody><tr>';
+    D.aggregate.scenarios.forEach(function(s) {
+      var v = s.avg_daily_flow;
+      h += '<td style="font-weight:700;color:' + (v >= 0 ? '#16a34a' : '#dc2626') + ';">' +
+        (v >= 0 ? '+' : '') + (v / 1e6).toFixed(2) + '</td>';
+    });
+    h += '</tr></tbody></table><div style="font-size:0.7rem;color:var(--text-dim);margin-top:6px;">' +
+      'bull = yields lower (shock in units of each market’s own daily vol × √10, linear path)</div></div>';
+    document.getElementById('cta-scen').innerHTML = h;
+  }
+
+  function aggCharts() {
+    var a = D.aggregate;
+    var ctx = document.getElementById('cta-agg-chart');
+    if (aggChart) aggChart.destroy();
+    aggChart = new Chart(ctx, {
       type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          { label: ccy+' '+tenor.toUpperCase()+' rate', data: rates, borderColor:'#6366f1', borderWidth:1.5, pointRadius:0, yAxisID:'y', tension:0.1 },
-          { label:'Composite', data:comp, type:'line', borderColor:'rgba(148,163,184,0.35)', borderWidth:1, pointRadius:1.5, pointBackgroundColor:compBg, pointBorderWidth:0, yAxisID:'y1', stepped:true }
-        ]
-      },
-      options: {
-        responsive:true, maintainAspectRatio:false,
-        interaction:{mode:'index', intersect:false},
-        plugins:{ legend:{labels:{color:'#cbd5e1', font:{size:11}}}, tooltip:{callbacks:{label:function(c){
-          if (c.dataset.yAxisID==='y1') return 'Signal: '+(c.raw==null?'-':c.raw.toFixed(2));
-          return c.dataset.label+': '+(c.raw==null?'-':c.raw.toFixed(3)+'%');
-        }}} },
-        scales: {
-          x:{ticks:{color:'#94a3b8', maxTicksLimit:8}, grid:{color:'rgba(148,163,184,0.1)'}},
-          y:{position:'left', title:{display:true, text:'Rate (%)', color:'#94a3b8'}, ticks:{color:'#94a3b8'}, grid:{color:'rgba(148,163,184,0.1)'}},
-          y1:{position:'right', min:-1.1, max:1.1, title:{display:true, text:'Composite', color:'#94a3b8'}, ticks:{color:'#94a3b8', stepSize:0.5}, grid:{drawOnChartArea:false}}
-        }
-      }
+      data: { labels: a.history.d, datasets: [{ label: 'Net DV01 $m/bp', data: a.history.v.map(function(v) { return v / 1e6; }),
+        borderColor: '#3b6cb3', backgroundColor: 'rgba(59,108,179,0.12)', fill: true, borderWidth: 1.8, pointRadius: 0, tension: 0.1 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false },
+        annotation: { annotations: { z: { type: 'line', yMin: 0, yMax: 0, borderColor: '#64748b', borderWidth: 1 } } } },
+        scales: { x: { ticks: { color: TICK, maxTicksLimit: 7, font: { size: 9 } }, grid: { color: GRID } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
+    });
+    var fc = document.getElementById('cta-flow-chart');
+    if (flowChart) flowChart.destroy();
+    var ms = D.markets.slice().sort(function(x, y) { return x.flow_5d - y.flow_5d; });
+    flowChart = new Chart(fc, {
+      type: 'bar',
+      data: { labels: ms.map(function(m) { return m.name.replace(/ \(.*\)/, ''); }),
+        datasets: [{ data: ms.map(function(m) { return m.flow_5d / 1e6; }),
+          backgroundColor: ms.map(function(m) { return m.flow_5d >= 0 ? '#16a34a' : '#dc2626'; }) }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+        scales: { x: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { display: false } } } }
     });
   }
 
-  // Tenor sub-tab switcher
-  var CTA_DATA = {};
-  var ctaTabs = document.querySelectorAll('#cta-tenor-tabs .tab');
-  ctaTabs.forEach(function(t) {
+  function drill(key, isEM) {
+    var list = isEM ? D.em_panel : D.markets;
+    var m = null;
+    list.forEach(function(x) { if (x.key === key) m = x; });
+    if (!m) return;
+    drillKey = key; drillIsEM = isEM;
+    var el = document.getElementById('cta-drill');
+    el.style.display = '';
+    var th = {};
+    (m.thresholds[H] || []).forEach(function(c) { th[c.sd] = c; });
+    el.innerHTML =
+      '<div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">' +
+        '<span style="font-weight:800;">' + m.name + '</span>' +
+        '<span style="font-size:0.75rem;color:var(--text-dim);">yield ' + m['yield'].toFixed(2) + '% · σ ' +
+          m.sigma_bp_day + 'bp/d · momentum ' + m.momentum + ' · DV01 $' + fmtM(m.pos_dv01) + 'm/bp</span>' +
+        '<button id="cta-drill-close" style="margin-left:auto;background:none;border:1px solid var(--border);' +
+          'border-radius:6px;color:var(--text-dim);cursor:pointer;padding:2px 10px;">close</button></div>' +
+      '<div style="height:240px;"><canvas id="cta-drill-top"></canvas></div>' +
+      '<div style="height:110px;margin-top:4px;"><canvas id="cta-drill-bot"></canvas></div>';
+    document.getElementById('cta-drill-close').addEventListener('click', function() {
+      el.style.display = 'none'; drillKey = null;
+      if (drillTop) { drillTop.destroy(); drillTop = null; }
+      if (drillBot) { drillBot.destroy(); drillBot = null; }
+    });
+    var anns = { };
+    [-2, -1, 0, 1, 2].forEach(function(sd) {
+      var c = th[sd];
+      if (!c || c.level === null) return;
+      anns['t' + sd] = { type: 'line', yMin: c.level, yMax: c.level,
+        borderColor: sd === 0 ? '#94a3b8' : sd > 0 ? '#16a34a' : '#dc2626',
+        borderWidth: Math.abs(sd) === 2 ? 1.6 : 1, borderDash: [5, 4],
+        label: { display: true, content: (sd > 0 ? '+' : '') + sd + 'SD', position: 'start',
+          backgroundColor: 'rgba(0,0,0,0.55)', color: '#fff', font: { size: 9 } } };
+    });
+    if (drillTop) drillTop.destroy();
+    drillTop = new Chart(document.getElementById('cta-drill-top'), {
+      type: 'line',
+      data: { labels: m.history.d, datasets: [{ label: 'Yield %', data: m.history.y,
+        borderColor: '#3b6cb3', borderWidth: 1.7, pointRadius: 0, tension: 0.1 }] },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { display: false }, annotation: { annotations: anns } },
+        scales: { x: { ticks: { color: TICK, maxTicksLimit: 7, font: { size: 9 } }, grid: { color: GRID } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
+    });
+    if (drillBot) drillBot.destroy();
+    drillBot = new Chart(document.getElementById('cta-drill-bot'), {
+      type: 'line',
+      data: { labels: m.history.d, datasets: [{ label: 'Position $m/bp', data: m.history.pos.map(function(v) { return v === null ? null : v / 1e6; }),
+        borderColor: '#ea580c', borderWidth: 1.4, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: 'rgba(234,88,12,0.10)' }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false },
+        annotation: { annotations: { z: { type: 'line', yMin: 0, yMax: 0, borderColor: '#64748b', borderWidth: 0.8 } } } },
+        scales: { x: { display: false }, y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
+    });
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  var drillIsEM = false;
+  function renderAll() {
+    if (!D) return;
+    document.getElementById('cta-updated').textContent = 'Last updated: ' + D._updated;
+    aggStrip();
+    buildTable(D.markets, 'cta-dm-table', false);
+    buildTable(D.em_panel, 'cta-em-table', true);
+    scenTable();
+    aggCharts();
+    if (drillKey) drill(drillKey, drillIsEM);
+  }
+
+  document.querySelectorAll('#cta-horizon-tabs .tab').forEach(function(t) {
     t.addEventListener('click', function() {
-      var tenor = t.dataset.t;
-      ctaTabs.forEach(function(s) { s.classList.toggle('active', s.dataset.t === tenor); });
-      ['2y','5y','10y'].forEach(function(x) {
-        var p = document.getElementById('cta-sub-'+x);
-        if (p) p.style.display = (x === tenor) ? '' : 'none';
-      });
+      H = t.dataset.h;
+      document.querySelectorAll('#cta-horizon-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.h === H); });
+      renderAll();
+    });
+  });
+  document.querySelectorAll('#cta-type-tabs .tab').forEach(function(t) {
+    t.addEventListener('click', function() {
+      TYPE = t.dataset.y;
+      document.querySelectorAll('#cta-type-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.y === TYPE); });
+      renderAll();
     });
   });
 
-  // Load all 3 tenor JSONs
-  Promise.all([
-    fetch('cta_rates_2y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
-    fetch('cta_rates_5y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
-    fetch('cta_rates_10y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
-  ]).then(function(results) {
-    var tenors = ['2y', '5y', '10y'];
-    var anyData = null;
-    results.forEach(function(d, i) {
-      if (d) {
-        CTA_DATA[tenors[i]] = d;
-        renderTenorPage(d, tenors[i]);
-        if (!anyData) anyData = d;
-      }
+  fetch('cta_rates.json?v=' + (window.__FVV || (window.__FVV = Date.now())))
+    .then(function(r) { return r.json(); })
+    .then(function(d) { D = d; renderAll(); })
+    .catch(function(e) {
+      document.getElementById('cta-dm-table').innerHTML =
+        '<div style="color:var(--text-dim);padding:16px;">cta_rates.json failed to load: ' + e + '</div>';
     });
-    var updEl = document.getElementById('cta-updated');
-    if (updEl && anyData) updEl.textContent = 'Last updated: ' + (anyData.last_updated || '-');
-  });
 })();
-
 
 /* ========== STUDIES (Curve Shape) ========== */
 (function() {
