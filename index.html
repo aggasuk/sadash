@@ -590,6 +590,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <!-- ── Rates overview ── -->
     <div class="fv-subpage" id="fv-sub-rates">
+      <div id="fv-heatmap-rates"></div>
       <div class="chart-wrap" style="padding:12px;margin-bottom:24px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Z-score of residual by model (current window vs 1Y)</div>
         <div style="position:relative;height:340px;"><canvas id="fv-chart-rates"></canvas></div>
@@ -599,6 +600,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <!-- ── FX overview ── -->
     <div class="fv-subpage" id="fv-sub-fx" style="display:none;">
+      <div id="fv-heatmap-fx"></div>
       <div class="chart-wrap" style="padding:12px;margin-bottom:24px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Z-score of residual by model (current window vs 1Y)</div>
         <div style="position:relative;height:340px;"><canvas id="fv-chart-fx"></canvas></div>
@@ -608,6 +610,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <!-- ── Equities overview ── -->
     <div class="fv-subpage" id="fv-sub-equities" style="display:none;">
+      <div id="fv-heatmap-equities"></div>
       <div class="chart-wrap" style="padding:12px;margin-bottom:24px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Z-score of residual by model (current window vs 1Y)</div>
         <div style="position:relative;height:340px;"><canvas id="fv-chart-equities"></canvas></div>
@@ -637,11 +640,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model A: Inv + Backwardation + DXY + Real10Y</div>
-        <img id="cl1-img-modelA" src="cl1_fv_modelA_2y.png" alt="Model A: Full" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="cl1-img-modelA"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: Inv + DXY + Real10Y (no curve)</div>
-        <img id="cl1-img-modelB" src="cl1_fv_modelB_2y.png" alt="Model B: Clean" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="cl1-img-modelB"></div>
       </div>
     </div>
 
@@ -667,11 +670,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model A: JPY 1Y1Y OIS (BOJ-pricing only)</div>
-        <img id="tpnbnk-img-modelA" src="tpbnk_fv_modelA_2y.png" alt="Model A: 1Y1Y" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="tpnbnk-img-modelA"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: JPY 1Y1Y + JGB 10Y</div>
-        <img id="tpnbnk-img-modelB" src="tpbnk_fv_modelB_2y.png" alt="Model B: 1Y1Y + JGB 10Y" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="tpnbnk-img-modelB"></div>
       </div>
     </div>
 
@@ -691,22 +694,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Real Rate Differential</div>
-        <img id="fv-img-realrate" src="eurusd_fv_realrate_1y.png" alt="Real Rate Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="fv-img-realrate"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
-        <img id="fv-img-tot" src="eurusd_fv_tot_1y.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="fv-img-tot"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <img id="fv-img-btpbund" src="eurusd_fv_btpbund_1y.png" alt="BTP-Bund Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="fv-img-btpbund"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Real Rate + ToT + BTP-Bund)</div>
-        <img id="fv-img-combined" src="eurusd_fv_combined_1y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="fv-img-combined"></div>
       </div>
     </div>
 
@@ -725,19 +728,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Nominal Rate Differential (EUR OIS - USD OIS)</div>
-        <img id="eurusdnom-img-nomrate" src="eurusd_fvnom_nomrate_1y.png" alt="Nominal Rate Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurusdnom-img-nomrate"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
-        <img id="eurusdnom-img-tot" src="eurusd_fvnom_tot_1y.png" alt="ToT Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurusdnom-img-tot"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <img id="eurusdnom-img-btpbund" src="eurusd_fvnom_btpbund_1y.png" alt="BTP-Bund Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurusdnom-img-btpbund"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Nominal Rate + ToT + BTP-Bund)</div>
-        <img id="eurusdnom-img-combined" src="eurusd_fvnom_combined_1y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurusdnom-img-combined"></div>
       </div>
     </div>
 
@@ -756,22 +759,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Yield (Policy Transmission)</div>
-        <img id="ust-img-policy" src="ust10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="ust-img-policy"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y Breakeven (Inflation Expectations)</div>
-        <img id="ust-img-inflation" src="ust10y_fv_inflation_3y.png" alt="Inflation Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="ust-img-inflation"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: VIX (Risk Premium)</div>
-        <img id="ust-img-risk" src="ust10y_fv_risk_3y.png" alt="Risk Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="ust-img-risk"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y Yield + Breakeven + VIX)</div>
-        <img id="ust-img-combined" src="ust10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="ust-img-combined"></div>
       </div>
     </div>
 
@@ -790,22 +793,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y EUR OIS (ECB Policy)</div>
-        <img id="bund-img-policy" src="bund10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="bund-img-policy"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: UST 10Y Yield (Global Anchor)</div>
-        <img id="bund-img-inflation" src="bund10y_fv_inflation_3y.png" alt="Global Anchor Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="bund-img-inflation"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: ECB Balance Sheet (QE/QT)</div>
-        <img id="bund-img-risk" src="bund10y_fv_risk_3y.png" alt="ECB BS Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="bund-img-risk"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (OIS + UST + ECB BS + BTP-Bund + 5Y5Y Infl)</div>
-        <img id="bund-img-combined" src="bund10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="bund-img-combined"></div>
       </div>
     </div>
 
@@ -824,22 +827,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y JPY OIS (BOJ Policy)</div>
-        <img id="jgb-img-policy" src="jgb10y_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb-img-policy"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: UST 10Y Yield (Global Anchor)</div>
-        <img id="jgb-img-inflation" src="jgb10y_fv_inflation_3y.png" alt="Global Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb-img-inflation"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BOJ Balance Sheet (QE/QT)</div>
-        <img id="jgb-img-risk" src="jgb10y_fv_risk_3y.png" alt="QE/QT Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb-img-risk"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (OIS + UST + BOJ BS + Breakeven)</div>
-        <img id="jgb-img-combined" src="jgb10y_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb-img-combined"></div>
       </div>
     </div>
 
@@ -858,22 +861,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 1Y1Y JPY OIS (Policy Expectations)</div>
-        <img id="jgb5s30s-img-policy" src="jgb5s30s_fv_policy_3y.png" alt="Policy Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb5s30s-img-policy"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: UST 5s30s Curve (Global Anchor)</div>
-        <img id="jgb5s30s-img-global" src="jgb5s30s_fv_global_3y.png" alt="Global Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb5s30s-img-global"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BOJ JGB Holdings (Supply Effect)</div>
-        <img id="jgb5s30s-img-supply" src="jgb5s30s_fv_supply_3y.png" alt="Supply Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb5s30s-img-supply"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (OIS + UST Curve + BOJ JGB)</div>
-        <img id="jgb5s30s-img-combined" src="jgb5s30s_fv_combined_3y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="jgb5s30s-img-combined"></div>
       </div>
     </div>
 
@@ -892,22 +895,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y OIS Rate Differential (EUR-GBP)</div>
-        <img id="eurgbp-img-ratediff" src="eurgbp_fv_ratediff_2y.png" alt="Rate Diff Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurgbp-img-ratediff"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: GBP 2s30s Curve Slope</div>
-        <img id="eurgbp-img-gbp2s30s" src="eurgbp_fv_gbp2s30s_2y.png" alt="GBP 2s30s Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurgbp-img-gbp2s30s"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: V2X (European Equity Risk)</div>
-        <img id="eurgbp-img-risk" src="eurgbp_fv_risk_2y.png" alt="V2X Risk Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurgbp-img-risk"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + Curve + Risk)</div>
-        <img id="eurgbp-img-combined" src="eurgbp_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurgbp-img-combined"></div>
       </div>
     </div>
 
@@ -926,22 +929,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Gold (XAU)</div>
-        <img id="usdthb-img-xau" src="usdthb_fv_xau_2y.png" alt="Gold Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdthb-img-xau"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Dollar Index (DXY)</div>
-        <img id="usdthb-img-dxy" src="usdthb_fv_dxy_2y.png" alt="DXY Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdthb-img-dxy"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: US-TH 2Y Rate Spread</div>
-        <img id="usdthb-img-rates" src="usdthb_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdthb-img-rates"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (XAU + DXY)</div>
-        <img id="usdthb-img-combined" src="usdthb_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdthb-img-combined"></div>
       </div>
     </div>
 
@@ -960,27 +963,27 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: AU-US 2Y Rate Spread</div>
-        <img id="audusd-img-rates" src="audusd_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audusd-img-rates"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: VIX</div>
-        <img id="audusd-img-vix" src="audusd_fv_vix_2y.png" alt="VIX Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audusd-img-vix"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (HG1)</div>
-        <img id="audusd-img-copper" src="audusd_fv_copper_2y.png" alt="Copper Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audusd-img-copper"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Iron Ore (SCO1)</div>
-        <img id="audusd-img-ironore" src="audusd_fv_ironore_2y.png" alt="Iron Ore Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audusd-img-ironore"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Rates + VIX + Copper)</div>
-        <img id="audusd-img-combined" src="audusd_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audusd-img-combined"></div>
       </div>
     </div>
 
@@ -998,15 +1001,15 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: AU-NZ 2Y Rate Spread</div>
-        <img id="audnzd-img-rates" src="audnzd_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audnzd-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Iron Ore (SCO1)</div>
-        <img id="audnzd-img-ironore" src="audnzd_fv_ironore_2y.png" alt="Iron Ore Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audnzd-img-ironore"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rates + IronOre)</div>
-        <img id="audnzd-img-combined" src="audnzd_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="audnzd-img-combined"></div>
       </div>
     </div>
 
@@ -1031,23 +1034,23 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: US-CH 2Y Rate Differential</div>
-        <img id="usdchf-img-rates" src="usdchf_fv_rates_2y.png" alt="Rate Differential Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdchf-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: US 5Y Real Yield</div>
-        <img id="usdchf-img-real" src="usdchf_fv_real_2y.png" alt="US Real Yield Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdchf-img-real"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Gold (log XAU)</div>
-        <img id="usdchf-img-gold" src="usdchf_fv_gold_2y.png" alt="Gold Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdchf-img-gold"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: VIX (weak — context only)</div>
-        <img id="usdchf-img-vix" src="usdchf_fv_vix_2y.png" alt="VIX Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdchf-img-vix"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Rate Diff + Gold)</div>
-        <img id="usdchf-img-combined" src="usdchf_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="usdchf-img-combined"></div>
       </div>
     </div>
 
@@ -1065,23 +1068,23 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Brent (CO1) - energy / NOK terms-of-trade</div>
-        <img id="eurnok-img-brent" src="eurnok_fv_brent_2y.png" alt="Brent Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurnok-img-brent"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: EUR-NOK 2Y Rate Differential</div>
-        <img id="eurnok-img-rates" src="eurnok_fv_rates_2y.png" alt="Rates Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurnok-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: log(SPX) - global risk-on</div>
-        <img id="eurnok-img-spx" src="eurnok_fv_spx_2y.png" alt="SPX Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurnok-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <img id="eurnok-img-btpbund" src="eurnok_fv_btpbund_2y.png" alt="BTP-Bund Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurnok-img-btpbund"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + BTP-Bund)</div>
-        <img id="eurnok-img-combined" src="eurnok_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eurnok-img-combined"></div>
       </div>
     </div>
 
@@ -1104,23 +1107,23 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Brent (CO1) - NOK terms-of-trade</div>
-        <img id="noksek-img-brent" src="noksek_fv_brent_2y.png" alt="Brent Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="noksek-img-brent"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: NOK-SEK 2Y Rate Differential (Norges vs Riksbank)</div>
-        <img id="noksek-img-rates" src="noksek_fv_rates_2y.png" alt="Rates Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="noksek-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: log(SPX) - global risk-on</div>
-        <img id="noksek-img-spx" src="noksek_fv_spx_2y.png" alt="SPX Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="noksek-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Copper (HG1) - SEK industrial / cyclical demand</div>
-        <img id="noksek-img-copper" src="noksek_fv_copper_2y.png" alt="Copper Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="noksek-img-copper"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + Copper)</div>
-        <img id="noksek-img-combined" src="noksek_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="noksek-img-combined"></div>
       </div>
     </div>
 
@@ -1138,19 +1141,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: log(SPX)</div>
-        <img id="eursek-img-spx" src="eursek_fv_spx_2y.png" alt="log(SPX) Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eursek-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Copper (HG1)</div>
-        <img id="eursek-img-copper" src="eursek_fv_copper_2y.png" alt="Copper Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eursek-img-copper"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <img id="eursek-img-btpbund" src="eursek_fv_btpbund_2y.png" alt="BTP-Bund Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eursek-img-btpbund"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (log(SPX) + Copper + BTP-Bund)</div>
-        <img id="eursek-img-combined" src="eursek_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="eursek-img-combined"></div>
       </div>
     </div>
 
@@ -1168,19 +1171,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: GBP-SEK 2Y Rate Spread</div>
-        <img id="gbpsek-img-rates" src="gbpsek_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="gbpsek-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: log(SPX)</div>
-        <img id="gbpsek-img-spx" src="gbpsek_fv_spx_2y.png" alt="log(SPX) Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="gbpsek-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (HG1)</div>
-        <img id="gbpsek-img-copper" src="gbpsek_fv_copper_2y.png" alt="Copper Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="gbpsek-img-copper"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + log(SPX) + Copper)</div>
-        <img id="gbpsek-img-combined" src="gbpsek_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="gbpsek-img-combined"></div>
       </div>
     </div>
 
@@ -1198,19 +1201,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: SG-TH 2Y Rate Spread</div>
-        <img id="sgdthb-img-rates" src="sgdthb_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdthb-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: XAU</div>
-        <img id="sgdthb-img-xau" src="sgdthb_fv_xau_2y.png" alt="XAU Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdthb-img-xau"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: DXY</div>
-        <img id="sgdthb-img-dxy" src="sgdthb_fv_dxy_2y.png" alt="DXY Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdthb-img-dxy"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + XAU + DXY)</div>
-        <img id="sgdthb-img-combined" src="sgdthb_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdthb-img-combined"></div>
       </div>
     </div>
 
@@ -1228,19 +1231,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: SG-MY 2Y Rate Spread</div>
-        <img id="sgdmyr-img-rates" src="sgdmyr_fv_rates_2y.png" alt="Rate Spread Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdmyr-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Brent (CO1)</div>
-        <img id="sgdmyr-img-brent" src="sgdmyr_fv_brent_2y.png" alt="Brent Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdmyr-img-brent"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: USDCNH</div>
-        <img id="sgdmyr-img-cnh" src="sgdmyr_fv_cnh_2y.png" alt="CNH Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdmyr-img-cnh"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + Brent + CNH)</div>
-        <img id="sgdmyr-img-combined" src="sgdmyr_fv_combined_2y.png" alt="Combined Model" style="width:100%;border-radius:8px;" />
+        <div class="fvchart" id="sgdmyr-img-combined"></div>
       </div>
     </div>
 
@@ -2559,6 +2562,7 @@ window.FV_NAV = (function() {
     subPages.forEach(p => p.style.display = 'none');
     const target = document.getElementById('fv-sub-' + subId);
     if (target) target.style.display = 'block';
+    if (window.FVDETAIL) window.FVDETAIL.onShow(subId);
   }
 
   subTabs.forEach(t => t.addEventListener('click', () => showOverview(t.dataset.sub)));
@@ -2657,6 +2661,36 @@ window.FV_NAV = (function() {
     return (z === undefined || z === null || isNaN(z)) ? null : Number(z);
   }
 
+  // ── Heatmap: asset (rows) x window (cols), combined-model residual z-score ──
+  var HM_PERIODS = ['6m', '1y', '2y', '3y', '5y'];
+  function hmCell(z) {
+    if (z === null) return 'background:transparent;color:var(--text-dim);';
+    var a = Math.min(Math.abs(z) / 2.5, 1);
+    var rgb = z > 0 ? '220,38,38' : '22,163,74';   // rich=red, cheap=green
+    return 'background:rgba(' + rgb + ',' + (0.10 + 0.55 * a).toFixed(2) + ');' +
+           'color:' + (a > 0.55 ? '#fff' : 'var(--text)') + ';font-weight:' + (Math.abs(z) >= 1.5 ? '700' : '500') + ';';
+  }
+  function buildHeatmap(items, containerId) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    if (!items.length) { el.innerHTML = ''; return; }
+    var h = '<div class="chart-wrap" style="padding:12px;margin-bottom:24px;">' +
+      '<div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">' +
+      'Residual Z-score heatmap — all windows (green = cheap, red = rich · click to open)</div>' +
+      '<table class="vol-table"><thead><tr><th style="text-align:left;">Asset</th>' +
+      HM_PERIODS.map(function(p) { return '<th>' + p.toUpperCase() + '</th>'; }).join('') + '</tr></thead><tbody>';
+    items.forEach(function(it) {
+      h += '<tr class="fv-row" data-sub="' + subIdFor(it.d) + '" style="cursor:pointer;">' +
+        '<td style="font-weight:700;text-align:left;white-space:nowrap;">' + it.label + '</td>';
+      HM_PERIODS.forEach(function(p) {
+        var z = getZ(it.d, p);
+        h += '<td style="' + hmCell(z) + '">' + (z === null ? '--' : (z > 0 ? '+' : '') + z.toFixed(1)) + '</td>';
+      });
+      h += '</tr>';
+    });
+    el.innerHTML = h + '</tbody></table></div>';
+  }
+
   function renderChart(canvasId, items, prevChart) {
     var ctx = document.getElementById(canvasId);
     if (!ctx) return prevChart;
@@ -2744,6 +2778,9 @@ window.FV_NAV = (function() {
     document.getElementById('fv-summary-table-rates').innerHTML = header + ratesRows + '</tbody></table>';
     var eqTable = document.getElementById('fv-summary-table-equities');
     if (eqTable) eqTable.innerHTML = header + equitiesRows + '</tbody></table>';
+    buildHeatmap(ratesItems, 'fv-heatmap-rates');
+    buildHeatmap(fxItems, 'fv-heatmap-fx');
+    buildHeatmap(equitiesItems, 'fv-heatmap-equities');
     attachRowClicks();
     chartRates = renderChart('fv-chart-rates', ratesItems, chartRates);
     chartFx = renderChart('fv-chart-fx', fxItems, chartFx);
@@ -2767,295 +2804,166 @@ window.FV_NAV = (function() {
 
   // Load all summary JSONs
   Promise.all([
-    fetch('eurusd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('eurusd_fvnom_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('eurnok_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('ust10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('bund10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('jgb10y_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('jgb5s30s_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('eurgbp_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('usdthb_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('audusd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('audnzd_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('usdchf_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('eursek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('noksek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('gbpsek_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('sgdthb_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('sgdmyr_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('tpbnk_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('cl1_fv_summary.json').then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('eurusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('eurusd_fvnom_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('eurnok_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('ust10y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('bund10y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('jgb10y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('jgb5s30s_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('eurgbp_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdthb_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('audusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('audnzd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('eursek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('noksek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('gbpsek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('sgdthb_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('sgdmyr_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('cl1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
   ]).then(function(results) {
     FV_DATA = results.filter(Boolean);
+    window.FV_DATA = FV_DATA;
+    window.FV_SUBID = subIdFor;
     renderSummary();
+    if (window.FVDETAIL) window.FVDETAIL.refreshVisible();
   });
 })();
 
-/* ========== FAIR VALUE: EURUSD period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#fv-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('fv-img-realrate').src = 'eurusd_fv_realrate_' + p + '.png' + cb;
-    document.getElementById('fv-img-tot').src = 'eurusd_fv_tot_' + p + '.png' + cb;
-    document.getElementById('fv-img-btpbund').src = 'eurusd_fv_btpbund_' + p + '.png' + cb;
-    document.getElementById('fv-img-combined').src = 'eurusd_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
+/* ========== FAIR VALUE: generic interactive detail charts (Chart.js) ==========
+   Renders spot-vs-fair-value + residual (with sigma bands) client-side from the
+   _series embedded in each *_fv_summary.json. Replaces the static PNG <img> tags.
+   Config-driven: one entry per asset sub-page. Container order MUST match the
+   model order in the summary JSON's periods[p] array. */
+window.FVDETAIL = (function() {
+  var CONFIG = {
+    cl1:        { tabsId: "cl1-period-tabs", containers: ["cl1-img-modelA", "cl1-img-modelB"] },
+    tpnbnk:     { tabsId: "tpnbnk-period-tabs", containers: ["tpnbnk-img-modelA", "tpnbnk-img-modelB"] },
+    eurusd:     { tabsId: "fv-period-tabs", containers: ["fv-img-realrate", "fv-img-tot", "fv-img-btpbund", "fv-img-combined"] },
+    eurusdnom:  { tabsId: "eurusdnom-period-tabs", containers: ["eurusdnom-img-nomrate", "eurusdnom-img-tot", "eurusdnom-img-btpbund", "eurusdnom-img-combined"] },
+    ust10y:     { tabsId: "ust-period-tabs", containers: ["ust-img-policy", "ust-img-inflation", "ust-img-risk", "ust-img-combined"] },
+    bund10y:    { tabsId: "bund-period-tabs", containers: ["bund-img-policy", "bund-img-inflation", "bund-img-risk", "bund-img-combined"] },
+    jgb10y:     { tabsId: "jgb-period-tabs", containers: ["jgb-img-policy", "jgb-img-inflation", "jgb-img-risk", "jgb-img-combined"] },
+    jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
+    eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-risk", "eurgbp-img-combined"] },
+    usdthb:     { tabsId: "usdthb-period-tabs", containers: ["usdthb-img-xau", "usdthb-img-dxy", "usdthb-img-rates", "usdthb-img-combined"] },
+    audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-vix", "audusd-img-copper", "audusd-img-ironore", "audusd-img-combined"] },
+    audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates", "audnzd-img-ironore", "audnzd-img-combined"] },
+    usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
+    eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-btpbund", "eurnok-img-combined"] },
+    noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
+    eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-btpbund", "eursek-img-combined"] },
+    gbpsek:     { tabsId: "gbpsek-period-tabs", containers: ["gbpsek-img-rates", "gbpsek-img-spx", "gbpsek-img-copper", "gbpsek-img-combined"] },
+    sgdthb:     { tabsId: "sgdthb-period-tabs", containers: ["sgdthb-img-rates", "sgdthb-img-xau", "sgdthb-img-dxy", "sgdthb-img-combined"] },
+    sgdmyr:     { tabsId: "sgdmyr-period-tabs", containers: ["sgdmyr-img-rates", "sgdmyr-img-brent", "sgdmyr-img-cnh", "sgdmyr-img-combined"] },
+  };
+  var charts = {};       // canvasId -> Chart
+  var curPeriod = {};    // subId -> period
+  var TICK = '#94a3b8', GRID = 'rgba(148,163,184,0.12)';
+
+  function findData(subId) {
+    var fd = window.FV_DATA || [], sub = window.FV_SUBID;
+    for (var i = 0; i < fd.length; i++) { if (fd[i] && sub && sub(fd[i]) === subId) return fd[i]; }
+    return null;
   }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
+  function destroy(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+  function annLine(v, c, w, dash) { return { type:'line', yMin:v, yMax:v, borderColor:c, borderWidth:w, borderDash:dash }; }
+
+  function renderModel(containerId, model, assetLabel) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    var s = model && model._series;
+    if (!s) { el.innerHTML = '<div style="padding:18px;color:var(--text-dim);font-size:0.8rem;">No chart data — re-run model with updated fv_signals.</div>'; return; }
+    var z = model.zscore, az = Math.abs(z);
+    var zc = az >= 2 ? '#dc2626' : az >= 1 ? '#ea580c' : '#16a34a';
+    el.innerHTML =
+      '<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:0.72rem;color:var(--text-dim);margin-bottom:4px;align-items:center;">' +
+        '<span>R&sup2; <b style="color:var(--text)">' + (model.r2 != null ? Number(model.r2).toFixed(3) : '--') + '</b></span>' +
+        '<span>FV <b style="color:var(--text)">' + model.fv + '</b></span>' +
+        '<span>Spot <b style="color:var(--text)">' + model.spot + '</b></span>' +
+        '<span>Misval <b style="color:var(--text)">' + model.misval + '</b></span>' +
+        '<span>Z <b style="color:' + zc + '">' + (z > 0 ? '+' : '') + z + '</b></span>' +
+        '<span style="margin-left:auto;font-weight:700;color:' + zc + ';">' + (model.signal || '') + '</span>' +
+      '</div>' +
+      '<div style="height:230px;"><canvas id="' + containerId + '-top"></canvas></div>' +
+      '<div style="height:120px;margin-top:4px;"><canvas id="' + containerId + '-res"></canvas></div>';
+    destroy(containerId + '-top'); destroy(containerId + '-res');
+    var baseScales = {
+      x: { ticks:{ color:TICK, maxTicksLimit:7, font:{size:9} }, grid:{ color:GRID } },
+      y: { ticks:{ color:TICK, font:{size:9} }, grid:{ color:GRID } }
+    };
+    charts[containerId + '-top'] = new Chart(document.getElementById(containerId + '-top'), {
+      type:'line',
+      data:{ labels:s.d, datasets:[
+        { label: assetLabel + ' spot', data:s.s, borderColor:'#3b6cb3', borderWidth:1.6, pointRadius:0, tension:0.1 },
+        { label:'Fair value', data:s.f, borderColor:'#ea580c', borderWidth:1.6, pointRadius:0, tension:0.1 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false, interaction:{ mode:'index', intersect:false },
+        plugins:{ legend:{ labels:{ color:TICK, boxWidth:12, font:{size:10} } } }, scales: baseScales }
+    });
+    var rs = s.rs;
+    charts[containerId + '-res'] = new Chart(document.getElementById(containerId + '-res'), {
+      type:'line',
+      data:{ labels:s.d, datasets:[ { label:'Residual', data:s.r, borderColor:'#6b7280', borderWidth:1.2, pointRadius:0, tension:0.1 } ]},
+      options:{ responsive:true, maintainAspectRatio:false, interaction:{ mode:'index', intersect:false },
+        plugins:{ legend:{ display:false }, annotation:{ annotations:{
+          z0: annLine(0, '#64748b', 0.8, []),
+          p1: annLine(rs, '#eab308', 0.8, [3,3]),  n1: annLine(-rs, '#eab308', 0.8, [3,3]),
+          p2: annLine(2*rs, '#dc2626', 1, [4,3]),   n2: annLine(-2*rs, '#dc2626', 1, [4,3])
+        } } }, scales: baseScales }
+    });
+  }
+
+  function render(subId, period) {
+    var cfg = CONFIG[subId]; if (!cfg) return;
+    var d = findData(subId); if (!d || !d.periods || !d.periods[period]) return;
+    curPeriod[subId] = period;
+    var models = d.periods[period], label = d.asset || subId.toUpperCase();
+    cfg.containers.forEach(function(cid, i) { renderModel(cid, models[i], label); });
+    document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) { t.classList.toggle('active', t.dataset.p === period); });
+  }
+
+  function defaultPeriod(subId) {
+    var cfg = CONFIG[subId];
+    var act = document.querySelector('#' + cfg.tabsId + ' .tab.active');
+    return curPeriod[subId] || (act && act.dataset.p) || '2y';
+  }
+
+  // attach period-tab handlers now (static DOM); render happens lazily on show
+  Object.keys(CONFIG).forEach(function(subId) {
+    document.querySelectorAll('#' + CONFIG[subId].tabsId + ' .tab').forEach(function(t) {
+      t.addEventListener('click', function() { render(subId, t.dataset.p); });
+    });
+  });
+
+  function onShow(subId) { if (CONFIG[subId]) render(subId, defaultPeriod(subId)); }
+  function refreshVisible() {
+    Object.keys(CONFIG).forEach(function(subId) {
+      var pg = document.getElementById('fv-sub-' + subId);
+      if (pg && pg.style.display !== 'none') render(subId, defaultPeriod(subId));
+    });
+  }
+  return { render: render, onShow: onShow, refreshVisible: refreshVisible, _config: CONFIG };
 })();
 
-/* ========== FAIR VALUE: UST 10Y period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#ust-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('ust-img-policy').src = 'ust10y_fv_policy_' + p + '.png' + cb;
-    document.getElementById('ust-img-inflation').src = 'ust10y_fv_inflation_' + p + '.png' + cb;
-    document.getElementById('ust-img-risk').src = 'ust10y_fv_risk_' + p + '.png' + cb;
-    document.getElementById('ust-img-combined').src = 'ust10y_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: Bund 10Y period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#bund-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('bund-img-policy').src = 'bund10y_fv_policy_' + p + '.png' + cb;
-    document.getElementById('bund-img-inflation').src = 'bund10y_fv_inflation_' + p + '.png' + cb;
-    document.getElementById('bund-img-risk').src = 'bund10y_fv_risk_' + p + '.png' + cb;
-    document.getElementById('bund-img-combined').src = 'bund10y_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: JGB 10Y period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#jgb-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('jgb-img-policy').src = 'jgb10y_fv_policy_' + p + '.png' + cb;
-    document.getElementById('jgb-img-inflation').src = 'jgb10y_fv_inflation_' + p + '.png' + cb;
-    document.getElementById('jgb-img-risk').src = 'jgb10y_fv_risk_' + p + '.png' + cb;
-    document.getElementById('jgb-img-combined').src = 'jgb10y_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: JGB 5s30s period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#jgb5s30s-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('jgb5s30s-img-policy').src = 'jgb5s30s_fv_policy_' + p + '.png' + cb;
-    document.getElementById('jgb5s30s-img-global').src = 'jgb5s30s_fv_global_' + p + '.png' + cb;
-    document.getElementById('jgb5s30s-img-supply').src = 'jgb5s30s_fv_supply_' + p + '.png' + cb;
-    document.getElementById('jgb5s30s-img-combined').src = 'jgb5s30s_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: EURGBP period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#eurgbp-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('eurgbp-img-ratediff').src = 'eurgbp_fv_ratediff_' + p + '.png' + cb;
-    document.getElementById('eurgbp-img-gbp2s30s').src = 'eurgbp_fv_gbp2s30s_' + p + '.png' + cb;
-    document.getElementById('eurgbp-img-risk').src = 'eurgbp_fv_risk_' + p + '.png' + cb;
-    document.getElementById('eurgbp-img-combined').src = 'eurgbp_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: USDTHB period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#usdthb-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('usdthb-img-xau').src = 'usdthb_fv_xau_' + p + '.png' + cb;
-    document.getElementById('usdthb-img-dxy').src = 'usdthb_fv_dxy_' + p + '.png' + cb;
-    document.getElementById('usdthb-img-rates').src = 'usdthb_fv_rates_' + p + '.png' + cb;
-    document.getElementById('usdthb-img-combined').src = 'usdthb_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: AUDUSD period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#audusd-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('audusd-img-rates').src = 'audusd_fv_rates_' + p + '.png' + cb;
-    document.getElementById('audusd-img-vix').src = 'audusd_fv_vix_' + p + '.png' + cb;
-    document.getElementById('audusd-img-copper').src = 'audusd_fv_copper_' + p + '.png' + cb;
-    document.getElementById('audusd-img-ironore').src = 'audusd_fv_ironore_' + p + '.png' + cb;
-    document.getElementById('audusd-img-combined').src = 'audusd_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: AUDNZD period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#audnzd-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('audnzd-img-rates').src = 'audnzd_fv_rates_' + p + '.png' + cb;
-    document.getElementById('audnzd-img-ironore').src = 'audnzd_fv_ironore_' + p + '.png' + cb;
-    document.getElementById('audnzd-img-combined').src = 'audnzd_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: USDCHF period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#usdchf-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('usdchf-img-rates').src = 'usdchf_fv_rates_' + p + '.png' + cb;
-    document.getElementById('usdchf-img-real').src = 'usdchf_fv_real_' + p + '.png' + cb;
-    document.getElementById('usdchf-img-gold').src = 'usdchf_fv_gold_' + p + '.png' + cb;
-    document.getElementById('usdchf-img-vix').src = 'usdchf_fv_vix_' + p + '.png' + cb;
-    document.getElementById('usdchf-img-combined').src = 'usdchf_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: EURUSD Nominal period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#eurusdnom-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('eurusdnom-img-nomrate').src = 'eurusd_fvnom_nomrate_' + p + '.png' + cb;
-    document.getElementById('eurusdnom-img-tot').src = 'eurusd_fvnom_tot_' + p + '.png' + cb;
-    document.getElementById('eurusdnom-img-btpbund').src = 'eurusd_fvnom_btpbund_' + p + '.png' + cb;
-    document.getElementById('eurusdnom-img-combined').src = 'eurusd_fvnom_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: EURNOK period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#eurnok-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('eurnok-img-brent').src = 'eurnok_fv_brent_' + p + '.png' + cb;
-    document.getElementById('eurnok-img-rates').src = 'eurnok_fv_rates_' + p + '.png' + cb;
-    document.getElementById('eurnok-img-spx').src = 'eurnok_fv_spx_' + p + '.png' + cb;
-    document.getElementById('eurnok-img-btpbund').src = 'eurnok_fv_btpbund_' + p + '.png' + cb;
-    document.getElementById('eurnok-img-combined').src = 'eurnok_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: NOKSEK period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#noksek-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('noksek-img-brent').src = 'noksek_fv_brent_' + p + '.png' + cb;
-    document.getElementById('noksek-img-rates').src = 'noksek_fv_rates_' + p + '.png' + cb;
-    document.getElementById('noksek-img-spx').src = 'noksek_fv_spx_' + p + '.png' + cb;
-    document.getElementById('noksek-img-copper').src = 'noksek_fv_copper_' + p + '.png' + cb;
-    document.getElementById('noksek-img-combined').src = 'noksek_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: TPNBNK period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#tpnbnk-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('tpnbnk-img-modelA').src = 'tpbnk_fv_modelA_' + p + '.png' + cb;
-    document.getElementById('tpnbnk-img-modelB').src = 'tpbnk_fv_modelB_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: CL1 period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#cl1-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('cl1-img-modelA').src = 'cl1_fv_modelA_' + p + '.png' + cb;
-    document.getElementById('cl1-img-modelB').src = 'cl1_fv_modelB_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: EURSEK period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#eursek-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('eursek-img-spx').src = 'eursek_fv_spx_' + p + '.png' + cb;
-    document.getElementById('eursek-img-copper').src = 'eursek_fv_copper_' + p + '.png' + cb;
-    document.getElementById('eursek-img-btpbund').src = 'eursek_fv_btpbund_' + p + '.png' + cb;
-    document.getElementById('eursek-img-combined').src = 'eursek_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: GBPSEK period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#gbpsek-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('gbpsek-img-rates').src = 'gbpsek_fv_rates_' + p + '.png' + cb;
-    document.getElementById('gbpsek-img-spx').src = 'gbpsek_fv_spx_' + p + '.png' + cb;
-    document.getElementById('gbpsek-img-copper').src = 'gbpsek_fv_copper_' + p + '.png' + cb;
-    document.getElementById('gbpsek-img-combined').src = 'gbpsek_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
-/* ========== FAIR VALUE: SGDTHB period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#sgdthb-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('sgdthb-img-rates').src = 'sgdthb_fv_rates_' + p + '.png' + cb;
-    document.getElementById('sgdthb-img-xau').src = 'sgdthb_fv_xau_' + p + '.png' + cb;
-    document.getElementById('sgdthb-img-dxy').src = 'sgdthb_fv_dxy_' + p + '.png' + cb;
-    document.getElementById('sgdthb-img-combined').src = 'sgdthb_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
-
-/* ========== FAIR VALUE: SGDMYR period switcher ========== */
-(function() {
-  const tabs = document.querySelectorAll('#sgdmyr-period-tabs .tab');
-  function switchPeriod(p) {
-    const cb = '?t=' + Date.now();
-    document.getElementById('sgdmyr-img-rates').src = 'sgdmyr_fv_rates_' + p + '.png' + cb;
-    document.getElementById('sgdmyr-img-brent').src = 'sgdmyr_fv_brent_' + p + '.png' + cb;
-    document.getElementById('sgdmyr-img-cnh').src = 'sgdmyr_fv_cnh_' + p + '.png' + cb;
-    document.getElementById('sgdmyr-img-combined').src = 'sgdmyr_fv_combined_' + p + '.png' + cb;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.p === p));
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchPeriod(t.dataset.p)));
-})();
 
 /* ========== EQUITY VOL ========== */
 (function() {
@@ -3532,7 +3440,7 @@ window.FV_NAV = (function() {
     document.getElementById('curves-tables').innerHTML = html;
   }
 
-  fetch('curves.json').then(function(r) { return r.json(); }).then(renderCurves).catch(function(e) {
+  fetch('curves.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).then(renderCurves).catch(function(e) {
     console.log('curves.json not loaded:', e);
   });
 
@@ -3589,7 +3497,7 @@ window.FV_NAV = (function() {
       '</div>';
     document.getElementById('xccy-table').innerHTML = html;
   }
-  fetch('xccy_regressions.json').then(function(r) { return r.json(); }).then(renderXccy).catch(function(e) {
+  fetch('xccy_regressions.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).then(renderXccy).catch(function(e) {
     console.log('xccy_regressions.json not loaded:', e);
   });
 
@@ -3735,7 +3643,7 @@ window.FV_NAV = (function() {
     });
   }
 
-  fetch('inr_ndois_fv.json').then(function(r) { return r.json(); }).then(renderInrNdois).catch(function(e) {
+  fetch('inr_ndois_fv.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).then(renderInrNdois).catch(function(e) {
     console.log('inr_ndois_fv.json not loaded:', e);
   });
 })();
@@ -3946,9 +3854,9 @@ window.FV_NAV = (function() {
 
   // Load all 3 tenor JSONs
   Promise.all([
-    fetch('cta_rates_2y.json').then(function(r){return r.json();}).catch(function(){return null;}),
-    fetch('cta_rates_5y.json').then(function(r){return r.json();}).catch(function(){return null;}),
-    fetch('cta_rates_10y.json').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('cta_rates_2y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
+    fetch('cta_rates_5y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
+    fetch('cta_rates_10y.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function(){return null;}),
   ]).then(function(results) {
     var tenors = ['2y', '5y', '10y'];
     var anyData = null;
