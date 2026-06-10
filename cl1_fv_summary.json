@@ -1,27 +1,27 @@
 {
-  "_updated": "2026-06-09 10:31",
+  "_updated": "2026-06-10 08:52",
   "asset": "CL1",
-  "spot": 90.84,
-  "cl2": 88.87,
-  "backwd": 1.9699999999999989,
+  "spot": 89.38,
+  "cl2": 87.74,
+  "backwd": 1.6400000000000006,
   "inv_comm_kbbl": 433712.0,
   "inv_spr_kbbl": 357119.0,
   "inv_total_kbbl": 790831.0,
-  "dxy": 99.977,
-  "real10y_pct": 2.1932,
+  "dxy": 100.009,
+  "real10y_pct": 2.1667,
   "periods": {
     "6m": [
       {
         "model": "A: Comm Inv + Bwd + DXY + Real10Y",
-        "r2": 0.8709,
-        "adj_r2": 0.8475,
-        "fv": 91.16,
-        "spot": 90.84,
-        "misval": "-0.32",
-        "misval_pct": -0.35,
-        "zscore": -0.09,
+        "r2": 0.8704,
+        "adj_r2": 0.8469,
+        "fv": 89.74,
+        "spot": 89.38,
+        "misval": "-0.36",
+        "misval_pct": -0.4,
+        "zscore": -0.1,
         "signal": "FAIR",
-        "alpha": -550.1225,
+        "alpha": -549.4945,
         "beta_names": [
           "inv_comm",
           "backwd",
@@ -29,58 +29,58 @@
           "real10y"
         ],
         "betas": [
-          0.000734,
-          0.559575,
-          2.156659,
-          48.511003
+          0.000733,
+          0.5628,
+          2.151698,
+          48.481388
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "backwd": 1.97,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "backwd": 1.64,
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       },
       {
         "model": "B: Comm Inv + DXY + Real10Y",
-        "r2": 0.8694,
-        "adj_r2": 0.8523,
-        "fv": 91.9,
-        "spot": 90.84,
-        "misval": "-1.06",
-        "misval_pct": -1.16,
-        "zscore": -0.21,
+        "r2": 0.8688,
+        "adj_r2": 0.8517,
+        "fv": 90.55,
+        "spot": 89.38,
+        "misval": "-1.17",
+        "misval_pct": -1.31,
+        "zscore": -0.23,
         "signal": "FAIR",
-        "alpha": -581.0431,
+        "alpha": -579.7634,
         "beta_names": [
           "inv_comm",
           "dxy",
           "real10y"
         ],
         "betas": [
-          0.000799,
-          2.116795,
-          52.309185
+          0.0008,
+          2.101611,
+          52.329569
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       }
     ],
     "1y": [
       {
         "model": "A: Comm Inv + Bwd + DXY + Real10Y",
-        "r2": 0.846,
-        "adj_r2": 0.8332,
-        "fv": 83.25,
-        "spot": 90.84,
-        "misval": "+7.59",
-        "misval_pct": 8.36,
-        "zscore": 1.29,
+        "r2": 0.8453,
+        "adj_r2": 0.8324,
+        "fv": 81.73,
+        "spot": 89.38,
+        "misval": "+7.65",
+        "misval_pct": 8.56,
+        "zscore": 1.3,
         "signal": "FAIR",
-        "alpha": -255.3764,
+        "alpha": -257.1986,
         "beta_names": [
           "inv_comm",
           "backwd",
@@ -88,58 +88,58 @@
           "real10y"
         ],
         "betas": [
-          0.000547,
-          2.30948,
-          0.37111,
-          27.217732
+          0.000551,
+          2.280372,
+          0.378374,
+          27.017536
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "backwd": 1.97,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "backwd": 1.64,
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       },
       {
         "model": "B: Comm Inv + DXY + Real10Y",
-        "r2": 0.8195,
-        "adj_r2": 0.8085,
-        "fv": 85.23,
-        "spot": 90.84,
-        "misval": "+5.61",
-        "misval_pct": 6.17,
-        "zscore": 0.87,
+        "r2": 0.8191,
+        "adj_r2": 0.8081,
+        "fv": 84.13,
+        "spot": 89.38,
+        "misval": "+5.25",
+        "misval_pct": 5.88,
+        "zscore": 0.82,
         "signal": "FAIR",
-        "alpha": -345.7002,
+        "alpha": -344.5812,
         "beta_names": [
           "inv_comm",
           "dxy",
           "real10y"
         ],
         "betas": [
-          0.000774,
-          0.150646,
-          36.566125
+          0.000775,
+          0.142121,
+          36.12704
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       }
     ],
     "2y": [
       {
         "model": "A: Comm Inv + Bwd + DXY + Real10Y",
-        "r2": 0.738,
-        "adj_r2": 0.7275,
-        "fv": 74.5,
-        "spot": 90.84,
-        "misval": "+16.34",
-        "misval_pct": 17.99,
-        "zscore": 2.15,
+        "r2": 0.7364,
+        "adj_r2": 0.7258,
+        "fv": 72.76,
+        "spot": 89.38,
+        "misval": "+16.62",
+        "misval_pct": 18.59,
+        "zscore": 2.19,
         "signal": "STRONG RICH",
-        "alpha": -123.5916,
+        "alpha": -124.6128,
         "beta_names": [
           "inv_comm",
           "backwd",
@@ -147,58 +147,58 @@
           "real10y"
         ],
         "betas": [
-          0.000211,
-          5.53878,
-          1.049611,
-          -4.201526
+          0.000214,
+          5.502135,
+          1.05083,
+          -4.370136
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "backwd": 1.97,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "backwd": 1.64,
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       },
       {
         "model": "B: Comm Inv + DXY + Real10Y",
-        "r2": 0.4349,
-        "adj_r2": 0.4181,
-        "fv": 72.42,
-        "spot": 90.84,
-        "misval": "+18.42",
-        "misval_pct": 20.28,
-        "zscore": 1.85,
+        "r2": 0.4363,
+        "adj_r2": 0.4196,
+        "fv": 72.26,
+        "spot": 89.38,
+        "misval": "+17.12",
+        "misval_pct": 19.15,
+        "zscore": 1.71,
         "signal": "RICH",
-        "alpha": -223.3876,
+        "alpha": -224.2391,
         "beta_names": [
           "inv_comm",
           "dxy",
           "real10y"
         ],
         "betas": [
-          0.000547,
-          0.554546,
-          1.509772
+          0.000548,
+          0.566025,
+          1.046203
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       }
     ],
     "3y": [
       {
         "model": "A: Comm Inv + Bwd + DXY + Real10Y",
-        "r2": 0.651,
-        "adj_r2": 0.6418,
-        "fv": 76.47,
-        "spot": 90.84,
-        "misval": "+14.37",
-        "misval_pct": 15.82,
-        "zscore": 1.99,
-        "signal": "RICH",
-        "alpha": -150.5044,
+        "r2": 0.6496,
+        "adj_r2": 0.6404,
+        "fv": 74.73,
+        "spot": 89.38,
+        "misval": "+14.65",
+        "misval_pct": 16.39,
+        "zscore": 2.03,
+        "signal": "STRONG RICH",
+        "alpha": -150.5352,
         "beta_names": [
           "inv_comm",
           "backwd",
@@ -206,29 +206,29 @@
           "real10y"
         ],
         "betas": [
-          0.000182,
-          5.470651,
-          1.400454,
-          -1.283685
+          0.000183,
+          5.450471,
+          1.39916,
+          -1.304136
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "backwd": 1.97,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "backwd": 1.64,
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       },
       {
         "model": "B: Comm Inv + DXY + Real10Y",
-        "r2": 0.3227,
-        "adj_r2": 0.3094,
-        "fv": 75.24,
-        "spot": 90.84,
-        "misval": "+15.60",
-        "misval_pct": 17.17,
-        "zscore": 1.36,
+        "r2": 0.3229,
+        "adj_r2": 0.3096,
+        "fv": 74.9,
+        "spot": 89.38,
+        "misval": "+14.48",
+        "misval_pct": 16.2,
+        "zscore": 1.25,
         "signal": "FAIR",
-        "alpha": -145.995,
+        "alpha": -146.3329,
         "beta_names": [
           "inv_comm",
           "dxy",
@@ -236,28 +236,28 @@
         ],
         "betas": [
           0.000324,
-          0.555571,
-          11.439253
+          0.562019,
+          11.273991
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       }
     ],
     "5y": [
       {
         "model": "A: Comm Inv + Bwd + DXY + Real10Y",
-        "r2": 0.6888,
-        "adj_r2": 0.6839,
-        "fv": 76.56,
-        "spot": 90.84,
-        "misval": "+14.28",
-        "misval_pct": 15.72,
-        "zscore": 1.87,
+        "r2": 0.6881,
+        "adj_r2": 0.6832,
+        "fv": 74.43,
+        "spot": 89.38,
+        "misval": "+14.95",
+        "misval_pct": 16.72,
+        "zscore": 1.95,
         "signal": "RICH",
-        "alpha": -104.4297,
+        "alpha": -104.3407,
         "beta_names": [
           "inv_comm",
           "backwd",
@@ -266,28 +266,28 @@
         ],
         "betas": [
           2.6e-05,
-          7.180452,
-          1.715695,
-          -7.251153
+          7.168102,
+          1.71511,
+          -7.249465
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "backwd": 1.97,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "backwd": 1.64,
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       },
       {
         "model": "B: Comm Inv + DXY + Real10Y",
-        "r2": 0.2852,
-        "adj_r2": 0.2769,
-        "fv": 68.44,
-        "spot": 90.84,
-        "misval": "+22.40",
-        "misval_pct": 24.66,
-        "zscore": 1.28,
+        "r2": 0.2863,
+        "adj_r2": 0.278,
+        "fv": 68.66,
+        "spot": 89.38,
+        "misval": "+20.72",
+        "misval_pct": 23.18,
+        "zscore": 1.17,
         "signal": "FAIR",
-        "alpha": -76.9975,
+        "alpha": -77.2933,
         "beta_names": [
           "inv_comm",
           "dxy",
@@ -295,13 +295,13 @@
         ],
         "betas": [
           1.1e-05,
-          1.567128,
-          -7.206202
+          1.569569,
+          -7.219726
         ],
         "last_x": {
           "inv_comm": 433712.0,
-          "dxy": 99.977,
-          "real10y": 2.1932
+          "dxy": 100.009,
+          "real10y": 2.1667
         }
       }
     ]
