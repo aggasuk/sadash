@@ -1,43 +1,23 @@
 {
-  "last_updated": "2026-06-10T08:49:13",
+  "last_updated": "2026-06-11T10:29:10",
   "near_bp": 3.0,
   "alerts": [
-    {
-      "id": "nzd_2s5s_rec",
-      "label": "Rec NZD 2s5s",
-      "formula": "NZD5Y - NZD2Y (bp)",
-      "inputs": {
-        "NZD2Y": 347.25,
-        "NZD5Y": 384.0
-      },
-      "inputs_pct": {
-        "NZD2Y": 3.4725,
-        "NZD5Y": 3.84
-      },
-      "current_bp": 36.75,
-      "trigger_bp": 48.5,
-      "direction": "above",
-      "distance_bp": 11.75,
-      "status": "ARMED",
-      "rationale": "Rec 5Y vs pay 2Y (flattener); enter when spread widens to 48.5bp",
-      "added": "2026-04-23"
-    },
     {
       "id": "krw_h7_u6_1y_rec_takeoff",
       "label": "KRW H7-U6 1Y rec TAKE OFF",
       "formula": "H7 - U6",
       "inputs": {
-        "U6": 395.182,
-        "H7": 429.939
+        "U6": 390.884,
+        "H7": 421.713
       },
       "inputs_pct": {
-        "U6": 3.95182,
-        "H7": 4.29939
+        "U6": 3.90884,
+        "H7": 4.21713
       },
-      "current_bp": 34.76,
+      "current_bp": 30.83,
       "trigger_bp": 15.0,
       "direction": "below",
-      "distance_bp": 19.76,
+      "distance_bp": 15.83,
       "status": "ARMED",
       "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
       "added": "2026-04-28"
@@ -47,17 +27,17 @@
       "label": "Rec AUD 5y5y / Pay NZD 5y5y",
       "formula": "AUD5Y5Y - NZD5Y5Y (bp)",
       "inputs": {
-        "AUD5Y5Y": 525.2,
-        "NZD5Y5Y": 467.539
+        "AUD5Y5Y": 526.06,
+        "NZD5Y5Y": 468.608
       },
       "inputs_pct": {
-        "AUD5Y5Y": 5.252,
-        "NZD5Y5Y": 4.67539
+        "AUD5Y5Y": 5.2606,
+        "NZD5Y5Y": 4.68608
       },
-      "current_bp": 57.66,
+      "current_bp": 57.45,
       "trigger_bp": 52.0,
       "direction": "above",
-      "distance_bp": -5.66,
+      "distance_bp": -5.45,
       "status": "TRIGGERED",
       "rationale": "5Y regression FV ~+28-37bp; trigger entry when spread widens to +52bp (currently +47.5). Rec AUD 5y5y / Pay NZD 5y5y; target tightening back to +33bp, stop +62bp",
       "added": "2026-05-10"
@@ -67,20 +47,20 @@
       "label": "Rec KRW 3s5s10s fly",
       "formula": "2*KRW5Y - KRW3Y - KRW10Y (bp)",
       "inputs": {
-        "KRW3Y": 405.0,
-        "KRW5Y": 413.0,
-        "KRW10Y": 415.5
+        "KRW3Y": 400.5,
+        "KRW5Y": 408.0,
+        "KRW10Y": 412.38
       },
       "inputs_pct": {
-        "KRW3Y": 4.05,
-        "KRW5Y": 4.13,
-        "KRW10Y": 4.155
+        "KRW3Y": 4.005,
+        "KRW5Y": 4.08,
+        "KRW10Y": 4.1238
       },
-      "current_bp": 5.5,
+      "current_bp": 3.12,
       "trigger_bp": 7.0,
       "direction": "above",
-      "distance_bp": 1.5,
-      "status": "NEAR",
+      "distance_bp": 3.88,
+      "status": "ARMED",
       "rationale": "Receive belly (5Y), pay wings (3Y + 10Y); enter when fly widens to +7bp",
       "added": "2026-05-26"
     },
@@ -89,14 +69,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 29687.08,
-        "sma_long": 25612.79,
-        "last": 29084.5
+        "sma_short": 29274.44,
+        "sma_long": 25637.84,
+        "last": 28508.03
       },
-      "current_bp": 15.91,
+      "current_bp": 14.18,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 15.91,
+      "distance_bp": 14.18,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -106,14 +86,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 646.57,
-        "sma_long": 538.23,
-        "last": 687.57
+        "sma_short": 647.42,
+        "sma_long": 539.22,
+        "last": 653.79
       },
-      "current_bp": 20.13,
+      "current_bp": 20.07,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 20.13,
+      "distance_bp": 20.07,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -123,14 +103,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 45082.96,
-        "sma_long": 41841.91,
-        "last": 44704.44
+        "sma_short": 43845.87,
+        "sma_long": 42140.99,
+        "last": 42725.63
       },
-      "current_bp": 7.75,
+      "current_bp": 4.05,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.75,
+      "distance_bp": 4.05,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -140,12 +120,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 783.74,
-        "HKD12M": -76800.0
+        "USDHKD": 783.55,
+        "HKD12M": -75750.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8374,
-        "HKD12M": -768.0
+        "USDHKD": 7.8355,
+        "HKD12M": -757.5
       },
       "current_bp": 7.76,
       "trigger_bp": 7.73,
@@ -160,18 +140,18 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 499.0,
-        "AUD30Y": 508.25
+        "AUD10Y": 498.99,
+        "AUD30Y": 510.0
       },
       "inputs_pct": {
-        "AUD10Y": 4.99,
-        "AUD30Y": 5.0825
+        "AUD10Y": 4.9899,
+        "AUD30Y": 5.1
       },
-      "current_bp": 9.25,
+      "current_bp": 11.01,
       "trigger_bp": 6.5,
       "direction": "below",
-      "distance_bp": 2.75,
-      "status": "NEAR",
+      "distance_bp": 4.51,
+      "status": "ARMED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
     }
