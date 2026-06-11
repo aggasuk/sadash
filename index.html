@@ -1334,6 +1334,10 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <div id="cta-scen" style="margin-bottom:20px;"></div>
 
     <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 8px;">EM Asia IRS &mdash; trend-follower lens (same model; not in aggregate &mdash; read SD, not $)</div>
+    <div class="chart-wrap" style="padding:12px;margin-bottom:14px;">
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Realized 5d flow by market &mdash; EM Asia ($m/bp, same-budget scaling)</div>
+      <div style="position:relative;height:250px;"><canvas id="cta-em-flow-chart"></canvas></div>
+    </div>
     <div id="cta-em-table"></div>
   </div>
 
@@ -3687,8 +3691,25 @@ window.FVDETAIL = (function() {
   var H = '5';             // horizon (days ahead)
   var TYPE = 'bps';        // 'bps' | 'yield'
   var drillKey = null;
-  var aggChart = null, flowChart = null, drillTop = null, drillBot = null;
+  var aggChart = null, flowChart = null, emFlowChart = null, drillTop = null, drillBot = null;
   var TICK = '#94a3b8', GRID = 'rgba(148,163,184,0.12)';
+
+  function flowBar(canvasId, markets, prev) {
+    var cv = document.getElementById(canvasId);
+    if (!cv) return prev;
+    if (prev) prev.destroy();
+    var ms = markets.slice().sort(function(x, y) { return x.flow_5d - y.flow_5d; });
+    return new Chart(cv, {
+      type: 'bar',
+      data: { labels: ms.map(function(m) { return m.name.replace(/ \(.*\)/, '').replace(' IRS', ''); }),
+        datasets: [{ data: ms.map(function(m) { return m.flow_5d / 1e6; }),
+          backgroundColor: ms.map(function(m) { return m.flow_5d >= 0 ? '#16a34a' : '#dc2626'; }) }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: function(c) { return '$' + c.raw.toFixed(2) + 'm/bp (' + (c.raw >= 0 ? 'buying' : 'selling') + ')'; } } } },
+        scales: { x: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { display: false } } } }
+    });
+  }
   var REGION_NAMES = { NA: 'NA', EU: 'Europe', AP: 'Asia/Pac', EM: 'EM Asia' };
 
   function fmtM(v) { return (v / 1e6).toFixed(1); }
@@ -3814,18 +3835,7 @@ window.FVDETAIL = (function() {
         scales: { x: { ticks: { color: TICK, maxTicksLimit: 7, font: { size: 9 } }, grid: { color: GRID } },
                   y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
     });
-    var fc = document.getElementById('cta-flow-chart');
-    if (flowChart) flowChart.destroy();
-    var ms = D.markets.slice().sort(function(x, y) { return x.flow_5d - y.flow_5d; });
-    flowChart = new Chart(fc, {
-      type: 'bar',
-      data: { labels: ms.map(function(m) { return m.name.replace(/ \(.*\)/, ''); }),
-        datasets: [{ data: ms.map(function(m) { return m.flow_5d / 1e6; }),
-          backgroundColor: ms.map(function(m) { return m.flow_5d >= 0 ? '#16a34a' : '#dc2626'; }) }] },
-      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
-        scales: { x: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } },
-                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { display: false } } } }
-    });
+    flowChart = flowBar('cta-flow-chart', D.markets, flowChart);
   }
 
   function drill(key, isEM) {
@@ -3862,23 +3872,46 @@ window.FVDETAIL = (function() {
         label: { display: true, content: (sd > 0 ? '+' : '') + sd + 'SD', position: 'start',
           backgroundColor: 'rgba(0,0,0,0.55)', color: '#fff', font: { size: 9 } } };
     });
+    // ---- forward projection: extend both panels with flat / +1sigma / -1sigma paths ----
+    var pj = m.projection;
+    var histN = m.history.d.length;
+    var labels = m.history.d.concat(pj ? pj.dates : []);
+    var tailNull = new Array(pj ? pj.dates.length : 0).fill(null);
+    function padFwd(connect, arr) { var a = new Array(histN - 1).fill(null); a.push(connect); return a.concat(arr); }
+    var PJ = { flat: ['#94a3b8', 'flat'], bear: ['#dc2626', '+1σ (bear)'], bull: ['#16a34a', '−1σ (bull)'] };
+    if (pj) anns.now = { type: 'line', xMin: histN - 1, xMax: histN - 1, borderColor: '#64748b', borderWidth: 1, borderDash: [2, 2] };
+
+    var yDsets = [{ label: 'Yield %', data: m.history.y.concat(tailNull),
+      borderColor: '#3b6cb3', borderWidth: 1.7, pointRadius: 0, tension: 0.1 }];
+    if (pj) Object.keys(PJ).forEach(function(k) {
+      yDsets.push({ label: PJ[k][1], data: padFwd(pj.y0, pj.scen[k].y), borderColor: PJ[k][0],
+        borderWidth: 1.4, borderDash: [4, 3], pointRadius: 0, tension: 0.05 });
+    });
     if (drillTop) drillTop.destroy();
     drillTop = new Chart(document.getElementById('cta-drill-top'), {
       type: 'line',
-      data: { labels: m.history.d, datasets: [{ label: 'Yield %', data: m.history.y,
-        borderColor: '#3b6cb3', borderWidth: 1.7, pointRadius: 0, tension: 0.1 }] },
+      data: { labels: labels, datasets: yDsets },
       options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: false }, annotation: { annotations: anns } },
-        scales: { x: { ticks: { color: TICK, maxTicksLimit: 7, font: { size: 9 } }, grid: { color: GRID } },
+        plugins: { legend: { display: !!pj, labels: { color: TICK, boxWidth: 12, font: { size: 9 } } },
+          annotation: { annotations: anns } },
+        scales: { x: { ticks: { color: TICK, maxTicksLimit: 8, font: { size: 9 } }, grid: { color: GRID } },
                   y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
     });
+
+    var pDsets = [{ label: 'Position $m/bp', data: m.history.pos.map(function(v) { return v === null ? null : v / 1e6; }).concat(tailNull),
+      borderColor: '#ea580c', borderWidth: 1.4, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: 'rgba(234,88,12,0.10)' }];
+    if (pj) Object.keys(PJ).forEach(function(k) {
+      pDsets.push({ label: PJ[k][1], data: padFwd(pj.pos0 / 1e6, pj.scen[k].pos.map(function(v) { return v / 1e6; })),
+        borderColor: PJ[k][0], borderWidth: 1.4, borderDash: [4, 3], pointRadius: 0, tension: 0.05 });
+    });
+    var botAnns = { z: { type: 'line', yMin: 0, yMax: 0, borderColor: '#64748b', borderWidth: 0.8 } };
+    if (pj) botAnns.now = { type: 'line', xMin: histN - 1, xMax: histN - 1, borderColor: '#64748b', borderWidth: 1, borderDash: [2, 2] };
     if (drillBot) drillBot.destroy();
     drillBot = new Chart(document.getElementById('cta-drill-bot'), {
       type: 'line',
-      data: { labels: m.history.d, datasets: [{ label: 'Position $m/bp', data: m.history.pos.map(function(v) { return v === null ? null : v / 1e6; }),
-        borderColor: '#ea580c', borderWidth: 1.4, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: 'rgba(234,88,12,0.10)' }] },
+      data: { labels: labels, datasets: pDsets },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false },
-        annotation: { annotations: { z: { type: 'line', yMin: 0, yMax: 0, borderColor: '#64748b', borderWidth: 0.8 } } } },
+        annotation: { annotations: botAnns } },
         scales: { x: { display: false }, y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
     });
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -3893,6 +3926,7 @@ window.FVDETAIL = (function() {
     buildTable(D.em_panel, 'cta-em-table', true);
     scenTable();
     aggCharts();
+    emFlowChart = flowBar('cta-em-flow-chart', D.em_panel, emFlowChart);
     if (drillKey) drill(drillKey, drillIsEM);
   }
 
@@ -3910,6 +3944,11 @@ window.FVDETAIL = (function() {
       renderAll();
     });
   });
+
+  // CTA charts build on data-load while #page-cta is hidden -> they render at 0px
+  // and don't recover on show. Re-render once the tab is shown + laid out.
+  var ctaNav = document.querySelector('.nav-btn[data-page="cta"]');
+  if (ctaNav) ctaNav.addEventListener('click', function() { setTimeout(function() { if (D) renderAll(); }, 160); });
 
   fetch('cta_rates.json?v=' + (window.__FVV || (window.__FVV = Date.now())))
     .then(function(r) { return r.json(); })
