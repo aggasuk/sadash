@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-18 20:57",
+  "generated": "2026-06-12 14:48",
   "history": [
     {
       "fy": 2015,
@@ -146,40 +146,40 @@
         "outstanding_yen_tn": 195.0,
         "avg_coupon_pct": 0.32,
         "avg_years_remaining": 1.5,
-        "market_yield_pct": 1.276,
-        "repricing_gap_pp": 0.956
+        "market_yield_pct": 1.282,
+        "repricing_gap_pp": 0.962
       },
       {
         "name": "2-5Y",
         "outstanding_yen_tn": 280.0,
         "avg_coupon_pct": 0.41,
         "avg_years_remaining": 3.5,
-        "market_yield_pct": 1.753,
-        "repricing_gap_pp": 1.343
+        "market_yield_pct": 1.684,
+        "repricing_gap_pp": 1.274
       },
       {
         "name": "5-10Y",
         "outstanding_yen_tn": 290.0,
         "avg_coupon_pct": 0.55,
         "avg_years_remaining": 7.5,
-        "market_yield_pct": 2.504,
-        "repricing_gap_pp": 1.954
+        "market_yield_pct": 2.407,
+        "repricing_gap_pp": 1.857
       },
       {
         "name": "10-20Y",
         "outstanding_yen_tn": 240.0,
         "avg_coupon_pct": 1.1,
         "avg_years_remaining": 15.0,
-        "market_yield_pct": 4.069,
-        "repricing_gap_pp": 2.969
+        "market_yield_pct": 3.904,
+        "repricing_gap_pp": 2.804
       },
       {
         "name": "20Y+",
         "outstanding_yen_tn": 295.0,
         "avg_coupon_pct": 1.75,
         "avg_years_remaining": 30.0,
-        "market_yield_pct": 4.096,
-        "repricing_gap_pp": 2.346
+        "market_yield_pct": 3.809,
+        "repricing_gap_pp": 2.059
       }
     ],
     "total_yen_tn": 1300.0,
@@ -187,18 +187,18 @@
     "source": "MOF JGB January 2026 Newsletter"
   },
   "current_jgb_curve": {
-    "1Y": 1.133,
+    "1Y": 1.146,
     "2Y": 1.418,
-    "3Y": 1.674,
-    "5Y": 1.991,
-    "7Y": 2.458,
-    "10Y": 2.7359999999999998,
-    "15Y": 4.069,
-    "20Y": 3.714,
-    "30Y": 4.096,
-    "40Y": 4.339
+    "3Y": 1.6099999999999999,
+    "5Y": 1.9060000000000001,
+    "7Y": 2.36,
+    "10Y": 2.643,
+    "15Y": 3.904,
+    "20Y": 3.54,
+    "30Y": 3.809,
+    "40Y": 3.7199999999999998
   },
-  "curve_as_of": "2026-05-18",
+  "curve_as_of": "2026-06-12",
   "params_default": {
     "primary_deficit_pct": -1.5,
     "supplemental_yen_tn": 15.0,
