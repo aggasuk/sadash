@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-06-11 20:56",
+  "_updated": "2026-06-12 13:45",
   "config": {
     "horizons": [
       "1W",
@@ -18,8 +18,8 @@
       "key": "NDX",
       "name": "NASDAQ-100",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-06-10",
-      "n_days": 6397,
+      "sample_end": "2026-06-11",
+      "n_days": 6398,
       "arm_thr": 3,
       "mode": "gated",
       "low_conviction": false,
@@ -38,35 +38,34 @@
           "mean": 0.25,
           "median": 0.47,
           "hit": 58.0,
-          "n": 6392
+          "n": 6393
         },
         "1M": {
           "mean": 1.03,
           "median": 1.59,
           "hit": 63.0,
-          "n": 6376
+          "n": 6377
         },
         "3M": {
           "mean": 3.14,
           "median": 4.29,
           "hit": 69.0,
-          "n": 6334
+          "n": 6335
         },
         "6M": {
           "mean": 6.49,
           "median": 8.71,
           "hit": 74.0,
-          "n": 6271
+          "n": 6272
         }
       },
       "snapshot": {
-        "date": "2026-06-10",
-        "px": 28508.0,
-        "score": 2,
+        "date": "2026-06-11",
+        "px": 29446.0,
+        "score": 1,
         "cap_max": 8,
         "on": [
-          "VXN 1y-90pct",
-          "VVIX/VIX low"
+          "VXN 1y-90pct"
         ],
         "recent_events": [],
         "armed": false,
@@ -267,6 +266,44 @@
           "is_cap": true
         },
         {
+          "signal": "VXN 1y-90pct",
+          "n": 72,
+          "first": "2001-09-17",
+          "last": "2026-06-05",
+          "1W": {
+            "n": 71,
+            "mean": 0.11,
+            "median": 0.3,
+            "hit": 55.0,
+            "excess": -0.14
+          },
+          "1M": {
+            "n": 71,
+            "mean": 0.64,
+            "median": 1.71,
+            "hit": 62.0,
+            "excess": -0.39
+          },
+          "3M": {
+            "n": 71,
+            "mean": 3.78,
+            "median": 4.01,
+            "hit": 69.0,
+            "excess": 0.64
+          },
+          "6M": {
+            "n": 69,
+            "mean": 6.94,
+            "median": 8.31,
+            "hit": 72.0,
+            "excess": 0.45
+          },
+          "t_3M": 2.82,
+          "mae_mean": -7.34,
+          "mae_worst": -39.22,
+          "is_cap": true
+        },
+        {
           "signal": "VIX/VIX3M>1",
           "n": 102,
           "first": "2002-01-22",
@@ -340,44 +377,6 @@
           "t_3M": 2.44,
           "mae_mean": -7.72,
           "mae_worst": -41.35,
-          "is_cap": true
-        },
-        {
-          "signal": "VXN 1y-90pct",
-          "n": 72,
-          "first": "2001-09-17",
-          "last": "2026-06-05",
-          "1W": {
-            "n": 71,
-            "mean": 0.11,
-            "median": 0.3,
-            "hit": 55.0,
-            "excess": -0.14
-          },
-          "1M": {
-            "n": 71,
-            "mean": 0.64,
-            "median": 1.71,
-            "hit": 62.0,
-            "excess": -0.39
-          },
-          "3M": {
-            "n": 70,
-            "mean": 3.55,
-            "median": 3.98,
-            "hit": 69.0,
-            "excess": 0.41
-          },
-          "6M": {
-            "n": 69,
-            "mean": 6.94,
-            "median": 8.31,
-            "hit": 72.0,
-            "excess": 0.45
-          },
-          "t_3M": 2.65,
-          "mae_mean": -7.35,
-          "mae_worst": -39.22,
           "is_cap": true
         },
         {
@@ -767,8 +766,8 @@
       "key": "SPX",
       "name": "S&P 500",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-06-10",
-      "n_days": 6397,
+      "sample_end": "2026-06-11",
+      "n_days": 6398,
       "arm_thr": 3,
       "mode": "raw",
       "low_conviction": true,
@@ -787,35 +786,33 @@
           "mean": 0.17,
           "median": 0.33,
           "hit": 58.0,
-          "n": 6392
+          "n": 6393
         },
         "1M": {
           "mean": 0.68,
           "median": 1.28,
           "hit": 64.0,
-          "n": 6376
+          "n": 6377
         },
         "3M": {
           "mean": 2.03,
           "median": 3.2,
           "hit": 68.0,
-          "n": 6334
+          "n": 6335
         },
         "6M": {
           "mean": 4.16,
           "median": 5.62,
           "hit": 72.0,
-          "n": 6271
+          "n": 6272
         }
       },
       "snapshot": {
-        "date": "2026-06-10",
-        "px": 7267.0,
-        "score": 1,
+        "date": "2026-06-11",
+        "px": 7394.0,
+        "score": 0,
         "cap_max": 8,
-        "on": [
-          "VVIX/VIX low"
-        ],
+        "on": [],
         "recent_events": [],
         "armed": false,
         "last_entry": "2026-03-20",
@@ -1567,8 +1564,8 @@
       "key": "NKY",
       "name": "Nikkei 225",
       "sample_start": "2001-01-04",
-      "sample_end": "2026-06-11",
-      "n_days": 6230,
+      "sample_end": "2026-06-12",
+      "n_days": 6231,
       "arm_thr": 2,
       "mode": "gated",
       "low_conviction": false,
@@ -1582,30 +1579,30 @@
           "mean": 0.18,
           "median": 0.34,
           "hit": 55.0,
-          "n": 6225
+          "n": 6226
         },
         "1M": {
           "mean": 0.72,
           "median": 1.02,
           "hit": 58.0,
-          "n": 6209
+          "n": 6210
         },
         "3M": {
           "mean": 2.11,
-          "median": 1.89,
+          "median": 1.9,
           "hit": 57.0,
-          "n": 6167
+          "n": 6168
         },
         "6M": {
-          "mean": 4.24,
-          "median": 3.09,
+          "mean": 4.25,
+          "median": 3.1,
           "hit": 59.0,
-          "n": 6104
+          "n": 6105
         }
       },
       "snapshot": {
-        "date": "2026-06-11",
-        "px": 64217.0,
+        "date": "2026-06-12",
+        "px": 66399.0,
         "score": 1,
         "cap_max": 3,
         "on": [
@@ -1650,7 +1647,7 @@
             "mean": 4.94,
             "median": 1.77,
             "hit": 55.0,
-            "excess": 0.7
+            "excess": 0.69
           },
           "t_3M": 1.79,
           "mae_mean": -8.4,
@@ -1688,7 +1685,7 @@
             "mean": 4.82,
             "median": 6.49,
             "hit": 65.0,
-            "excess": 0.58
+            "excess": 0.57
           },
           "t_3M": 1.97,
           "mae_mean": -7.78,
@@ -1726,7 +1723,7 @@
             "mean": 3.98,
             "median": 4.73,
             "hit": 65.0,
-            "excess": -0.26
+            "excess": -0.27
           },
           "t_3M": 1.48,
           "mae_mean": -8.38,
@@ -1764,7 +1761,7 @@
             "mean": 4.48,
             "median": 0.4,
             "hit": 56.0,
-            "excess": 0.24
+            "excess": 0.23
           },
           "t_3M": 2.01,
           "mae_mean": -7.83,
@@ -1802,7 +1799,7 @@
             "mean": 2.0,
             "median": 1.51,
             "hit": 57.0,
-            "excess": -2.24
+            "excess": -2.25
           },
           "t_3M": 0.36,
           "mae_mean": -8.99,
@@ -1842,7 +1839,7 @@
             "mean": 3.46,
             "median": 2.82,
             "hit": 60.0,
-            "excess": -0.78
+            "excess": -0.79
           },
           "t_3M": 0.96,
           "mae_mean": -7.75,
@@ -1879,7 +1876,7 @@
             "mean": 6.05,
             "median": 5.13,
             "hit": 57.0,
-            "excess": 1.81
+            "excess": 1.8
           },
           "t_3M": 2.53,
           "mae_mean": -5.63,
@@ -1916,7 +1913,7 @@
             "mean": 5.96,
             "median": 3.03,
             "hit": 60.0,
-            "excess": 1.72
+            "excess": 1.71
           },
           "t_3M": 1.37,
           "mae_mean": -6.08,
@@ -1954,7 +1951,7 @@
           "mean": 3.18,
           "median": 3.38,
           "hit": 65.0,
-          "excess": -1.06
+          "excess": -1.07
         },
         "t_3M": 0.66,
         "mae_mean": -9.03,
@@ -1993,7 +1990,7 @@
             "mean": 7.53,
             "median": 8.53,
             "hit": 61.0,
-            "excess": 3.29
+            "excess": 3.28
           },
           "t_3M": 2.07,
           "mae_mean": -5.1,
@@ -2031,7 +2028,7 @@
             "mean": 5.38,
             "median": 2.17,
             "hit": 53.0,
-            "excess": 1.14
+            "excess": 1.13
           },
           "t_3M": 1.67,
           "mae_mean": -5.45,
@@ -2070,7 +2067,7 @@
           "mean": 5.38,
           "median": 2.17,
           "hit": 53.0,
-          "excess": 1.14
+          "excess": 1.13
         },
         "t_3M": 1.67,
         "mae_mean": -5.45,
@@ -2117,8 +2114,8 @@
       "key": "KOSPI2",
       "name": "KOSPI 200",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-06-11",
-      "n_days": 6275,
+      "sample_end": "2026-06-12",
+      "n_days": 6276,
       "arm_thr": 2,
       "mode": "raw",
       "low_conviction": false,
@@ -2132,30 +2129,30 @@
           "mean": 0.28,
           "median": 0.36,
           "hit": 56.0,
-          "n": 6270
+          "n": 6271
         },
         "1M": {
           "mean": 1.18,
           "median": 1.06,
           "hit": 58.0,
-          "n": 6254
+          "n": 6255
         },
         "3M": {
-          "mean": 3.41,
+          "mean": 3.42,
           "median": 2.45,
           "hit": 62.0,
-          "n": 6212
+          "n": 6213
         },
         "6M": {
-          "mean": 6.86,
+          "mean": 6.88,
           "median": 3.31,
           "hit": 58.0,
-          "n": 6149
+          "n": 6150
         }
       },
       "snapshot": {
-        "date": "2026-06-11",
-        "px": 1232.0,
+        "date": "2026-06-12",
+        "px": 1302.0,
         "score": 1,
         "cap_max": 3,
         "on": [
@@ -2193,14 +2190,14 @@
             "mean": 6.18,
             "median": 4.51,
             "hit": 68.0,
-            "excess": 2.77
+            "excess": 2.76
           },
           "6M": {
             "n": 71,
             "mean": 9.32,
             "median": 5.62,
             "hit": 62.0,
-            "excess": 2.46
+            "excess": 2.44
           },
           "t_3M": 3.8,
           "mae_mean": -6.47,
@@ -2231,14 +2228,14 @@
             "mean": 5.21,
             "median": 5.68,
             "hit": 67.0,
-            "excess": 1.8
+            "excess": 1.79
           },
           "6M": {
             "n": 54,
             "mean": 10.35,
             "median": 10.24,
             "hit": 63.0,
-            "excess": 3.49
+            "excess": 3.47
           },
           "t_3M": 2.72,
           "mae_mean": -8.3,
@@ -2269,14 +2266,14 @@
             "mean": 5.04,
             "median": 4.32,
             "hit": 64.0,
-            "excess": 1.63
+            "excess": 1.62
           },
           "6M": {
             "n": 84,
             "mean": 8.88,
             "median": 6.96,
             "hit": 69.0,
-            "excess": 2.02
+            "excess": 2.0
           },
           "t_3M": 3.16,
           "mae_mean": -8.06,
@@ -2307,14 +2304,14 @@
             "mean": 4.07,
             "median": 2.45,
             "hit": 57.0,
-            "excess": 0.66
+            "excess": 0.65
           },
           "6M": {
             "n": 42,
             "mean": 7.69,
             "median": 4.26,
             "hit": 69.0,
-            "excess": 0.83
+            "excess": 0.81
           },
           "t_3M": 2.11,
           "mae_mean": -6.46,
@@ -2345,14 +2342,14 @@
             "mean": 1.41,
             "median": 1.87,
             "hit": 58.0,
-            "excess": -2.0
+            "excess": -2.01
           },
           "6M": {
             "n": 31,
             "mean": 6.64,
             "median": 3.78,
             "hit": 65.0,
-            "excess": -0.22
+            "excess": -0.24
           },
           "t_3M": 0.64,
           "mae_mean": -8.68,
@@ -2385,14 +2382,14 @@
             "mean": 2.57,
             "median": 2.88,
             "hit": 60.0,
-            "excess": -0.84
+            "excess": -0.85
           },
           "6M": {
             "n": 65,
             "mean": 5.7,
             "median": 2.65,
             "hit": 60.0,
-            "excess": -1.16
+            "excess": -1.18
           },
           "t_3M": 2.13,
           "mae_mean": -7.05,
@@ -2422,14 +2419,14 @@
             "mean": 2.34,
             "median": 2.13,
             "hit": 62.0,
-            "excess": -1.07
+            "excess": -1.08
           },
           "6M": {
             "n": 61,
             "mean": 5.43,
             "median": 2.04,
             "hit": 61.0,
-            "excess": -1.43
+            "excess": -1.45
           },
           "t_3M": 1.72,
           "mae_mean": -5.66,
@@ -2459,14 +2456,14 @@
             "mean": 3.17,
             "median": 2.51,
             "hit": 68.0,
-            "excess": -0.24
+            "excess": -0.25
           },
           "6M": {
             "n": 19,
             "mean": 6.38,
             "median": 2.46,
             "hit": 53.0,
-            "excess": -0.48
+            "excess": -0.5
           },
           "t_3M": 1.4,
           "mae_mean": -5.02,
@@ -2497,14 +2494,14 @@
           "mean": 6.32,
           "median": 4.79,
           "hit": 69.0,
-          "excess": 2.91
+          "excess": 2.9
         },
         "6M": {
           "n": 53,
           "mean": 9.65,
           "median": 6.22,
           "hit": 72.0,
-          "excess": 2.79
+          "excess": 2.77
         },
         "t_3M": 3.29,
         "mae_mean": -6.24,
@@ -2536,14 +2533,14 @@
             "mean": 2.82,
             "median": 2.71,
             "hit": 71.0,
-            "excess": -0.59
+            "excess": -0.6
           },
           "6M": {
             "n": 24,
             "mean": 8.44,
             "median": 6.6,
             "hit": 67.0,
-            "excess": 1.58
+            "excess": 1.56
           },
           "t_3M": 1.45,
           "mae_mean": -5.33,
@@ -2574,14 +2571,14 @@
             "mean": 3.8,
             "median": 2.71,
             "hit": 67.0,
-            "excess": 0.39
+            "excess": 0.38
           },
           "6M": {
             "n": 30,
             "mean": 8.96,
             "median": 4.37,
             "hit": 67.0,
-            "excess": 2.1
+            "excess": 2.08
           },
           "t_3M": 1.78,
           "mae_mean": -5.52,
@@ -2613,14 +2610,14 @@
           "mean": 6.32,
           "median": 4.79,
           "hit": 69.0,
-          "excess": 2.91
+          "excess": 2.9
         },
         "6M": {
           "n": 53,
           "mean": 9.65,
           "median": 6.22,
           "hit": 72.0,
-          "excess": 2.79
+          "excess": 2.77
         },
         "t_3M": 3.29,
         "mae_mean": -6.24,
@@ -2691,8 +2688,8 @@
       "key": "TWSE",
       "name": "Taiwan TAIEX",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-06-11",
-      "n_days": 6261,
+      "sample_end": "2026-06-12",
+      "n_days": 6262,
       "arm_thr": 2,
       "mode": "gated",
       "low_conviction": false,
@@ -2705,30 +2702,30 @@
           "mean": 0.22,
           "median": 0.37,
           "hit": 57.0,
-          "n": 6256
+          "n": 6257
         },
         "1M": {
           "mean": 0.88,
           "median": 1.14,
           "hit": 59.0,
-          "n": 6240
+          "n": 6241
         },
         "3M": {
-          "mean": 2.6,
-          "median": 2.9,
+          "mean": 2.61,
+          "median": 2.91,
           "hit": 65.0,
-          "n": 6198
+          "n": 6199
         },
         "6M": {
-          "mean": 5.24,
-          "median": 4.64,
+          "mean": 5.25,
+          "median": 4.65,
           "hit": 68.0,
-          "n": 6135
+          "n": 6136
         }
       },
       "snapshot": {
-        "date": "2026-06-11",
-        "px": 43149.0,
+        "date": "2026-06-12",
+        "px": 44017.0,
         "score": 0,
         "cap_max": 2,
         "on": [],
@@ -2764,14 +2761,14 @@
             "mean": 5.96,
             "median": 6.12,
             "hit": 65.0,
-            "excess": 3.36
+            "excess": 3.35
           },
           "6M": {
             "n": 54,
             "mean": 14.58,
             "median": 10.09,
             "hit": 76.0,
-            "excess": 9.34
+            "excess": 9.33
           },
           "t_3M": 2.27,
           "mae_mean": -8.83,
@@ -2802,14 +2799,14 @@
             "mean": 4.02,
             "median": 3.73,
             "hit": 62.0,
-            "excess": 1.42
+            "excess": 1.41
           },
           "6M": {
             "n": 88,
             "mean": 9.17,
             "median": 7.4,
             "hit": 74.0,
-            "excess": 3.93
+            "excess": 3.92
           },
           "t_3M": 2.53,
           "mae_mean": -8.41,
@@ -2840,14 +2837,14 @@
             "mean": 3.11,
             "median": 3.36,
             "hit": 58.0,
-            "excess": 0.51
+            "excess": 0.5
           },
           "6M": {
             "n": 36,
             "mean": 12.22,
             "median": 9.86,
             "hit": 75.0,
-            "excess": 6.98
+            "excess": 6.97
           },
           "t_3M": 1.04,
           "mae_mean": -10.92,
@@ -2878,14 +2875,14 @@
             "mean": 1.72,
             "median": 4.32,
             "hit": 63.0,
-            "excess": -0.88
+            "excess": -0.89
           },
           "6M": {
             "n": 46,
             "mean": 4.83,
             "median": 6.15,
             "hit": 65.0,
-            "excess": -0.41
+            "excess": -0.42
           },
           "t_3M": 0.9,
           "mae_mean": -9.15,
@@ -2918,14 +2915,14 @@
             "mean": 3.39,
             "median": 3.47,
             "hit": 69.0,
-            "excess": 0.79
+            "excess": 0.78
           },
           "6M": {
             "n": 45,
             "mean": 8.58,
             "median": 7.27,
             "hit": 73.0,
-            "excess": 3.34
+            "excess": 3.33
           },
           "t_3M": 1.56,
           "mae_mean": -7.66,
@@ -2955,14 +2952,14 @@
             "mean": 4.79,
             "median": 4.92,
             "hit": 71.0,
-            "excess": 2.19
+            "excess": 2.18
           },
           "6M": {
             "n": 58,
             "mean": 6.91,
             "median": 5.36,
             "hit": 71.0,
-            "excess": 1.67
+            "excess": 1.66
           },
           "t_3M": 3.14,
           "mae_mean": -5.03,
@@ -2992,14 +2989,14 @@
             "mean": 3.02,
             "median": 3.65,
             "hit": 67.0,
-            "excess": 0.42
+            "excess": 0.41
           },
           "6M": {
             "n": 18,
             "mean": 4.15,
             "median": 4.1,
             "hit": 72.0,
-            "excess": -1.09
+            "excess": -1.1
           },
           "t_3M": 1.47,
           "mae_mean": -4.82,
@@ -3030,14 +3027,14 @@
           "mean": 1.89,
           "median": 3.58,
           "hit": 66.0,
-          "excess": -0.71
+          "excess": -0.72
         },
         "6M": {
           "n": 29,
           "mean": 6.73,
           "median": 6.69,
           "hit": 66.0,
-          "excess": 1.49
+          "excess": 1.48
         },
         "t_3M": 0.68,
         "mae_mean": -10.46,
@@ -3069,14 +3066,14 @@
             "mean": 6.93,
             "median": 6.18,
             "hit": 64.0,
-            "excess": 4.33
+            "excess": 4.32
           },
           "6M": {
             "n": 11,
             "mean": 9.16,
             "median": 8.26,
             "hit": 73.0,
-            "excess": 3.92
+            "excess": 3.91
           },
           "t_3M": 1.54,
           "mae_mean": -7.69,
@@ -3107,14 +3104,14 @@
             "mean": 5.61,
             "median": 6.13,
             "hit": 68.0,
-            "excess": 3.01
+            "excess": 3.0
           },
           "6M": {
             "n": 22,
             "mean": 7.48,
             "median": 3.39,
             "hit": 68.0,
-            "excess": 2.24
+            "excess": 2.23
           },
           "t_3M": 2.11,
           "mae_mean": -6.24,
@@ -3146,14 +3143,14 @@
           "mean": 5.61,
           "median": 6.13,
           "hit": 68.0,
-          "excess": 3.01
+          "excess": 3.0
         },
         "6M": {
           "n": 22,
           "mean": 7.48,
           "median": 3.39,
           "hit": 68.0,
-          "excess": 2.24
+          "excess": 2.23
         },
         "t_3M": 2.11,
         "mae_mean": -6.24,
