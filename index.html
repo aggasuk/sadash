@@ -1352,6 +1352,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <button class="tab" data-sub="u6-1x3">U6 1Yx3Y</button>
       <button class="tab" data-sub="cal-6m1y-1y1y">6M1Y x 1Y1Y</button>
       <button class="tab" data-sub="ctot-fx">CTOT vs FX</button>
+      <button class="tab" data-sub="fx-quadrant">FX Quadrant</button>
     </div>
 
     <div class="studies-subpage" id="studies-sub-u6-1x2">
@@ -1396,6 +1397,18 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
         <iframe src="ctot_fx_performance.html" style="width:100%;height:820px;border:0;background:#fff;border-radius:8px;"></iframe>
+      </div>
+    </div>
+
+    <div class="studies-subpage" id="studies-sub-fx-quadrant" style="display:none;">
+      <div style="margin-bottom:18px; font-size:13px; color:var(--muted); line-height:1.6;">
+        <b>Macro regime map</b> on the two-axis decomposition of US yields: <b>10Y breakeven</b> (inflation expectations) &times; <b>2Y real yield</b> (front-end policy stance).
+        Each month of history is bucketed by the sign of the change in each axis; the tables show the contemporaneous return of each asset (Panel A: cross-asset; Panel B: currency vs USD, +ve = ccy stronger).
+        The <b>&ldquo;you are here&rdquo;</b> card flags the current quadrant (trailing 3M change), and the trade list ranks what has historically benefited most in that regime.
+        Static history &mdash; refreshed on demand (&ldquo;refresh fx quadrant&rdquo;), not part of the daily refresh.
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
+        <iframe src="fx_quadrant.html" style="width:100%;height:2200px;border:0;background:#fff;border-radius:8px;"></iframe>
       </div>
     </div>
   </div>
