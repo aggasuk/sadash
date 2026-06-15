@@ -1,467 +1,467 @@
 {
-  "_updated": "2026-06-12 14:46",
+  "_updated": "2026-05-17 18:55",
   "fair_value": {
     "EURUSD": {
-      "spot": 1.15193,
-      "ferm": 1.1343,
-      "germ": 1.1115,
+      "spot": 1.16295,
+      "ferm": 1.2383,
+      "germ": 1.1128,
       "ppp": 1.0682,
-      "werm": 1.0932,
-      "germ_misval": 3.45
+      "werm": 1.0936,
+      "germ_misval": 4.4
     },
     "USDJPY": {
-      "spot": 160.508,
-      "ferm": 144.82,
+      "spot": 158.594,
+      "ferm": 135.26,
       "germ": 113.88,
       "ppp": 113.88,
-      "werm": 102.04,
-      "germ_misval": 34.32
+      "werm": 99.17,
+      "germ_misval": 33.12
     },
     "GBPUSD": {
-      "spot": 1.33278,
-      "ferm": 1.408,
-      "germ": 1.3206,
+      "spot": 1.33443,
+      "ferm": 1.5398,
+      "germ": 1.3136,
       "ppp": 1.171,
-      "werm": 1.3416,
-      "germ_misval": 0.83
+      "werm": 1.3497,
+      "germ_misval": 1.6
     },
     "AUDUSD": {
-      "spot": 0.69856,
-      "ferm": 0.6659,
-      "germ": 0.6462,
+      "spot": 0.71543,
+      "ferm": 0.7227,
+      "germ": 0.6474,
       "ppp": 0.4842,
-      "werm": 0.7331,
-      "germ_misval": 7.77
+      "werm": 0.7534,
+      "germ_misval": 9.99
     },
     "NZDUSD": {
-      "spot": 0.57747,
-      "ferm": 0.6394,
-      "germ": 0.4923,
+      "spot": 0.584615,
+      "ferm": 0.6972,
+      "germ": 0.4991,
       "ppp": 0.3847,
-      "werm": 0.5923,
-      "germ_misval": 15.86
+      "werm": 0.5973,
+      "germ_misval": 15.75
     },
     "USDCNY": {
-      "spot": 6.81925,
-      "ferm": 6.8427,
-      "germ": 6.5806,
+      "spot": 6.8514,
+      "ferm": 6.3126,
+      "germ": 6.5776,
       "ppp": 8.8281,
-      "werm": 6.4707,
-      "germ_misval": 3.57
+      "werm": 6.4704,
+      "germ_misval": 4.08
     },
     "USDINR": {
-      "spot": 95.8002,
-      "ferm": 90.24,
-      "germ": 80.02,
+      "spot": 95.9212,
+      "ferm": 77.47,
+      "germ": 79.93,
       "ppp": 57.52,
-      "werm": 83.76,
-      "germ_misval": 18
+      "werm": 83.21,
+      "germ_misval": 18.24
     },
     "USDKRW": {
-      "spot": 1532.68,
-      "ferm": 1311.43,
-      "germ": 1277.96,
+      "spot": 1497.93,
+      "ferm": 1241.92,
+      "germ": 1277.41,
       "ppp": 1296.61,
-      "werm": 1237.57,
-      "germ_misval": 18.27
+      "werm": 1212.21,
+      "germ_misval": 15.92
     },
     "USDSGD": {
-      "spot": 1.28902,
-      "ferm": 1.317,
-      "germ": 1.0191,
+      "spot": 1.27979,
+      "ferm": 1.2471,
+      "germ": 1.0192,
       "ppp": 0.896,
-      "werm": 1.3394,
-      "germ_misval": 23.48
+      "werm": 1.3534,
+      "germ_misval": 22.78
     },
     "USDTHB": {
-      "spot": 33.0075,
-      "ferm": 34.11,
-      "germ": 32.87,
+      "spot": 32.6345,
+      "ferm": 30.76,
+      "germ": 32.85,
       "ppp": 27.52,
-      "werm": 34.86,
-      "germ_misval": 0.51
+      "werm": 35.05,
+      "germ_misval": -0.69
     }
   },
   "pain": {
     "AUD": {
-      "value": 17.69,
-      "signal": "LONG",
-      "value_1w": 15.38,
-      "change_1w": 2.31
+      "value": 0.32,
+      "signal": "NEUTRAL",
+      "value_1w": 15.25,
+      "change_1w": -14.93
     },
     "CAD": {
-      "value": -7.38,
-      "signal": "NEUTRAL",
-      "value_1w": -12.67,
-      "change_1w": 5.29
+      "value": -22.07,
+      "signal": "SHORT",
+      "value_1w": -8.2,
+      "change_1w": -13.87
     },
     "CHF": {
-      "value": -8.41,
-      "signal": "NEUTRAL",
-      "value_1w": -18.78,
-      "change_1w": 10.37
+      "value": -39.15,
+      "signal": "SHORT",
+      "value_1w": -21.51,
+      "change_1w": -17.64
     },
     "EUR": {
-      "value": 7.68,
-      "signal": "NEUTRAL",
-      "value_1w": 1.43,
-      "change_1w": 6.25
+      "value": -24.91,
+      "signal": "SHORT",
+      "value_1w": -4.85,
+      "change_1w": -20.06
     },
     "GBP": {
-      "value": 16.91,
-      "signal": "LONG",
-      "value_1w": 10.06,
-      "change_1w": 6.85
+      "value": -22.58,
+      "signal": "SHORT",
+      "value_1w": -7.39,
+      "change_1w": -15.19
     },
     "JPY": {
-      "value": -29.78,
+      "value": -33.78,
       "signal": "SHORT",
-      "value_1w": -29.3,
-      "change_1w": -0.48
+      "value_1w": -27.74,
+      "change_1w": -6.04
     },
     "NOK": {
-      "value": 23.07,
+      "value": 20.97,
       "signal": "LONG",
-      "value_1w": 18.46,
-      "change_1w": 4.61
+      "value_1w": 30.62,
+      "change_1w": -9.65
     },
     "NZD": {
-      "value": 9.98,
-      "signal": "NEUTRAL",
-      "value_1w": 8.84,
-      "change_1w": 1.14
+      "value": -12.18,
+      "signal": "SHORT",
+      "value_1w": 4.08,
+      "change_1w": -16.26
     },
     "SEK": {
-      "value": 12,
-      "signal": "LONG",
-      "value_1w": 11.38,
-      "change_1w": 0.62
+      "value": -15.69,
+      "signal": "SHORT",
+      "value_1w": 4.35,
+      "change_1w": -20.04
     },
     "USD": {
-      "value": 0.07,
-      "signal": "NEUTRAL",
-      "value_1w": 5.03,
-      "change_1w": -4.96
+      "value": 26.34,
+      "signal": "LONG",
+      "value_1w": 8.82,
+      "change_1w": 17.52
     }
   },
   "surprise": {
     "USD": {
-      "esi": 55.4,
+      "esi": 45,
       "isi": null
     },
     "EUR": {
-      "esi": -43.2,
+      "esi": -53.3,
       "isi": null
     },
     "JPY": {
-      "esi": 64.7,
+      "esi": 10.7,
       "isi": null
     },
     "GBP": {
-      "esi": 57.7,
+      "esi": 81.7,
       "isi": null
     },
     "AUD": {
-      "esi": -44.4,
+      "esi": -23.5,
       "isi": null
     },
     "NZD": {
-      "esi": 9.4,
+      "esi": 11.3,
       "isi": null
     },
     "CAD": {
-      "esi": -27.4,
+      "esi": -81.8,
       "isi": null
     },
     "CHF": {
-      "esi": 13.7,
+      "esi": 26.5,
       "isi": null
     },
     "CNY": {
-      "esi": -28.3,
+      "esi": 43.4,
       "isi": null
     },
     "INR": {
-      "esi": 102.3,
+      "esi": 45.1,
       "isi": null
     },
     "KRW": {
-      "esi": 185.3,
+      "esi": 210.9,
       "isi": null
     },
     "SGD": {
-      "esi": 77.3,
+      "esi": -42.1,
       "isi": null
     },
     "THB": {
-      "esi": 36.5,
+      "esi": 54.2,
       "isi": null
     }
   },
   "mri": {
-    "st_total": 0.558,
-    "lt_total": 0.335,
-    "em_total": 0.271,
+    "st_total": 0.165,
+    "lt_total": 0.312,
+    "em_total": 0.371,
     "st_components": {
-      "FX Vol": 0.631,
-      "Equity Vol": 0.842,
-      "Rates Vol": 0.877,
+      "FX Vol": 0.294,
+      "Equity Vol": 0.21,
+      "Rates Vol": 0.198,
       "EM Spreads": 0.157,
-      "Corp CDS": 0.262,
-      "Bank CDS": 0.578
+      "Corp CDS": 0,
+      "Bank CDS": 0.131
     }
   },
   "scorecard": {
     "AUD": {
-      "rank": 18.5,
-      "position": -0.0,
+      "rank": 18.1,
+      "position": 0.0,
       "factors": {
         "budget": 20,
-        "carry": 14,
-        "ctot": 18,
-        "edc": 24,
-        "esi": 25,
-        "ferm": 18,
-        "fxfc": 9,
-        "gdp": 24,
-        "isi": 22,
-        "pos": 12,
-        "riskcorr": 6,
+        "carry": 15,
+        "ctot": 4,
+        "edc": 22,
+        "esi": 21,
+        "ferm": 21,
+        "fxfc": 18,
+        "gdp": 21,
+        "isi": 21,
+        "pos": 19,
+        "riskcorr": 5,
         "value": 30
       }
     },
     "CAD": {
-      "rank": 18.8,
-      "position": -0.1
+      "rank": 17.5,
+      "position": -0.0
     },
     "CHF": {
-      "rank": 22.8,
+      "rank": 20.9,
       "position": -0.2
     },
     "EUR": {
-      "rank": 18.2,
+      "rank": 18.7,
       "position": -0.1,
       "factors": {
         "budget": 22,
         "carry": 28,
-        "ctot": 13,
-        "edc": 29,
-        "esi": 28,
-        "ferm": 14,
-        "fxfc": 17,
-        "gdp": 10,
+        "ctot": 20,
+        "edc": 28,
+        "esi": 25,
+        "ferm": 13,
+        "fxfc": 15,
+        "gdp": 8,
         "isi": 8,
-        "pos": 6,
-        "riskcorr": 20,
+        "pos": 13,
+        "riskcorr": 21,
         "value": 23
       }
     },
     "GBP": {
-      "rank": 16,
-      "position": 0.0,
+      "rank": 15.3,
+      "position": 0,
       "factors": {
-        "budget": 8,
+        "budget": 7,
         "carry": 17,
-        "ctot": 25,
-        "edc": 21,
-        "esi": 12,
+        "ctot": 15,
+        "edc": 20,
+        "esi": 9,
         "ferm": 6,
-        "fxfc": 27,
-        "gdp": 13,
-        "isi": 13,
-        "pos": 5,
+        "fxfc": 21,
+        "gdp": 8,
+        "isi": 16,
+        "pos": 20,
         "riskcorr": 18,
         "value": 27
       }
     },
     "JPY": {
-      "rank": 16.2,
+      "rank": 19.3,
       "position": -0.0,
       "factors": {
-        "budget": 24,
+        "budget": 21,
         "carry": 30,
-        "ctot": 16,
-        "edc": 4,
-        "esi": 9,
+        "ctot": 31,
+        "edc": 3,
+        "esi": 16,
         "ferm": 5,
-        "fxfc": 18,
-        "gdp": 18,
-        "isi": 16,
-        "pos": 8,
-        "riskcorr": 28,
+        "fxfc": 13,
+        "gdp": 17,
+        "isi": 25,
+        "pos": 27,
+        "riskcorr": 26,
         "value": 18
       }
     },
     "NOK": {
-      "rank": 19.1,
-      "position": -0.1
+      "rank": 16.5,
+      "position": 0.0
     },
     "NZD": {
-      "rank": 15.2,
+      "rank": 13.5,
       "position": 0.1,
       "factors": {
-        "budget": 4,
+        "budget": 3,
         "carry": 25,
-        "ctot": 27,
-        "edc": 18,
-        "esi": 18,
+        "ctot": 22,
+        "edc": 19,
+        "esi": 15,
         "ferm": 4,
-        "fxfc": 10,
-        "gdp": 4,
-        "isi": 11,
-        "pos": 29,
-        "riskcorr": 7,
+        "fxfc": 20,
+        "gdp": 3,
+        "isi": 7,
+        "pos": 7,
+        "riskcorr": 12,
         "value": 25
       }
     },
     "SEK": {
-      "rank": 18.6,
+      "rank": 20.6,
       "position": -0.1
     },
     "USD": {
-      "rank": 21.8,
+      "rank": 21,
       "position": -0.1,
       "factors": {
-        "budget": 27,
+        "budget": 26,
         "carry": 19,
-        "ctot": 23,
-        "edc": 7,
-        "esi": 10,
+        "ctot": 9,
+        "edc": 15,
+        "esi": 12,
         "ferm": 22,
-        "fxfc": 29,
-        "gdp": 25,
-        "isi": 12,
-        "pos": 27,
+        "fxfc": 22,
+        "gdp": 24,
+        "isi": 17,
+        "pos": 25,
         "riskcorr": 32,
         "value": 29
       }
     },
     "CNY": {
-      "rank": 18.1,
-      "position": -0.0,
+      "rank": 19.8,
+      "position": -0.2,
       "factors": {
-        "budget": 28,
+        "budget": 30,
         "carry": 2,
-        "ctot": 4,
-        "edc": 31,
-        "esi": 23,
-        "ferm": 13,
-        "fxfc": 32,
-        "gdp": 27,
-        "isi": 3,
-        "pos": 30,
-        "riskcorr": 12,
+        "ctot": 30,
+        "edc": 32,
+        "esi": 8,
+        "ferm": 11,
+        "fxfc": 27,
+        "gdp": 28,
+        "isi": 9,
+        "pos": 32,
+        "riskcorr": 16,
         "value": 12
       }
     },
     "INR": {
-      "rank": 12.4,
+      "rank": 13,
       "position": 0.1,
       "factors": {
-        "budget": 29,
-        "carry": 5,
-        "ctot": 2,
-        "edc": 15,
-        "esi": 4,
-        "ferm": 3,
-        "fxfc": 21,
+        "budget": 25,
+        "carry": 3,
+        "ctot": 25,
+        "edc": 10,
+        "esi": 10,
+        "ferm": 2,
+        "fxfc": 3,
         "gdp": 31,
-        "isi": 4,
-        "pos": 9,
-        "riskcorr": 25,
+        "isi": 11,
+        "pos": 12,
+        "riskcorr": 23,
         "value": 1
       }
     },
     "KRW": {
-      "rank": 11.8,
-      "position": 0.2,
+      "rank": 16.8,
+      "position": 0.1,
       "factors": {
-        "budget": 26,
-        "carry": 23,
-        "ctot": 6,
+        "budget": 28,
+        "carry": 24,
+        "ctot": 32,
         "edc": 1,
         "esi": 1,
-        "ferm": 2,
-        "fxfc": 3,
-        "gdp": 29,
-        "isi": 21,
-        "pos": 3,
-        "riskcorr": 14,
+        "ferm": 3,
+        "fxfc": 8,
+        "gdp": 26,
+        "isi": 26,
+        "pos": 22,
+        "riskcorr": 17,
         "value": 13
       }
     },
     "SGD": {
-      "rank": 18.1,
+      "rank": 22.2,
       "position": -0.1,
       "factors": {
         "budget": 31,
         "carry": 32,
-        "ctot": 11,
-        "edc": 6,
-        "esi": 6,
-        "ferm": 17,
+        "ctot": 23,
+        "edc": 16,
+        "esi": 23,
+        "ferm": 18,
         "fxfc": 25,
         "gdp": 30,
-        "isi": 24,
-        "pos": 7,
-        "riskcorr": 9,
+        "isi": 13,
+        "pos": 26,
+        "riskcorr": 10,
         "value": 19
       }
     },
     "THB": {
       "rank": 13.6,
-      "position": 0.1,
+      "position": 0.0,
       "factors": {
-        "budget": 6,
-        "carry": 24,
-        "ctot": 5,
-        "edc": 13,
-        "esi": 14,
-        "ferm": 15,
+        "budget": 5,
+        "carry": 23,
+        "ctot": 28,
+        "edc": 11,
+        "esi": 6,
+        "ferm": 14,
         "fxfc": 23,
-        "gdp": 11,
-        "isi": 15,
-        "pos": 26,
+        "gdp": 4,
+        "isi": 29,
+        "pos": 9,
         "riskcorr": 8,
         "value": 3
       }
     },
     "BRL": {
-      "rank": 13.6,
+      "rank": 13.5,
       "position": 0.0
     },
     "MXN": {
-      "rank": 17.6,
+      "rank": 14.5,
       "position": 0.0
     },
     "ZAR": {
-      "rank": 12.9,
-      "position": 0.0
+      "rank": 14.2,
+      "position": -0.0
     },
     "TRY": {
-      "rank": 12.5,
-      "position": 0.1
+      "rank": 12.2,
+      "position": 0.2
     },
     "IDR": {
-      "rank": 11.7,
+      "rank": 13.8,
       "position": 0.1
     },
     "MYR": {
-      "rank": 16.4,
+      "rank": 20.4,
       "position": -0.0
     },
     "PHP": {
       "rank": 15.5,
-      "position": 0.1
+      "position": -0.0
     },
     "TWD": {
-      "rank": 16.9,
+      "rank": 17.8,
       "position": -0.0
     }
   },
   "forecasts": {
     "EURUSD": {
-      "3m": 1.16,
+      "3m": 1.17,
       "6_12m": 1.14,
       "lt": 1.13
     },
@@ -471,18 +471,18 @@
       "lt": 137
     },
     "GBPUSD": {
-      "3m": 1.33,
-      "6_12m": 1.28,
+      "3m": 1.34,
+      "6_12m": 1.27,
       "lt": 1.3
     },
     "AUDUSD": {
       "3m": 0.72,
-      "6_12m": 0.73,
+      "6_12m": 0.72,
       "lt": 0.7
     },
     "NZDUSD": {
       "3m": 0.59,
-      "6_12m": 0.59,
+      "6_12m": 0.58,
       "lt": 0.63
     },
     "USDCNY": {
@@ -491,13 +491,13 @@
       "lt": 6.9
     },
     "USDINR": {
-      "3m": 98,
+      "3m": 94,
       "6_12m": 95,
       "lt": 96.5
     },
     "USDKRW": {
-      "3m": 1480,
-      "6_12m": 1450,
+      "3m": 1450,
+      "6_12m": 1430,
       "lt": 1400
     },
     "USDSGD": {
@@ -506,214 +506,214 @@
       "lt": 1.3
     },
     "USDTHB": {
-      "3m": 33,
-      "6_12m": 33.3,
+      "3m": 32.5,
+      "6_12m": 32.8,
       "lt": 34
     }
   },
   "vol_spread": {
     "USDJPY": {
       "1M": {
-        "implied": 6.73,
-        "realised": 2.2,
-        "spread": 4.53
+        "implied": 7.64,
+        "realised": 9.69,
+        "spread": -2.04
       },
       "3M": {
-        "implied": 7.79,
-        "realised": 6.89,
-        "spread": 0.9
+        "implied": 7.75,
+        "realised": 7.82,
+        "spread": -0.08
       },
       "6M": {
-        "implied": 8.46,
-        "realised": 7.92,
-        "spread": 0.53
+        "implied": 8.17,
+        "realised": 8.43,
+        "spread": -0.27
       }
     },
     "EURUSD": {
       "1M": {
-        "implied": 5.47,
-        "realised": 4.23,
-        "spread": 1.25
+        "implied": 5.76,
+        "realised": 4.39,
+        "spread": 1.37
       },
       "3M": {
-        "implied": 5.67,
-        "realised": 5.55,
-        "spread": 0.12
+        "implied": 5.84,
+        "realised": 6.46,
+        "spread": -0.62
       },
       "6M": {
-        "implied": 5.87,
-        "realised": 5.84,
-        "spread": 0.04
+        "implied": 6.14,
+        "realised": 5.91,
+        "spread": 0.23
       }
     },
     "GBPUSD": {
       "1M": {
-        "implied": 6.25,
-        "realised": 5.85,
-        "spread": 0.4
+        "implied": 7.27,
+        "realised": 6.37,
+        "spread": 0.9
       },
       "3M": {
-        "implied": 6.52,
-        "realised": 7.13,
-        "spread": -0.61
+        "implied": 7.39,
+        "realised": 7.62,
+        "spread": -0.23
       },
       "6M": {
-        "implied": 6.91,
-        "realised": 6.73,
-        "spread": 0.19
+        "implied": 7.59,
+        "realised": 6.94,
+        "spread": 0.66
       }
     },
     "AUDUSD": {
       "1M": {
-        "implied": 8.3,
-        "realised": 8.92,
-        "spread": -0.62
+        "implied": 8.33,
+        "realised": 7.44,
+        "spread": 0.89
       },
       "3M": {
-        "implied": 8.61,
-        "realised": 9.16,
-        "spread": -0.55
+        "implied": 8.52,
+        "realised": 9.75,
+        "spread": -1.23
       },
       "6M": {
-        "implied": 9.0,
-        "realised": 8.98,
-        "spread": 0.02
+        "implied": 8.97,
+        "realised": 8.65,
+        "spread": 0.32
       }
     },
     "NZDUSD": {
       "1M": {
-        "implied": 8.71,
-        "realised": 10.55,
-        "spread": -1.83
+        "implied": 8.47,
+        "realised": 8.99,
+        "spread": -0.53
       },
       "3M": {
-        "implied": 8.92,
-        "realised": 10.37,
-        "spread": -1.46
+        "implied": 8.57,
+        "realised": 10.24,
+        "spread": -1.67
       },
       "6M": {
-        "implied": 9.2,
-        "realised": 9.46,
-        "spread": -0.26
+        "implied": 8.97,
+        "realised": 9.13,
+        "spread": -0.16
       }
     },
     "USDCNH": {
       "1M": {
-        "implied": 2.18,
-        "realised": 2.54,
-        "spread": -0.36
+        "implied": 2.9,
+        "realised": 2.41,
+        "spread": 0.49
       },
       "3M": {
-        "implied": 2.67,
-        "realised": 2.75,
-        "spread": -0.08
+        "implied": 3.1,
+        "realised": 3.54,
+        "spread": -0.44
       },
       "6M": {
-        "implied": 3.15,
+        "implied": 3.41,
         "realised": 2.89,
-        "spread": 0.26
+        "spread": 0.52
       }
     },
     "USDINR": {
       "1M": {
-        "implied": 6.07,
-        "realised": 7.41,
-        "spread": -1.34
+        "implied": 6.32,
+        "realised": 7.06,
+        "spread": -0.74
       },
       "3M": {
-        "implied": 5.91,
-        "realised": 7.21,
-        "spread": -1.3
+        "implied": 5.83,
+        "realised": 6.39,
+        "spread": -0.56
       },
       "6M": {
-        "implied": 5.75,
-        "realised": 6.25,
-        "spread": -0.5
+        "implied": 5.63,
+        "realised": 5.92,
+        "spread": -0.28
       }
     },
     "USDKRW": {
       "1M": {
-        "implied": 11.24,
-        "realised": 11.27,
-        "spread": -0.03
+        "implied": 10.32,
+        "realised": 10.88,
+        "spread": -0.56
       },
       "3M": {
-        "implied": 10.61,
-        "realised": 10.56,
-        "spread": 0.05
+        "implied": 9.8,
+        "realised": 12.0,
+        "spread": -2.2
       },
       "6M": {
-        "implied": 10.23,
-        "realised": 11.23,
-        "spread": -1.01
+        "implied": 9.59,
+        "realised": 10.43,
+        "spread": -0.83
       }
     },
     "USDSGD": {
       "1M": {
-        "implied": 3.6,
-        "realised": 3.3,
-        "spread": 0.3
+        "implied": 3.99,
+        "realised": 4.28,
+        "spread": -0.29
       },
       "3M": {
-        "implied": 3.93,
-        "realised": 4.17,
-        "spread": -0.23
+        "implied": 4.11,
+        "realised": 4.68,
+        "spread": -0.56
       },
       "6M": {
-        "implied": 4.21,
-        "realised": 4.28,
-        "spread": -0.06
+        "implied": 4.34,
+        "realised": 4.27,
+        "spread": 0.08
       }
     },
     "USDTHB": {
       "1M": {
-        "implied": 7.96,
-        "realised": 6.03,
-        "spread": 1.93
+        "implied": 9.58,
+        "realised": 8.59,
+        "spread": 0.99
       },
       "3M": {
-        "implied": 8.36,
-        "realised": 8.71,
-        "spread": -0.34
+        "implied": 9.3,
+        "realised": 10.42,
+        "spread": -1.12
       },
       "6M": {
-        "implied": 8.51,
-        "realised": 9.24,
-        "spread": -0.73
+        "implied": 9.3,
+        "realised": 9.23,
+        "spread": 0.08
       }
     },
     "EURGBP": {
       "1M": {
-        "implied": 3.19,
-        "realised": 3.55,
-        "spread": -0.36
+        "implied": 4.65,
+        "realised": 3.41,
+        "spread": 1.24
       },
       "3M": {
-        "implied": 3.73,
-        "realised": 3.44,
-        "spread": 0.29
+        "implied": 4.81,
+        "realised": 3.99,
+        "spread": 0.82
       },
       "6M": {
-        "implied": 4.16,
-        "realised": 3.76,
-        "spread": 0.4
+        "implied": 4.97,
+        "realised": 3.84,
+        "spread": 1.14
       }
     },
     "AUDNZD": {
       "1M": {
-        "implied": 5.05,
-        "realised": 7.17,
-        "spread": -2.12
+        "implied": 4.9,
+        "realised": 3.94,
+        "spread": 0.96
       },
       "3M": {
-        "implied": 5.1,
-        "realised": 5.33,
-        "spread": -0.23
+        "implied": 4.84,
+        "realised": 4.72,
+        "spread": 0.11
       },
       "6M": {
-        "implied": 5.11,
-        "realised": 4.96,
-        "spread": 0.15
+        "implied": 4.97,
+        "realised": 4.34,
+        "spread": 0.63
       }
     }
   }
