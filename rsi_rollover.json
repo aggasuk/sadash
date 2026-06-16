@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-15 18:21",
+  "generated": "2026-06-16 08:55",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,58 +10,30 @@
   },
   "bearish": [
     {
-      "ticker": "KWSWNI5 BGN Curncy",
-      "category": "rates",
-      "last": 3.904,
-      "rsi_now": 46.5,
-      "rsi_yest": 51.6,
-      "rsi_peak": 72.4,
-      "peak_bars_ago": 5,
-      "drop": 25.8,
-      "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 25,
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "USDKRW Curncy",
-      "category": "fx",
-      "last": 1515.05,
-      "rsi_now": 52.0,
-      "rsi_yest": 52.9,
-      "rsi_peak": 71.3,
-      "peak_bars_ago": 6,
-      "drop": 19.3,
-      "divergence": false,
-      "st_label": "NEUTRAL",
-      "st_score": 50,
-      "strength": "MODERATE"
-    },
-    {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 69317.5,
-      "rsi_now": 66.6,
-      "rsi_yest": 58.2,
+      "last": 69296.61,
+      "rsi_now": 66.5,
+      "rsi_yest": 66.6,
       "rsi_peak": 75.1,
-      "peak_bars_ago": 8,
-      "drop": 8.5,
+      "peak_bars_ago": 9,
+      "drop": 8.6,
       "divergence": true,
-      "st_label": "BULLISH",
-      "st_score": 60,
-      "strength": "WEAK"
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "STRONG"
     }
   ],
   "bullish": [
     {
       "ticker": "XAU Curncy",
       "category": "equity_commod",
-      "last": 4338.7,
-      "rsi_now": 44.3,
-      "rsi_yest": 36.1,
+      "last": 4314.09,
+      "rsi_now": 42.8,
+      "rsi_yest": 42.6,
       "rsi_trough": 24.2,
-      "trough_bars_ago": 3,
-      "rise": 20.1,
+      "trough_bars_ago": 4,
+      "rise": 18.6,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
