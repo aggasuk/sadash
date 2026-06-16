@@ -948,6 +948,46 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── USDZAR sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-usdzar" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="usdzar-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDZAR</b> — USDZAR up = rand weaker. Anchored to broad USD + the commodity complex:
+        <b>Gold</b>, <b>DXY</b>, <b>Copper</b>, and <b>Combined (DXY + Gold + Copper)</b>.
+        Rate differentials (SA-US carry / real rates) are <b>deliberately excluded</b>: they are the
+        highest-R&sup2; series but carry the <b>wrong sign</b> — higher SA-vs-US yields coincide with a
+        <i>weaker</i> rand because in ZAR rate differentials are endogenous to risk (sell-off → yields
+        spike on fiscal/risk premium + SARB defence). Best read on a <b>2-3y</b> window; levels links
+        decay at 5y. Note: in the Combined, the gold coefficient flips sign at the 2y/5y windows
+        (gold-copper collinearity) → the sign-guard auto-labels those &ldquo;FAIR (sign?)&rdquo;.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Gold (XAU)</div>
+        <div class="fvchart" id="usdzar-img-xau"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Dollar Index (DXY)</div>
+        <div class="fvchart" id="usdzar-img-dxy"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (LME)</div>
+        <div class="fvchart" id="usdzar-img-copper"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (DXY + Gold + Copper)</div>
+        <div class="fvchart" id="usdzar-img-combined"></div>
+      </div>
+    </div>
+
     <!-- ── AUDUSD sub-page ── -->
     <div class="fv-subpage" id="fv-sub-audusd" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -2862,6 +2902,7 @@ window.FV_NAV = (function() {
     fetch('jgb5s30s_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eurgbp_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdthb_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdzar_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audnzd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -2898,6 +2939,7 @@ window.FVDETAIL = (function() {
     jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
     eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-risk", "eurgbp-img-combined"] },
     usdthb:     { tabsId: "usdthb-period-tabs", containers: ["usdthb-img-xau", "usdthb-img-dxy", "usdthb-img-rates", "usdthb-img-combined"] },
+    usdzar:     { tabsId: "usdzar-period-tabs", containers: ["usdzar-img-xau", "usdzar-img-dxy", "usdzar-img-copper", "usdzar-img-combined"] },
     audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-vix", "audusd-img-copper", "audusd-img-ironore", "audusd-img-combined"] },
     audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates", "audnzd-img-ironore", "audnzd-img-combined"] },
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
