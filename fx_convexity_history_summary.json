@@ -1,0 +1,38 @@
+[
+  {
+    "trade":"USDZAR 6M call",
+    "wing_now":1.765,
+    "wing_pctile":32.2660098522,
+    "wing_min":1.3825,
+    "wing_max":3.31,
+    "prem_now":0.1118157147,
+    "prem_pctile":53.3251231527,
+    "fund_now":2.7567344629,
+    "fund_pctile":22.0443349754,
+    "n":812
+  },
+  {
+    "trade":"USDMXN 6M call",
+    "wing_now":2.0275,
+    "wing_pctile":19.9507389163,
+    "wing_min":1.71375,
+    "wing_max":3.21125,
+    "prem_now":0.1419614689,
+    "prem_pctile":29.6798029557,
+    "fund_now":2.6682012115,
+    "fund_pctile":38.6699507389,
+    "n":812
+  },
+  {
+    "trade":"AUDUSD 6M put",
+    "wing_now":1.14875,
+    "wing_pctile":47.2906403941,
+    "wing_min":0.605,
+    "wing_max":2.445,
+    "prem_now":0.0675631152,
+    "prem_pctile":65.1477832512,
+    "fund_now":2.8084733603,
+    "fund_pctile":12.9310344828,
+    "n":812
+  }
+]
