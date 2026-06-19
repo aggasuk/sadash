@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-18 08:54",
+  "generated": "2026-06-19 09:03",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,26 +10,54 @@
   },
   "bearish": [
     {
-      "ticker": "KOSPI Index",
-      "category": "equity_commod",
-      "last": 8936.3,
-      "rsi_now": 64.9,
-      "rsi_yest": 64.1,
-      "rsi_peak": 71.7,
+      "ticker": "USDKRW Curncy",
+      "category": "fx",
+      "last": 1539.0,
+      "rsi_now": 59.7,
+      "rsi_yest": 59.8,
+      "rsi_peak": 71.3,
       "peak_bars_ago": 10,
-      "drop": 6.8,
-      "divergence": true,
+      "drop": 11.6,
+      "divergence": false,
+      "st_label": "BULLISH",
+      "st_score": 60,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "TPNBNK Index",
+      "category": "equity_commod",
+      "last": 689.39,
+      "rsi_now": 62.0,
+      "rsi_yest": 72.0,
+      "rsi_peak": 72.0,
+      "peak_bars_ago": 1,
+      "drop": 9.9,
+      "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "TWSE Index",
+      "category": "equity_commod",
+      "last": 46465.2,
+      "rsi_now": 65.5,
+      "rsi_yest": 63.3,
+      "rsi_peak": 71.1,
+      "peak_bars_ago": 10,
+      "drop": 5.6,
+      "divergence": true,
+      "st_label": "BULLISH",
+      "st_score": 60,
       "strength": "WEAK"
     },
     {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 71119.63,
-      "rsi_now": 70.5,
-      "rsi_yest": 67.9,
-      "rsi_peak": 70.5,
+      "last": 71489.21,
+      "rsi_now": 71.2,
+      "rsi_yest": 70.3,
+      "rsi_peak": 71.2,
       "peak_bars_ago": 0,
       "drop": 0.0,
       "divergence": true,
@@ -38,20 +66,5 @@
       "strength": "WEAK"
     }
   ],
-  "bullish": [
-    {
-      "ticker": "XAU Curncy",
-      "category": "equity_commod",
-      "last": 4313.42,
-      "rsi_now": 44.1,
-      "rsi_yest": 40.2,
-      "rsi_trough": 24.2,
-      "trough_bars_ago": 6,
-      "rise": 19.9,
-      "divergence": false,
-      "st_label": "BEARISH",
-      "st_score": 40,
-      "strength": "MODERATE"
-    }
-  ]
+  "bullish": []
 }
