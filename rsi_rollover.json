@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-19 09:03",
+  "generated": "2026-06-19 17:54",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "USDKRW Curncy",
       "category": "fx",
-      "last": 1539.0,
-      "rsi_now": 59.7,
+      "last": 1528.65,
+      "rsi_now": 55.5,
       "rsi_yest": 59.8,
       "rsi_peak": 71.3,
       "peak_bars_ago": 10,
-      "drop": 11.6,
+      "drop": 15.8,
       "divergence": false,
       "st_label": "BULLISH",
       "st_score": 60,
@@ -26,12 +26,12 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 689.39,
-      "rsi_now": 62.0,
+      "last": 686.97,
+      "rsi_now": 61.0,
       "rsi_yest": 72.0,
       "rsi_peak": 72.0,
       "peak_bars_ago": 1,
-      "drop": 9.9,
+      "drop": 11.0,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -52,12 +52,26 @@
       "strength": "WEAK"
     },
     {
+      "ticker": "DXY Curncy",
+      "category": "fx",
+      "last": 100.755,
+      "rsi_now": 70.2,
+      "rsi_yest": 72.4,
+      "rsi_peak": 72.4,
+      "peak_bars_ago": 1,
+      "drop": 2.2,
+      "divergence": true,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "WEAK"
+    },
+    {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 71489.21,
-      "rsi_now": 71.2,
+      "last": 71250.06,
+      "rsi_now": 70.8,
       "rsi_yest": 70.3,
-      "rsi_peak": 71.2,
+      "rsi_peak": 70.8,
       "peak_bars_ago": 0,
       "drop": 0.0,
       "divergence": true,
@@ -66,5 +80,20 @@
       "strength": "WEAK"
     }
   ],
-  "bullish": []
+  "bullish": [
+    {
+      "ticker": "IRSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 6.345,
+      "rsi_now": 36.0,
+      "rsi_yest": 31.9,
+      "rsi_trough": 29.5,
+      "trough_bars_ago": 2,
+      "rise": 6.5,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "MODERATE"
+    }
+  ]
 }

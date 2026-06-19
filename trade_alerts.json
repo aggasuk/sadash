@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-19T09:03:02",
+  "last_updated": "2026-06-19T17:54:02",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -86,14 +86,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 662.48,
-        "sma_long": 546.44,
-        "last": 691.0
+        "sma_short": 662.28,
+        "sma_long": 546.42,
+        "last": 686.97
       },
-      "current_bp": 21.24,
+      "current_bp": 21.2,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 21.24,
+      "distance_bp": 21.2,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
