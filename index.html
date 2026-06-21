@@ -1954,38 +1954,47 @@ function renderRsiRollover(d) {
              '[DIV] = price/RSI divergence over ' + p.divergence_window + ' bars confirms.' +
              '<br>Generated: ' + (d.generated || '') + '</div>';
 
-  // ── Context: forward returns after past signal onsets ──
+  // ── Context: for the assets CURRENTLY flagged, what each one historically
+  // does after its own rollover signal (per-ticker, not a pooled average) ──
   const st = d.stats;
-  if (st && st._horizons) {
-    const labels = {
-      bearish_all: 'Bearish rollover (all)',
-      bearish_div: 'Bearish + divergence',
-      bullish_all: 'Bullish rollover (all)',
-      bullish_div: 'Bullish + divergence'
-    };
-    html += '<h3 style="font-size:0.95rem;font-weight:700;margin:6px 0 6px;">What usually happens next</h3>';
-    html += '<div style="color:var(--text-dim);font-size:0.74rem;margin-bottom:8px;">' +
-            'Forward price returns after every past <i>onset</i> of the signal, pooled across all tickers ' +
-            '(~14 months of daily history — small samples, read as context not edge). ' +
-            'Hit rate = % of cases that moved in the signal&rsquo;s direction (down for bearish, up for bullish).</div>';
-    html += '<table class="vol-table"><thead><tr><th>Signal</th><th>Horizon</th><th>N</th>' +
-            '<th>Mean Fwd</th><th>Median</th><th>Hit Rate</th></tr></thead><tbody>';
-    Object.keys(labels).forEach(key => {
-      const grp = st[key];
-      if (!grp) return;
-      st._horizons.forEach(h => {
-        const s = grp[h] || {};
-        const pct = v => v != null ? (v > 0 ? '+' : '') + v.toFixed(2) + '%' : '--';
-        const meanCol = s.mean != null ? (s.mean > 0 ? 'var(--green)' : s.mean < 0 ? 'var(--red)' : 'inherit') : 'inherit';
-        const hitCol = (s.hit_rate != null && s.hit_rate >= 55) ? 'var(--green)' :
-                       (s.hit_rate != null && s.hit_rate <= 45) ? 'var(--red)' : 'inherit';
-        html += '<tr><td>' + labels[key] + '</td><td>' + h + 'd</td><td>' + (s.n != null ? s.n : '--') + '</td>' +
-                '<td style="color:' + meanCol + ';">' + pct(s.mean) + '</td>' +
-                '<td>' + pct(s.median) + '</td>' +
-                '<td style="color:' + hitCol + ';">' + (s.hit_rate != null ? s.hit_rate.toFixed(0) + '%' : '--') + '</td></tr>';
+  if (st && st.by_ticker) {
+    const H = st._horizons || ['5', '10', '20'];
+    const flagged = []
+      .concat((d.bearish || []).map(b => ({ ticker: b.ticker, dir: 'bearish' })))
+      .concat((d.bullish || []).map(b => ({ ticker: b.ticker, dir: 'bullish' })));
+    const rows = flagged.map(f => {
+      const s = (st.by_ticker[f.ticker] || {})[f.dir];
+      return s ? { f: f, s: s } : null;
+    }).filter(Boolean);
+    if (rows.length) {
+      html += '<h3 style="font-size:0.95rem;font-weight:700;margin:6px 0 6px;">What usually happens next</h3>';
+      html += '<div style="color:var(--text-dim);font-size:0.74rem;margin-bottom:8px;">' +
+              'For each <b>currently-flagged</b> asset: its own forward price return after past <i>onsets</i> of this ' +
+              'signal (that asset only, ~14 months daily — small N, read as context). ' +
+              'Each cell = mean&nbsp;% <span style="opacity:0.7;">(hit&nbsp;%)</span>; hit = % that moved in the signal&rsquo;s ' +
+              'direction (down for bearish, up for bullish).</div>';
+      html += '<table class="vol-table"><thead><tr><th>Asset</th><th>Signal</th><th>Hist N</th>' +
+              H.map(h => '<th>' + h + 'd Fwd</th>').join('') + '</tr></thead><tbody>';
+      rows.forEach(({ f, s }) => {
+        const n0 = (s[H[0]] || {}).n;
+        const dirBadge = f.dir === 'bearish'
+          ? '<span style="color:var(--red);font-weight:600;">Bearish</span>'
+          : '<span style="color:var(--green);font-weight:600;">Bullish</span>';
+        html += '<tr><td style="font-weight:700;">' + f.ticker + '</td><td>' + dirBadge + '</td>' +
+                '<td>' + (n0 != null ? n0 : '--') + '</td>';
+        H.forEach(h => {
+          const x = s[h] || {};
+          if (x.mean == null) { html += '<td>--</td>'; return; }
+          const mc = x.mean > 0 ? 'var(--green)' : x.mean < 0 ? 'var(--red)' : 'inherit';
+          const meanTxt = (x.mean > 0 ? '+' : '') + x.mean.toFixed(2) + '%';
+          const hit = x.hit_rate != null ? x.hit_rate.toFixed(0) + '%' : '--';
+          html += '<td><span style="color:' + mc + ';">' + meanTxt + '</span> ' +
+                  '<span style="color:var(--text-dim);font-size:0.85em;">(' + hit + ')</span></td>';
+        });
+        html += '</tr>';
       });
-    });
-    html += '</tbody></table>';
+      html += '</tbody></table>';
+    }
   }
 
   // Bearish table
