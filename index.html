@@ -252,12 +252,17 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
   /* Vol table specifics */
   .vol-table { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; border-collapse: collapse; margin-bottom: 24px; }
-  .vol-table th { padding: 10px 12px; font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; text-align: right; border-bottom: 2px solid var(--border); background: var(--surface2); }
+  .vol-table th { padding: 10px 12px; font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; text-align: center; border-bottom: 2px solid var(--border); background: var(--surface2); }
   .vol-table th:first-child { text-align: left; }
-  .vol-table td { padding: 10px 12px; font-size: 0.82rem; text-align: right; border-bottom: 1px solid var(--border); }
+  .vol-table td { padding: 10px 12px; font-size: 0.82rem; text-align: center; border-bottom: 1px solid var(--border); }
   .vol-table td:first-child { text-align: left; color: var(--text); font-weight: 600; }
   .vol-table tr:last-child td { border-bottom: none; }
   .vol-table tr:hover { background: var(--surface2); }
+  /* Sortable tables: click a header to sort; one delegated handler in JS. */
+  table.sortable thead th, table.vol-table:not(.no-sort) thead th { cursor: pointer; user-select: none; -webkit-user-select: none; }
+  table.sortable thead th:hover, table.vol-table:not(.no-sort) thead th:hover { color: var(--text); }
+  .sort-ind { font-size: 0.7em; opacity: 0.5; margin-left: 3px; }
+  thead th.sort-active .sort-ind { opacity: 1; color: var(--accent, #6ea8fe); }
 
   /* Z-score cell coloring */
   .z-extreme-high { color: var(--red); font-weight: 700; }
@@ -328,7 +333,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <button class="nav-btn" data-page="cta">CTA Rates</button>
     <button class="nav-btn" data-page="studies">Studies</button>
     <button class="nav-btn" data-page="cyclefw">Cycle FW</button>
-    <button class="nav-btn" data-page="fiscal">Fiscal Monitor</button>
+    <button class="nav-btn" data-page="fiscal" style="display:none;">Fiscal Monitor</button>
     <button class="nav-btn" data-page="book" style="display:none;">Book</button>
     <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" style="margin-left:auto;align-self:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:0.95rem;line-height:1;padding:6px 12px;font-family:inherit;">☾</button>
   </div>
@@ -424,8 +429,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <!-- FX sub-page -->
     <div class="vol-subpage" id="vol-sub-fx">
       <div class="updated" id="fxvol-updated" style="margin-bottom:14px;"></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <label for="fxvol-tenor" style="font-size:0.8rem;color:var(--text-dim);">Tenor</label>
+        <select id="fxvol-tenor" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.82rem;"></select>
+      </div>
       <div id="fxvol-tables"></div>
-      <div id="fxvol-spread-tables"></div>
     </div>
 
     <!-- Equity sub-page -->
@@ -1946,36 +1954,70 @@ function renderRsiRollover(d) {
              '[DIV] = price/RSI divergence over ' + p.divergence_window + ' bars confirms.' +
              '<br>Generated: ' + (d.generated || '') + '</div>';
 
+  // ── Context: forward returns after past signal onsets ──
+  const st = d.stats;
+  if (st && st._horizons) {
+    const labels = {
+      bearish_all: 'Bearish rollover (all)',
+      bearish_div: 'Bearish + divergence',
+      bullish_all: 'Bullish rollover (all)',
+      bullish_div: 'Bullish + divergence'
+    };
+    html += '<h3 style="font-size:0.95rem;font-weight:700;margin:6px 0 6px;">What usually happens next</h3>';
+    html += '<div style="color:var(--text-dim);font-size:0.74rem;margin-bottom:8px;">' +
+            'Forward price returns after every past <i>onset</i> of the signal, pooled across all tickers ' +
+            '(~14 months of daily history — small samples, read as context not edge). ' +
+            'Hit rate = % of cases that moved in the signal&rsquo;s direction (down for bearish, up for bullish).</div>';
+    html += '<table class="vol-table"><thead><tr><th>Signal</th><th>Horizon</th><th>N</th>' +
+            '<th>Mean Fwd</th><th>Median</th><th>Hit Rate</th></tr></thead><tbody>';
+    Object.keys(labels).forEach(key => {
+      const grp = st[key];
+      if (!grp) return;
+      st._horizons.forEach(h => {
+        const s = grp[h] || {};
+        const pct = v => v != null ? (v > 0 ? '+' : '') + v.toFixed(2) + '%' : '--';
+        const meanCol = s.mean != null ? (s.mean > 0 ? 'var(--green)' : s.mean < 0 ? 'var(--red)' : 'inherit') : 'inherit';
+        const hitCol = (s.hit_rate != null && s.hit_rate >= 55) ? 'var(--green)' :
+                       (s.hit_rate != null && s.hit_rate <= 45) ? 'var(--red)' : 'inherit';
+        html += '<tr><td>' + labels[key] + '</td><td>' + h + 'd</td><td>' + (s.n != null ? s.n : '--') + '</td>' +
+                '<td style="color:' + meanCol + ';">' + pct(s.mean) + '</td>' +
+                '<td>' + pct(s.median) + '</td>' +
+                '<td style="color:' + hitCol + ';">' + (s.hit_rate != null ? s.hit_rate.toFixed(0) + '%' : '--') + '</td></tr>';
+      });
+    });
+    html += '</tbody></table>';
+  }
+
   // Bearish table
   html += '<h3 style="font-size:0.95rem;font-weight:700;margin:18px 0 8px;color:var(--red);">Bearish Rollover (Overbought → turning lower)</h3>';
   if (!d.bearish || d.bearish.length === 0) {
     html += '<div style="color:var(--text-dim);padding:8px 0;font-size:0.82rem;">No bearish rollovers flagged.</div>';
   } else {
-    html += '<table style="width:100%;border-collapse:collapse;font-size:0.78rem;">';
-    html += '<thead><tr style="background:var(--surface2);text-align:left;">' +
-            '<th style="padding:8px;">Ticker</th>' +
-            '<th style="padding:8px;">Cat</th>' +
-            '<th style="padding:8px;text-align:right;">Last</th>' +
-            '<th style="padding:8px;text-align:right;">RSI Peak</th>' +
-            '<th style="padding:8px;text-align:right;">RSI Now</th>' +
-            '<th style="padding:8px;text-align:right;">Drop</th>' +
-            '<th style="padding:8px;text-align:right;">Days Ago</th>' +
-            '<th style="padding:8px;">ST Trend</th>' +
-            '<th style="padding:8px;">Strength</th>' +
-            '<th style="padding:8px;">Div</th>' +
+    html += '<table class="vol-table">';
+    html += '<thead><tr>' +
+            '<th>Ticker</th>' +
+            '<th>Cat</th>' +
+            '<th>Last</th>' +
+            '<th>RSI Peak</th>' +
+            '<th>RSI Now</th>' +
+            '<th>Drop</th>' +
+            '<th>Days Ago</th>' +
+            '<th>ST Trend</th>' +
+            '<th>Strength</th>' +
+            '<th>Div</th>' +
             '</tr></thead><tbody>';
     d.bearish.forEach(b => {
-      html += '<tr style="border-top:1px solid var(--border);cursor:pointer;" onclick="switchToDetail(\'' + b.ticker + '\')">';
-      html += '<td style="padding:8px;font-weight:700;">' + b.ticker + '</td>';
-      html += '<td style="padding:8px;color:var(--text-dim);">' + (b.category || '') + '</td>';
-      html += '<td style="padding:8px;text-align:right;">' + (b.last != null ? b.last.toFixed(b.last > 1000 ? 2 : 4) : '-') + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--red);">' + b.rsi_peak.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;">' + b.rsi_now.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--red);">-' + b.drop.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--text-dim);">' + b.peak_bars_ago + '</td>';
-      html += '<td style="padding:8px;color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
-      html += '<td style="padding:8px;">' + strengthBadge(b.strength) + '</td>';
-      html += '<td style="padding:8px;">' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
+      html += '<tr style="cursor:pointer;" onclick="switchToDetail(\'' + b.ticker + '\')">';
+      html += '<td style="font-weight:700;">' + b.ticker + '</td>';
+      html += '<td style="color:var(--text-dim);">' + (b.category || '') + '</td>';
+      html += '<td>' + (b.last != null ? b.last.toFixed(b.last > 1000 ? 2 : 4) : '-') + '</td>';
+      html += '<td style="color:var(--red);">' + b.rsi_peak.toFixed(1) + '</td>';
+      html += '<td>' + b.rsi_now.toFixed(1) + '</td>';
+      html += '<td style="color:var(--red);">-' + b.drop.toFixed(1) + '</td>';
+      html += '<td style="color:var(--text-dim);">' + b.peak_bars_ago + '</td>';
+      html += '<td style="color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
+      html += '<td>' + strengthBadge(b.strength) + '</td>';
+      html += '<td>' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
       html += '</tr>';
     });
     html += '</tbody></table>';
@@ -1986,31 +2028,31 @@ function renderRsiRollover(d) {
   if (!d.bullish || d.bullish.length === 0) {
     html += '<div style="color:var(--text-dim);padding:8px 0;font-size:0.82rem;">No bullish rollovers flagged.</div>';
   } else {
-    html += '<table style="width:100%;border-collapse:collapse;font-size:0.78rem;">';
-    html += '<thead><tr style="background:var(--surface2);text-align:left;">' +
-            '<th style="padding:8px;">Ticker</th>' +
-            '<th style="padding:8px;">Cat</th>' +
-            '<th style="padding:8px;text-align:right;">Last</th>' +
-            '<th style="padding:8px;text-align:right;">RSI Trough</th>' +
-            '<th style="padding:8px;text-align:right;">RSI Now</th>' +
-            '<th style="padding:8px;text-align:right;">Rise</th>' +
-            '<th style="padding:8px;text-align:right;">Days Ago</th>' +
-            '<th style="padding:8px;">ST Trend</th>' +
-            '<th style="padding:8px;">Strength</th>' +
-            '<th style="padding:8px;">Div</th>' +
+    html += '<table class="vol-table">';
+    html += '<thead><tr>' +
+            '<th>Ticker</th>' +
+            '<th>Cat</th>' +
+            '<th>Last</th>' +
+            '<th>RSI Trough</th>' +
+            '<th>RSI Now</th>' +
+            '<th>Rise</th>' +
+            '<th>Days Ago</th>' +
+            '<th>ST Trend</th>' +
+            '<th>Strength</th>' +
+            '<th>Div</th>' +
             '</tr></thead><tbody>';
     d.bullish.forEach(b => {
-      html += '<tr style="border-top:1px solid var(--border);cursor:pointer;" onclick="switchToDetail(\'' + b.ticker + '\')">';
-      html += '<td style="padding:8px;font-weight:700;">' + b.ticker + '</td>';
-      html += '<td style="padding:8px;color:var(--text-dim);">' + (b.category || '') + '</td>';
-      html += '<td style="padding:8px;text-align:right;">' + (b.last != null ? b.last.toFixed(b.last > 1000 ? 2 : 4) : '-') + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--green);">' + b.rsi_trough.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;">' + b.rsi_now.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--green);">+' + b.rise.toFixed(1) + '</td>';
-      html += '<td style="padding:8px;text-align:right;color:var(--text-dim);">' + b.trough_bars_ago + '</td>';
-      html += '<td style="padding:8px;color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
-      html += '<td style="padding:8px;">' + strengthBadge(b.strength) + '</td>';
-      html += '<td style="padding:8px;">' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
+      html += '<tr style="cursor:pointer;" onclick="switchToDetail(\'' + b.ticker + '\')">';
+      html += '<td style="font-weight:700;">' + b.ticker + '</td>';
+      html += '<td style="color:var(--text-dim);">' + (b.category || '') + '</td>';
+      html += '<td>' + (b.last != null ? b.last.toFixed(b.last > 1000 ? 2 : 4) : '-') + '</td>';
+      html += '<td style="color:var(--green);">' + b.rsi_trough.toFixed(1) + '</td>';
+      html += '<td>' + b.rsi_now.toFixed(1) + '</td>';
+      html += '<td style="color:var(--green);">+' + b.rise.toFixed(1) + '</td>';
+      html += '<td style="color:var(--text-dim);">' + b.trough_bars_ago + '</td>';
+      html += '<td style="color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
+      html += '<td>' + strengthBadge(b.strength) + '</td>';
+      html += '<td>' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
       html += '</tr>';
     });
     html += '</tbody></table>';
@@ -2325,79 +2367,65 @@ function zDisplay(z) {
 }
 function fmtVal(v, dp) { return v >= 0 ? '+' + v.toFixed(dp) : v.toFixed(dp); }
 
-function renderFxvol(data) {
-  document.getElementById('fxvol-updated').textContent = 'Last updated: ' + data._updated;
-  const tenors = ['1M', '3M', '6M'];
-
-  // Tenor tables
-  let html = '';
-  tenors.forEach(tenor => {
-    const rows = data.tenors[tenor] || [];
-    html += `
-      <div class="ind-section">
-        <h3>${tenor} ATM Vol &amp; 25d Risk Reversals &mdash; Z-scores (3M lookback)</h3>
-        <table class="vol-table">
-          <thead>
+var FXVOL_DATA = null;
+function fxvolTenorTable(tenor) {
+  const rows = (FXVOL_DATA && FXVOL_DATA.tenors[tenor]) || [];
+  const cell = (v, dp) => v != null ? fmtVal(v, dp) : '--';
+  const zcell = z => z != null
+    ? `<td class="${zClass(z)}">${zDisplay(z)}</td>`
+    : '<td>--</td>';
+  return `
+    <div class="ind-section">
+      <h3>${tenor} ATM Vol &amp; 25d RR &amp; 10d BF &mdash; Z-scores (3M lookback)</h3>
+      <table class="vol-table sortable">
+        <thead>
+          <tr>
+            <th>Pair</th>
+            <th>ATM Vol</th>
+            <th>25d RR</th>
+            <th>RR/ATM</th>
+            <th>10d BF</th>
+            <th>ATM z</th>
+            <th>RR z</th>
+            <th>Ratio z</th>
+            <th>BF z</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(r => `
             <tr>
-              <th>Pair</th>
-              <th>ATM Vol</th>
-              <th>25d RR</th>
-              <th>RR/ATM</th>
-              <th>ATM z</th>
-              <th>RR z</th>
-              <th>Ratio z</th>
+              <td>${r.pair}</td>
+              <td>${r.atm_vol.toFixed(3)}</td>
+              <td>${cell(r.rr_25d, 3)}</td>
+              <td>${cell(r.rr_atm_ratio, 4)}</td>
+              <td>${cell(r.bf_10d, 3)}</td>
+              <td class="${zClass(r.atm_z)}">${zDisplay(r.atm_z)}</td>
+              ${zcell(r.rr_z)}
+              ${zcell(r.ratio_z)}
+              ${zcell(r.bf_z)}
             </tr>
-          </thead>
-          <tbody>
-            ${rows.map(r => `
-              <tr>
-                <td>${r.pair}</td>
-                <td>${r.atm_vol.toFixed(3)}</td>
-                <td>${fmtVal(r.rr_25d, 3)}</td>
-                <td>${fmtVal(r.rr_atm_ratio, 4)}</td>
-                <td class="${zClass(r.atm_z)}">${zDisplay(r.atm_z)}</td>
-                <td class="${zClass(r.rr_z)}">${zDisplay(r.rr_z)}</td>
-                <td class="${zClass(r.ratio_z)}">${zDisplay(r.ratio_z)}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      </div>
-    `;
-  });
-  document.getElementById('fxvol-tables').innerHTML = html;
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderFxvol(data) {
+  FXVOL_DATA = data;
+  document.getElementById('fxvol-updated').textContent = 'Last updated: ' + data._updated;
+  const order = ['1M', '3M', '6M', '12M'];
+  const tenors = order.filter(t => data.tenors && data.tenors[t]);
+  const sel = document.getElementById('fxvol-tenor');
+  sel.innerHTML = tenors.map(t => `<option value="${t}">${t}</option>`).join('');
+  const def = tenors.includes('3M') ? '3M' : tenors[0];
+  sel.value = def;
+  const draw = () => { document.getElementById('fxvol-tables').innerHTML = fxvolTenorTable(sel.value); };
+  sel.onchange = draw;
+  draw();
 }
 
 fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
-
-/* ========== FX VOL: Implied vs Realised (from Citi) ========== */
-fetch('citi.json').then(r => r.json()).then(function(data) {
-  const vs = data.vol_spread || {};
-  const vsTenors = ['1M', '3M', '6M'];
-  let vsHtml = '';
-  vsTenors.forEach(tenor => {
-    const rows = Object.entries(vs);
-    vsHtml += `<div class="ind-section"><h3>${tenor} ATM: Implied vs Realised <span style="font-weight:normal;font-size:0.7rem;color:var(--text-dim);">(Citi Velocity)</span></h3>`;
-    vsHtml += '<table class="vol-table"><thead><tr><th>Pair</th><th>Implied</th><th>Realised</th><th>Spread (I-R)</th><th>Signal</th></tr></thead><tbody>';
-    rows.forEach(function([pair, tenors]) {
-      const d = tenors[tenor] || {};
-      const impl = d.implied != null ? d.implied.toFixed(2) : '--';
-      const real = d.realised != null ? d.realised.toFixed(2) : '--';
-      const spread = d.spread != null ? (d.spread >= 0 ? '+' : '') + d.spread.toFixed(2) : '--';
-      let signal = '--', sigCls = 'neutral';
-      if (d.spread != null) {
-        if (d.spread > 2) { signal = 'IMPL RICH'; sigCls = 'bear'; }
-        else if (d.spread < -2) { signal = 'IMPL CHEAP'; sigCls = 'bull'; }
-        else { signal = 'FAIR'; }
-      }
-      let spreadCls = '';
-      if (d.spread != null && Math.abs(d.spread) > 3) spreadCls = d.spread > 0 ? 'z-high' : 'z-extreme';
-      vsHtml += `<tr><td style="font-weight:700;">${pair}</td><td>${impl}</td><td>${real}</td><td class="${spreadCls}">${spread}</td><td><span class="badge ${sigCls}">${signal}</span></td></tr>`;
-    });
-    vsHtml += '</tbody></table></div>';
-  });
-  document.getElementById('fxvol-spread-tables').innerHTML = vsHtml;
-}).catch(() => {});
 
 /* ========== CITI SIGNALS ========== */
 (function() {
@@ -2702,17 +2730,31 @@ window.FV_NAV = (function() {
     return a.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 
+  // Standardize the "Model" label to a bare constituent list (no "Combined (...)"
+  // wrapper). Two source patterns exist across the FV summary JSONs:
+  //   A) last model named "Combined (XAU + DXY)" -> use the parenthetical (the
+  //      curated subset actually fed into the combined fit).
+  //   B) last model named literally "Combined" with its components preceding ->
+  //      join the component names (dropping their own descriptor parens).
+  function fvModelLabel(models) {
+    if (!models || !models.length) return '';
+    var m = models[models.length - 1];
+    var name = (m.model || '').trim();
+    var paren = name.match(/^Combined\s*\((.+)\)$/i);   // greedy: handles log(SPX)
+    if (paren) return paren[1].trim();
+    if (/^Combined$/i.test(name) && models.length > 1) {
+      return models.slice(0, -1).map(function(u) {
+        return (u.model || '').replace(/ *\(.*?\) */g, '').trim();
+      }).join(' + ');
+    }
+    return name;
+  }
+
   function buildRow(d) {
     if (!d || !d.periods || !d.periods[summaryPeriod]) return '';
     var models = d.periods[summaryPeriod];
     var m = models[models.length - 1];
-    var modelName = m.model;
-    if (modelName === 'Combined' && models.length > 1) {
-      var inputs = models.slice(0, -1).map(function(u) {
-        return u.model.replace(/ *\(.*?\) */g, '').trim();
-      });
-      modelName = inputs.join(' + ');
-    }
+    var modelName = fvModelLabel(models);
     var r2 = m.r2 !== undefined ? m.r2 : m.r_squared;
     var fv = m.fv !== undefined ? m.fv : m.fair_value_bps;
     var spot = m.spot !== undefined ? m.spot : m.actual_bps;
@@ -2750,6 +2792,14 @@ window.FV_NAV = (function() {
     return (z === undefined || z === null || isNaN(z)) ? null : Number(z);
   }
 
+  function getR2(d, period) {
+    if (!d || !d.periods || !d.periods[period]) return null;
+    var models = d.periods[period];
+    var m = models[models.length - 1];
+    var r2 = m.r2 !== undefined ? m.r2 : m.r_squared;
+    return (r2 === undefined || r2 === null || isNaN(r2)) ? null : Number(r2);
+  }
+
   // ── Heatmap: asset (rows) x window (cols), combined-model residual z-score ──
   var HM_PERIODS = ['6m', '1y', '2y', '3y', '5y'];
   function hmCell(z) {
@@ -2765,15 +2815,25 @@ window.FV_NAV = (function() {
     if (!items.length) { el.innerHTML = ''; return; }
     var h = '<div class="chart-wrap" style="padding:12px;margin-bottom:24px;">' +
       '<div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">' +
-      'Residual Z-score heatmap — all windows (green = cheap, red = rich · click to open)</div>' +
-      '<table class="vol-table"><thead><tr><th style="text-align:left;">Asset</th>' +
+      'Residual Z-score heatmap — all windows (green = cheap, red = rich · ' +
+      '<span style="outline:2px solid var(--text);outline-offset:-2px;padding:0 4px;">ring</span> = highest R² · click to open)</div>' +
+      '<table class="vol-table no-sort"><thead><tr><th style="text-align:left;">Asset</th>' +
       HM_PERIODS.map(function(p) { return '<th>' + p.toUpperCase() + '</th>'; }).join('') + '</tr></thead><tbody>';
     items.forEach(function(it) {
+      // Find the window with the highest R² for this asset's headline model.
+      var bestP = null, bestR2 = -Infinity;
+      HM_PERIODS.forEach(function(p) {
+        var r2 = getR2(it.d, p);
+        if (r2 !== null && r2 > bestR2) { bestR2 = r2; bestP = p; }
+      });
       h += '<tr class="fv-row" data-sub="' + subIdFor(it.d) + '" style="cursor:pointer;">' +
         '<td style="font-weight:700;text-align:left;white-space:nowrap;">' + it.label + '</td>';
       HM_PERIODS.forEach(function(p) {
         var z = getZ(it.d, p);
-        h += '<td style="' + hmCell(z) + '">' + (z === null ? '--' : (z > 0 ? '+' : '') + z.toFixed(1)) + '</td>';
+        var ring = (p === bestP) ? 'outline:2px solid var(--text);outline-offset:-2px;' : '';
+        var r2 = getR2(it.d, p);
+        var title = r2 !== null ? ' title="R² ' + r2.toFixed(3) + (p === bestP ? ' (best fit)' : '') + '"' : '';
+        h += '<td style="' + hmCell(z) + ring + '"' + title + '>' + (z === null ? '--' : (z > 0 ? '+' : '') + z.toFixed(1)) + '</td>';
       });
       h += '</tr>';
     });
@@ -4793,6 +4853,74 @@ window.FVDETAIL = (function() {
   document.getElementById('book-closed-toggle').addEventListener('click', () => {
     const el = document.getElementById('book-closed');
     el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+})();
+
+// ── Sortable tables (delegated) ───────────────────────────────────────────
+// Any <table class="sortable"> becomes click-to-sort on its header cells. One
+// document-level handler reads the live DOM, so it survives re-rendered tables.
+(function() {
+  function parseCell(td) {
+    var s = (td ? td.textContent : '').trim();
+    var low = s.toLowerCase();
+    if (s === '' || s === '--' || s === '-' || s === 'n/a' || low === 'nan') return { n: null, s: low };
+    // Keep digits, sign, decimal point; drop +, %, commas, *, arrows, spaces, parens.
+    var cleaned = s.replace(/[+%,*↑↓▲▼()\s]/g, '');
+    var num = parseFloat(cleaned);
+    if (!isNaN(num) && /\d/.test(cleaned)) return { n: num, s: low };
+    return { n: null, s: low };
+  }
+  function setIndicators(table, activeTh, asc) {
+    var ths = table.tHead ? table.tHead.rows[0].cells : [];
+    for (var i = 0; i < ths.length; i++) {
+      var th = ths[i];
+      var ind = th.querySelector('.sort-ind');
+      if (ind) ind.remove();
+      th.classList.remove('sort-active');
+    }
+    activeTh.classList.add('sort-active');
+    var span = document.createElement('span');
+    span.className = 'sort-ind';
+    span.textContent = asc ? '▲' : '▼';
+    activeTh.appendChild(span);
+  }
+  function sortTable(table, colIdx, asc) {
+    var tbody = table.tBodies[0];
+    if (!tbody) return;
+    var nCols = table.tHead ? table.tHead.rows[0].cells.length : 0;
+    var all = Array.prototype.slice.call(tbody.rows);
+    var rows = all.filter(function(r) { return r.cells.length === nCols; });
+    var skipped = all.filter(function(r) { return r.cells.length !== nCols; });
+    var decorated = rows.map(function(r) { return { r: r, v: parseCell(r.cells[colIdx]) }; });
+    decorated.sort(function(a, b) {
+      var an = a.v.n, bn = b.v.n;
+      if (an === null && bn === null) {
+        if (a.v.s < b.v.s) return asc ? -1 : 1;
+        if (a.v.s > b.v.s) return asc ? 1 : -1;
+        return 0;
+      }
+      if (an === null) return 1;   // blanks always last
+      if (bn === null) return -1;
+      return asc ? an - bn : bn - an;
+    });
+    decorated.forEach(function(d) { tbody.appendChild(d.r); });
+    skipped.forEach(function(r) { tbody.appendChild(r); });
+  }
+  document.addEventListener('click', function(e) {
+    var th = e.target.closest ? e.target.closest('th') : null;
+    if (!th) return;
+    var table = th.closest('table.sortable, table.vol-table');
+    if (!table || table.classList.contains('no-sort')) return;
+    var thead = th.closest('thead');
+    if (!thead || thead.parentElement !== table) return;  // only header cells
+    var colIdx = th.cellIndex;
+    var prevCol = table.getAttribute('data-sort-col');
+    var prevAsc = table.getAttribute('data-sort-asc') === '1';
+    var asc = (String(colIdx) === prevCol) ? !prevAsc : true;
+    table.setAttribute('data-sort-col', String(colIdx));
+    table.setAttribute('data-sort-asc', asc ? '1' : '0');
+    sortTable(table, colIdx, asc);
+    setIndicators(table, th, asc);
   });
 })();
 
