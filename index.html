@@ -873,17 +873,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: UST 5s30s Curve (Global Anchor)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Avg Overseas 30Y (US/UK/DE/IT — Global Long-End Anchor)</div>
         <div class="fvchart" id="jgb5s30s-img-global"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BOJ JGB Holdings (Supply Effect)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: USDJPY (Hedged-Flow Channel)</div>
+        <div class="fvchart" id="jgb5s30s-img-fx"></div>
+      </div>
+
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: BOJ JGB Holdings (Supply Effect)</div>
         <div class="fvchart" id="jgb5s30s-img-supply"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (OIS + UST Curve + BOJ JGB)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (OIS + Avg Overseas 30Y + USDJPY + BOJ JGB)</div>
         <div class="fvchart" id="jgb5s30s-img-combined"></div>
       </div>
     </div>
@@ -3005,7 +3010,7 @@ window.FVDETAIL = (function() {
     ust10y:     { tabsId: "ust-period-tabs", containers: ["ust-img-policy", "ust-img-inflation", "ust-img-risk", "ust-img-combined"] },
     bund10y:    { tabsId: "bund-period-tabs", containers: ["bund-img-policy", "bund-img-inflation", "bund-img-risk", "bund-img-combined"] },
     jgb10y:     { tabsId: "jgb-period-tabs", containers: ["jgb-img-policy", "jgb-img-inflation", "jgb-img-risk", "jgb-img-combined"] },
-    jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
+    jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-fx", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
     eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-risk", "eurgbp-img-combined"] },
     usdthb:     { tabsId: "usdthb-period-tabs", containers: ["usdthb-img-xau", "usdthb-img-dxy", "usdthb-img-rates", "usdthb-img-combined"] },
     usdzar:     { tabsId: "usdzar-period-tabs", containers: ["usdzar-img-xau", "usdzar-img-dxy", "usdzar-img-copper", "usdzar-img-combined"] },
