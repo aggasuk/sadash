@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23T10:08:14",
+  "last_updated": "2026-06-23T10:33:25",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -21,26 +21,6 @@
       "status": "ARMED",
       "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
       "added": "2026-04-28"
-    },
-    {
-      "id": "audnzd_5y5y_rec_aud",
-      "label": "Rec AUD 5y5y / Pay NZD 5y5y",
-      "formula": "AUD5Y5Y - NZD5Y5Y (bp)",
-      "inputs": {
-        "AUD5Y5Y": 515.47,
-        "NZD5Y5Y": 455.81
-      },
-      "inputs_pct": {
-        "AUD5Y5Y": 5.1547,
-        "NZD5Y5Y": 4.5581
-      },
-      "current_bp": 59.66,
-      "trigger_bp": 52.0,
-      "direction": "above",
-      "distance_bp": -7.66,
-      "status": "TRIGGERED",
-      "rationale": "5Y regression FV ~+28-37bp; trigger entry when spread widens to +52bp (currently +47.5). Rec AUD 5y5y / Pay NZD 5y5y; target tightening back to +33bp, stop +62bp",
-      "added": "2026-05-10"
     },
     {
       "id": "krw_3s5s10s_rec",
@@ -86,14 +66,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 666.95,
+        "sma_short": 666.98,
         "sma_long": 548.88,
-        "last": 693.93
+        "last": 694.43
       },
-      "current_bp": 21.51,
+      "current_bp": 21.52,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 21.51,
+      "distance_bp": 21.52,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -103,14 +83,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46667.01,
-        "sma_long": 43529.69,
-        "last": 47441.74
+        "sma_short": 46692.81,
+        "sma_long": 43533.38,
+        "last": 47570.75
       },
-      "current_bp": 7.21,
+      "current_bp": 7.26,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.21,
+      "distance_bp": 7.26,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
