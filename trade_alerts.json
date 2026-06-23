@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23T10:33:25",
+  "last_updated": "2026-06-23T12:32:03",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -21,6 +21,26 @@
       "status": "ARMED",
       "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
       "added": "2026-04-28"
+    },
+    {
+      "id": "aud_nzd_1y1y_rec_aud",
+      "label": "Rec AUD 1y1y / Pay NZD 1y1y",
+      "formula": "AUD1Y1Y - NZD1Y1Y (bp)",
+      "inputs": {
+        "AUD1Y1Y": 438.96,
+        "NZD1Y1Y": 361.998
+      },
+      "inputs_pct": {
+        "AUD1Y1Y": 4.3896,
+        "NZD1Y1Y": 3.61998
+      },
+      "current_bp": 76.96,
+      "trigger_bp": 85.0,
+      "direction": "above",
+      "distance_bp": 8.04,
+      "status": "ARMED",
+      "rationale": "Rec AUD 1y1y / Pay NZD 1y1y when the spread widens to +85bp (currently ~+78bp). AUD leg on the S0303 front/OIS curve per the <2.5Y split; fade the widening back tighter.",
+      "added": "2026-06-23"
     },
     {
       "id": "krw_3s5s10s_rec",
@@ -66,9 +86,9 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 666.98,
+        "sma_short": 666.97,
         "sma_long": 548.88,
-        "last": 694.43
+        "last": 694.29
       },
       "current_bp": 21.52,
       "trigger_bp": 0.0,
@@ -83,14 +103,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46692.81,
-        "sma_long": 43533.38,
-        "last": 47570.75
+        "sma_short": 46688.95,
+        "sma_long": 43532.83,
+        "last": 47551.44
       },
-      "current_bp": 7.26,
+      "current_bp": 7.25,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.26,
+      "distance_bp": 7.25,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
