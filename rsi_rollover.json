@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-23 10:08",
+  "generated": "2026-06-23 19:25",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 693.99,
-      "rsi_now": 61.7,
+      "last": 685.27,
+      "rsi_now": 58.1,
       "rsi_yest": 64.5,
       "rsi_peak": 72.0,
       "peak_bars_ago": 3,
-      "drop": 10.3,
+      "drop": 13.8,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -26,12 +26,12 @@
     {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 71629.29,
-      "rsi_now": 69.2,
+      "last": 69788.38,
+      "rsi_now": 61.1,
       "rsi_yest": 73.0,
       "rsi_peak": 73.0,
       "peak_bars_ago": 1,
-      "drop": 3.8,
+      "drop": 11.9,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -1190,7 +1190,7 @@
           },
           "10": {
             "n": 27,
-            "mean": 1.56,
+            "mean": 1.53,
             "median": 1.81,
             "hit_rate": 33.3
           },

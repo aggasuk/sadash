@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-23T12:32:03",
+  "last_updated": "2026-06-23T19:25:15",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,17 +7,17 @@
       "label": "KRW H7-U6 1Y rec TAKE OFF",
       "formula": "H7 - U6",
       "inputs": {
-        "U6": 385.173,
-        "H7": 412.604
+        "U6": 383.313,
+        "H7": 407.874
       },
       "inputs_pct": {
-        "U6": 3.85173,
-        "H7": 4.12604
+        "U6": 3.83313,
+        "H7": 4.07874
       },
-      "current_bp": 27.43,
+      "current_bp": 24.56,
       "trigger_bp": 15.0,
       "direction": "below",
-      "distance_bp": 12.43,
+      "distance_bp": 9.56,
       "status": "ARMED",
       "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
       "added": "2026-04-28"
@@ -27,17 +27,17 @@
       "label": "Rec AUD 1y1y / Pay NZD 1y1y",
       "formula": "AUD1Y1Y - NZD1Y1Y (bp)",
       "inputs": {
-        "AUD1Y1Y": 438.96,
-        "NZD1Y1Y": 361.998
+        "AUD1Y1Y": 438.21,
+        "NZD1Y1Y": 362.274
       },
       "inputs_pct": {
-        "AUD1Y1Y": 4.3896,
-        "NZD1Y1Y": 3.61998
+        "AUD1Y1Y": 4.3821,
+        "NZD1Y1Y": 3.62274
       },
-      "current_bp": 76.96,
+      "current_bp": 75.94,
       "trigger_bp": 85.0,
       "direction": "above",
-      "distance_bp": 8.04,
+      "distance_bp": 9.06,
       "status": "ARMED",
       "rationale": "Rec AUD 1y1y / Pay NZD 1y1y when the spread widens to +85bp (currently ~+78bp). AUD leg on the S0303 front/OIS curve per the <2.5Y split; fade the widening back tighter.",
       "added": "2026-06-23"
@@ -47,19 +47,19 @@
       "label": "Rec KRW 3s5s10s fly",
       "formula": "2*KRW5Y - KRW3Y - KRW10Y (bp)",
       "inputs": {
-        "KRW3Y": 393.75,
-        "KRW5Y": 401.0,
-        "KRW10Y": 405.2
+        "KRW3Y": 390.7,
+        "KRW5Y": 397.0,
+        "KRW10Y": 401.5
       },
       "inputs_pct": {
-        "KRW3Y": 3.9375,
-        "KRW5Y": 4.01,
-        "KRW10Y": 4.052
+        "KRW3Y": 3.907,
+        "KRW5Y": 3.97,
+        "KRW10Y": 4.015
       },
-      "current_bp": 3.05,
+      "current_bp": 1.8,
       "trigger_bp": 7.0,
       "direction": "above",
-      "distance_bp": 3.95,
+      "distance_bp": 5.2,
       "status": "ARMED",
       "rationale": "Receive belly (5Y), pay wings (3Y + 10Y); enter when fly widens to +7bp",
       "added": "2026-05-26"
@@ -86,14 +86,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 666.97,
-        "sma_long": 548.88,
-        "last": 694.29
+        "sma_short": 666.52,
+        "sma_long": 548.83,
+        "last": 685.27
       },
-      "current_bp": 21.52,
+      "current_bp": 21.44,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 21.52,
+      "distance_bp": 21.44,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -103,14 +103,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46688.95,
-        "sma_long": 43532.83,
-        "last": 47551.44
+        "sma_short": 46598.79,
+        "sma_long": 43519.95,
+        "last": 47100.65
       },
-      "current_bp": 7.25,
+      "current_bp": 7.07,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.25,
+      "distance_bp": 7.07,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -120,12 +120,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.01,
-        "HKD12M": -72750.0
+        "USDHKD": 784.0,
+        "HKD12M": -71000.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8401,
-        "HKD12M": -727.5
+        "USDHKD": 7.84,
+        "HKD12M": -710.0
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
@@ -140,17 +140,17 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 488.5,
-        "AUD30Y": 499.952
+        "AUD10Y": 487.2,
+        "AUD30Y": 498.625
       },
       "inputs_pct": {
-        "AUD10Y": 4.885,
-        "AUD30Y": 4.99952
+        "AUD10Y": 4.872,
+        "AUD30Y": 4.98625
       },
-      "current_bp": 11.45,
+      "current_bp": 11.43,
       "trigger_bp": 6.5,
       "direction": "below",
-      "distance_bp": 4.95,
+      "distance_bp": 4.93,
       "status": "ARMED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
