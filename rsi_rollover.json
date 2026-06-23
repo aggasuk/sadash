@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-22 20:21",
+  "generated": "2026-06-23 10:08",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,36 +10,35 @@
   },
   "bearish": [
     {
-      "ticker": "NKY Index",
+      "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 72353.96,
-      "rsi_now": 73.0,
-      "rsi_yest": 70.8,
-      "rsi_peak": 73.0,
-      "peak_bars_ago": 0,
-      "drop": 0.0,
-      "divergence": true,
+      "last": 693.99,
+      "rsi_now": 61.7,
+      "rsi_yest": 64.5,
+      "rsi_peak": 72.0,
+      "peak_bars_ago": 3,
+      "drop": 10.3,
+      "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
-      "strength": "WEAK"
-    }
-  ],
-  "bullish": [
+      "strength": "MODERATE"
+    },
     {
-      "ticker": "XAU Curncy",
+      "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 4207.14,
-      "rsi_now": 39.5,
-      "rsi_yest": 35.6,
-      "rsi_trough": 24.2,
-      "trough_bars_ago": 8,
-      "rise": 15.3,
+      "last": 71629.29,
+      "rsi_now": 69.2,
+      "rsi_yest": 73.0,
+      "rsi_peak": 73.0,
+      "peak_bars_ago": 1,
+      "drop": 3.8,
       "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 0,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
       "strength": "MODERATE"
     }
   ],
+  "bullish": [],
   "stats": {
     "_horizons": [
       "5",
@@ -309,8 +308,8 @@
           },
           "10": {
             "n": 4,
-            "mean": 0.48,
-            "median": 0.39,
+            "mean": 0.46,
+            "median": 0.34,
             "hit_rate": 25.0
           },
           "20": {
@@ -518,10 +517,10 @@
             "hit_rate": 5.6
           },
           "10": {
-            "n": 16,
-            "mean": 1.46,
-            "median": 1.4,
-            "hit_rate": 12.5
+            "n": 17,
+            "mean": 1.45,
+            "median": 1.32,
+            "hit_rate": 11.8
           },
           "20": {
             "n": 15,
@@ -1190,10 +1189,10 @@
             "hit_rate": 53.6
           },
           "10": {
-            "n": 26,
-            "mean": 1.72,
-            "median": 2.12,
-            "hit_rate": 30.8
+            "n": 27,
+            "mean": 1.56,
+            "median": 1.81,
+            "hit_rate": 33.3
           },
           "20": {
             "n": 25,
