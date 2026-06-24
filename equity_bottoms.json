@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-06-24 09:23",
+  "_updated": "2026-06-24 19:19",
   "config": {
     "horizons": [
       "1W",
@@ -1787,7 +1787,7 @@
       },
       "snapshot": {
         "date": "2026-06-24",
-        "px": 69392.0,
+        "px": 69175.0,
         "score": 1,
         "cap_max": 4,
         "on": [
@@ -2459,16 +2459,17 @@
       },
       "snapshot": {
         "date": "2026-06-24",
-        "px": 1360.0,
-        "score": 2,
+        "px": 1370.0,
+        "score": 3,
         "cap_max": 7,
         "on": [
           "VKOSPI 1y-90pct",
           "VKOSPI>30",
-          "VKOSPI>40"
+          "VKOSPI>40",
+          "USDKRW stress"
         ],
         "recent_events": [],
-        "armed": false,
+        "armed": true,
         "last_entry": "2026-06-02",
         "entry_active_10d": false,
         "armed_new": false,
@@ -2819,9 +2820,9 @@
         },
         {
           "signal": "USDKRW stress",
-          "n": 103,
+          "n": 104,
           "first": "2001-12-20",
-          "last": "2026-05-13",
+          "last": "2026-06-24",
           "1W": {
             "n": 103,
             "mean": 0.46,
@@ -3360,7 +3361,7 @@
       },
       "snapshot": {
         "date": "2026-06-24",
-        "px": 46262.0,
+        "px": 46044.0,
         "score": 0,
         "cap_max": 2,
         "on": [],

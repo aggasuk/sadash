@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-24 09:23",
+  "generated": "2026-06-24 19:19",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 680.52,
-      "rsi_now": 56.2,
+      "last": 673.21,
+      "rsi_now": 53.6,
       "rsi_yest": 58.1,
       "rsi_peak": 72.0,
       "peak_bars_ago": 4,
-      "drop": 15.7,
+      "drop": 18.4,
       "divergence": false,
       "st_label": "BULLISH",
       "st_score": 60,
@@ -26,19 +26,34 @@
     {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 69270.27,
-      "rsi_now": 59.0,
+      "last": 69174.97,
+      "rsi_now": 58.6,
       "rsi_yest": 61.1,
       "rsi_peak": 73.0,
       "peak_bars_ago": 2,
-      "drop": 14.0,
+      "drop": 14.4,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
       "strength": "MODERATE"
     }
   ],
-  "bullish": [],
+  "bullish": [
+    {
+      "ticker": "XAU Curncy",
+      "category": "equity_commod",
+      "last": 4038.1,
+      "rsi_now": 31.7,
+      "rsi_yest": 34.9,
+      "rsi_trough": 24.2,
+      "trough_bars_ago": 10,
+      "rise": 7.5,
+      "divergence": true,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "WEAK"
+    }
+  ],
   "stats": {
     "_horizons": [
       "5",
@@ -644,7 +659,7 @@
           },
           "10": {
             "n": 28,
-            "mean": 1.56,
+            "mean": 1.55,
             "median": 2.16,
             "hit_rate": 39.3
           },
@@ -680,19 +695,19 @@
         "bearish": {
           "5": {
             "n": 29,
-            "mean": 2.69,
+            "mean": 2.73,
             "median": 1.91,
             "hit_rate": 27.6
           },
           "10": {
             "n": 28,
-            "mean": 2.76,
+            "mean": 2.8,
             "median": 1.81,
             "hit_rate": 35.7
           },
           "20": {
             "n": 27,
-            "mean": 6.18,
+            "mean": 6.22,
             "median": 3.7,
             "hit_rate": 22.2
           }
