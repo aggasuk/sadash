@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-23 19:25",
+  "generated": "2026-06-24 09:23",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,26 +12,26 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 685.27,
-      "rsi_now": 58.1,
-      "rsi_yest": 64.5,
+      "last": 680.52,
+      "rsi_now": 56.2,
+      "rsi_yest": 58.1,
       "rsi_peak": 72.0,
-      "peak_bars_ago": 3,
-      "drop": 13.8,
+      "peak_bars_ago": 4,
+      "drop": 15.7,
       "divergence": false,
-      "st_label": "STRONG BULLISH",
-      "st_score": 100,
+      "st_label": "BULLISH",
+      "st_score": 60,
       "strength": "MODERATE"
     },
     {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 69788.38,
-      "rsi_now": 61.1,
-      "rsi_yest": 73.0,
+      "last": 69270.27,
+      "rsi_now": 59.0,
+      "rsi_yest": 61.1,
       "rsi_peak": 73.0,
-      "peak_bars_ago": 1,
-      "drop": 11.9,
+      "peak_bars_ago": 2,
+      "drop": 14.0,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -364,21 +364,21 @@
         "bullish": {
           "5": {
             "n": 9,
-            "mean": -0.54,
-            "median": -0.95,
-            "hit_rate": 33.3
+            "mean": -0.84,
+            "median": -1.18,
+            "hit_rate": 22.2
           },
           "10": {
             "n": 9,
-            "mean": -0.64,
-            "median": -1.14,
-            "hit_rate": 22.2
+            "mean": -0.62,
+            "median": -0.77,
+            "hit_rate": 33.3
           },
           "20": {
             "n": 9,
-            "mean": 1.06,
-            "median": 0.94,
-            "hit_rate": 88.9
+            "mean": 0.78,
+            "median": 0.87,
+            "hit_rate": 77.8
           }
         }
       },
@@ -643,10 +643,10 @@
             "hit_rate": 51.7
           },
           "10": {
-            "n": 27,
-            "mean": 1.32,
-            "median": 1.96,
-            "hit_rate": 40.7
+            "n": 28,
+            "mean": 1.56,
+            "median": 2.16,
+            "hit_rate": 39.3
           },
           "20": {
             "n": 26,
@@ -679,22 +679,22 @@
       "KOSPI Index": {
         "bearish": {
           "5": {
-            "n": 28,
-            "mean": 2.98,
-            "median": 2.34,
-            "hit_rate": 25.0
+            "n": 29,
+            "mean": 2.69,
+            "median": 1.91,
+            "hit_rate": 27.6
           },
           "10": {
-            "n": 27,
-            "mean": 2.55,
-            "median": 1.77,
-            "hit_rate": 37.0
+            "n": 28,
+            "mean": 2.76,
+            "median": 1.81,
+            "hit_rate": 35.7
           },
           "20": {
-            "n": 26,
-            "mean": 6.26,
-            "median": 3.65,
-            "hit_rate": 23.1
+            "n": 27,
+            "mean": 6.18,
+            "median": 3.7,
+            "hit_rate": 22.2
           }
         },
         "bullish": {
@@ -889,22 +889,22 @@
       "CO1 Comdty": {
         "bearish": {
           "5": {
-            "n": 14,
-            "mean": 1.67,
-            "median": 1.44,
-            "hit_rate": 50.0
+            "n": 13,
+            "mean": 1.58,
+            "median": -0.04,
+            "hit_rate": 53.8
           },
           "10": {
-            "n": 14,
-            "mean": 3.72,
-            "median": 4.04,
-            "hit_rate": 21.4
+            "n": 13,
+            "mean": 3.65,
+            "median": 3.54,
+            "hit_rate": 23.1
           },
           "20": {
-            "n": 14,
-            "mean": 11.28,
-            "median": 7.16,
-            "hit_rate": 14.3
+            "n": 13,
+            "mean": 11.99,
+            "median": 7.92,
+            "hit_rate": 15.4
           }
         },
         "bullish": {
@@ -1069,10 +1069,10 @@
             "hit_rate": 36.0
           },
           "20": {
-            "n": 21,
-            "mean": 4.37,
-            "median": 4.99,
-            "hit_rate": 33.3
+            "n": 22,
+            "mean": 4.13,
+            "median": 4.92,
+            "hit_rate": 36.4
           }
         },
         "bullish": {
