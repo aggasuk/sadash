@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25 09:15",
+  "generated": "2026-06-25 21:04",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -8,21 +8,50 @@
     "os_threshold": 30.0,
     "divergence_window": 14
   },
-  "bearish": [],
+  "bearish": [
+    {
+      "ticker": "USDTHB Curncy",
+      "category": "fx",
+      "last": 33.35,
+      "rsi_now": 67.6,
+      "rsi_yest": 70.8,
+      "rsi_peak": 70.8,
+      "peak_bars_ago": 1,
+      "drop": 3.1,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "NKY Index",
+      "category": "equity_commod",
+      "last": 72366.34,
+      "rsi_now": 66.3,
+      "rsi_yest": 58.6,
+      "rsi_peak": 73.0,
+      "peak_bars_ago": 3,
+      "drop": 6.8,
+      "divergence": true,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "WEAK"
+    }
+  ],
   "bullish": [
     {
-      "ticker": "XAU Curncy",
+      "ticker": "XAG Curncy",
       "category": "equity_commod",
-      "last": 3983.92,
-      "rsi_now": 29.8,
-      "rsi_yest": 30.3,
-      "rsi_trough": 29.8,
-      "trough_bars_ago": 0,
-      "rise": 0.0,
-      "divergence": true,
+      "last": 58.6036,
+      "rsi_now": 30.7,
+      "rsi_yest": 27.6,
+      "rsi_trough": 27.6,
+      "trough_bars_ago": 1,
+      "rise": 3.1,
+      "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
-      "strength": "WEAK"
+      "strength": "MODERATE"
     }
   ],
   "stats": {
@@ -440,7 +469,7 @@
           },
           "10": {
             "n": 3,
-            "mean": 0.1,
+            "mean": 0.48,
             "median": 0.29,
             "hit_rate": 66.7
           },
@@ -755,10 +784,10 @@
             "hit_rate": 38.2
           },
           "10": {
-            "n": 33,
-            "mean": 2.49,
-            "median": 2.93,
-            "hit_rate": 27.3
+            "n": 34,
+            "mean": 2.62,
+            "median": 2.94,
+            "hit_rate": 26.5
           },
           "20": {
             "n": 32,
@@ -930,7 +959,7 @@
           },
           "20": {
             "n": 20,
-            "mean": -5.0,
+            "mean": -4.94,
             "median": -0.04,
             "hit_rate": 50.0
           }
