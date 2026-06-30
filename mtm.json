@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-29T10:16:35",
+  "generated": "2026-06-30T11:07:09",
   "trades": [
     {
       "id": "t_1775798684233",
@@ -8,12 +8,12 @@
       "type": "outright",
       "direction": "pay",
       "entry_bps": null,
-      "current_bps": 610.56,
-      "pnl_bps": -15.94,
-      "pnl_usd": -239100.0,
+      "current_bps": 611.54,
+      "pnl_bps": -14.96,
+      "pnl_usd": -224400.0,
       "dv01_usd": 15000,
       "details": {
-        "rate": 6.1056,
+        "rate": 6.1154,
         "method": "outright"
       }
     },
@@ -24,13 +24,13 @@
       "type": "spread",
       "direction": "rec",
       "entry_bps": -2.3,
-      "current_bps": -0.71,
-      "pnl_bps": -1.59,
-      "pnl_usd": -15880.0,
+      "current_bps": -0.56,
+      "pnl_bps": -1.74,
+      "pnl_usd": -17370.0,
       "dv01_usd": 10000,
       "details": {
-        "18M": 2.72162,
-        "2Y": 2.7145,
+        "18M": 2.73863,
+        "2Y": 2.733,
         "method": "spot_spread"
       }
     },
@@ -41,14 +41,14 @@
       "type": "fly",
       "direction": "pay",
       "entry_bps": 2.75,
-      "current_bps": 1.12,
-      "pnl_bps": -1.63,
-      "pnl_usd": -48960.0,
+      "current_bps": 1.3,
+      "pnl_bps": -1.45,
+      "pnl_usd": -43500.0,
       "dv01_usd": 30000,
       "details": {
-        "1Y": 1.17395,
-        "2Y": 1.29483,
-        "3Y": 1.40453,
+        "1Y": 1.18868,
+        "2Y": 1.31609,
+        "3Y": 1.4305,
         "method": "fwd_fly"
       }
     },
@@ -59,12 +59,12 @@
       "type": "outright",
       "direction": "pay",
       "entry_bps": null,
-      "current_bps": 396.25,
-      "pnl_bps": 29.25,
-      "pnl_usd": 146230.0,
+      "current_bps": 395.52,
+      "pnl_bps": 28.52,
+      "pnl_usd": 142620.0,
       "dv01_usd": 5000,
       "details": {
-        "rate": 3.96246,
+        "rate": 3.95524,
         "method": "outright"
       }
     },
@@ -75,13 +75,13 @@
       "type": "spread",
       "direction": "pay",
       "entry_bps": 23.16,
-      "current_bps": 12.5,
-      "pnl_bps": -10.66,
-      "pnl_usd": -266400.0,
+      "current_bps": 11.78,
+      "pnl_bps": -11.38,
+      "pnl_usd": -284425.0,
       "dv01_usd": 25000,
       "details": {
-        "5Y": 3.86532,
-        "10Y": 3.99036,
+        "5Y": 3.85349,
+        "10Y": 3.97132,
         "method": "fwd_spread"
       }
     },
@@ -92,13 +92,13 @@
       "type": "spread",
       "direction": "rec",
       "entry_bps": -5.5,
-      "current_bps": -0.44,
-      "pnl_bps": -5.06,
-      "pnl_usd": -50600.0,
+      "current_bps": -1.08,
+      "pnl_bps": -4.42,
+      "pnl_usd": -44200.0,
       "dv01_usd": 10000,
       "details": {
-        "18M": 2.7063,
-        "2Y": 2.7019,
+        "18M": 2.7314,
+        "2Y": 2.7206,
         "method": "fwd_spread"
       }
     },
@@ -109,14 +109,14 @@
       "type": "fly",
       "direction": "rec",
       "entry_bps": -10,
-      "current_bps": -16.34,
-      "pnl_bps": 6.34,
-      "pnl_usd": 63400.0,
+      "current_bps": -16.49,
+      "pnl_bps": 6.49,
+      "pnl_usd": 64900.0,
       "dv01_usd": 10000,
       "details": {
-        "3Y": 3.56362,
-        "5Y": 3.74222,
-        "10Y": 4.08422,
+        "3Y": 3.54409,
+        "5Y": 3.71971,
+        "10Y": 4.06023,
         "method": "fwd_fly"
       }
     },
@@ -127,16 +127,16 @@
       "type": "spread",
       "direction": "rec",
       "entry_bps": 51.5,
-      "current_bps": 40.48,
-      "pnl_bps": 11.02,
-      "pnl_usd": 275500.0,
+      "current_bps": 41.31,
+      "pnl_bps": 10.19,
+      "pnl_usd": 254700.0,
       "dv01_usd": 25000,
       "details": {
-        "3Y": 1.70441,
-        "10Y": 2.10921,
+        "3Y": 1.70825,
+        "10Y": 2.12137,
         "method": "fwd_spread"
       }
     }
   ],
-  "total_pnl_usd": -135810.0
+  "total_pnl_usd": -151675.0
 }

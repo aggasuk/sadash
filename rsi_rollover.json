@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-29 10:17",
+  "generated": "2026-06-30 11:08",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,42 +10,14 @@
   },
   "bearish": [
     {
-      "ticker": "TPNBNK Index",
-      "category": "equity_commod",
-      "last": 671.74,
-      "rsi_now": 52.4,
-      "rsi_yest": 55.7,
-      "rsi_peak": 72.0,
-      "peak_bars_ago": 7,
-      "drop": 19.5,
-      "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 25,
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "NKY Index",
-      "category": "equity_commod",
-      "last": 68950.74,
-      "rsi_now": 54.6,
-      "rsi_yest": 55.8,
-      "rsi_peak": 73.0,
-      "peak_bars_ago": 5,
-      "drop": 18.5,
-      "divergence": false,
-      "st_label": "BULLISH",
-      "st_score": 60,
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "DXY Curncy",
+      "ticker": "USDTHB Curncy",
       "category": "fx",
-      "last": 101.356,
-      "rsi_now": 72.2,
-      "rsi_yest": 72.3,
-      "rsi_peak": 78.8,
-      "peak_bars_ago": 3,
-      "drop": 6.5,
+      "last": 33.25,
+      "rsi_now": 63.1,
+      "rsi_yest": 64.5,
+      "rsi_peak": 70.8,
+      "peak_bars_ago": 4,
+      "drop": 7.7,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -54,28 +26,14 @@
   ],
   "bullish": [
     {
-      "ticker": "EURUSD Curncy",
-      "category": "fx",
-      "last": 1.1387,
-      "rsi_now": 32.0,
-      "rsi_yest": 31.4,
-      "rsi_trough": 26.9,
-      "trough_bars_ago": 3,
-      "rise": 5.1,
-      "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 0,
-      "strength": "MODERATE"
-    },
-    {
       "ticker": "KWEB US Equity",
       "category": "equity_commod",
-      "last": 23.94,
-      "rsi_now": 28.2,
-      "rsi_yest": 23.9,
+      "last": 24.3,
+      "rsi_now": 33.0,
+      "rsi_yest": 28.2,
       "rsi_trough": 23.9,
-      "trough_bars_ago": 1,
-      "rise": 4.3,
+      "trough_bars_ago": 2,
+      "rise": 9.1,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
@@ -314,10 +272,10 @@
             "hit_rate": 32.3
           },
           "20": {
-            "n": 30,
-            "mean": 0.79,
+            "n": 31,
+            "mean": 0.75,
             "median": 0.72,
-            "hit_rate": 16.7
+            "hit_rate": 19.4
           }
         },
         "bullish": {
@@ -491,7 +449,7 @@
         "bullish": {
           "5": {
             "n": 4,
-            "mean": 1.01,
+            "mean": 0.74,
             "median": 1.41,
             "hit_rate": 50.0
           },
@@ -687,9 +645,9 @@
           },
           "10": {
             "n": 29,
-            "mean": 1.48,
+            "mean": 1.51,
             "median": 1.96,
-            "hit_rate": 41.4
+            "hit_rate": 37.9
           },
           "20": {
             "n": 26,
@@ -987,7 +945,7 @@
           },
           "20": {
             "n": 20,
-            "mean": -5.64,
+            "mean": -5.63,
             "median": -1.68,
             "hit_rate": 55.0
           }
@@ -1016,10 +974,10 @@
       "TPNBNK Index": {
         "bearish": {
           "5": {
-            "n": 18,
-            "mean": 1.74,
-            "median": 0.24,
-            "hit_rate": 38.9
+            "n": 19,
+            "mean": 1.59,
+            "median": 0.22,
+            "hit_rate": 42.1
           },
           "10": {
             "n": 17,
@@ -1070,9 +1028,9 @@
             "hit_rate": 100.0
           },
           "20": {
-            "n": 1,
-            "mean": -2.88,
-            "median": -2.88,
+            "n": 2,
+            "mean": -2.24,
+            "median": -2.24,
             "hit_rate": 100.0
           }
         },
@@ -1112,10 +1070,10 @@
             "hit_rate": 42.9
           },
           "20": {
-            "n": 26,
+            "n": 27,
             "mean": 3.75,
-            "median": 4.57,
-            "hit_rate": 38.5
+            "median": 4.29,
+            "hit_rate": 37.0
           }
         },
         "bullish": {
