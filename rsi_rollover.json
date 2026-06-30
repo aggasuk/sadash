@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-30 11:08",
+  "generated": "2026-06-30 20:47",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "USDTHB Curncy",
       "category": "fx",
-      "last": 33.25,
-      "rsi_now": 63.1,
+      "last": 33.223,
+      "rsi_now": 62.0,
       "rsi_yest": 64.5,
       "rsi_peak": 70.8,
       "peak_bars_ago": 4,
-      "drop": 7.7,
+      "drop": 8.8,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -34,6 +34,34 @@
       "rsi_trough": 23.9,
       "trough_bars_ago": 2,
       "rise": 9.1,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "XAG Curncy",
+      "category": "equity_commod",
+      "last": 58.4765,
+      "rsi_now": 31.8,
+      "rsi_yest": 31.2,
+      "rsi_trough": 27.6,
+      "trough_bars_ago": 4,
+      "rise": 4.2,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "CO1 Comdty",
+      "category": "equity_commod",
+      "last": 73.22,
+      "rsi_now": 29.6,
+      "rsi_yest": 29.4,
+      "rsi_trough": 26.3,
+      "trough_bars_ago": 4,
+      "rise": 3.3,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
@@ -975,7 +1003,7 @@
         "bearish": {
           "5": {
             "n": 19,
-            "mean": 1.59,
+            "mean": 1.58,
             "median": 0.22,
             "hit_rate": 42.1
           },
@@ -1029,8 +1057,8 @@
           },
           "20": {
             "n": 2,
-            "mean": -2.24,
-            "median": -2.24,
+            "mean": -2.08,
+            "median": -2.08,
             "hit_rate": 100.0
           }
         },
@@ -1071,7 +1099,7 @@
           },
           "20": {
             "n": 27,
-            "mean": 3.75,
+            "mean": 3.76,
             "median": 4.29,
             "hit_rate": 37.0
           }
