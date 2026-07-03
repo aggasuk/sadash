@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-03T10:30:28",
+  "last_updated": "2026-07-03T11:50:01",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -86,9 +86,9 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 681.58,
-        "sma_long": 558.37,
-        "last": 705.31
+        "sma_short": 681.63,
+        "sma_long": 558.38,
+        "last": 706.43
       },
       "current_bp": 22.07,
       "trigger_bp": 0.0,
@@ -103,14 +103,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46276.17,
-        "sma_long": 44548.26,
-        "last": 46491.89
+        "sma_short": 46262.4,
+        "sma_long": 44546.29,
+        "last": 46423.05
       },
-      "current_bp": 3.88,
+      "current_bp": 3.85,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 3.88,
+      "distance_bp": 3.85,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -154,6 +154,26 @@
       "status": "ARMED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
+    },
+    {
+      "id": "ffq6_ffv6_spread_10",
+      "label": "Buy Aug/Oct FF spread (FFQ6-FFV6)",
+      "formula": "FFQ26 - FFV26 (bp)",
+      "inputs": {
+        "FFQ26": 9632.5,
+        "FFV26": 9621.5
+      },
+      "inputs_pct": {
+        "FFQ26": 96.325,
+        "FFV26": 96.215
+      },
+      "current_bp": 11.0,
+      "trigger_bp": 10.0,
+      "direction": "below",
+      "distance_bp": 1.0,
+      "status": "NEAR",
+      "rationale": "Buy Jul-Sep spread (long Aug FF / short Oct FF = long Sep FOMC move); enter when spread falls to 10bp (from ~11bp)",
+      "added": "2026-07-02"
     }
   ]
 }
