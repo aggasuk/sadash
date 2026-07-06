@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-03T11:50:01",
+  "last_updated": "2026-07-06T09:20:29",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,17 +7,17 @@
       "label": "KRW H7-U6 1Y rec TAKE OFF",
       "formula": "H7 - U6",
       "inputs": {
-        "U6": 372.27,
-        "H7": 400.385
+        "U6": 372.225,
+        "H7": 401.098
       },
       "inputs_pct": {
-        "U6": 3.7227,
-        "H7": 4.00385
+        "U6": 3.72225,
+        "H7": 4.01098
       },
-      "current_bp": 28.12,
+      "current_bp": 28.87,
       "trigger_bp": 15.0,
       "direction": "below",
-      "distance_bp": 13.12,
+      "distance_bp": 13.87,
       "status": "ARMED",
       "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
       "added": "2026-04-28"
@@ -27,17 +27,17 @@
       "label": "Rec AUD 1y1y / Pay NZD 1y1y",
       "formula": "AUD1Y1Y - NZD1Y1Y (bp)",
       "inputs": {
-        "AUD1Y1Y": 437.81,
-        "NZD1Y1Y": 364.82
+        "AUD1Y1Y": 435.88,
+        "NZD1Y1Y": 363.756
       },
       "inputs_pct": {
-        "AUD1Y1Y": 4.3781,
-        "NZD1Y1Y": 3.6482
+        "AUD1Y1Y": 4.3588,
+        "NZD1Y1Y": 3.63756
       },
-      "current_bp": 72.99,
+      "current_bp": 72.12,
       "trigger_bp": 85.0,
       "direction": "above",
-      "distance_bp": 12.01,
+      "distance_bp": 12.88,
       "status": "ARMED",
       "rationale": "Rec AUD 1y1y / Pay NZD 1y1y when the spread widens to +85bp (currently ~+78bp). AUD leg on the S0303 front/OIS curve per the <2.5Y split; fade the widening back tighter.",
       "added": "2026-06-23"
@@ -47,14 +47,14 @@
       "label": "Rec KRW 3s5s10s fly",
       "formula": "2*KRW5Y - KRW3Y - KRW10Y (bp)",
       "inputs": {
-        "KRW3Y": 384.5,
-        "KRW5Y": 392.25,
-        "KRW10Y": 398.75
+        "KRW3Y": 385.25,
+        "KRW5Y": 393.5,
+        "KRW10Y": 400.5
       },
       "inputs_pct": {
-        "KRW3Y": 3.845,
-        "KRW5Y": 3.9225,
-        "KRW10Y": 3.9875
+        "KRW3Y": 3.8525,
+        "KRW5Y": 3.935,
+        "KRW10Y": 4.005
       },
       "current_bp": 1.25,
       "trigger_bp": 7.0,
@@ -86,14 +86,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 681.63,
-        "sma_long": 558.38,
-        "last": 706.43
+        "sma_short": 684.26,
+        "sma_long": 559.7,
+        "last": 711.17
       },
-      "current_bp": 22.07,
+      "current_bp": 22.25,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 22.07,
+      "distance_bp": 22.25,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -103,14 +103,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46262.4,
-        "sma_long": 44546.29,
-        "last": 46423.05
+        "sma_short": 46810.01,
+        "sma_long": 44733.88,
+        "last": 47380.38
       },
-      "current_bp": 3.85,
+      "current_bp": 4.64,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 3.85,
+      "distance_bp": 4.64,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -120,12 +120,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.21,
-        "HKD12M": -63300.0
+        "USDHKD": 784.29,
+        "HKD12M": -65016.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8421,
-        "HKD12M": -633.0
+        "USDHKD": 7.8429,
+        "HKD12M": -650.16
       },
       "current_bp": 7.78,
       "trigger_bp": 7.73,
@@ -140,12 +140,12 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 487.72,
-        "AUD30Y": 501.595
+        "AUD10Y": 486.589,
+        "AUD30Y": 500.464
       },
       "inputs_pct": {
-        "AUD10Y": 4.8772,
-        "AUD30Y": 5.01595
+        "AUD10Y": 4.86589,
+        "AUD30Y": 5.00464
       },
       "current_bp": 13.87,
       "trigger_bp": 6.5,
@@ -160,12 +160,12 @@
       "label": "Buy Aug/Oct FF spread (FFQ6-FFV6)",
       "formula": "FFQ26 - FFV26 (bp)",
       "inputs": {
-        "FFQ26": 9632.5,
-        "FFV26": 9621.5
+        "FFQ26": 9632.0,
+        "FFV26": 9621.0
       },
       "inputs_pct": {
-        "FFQ26": 96.325,
-        "FFV26": 96.215
+        "FFQ26": 96.32,
+        "FFV26": 96.21
       },
       "current_bp": 11.0,
       "trigger_bp": 10.0,
