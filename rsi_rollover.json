@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-06 22:02",
+  "generated": "2026-07-07 14:38",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,14 +10,14 @@
   },
   "bearish": [
     {
-      "ticker": "NKY Index",
-      "category": "equity_commod",
-      "last": 69737.69,
-      "rsi_now": 55.5,
-      "rsi_yest": 55.5,
-      "rsi_peak": 73.0,
-      "peak_bars_ago": 10,
-      "drop": 17.6,
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 162.01,
+      "rsi_now": 61.0,
+      "rsi_yest": 62.1,
+      "rsi_peak": 77.3,
+      "peak_bars_ago": 4,
+      "drop": 16.3,
       "divergence": false,
       "st_label": "NEUTRAL",
       "st_score": 50,
@@ -28,12 +28,12 @@
     {
       "ticker": "KWEB US Equity",
       "category": "equity_commod",
-      "last": 25.48,
-      "rsi_now": 47.0,
+      "last": 25.59,
+      "rsi_now": 48.1,
       "rsi_yest": 41.7,
       "rsi_trough": 23.9,
       "trough_bars_ago": 6,
-      "rise": 23.1,
+      "rise": 24.2,
       "divergence": false,
       "st_label": "BULLISH",
       "st_score": 60,
@@ -42,12 +42,12 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 72.15,
-      "rsi_now": 29.4,
-      "rsi_yest": 29.3,
+      "last": 72.76,
+      "rsi_now": 31.5,
+      "rsi_yest": 29.2,
       "rsi_trough": 26.3,
-      "trough_bars_ago": 8,
-      "rise": 3.1,
+      "trough_bars_ago": 9,
+      "rise": 5.2,
       "divergence": false,
       "st_label": "BEARISH",
       "st_score": 40,
@@ -252,10 +252,10 @@
         },
         "bullish": {
           "5": {
-            "n": 0,
-            "mean": null,
-            "median": null,
-            "hit_rate": null
+            "n": 1,
+            "mean": 0.32,
+            "median": 0.32,
+            "hit_rate": 100.0
           },
           "10": {
             "n": 0,
@@ -329,8 +329,8 @@
           },
           "20": {
             "n": 4,
-            "mean": 0.44,
-            "median": 0.36,
+            "mean": 0.43,
+            "median": 0.33,
             "hit_rate": 0.0
           }
         },
@@ -469,8 +469,8 @@
           },
           "10": {
             "n": 4,
-            "mean": 0.04,
-            "median": -0.44,
+            "mean": 0.18,
+            "median": -0.15,
             "hit_rate": 50.0
           },
           "20": {
@@ -504,9 +504,9 @@
         },
         "bullish": {
           "5": {
-            "n": 1,
-            "mean": 5.52,
-            "median": 5.52,
+            "n": 2,
+            "mean": 4.81,
+            "median": 4.81,
             "hit_rate": 100.0
           },
           "10": {
@@ -883,7 +883,7 @@
         "bullish": {
           "5": {
             "n": 14,
-            "mean": -0.19,
+            "mean": -0.16,
             "median": 0.39,
             "hit_rate": 64.3
           },
@@ -925,7 +925,7 @@
         "bullish": {
           "5": {
             "n": 5,
-            "mean": -2.87,
+            "mean": -2.91,
             "median": -2.0,
             "hit_rate": 20.0
           },
@@ -994,10 +994,10 @@
             "hit_rate": 40.0
           },
           "10": {
-            "n": 18,
-            "mean": 3.1,
-            "median": 2.23,
-            "hit_rate": 27.8
+            "n": 19,
+            "mean": 3.25,
+            "median": 3.02,
+            "hit_rate": 26.3
           },
           "20": {
             "n": 17,
@@ -1210,10 +1210,10 @@
             "hit_rate": 40.0
           },
           "20": {
-            "n": 23,
-            "mean": 4.23,
-            "median": 5.03,
-            "hit_rate": 39.1
+            "n": 24,
+            "mean": 3.89,
+            "median": 4.87,
+            "hit_rate": 41.7
           }
         },
         "bullish": {
