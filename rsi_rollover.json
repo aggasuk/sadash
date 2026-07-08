@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-08 08:23",
+  "generated": "2026-07-08 20:23",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,14 +10,28 @@
   },
   "bearish": [
     {
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 162.48,
+      "rsi_now": 65.2,
+      "rsi_yest": 62.1,
+      "rsi_peak": 77.3,
+      "peak_bars_ago": 5,
+      "drop": 12.1,
+      "divergence": true,
+      "st_label": "NEUTRAL",
+      "st_score": 50,
+      "strength": "WEAK"
+    },
+    {
       "ticker": "USDTHB Curncy",
       "category": "fx",
-      "last": 33.397,
-      "rsi_now": 62.0,
+      "last": 33.475,
+      "rsi_now": 63.8,
       "rsi_yest": 59.8,
       "rsi_peak": 70.8,
       "peak_bars_ago": 10,
-      "drop": 8.7,
+      "drop": 7.0,
       "divergence": true,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -28,12 +42,26 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 76.36,
-      "rsi_now": 40.9,
+      "last": 77.55,
+      "rsi_now": 43.5,
       "rsi_yest": 35.3,
       "rsi_trough": 26.3,
       "trough_bars_ago": 10,
-      "rise": 14.6,
+      "rise": 17.2,
+      "divergence": false,
+      "st_label": "BULLISH",
+      "st_score": 60,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "IRSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 6.2125,
+      "rsi_now": 40.1,
+      "rsi_yest": 26.9,
+      "rsi_trough": 26.7,
+      "trough_bars_ago": 10,
+      "rise": 13.5,
       "divergence": false,
       "st_label": "BEARISH",
       "st_score": 40,
@@ -455,7 +483,7 @@
           },
           "10": {
             "n": 5,
-            "mean": 0.66,
+            "mean": 0.51,
             "median": 0.29,
             "hit_rate": 60.0
           },
@@ -651,7 +679,7 @@
           },
           "20": {
             "n": 26,
-            "mean": 2.42,
+            "mean": 2.37,
             "median": 3.33,
             "hit_rate": 30.8
           }
@@ -693,7 +721,7 @@
           },
           "20": {
             "n": 27,
-            "mean": 5.75,
+            "mean": 5.63,
             "median": 3.49,
             "hit_rate": 25.9
           }
@@ -1163,9 +1191,9 @@
         "bullish": {
           "5": {
             "n": 2,
-            "mean": -1.94,
-            "median": -1.94,
-            "hit_rate": 0.0
+            "mean": -1.22,
+            "median": -1.22,
+            "hit_rate": 50.0
           },
           "10": {
             "n": 1,
