@@ -1,27 +1,7 @@
 {
-  "last_updated": "2026-07-08T08:23:51",
+  "last_updated": "2026-07-08T08:30:36",
   "near_bp": 3.0,
   "alerts": [
-    {
-      "id": "krw_h7_u6_1y_rec_takeoff",
-      "label": "KRW H7-U6 1Y rec TAKE OFF",
-      "formula": "H7 - U6",
-      "inputs": {
-        "U6": 373.748,
-        "H7": 408.89
-      },
-      "inputs_pct": {
-        "U6": 3.73748,
-        "H7": 4.0889
-      },
-      "current_bp": 35.14,
-      "trigger_bp": 15.0,
-      "direction": "below",
-      "distance_bp": 20.14,
-      "status": "ARMED",
-      "rationale": "Take profit on H7-U6 receiver when spread tightens to 15bp",
-      "added": "2026-04-28"
-    },
     {
       "id": "aud_nzd_1y1y_rec_aud",
       "label": "Rec AUD 1y1y / Pay NZD 1y1y",
@@ -88,7 +68,7 @@
       "inputs": {
         "sma_short": 690.1,
         "sma_long": 562.51,
-        "last": 723.18
+        "last": 723.1
       },
       "current_bp": 22.68,
       "trigger_bp": 0.0,
