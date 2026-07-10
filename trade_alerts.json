@@ -1,62 +1,20 @@
 {
-  "last_updated": "2026-07-10T22:08:46",
+  "last_updated": "2026-07-10T22:14:25",
   "near_bp": 3.0,
   "alerts": [
-    {
-      "id": "aud_nzd_1y1y_rec_aud",
-      "label": "Rec AUD 1y1y / Pay NZD 1y1y",
-      "formula": "AUD1Y1Y - NZD1Y1Y (bp)",
-      "inputs": {
-        "AUD1Y1Y": 441.17,
-        "NZD1Y1Y": 381.98
-      },
-      "inputs_pct": {
-        "AUD1Y1Y": 4.4117,
-        "NZD1Y1Y": 3.8198
-      },
-      "current_bp": 59.19,
-      "trigger_bp": 85.0,
-      "direction": "above",
-      "distance_bp": 25.81,
-      "status": "ARMED",
-      "rationale": "Rec AUD 1y1y / Pay NZD 1y1y when the spread widens to +85bp (currently ~+78bp). AUD leg on the S0303 front/OIS curve per the <2.5Y split; fade the widening back tighter.",
-      "added": "2026-06-23"
-    },
-    {
-      "id": "krw_3s5s10s_rec",
-      "label": "Rec KRW 3s5s10s fly",
-      "formula": "2*KRW5Y - KRW3Y - KRW10Y (bp)",
-      "inputs": {
-        "KRW3Y": 385.2,
-        "KRW5Y": 395.0,
-        "KRW10Y": 404.5
-      },
-      "inputs_pct": {
-        "KRW3Y": 3.852,
-        "KRW5Y": 3.95,
-        "KRW10Y": 4.045
-      },
-      "current_bp": 0.3,
-      "trigger_bp": 7.0,
-      "direction": "above",
-      "distance_bp": 6.7,
-      "status": "ARMED",
-      "rationale": "Receive belly (5Y), pay wings (3Y + 10Y); enter when fly widens to +7bp",
-      "added": "2026-05-26"
-    },
     {
       "id": "nasdaq_5_200_bear",
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 29513.5,
-        "sma_long": 26218.66,
-        "last": 29716.96
+        "sma_short": 29516.45,
+        "sma_long": 26218.73,
+        "last": 29731.69
       },
-      "current_bp": 12.57,
+      "current_bp": 12.58,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 12.57,
+      "distance_bp": 12.58,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
