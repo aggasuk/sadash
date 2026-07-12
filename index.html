@@ -1509,8 +1509,9 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <div style="color:var(--text-dim);font-size:13px;margin:0 0 16px;max-width:960px;">
       3M carry &amp; roll as <b>Δ structure level (bp), curve unchanged</b>: green&nbsp;+ = level rises → <b>payer / steepener / fly-payer earns</b>;
       red&nbsp;− = receiver side earns. Curves = longer−shorter · flies = 2·belly−wings. <b>Ratio</b> = total ÷ 1y realized vol (3m-scaled).
-      <b>%ile</b> = today's total vs 5y history (≤10 or ≥90 highlighted — extreme carry regimes). Fwd-structure history is par-reconstructed (approx).
-      <b>†</b> = AUD roll path crosses the 2.5y OIS/BBSW curve split — slide contains the ~20bp basis, treat as unreliable (excluded from Top Opportunities).
+      <b>Carry %ile</b> = today's total vs 5y history. <b>Lvl 3m/1y</b> = where the structure's <em>level</em> sits vs its own recent range (percentile; z + range on hover) — low = flat/tight, high = steep/wide.
+      <b>Score</b> = carry ratio tilted by value: rewards positive carry entered <em>cheap</em> (payer at a low level %ile, receiver at a high one). ≤10/≥90 %ile highlighted.
+      Fwd-structure history is par-reconstructed (approx). <b>†</b> = AUD roll path crosses the 2.5y OIS/BBSW split (~20bp basis) — excluded from Top Opportunities.
     </div>
     <div class="tabs" id="cr-view-tabs" style="margin-bottom:14px;">
       <button class="tab active" data-crv="ccy">By Currency</button>
@@ -1735,6 +1736,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   var CR = null, view = 'ccy', selCcy = 'USD', selStruct = '1s3s5s', selFwd = '';
   var topSpot = false;   // Top Opportunities: false = fwd-start only (spot C+R just prices the CB path)
   var topHz = 'both';    // Top Opportunities horizon filter: '3M' | '6M' | 'both'
+  var topSort = 'carry'; // 'carry' = |vol-adj ratio| · 'score' = carry + value-vs-history tilt
   var body = document.getElementById('cr-body'), ctrl = document.getElementById('cr-controls');
   if (!body) return;
   var GRN = '#22a06b', RED = '#dc2626';
@@ -1744,6 +1746,16 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     if (p == null) return '<td>—</td>';
     var hot = p <= 10 || p >= 90;
     return '<td style="' + (hot ? 'background:rgba(217,119,6,.18);font-weight:600;' : '') + '">' + p.toFixed(0) + '</td>';
+  }
+  function lvlCell(pct, z, lo, hi) {
+    if (pct == null) return '<td>—</td>';
+    var hot = pct <= 10 || pct >= 90;
+    var tip = 'level z ' + (z == null ? '—' : z.toFixed(2)) + (lo != null ? ' · 3m range [' + lo + ', ' + hi + ']bp' : '');
+    return '<td title="' + tip + '" style="' + (hot ? 'background:rgba(217,119,6,.18);font-weight:600;' : '') + '">' + pct.toFixed(0) + '</td>';
+  }
+  function scoreCell(s) {
+    if (s == null) return '<td>—</td>';
+    return '<td' + col(s) + '><b>' + s.toFixed(2) + '</b></td>';
   }
   function rowCells(r, withName) {
     var dag = r.flag ? ' †' : '';
@@ -1755,14 +1767,18 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
       '<td' + col(r.total_bp) + '><b>' + fmt(r.total_bp) + '</b></td>' +
       '<td>' + fmt(r.vol_bp) + '</td>' +
       '<td' + col(r.ratio) + '><b>' + fmt(r.ratio, 2) + '</b></td>' +
-      pctCell(r.pctile) + '</tr>';
+      pctCell(r.pctile) +
+      lvlCell(r.lvl_pct3, r.lvl_z3, r.lvl_lo3, r.lvl_hi3) +
+      lvlCell(r.lvl_pct1y, r.lvl_z1y, null, null) +
+      scoreCell(r.composite) + '</tr>';
   }
   function tbl(head, rowsHtml) {
-    return '<table class="vol-table"><thead><tr>' + head.map(function(h) { return '<th>' + h + '</th>'; }).join('') +
-      '</tr></thead><tbody>' + rowsHtml + '</tbody></table>';
+    return '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr>' + head.map(function(h) { return '<th>' + h + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + rowsHtml + '</tbody></table></div>';
   }
-  var H_STRUCT = ['Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'];
-  var H_CCY = ['Ccy', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'];
+  var LVL_H = ['Carry %ile', 'Lvl 3m', 'Lvl 1y', 'Score'];
+  var H_STRUCT = ['Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio'].concat(LVL_H);
+  var H_CCY = ['Ccy', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio'].concat(LVL_H);
 
   function renderControls() {
     if (view === 'ccy') {
@@ -1795,15 +1811,22 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         '<span class="tabs" style="display:inline-flex;margin-right:16px;">' +
           hz.map(function(o) { return '<button class="tab' + (topHz === o[0] ? ' active' : '') + '" data-crh="' + o[0] + '">' + o[1] + '</button>'; }).join('') +
         '</span>' +
-        '<span class="tabs" style="display:inline-flex;">' +
+        '<span class="tabs" style="display:inline-flex;margin-right:16px;">' +
           '<button class="tab' + (!topSpot ? ' active' : '') + '" data-crt="fwd">Fwd only</button>' +
           '<button class="tab' + (topSpot ? ' active' : '') + '" data-crt="all">+ spot</button></span>' +
-        '<span style="font-size:0.7rem;color:var(--text-dim);margin-left:10px;">curves &amp; flies only · spot C+R largely reflects the priced CB path</span>';
+        '<span style="font-size:0.72rem;color:var(--text-dim);margin-right:6px;">Sort:</span>' +
+        '<span class="tabs" style="display:inline-flex;">' +
+          '<button class="tab' + (topSort === 'carry' ? ' active' : '') + '" data-crs="carry" title="|total ÷ vol| — best risk-adjusted carry">Carry</button>' +
+          '<button class="tab' + (topSort === 'score' ? ' active' : '') + '" data-crs="score" title="carry tilted by whether the level is cheap for the carry direction vs 3m/1y history">Value-adj</button></span>' +
+        '<div style="font-size:0.7rem;color:var(--text-dim);margin-top:6px;">curves &amp; flies only · spot C+R largely reflects the priced CB path · <b>Value-adj</b> rewards positive carry entered <b>cheap</b> (payer at low level %ile / receiver at high)</div>';
       ctrl.querySelectorAll('[data-crh]').forEach(function(b) {
         b.addEventListener('click', function() { topHz = b.dataset.crh; render(); });
       });
       ctrl.querySelectorAll('[data-crt]').forEach(function(b) {
         b.addEventListener('click', function() { topSpot = b.dataset.crt === 'all'; render(); });
+      });
+      ctrl.querySelectorAll('[data-crs]').forEach(function(b) {
+        b.addEventListener('click', function() { topSort = b.dataset.crs; render(); });
       });
     }
   }
@@ -1828,16 +1851,13 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         if (r.ratio == null || r.flag || r.kind === 'outright') return false;   // curves & flies only
         if (r.fwd === '') return topSpot;                                       // spot only if toggled in
         return topHz === 'both' || r.fwd === topHz;                             // fwd matches horizon
-      }).sort(function(a, b) { return Math.abs(b.ratio) - Math.abs(a.ratio); }).slice(0, 30);
-      body.innerHTML = tbl(['Ccy', 'Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'],
+      }).sort(function(a, b) {
+        if (topSort === 'score') return (b.composite == null ? -99 : b.composite) - (a.composite == null ? -99 : a.composite);
+        return Math.abs(b.ratio) - Math.abs(a.ratio);
+      }).slice(0, 30);
+      body.innerHTML = tbl(['Ccy', 'Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio'].concat(LVL_H),
         rows.map(function(r) {
-          return '<tr><td>' + r.ccy + '</td><td>' + r.structure + '</td><td>' + (r.fwd || 'spot') + '</td>' +
-            '<td>' + fmt(r.level, r.kind === 'outright' ? 3 : 1) + '</td>' +
-            '<td' + col(r.roll_bp) + '>' + fmt(r.roll_bp) + '</td>' +
-            '<td' + col(r.carry_bp) + '>' + fmt(r.carry_bp) + '</td>' +
-            '<td' + col(r.total_bp) + '><b>' + fmt(r.total_bp) + '</b></td>' +
-            '<td>' + fmt(r.vol_bp) + '</td>' +
-            '<td' + col(r.ratio) + '><b>' + fmt(r.ratio, 2) + '</b></td>' + pctCell(r.pctile) + '</tr>';
+          return '<tr><td>' + r.ccy + '</td>' + rowCells(r, false).replace(/^<tr>/, '');
         }).join(''));
     }
   }
