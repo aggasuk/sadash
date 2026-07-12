@@ -1386,11 +1386,17 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
 
     <div style="margin-bottom:14px;font-size:12.5px;color:var(--muted);line-height:1.55;">
-      <b>Model:</b> 3-speed EWMA trend (10/30, 20/60, 40/120; tanh response) + 12M TSMOM anchor, vol-scaled.
+      <b>Model:</b> 3-speed EWMA trend (10/30, 20/60, 40/120; tanh response) + TSMOM anchor (mean of 189&ndash;315d sign windows &mdash; smoothed, no year-ago cliff), vol-scaled.
       <b>+DV01 = long duration.</b> Threshold cells show the level that would generate an x-SD flow over the next N days
       (0SD = level at which CTAs do nothing &mdash; not spot when signals are rolling). Cell shading = sign of the flow
       (green = CTA buying, red = selling), intensity = probability of the level being touched within the horizon.
+      <b>Flat flow</b> = expected flow over the horizon if yields are UNCHANGED (the pipeline).
       Aggregate calibrated to street holdings tallies (~$109m/bp at the 95th pctile). <em>Click a row for the chart.</em>
+    </div>
+
+    <div class="chart-wrap" style="padding:12px;margin-bottom:14px;">
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;" id="cta-scen-dm-title">Expected flow by scenario &mdash; DM ($m/bp)</div>
+      <div style="position:relative;height:240px;"><canvas id="cta-scen-dm-chart"></canvas></div>
     </div>
 
     <div id="cta-dm-table" style="margin-bottom:20px;"></div>
@@ -1410,9 +1416,15 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <div id="cta-scen" style="margin-bottom:20px;"></div>
 
     <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 8px;">EM Asia IRS &mdash; trend-follower lens (same model; not in aggregate &mdash; read SD, not $)</div>
-    <div class="chart-wrap" style="padding:12px;margin-bottom:14px;">
-      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Realized 5d flow by market &mdash; EM Asia ($m/bp, same-budget scaling)</div>
-      <div style="position:relative;height:250px;"><canvas id="cta-em-flow-chart"></canvas></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;">
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;" id="cta-scen-em-title">Expected flow by scenario &mdash; EM Asia ($m/bp)</div>
+        <div style="position:relative;height:240px;"><canvas id="cta-scen-em-chart"></canvas></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Realized 5d flow by market &mdash; EM Asia ($m/bp, same-budget scaling)</div>
+        <div style="position:relative;height:240px;"><canvas id="cta-em-flow-chart"></canvas></div>
+      </div>
     </div>
     <div id="cta-em-table"></div>
   </div>
@@ -4049,7 +4061,33 @@ window.FVDETAIL = (function() {
   var TYPE = 'bps';        // 'bps' | 'yield'
   var drillKey = null;
   var aggChart = null, flowChart = null, emFlowChart = null, drillTop = null, drillBot = null;
+  var scenDmChart = null, scenEmChart = null;
   var TICK = '#94a3b8', GRID = 'rgba(148,163,184,0.12)';
+
+  function shortName(m) { return m.name.replace(/ \(.*\)/, '').replace(' IRS', ''); }
+
+  // grouped bars: expected flow under -2σ rally / flat / +2σ selloff for horizon H
+  function scenBar(canvasId, titleId, markets, prev) {
+    var cv = document.getElementById(canvasId);
+    if (!cv) return prev;
+    if (prev) prev.destroy();
+    var tEl = document.getElementById(titleId);
+    if (tEl) tEl.textContent = tEl.textContent.replace(/ over next .*? days| — next .*/, '') .replace(' ($m/bp)', '') + ' — next ' + H + 'd ($m/bp)';
+    var ms = markets.filter(function(m) { return m.scen_flows && m.scen_flows[H]; });
+    function d(k) { return ms.map(function(m) { return m.scen_flows[H][k] / 1e6; }); }
+    return new Chart(cv, {
+      type: 'bar',
+      data: { labels: ms.map(shortName), datasets: [
+        { label: '−2σ rally (yields dn)', data: d('bull2'), backgroundColor: 'rgba(22,163,74,0.85)' },
+        { label: 'flat (unchanged)', data: d('flat'), backgroundColor: 'rgba(148,163,184,0.85)' },
+        { label: '+2σ selloff (yields up)', data: d('bear2'), backgroundColor: 'rgba(220,38,38,0.85)' }] },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: TICK, boxWidth: 12, font: { size: 9 } } },
+          tooltip: { callbacks: { label: function(c) { return c.dataset.label + ': $' + c.raw.toFixed(2) + 'm/bp (' + (c.raw >= 0 ? 'buying' : 'selling') + ')'; } } } },
+        scales: { x: { ticks: { color: TICK, font: { size: 9 } }, grid: { display: false } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
+    });
+  }
 
   function flowBar(canvasId, markets, prev) {
     var cv = document.getElementById(canvasId);
@@ -4114,6 +4152,7 @@ window.FVDETAIL = (function() {
       '<th style="text-align:left;">Region</th><th style="text-align:left;">Market</th>' +
       '<th>Last</th><th>Exposure SD</th><th>DV01 $m</th><th>Speeds</th>' +
       '<th>-2SD</th><th>-1SD</th><th>0SD</th><th>+1SD</th><th>+2SD</th>' +
+      '<th title="expected flow over the horizon if yields are unchanged">Flat flow $m</th>' +
       '<th>1SD flow $m</th><th>5d flow $m</th></tr></thead><tbody>';
     var lastReg = null;
     markets.forEach(function(m) {
@@ -4134,7 +4173,10 @@ window.FVDETAIL = (function() {
           (c && c.prob !== null ? ' title="P(touch) ' + Math.round(c.prob * 100) + '%"' : '') + '>' +
           cellText(c) + '</td>';
       });
-      h += '<td>' + fmtM(m.sd_flow[H]) + '</td>' +
+      var ff = m.scen_flows && m.scen_flows[H] ? m.scen_flows[H].flat : null;
+      h += '<td style="font-weight:700;color:' + (ff === null ? 'var(--text-dim)' : ff >= 0 ? '#16a34a' : '#dc2626') + ';">' +
+        (ff === null ? '--' : (ff >= 0 ? '+' : '') + (ff / 1e6).toFixed(2)) + '</td>' +
+        '<td>' + fmtM(m.sd_flow[H]) + '</td>' +
         '<td style="color:' + (m.flow_5d >= 0 ? '#16a34a' : '#dc2626') + ';">' + (m.flow_5d / 1e6).toFixed(2) + '</td></tr>';
     });
     el.innerHTML = h + '</tbody></table>';
@@ -4212,64 +4254,50 @@ window.FVDETAIL = (function() {
           m.sigma_bp_day + 'bp/d · momentum ' + m.momentum + ' · DV01 $' + fmtM(m.pos_dv01) + 'm/bp</span>' +
         '<button id="cta-drill-close" style="margin-left:auto;background:none;border:1px solid var(--border);' +
           'border-radius:6px;color:var(--text-dim);cursor:pointer;padding:2px 10px;">close</button></div>' +
-      '<div style="height:240px;"><canvas id="cta-drill-top"></canvas></div>' +
-      '<div style="height:110px;margin-top:4px;"><canvas id="cta-drill-bot"></canvas></div>';
+      '<div style="font-size:0.7rem;color:var(--text-dim);margin-bottom:4px;">Position $m/bp — 1y history + ' +
+        (m.projection ? m.projection.dates.length : 15) + 'd projection by yield scenario (σ·√t envelopes)</div>' +
+      '<div style="height:340px;"><canvas id="cta-drill-bot"></canvas></div>';
     document.getElementById('cta-drill-close').addEventListener('click', function() {
       el.style.display = 'none'; drillKey = null;
       if (drillTop) { drillTop.destroy(); drillTop = null; }
       if (drillBot) { drillBot.destroy(); drillBot = null; }
     });
-    var anns = { };
-    [-2, -1, 0, 1, 2].forEach(function(sd) {
-      var c = th[sd];
-      if (!c || c.level === null) return;
-      anns['t' + sd] = { type: 'line', yMin: c.level, yMax: c.level,
-        borderColor: sd === 0 ? '#94a3b8' : sd > 0 ? '#16a34a' : '#dc2626',
-        borderWidth: Math.abs(sd) === 2 ? 1.6 : 1, borderDash: [5, 4],
-        label: { display: true, content: (sd > 0 ? '+' : '') + sd + 'SD', position: 'start',
-          backgroundColor: 'rgba(0,0,0,0.55)', color: '#fff', font: { size: 9 } } };
-    });
-    // ---- forward projection: extend both panels with flat / +1sigma / -1sigma paths ----
+    // ---- Vanda-style: one big position panel, history + scenario fan ----
     var pj = m.projection;
     var histN = m.history.d.length;
     var labels = m.history.d.concat(pj ? pj.dates : []);
     var tailNull = new Array(pj ? pj.dates.length : 0).fill(null);
     function padFwd(connect, arr) { var a = new Array(histN - 1).fill(null); a.push(connect); return a.concat(arr); }
-    var PJ = { flat: ['#94a3b8', 'flat'], bear: ['#dc2626', '+1σ (bear)'], bull: ['#16a34a', '−1σ (bull)'] };
-    if (pj) anns.now = { type: 'line', xMin: histN - 1, xMax: histN - 1, borderColor: '#64748b', borderWidth: 1, borderDash: [2, 2] };
-
-    var yDsets = [{ label: 'Yield %', data: m.history.y.concat(tailNull),
-      borderColor: '#3b6cb3', borderWidth: 1.7, pointRadius: 0, tension: 0.1 }];
-    if (pj) Object.keys(PJ).forEach(function(k) {
-      yDsets.push({ label: PJ[k][1], data: padFwd(pj.y0, pj.scen[k].y), borderColor: PJ[k][0],
-        borderWidth: 1.4, borderDash: [4, 3], pointRadius: 0, tension: 0.05 });
-    });
-    if (drillTop) drillTop.destroy();
-    drillTop = new Chart(document.getElementById('cta-drill-top'), {
-      type: 'line',
-      data: { labels: labels, datasets: yDsets },
-      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: !!pj, labels: { color: TICK, boxWidth: 12, font: { size: 9 } } },
-          annotation: { annotations: anns } },
-        scales: { x: { ticks: { color: TICK, maxTicksLimit: 8, font: { size: 9 } }, grid: { color: GRID } },
-                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
-    });
-
-    var pDsets = [{ label: 'Position $m/bp', data: m.history.pos.map(function(v) { return v === null ? null : v / 1e6; }).concat(tailNull),
-      borderColor: '#ea580c', borderWidth: 1.4, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: 'rgba(234,88,12,0.10)' }];
-    if (pj) Object.keys(PJ).forEach(function(k) {
-      pDsets.push({ label: PJ[k][1], data: padFwd(pj.pos0 / 1e6, pj.scen[k].pos.map(function(v) { return v / 1e6; })),
-        borderColor: PJ[k][0], borderWidth: 1.4, borderDash: [4, 3], pointRadius: 0, tension: 0.05 });
+    function endBp(k) {  // bp move at end of projection for scenario k
+      if (!pj || !pj.scen[k]) return '';
+      var dy = Math.round((pj.scen[k].y[pj.scen[k].y.length - 1] - pj.y0) * 100);
+      return ' [' + (dy > 0 ? '+' : '') + dy + 'bp]';
+    }
+    // order: strongest bull on top of legend, bear at bottom
+    var PJ = [
+      ['bull2', '#15803d', '−2σ rally'], ['bull', '#4ade80', '−1σ rally'],
+      ['flat', '#94a3b8', 'flat'],
+      ['bear', '#f87171', '+1σ selloff'], ['bear2', '#b91c1c', '+2σ selloff']];
+    var pDsets = [{ label: 'Position', data: m.history.pos.map(function(v) { return v === null ? null : v / 1e6; }).concat(tailNull),
+      borderColor: '#3b6cb3', borderWidth: 1.8, pointRadius: 0, tension: 0.1, fill: true, backgroundColor: 'rgba(59,108,179,0.10)' }];
+    if (pj) PJ.forEach(function(cfg) {
+      if (!pj.scen[cfg[0]]) return;
+      pDsets.push({ label: cfg[2] + endBp(cfg[0]), data: padFwd(pj.pos0 / 1e6, pj.scen[cfg[0]].pos.map(function(v) { return v / 1e6; })),
+        borderColor: cfg[1], borderWidth: 1.6, borderDash: [5, 3], pointRadius: 0, tension: 0.05 });
     });
     var botAnns = { z: { type: 'line', yMin: 0, yMax: 0, borderColor: '#64748b', borderWidth: 0.8 } };
     if (pj) botAnns.now = { type: 'line', xMin: histN - 1, xMax: histN - 1, borderColor: '#64748b', borderWidth: 1, borderDash: [2, 2] };
+    if (drillTop) { drillTop.destroy(); drillTop = null; }
     if (drillBot) drillBot.destroy();
     drillBot = new Chart(document.getElementById('cta-drill-bot'), {
       type: 'line',
       data: { labels: labels, datasets: pDsets },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false },
-        annotation: { annotations: botAnns } },
-        scales: { x: { display: false }, y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } } } }
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { display: true, labels: { color: TICK, boxWidth: 14, font: { size: 10 } } },
+          tooltip: { callbacks: { label: function(c) { return c.dataset.label + ': $' + (c.raw === null ? '--' : c.raw.toFixed(1)) + 'm/bp'; } } },
+          annotation: { annotations: botAnns } },
+        scales: { x: { ticks: { color: TICK, maxTicksLimit: 9, font: { size: 9 } }, grid: { color: GRID } },
+                  y: { ticks: { color: TICK, font: { size: 10 } }, grid: { color: GRID } } } }
     });
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
@@ -4284,6 +4312,8 @@ window.FVDETAIL = (function() {
     scenTable();
     aggCharts();
     emFlowChart = flowBar('cta-em-flow-chart', D.em_panel, emFlowChart);
+    scenDmChart = scenBar('cta-scen-dm-chart', 'cta-scen-dm-title', D.markets, scenDmChart);
+    scenEmChart = scenBar('cta-scen-em-chart', 'cta-scen-em-title', D.em_panel, scenEmChart);
     if (drillKey) drill(drillKey, drillIsEM);
   }
 
