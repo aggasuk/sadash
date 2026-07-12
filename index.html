@@ -1498,6 +1498,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       3M carry &amp; roll as <b>Δ structure level (bp), curve unchanged</b>: green&nbsp;+ = level rises → <b>payer / steepener / fly-payer earns</b>;
       red&nbsp;− = receiver side earns. Curves = longer−shorter · flies = 2·belly−wings. <b>Ratio</b> = total ÷ 1y realized vol (3m-scaled).
       <b>%ile</b> = today's total vs 5y history (≤10 or ≥90 highlighted — extreme carry regimes). Fwd-structure history is par-reconstructed (approx).
+      <b>†</b> = AUD roll path crosses the 2.5y OIS/BBSW curve split — slide contains the ~20bp basis, treat as unreliable (excluded from Top Opportunities).
     </div>
     <div class="tabs" id="cr-view-tabs" style="margin-bottom:14px;">
       <button class="tab active" data-crv="ccy">By Currency</button>
@@ -1731,7 +1732,8 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     return '<td style="' + (hot ? 'background:rgba(217,119,6,.18);font-weight:600;' : '') + '">' + p.toFixed(0) + '</td>';
   }
   function rowCells(r, withName) {
-    var name = withName ? '<td>' + r.ccy + '</td>' : '<td>' + r.structure + '</td><td>' + (r.fwd || 'spot') + '</td>';
+    var dag = r.flag ? ' †' : '';
+    var name = withName ? '<td>' + r.ccy + dag + '</td>' : '<td>' + r.structure + dag + '</td><td>' + (r.fwd || 'spot') + '</td>';
     return '<tr>' + name +
       '<td>' + fmt(r.level, r.kind === 'outright' ? 3 : 1) + '</td>' +
       '<td' + col(r.roll_bp) + '>' + fmt(r.roll_bp) + '</td>' +
@@ -1793,7 +1795,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         .sort(function(a, b) { return (b.ratio || -99) - (a.ratio || -99); });
       body.innerHTML = tbl(H_CCY, rows.map(function(r) { return rowCells(r, true); }).join(''));
     } else {
-      var rows = CR.rows.filter(function(r) { return r.ratio != null; })
+      var rows = CR.rows.filter(function(r) { return r.ratio != null && !r.flag; })
         .sort(function(a, b) { return Math.abs(b.ratio) - Math.abs(a.ratio); }).slice(0, 30);
       body.innerHTML = tbl(['Ccy', 'Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'],
         rows.map(function(r) {
