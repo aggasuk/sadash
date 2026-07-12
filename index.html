@@ -1734,6 +1734,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 (function() {
   var CR = null, view = 'ccy', selCcy = 'USD', selStruct = '1s3s5s', selFwd = '';
   var topSpot = false;   // Top Opportunities: false = fwd-start only (spot C+R just prices the CB path)
+  var topHz = 'both';    // Top Opportunities horizon filter: '3M' | '6M' | 'both'
   var body = document.getElementById('cr-body'), ctrl = document.getElementById('cr-controls');
   if (!body) return;
   var GRN = '#22a06b', RED = '#dc2626';
@@ -1788,10 +1789,19 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         b.addEventListener('click', function() { selFwd = b.dataset.crf; render(); });
       });
     } else {
-      ctrl.innerHTML = '<span class="tabs" style="display:inline-flex;">' +
-        '<button class="tab' + (!topSpot ? ' active' : '') + '" data-crt="fwd">Fwd-start only</button>' +
-        '<button class="tab' + (topSpot ? ' active' : '') + '" data-crt="all">Include spot</button></span>' +
-        '<span style="font-size:0.7rem;color:var(--text-dim);margin-left:10px;">spot C+R largely reflects the priced CB path, not RV</span>';
+      var hz = [['3M', '3M'], ['6M', '6M'], ['both', 'Both']];
+      ctrl.innerHTML =
+        '<span style="font-size:0.72rem;color:var(--text-dim);margin-right:6px;">Fwd start:</span>' +
+        '<span class="tabs" style="display:inline-flex;margin-right:16px;">' +
+          hz.map(function(o) { return '<button class="tab' + (topHz === o[0] ? ' active' : '') + '" data-crh="' + o[0] + '">' + o[1] + '</button>'; }).join('') +
+        '</span>' +
+        '<span class="tabs" style="display:inline-flex;">' +
+          '<button class="tab' + (!topSpot ? ' active' : '') + '" data-crt="fwd">Fwd only</button>' +
+          '<button class="tab' + (topSpot ? ' active' : '') + '" data-crt="all">+ spot</button></span>' +
+        '<span style="font-size:0.7rem;color:var(--text-dim);margin-left:10px;">curves &amp; flies only · spot C+R largely reflects the priced CB path</span>';
+      ctrl.querySelectorAll('[data-crh]').forEach(function(b) {
+        b.addEventListener('click', function() { topHz = b.dataset.crh; render(); });
+      });
       ctrl.querySelectorAll('[data-crt]').forEach(function(b) {
         b.addEventListener('click', function() { topSpot = b.dataset.crt === 'all'; render(); });
       });
@@ -1814,8 +1824,11 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         .sort(function(a, b) { return (b.ratio || -99) - (a.ratio || -99); });
       body.innerHTML = tbl(H_CCY, rows.map(function(r) { return rowCells(r, true); }).join(''));
     } else {
-      var rows = CR.rows.filter(function(r) { return r.ratio != null && !r.flag && (topSpot || r.fwd !== ''); })
-        .sort(function(a, b) { return Math.abs(b.ratio) - Math.abs(a.ratio); }).slice(0, 30);
+      var rows = CR.rows.filter(function(r) {
+        if (r.ratio == null || r.flag || r.kind === 'outright') return false;   // curves & flies only
+        if (r.fwd === '') return topSpot;                                       // spot only if toggled in
+        return topHz === 'both' || r.fwd === topHz;                             // fwd matches horizon
+      }).sort(function(a, b) { return Math.abs(b.ratio) - Math.abs(a.ratio); }).slice(0, 30);
       body.innerHTML = tbl(['Ccy', 'Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'],
         rows.map(function(r) {
           return '<tr><td>' + r.ccy + '</td><td>' + r.structure + '</td><td>' + (r.fwd || 'spot') + '</td>' +
