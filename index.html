@@ -319,6 +319,23 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
   .trade-empty { padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
 
   footer { text-align: center; padding: 24px 0 12px; color: var(--text-dim); font-size: 0.65rem; }
+
+  /* data-health chip (header) */
+  .health-wrap { position: relative; align-self: center; margin-left: auto; }
+  .health-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--text-dim); cursor: pointer;
+    font-size: 0.7rem; padding: 6px 10px; font-family: inherit; white-space: nowrap; }
+  .health-dot { width: 8px; height: 8px; border-radius: 50%; background: #22a06b; }
+  .health-dot.warn { background: #d97706; }
+  .health-dot.bad { background: #dc2626; }
+  .health-pop { display: none; position: absolute; right: 0; top: calc(100% + 6px); z-index: 50;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; min-width: 260px; max-height: 320px; overflow-y: auto;
+    font-size: 0.68rem; color: var(--text-dim); box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+  .health-pop.open { display: block; }
+  .health-pop .hrow { display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; }
+  .health-pop .hrow.flag { color: #d97706; }
+  .health-pop .hrow.bad { color: #dc2626; }
 </style>
 </head>
 <body>
@@ -336,7 +353,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <button class="nav-btn" data-page="cyclefw">Cycle FW</button>
     <button class="nav-btn" data-page="fiscal" style="display:none;">Fiscal Monitor</button>
     <button class="nav-btn" data-page="book" style="display:none;">Book</button>
-    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" style="margin-left:auto;align-self:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:0.95rem;line-height:1;padding:6px 12px;font-family:inherit;">☾</button>
+    <div class="health-wrap" id="health-wrap" style="display:none;">
+      <button class="health-chip" id="health-chip" title="Data freshness"><span class="health-dot" id="health-dot"></span><span id="health-txt">data</span></button>
+      <div class="health-pop" id="health-pop"></div>
+    </div>
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light / dark" style="align-self:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:0.95rem;line-height:1;padding:6px 12px;font-family:inherit;margin-left:8px;">☾</button>
   </div>
 
   <!-- ============ MOMENTUM PAGE ============ -->
@@ -402,7 +423,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div style="color:var(--text-dim);font-size:0.74rem;margin-bottom:10px;">
         Green ▲ = primary entries · faint red ✕ = armed-but-unconfirmed capitulations the gate filtered out · lower panel = capitulation score vs arm threshold.
       </div>
-      <iframe src="equity_bottoms.html" style="width:100%;height:840px;border:0;background:#fff;border-radius:8px;"></iframe>
+      <iframe src="equity_bottoms.html" loading="lazy" style="width:100%;height:840px;border:0;background:#fff;border-radius:8px;"></iframe>
     </div>
 
     <!-- ── Detail page (opened via row click, hidden by default) ── -->
@@ -1417,7 +1438,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div id="curve-1x2-table" style="margin-bottom:24px;"></div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="u6_1x2_vs_hikes.html" style="width:100%;height:620px;border:0;"></iframe>
+        <iframe src="u6_1x2_vs_hikes.html" loading="lazy" style="width:100%;height:620px;border:0;"></iframe>
       </div>
     </div>
 
@@ -1427,7 +1448,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div id="curve-1x3-table" style="margin-bottom:24px;"></div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="u6_1x3_vs_hikes.html" style="width:100%;height:620px;border:0;"></iframe>
+        <iframe src="u6_1x3_vs_hikes.html" loading="lazy" style="width:100%;height:620px;border:0;"></iframe>
       </div>
     </div>
 
@@ -1437,7 +1458,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div id="curve-cal-table" style="margin-bottom:24px;"></div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="6m1y_1y1y_vs_hikes.html" style="width:100%;height:620px;border:0;"></iframe>
+        <iframe src="6m1y_1y1y_vs_hikes.html" loading="lazy" style="width:100%;height:620px;border:0;"></iframe>
       </div>
     </div>
 
@@ -1450,7 +1471,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         Currencies below the line: USD undershoot &mdash; CCY strengthened despite weak CTOT.
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="ctot_fx_performance.html" style="width:100%;height:820px;border:0;background:#fff;border-radius:8px;"></iframe>
+        <iframe src="ctot_fx_performance.html" loading="lazy" style="width:100%;height:820px;border:0;background:#fff;border-radius:8px;"></iframe>
       </div>
     </div>
 
@@ -1462,7 +1483,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         Static history &mdash; refreshed on demand (&ldquo;refresh fx quadrant&rdquo;), not part of the daily refresh.
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="fx_quadrant.html" style="width:100%;height:2200px;border:0;background:#fff;border-radius:8px;"></iframe>
+        <iframe src="fx_quadrant.html" loading="lazy" style="width:100%;height:2200px;border:0;background:#fff;border-radius:8px;"></iframe>
       </div>
     </div>
   </div>
@@ -1505,22 +1526,22 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
     <div class="cyclefw-subpage" id="cyclefw-sub-inr">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_inr.html" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
+        <iframe src="cycle_framework_inr.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
       </div>
     </div>
     <div class="cyclefw-subpage" id="cyclefw-sub-krw" style="display:none;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_krw.html" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
+        <iframe src="cycle_framework_krw.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
       </div>
     </div>
     <div class="cyclefw-subpage" id="cyclefw-sub-eur" style="display:none;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_eur.html" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
+        <iframe src="cycle_framework_eur.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
       </div>
     </div>
     <div class="cyclefw-subpage" id="cyclefw-sub-nzd" style="display:none;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_nzd.html" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
+        <iframe src="cycle_framework_nzd.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
       </div>
     </div>
   </div>
@@ -1536,7 +1557,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
     <div class="fiscal-subpage" id="fiscal-sub-japan">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="japan_fiscal.html" style="width:100%;height:2400px;border:0;background:var(--bg);border-radius:8px;"></iframe>
+        <iframe src="japan_fiscal.html" loading="lazy" style="width:100%;height:2400px;border:0;background:var(--bg);border-radius:8px;"></iframe>
       </div>
     </div>
     <div class="fiscal-subpage" id="fiscal-sub-coming" style="display:none;color:var(--text-dim);padding:24px;">
@@ -1626,6 +1647,9 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 </div>
 
 <script>
+/* ========== SHARED: cache-buster (one version param per page load) ========== */
+function bust(u) { return u + '?v=' + (window.__FVV || (window.__FVV = Date.now())); }
+
 /* ========== PAGE NAV ========== */
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1635,6 +1659,43 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     document.getElementById('page-' + btn.dataset.page).classList.add('visible');
   });
 });
+
+/* ========== DATA HEALTH CHIP ========== */
+(function() {
+  const wrap = document.getElementById('health-wrap');
+  const dot = document.getElementById('health-dot');
+  const txt = document.getElementById('health-txt');
+  const pop = document.getElementById('health-pop');
+  if (!wrap) return;
+  fetch(bust('refresh_health.json')).then(r => r.json()).then(h => {
+    wrap.style.display = '';
+    const flagged = (h.feeds || []).filter(f => f.status !== 'ok');
+    // the health file itself going stale means the refresh (or its last step) didn't run
+    const selfAgeD = (Date.now() - new Date(h.run_at_utc).getTime()) / 864e5;
+    const selfStale = selfAgeD > 2.8;
+    const hasBad = flagged.some(f => f.status === 'missing' || f.status === 'corrupt');
+    if (!flagged.length && !selfStale) {
+      txt.textContent = 'data ok';
+    } else {
+      dot.classList.add(hasBad ? 'bad' : 'warn');
+      txt.textContent = selfStale && !flagged.length
+        ? 'health ' + selfAgeD.toFixed(1) + 'd old'
+        : flagged.length + ' stale';
+    }
+    // popup: flagged first, then a one-line summary
+    let rows = flagged.map(f =>
+      '<div class="hrow ' + (f.status === 'stale' ? 'flag' : 'bad') + '"><span>' + f.label +
+      '</span><span>' + f.status + (f.age_days != null ? ' · ' + f.age_days.toFixed(1) + 'd' : '') + '</span></div>');
+    if (selfStale) rows.unshift('<div class="hrow flag"><span>health manifest</span><span>' + selfAgeD.toFixed(1) + 'd old</span></div>');
+    rows.push('<div class="hrow" style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px;"><span>' +
+      h.n_feeds + ' feeds checked</span><span>' + new Date(h.run_at_utc).toLocaleString() + '</span></div>');
+    if (h.refresh_log) rows.push('<div class="hrow"><span>last refresh run</span><span>' +
+      h.refresh_log.ok + ' ok / ' + h.refresh_log.fail + ' fail</span></div>');
+    pop.innerHTML = rows.join('');
+    document.getElementById('health-chip').addEventListener('click', () => pop.classList.toggle('open'));
+    document.addEventListener('click', e => { if (!wrap.contains(e.target)) pop.classList.remove('open'); });
+  }).catch(() => {});
+})();
 
 /* ========== MOMENTUM ========== */
 const SHORT_KEYS = [
@@ -1947,7 +2008,7 @@ function renderMomSummaryCategory(cat, tickers) {
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 
-fetch('data.json').then(r => r.json()).then(data => {
+fetch(bust('data.json')).then(r => r.json()).then(data => {
   DATA = data;
   const tickers = Object.keys(data).filter(k => k !== '_updated');
   activeTicker = tickers[0];
@@ -1956,7 +2017,7 @@ fetch('data.json').then(r => r.json()).then(data => {
 });
 
 // ── RSI Rollover Screen ──
-fetch('rsi_rollover.json').then(r => r.json()).then(d => {
+fetch(bust('rsi_rollover.json')).then(r => r.json()).then(d => {
   renderRsiRollover(d);
 }).catch(() => {
   document.getElementById('rsi-rollover-content').innerHTML =
@@ -2109,7 +2170,7 @@ const BOT_CONTEXT = {
     why: 'Price-only (no Taiwan vol index on the terminal), so raw capitulation over-fires. Gating on a 50dma reclaim turns a negative raw composite into +3.0% 3M excess and cuts drawdown from −10.5% to −6.2%. Deep drawdowns (≤−20%) are themselves strong buys here.' },
 };
 
-fetch('equity_bottoms.json').then(r => r.json()).then(renderEquityBottoms).catch(() => {
+fetch(bust('equity_bottoms.json')).then(r => r.json()).then(renderEquityBottoms).catch(() => {
   const t = document.getElementById('eqbot-summary');
   if (t) t.innerHTML = '<div style="color:var(--text-dim);padding:20px;">equity_bottoms.json not available — run equity_bottom_indicators.py to generate.</div>';
 });
@@ -2188,7 +2249,7 @@ function renderEquityBottoms(d) {
 }
 
 // ── Alerts banner ──
-fetch('alerts.json').then(r => r.json()).then(d => {
+fetch(bust('alerts.json')).then(r => r.json()).then(d => {
   const banner = document.getElementById('alerts-banner');
   if (!d.alerts || d.alerts.length === 0) { banner.style.display = 'none'; return; }
   banner.style.display = 'block';
@@ -2227,7 +2288,7 @@ fetch('alerts.json').then(r => r.json()).then(d => {
 }).catch(() => {});
 
 // ── Signal Backtests ──
-fetch('signal_backtest.json').then(r => r.json()).then(d => {
+fetch(bust('signal_backtest.json')).then(r => r.json()).then(d => {
   const container = document.getElementById('signal-backtests');
   if (!d.backtests || d.backtests.length === 0) {
     container.innerHTML = '<div style="color:var(--text-dim);padding:20px;">No active signal triggers.</div>';
@@ -2459,7 +2520,7 @@ function renderFxvol(data) {
   draw();
 }
 
-fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
+fetch(bust('fxvol.json')).then(r => r.json()).then(renderFxvol).catch(() => {});
 
 /* ========== CITI SIGNALS ========== */
 (function() {
@@ -2683,7 +2744,7 @@ fetch('fxvol.json').then(r => r.json()).then(renderFxvol).catch(() => {});
 
   }
 
-  fetch('citi.json').then(r => r.json()).then(renderCiti).catch(() => {});
+  fetch(bust('citi.json')).then(r => r.json()).then(renderCiti).catch(() => {});
 })();
 
 /* ========== FAIR VALUE: Sub-tabs (Rates / FX) + Back button + row navigation ========== */
@@ -2985,8 +3046,12 @@ window.FV_NAV = (function() {
     });
   });
 
-  // Load all summary JSONs
-  Promise.all([
+  // Load all summary JSONs — deferred until the Fair Value tab is first opened
+  // (~5MB across 20 files; no reason to pull it on Momentum first-paint)
+  function loadFVData() {
+    if (window.__fvLoadStarted) return;
+    window.__fvLoadStarted = true;
+    Promise.all([
     fetch('eurusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eurusd_fvnom_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eurnok_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3007,13 +3072,19 @@ window.FV_NAV = (function() {
     fetch('sgdmyr_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('cl1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
-  ]).then(function(results) {
-    FV_DATA = results.filter(Boolean);
-    window.FV_DATA = FV_DATA;
-    window.FV_SUBID = subIdFor;
-    renderSummary();
-    if (window.FVDETAIL) window.FVDETAIL.refreshVisible();
+    ]).then(function(results) {
+      FV_DATA = results.filter(Boolean);
+      window.FV_DATA = FV_DATA;
+      window.FV_SUBID = subIdFor;
+      renderSummary();
+      if (window.FVDETAIL) window.FVDETAIL.refreshVisible();
+    });
+  }
+  // trigger on first visit to the Fair Value page (or immediately if it's already visible)
+  document.querySelectorAll('.nav-btn[data-page="fairvalue"]').forEach(function(b) {
+    b.addEventListener('click', loadFVData);
   });
+  if (document.getElementById('page-fairvalue').classList.contains('visible')) loadFVData();
 })();
 
 /* ========== FAIR VALUE: generic interactive detail charts (Chart.js) ==========
@@ -3361,7 +3432,7 @@ window.FVDETAIL = (function() {
     });
   }
 
-  fetch('eqvol.json').then(r => r.json()).then(renderEqvol).catch(e => {
+  fetch(bust('eqvol.json')).then(r => r.json()).then(renderEqvol).catch(e => {
     console.log('eqvol.json not loaded:', e);
   });
 })();
@@ -3562,7 +3633,7 @@ window.FVDETAIL = (function() {
     });
   }
 
-  fetch('ratesvol.json').then(r => r.json()).then(renderRatesvol).catch(e => {
+  fetch(bust('ratesvol.json')).then(r => r.json()).then(renderRatesvol).catch(e => {
     console.log('ratesvol.json not loaded:', e);
   });
 })();
@@ -4247,7 +4318,7 @@ window.FVDETAIL = (function() {
     );
   }
 
-  fetch('curve_shape.json').then(r => r.json()).then(renderCurveShape)
+  fetch(bust('curve_shape.json')).then(r => r.json()).then(renderCurveShape)
     .catch(e => { document.getElementById('curve-shape-table').innerHTML =
       '<div style="color:var(--text-dim);">Error loading curve_shape.json</div>'; });
 })();
@@ -4644,7 +4715,7 @@ window.FVDETAIL = (function() {
   }
 
   // Load mtm.json on page load
-  fetch('mtm.json').then(r => r.json()).then(data => { mtmData = data; }).catch(() => {});
+  fetch(bust('mtm.json')).then(r => r.json()).then(data => { mtmData = data; }).catch(() => {});
 
   // ── Render all ──
   function renderAll() {
@@ -5059,7 +5130,7 @@ window.FVDETAIL = (function() {
       t.classList.add('active'); SEC=t.getAttribute('data-seas'); render();
     });
   });
-  fetch('seasonality.json?t='+Date.now()).then(function(r){return r.json();}).then(function(j){
+  fetch(bust('seasonality.json')).then(function(r){return r.json();}).then(function(j){
     SEAS=j;
     var rng=j.weeks[0].label.split('→')[0]+'→'+j.weeks[3].label.split('→')[1];
     var asof=(j._updated||'').split(' ')[0];
