@@ -347,6 +347,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <button class="nav-btn" data-page="citi" style="display:none;">Citi Signals</button>
     <button class="nav-btn" data-page="fairvalue">Fair Value</button>
     <button class="nav-btn" data-page="curves">Curves</button>
+    <button class="nav-btn" data-page="carryroll">Carry &amp; Roll</button>
     <button class="nav-btn" data-page="cta">CTA Rates</button>
     <button class="nav-btn" data-page="studies">Studies</button>
     <button class="nav-btn" data-page="seasonality">Seasonality</button>
@@ -1488,6 +1489,25 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
   </div>
 
+    <!-- ============ CARRY & ROLL PAGE ============ -->
+  <div class="page" id="page-carryroll">
+    <header>
+      <h1><span>&gt;</span> Carry &amp; Rolldown <span id="cr-updated" style="font-weight:400;color:var(--text-dim);font-size:15px;"></span></h1>
+    </header>
+    <div style="color:var(--text-dim);font-size:13px;margin:0 0 16px;max-width:960px;">
+      3M carry &amp; roll as <b>Δ structure level (bp), curve unchanged</b>: green&nbsp;+ = level rises → <b>payer / steepener / fly-payer earns</b>;
+      red&nbsp;− = receiver side earns. Curves = longer−shorter · flies = 2·belly−wings. <b>Ratio</b> = total ÷ 1y realized vol (3m-scaled).
+      <b>%ile</b> = today's total vs 5y history (≤10 or ≥90 highlighted — extreme carry regimes). Fwd-structure history is par-reconstructed (approx).
+    </div>
+    <div class="tabs" id="cr-view-tabs" style="margin-bottom:14px;">
+      <button class="tab active" data-crv="ccy">By Currency</button>
+      <button class="tab" data-crv="struct">By Structure</button>
+      <button class="tab" data-crv="top">Top Opportunities</button>
+    </div>
+    <div id="cr-controls" style="margin-bottom:14px;"></div>
+    <div id="cr-body"><div style="color:var(--text-dim);">Loading…</div></div>
+  </div>
+
     <!-- ============ SEASONALITY PAGE ============ -->
   <div class="page" id="page-seasonality">
     <header>
@@ -1695,6 +1715,121 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     document.getElementById('health-chip').addEventListener('click', () => pop.classList.toggle('open'));
     document.addEventListener('click', e => { if (!wrap.contains(e.target)) pop.classList.remove('open'); });
   }).catch(() => {});
+})();
+
+/* ========== CARRY & ROLL ========== */
+(function() {
+  var CR = null, view = 'ccy', selCcy = 'USD', selStruct = '1s3s5s', selFwd = '';
+  var body = document.getElementById('cr-body'), ctrl = document.getElementById('cr-controls');
+  if (!body) return;
+  var GRN = '#22a06b', RED = '#dc2626';
+  function fmt(v, d) { return v == null ? '—' : v.toFixed(d == null ? 1 : d); }
+  function col(v) { return v == null ? '' : ' style="color:' + (v > 0 ? GRN : RED) + ';"'; }
+  function pctCell(p) {
+    if (p == null) return '<td>—</td>';
+    var hot = p <= 10 || p >= 90;
+    return '<td style="' + (hot ? 'background:rgba(217,119,6,.18);font-weight:600;' : '') + '">' + p.toFixed(0) + '</td>';
+  }
+  function rowCells(r, withName) {
+    var name = withName ? '<td>' + r.ccy + '</td>' : '<td>' + r.structure + '</td><td>' + (r.fwd || 'spot') + '</td>';
+    return '<tr>' + name +
+      '<td>' + fmt(r.level, r.kind === 'outright' ? 3 : 1) + '</td>' +
+      '<td' + col(r.roll_bp) + '>' + fmt(r.roll_bp) + '</td>' +
+      '<td' + col(r.carry_bp) + '>' + fmt(r.carry_bp) + '</td>' +
+      '<td' + col(r.total_bp) + '><b>' + fmt(r.total_bp) + '</b></td>' +
+      '<td>' + fmt(r.vol_bp) + '</td>' +
+      '<td' + col(r.ratio) + '><b>' + fmt(r.ratio, 2) + '</b></td>' +
+      pctCell(r.pctile) + '</tr>';
+  }
+  function tbl(head, rowsHtml) {
+    return '<table class="vol-table"><thead><tr>' + head.map(function(h) { return '<th>' + h + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + rowsHtml + '</tbody></table>';
+  }
+  var H_STRUCT = ['Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'];
+  var H_CCY = ['Ccy', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'];
+
+  function renderControls() {
+    if (view === 'ccy') {
+      ctrl.innerHTML = '<div class="tabs">' + CR.ccys.map(function(c) {
+        return '<button class="tab' + (c === selCcy ? ' active' : '') + '" data-crc="' + c + '">' + c + '</button>';
+      }).join('') + '</div>';
+      ctrl.querySelectorAll('[data-crc]').forEach(function(b) {
+        b.addEventListener('click', function() { selCcy = b.dataset.crc; render(); });
+      });
+    } else if (view === 'struct') {
+      var structs = [];
+      CR.rows.forEach(function(r) { if (structs.indexOf(r.structure) < 0) structs.push(r.structure); });
+      var fwds = [];
+      CR.rows.forEach(function(r) {
+        if (r.structure === selStruct && fwds.indexOf(r.fwd) < 0) fwds.push(r.fwd);
+      });
+      if (fwds.indexOf(selFwd) < 0) selFwd = fwds[0] || '';
+      ctrl.innerHTML = '<select id="cr-ssel" style="background:var(--surface);color:inherit;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:inherit;margin-right:12px;">' +
+        structs.map(function(s) { return '<option' + (s === selStruct ? ' selected' : '') + '>' + s + '</option>'; }).join('') +
+        '</select><span class="tabs" style="display:inline-flex;">' +
+        fwds.map(function(f) { return '<button class="tab' + (f === selFwd ? ' active' : '') + '" data-crf="' + f + '">' + (f || 'spot') + '</button>'; }).join('') + '</span>';
+      document.getElementById('cr-ssel').addEventListener('change', function(e) { selStruct = e.target.value; render(); });
+      ctrl.querySelectorAll('[data-crf]').forEach(function(b) {
+        b.addEventListener('click', function() { selFwd = b.dataset.crf; render(); });
+      });
+    } else {
+      ctrl.innerHTML = '';
+    }
+  }
+
+  function render() {
+    if (!CR) return;
+    renderControls();
+    if (view === 'ccy') {
+      var rows = CR.rows.filter(function(r) { return r.ccy === selCcy; });
+      var html = '';
+      [['outright', 'Outrights'], ['curve', 'Curves'], ['fly', 'Flies']].forEach(function(k) {
+        var rr = rows.filter(function(r) { return r.kind === k[0]; });
+        if (rr.length) html += '<h3 style="margin:16px 0 8px;">' + k[1] + '</h3>' + tbl(H_STRUCT, rr.map(function(r) { return rowCells(r, false); }).join(''));
+      });
+      body.innerHTML = html || 'No data.';
+    } else if (view === 'struct') {
+      var rows = CR.rows.filter(function(r) { return r.structure === selStruct && r.fwd === selFwd; })
+        .sort(function(a, b) { return (b.ratio || -99) - (a.ratio || -99); });
+      body.innerHTML = tbl(H_CCY, rows.map(function(r) { return rowCells(r, true); }).join(''));
+    } else {
+      var rows = CR.rows.filter(function(r) { return r.ratio != null; })
+        .sort(function(a, b) { return Math.abs(b.ratio) - Math.abs(a.ratio); }).slice(0, 30);
+      body.innerHTML = tbl(['Ccy', 'Structure', 'Fwd', 'Level', 'Roll', 'Carry', 'Total 3m', 'Vol 3m', 'Ratio', '%ile 5y'],
+        rows.map(function(r) {
+          return '<tr><td>' + r.ccy + '</td><td>' + r.structure + '</td><td>' + (r.fwd || 'spot') + '</td>' +
+            '<td>' + fmt(r.level, r.kind === 'outright' ? 3 : 1) + '</td>' +
+            '<td' + col(r.roll_bp) + '>' + fmt(r.roll_bp) + '</td>' +
+            '<td' + col(r.carry_bp) + '>' + fmt(r.carry_bp) + '</td>' +
+            '<td' + col(r.total_bp) + '><b>' + fmt(r.total_bp) + '</b></td>' +
+            '<td>' + fmt(r.vol_bp) + '</td>' +
+            '<td' + col(r.ratio) + '><b>' + fmt(r.ratio, 2) + '</b></td>' + pctCell(r.pctile) + '</tr>';
+        }).join(''));
+    }
+  }
+
+  document.querySelectorAll('#cr-view-tabs .tab').forEach(function(b) {
+    b.addEventListener('click', function() {
+      view = b.dataset.crv;
+      document.querySelectorAll('#cr-view-tabs .tab').forEach(function(s) { s.classList.toggle('active', s === b); });
+      render();
+    });
+  });
+
+  function loadCR() {
+    if (window.__crLoadStarted) return;
+    window.__crLoadStarted = true;
+    fetch(bust('carry_roll.json')).then(function(r) { return r.json(); }).then(function(d) {
+      CR = d;
+      document.getElementById('cr-updated').textContent = '· 3M horizon · as of ' + d._updated;
+      render();
+    }).catch(function() {
+      body.innerHTML = '<div style="color:' + RED + ';">carry_roll.json failed to load.</div>';
+    });
+  }
+  document.querySelectorAll('.nav-btn[data-page="carryroll"]').forEach(function(b) {
+    b.addEventListener('click', loadCR);
+  });
 })();
 
 /* ========== MOMENTUM ========== */
