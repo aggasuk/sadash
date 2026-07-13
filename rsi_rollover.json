@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-13 09:48",
+  "generated": "2026-07-13 23:34",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -13,15 +13,29 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 79.2,
-      "rsi_now": 48.2,
+      "last": 79.27,
+      "rsi_now": 48.4,
       "rsi_yest": 41.2,
       "rsi_trough": 27.9,
       "trough_bars_ago": 8,
-      "rise": 20.4,
+      "rise": 20.5,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "IRSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 6.233,
+      "rsi_now": 44.8,
+      "rsi_yest": 35.7,
+      "rsi_trough": 26.9,
+      "trough_bars_ago": 4,
+      "rise": 17.9,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 75,
       "strength": "MODERATE"
     }
   ],
@@ -169,7 +183,7 @@
           "10": {
             "n": 10,
             "mean": 0.15,
-            "median": -0.12,
+            "median": -0.14,
             "hit_rate": 50.0
           },
           "20": {
@@ -372,8 +386,8 @@
         "bearish": {
           "5": {
             "n": 6,
-            "mean": 0.21,
-            "median": 0.18,
+            "mean": 0.2,
+            "median": 0.15,
             "hit_rate": 33.3
           },
           "10": {
@@ -624,7 +638,7 @@
         "bearish": {
           "5": {
             "n": 29,
-            "mean": 0.05,
+            "mean": 0.03,
             "median": -0.0,
             "hit_rate": 51.7
           },
@@ -636,7 +650,7 @@
           },
           "20": {
             "n": 27,
-            "mean": 2.35,
+            "mean": 2.33,
             "median": 3.26,
             "hit_rate": 33.3
           }
@@ -853,16 +867,16 @@
         },
         "bullish": {
           "5": {
-            "n": 14,
-            "mean": -0.16,
-            "median": 0.39,
-            "hit_rate": 64.3
+            "n": 15,
+            "mean": 0.03,
+            "median": 0.56,
+            "hit_rate": 66.7
           },
           "10": {
-            "n": 13,
-            "mean": -0.87,
-            "median": -1.23,
-            "hit_rate": 30.8
+            "n": 14,
+            "mean": -0.11,
+            "median": -1.21,
+            "hit_rate": 35.7
           },
           "20": {
             "n": 13,
@@ -902,7 +916,7 @@
           },
           "10": {
             "n": 5,
-            "mean": 1.33,
+            "mean": 1.35,
             "median": 1.79,
             "hit_rate": 80.0
           },
@@ -966,7 +980,7 @@
           },
           "10": {
             "n": 20,
-            "mean": 3.56,
+            "mean": 3.55,
             "median": 3.06,
             "hit_rate": 25.0
           },
