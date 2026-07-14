@@ -1,11 +1,11 @@
 {
- "run_at_utc": "2026-07-14T01:30:53Z",
+ "run_at_utc": "2026-07-14T10:56:39Z",
  "n_feeds": 48,
  "n_flagged": 1,
  "refresh_log": {
-  "ok": 47,
+  "ok": 48,
   "fail": 0,
-  "log_age_days": 0.0
+  "log_age_days": 0.39
  },
  "feeds": [
   {
@@ -14,7 +14,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:24"
+   "updated": "2026-07-14 18:49"
   },
   {
    "file": "signal_backtest.json",
@@ -22,7 +22,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:24"
+   "updated": "2026-07-14 18:49"
   },
   {
    "file": "alerts.json",
@@ -30,7 +30,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:24"
+   "updated": "2026-07-14 18:49"
   },
   {
    "file": "trade_alerts.json",
@@ -38,7 +38,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:26:49"
+   "updated": "2026-07-14T18:52:20"
   },
   {
    "file": "rsi_rollover.json",
@@ -46,7 +46,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:26"
+   "updated": "2026-07-14 18:52"
   },
   {
    "file": "equity_bottoms.json",
@@ -54,7 +54,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:26"
+   "updated": "2026-07-14 18:52"
   },
   {
    "file": "equity_bottoms.html",
@@ -70,7 +70,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:24"
+   "updated": "2026-07-14 18:50"
   },
   {
    "file": "eqvol.json",
@@ -78,7 +78,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:25:12"
+   "updated": "2026-07-14T18:50:41"
   },
   {
    "file": "ratesvol.json",
@@ -86,7 +86,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:25:24"
+   "updated": "2026-07-14T18:50:54"
   },
   {
    "file": "mtm.json",
@@ -94,7 +94,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:25:33"
+   "updated": "2026-07-14T18:50:55"
   },
   {
    "file": "curves.json",
@@ -102,7 +102,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:26:48"
+   "updated": "2026-07-14T18:52:08"
   },
   {
    "file": "curve_shape.json",
@@ -118,7 +118,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:29"
+   "updated": "2026-07-14 18:55"
   },
   {
    "file": "inr_ndois_fv.json",
@@ -126,7 +126,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14T09:27:28"
+   "updated": "2026-07-14T18:53:03"
   },
   {
    "file": "cta_rates.json",
@@ -134,7 +134,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:29"
+   "updated": "2026-07-14 18:55"
   },
   {
    "file": "carry_roll.json",
@@ -142,7 +142,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:30"
+   "updated": "2026-07-14 18:55"
   },
   {
    "file": "u6_1x2_vs_hikes.html",
@@ -212,7 +212,7 @@
    "file": "seasonality.json",
    "label": "Seasonality",
    "status": "ok",
-   "age_days": 8.0,
+   "age_days": 8.4,
    "max_age_days": 10,
    "updated": "2026-07-06 09:25"
   },
@@ -220,7 +220,7 @@
    "file": "fx_quadrant.json",
    "label": "FX Quadrant",
    "status": "stale",
-   "age_days": 26.02,
+   "age_days": 26.42,
    "max_age_days": 21,
    "updated": "2026-06-18 08:57"
   },
@@ -228,7 +228,7 @@
    "file": "japan_fiscal.json",
    "label": "Japan fiscal",
    "status": "ok",
-   "age_days": 27.01,
+   "age_days": 27.4,
    "max_age_days": 60,
    "updated": "2026-05-18 20:57"
   },
@@ -238,7 +238,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "audusd_fv_summary.json",
@@ -246,7 +246,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "bund10y_fv_summary.json",
@@ -254,7 +254,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "cl1_fv_summary.json",
@@ -262,7 +262,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:29"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "eurgbp_fv_summary.json",
@@ -270,7 +270,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "eurnok_fv_summary.json",
@@ -278,7 +278,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "eursek_fv_summary.json",
@@ -286,7 +286,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "eurusd_fv_summary.json",
@@ -294,7 +294,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "eurusd_fvnom_summary.json",
@@ -302,7 +302,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "gbpsek_fv_summary.json",
@@ -310,7 +310,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "jgb10y_fv_summary.json",
@@ -318,7 +318,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "jgb5s30s_fv_summary.json",
@@ -326,7 +326,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:29"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "noksek_fv_summary.json",
@@ -334,7 +334,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:27"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "sgdmyr_fv_summary.json",
@@ -342,7 +342,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "sgdthb_fv_summary.json",
@@ -350,7 +350,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "tpbnk_fv_summary.json",
@@ -358,7 +358,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:29"
+   "updated": "2026-07-14 18:54"
   },
   {
    "file": "usdchf_fv_summary.json",
@@ -366,7 +366,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "usdthb_fv_summary.json",
@@ -374,7 +374,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "usdzar_fv_summary.json",
@@ -382,7 +382,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:53"
   },
   {
    "file": "ust10y_fv_summary.json",
@@ -390,7 +390,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-07-14 09:28"
+   "updated": "2026-07-14 18:54"
   }
  ]
 }

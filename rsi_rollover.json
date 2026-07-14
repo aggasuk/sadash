@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-14 09:26",
+  "generated": "2026-07-14 18:52",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,31 +10,31 @@
   },
   "bearish": [
     {
-      "ticker": "USDJPY Curncy",
-      "category": "fx",
-      "last": 162.35,
-      "rsi_now": 59.6,
-      "rsi_yest": 60.6,
-      "rsi_peak": 77.3,
-      "peak_bars_ago": 9,
-      "drop": 17.7,
-      "divergence": false,
-      "st_label": "NEUTRAL",
-      "st_score": 50,
-      "strength": "MODERATE"
-    },
-    {
       "ticker": "GJGB10 Index",
       "category": "rates",
-      "last": 2.783,
-      "rsi_now": 56.1,
+      "last": 2.719,
+      "rsi_now": 49.5,
       "rsi_yest": 56.9,
       "rsi_peak": 71.8,
       "peak_bars_ago": 3,
-      "drop": 15.7,
+      "drop": 22.3,
       "divergence": false,
-      "st_label": "STRONG BULLISH",
-      "st_score": 100,
+      "st_label": "BEARISH",
+      "st_score": 40,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 162.24,
+      "rsi_now": 58.4,
+      "rsi_yest": 60.6,
+      "rsi_peak": 77.3,
+      "peak_bars_ago": 9,
+      "drop": 18.9,
+      "divergence": false,
+      "st_label": "NEUTRAL",
+      "st_score": 50,
       "strength": "MODERATE"
     }
   ],
@@ -42,12 +42,26 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 84.12,
-      "rsi_now": 56.4,
+      "last": 87.06,
+      "rsi_now": 60.4,
       "rsi_yest": 55.1,
       "rsi_trough": 27.9,
       "trough_bars_ago": 9,
-      "rise": 28.5,
+      "rise": 32.5,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "IRSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 6.3775,
+      "rsi_now": 57.5,
+      "rsi_yest": 44.8,
+      "rsi_trough": 26.9,
+      "trough_bars_ago": 5,
+      "rise": 30.6,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -191,8 +205,8 @@
         "bearish": {
           "5": {
             "n": 12,
-            "mean": 0.28,
-            "median": 0.47,
+            "mean": 0.29,
+            "median": 0.5,
             "hit_rate": 33.3
           },
           "10": {
@@ -259,8 +273,8 @@
           },
           "10": {
             "n": 1,
-            "mean": 0.06,
-            "median": 0.06,
+            "mean": 0.35,
+            "median": 0.35,
             "hit_rate": 100.0
           },
           "20": {
@@ -511,8 +525,8 @@
           },
           "10": {
             "n": 2,
-            "mean": -0.68,
-            "median": -0.68,
+            "mean": 0.08,
+            "median": 0.08,
             "hit_rate": 50.0
           },
           "20": {
@@ -925,7 +939,7 @@
         "bullish": {
           "5": {
             "n": 7,
-            "mean": 0.61,
+            "mean": 1.18,
             "median": -1.59,
             "hit_rate": 42.9
           },
