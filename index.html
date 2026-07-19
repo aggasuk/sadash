@@ -603,6 +603,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <button class="tab active" data-sub="rates">Rates</button>
       <button class="tab" data-sub="fx">FX</button>
       <button class="tab" data-sub="equities">Equities</button>
+      <button class="tab" data-sub="inflation">Inflation</button>
     </div>
 
     <button id="fv-back-btn" style="display:none;margin-bottom:16px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:0.78rem;cursor:pointer;">&larr; Back to overview</button>
@@ -647,6 +648,41 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div style="position:relative;height:340px;"><canvas id="fv-chart-equities"></canvas></div>
       </div>
       <div id="fv-summary-table-equities"></div>
+    </div>
+
+    <!-- ── Inflation overview (US ZCIS fair values — infl_fv.json from infl_2y_fv.py) ── -->
+    <div class="fv-subpage" id="fv-sub-inflation" style="display:none;">
+      <div id="infl-vintage-note" style="margin-bottom:14px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);font-size:0.78rem;"></div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>US inflation swaps (ZCIS) fair-value suite.</b>
+        Spot 1Y/2Y: <b>nowcast</b> — economists' core CPI NSA path + gasoline marked off the live RBOB
+        (XB) strip with retail-margin mean-reversion + food/other-energy trend&#8203;+seasonals; 2Y compounds
+        yr-1 nowcast with the 1Yx1Y model fair. Forwards 1Yx1Y / 3Yx2Y / 5Yx5Y: 7y daily regressions on
+        the <b>crude curve</b> (CL24 + CL24&sup2;), crude backwardation (1Yx1Y only), OIS level/slope and VIX
+        &mdash; front crude deliberately prices the nowcast, not the forwards. 10Y is reconstructed from
+        yr-1 &#8853; fair forwards. Residual = market &minus; fair: positive = market RICH (inflation priced
+        too high), negative = CHEAP.
+      </div>
+      <div id="infl-summary-table"></div>
+      <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin:18px 0 8px;">Oil sensitivity of fair values (bp)</div>
+      <div id="infl-sens-table"></div>
+      <div style="font-size:0.68rem;color:var(--text-dim);margin:4px 0 18px;">
+        Front-only = CL1 moves, crude curve barely follows (CL24 +$2 per +$10 front) &mdash; typical squeeze:
+        almost all passthrough is via the yr-1 gasoline nowcast. Parallel = whole curve shifts (structural
+        repricing): forwards reprice too. Feb&ndash;Apr 26 episode (CL1 +$50, CL24 +$8): 1Y +87bp, 1Yx1Y +14bp.
+      </div>
+      <div class="chart-wrap" style="padding:12px;margin-bottom:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">1Yx1Y — actual vs model fair (weekly, 3y)</div>
+        <div style="position:relative;height:240px;"><canvas id="infl-chart-f1y1y"></canvas></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;margin-bottom:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">3Yx2Y — actual vs model fair (weekly, 3y)</div>
+        <div style="position:relative;height:240px;"><canvas id="infl-chart-f3y2y"></canvas></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;margin-bottom:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">5Yx5Y — actual vs model fair (weekly, 3y)</div>
+        <div style="position:relative;height:240px;"><canvas id="infl-chart-f5y5y"></canvas></div>
+      </div>
     </div>
 
     <!-- ── CL1 sub-page (WTI crude — grouped under Equities tab) ── -->
@@ -2950,7 +2986,9 @@ window.FV_NAV = (function() {
     currentParent = which;
     tabsBar.style.display = '';
     backBtn.style.display = 'none';
-    if (ovCtrls) ovCtrls.style.display = '';
+    // regression-window selector is meaningless for the Inflation tab (fixed 7y fit)
+    if (ovCtrls) ovCtrls.style.display = (which === 'inflation') ? 'none' : '';
+    if (which === 'inflation' && window.INFL_FV) window.INFL_FV.load();
     subTabs.forEach(s => s.classList.toggle('active', s.dataset.sub === which));
     subPages.forEach(p => p.style.display = 'none');
     document.getElementById('fv-sub-' + which).style.display = 'block';
@@ -3274,6 +3312,102 @@ window.FV_NAV = (function() {
     b.addEventListener('click', loadFVData);
   });
   if (document.getElementById('page-fairvalue').classList.contains('visible')) loadFVData();
+
+  /* ── Fair Value > Inflation sub-tab (infl_fv.json) ── */
+  window.INFL_FV = (function() {
+    var loaded = false, charts = {};
+    function badge(sig) {
+      var cls = 'neutral';
+      if (/CHEAP|TOO FLAT/.test(sig)) cls = 'bull';
+      else if (/RICH|TOO STEEP/.test(sig)) cls = 'bear';
+      return '<span class="badge ' + cls + '">' + sig + '</span>';
+    }
+    function fmtBp(v) {
+      var c = v > 0 ? 'var(--red)' : (v < 0 ? 'var(--green)' : 'var(--text-dim)');
+      return '<span style="color:' + c + '">' + (v > 0 ? '+' : '') + v + '</span>';
+    }
+    function render(d) {
+      // vintage note — amber once the core path is >45 days old
+      var vin = new Date(d.core_vintage);
+      var age = Math.round((Date.now() - vin.getTime()) / 86400000);
+      var stale = age > 45;
+      var vn = document.getElementById('infl-vintage-note');
+      vn.style.borderColor = stale ? 'rgba(245,158,11,0.6)' : 'var(--border)';
+      vn.innerHTML = (stale ? '&#9888;&#65039; ' : '') +
+        '<b>Core CPI assumption vintage: ' + d.core_vintage + '</b> (' + age + 'd old' +
+        (stale ? ' — <span style="color:var(--amber,#f59e0b)">update CORE_NSA in infl_2y_fv.py with the latest economist forecast</span>' : '') +
+        ') &nbsp;|&nbsp; last CPI print: ' + d.last_cpi +
+        ' &nbsp;|&nbsp; retail gas $' + d.inputs.retail_gas +
+        ' (margin $' + d.inputs.margin_now + ' &rarr; LR $' + d.inputs.margin_lr + ')' +
+        ' &nbsp;|&nbsp; rest-block trend ' + d.inputs.rest_trend_ann + '% ann' +
+        ' &nbsp;|&nbsp; CL1 $' + d.inputs.cl1 + ' / CL24 $' + d.inputs.cl24 +
+        ' &nbsp;|&nbsp; updated ' + d._updated;
+      // summary table
+      var h = '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr>' +
+        '<th>Instrument</th><th>Market</th><th>Fair</th><th>Resid (bp)</th><th>Z</th><th>R&sup2;</th><th>Signal</th><th>Construction</th></tr></thead><tbody>';
+      d.spot.forEach(function(r) {
+        h += '<tr><td><b>' + r.inst + '</b></td><td>' + r.market.toFixed(2) + '</td><td>' + r.fair.toFixed(2) +
+             '</td><td>' + fmtBp(r.resid_bp) + '</td><td>&mdash;</td><td>&mdash;</td><td>' + badge(r.signal) +
+             '</td><td style="font-size:0.7rem;color:var(--text-dim);">' + r.type + '</td></tr>';
+      });
+      d.fwd.forEach(function(r) {
+        h += '<tr><td><b>' + r.inst + '</b></td><td>' + r.market.toFixed(2) + '</td><td>' + r.fair.toFixed(2) +
+             '</td><td>' + fmtBp(r.resid_bp) + '</td><td>' + r.z.toFixed(1) + '</td><td>' + r.r2.toFixed(2) +
+             '</td><td>' + badge(r.signal) + '</td><td style="font-size:0.7rem;color:var(--text-dim);">7y regression, resid sd ' + r.sd_bp + 'bp</td></tr>';
+      });
+      d.recon.forEach(function(r) {
+        h += '<tr><td><b>' + r.inst + '</b></td><td>' + (r.inst.indexOf('2s10s') === 0 ? fmtBp(r.market) : r.market.toFixed(2)) +
+             '</td><td>' + (r.inst.indexOf('2s10s') === 0 ? fmtBp(r.fair) : r.fair.toFixed(2)) +
+             '</td><td>' + fmtBp(r.resid_bp) + '</td><td>&mdash;</td><td>&mdash;</td><td>' + badge(r.signal) +
+             '</td><td style="font-size:0.7rem;color:var(--text-dim);">' + r.type + '</td></tr>';
+      });
+      h += '</tbody></table></div>';
+      document.getElementById('infl-summary-table').innerHTML = h;
+      // sensitivity table
+      var s = '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr>' +
+        '<th>Crude scenario</th><th>&Delta;1Y (bp)</th><th>&Delta;2Y (bp)</th><th>&Delta;1Yx1Y (bp)</th><th>Fair 1Y</th><th>Fair 2Y</th></tr></thead><tbody>';
+      d.sens.forEach(function(r) {
+        s += '<tr><td>' + r.scenario + '</td><td>' + fmtBp(r.d1y_bp) + '</td><td>' + fmtBp(r.d2y_bp) +
+             '</td><td>' + fmtBp(r.d1y1y_bp) + '</td><td>' + r.fair1.toFixed(2) + '</td><td>' + r.fair2.toFixed(2) + '</td></tr>';
+      });
+      s += '</tbody></table></div>';
+      document.getElementById('infl-sens-table').innerHTML = s;
+      // charts
+      ['f1y1y', 'f3y2y', 'f5y5y'].forEach(function(k) {
+        var sr = d.series[k];
+        if (!sr) return;
+        var ctx = document.getElementById('infl-chart-' + k);
+        if (!ctx) return;
+        if (charts[k]) charts[k].destroy();
+        charts[k] = new Chart(ctx, {
+          type: 'line',
+          data: { labels: sr.dates, datasets: [
+            { label: 'actual', data: sr.actual, borderColor: '#4da3ff', borderWidth: 1.6, pointRadius: 0, tension: 0.2 },
+            { label: 'model fair', data: sr.fair, borderColor: '#f59e0b', borderWidth: 1.2, borderDash: [5, 4], pointRadius: 0, tension: 0.2 }
+          ]},
+          options: {
+            responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+            plugins: { legend: { labels: { color: '#cbd5e1', boxWidth: 18, font: { size: 10 } } } },
+            scales: {
+              x: { ticks: { color: '#94a3b8', maxTicksLimit: 12, font: { size: 9 } }, grid: { color: 'rgba(148,163,184,0.08)' } },
+              y: { ticks: { color: '#cbd5e1', callback: function(v) { return v.toFixed(1) + '%'; } }, grid: { color: 'rgba(148,163,184,0.12)' } }
+            }
+          }
+        });
+      });
+    }
+    function load() {
+      if (loaded) return;
+      fetch('infl_fv.json?t=' + Date.now())
+        .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(d) { loaded = true; render(d); })
+        .catch(function(e) {
+          document.getElementById('infl-summary-table').innerHTML =
+            '<div style="color:var(--text-dim);font-size:0.8rem;">infl_fv.json unavailable (' + e.message + ') — run <code>python infl_2y_fv.py --json</code> and redeploy.</div>';
+        });
+    }
+    return { load: load };
+  })();
 })();
 
 /* ========== FAIR VALUE: generic interactive detail charts (Chart.js) ==========
