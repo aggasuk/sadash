@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-19T23:11:56",
+  "last_updated": "2026-07-20T11:37:35",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 44809.26,
-        "sma_long": 45409.3,
-        "last": 42671.27
+        "sma_short": 44265.97,
+        "sma_long": 45381.51,
+        "last": 42664.06
       },
-      "current_bp": -1.32,
+      "current_bp": -2.46,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -1.32,
+      "distance_bp": -2.46,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.01,
-        "HKD12M": -68500.0
+        "USDHKD": 784.0,
+        "HKD12M": -69303.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8401,
-        "HKD12M": -685.0
+        "USDHKD": 7.84,
+        "HKD12M": -693.03
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
@@ -78,17 +78,17 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 500.875,
-        "AUD30Y": 514.0
+        "AUD10Y": 503.228,
+        "AUD30Y": 515.104
       },
       "inputs_pct": {
-        "AUD10Y": 5.00875,
-        "AUD30Y": 5.14
+        "AUD10Y": 5.03228,
+        "AUD30Y": 5.15104
       },
-      "current_bp": 13.12,
+      "current_bp": 11.88,
       "trigger_bp": 6.5,
       "direction": "below",
-      "distance_bp": 6.62,
+      "distance_bp": 5.38,
       "status": "ARMED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
@@ -99,16 +99,16 @@
       "formula": "FFQ26 - FFV26 (bp)",
       "inputs": {
         "FFQ26": 9634.0,
-        "FFV26": 9620.5
+        "FFV26": 9619.5
       },
       "inputs_pct": {
         "FFQ26": 96.34,
-        "FFV26": 96.205
+        "FFV26": 96.195
       },
-      "current_bp": 13.5,
+      "current_bp": 14.5,
       "trigger_bp": 10.0,
       "direction": "below",
-      "distance_bp": 3.5,
+      "distance_bp": 4.5,
       "status": "ARMED",
       "rationale": "Buy Jul-Sep spread (long Aug FF / short Oct FF = long Sep FOMC move); enter when spread falls to 10bp (from ~11bp)",
       "added": "2026-07-02"
