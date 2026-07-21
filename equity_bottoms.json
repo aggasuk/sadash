@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-07-21 09:50",
+  "_updated": "2026-07-21 12:09",
   "config": {
     "horizons": [
       "1W",
@@ -802,6 +802,7 @@
         "mae_worst": -35.19,
         "kind": "timer/22d"
       },
+      "composite_flow": null,
       "composite_primary": {
         "signal": "PRIMARY [gated]",
         "n": 35,
@@ -1667,6 +1668,7 @@
         "mae_worst": -33.02,
         "kind": "timer/22d"
       },
+      "composite_flow": null,
       "composite_primary": {
         "signal": "PRIMARY [deep]",
         "n": 39,
@@ -1791,12 +1793,10 @@
       },
       "snapshot": {
         "date": "2026-07-21",
-        "px": 65568.0,
-        "score": 1,
+        "px": 65866.0,
+        "score": 0,
         "cap_max": 4,
-        "on": [
-          "VNKY 1y-90pct"
-        ],
+        "on": [],
         "recent_events": [],
         "armed": false,
         "last_entry": "2026-04-08",
@@ -2340,6 +2340,7 @@
         "mae_worst": -44.98,
         "kind": "timer/22d"
       },
+      "composite_flow": null,
       "composite_primary": {
         "signal": "PRIMARY [gated]",
         "n": 35,
@@ -2424,7 +2425,7 @@
       "sample_end": "2026-07-21",
       "n_days": 6302,
       "arm_thr": 3,
-      "mode": "raw",
+      "mode": "flow",
       "low_conviction": false,
       "cap_keys": [
         "VKOSPI>30",
@@ -2463,7 +2464,7 @@
       },
       "snapshot": {
         "date": "2026-07-21",
-        "px": 1070.0,
+        "px": 1086.0,
         "score": 3,
         "cap_max": 7,
         "on": [
@@ -2473,10 +2474,15 @@
           "VKOSPI>30",
           "VKOSPI>40"
         ],
-        "recent_events": [],
+        "recent_events": [
+          {
+            "event": "Flow trigger",
+            "date": "2026-07-21"
+          }
+        ],
         "armed": true,
-        "last_entry": "2026-07-02",
-        "entry_active_10d": false,
+        "last_entry": "2026-07-14",
+        "entry_active_10d": true,
         "armed_new": false,
         "entry_today": false
       },
@@ -2851,10 +2857,10 @@
           },
           "6M": {
             "n": 101,
-            "mean": 8.67,
+            "mean": 8.7,
             "median": 4.87,
             "hit": 62.0,
-            "excess": 1.34
+            "excess": 1.37
           },
           "t_3M": 3.74,
           "mae_mean": -6.28,
@@ -2939,6 +2945,43 @@
         }
       ],
       "confirmation": [
+        {
+          "signal": "Flow trigger",
+          "n": 8,
+          "first": "2008-02-05",
+          "last": "2026-07-14",
+          "1W": {
+            "n": 7,
+            "mean": 0.26,
+            "median": -0.71,
+            "hit": 43.0,
+            "excess": -0.01
+          },
+          "1M": {
+            "n": 7,
+            "mean": 4.91,
+            "median": 7.58,
+            "hit": 86.0,
+            "excess": 3.74
+          },
+          "3M": {
+            "n": 7,
+            "mean": 11.89,
+            "median": 9.27,
+            "hit": 100.0,
+            "excess": 8.26
+          },
+          "6M": {
+            "n": 7,
+            "mean": 21.09,
+            "median": 23.04,
+            "hit": 71.0,
+            "excess": 13.76
+          },
+          "t_3M": 4.32,
+          "mae_mean": -2.27,
+          "mae_worst": -7.94
+        },
         {
           "signal": "MACD+ <200dma",
           "n": 65,
@@ -3079,10 +3122,10 @@
         },
         "6M": {
           "n": 35,
-          "mean": 19.49,
+          "mean": 19.56,
           "median": 13.72,
           "hit": 77.0,
-          "excess": 12.16
+          "excess": 12.23
         },
         "t_3M": 4.14,
         "mae_mean": -6.8,
@@ -3244,85 +3287,90 @@
         "mae_worst": -19.46,
         "kind": "timer/22d"
       },
-      "composite_primary": {
-        "signal": "PRIMARY [raw]",
-        "n": 40,
-        "first": "2001-09-12",
-        "last": "2026-07-02",
+      "composite_flow": {
+        "signal": "flow-gated (arm+flow trig)",
+        "n": 7,
+        "first": "2008-02-05",
+        "last": "2026-07-14",
         "1W": {
-          "n": 40,
-          "mean": 0.79,
-          "median": 2.0,
-          "hit": 62.0,
-          "excess": 0.52
+          "n": 6,
+          "mean": 0.92,
+          "median": 0.88,
+          "hit": 50.0,
+          "excess": 0.65
         },
         "1M": {
-          "n": 39,
-          "mean": 4.21,
-          "median": 4.12,
-          "hit": 64.0,
-          "excess": 3.04
+          "n": 6,
+          "mean": 5.47,
+          "median": 7.99,
+          "hit": 83.0,
+          "excess": 4.3
         },
         "3M": {
-          "n": 37,
-          "mean": 12.32,
-          "median": 8.14,
-          "hit": 76.0,
-          "excess": 8.69
+          "n": 6,
+          "mean": 12.72,
+          "median": 11.65,
+          "hit": 100.0,
+          "excess": 9.09
         },
         "6M": {
-          "n": 35,
-          "mean": 19.49,
-          "median": 13.72,
-          "hit": 77.0,
-          "excess": 12.16
+          "n": 6,
+          "mean": 20.31,
+          "median": 19.11,
+          "hit": 67.0,
+          "excess": 12.98
         },
-        "t_3M": 4.14,
-        "mae_mean": -6.8,
-        "mae_worst": -31.13,
-        "mode": "raw",
+        "t_3M": 4.1,
+        "mae_mean": -2.01,
+        "mae_worst": -7.94,
+        "kind": "flow-gated"
+      },
+      "composite_primary": {
+        "signal": "PRIMARY [flow]",
+        "n": 7,
+        "first": "2008-02-05",
+        "last": "2026-07-14",
+        "1W": {
+          "n": 6,
+          "mean": 0.92,
+          "median": 0.88,
+          "hit": 50.0,
+          "excess": 0.65
+        },
+        "1M": {
+          "n": 6,
+          "mean": 5.47,
+          "median": 7.99,
+          "hit": 83.0,
+          "excess": 4.3
+        },
+        "3M": {
+          "n": 6,
+          "mean": 12.72,
+          "median": 11.65,
+          "hit": 100.0,
+          "excess": 9.09
+        },
+        "6M": {
+          "n": 6,
+          "mean": 20.31,
+          "median": 19.11,
+          "hit": 67.0,
+          "excess": 12.98
+        },
+        "t_3M": 4.1,
+        "mae_mean": -2.01,
+        "mae_worst": -7.94,
+        "mode": "flow",
         "low_conviction": false,
         "entry_dates": [
-          "2001-09-12",
-          "2002-06-26",
-          "2002-10-10",
-          "2003-02-11",
-          "2003-03-12",
-          "2003-04-25",
-          "2004-05-10",
-          "2004-06-11",
-          "2007-08-01",
-          "2007-11-23",
-          "2008-01-22",
-          "2008-03-07",
-          "2008-09-16",
-          "2008-10-16",
-          "2008-11-14",
-          "2008-12-15",
-          "2009-01-16",
-          "2009-02-18",
-          "2009-03-19",
-          "2010-05-25",
-          "2011-08-08",
-          "2011-09-14",
-          "2011-11-03",
-          "2015-08-20",
-          "2018-10-11",
-          "2019-08-06",
-          "2020-03-11",
-          "2022-01-26",
-          "2022-03-08",
-          "2022-06-20",
-          "2022-09-28",
-          "2024-08-05",
-          "2025-04-07",
-          "2025-11-06",
-          "2026-01-13",
-          "2026-02-25",
-          "2026-03-30",
-          "2026-04-29",
-          "2026-06-02",
-          "2026-07-02"
+          "2008-02-05",
+          "2008-03-10",
+          "2011-10-10",
+          "2020-04-17",
+          "2020-05-22",
+          "2025-04-30",
+          "2026-07-14"
         ]
       }
     },
@@ -3367,7 +3415,7 @@
       },
       "snapshot": {
         "date": "2026-07-21",
-        "px": 43482.0,
+        "px": 43954.0,
         "score": 0,
         "cap_max": 2,
         "on": [],
@@ -3838,6 +3886,7 @@
         "mae_worst": -39.32,
         "kind": "timer/22d"
       },
+      "composite_flow": null,
       "composite_primary": {
         "signal": "PRIMARY [gated]",
         "n": 22,

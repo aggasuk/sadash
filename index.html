@@ -1477,6 +1477,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <button class="tab" data-sub="cal-6m1y-1y1y">6M1Y x 1Y1Y</button>
       <button class="tab" data-sub="ctot-fx">CTOT vs FX</button>
       <button class="tab" data-sub="fx-quadrant">FX Quadrant</button>
+      <button class="tab" data-sub="kospi-pos">KOSPI Positioning</button>
     </div>
 
     <div class="studies-subpage" id="studies-sub-u6-1x2">
@@ -1533,6 +1534,26 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
         <iframe src="fx_quadrant.html" loading="lazy" style="width:100%;height:2200px;border:0;background:#fff;border-radius:8px;"></iframe>
+      </div>
+    </div>
+
+    <!-- ── KOSPI Positioning (kospi_positioning.json from kospi_positioning.py) ── -->
+    <div class="studies-subpage" id="studies-sub-kospi-pos" style="display:none;">
+      <div id="kpos-verdict" style="margin-bottom:16px;padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);font-size:0.9rem;line-height:1.5;"></div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.6;">
+        <b>KOSPI positioning composite</b> — triangulates the marginal player from 7 proxies (KRX foreign flow,
+        CTA trend, VKOSPI, EWY short interest + flow, KRW, futures basis), each z-scored on 3y, sign-normalized
+        (+ = crowded long, &minus; = washed out), weight-averaged. Contrarian read: deep negative = capitulation.
+        <b>Flow trigger</b> (the signal-of-record, also gating the Bottoming tab's KOSPI entry): 60d-cum foreign-flow
+        washout z&lt;&minus;1.5 AND 10d&minus;60d pace inflection z&gt;+1 AND price &gt;15% off 1y high — backtested
+        2004&ndash;26: every completed episode positive at 3m (avg +7.1%), flow-gated composite 7/7 with MAE &minus;2%.
+        A 3-month take-profit signal, not a marry. Context rows (JPM/Citi de-leveraging channels) are displayed at
+        zero weight — they don't move the composite.
+      </div>
+      <div id="kpos-tables"></div>
+      <div class="chart-wrap" style="padding:12px;margin-top:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">KOSPI200 vs positioning composite (weekly) — orange bands = flow trigger ON</div>
+        <div style="position:relative;height:380px;"><canvas id="kpos-chart"></canvas></div>
       </div>
     </div>
   </div>
@@ -3313,6 +3334,81 @@ window.FV_NAV = (function() {
   });
   if (document.getElementById('page-fairvalue').classList.contains('visible')) loadFVData();
 
+  /* ── Studies > KOSPI Positioning (kospi_positioning.json) ── */
+  window.KPOS = (function() {
+    var loaded = false, chart = null;
+    function zc(z) { return z == null ? 'var(--text-dim)' : (z <= -1.5 || z >= 1.5 ? (z < 0 ? 'var(--green)' : 'var(--red)') : 'var(--text)'); }
+    function fz(z) { return z == null ? '—' : (z > 0 ? '+' : '') + z.toFixed(2); }
+    function render(d) {
+      var ft = d.flow_trigger || {};
+      var comp = d.composite_z;
+      var v = document.getElementById('kpos-verdict');
+      var trig = ft.on;
+      v.style.borderColor = trig ? 'rgba(34,197,94,0.55)' : 'var(--border)';
+      v.innerHTML =
+        '<div style="font-size:1.02rem;margin-bottom:6px;"><b>' +
+        (trig ? '🟢 FLOW TRIGGER ON' : '⚪ Flow trigger off') + '</b> — composite <b>' + fz(comp) +
+        '</b> (pctile ' + d.composite_pctile + ') · ' + d.read + '</div>' +
+        '<span style="color:var(--text-dim);font-size:0.78rem;">Rule: ' + (ft.rule || '') +
+        ' · now: washout z ' + fz(ft.cum60z) + ', inflection z ' + fz(ft.inflz) + ', dd ' + (ft.dd_pct != null ? ft.dd_pct + '%' : '—') +
+        ' · ' + (ft.backtest || '') + ' · checklist ' + d.capitulation_score + '/5 · as of ' + d.as_of + '</span>';
+      var h = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">';
+      h += '<div><div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Composite signals (weighted)</div>';
+      h += '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr><th>Signal</th><th>Level</th><th>z</th><th>%ile</th><th>wt</th></tr></thead><tbody>';
+      (d.signals || []).forEach(function(s) {
+        h += '<tr><td>' + s.name + '</td><td>' + (s.level == null ? '—' : Number(s.level).toLocaleString()) +
+             '</td><td style="color:' + zc(s.pos_z) + '"><b>' + fz(s.pos_z) + '</b></td><td>' + (s.pctile == null ? '—' : s.pctile) +
+             '</td><td>' + s.weight.toFixed(2) + '</td></tr>';
+      });
+      h += '</tbody></table></div></div>';
+      h += '<div><div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Context — JPM/Citi de-leveraging channels (zero weight)</div>';
+      h += '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr><th>Channel</th><th>Level</th><th>z</th><th>%ile</th></tr></thead><tbody>';
+      (d.context_rows || []).forEach(function(s) {
+        var lv = s.level == null ? '—' : Number(s.level).toLocaleString();
+        if (s.off_peak != null) lv += ' <span style="color:var(--text-dim);font-size:0.7rem;">(' + s.off_peak + '% vs peak)</span>';
+        h += '<tr title="' + (s.note || '') + '"><td>' + s.name + '</td><td>' + lv +
+             '</td><td style="color:' + zc(s.z) + '"><b>' + fz(s.z) + '</b></td><td>' + (s.pctile == null ? '—' : s.pctile) + '</td></tr>';
+      });
+      h += '</tbody></table></div>';
+      h += '<div style="font-size:0.7rem;color:var(--text-dim);margin-top:8px;">Checklist: ' +
+        Object.keys(d.checklist || {}).map(function(k) { return (d.checklist[k] ? '☑' : '☐') + ' ' + k; }).join(' · ') + '</div></div></div>';
+      document.getElementById('kpos-tables').innerHTML = h;
+      var H = d.history;
+      if (H && H.dates) {
+        var ctx = document.getElementById('kpos-chart');
+        if (chart) chart.destroy();
+        var trigBg = H.flow_trig.map(function(x, i) { return x ? { x: H.dates[i] } : null; }).filter(Boolean);
+        chart = new Chart(ctx, {
+          type: 'line',
+          data: { labels: H.dates, datasets: [
+            { label: 'KOSPI200', data: H.k2, yAxisID: 'y', borderColor: '#4da3ff', borderWidth: 1.6, pointRadius: 0, tension: 0.2 },
+            { label: 'composite z', data: H.composite, yAxisID: 'y2', borderColor: '#f5a623', borderWidth: 1.2, pointRadius: 0, tension: 0.2 },
+            { label: 'flow trig', data: H.flow_trig.map(function(x, i) { return x ? H.k2[i] : null; }), yAxisID: 'y',
+              borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.9)', pointRadius: 3, pointStyle: 'triangle', showLine: false }
+          ]},
+          options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+            plugins: { legend: { labels: { color: '#cbd5e1', boxWidth: 16, font: { size: 10 } } } },
+            scales: {
+              x: { ticks: { color: '#94a3b8', maxTicksLimit: 14, font: { size: 9 } }, grid: { color: 'rgba(148,163,184,0.08)' } },
+              y: { position: 'left', ticks: { color: '#4da3ff' }, grid: { color: 'rgba(148,163,184,0.1)' } },
+              y2: { position: 'right', ticks: { color: '#f5a623' }, grid: { display: false } }
+            } }
+        });
+      }
+    }
+    function load() {
+      if (loaded) return;
+      fetch('kospi_positioning.json?t=' + Date.now())
+        .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(d) { loaded = true; render(d); })
+        .catch(function(e) {
+          document.getElementById('kpos-tables').innerHTML =
+            '<div style="color:var(--text-dim);font-size:0.8rem;">kospi_positioning.json unavailable (' + e.message + ') — run <code>python kospi_positioning.py</code> and redeploy.</div>';
+        });
+    }
+    return { load: load };
+  })();
+
   /* ── Fair Value > Inflation sub-tab (infl_fv.json) ── */
   window.INFL_FV = (function() {
     var loaded = false, charts = {};
@@ -4531,6 +4627,7 @@ window.FVDETAIL = (function() {
     t.classList.add('active');
     const el = document.getElementById('studies-sub-' + t.dataset.sub);
     if (el) el.style.display = 'block';
+    if (t.dataset.sub === 'kospi-pos' && window.KPOS) window.KPOS.load();
   }));
 
   // Fiscal sub-tabs
