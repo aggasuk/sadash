@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-23 09:20",
+  "generated": "2026-07-23 20:18",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 766.5,
-      "rsi_now": 66.4,
+      "last": 768.57,
+      "rsi_now": 66.8,
       "rsi_yest": 64.0,
       "rsi_peak": 77.0,
       "peak_bars_ago": 5,
-      "drop": 10.6,
+      "drop": 10.2,
       "divergence": true,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -174,7 +174,7 @@
           },
           "20": {
             "n": 9,
-            "mean": -0.3,
+            "mean": -0.28,
             "median": -0.67,
             "hit_rate": 77.8
           }
@@ -384,7 +384,7 @@
           },
           "20": {
             "n": 7,
-            "mean": -0.82,
+            "mean": -0.78,
             "median": -0.86,
             "hit_rate": 100.0
           }
@@ -482,7 +482,7 @@
           },
           "10": {
             "n": 3,
-            "mean": 0.43,
+            "mean": -0.37,
             "median": 0.18,
             "hit_rate": 66.7
           },
@@ -908,7 +908,7 @@
           },
           "20": {
             "n": 4,
-            "mean": 13.28,
+            "mean": 14.34,
             "median": 9.22,
             "hit_rate": 100.0
           }
