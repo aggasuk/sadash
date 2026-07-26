@@ -628,6 +628,15 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div style="position:relative;height:340px;"><canvas id="fv-chart-rates"></canvas></div>
       </div>
       <div id="fv-summary-table-rates"></div>
+
+      <!-- ── UST curve-pair fair value (JPM-style) — separate from curve_scan ── -->
+      <div class="chart-wrap" style="padding:12px;margin-top:26px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">
+          UST curve pairs — multi-factor fair value <span id="ustcurve-window"></span>
+        </div>
+        <div id="ust-curve-fv-table"></div>
+        <div id="ust-curve-fv-note" style="font-size:0.68rem;color:var(--text-dim);margin-top:10px;line-height:1.55;"></div>
+      </div>
     </div>
 
     <!-- ── FX overview ── -->
@@ -825,23 +834,14 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Yield (Policy Transmission)</div>
-        <div class="fvchart" id="ust-img-policy"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: 10Y Breakeven (Inflation Expectations)</div>
-        <div class="fvchart" id="ust-img-inflation"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: VIX (Risk Premium)</div>
-        <div class="fvchart" id="ust-img-risk"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (2Y Yield + Breakeven + VIX)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Multi-factor (JPM-style): 1y1y OIS + 5y5y BE + US Surprise + Fed B/S %GDP</div>
         <div class="fvchart" id="ust-img-combined"></div>
+        <div style="font-size:0.68rem;color:var(--text-dim);margin-top:8px;line-height:1.5;">
+          Replaced the old 2Y/Breakeven/VIX suite on 24-Jul-26: that spec had a wrong-signed breakeven
+          coefficient and a non-stationary residual (ADF p=0.41, half-life 128d). This one fits ~3x tighter
+          (SE 13.5bp vs 38.7bp on 5y) with a stationary, mean-reverting residual (half-life 16d).
+          Growth momentum uses the Citi US surprise index as a proxy for JPM's proprietary Forecast Revision Index.
+        </div>
       </div>
     </div>
 
@@ -3511,13 +3511,65 @@ window.FV_NAV = (function() {
    _series embedded in each *_fv_summary.json. Replaces the static PNG <img> tags.
    Config-driven: one entry per asset sub-page. Container order MUST match the
    model order in the summary JSON's periods[p] array. */
+/* ── UST curve-pair fair value table (ust_curve_fv.py -> ust_curve_fv_summary.json).
+   Deliberately separate from the Curves tab's curve_scan regressions. */
+(function() {
+  function fmtZ(z) {
+    var cls = Math.abs(z) >= 2 ? 'neg' : (Math.abs(z) >= 1 ? 'warn' : '');
+    return '<span class="' + cls + '">' + (z > 0 ? '+' : '') + z.toFixed(2) + '</span>';
+  }
+  fetch('ust_curve_fv_summary.json?v=' + (window.__FVV || (window.__FVV = Date.now())))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!d || !d.rows) return;
+      var el = document.getElementById('ust-curve-fv-table');
+      if (!el) return;
+      var h = '<table class="vol-table"><thead><tr>' +
+        '<th>Curve</th><th>Last</th><th>5y Avg</th><th>%ile</th><th>R²</th>' +
+        '<th>Fair Value</th><th>Residual</th><th>Z-score</th><th>Half-life</th><th>Signal</th></tr></thead><tbody>';
+      d.rows.forEach(function(r) {
+        h += '<tr><td><b>' + r.curve + '</b></td>' +
+          '<td>' + r.last_bp.toFixed(0) + '</td>' +
+          '<td>' + r.avg_bp.toFixed(0) + '</td>' +
+          '<td>' + r.pctile.toFixed(0) + '%</td>' +
+          '<td>' + r.r2.toFixed(2) + '</td>' +
+          '<td>' + r.fv_bp.toFixed(0) + '</td>' +
+          '<td>' + (r.resid_bp > 0 ? '+' : '') + r.resid_bp.toFixed(1) + '</td>' +
+          '<td>' + fmtZ(r.zscore) + '</td>' +
+          '<td>' + (r.half_life_d ? r.half_life_d + 'd' : '—') + '</td>' +
+          '<td>' + r.signal + (r.bias !== '—' ? ' <span style="opacity:.7">(' + r.bias + ')</span>' : '') + '</td></tr>';
+      });
+      el.innerHTML = h + '</tbody></table>';
+
+      var w = document.getElementById('ustcurve-window');
+      if (w) w.textContent = '(' + d.window + ' regression, ' + d.reg_start + ' → ' + d.reg_end + ')';
+
+      // correlation caveat — these are ~2 factors, not 4 independent signals
+      var c = d.resid_corr || {}, pairs = [];
+      var labs = d.rows.map(function(r) { return r.curve; });
+      for (var i = 0; i < labs.length; i++)
+        for (var j = i + 1; j < labs.length; j++)
+          if (c[labs[i]] && Math.abs(c[labs[i]][labs[j]]) >= 0.8)
+            pairs.push(labs[i] + '/' + labs[j] + ' ' + c[labs[i]][labs[j]].toFixed(2));
+      var note = document.getElementById('ust-curve-fv-note');
+      if (note) note.innerHTML =
+        'Curve regressed on ' + (d.factors || []).join(' + ') + ' over ' + d.window + '. ' +
+        '<b>+residual = steeper than fair → flattener; −residual → steepener.</b> ' +
+        'Separate from the Curves tab (which runs univariate cross-currency dislocation scans). ' +
+        (pairs.length ? '<br><b>Sizing caveat:</b> these residuals are highly correlated (' + pairs.join(', ') +
+          ') — they are ~2 factors, not ' + labs.length + ' independent signals. Do not size several ' +
+          '“cheap” flatteners as separate positions.' : '');
+    })
+    .catch(function() {});
+})();
+
 window.FVDETAIL = (function() {
   var CONFIG = {
     cl1:        { tabsId: "cl1-period-tabs", containers: ["cl1-img-modelA", "cl1-img-modelB"] },
     tpnbnk:     { tabsId: "tpnbnk-period-tabs", containers: ["tpnbnk-img-modelA", "tpnbnk-img-modelB"] },
     eurusd:     { tabsId: "fv-period-tabs", containers: ["fv-img-realrate", "fv-img-tot", "fv-img-btpbund", "fv-img-combined"] },
     eurusdnom:  { tabsId: "eurusdnom-period-tabs", containers: ["eurusdnom-img-nomrate", "eurusdnom-img-tot", "eurusdnom-img-btpbund", "eurusdnom-img-combined"] },
-    ust10y:     { tabsId: "ust-period-tabs", containers: ["ust-img-policy", "ust-img-inflation", "ust-img-risk", "ust-img-combined"] },
+    ust10y:     { tabsId: "ust-period-tabs", containers: ["ust-img-combined"] },
     bund10y:    { tabsId: "bund-period-tabs", containers: ["bund-img-policy", "bund-img-inflation", "bund-img-risk", "bund-img-combined"] },
     jgb10y:     { tabsId: "jgb-period-tabs", containers: ["jgb-img-policy", "jgb-img-inflation", "jgb-img-risk", "jgb-img-combined"] },
     jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-fx", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
