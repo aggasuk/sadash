@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-26 18:34",
+  "generated": "2026-07-27 10:08",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,28 +10,14 @@
   },
   "bearish": [
     {
-      "ticker": "TPNBNK Index",
-      "category": "equity_commod",
-      "last": 767.85,
-      "rsi_now": 66.5,
-      "rsi_yest": 66.8,
-      "rsi_peak": 77.0,
-      "peak_bars_ago": 6,
-      "drop": 10.5,
-      "divergence": true,
-      "st_label": "STRONG BULLISH",
-      "st_score": 100,
-      "strength": "STRONG"
-    },
-    {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 96.78,
-      "rsi_now": 67.1,
-      "rsi_yest": 75.6,
+      "last": 92.88,
+      "rsi_now": 59.9,
+      "rsi_yest": 67.1,
       "rsi_peak": 75.6,
-      "peak_bars_ago": 1,
-      "drop": 8.5,
+      "peak_bars_ago": 2,
+      "drop": 15.7,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -50,9 +36,52 @@
       "st_label": "STRONG BULLISH",
       "st_score": 100,
       "strength": "MODERATE"
+    },
+    {
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 163.51,
+      "rsi_now": 65.6,
+      "rsi_yest": 70.7,
+      "rsi_peak": 71.2,
+      "peak_bars_ago": 2,
+      "drop": 5.7,
+      "divergence": false,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "TPNBNK Index",
+      "category": "equity_commod",
+      "last": 771.18,
+      "rsi_now": 67.3,
+      "rsi_yest": 66.5,
+      "rsi_peak": 77.0,
+      "peak_bars_ago": 7,
+      "drop": 9.8,
+      "divergence": true,
+      "st_label": "STRONG BULLISH",
+      "st_score": 100,
+      "strength": "WEAK"
     }
   ],
-  "bullish": [],
+  "bullish": [
+    {
+      "ticker": "USDKRW Curncy",
+      "category": "fx",
+      "last": 1466.8,
+      "rsi_now": 34.0,
+      "rsi_yest": 28.6,
+      "rsi_trough": 28.6,
+      "trough_bars_ago": 1,
+      "rise": 5.4,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 0,
+      "strength": "MODERATE"
+    }
+  ],
   "stats": {
     "_horizons": [
       "5",
@@ -201,10 +230,10 @@
             "hit_rate": 41.7
           },
           "20": {
-            "n": 9,
-            "mean": -0.28,
-            "median": -0.67,
-            "hit_rate": 77.8
+            "n": 10,
+            "mean": -0.17,
+            "median": -0.6,
+            "hit_rate": 70.0
           }
         },
         "bullish": {
@@ -929,15 +958,15 @@
             "hit_rate": 55.6
           },
           "10": {
-            "n": 7,
-            "mean": 8.16,
-            "median": 5.7,
-            "hit_rate": 85.7
+            "n": 8,
+            "mean": 8.58,
+            "median": 8.6,
+            "hit_rate": 87.5
           },
           "20": {
-            "n": 4,
-            "mean": 14.92,
-            "median": 9.22,
+            "n": 5,
+            "mean": 17.33,
+            "median": 9.35,
             "hit_rate": 100.0
           }
         }
