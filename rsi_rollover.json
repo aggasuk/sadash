@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28 09:48",
+  "generated": "2026-07-28 20:13",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,12 +12,12 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 87.69,
-      "rsi_now": 52.3,
+      "last": 86.97,
+      "rsi_now": 51.3,
       "rsi_yest": 53.2,
       "rsi_peak": 75.6,
       "peak_bars_ago": 3,
-      "drop": 23.3,
+      "drop": 24.2,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -26,12 +26,12 @@
     {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 749.23,
-      "rsi_now": 57.8,
+      "last": 745.18,
+      "rsi_now": 56.5,
       "rsi_yest": 68.1,
       "rsi_peak": 77.0,
       "peak_bars_ago": 8,
-      "drop": 19.2,
+      "drop": 20.5,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -40,12 +40,12 @@
     {
       "ticker": "GDBR10 Index",
       "category": "rates",
-      "last": 3.133,
-      "rsi_now": 59.4,
-      "rsi_yest": 66.8,
+      "last": 3.124,
+      "rsi_now": 57.8,
+      "rsi_yest": 59.4,
       "rsi_peak": 73.6,
-      "peak_bars_ago": 2,
-      "drop": 14.2,
+      "peak_bars_ago": 3,
+      "drop": 15.8,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -56,16 +56,16 @@
     {
       "ticker": "USDKRW Curncy",
       "category": "fx",
-      "last": 1470.15,
-      "rsi_now": 36.2,
+      "last": 1459.5,
+      "rsi_now": 31.8,
       "rsi_yest": 34.5,
       "rsi_trough": 28.6,
       "trough_bars_ago": 2,
-      "rise": 7.6,
-      "divergence": false,
+      "rise": 3.2,
+      "divergence": true,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
-      "strength": "MODERATE"
+      "strength": "WEAK"
     }
   ],
   "stats": {
@@ -279,8 +279,8 @@
           },
           "20": {
             "n": 1,
-            "mean": 1.04,
-            "median": 1.04,
+            "mean": 0.69,
+            "median": 0.69,
             "hit_rate": 100.0
           }
         }
@@ -531,8 +531,8 @@
           },
           "20": {
             "n": 2,
-            "mean": -1.9,
-            "median": -1.9,
+            "mean": -1.94,
+            "median": -1.94,
             "hit_rate": 0.0
           }
         }
@@ -1015,7 +1015,7 @@
           },
           "20": {
             "n": 20,
-            "mean": 3.57,
+            "mean": 3.54,
             "median": 4.64,
             "hit_rate": 25.0
           }
@@ -1093,8 +1093,8 @@
           },
           "10": {
             "n": 31,
-            "mean": 2.33,
-            "median": 2.33,
+            "mean": 2.34,
+            "median": 2.43,
             "hit_rate": 35.5
           },
           "20": {

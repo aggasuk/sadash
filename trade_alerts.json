@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T09:57:52",
+  "last_updated": "2026-07-28T20:13:57",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -24,9 +24,9 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 732.03,
-        "sma_long": 581.47,
-        "last": 745.97
+        "sma_short": 731.99,
+        "sma_long": 581.46,
+        "last": 745.18
       },
       "current_bp": 25.89,
       "trigger_bp": 0.0,
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 43824.61,
-        "sma_long": 45104.54,
-        "last": 42157.43
+        "sma_short": 43713.8,
+        "sma_long": 45088.71,
+        "last": 41603.36
       },
-      "current_bp": -2.84,
+      "current_bp": -3.05,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -2.84,
+      "distance_bp": -3.05,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
