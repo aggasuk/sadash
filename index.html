@@ -1774,9 +1774,15 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         : flagged.length + ' stale';
     }
     // popup: flagged first, then a one-line summary
-    let rows = flagged.map(f =>
-      '<div class="hrow ' + (f.status === 'stale' ? 'flag' : 'bad') + '"><span>' + f.label +
-      '</span><span>' + f.status + (f.age_days != null ? ' · ' + f.age_days.toFixed(1) + 'd' : '') + '</span></div>');
+    // stale_series = file rewrote fine but the data inside stopped advancing (amber, like stale)
+    let rows = flagged.map(f => {
+      const soft = f.status === 'stale' || f.status === 'stale_series';
+      const detail = f.status === 'stale_series'
+        ? ' · data ' + f.series_lag_days + 'd old'
+        : (f.age_days != null ? ' · ' + f.age_days.toFixed(1) + 'd' : '');
+      return '<div class="hrow ' + (soft ? 'flag' : 'bad') + '"><span>' + f.label +
+        '</span><span>' + f.status + detail + '</span></div>';
+    });
     if (selfStale) rows.unshift('<div class="hrow flag"><span>health manifest</span><span>' + selfAgeD.toFixed(1) + 'd old</span></div>');
     rows.push('<div class="hrow" style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px;"><span>' +
       h.n_feeds + ' feeds checked</span><span>' + new Date(h.run_at_utc).toLocaleString() + '</span></div>');
