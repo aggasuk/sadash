@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T09:48:34",
+  "last_updated": "2026-07-28T09:57:52",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 732.22,
-        "sma_long": 581.49,
-        "last": 749.83
+        "sma_short": 732.03,
+        "sma_long": 581.47,
+        "last": 745.97
       },
-      "current_bp": 25.92,
+      "current_bp": 25.89,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 25.92,
+      "distance_bp": 25.89,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 43828.78,
-        "sma_long": 45105.13,
-        "last": 42178.27
+        "sma_short": 43824.61,
+        "sma_long": 45104.54,
+        "last": 42157.43
       },
-      "current_bp": -2.83,
+      "current_bp": -2.84,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -2.83,
+      "distance_bp": -2.84,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -92,26 +92,6 @@
       "status": "TRIGGERED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
-    },
-    {
-      "id": "ffq6_ffv6_spread_10",
-      "label": "Buy Aug/Oct FF spread (FFQ6-FFV6)",
-      "formula": "FFQ26 - FFV26 (bp)",
-      "inputs": {
-        "FFQ26": 9627.5,
-        "FFV26": 9609.5
-      },
-      "inputs_pct": {
-        "FFQ26": 96.275,
-        "FFV26": 96.095
-      },
-      "current_bp": 18.0,
-      "trigger_bp": 10.0,
-      "direction": "below",
-      "distance_bp": 8.0,
-      "status": "ARMED",
-      "rationale": "Buy Jul-Sep spread (long Aug FF / short Oct FF = long Sep FOMC move); enter when spread falls to 10bp (from ~11bp)",
-      "added": "2026-07-02"
     }
   ]
 }
