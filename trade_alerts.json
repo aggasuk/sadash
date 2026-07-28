@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-27T10:08:54",
+  "last_updated": "2026-07-28T09:48:34",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 28668.13,
-        "sma_long": 26432.09,
-        "last": 28128.34
+        "sma_short": 28555.13,
+        "sma_long": 26448.08,
+        "last": 28039.21
       },
-      "current_bp": 8.46,
+      "current_bp": 7.97,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 8.46,
+      "distance_bp": 7.97,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 728.33,
-        "sma_long": 580.04,
-        "last": 771.62
+        "sma_short": 732.22,
+        "sma_long": 581.49,
+        "last": 749.83
       },
-      "current_bp": 25.57,
+      "current_bp": 25.92,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 25.57,
+      "distance_bp": 25.92,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 44200.05,
-        "sma_long": 45182.12,
-        "last": 43435.94
+        "sma_short": 43828.78,
+        "sma_long": 45105.13,
+        "last": 42178.27
       },
-      "current_bp": -2.17,
+      "current_bp": -2.83,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -2.17,
+      "distance_bp": -2.83,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.18,
-        "HKD12M": -73221.0
+        "USDHKD": 784.12,
+        "HKD12M": -73324.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8418,
-        "HKD12M": -732.21
+        "USDHKD": 7.8412,
+        "HKD12M": -733.24
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
@@ -78,18 +78,18 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 508.311,
-        "AUD30Y": 515.186
+        "AUD10Y": 510.4,
+        "AUD30Y": 516.7
       },
       "inputs_pct": {
-        "AUD10Y": 5.08311,
-        "AUD30Y": 5.15186
+        "AUD10Y": 5.104,
+        "AUD30Y": 5.167
       },
-      "current_bp": 6.88,
+      "current_bp": 6.3,
       "trigger_bp": 6.5,
       "direction": "below",
-      "distance_bp": 0.38,
-      "status": "NEAR",
+      "distance_bp": -0.2,
+      "status": "TRIGGERED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
     },
@@ -98,17 +98,17 @@
       "label": "Buy Aug/Oct FF spread (FFQ6-FFV6)",
       "formula": "FFQ26 - FFV26 (bp)",
       "inputs": {
-        "FFQ26": 9629.0,
-        "FFV26": 9612.0
+        "FFQ26": 9627.5,
+        "FFV26": 9609.5
       },
       "inputs_pct": {
-        "FFQ26": 96.29,
-        "FFV26": 96.12
+        "FFQ26": 96.275,
+        "FFV26": 96.095
       },
-      "current_bp": 17.0,
+      "current_bp": 18.0,
       "trigger_bp": 10.0,
       "direction": "below",
-      "distance_bp": 7.0,
+      "distance_bp": 8.0,
       "status": "ARMED",
       "rationale": "Buy Jul-Sep spread (long Aug FF / short Oct FF = long Sep FOMC move); enter when spread falls to 10bp (from ~11bp)",
       "added": "2026-07-02"
