@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T20:13:57",
+  "last_updated": "2026-07-29T10:44:26",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 28555.13,
-        "sma_long": 26448.08,
-        "last": 28039.21
+        "sma_short": 28276.72,
+        "sma_long": 26461.22,
+        "last": 27763.13
       },
-      "current_bp": 7.97,
+      "current_bp": 6.86,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.97,
+      "distance_bp": 6.86,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 731.99,
-        "sma_long": 581.46,
-        "last": 745.18
+        "sma_short": 734.67,
+        "sma_long": 582.87,
+        "last": 729.82
       },
-      "current_bp": 25.89,
+      "current_bp": 26.04,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 25.89,
+      "distance_bp": 26.04,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 43713.8,
-        "sma_long": 45088.71,
-        "last": 41603.36
+        "sma_short": 42837.13,
+        "sma_long": 45001.27,
+        "last": 40442.45
       },
-      "current_bp": -3.05,
+      "current_bp": -4.81,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -3.05,
+      "distance_bp": -4.81,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.12,
-        "HKD12M": -73324.0
+        "USDHKD": 784.2,
+        "HKD12M": -73850.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8412,
-        "HKD12M": -733.24
+        "USDHKD": 7.842,
+        "HKD12M": -738.5
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
@@ -78,18 +78,18 @@
       "label": "Enter AUD 10s30s steepener",
       "formula": "AUD30Y - AUD10Y (bp)",
       "inputs": {
-        "AUD10Y": 510.4,
-        "AUD30Y": 516.7
+        "AUD10Y": 498.375,
+        "AUD30Y": 509.47
       },
       "inputs_pct": {
-        "AUD10Y": 5.104,
-        "AUD30Y": 5.167
+        "AUD10Y": 4.98375,
+        "AUD30Y": 5.0947
       },
-      "current_bp": 6.3,
+      "current_bp": 11.09,
       "trigger_bp": 6.5,
       "direction": "below",
-      "distance_bp": -0.2,
-      "status": "TRIGGERED",
+      "distance_bp": 4.59,
+      "status": "ARMED",
       "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
       "added": "2026-06-09"
     }
