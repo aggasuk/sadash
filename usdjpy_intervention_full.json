@@ -1,0 +1,387 @@
+{
+ "generated": "2026-07-30T22:08:01",
+ "table_a": [
+  {
+   "date": "2022-09-22",
+   "size_trn": 2.838,
+   "start": 144.06,
+   "twi": 79.2,
+   "day_move": 3.7,
+   "day_low": 140.36,
+   "days_to_low": 0.0,
+   "figs_to_low": 3.7,
+   "trough": 140.36,
+   "revert": "4d",
+   "buy_low_1m": 5.2,
+   "atm_iv": 12.94,
+   "rr_iv": -0.98,
+   "atm_low": 12.94,
+   "rr_low": -0.98,
+   "live": false
+  },
+  {
+   "date": "2022-10-21",
+   "size_trn": 5.62,
+   "start": 150.15,
+   "twi": 77.5,
+   "day_move": 3.92,
+   "day_low": 146.23,
+   "days_to_low": 60.0,
+   "figs_to_low": 19.57,
+   "trough": 130.58,
+   "revert": "369d",
+   "buy_low_1m": -4.0,
+   "atm_iv": 15.69,
+   "rr_iv": -1.64,
+   "atm_low": 13.66,
+   "rr_low": -1.92,
+   "live": false
+  },
+  {
+   "date": "2024-04-29",
+   "size_trn": 5.918,
+   "start": 158.33,
+   "twi": 72.1,
+   "day_move": 3.79,
+   "day_low": 154.54,
+   "days_to_low": 0.0,
+   "figs_to_low": 3.79,
+   "trough": 154.54,
+   "revert": "52d",
+   "buy_low_1m": 2.0,
+   "atm_iv": 10.47,
+   "rr_iv": -0.87,
+   "atm_low": 10.47,
+   "rr_low": -0.87,
+   "live": false
+  },
+  {
+   "date": "2024-05-01",
+   "size_trn": 3.87,
+   "start": 157.8,
+   "twi": 73.0,
+   "day_move": 4.76,
+   "day_low": 153.04,
+   "days_to_low": 2.0,
+   "figs_to_low": 5.94,
+   "trough": 151.86,
+   "revert": "48d",
+   "buy_low_1m": 2.8,
+   "atm_iv": 10.44,
+   "rr_iv": -0.87,
+   "atm_low": 9.54,
+   "rr_low": -0.93,
+   "live": false
+  },
+  {
+   "date": "2024-07-11",
+   "size_trn": 3.168,
+   "start": 161.69,
+   "twi": 70.6,
+   "day_move": 4.25,
+   "day_low": 157.44,
+   "days_to_low": 0.0,
+   "figs_to_low": 4.25,
+   "trough": 157.44,
+   "revert": "713d",
+   "buy_low_1m": -6.9,
+   "atm_iv": 9.05,
+   "rr_iv": -1.27,
+   "atm_low": 9.05,
+   "rr_low": -1.27,
+   "live": false
+  },
+  {
+   "date": "2024-07-12",
+   "size_trn": 2.367,
+   "start": 158.84,
+   "twi": 71.0,
+   "day_move": 1.46,
+   "day_low": 157.38,
+   "days_to_low": 24.0,
+   "figs_to_low": 17.14,
+   "trough": 141.7,
+   "revert": "550d",
+   "buy_low_1m": -6.8,
+   "atm_iv": 9.19,
+   "rr_iv": -1.41,
+   "atm_low": 15.61,
+   "rr_low": -3.73,
+   "live": false
+  },
+  {
+   "date": "2026-04-30",
+   "size_trn": 5.48,
+   "start": 160.41,
+   "twi": 69.6,
+   "day_move": 4.84,
+   "day_low": 155.57,
+   "days_to_low": 6.0,
+   "figs_to_low": 5.37,
+   "trough": 155.04,
+   "revert": "41d",
+   "buy_low_1m": 2.4,
+   "atm_iv": 8.26,
+   "rr_iv": -1.18,
+   "atm_low": 8.02,
+   "rr_low": -1.74,
+   "live": false
+  }
+ ],
+ "table_b_note": "Table B fields live inside table_a rows",
+ "table_c": [
+  {
+   "date": "2022-09-22",
+   "nky_1": -2.7,
+   "nky_5": -4.5,
+   "nky_10": -0.1,
+   "nky_21": 0.4,
+   "nky_42": 4.2,
+   "bnk_1": -3.4,
+   "bnk_5": -6.2,
+   "bnk_10": -4.7,
+   "bnk_21": -0.3,
+   "bnk_42": 7.2
+  },
+  {
+   "date": "2022-10-21",
+   "nky_1": 0.3,
+   "nky_5": 0.8,
+   "nky_10": 2.4,
+   "nky_21": 4.6,
+   "nky_42": -1.4,
+   "bnk_1": 0.8,
+   "bnk_5": -1.5,
+   "bnk_10": 0.4,
+   "bnk_21": 5.8,
+   "bnk_42": 18.9
+  },
+  {
+   "date": "2024-04-29",
+   "nky_1": 1.2,
+   "nky_5": 0.7,
+   "nky_10": 1.2,
+   "nky_21": 0.3,
+   "nky_42": 4.3,
+   "bnk_1": 1.5,
+   "bnk_5": -0.7,
+   "bnk_10": 3.4,
+   "bnk_21": 6.8,
+   "bnk_42": 11.8
+  },
+  {
+   "date": "2024-05-01",
+   "nky_1": -0.1,
+   "nky_5": -0.1,
+   "nky_10": 1.3,
+   "nky_21": 1.7,
+   "nky_42": 4.7,
+   "bnk_1": -0.7,
+   "bnk_5": 1.0,
+   "bnk_10": 2.9,
+   "bnk_21": 10.4,
+   "bnk_42": 14.6
+  },
+  {
+   "date": "2024-07-11",
+   "nky_1": -2.4,
+   "nky_5": -5.1,
+   "nky_10": -10.8,
+   "nky_21": -14.2,
+   "nky_42": -15.6,
+   "bnk_1": -1.8,
+   "bnk_5": -0.6,
+   "bnk_10": -5.1,
+   "bnk_21": -15.9,
+   "bnk_42": -17.9
+  },
+  {
+   "date": "2024-07-12",
+   "nky_1": 0.2,
+   "nky_5": -3.9,
+   "nky_10": -6.6,
+   "nky_21": -11.5,
+   "nky_42": -10.6,
+   "bnk_1": 1.4,
+   "bnk_5": 0.3,
+   "bnk_10": -1.7,
+   "bnk_21": -13.2,
+   "bnk_42": -14.9
+  },
+  {
+   "date": "2026-04-30",
+   "nky_1": 0.4,
+   "nky_5": 5.8,
+   "nky_10": 2.1,
+   "nky_21": 15.4,
+   "nky_42": 15.9,
+   "bnk_1": -0.2,
+   "bnk_5": 3.8,
+   "bnk_10": 7.5,
+   "bnk_21": 10.0,
+   "bnk_42": 16.8
+  }
+ ],
+ "stats_a": {
+  "start": {
+   "mean": 155.9,
+   "median": 158.3,
+   "n": 7,
+   "neg": 0
+  },
+  "twi": {
+   "mean": 73.3,
+   "median": 72.1,
+   "n": 7,
+   "neg": 0
+  },
+  "day_move": {
+   "mean": 3.8,
+   "median": 3.9,
+   "n": 7,
+   "neg": 0
+  },
+  "figs_to_low": {
+   "mean": 8.5,
+   "median": 5.4,
+   "n": 7,
+   "neg": 0
+  },
+  "days_to_low": {
+   "mean": 13.1,
+   "median": 2.0,
+   "n": 7,
+   "neg": 0
+  },
+  "buy_low_1m": {
+   "mean": -0.8,
+   "median": 2.0,
+   "n": 7,
+   "neg": 3
+  }
+ },
+ "stats_b": {
+  "atm_iv": {
+   "mean": 10.9,
+   "median": 10.4,
+   "n": 7,
+   "neg": 0
+  },
+  "rr_iv": {
+   "mean": -1.2,
+   "median": -1.2,
+   "n": 7,
+   "neg": 7
+  },
+  "atm_low": {
+   "mean": 11.3,
+   "median": 10.5,
+   "n": 7,
+   "neg": 0
+  },
+  "rr_low": {
+   "mean": -1.6,
+   "median": -1.3,
+   "n": 7,
+   "neg": 7
+  }
+ },
+ "stats_c": {
+  "nky_1": {
+   "mean": -0.4,
+   "median": 0.2,
+   "n": 7,
+   "neg": 3
+  },
+  "nky_5": {
+   "mean": -0.9,
+   "median": -0.1,
+   "n": 7,
+   "neg": 4
+  },
+  "nky_10": {
+   "mean": -1.5,
+   "median": 1.2,
+   "n": 7,
+   "neg": 3
+  },
+  "nky_21": {
+   "mean": -0.5,
+   "median": 0.4,
+   "n": 7,
+   "neg": 2
+  },
+  "nky_42": {
+   "mean": -2.4,
+   "median": 1.4,
+   "n": 6,
+   "neg": 3
+  },
+  "bnk_1": {
+   "mean": -0.3,
+   "median": -0.2,
+   "n": 7,
+   "neg": 4
+  },
+  "bnk_5": {
+   "mean": -0.6,
+   "median": -0.6,
+   "n": 7,
+   "neg": 4
+  },
+  "bnk_10": {
+   "mean": 0.4,
+   "median": 0.4,
+   "n": 7,
+   "neg": 3
+  },
+  "bnk_21": {
+   "mean": 0.5,
+   "median": 5.8,
+   "n": 7,
+   "neg": 3
+  },
+  "bnk_42": {
+   "mean": 3.3,
+   "median": 9.5,
+   "n": 6,
+   "neg": 2
+  }
+ },
+ "eq_horizons": [
+  1,
+  5,
+  10,
+  21,
+  42
+ ],
+ "live": {
+  "date": "2026-07-30",
+  "size_trn": null,
+  "start": 163.41,
+  "twi": 67.0,
+  "day_move": 4.4,
+  "day_low": 159.01,
+  "days_to_low": 0.0,
+  "figs_to_low": 4.4,
+  "revert": "pending",
+  "buy_low_1m": null,
+  "atm_iv": 6.92,
+  "rr_iv": -1.39,
+  "atm_low": null,
+  "rr_low": null,
+  "live": true,
+  "spot_now": 159.67,
+  "session_high": 163.74,
+  "atm_prev": 6.15
+ },
+ "sources": {
+  "fx": "USDJPY Curncy",
+  "twi": "NEERJP Index",
+  "atm": "USDJPYV1M Curncy",
+  "rr": "USDJPY25R1M Curncy",
+  "nky": "NKY Index",
+  "bnk": "TPNBNK Index",
+  "mof": "mof_intervention.csv"
+ }
+}

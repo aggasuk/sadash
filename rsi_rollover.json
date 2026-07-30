@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-30 12:52",
+  "generated": "2026-07-30 22:57",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,14 +10,28 @@
   },
   "bearish": [
     {
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 159.52,
+      "rsi_now": 31.0,
+      "rsi_yest": 62.6,
+      "rsi_peak": 71.2,
+      "peak_bars_ago": 5,
+      "drop": 40.2,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 20,
+      "strength": "MODERATE"
+    },
+    {
       "ticker": "TPNBNK Index",
       "category": "equity_commod",
-      "last": 716.34,
-      "rsi_now": 47.6,
+      "last": 715.09,
+      "rsi_now": 47.3,
       "rsi_yest": 54.0,
       "rsi_peak": 77.0,
       "peak_bars_ago": 10,
-      "drop": 29.5,
+      "drop": 29.8,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 20,
@@ -26,12 +40,12 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 89.72,
-      "rsi_now": 54.1,
+      "last": 89.98,
+      "rsi_now": 54.4,
       "rsi_yest": 55.4,
       "rsi_peak": 75.6,
       "peak_bars_ago": 5,
-      "drop": 21.5,
+      "drop": 21.2,
       "divergence": false,
       "st_label": "STRONG BULLISH",
       "st_score": 100,
@@ -62,9 +76,9 @@
           },
           "20": {
             "n": 10,
-            "mean": 0.61,
-            "median": 0.68,
-            "hit_rate": 30.0
+            "mean": 0.36,
+            "median": 0.31,
+            "hit_rate": 40.0
           }
         },
         "bullish": {
@@ -124,8 +138,8 @@
           },
           "20": {
             "n": 8,
-            "mean": 0.89,
-            "median": 0.71,
+            "mean": 0.95,
+            "median": 0.76,
             "hit_rate": 87.5
           }
         }
@@ -398,9 +412,9 @@
           },
           "20": {
             "n": 8,
-            "mean": -0.66,
-            "median": -0.64,
-            "hit_rate": 75.0
+            "mean": -0.76,
+            "median": -0.81,
+            "hit_rate": 87.5
           }
         },
         "bullish": {
@@ -974,7 +988,7 @@
         "bearish": {
           "5": {
             "n": 21,
-            "mean": 1.64,
+            "mean": 1.63,
             "median": 0.26,
             "hit_rate": 38.1
           },
