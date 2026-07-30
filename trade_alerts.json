@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T22:57:29",
+  "last_updated": "2026-07-30T23:05:49",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 27807.54,
-        "sma_long": 26490.15,
-        "last": 27914.7
+        "sma_short": 27820.41,
+        "sma_long": 26490.47,
+        "last": 27979.06
       },
-      "current_bp": 4.97,
+      "current_bp": 5.02,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 4.97,
+      "distance_bp": 5.02,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -72,26 +72,6 @@
       "status": "ARMED",
       "rationale": "1Y USDHKD outright fwd (spot + 12M points). Carry/peg-defense gauge; alert at 7.73 (toward the strong-side band). Watch vs short-HKD / +gamma book.",
       "added": "2026-06-03"
-    },
-    {
-      "id": "aud_10s30s_steepener",
-      "label": "Enter AUD 10s30s steepener",
-      "formula": "AUD30Y - AUD10Y (bp)",
-      "inputs": {
-        "AUD10Y": 507.08,
-        "AUD30Y": 519.45
-      },
-      "inputs_pct": {
-        "AUD10Y": 5.0708,
-        "AUD30Y": 5.1945
-      },
-      "current_bp": 12.37,
-      "trigger_bp": 6.5,
-      "direction": "below",
-      "distance_bp": 5.87,
-      "status": "ARMED",
-      "rationale": "Enter 10s30s steepener (pay 30Y / rec 10Y) when 30Y-10Y flattens to 6.5bp (was ~8.3). Expect re-steepening; longer-minus-shorter convention.",
-      "added": "2026-06-09"
     }
   ]
 }
