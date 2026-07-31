@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T23:05:49",
+  "last_updated": "2026-07-31T09:38:36",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 27820.41,
-        "sma_long": 26490.47,
-        "last": 27979.06
+        "sma_short": 27845.87,
+        "sma_long": 26491.11,
+        "last": 28106.35
       },
-      "current_bp": 5.02,
+      "current_bp": 5.11,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 5.02,
+      "distance_bp": 5.11,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,9 +24,9 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 736.64,
-        "sma_long": 584.27,
-        "last": 715.09
+        "sma_short": 738.43,
+        "sma_long": 585.69,
+        "last": 733.9
       },
       "current_bp": 26.08,
       "trigger_bp": 0.0,
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 41772.97,
-        "sma_long": 44853.43,
-        "last": 39933.3
+        "sma_short": 41573.3,
+        "sma_long": 44837.17,
+        "last": 42656.45
       },
-      "current_bp": -6.87,
+      "current_bp": -7.28,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -6.87,
+      "distance_bp": -7.28,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.34,
-        "HKD12M": -73000.0
+        "USDHKD": 784.36,
+        "HKD12M": -71000.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8434,
-        "HKD12M": -730.0
+        "USDHKD": 7.8436,
+        "HKD12M": -710.0
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,

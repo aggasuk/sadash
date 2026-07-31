@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-07-30",
+  "as_of": "2026-07-31",
   "u6_imm": "2026-09-16",
-  "t_fwd_months": 1.58,
+  "t_fwd_months": 1.54,
   "rows": [
     {
       "ccy": "USD",
@@ -19,10 +19,10 @@
       "max_1x3_3m_bp": 3.42,
       "min_cal_3m_bp": -12.33,
       "max_cal_3m_bp": 2.93,
-      "rolldown_1m_1x2_bp": -3.21,
-      "rolldown_1m_1x3_bp": -4.72,
-      "rolldown_1m_cal_bp": -6.48,
-      "hikes_1Y": 1.924,
+      "rolldown_1m_1x2_bp": -3.03,
+      "rolldown_1m_1x3_bp": -4.19,
+      "rolldown_1m_cal_bp": -6.38,
+      "hikes_1Y": 1.915,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -41,10 +41,10 @@
       "max_1x3_3m_bp": 6.08,
       "min_cal_3m_bp": -6.25,
       "max_cal_3m_bp": 1.27,
-      "rolldown_1m_1x2_bp": -0.4,
-      "rolldown_1m_1x3_bp": 0.45,
-      "rolldown_1m_cal_bp": -2.59,
-      "hikes_1Y": 2.38,
+      "rolldown_1m_1x2_bp": 0.06,
+      "rolldown_1m_1x3_bp": 1.06,
+      "rolldown_1m_cal_bp": -2.1,
+      "hikes_1Y": 2.25,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -63,10 +63,10 @@
       "max_1x3_3m_bp": 2.84,
       "min_cal_3m_bp": -10.92,
       "max_cal_3m_bp": 1.08,
-      "rolldown_1m_1x2_bp": -2.79,
-      "rolldown_1m_1x3_bp": -2.41,
-      "rolldown_1m_cal_bp": -4.95,
-      "hikes_1Y": 2.64,
+      "rolldown_1m_1x2_bp": -2.48,
+      "rolldown_1m_1x3_bp": -2.14,
+      "rolldown_1m_cal_bp": -4.45,
+      "hikes_1Y": 2.3,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -85,10 +85,10 @@
       "max_1x3_3m_bp": 47.38,
       "min_cal_3m_bp": 8.58,
       "max_cal_3m_bp": 40.14,
-      "rolldown_1m_1x2_bp": 1.58,
-      "rolldown_1m_1x3_bp": 1.6,
-      "rolldown_1m_cal_bp": 0.3,
-      "hikes_1Y": 4.128,
+      "rolldown_1m_1x2_bp": 2.1,
+      "rolldown_1m_1x3_bp": 2.07,
+      "rolldown_1m_cal_bp": 1.2,
+      "hikes_1Y": 4.303,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -107,10 +107,10 @@
       "max_1x3_3m_bp": -3.32,
       "min_cal_3m_bp": -15.72,
       "max_cal_3m_bp": -3.16,
-      "rolldown_1m_1x2_bp": -2.76,
-      "rolldown_1m_1x3_bp": -3.4,
-      "rolldown_1m_cal_bp": -5.34,
-      "hikes_1Y": 0.519,
+      "rolldown_1m_1x2_bp": -2.62,
+      "rolldown_1m_1x3_bp": -3.1,
+      "rolldown_1m_cal_bp": -5.42,
+      "hikes_1Y": 0.5,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -129,10 +129,10 @@
       "max_1x3_3m_bp": 48.5,
       "min_cal_3m_bp": 21.98,
       "max_cal_3m_bp": 32.12,
-      "rolldown_1m_1x2_bp": 1.17,
-      "rolldown_1m_1x3_bp": 1.52,
-      "rolldown_1m_cal_bp": 0.13,
-      "hikes_1Y": 2.44,
+      "rolldown_1m_1x2_bp": 0.01,
+      "rolldown_1m_1x3_bp": 0.96,
+      "rolldown_1m_cal_bp": -1.37,
+      "hikes_1Y": 2.369,
       "hikes_source": "Citi 1Y1M-1M"
     },
     {
@@ -151,9 +151,9 @@
       "max_1x3_3m_bp": 41.52,
       "min_cal_3m_bp": 16.91,
       "max_cal_3m_bp": 29.38,
-      "rolldown_1m_1x2_bp": -4.87,
-      "rolldown_1m_1x3_bp": -7.18,
-      "rolldown_1m_cal_bp": -6.27,
+      "rolldown_1m_1x2_bp": -4.84,
+      "rolldown_1m_1x3_bp": -6.64,
+      "rolldown_1m_cal_bp": -6.38,
       "hikes_1Y": 1.776,
       "hikes_source": "Citi 1Y1M-1M"
     },
@@ -174,8 +174,8 @@
       "min_cal_3m_bp": 9.64,
       "max_cal_3m_bp": 19.32,
       "rolldown_1m_1x2_bp": -4.32,
-      "rolldown_1m_1x3_bp": -6.87,
-      "rolldown_1m_cal_bp": -6.32,
+      "rolldown_1m_1x3_bp": -6.86,
+      "rolldown_1m_cal_bp": -6.3,
       "hikes_1Y": 1.585,
       "hikes_source": "Citi 1Y1M-1M"
     },
@@ -195,9 +195,9 @@
       "max_1x3_3m_bp": 34.89,
       "min_cal_3m_bp": 10.99,
       "max_cal_3m_bp": 21.99,
-      "rolldown_1m_1x2_bp": -3.82,
-      "rolldown_1m_1x3_bp": -4.5,
-      "rolldown_1m_cal_bp": -9.07,
+      "rolldown_1m_1x2_bp": -3.94,
+      "rolldown_1m_1x3_bp": -4.65,
+      "rolldown_1m_cal_bp": -9.2,
       "hikes_1Y": 3.541,
       "hikes_source": "Citi 1Y1M-1M"
     },
@@ -217,10 +217,10 @@
       "max_1x3_3m_bp": 26.13,
       "min_cal_3m_bp": 9.48,
       "max_cal_3m_bp": 22.24,
-      "rolldown_1m_1x2_bp": -5.42,
-      "rolldown_1m_1x3_bp": -9.33,
-      "rolldown_1m_cal_bp": -11.47,
-      "hikes_1Y": 4.564,
+      "rolldown_1m_1x2_bp": -4.44,
+      "rolldown_1m_1x3_bp": -8.39,
+      "rolldown_1m_cal_bp": -9.78,
+      "hikes_1Y": 4.347,
       "hikes_source": "BBG 1Y1M-1M1M"
     }
   ]
