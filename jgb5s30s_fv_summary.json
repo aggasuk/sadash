@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 15:37",
+  "_updated": "2026-08-02 19:04",
   "asset": "JGB 5s30s",
   "periods": {
     "6m": [
@@ -11,6 +11,8 @@
         "misval_bps": -7.2,
         "z_score": -0.9,
         "signal": "FAIR",
+        "halflife": 4.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-01-31",
@@ -571,6 +573,8 @@
         "misval_bps": -4.3,
         "z_score": -0.49,
         "signal": "FAIR",
+        "halflife": 5.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-01-31",
@@ -1131,6 +1135,8 @@
         "misval_bps": 9.8,
         "z_score": 1.17,
         "signal": "STEEP",
+        "halflife": 5.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-01-31",
@@ -1691,6 +1697,8 @@
         "misval_bps": -2.1,
         "z_score": -0.23,
         "signal": "FAIR",
+        "halflife": 5.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-01-31",
@@ -2251,6 +2259,8 @@
         "misval_bps": -2.4,
         "z_score": -0.29,
         "signal": "FAIR",
+        "halflife": 3.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-01-31",
@@ -2813,6 +2823,8 @@
         "misval_bps": 8.2,
         "z_score": 0.89,
         "signal": "FAIR",
+        "halflife": 7.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -3473,6 +3485,8 @@
         "misval_bps": -0.9,
         "z_score": -0.0,
         "signal": "FAIR",
+        "halflife": 7.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4133,6 +4147,8 @@
         "misval_bps": 3.7,
         "z_score": 0.42,
         "signal": "FAIR",
+        "halflife": 7.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4793,6 +4809,8 @@
         "misval_bps": 7.4,
         "z_score": 0.81,
         "signal": "FAIR",
+        "halflife": 7.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -5453,6 +5471,8 @@
         "misval_bps": 0.4,
         "z_score": 0.05,
         "signal": "FAIR",
+        "halflife": 4.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -6115,6 +6135,8 @@
         "misval_bps": -3.9,
         "z_score": -0.61,
         "signal": "FAIR",
+        "halflife": 29.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -6775,6 +6797,8 @@
         "misval_bps": -12.4,
         "z_score": -1.36,
         "signal": "FLAT",
+        "halflife": 20.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -7435,6 +7459,8 @@
         "misval_bps": 14.4,
         "z_score": 0.28,
         "signal": "FAIR",
+        "halflife": 40.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -8095,6 +8121,8 @@
         "misval_bps": -11.7,
         "z_score": -0.88,
         "signal": "FAIR",
+        "halflife": 25.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -8755,6 +8783,8 @@
         "misval_bps": -19.3,
         "z_score": -1.82,
         "signal": "FLAT",
+        "halflife": 10.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -9417,6 +9447,8 @@
         "misval_bps": -10.9,
         "z_score": -0.86,
         "signal": "FAIR",
+        "halflife": 29.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -10077,6 +10109,8 @@
         "misval_bps": -8.2,
         "z_score": -1.42,
         "signal": "FLAT",
+        "halflife": 26.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -10737,6 +10771,8 @@
         "misval_bps": 21.8,
         "z_score": 0.2,
         "signal": "FAIR",
+        "halflife": 61.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -11397,6 +11433,8 @@
         "misval_bps": -17.4,
         "z_score": -1.06,
         "signal": "FLAT",
+        "halflife": 26.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -12057,6 +12095,8 @@
         "misval_bps": -21.2,
         "z_score": -1.58,
         "signal": "FLAT",
+        "halflife": 20.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -12719,6 +12759,8 @@
         "misval_bps": -30.2,
         "z_score": -1.16,
         "signal": "FLAT",
+        "halflife": 46.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-07-31",
@@ -13379,6 +13421,8 @@
         "misval_bps": 11.7,
         "z_score": -0.74,
         "signal": "FAIR",
+        "halflife": 38.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-07-31",
@@ -14039,6 +14083,8 @@
         "misval_bps": 18.6,
         "z_score": 0.07,
         "signal": "FAIR",
+        "halflife": 45.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-07-31",
@@ -14699,6 +14745,8 @@
         "misval_bps": 69.5,
         "z_score": 1.27,
         "signal": "STEEP",
+        "halflife": 207.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-07-31",
@@ -15359,6 +15407,8 @@
         "misval_bps": -19.6,
         "z_score": -1.3,
         "signal": "FLAT",
+        "halflife": 23.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-07-31",

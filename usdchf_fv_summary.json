@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 18:51",
+  "_updated": "2026-08-02 19:04",
   "asset": "USDCHF",
   "periods": {
     "6m": [
@@ -12,6 +12,8 @@
         "zscore": -0.17,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 4.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -553,6 +555,8 @@
         "zscore": -0.64,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 6.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1094,6 +1098,8 @@
         "zscore": -0.08,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 4.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1635,6 +1641,8 @@
         "zscore": 1.12,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 17.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -2176,6 +2184,8 @@
         "zscore": -0.19,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 5.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -2720,6 +2730,8 @@
         "zscore": 0.16,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 12.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -3381,6 +3393,8 @@
         "zscore": -0.2,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 11.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4042,6 +4056,8 @@
         "zscore": 1.08,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 8.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4703,6 +4719,8 @@
         "zscore": 1.04,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 12.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -5364,6 +5382,8 @@
         "zscore": 0.02,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 6.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -6028,6 +6048,8 @@
         "zscore": -1.79,
         "signal": "CHEAP",
         "signs_ok": true,
+        "halflife": 46.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -6689,6 +6711,8 @@
         "zscore": -2.48,
         "signal": "STRONG CHEAP",
         "signs_ok": true,
+        "halflife": 85.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -7350,6 +7374,8 @@
         "zscore": 0.29,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 38.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -8011,6 +8037,8 @@
         "zscore": 1.12,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 105.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -8672,6 +8700,8 @@
         "zscore": -1.43,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 31.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -9336,6 +9366,8 @@
         "zscore": -1.75,
         "signal": "CHEAP",
         "signs_ok": true,
+        "halflife": 32.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -9997,6 +10029,8 @@
         "zscore": -2.51,
         "signal": "STRONG CHEAP",
         "signs_ok": true,
+        "halflife": 56.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -10658,6 +10692,8 @@
         "zscore": 0.52,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 46.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -11319,6 +11355,8 @@
         "zscore": 0.5,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 72.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -11980,6 +12018,8 @@
         "zscore": -1.54,
         "signal": "CHEAP",
         "signs_ok": true,
+        "halflife": 34.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -12644,6 +12684,8 @@
         "zscore": 1.58,
         "signal": "n/a (\u03b2 sign: rate_diff_2y)",
         "signs_ok": false,
+        "halflife": 173.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -13308,6 +13350,8 @@
         "zscore": 1.75,
         "signal": "n/a (\u03b2 sign: us_real_5y)",
         "signs_ok": false,
+        "halflife": 183.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -13972,6 +14016,8 @@
         "zscore": 0.29,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 52.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -14633,6 +14679,8 @@
         "zscore": 1.17,
         "signal": "n/a (\u03b2 sign: vix)",
         "signs_ok": false,
+        "halflife": 60.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -15297,6 +15345,8 @@
         "zscore": 0.29,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 52.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",

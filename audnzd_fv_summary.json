@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 18:51",
+  "_updated": "2026-08-02 19:04",
   "asset": "AUDNZD",
   "periods": {
     "6m": [
@@ -12,6 +12,8 @@
         "zscore": -0.75,
         "signal": "n/a (\u03b2 sign: rate_spread_2y)",
         "signs_ok": false,
+        "halflife": 9.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -558,6 +560,8 @@
         "zscore": 1.32,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 66.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -1221,6 +1225,8 @@
         "zscore": 1.25,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 32.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -1884,6 +1890,8 @@
         "zscore": 0.96,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 122.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-10-18",
@@ -2547,6 +2555,8 @@
         "zscore": 0.96,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 122.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-10-18",

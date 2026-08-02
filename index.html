@@ -3048,6 +3048,25 @@ window.FV_NAV = (function() {
     return '<span class="badge ' + cls + '"' + muted + '>' + signal + '</span>';
   }
 
+  // Residual half-life cell: fade horizon in trading days. ∞ = AR(1) rho >= 1
+  // (residual never mean-reverts — the spurious-regression tell). Amber when the
+  // half-life exceeds a third of the regression window (reversion too slow to
+  // trade on that window's z).
+  var PERIOD_SESSIONS = { '6m': 126, '1y': 252, '2y': 504, '3y': 756, '5y': 1260 };
+  function hlCell(m, period) {
+    if (!m || m.halflife === undefined) return '<td style="white-space:nowrap;color:var(--text-dim);">--</td>';
+    if (m.no_mr) {
+      return '<td style="white-space:nowrap;color:#dc2626;font-weight:700;" ' +
+        'title="Residual not mean-reverting in this window (AR(1) ρ≥1) — spurious/level-shift risk; do not trade this z">∞ ⚠</td>';
+    }
+    if (m.halflife === null) return '<td style="white-space:nowrap;color:var(--text-dim);">--</td>';
+    var hl = Number(m.halflife);
+    var slow = hl > (PERIOD_SESSIONS[period] || 504) / 3;
+    var style = slow ? 'color:#d97706;' : '';
+    var title = slow ? ' title="Half-life is more than a third of the regression window — reversion too slow to lean on this z"' : '';
+    return '<td style="white-space:nowrap;' + style + '"' + title + '>' + Math.round(hl) + 'd</td>';
+  }
+
   // Window-consensus chip: how many displayed windows agree on the headline
   // model's direction (FX shows 1y/2y/3y; rates/equities all five).
   function consensusChip(d) {
@@ -3133,6 +3152,7 @@ window.FV_NAV = (function() {
     row += '<td style="white-space:nowrap;">' + (spot !== undefined ? spot : '--') + '</td>';
     row += '<td style="white-space:nowrap;">' + (misval !== undefined ? misval : '--') + '</td>';
     row += '<td class="' + zClass(zscore) + '" style="white-space:nowrap;">' + zDisplay(zscore) + '</td>';
+    row += hlCell(m, summaryPeriod);
     row += '<td style="white-space:nowrap;">' + sigBadge(m.signal) + consensusChip(d) + '</td>';
     row += '<td style="white-space:nowrap;color:var(--text-dim);font-size:0.78rem;">' + modelName + '</td>';
     row += '</tr>';
@@ -3255,7 +3275,9 @@ window.FV_NAV = (function() {
   function renderSummary() {
     var header = '<table class="vol-table"><thead><tr>' +
       '<th>Asset</th><th>R\u00b2</th><th>Fair Value</th>' +
-      '<th>Current</th><th>Misval</th><th>Z-score</th><th>Signal</th><th>Model</th></tr></thead><tbody>';
+      '<th>Current</th><th>Misval</th><th>Z-score</th>' +
+      '<th title="AR(1) half-life of the model residual \u2014 the expected fade horizon. \u221e = not mean-reverting (spurious/level-shift risk)">\u00bd-life</th>' +
+      '<th>Signal</th><th>Model</th></tr></thead><tbody>';
     var fxRows = '', ratesRows = '', equitiesRows = '';
     var fxItems = [], ratesItems = [], equitiesItems = [];
     // Equity FV assets (TPNBNK, CL1) ship multiple parallel models (A, B) in the
@@ -3637,6 +3659,8 @@ window.FVDETAIL = (function() {
         '<span>Spot <b style="color:var(--text)">' + model.spot + '</b></span>' +
         '<span>Misval <b style="color:var(--text)">' + model.misval + '</b></span>' +
         '<span>Z <b style="color:' + zc + '">' + (z > 0 ? '+' : '') + z + '</b></span>' +
+        (model.no_mr ? '<span title="Residual not mean-reverting — spurious/level-shift risk">½-life <b style="color:#dc2626">∞ ⚠</b></span>'
+          : (model.halflife != null ? '<span>½-life <b style="color:var(--text)">' + Math.round(model.halflife) + 'd</b></span>' : '')) +
         '<span style="margin-left:auto;font-weight:700;color:' + zc + ';">' + (model.signal || '') + '</span>' +
       '</div>' +
       '<div style="height:230px;"><canvas id="' + containerId + '-top"></canvas></div>' +

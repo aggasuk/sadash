@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 18:51",
+  "_updated": "2026-08-02 19:04",
   "asset": "AUDUSD",
   "periods": {
     "6m": [
@@ -12,6 +12,8 @@
         "zscore": 0.3,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 7.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -553,6 +555,8 @@
         "zscore": -0.79,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 9.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1094,6 +1098,8 @@
         "zscore": 0.11,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 2.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1638,6 +1644,8 @@
         "zscore": 1.64,
         "signal": "RICH",
         "signs_ok": true,
+        "halflife": 32.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -2299,6 +2307,8 @@
         "zscore": -0.78,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 21.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -2960,6 +2970,8 @@
         "zscore": 0.16,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 21.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -3624,6 +3636,8 @@
         "zscore": 1.64,
         "signal": "RICH",
         "signs_ok": true,
+        "halflife": 19.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -4285,6 +4299,8 @@
         "zscore": -0.45,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 34.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -4946,6 +4962,8 @@
         "zscore": 1.09,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 20.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -5610,6 +5628,8 @@
         "zscore": 1.44,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 24.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -6271,6 +6291,8 @@
         "zscore": 0.03,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 37.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -6932,6 +6954,8 @@
         "zscore": 1.13,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 26.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -7596,6 +7620,8 @@
         "zscore": 1.31,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 53.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -8257,6 +8283,8 @@
         "zscore": 0.42,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 69.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -8918,6 +8946,8 @@
         "zscore": 1.31,
         "signal": "FAIR",
         "signs_ok": true,
+        "halflife": 53.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",

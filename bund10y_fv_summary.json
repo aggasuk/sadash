@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 15:37",
+  "_updated": "2026-08-02 19:04",
   "asset": "Bund 10Y",
   "periods": {
     "6m": [
@@ -11,6 +11,8 @@
         "misval": "+9 bps",
         "zscore": 1.76,
         "signal": "CHEAP",
+        "halflife": 5.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -551,6 +553,8 @@
         "misval": "+1 bps",
         "zscore": 0.2,
         "signal": "FAIR",
+        "halflife": 5.5,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1091,6 +1095,8 @@
         "misval": "+8 bps",
         "zscore": 0.71,
         "signal": "FAIR",
+        "halflife": 8.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -1631,6 +1637,8 @@
         "misval": "+6 bps",
         "zscore": 1.5,
         "signal": "CHEAP",
+        "halflife": 5.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -2173,6 +2181,8 @@
         "misval": "+8 bps",
         "zscore": 1.35,
         "signal": "CHEAP",
+        "halflife": 8.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -2833,6 +2843,8 @@
         "misval": "-1 bps",
         "zscore": -0.26,
         "signal": "FAIR",
+        "halflife": 8.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -3493,6 +3505,8 @@
         "misval": "+28 bps",
         "zscore": 1.73,
         "signal": "CHEAP",
+        "halflife": 30.8,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4153,6 +4167,8 @@
         "misval": "+6 bps",
         "zscore": 1.24,
         "signal": "CHEAP",
+        "halflife": 6.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -4815,6 +4831,8 @@
         "misval": "+35 bps",
         "zscore": 2.17,
         "signal": "STRONG CHEAP",
+        "halflife": 79.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -5475,6 +5493,8 @@
         "misval": "+32 bps",
         "zscore": 1.13,
         "signal": "CHEAP",
+        "halflife": 85.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -6135,6 +6155,8 @@
         "misval": "+5 bps",
         "zscore": -0.06,
         "signal": "FAIR",
+        "halflife": 20.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -6795,6 +6817,8 @@
         "misval": "+1 bps",
         "zscore": 0.08,
         "signal": "FAIR",
+        "halflife": 14.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -7457,6 +7481,8 @@
         "misval": "+62 bps",
         "zscore": 2.13,
         "signal": "STRONG CHEAP",
+        "halflife": 70.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -8117,6 +8143,8 @@
         "misval": "+37 bps",
         "zscore": 0.98,
         "signal": "FAIR",
+        "halflife": 77.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -8777,6 +8805,8 @@
         "misval": "+44 bps",
         "zscore": 1.71,
         "signal": "CHEAP",
+        "halflife": 48.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -9437,6 +9467,8 @@
         "misval": "+10 bps",
         "zscore": 0.5,
         "signal": "FAIR",
+        "halflife": 24.4,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -10099,6 +10131,8 @@
         "misval": "+68 bps",
         "zscore": -0.42,
         "signal": "FAIR",
+        "halflife": 367.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -10759,6 +10793,8 @@
         "misval": "+13 bps",
         "zscore": -1.54,
         "signal": "RICH",
+        "halflife": 39.1,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -11419,6 +11455,8 @@
         "misval": "+25 bps",
         "zscore": 1.18,
         "signal": "CHEAP",
+        "halflife": 98.6,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
@@ -12079,6 +12117,8 @@
         "misval": "+2 bps",
         "zscore": -1.35,
         "signal": "RICH",
+        "halflife": 24.7,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",

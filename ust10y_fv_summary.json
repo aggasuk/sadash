@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 15:37",
+  "_updated": "2026-08-02 19:04",
   "asset": "UST 10Y",
   "periods": {
     "6m": [
@@ -11,6 +11,8 @@
         "misval": "+6 bps",
         "zscore": 1.72,
         "signal": "CHEAP",
+        "halflife": 3.2,
+        "no_mr": false,
         "_series": {
           "d": [
             "2026-02-02",
@@ -553,6 +555,8 @@
         "misval": "+11 bps",
         "zscore": 2.29,
         "signal": "STRONG CHEAP",
+        "halflife": 6.9,
+        "no_mr": false,
         "_series": {
           "d": [
             "2025-07-31",
@@ -1215,6 +1219,8 @@
         "misval": "+2 bps",
         "zscore": 0.75,
         "signal": "FAIR",
+        "halflife": 14.3,
+        "no_mr": false,
         "_series": {
           "d": [
             "2024-07-31",
@@ -1877,6 +1883,8 @@
         "misval": "+6 bps",
         "zscore": 1.67,
         "signal": "CHEAP",
+        "halflife": 16.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2023-07-31",
@@ -2539,6 +2547,8 @@
         "misval": "-6 bps",
         "zscore": -0.06,
         "signal": "FAIR",
+        "halflife": 19.0,
+        "no_mr": false,
         "_series": {
           "d": [
             "2021-08-02",
