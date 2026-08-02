@@ -370,6 +370,109 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <div id="alerts-banner"></div>
 
+    <!-- ── Setups strip (step 7f: setups.py → setups.json) — the resolver ── -->
+    <style>
+    .st-head{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;}
+    .st-chg{font-size:0.72rem;color:var(--text-dim);margin-top:4px;}
+    .st-h2{font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:14px 0 6px;font-weight:700;}
+    .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px;}
+    .st-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+    .st-card.tA{border-left:4px solid var(--green);}
+    .st-card.tFADE{border-left:4px solid var(--accent);}
+    .st-card.tWATCH{border-left:4px solid var(--amber);opacity:.85;}
+    .st-card.tAVOID{border-left:4px solid var(--red);opacity:.75;}
+    .st-card.tLIVE{border-left:4px solid var(--green);}
+    .st-card.tLIVE.sDEGRADED{border-left-color:var(--amber);}
+    .st-card.tLIVE.sEXIT{border-left-color:var(--red);}
+    .st-chead{display:flex;align-items:center;gap:8px;}
+    .st-tier{font-size:0.62rem;font-weight:800;letter-spacing:.08em;color:var(--text-dim);white-space:nowrap;}
+    .tA .st-tier{color:var(--green);}.tFADE .st-tier{color:var(--accent);}
+    .tWATCH .st-tier{color:var(--amber);}.tAVOID .st-tier{color:var(--red);}
+    .st-verb{font-weight:750;font-size:0.9rem;flex:1;}
+    .st-size{font-size:0.62rem;font-weight:800;background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:2px 8px;color:var(--text-dim);white-space:nowrap;}
+    .st-why{font-size:0.76rem;color:var(--text-dim);}
+    .st-chips{display:flex;flex-wrap:wrap;gap:5px;}
+    .st-chip{font-size:0.66rem;font-weight:600;border-radius:6px;padding:1px 7px;border:1px solid var(--border);font-variant-numeric:tabular-nums;}
+    .st-chip.ok{color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);}
+    .st-chip.bad{color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent);}
+    .st-chip.mut{color:var(--text-dim);}
+    .st-foot{font-size:0.66rem;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+    .st-take{margin-left:auto;font-size:0.64rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:2px 8px;font-family:inherit;}
+    </style>
+    <div id="setups-strip" style="margin-bottom:22px;"></div>
+    <script>
+    (function() {
+      var el = document.getElementById('setups-strip');
+      fetch('setups.json?v=' + Date.now()).then(function(r){ return r.json(); }).then(render)
+        .catch(function(){ el.innerHTML = ''; });
+      function chips(parts) {
+        return '<div class="st-chips">' + parts.map(function(p){
+          return '<span class="st-chip ' + p[2] + '">' + p[0] + ' <b>' + (p[1] >= 0 ? '+' : '') + p[1].toFixed(2) + '</b></span>';
+        }).join('') + '</div>';
+      }
+      function why(parts) {
+        var w = parts.map(function(p){ return p[3]; }).filter(Boolean);
+        return w.length ? '<div class="st-why">' + w.join(' · ') + '</div>' : '';
+      }
+      function takeBtn(e) {
+        var snip = JSON.stringify({ key: e.key, dir: e.dir, taken: new Date().toISOString().slice(0,10) });
+        return '<button class="st-take" onclick=\'navigator.clipboard.writeText(' + JSON.stringify(snip) +
+          ').then(function(){ event.target.textContent = "copied ✓ → setups_taken.json"; })\'>mark taken</button>';
+      }
+      function card(e) {
+        var action = e.tier === 'FADE' ? 'FADE the cross → ' + e.verb :
+                     e.tier === 'WATCH' ? e.verb + ' — <i>not yet</i>' :
+                     e.tier === 'AVOID' ? 'stand aside — ' + e.label : e.verb;
+        var size = e.size ? e.size + ' · ' : '';
+        var foot = e.tier === 'WATCH'
+          ? 'score ' + e.score.toFixed(2) + ' — needs +' + (1.0 - e.score).toFixed(2) + ' more (FV +1.0 / flow +0.75 / carry +0.5)'
+          : e.tier === 'AVOID' ? 'veto: ' + (e.veto || '') : 're-scored every refresh · drops below 1.0';
+        return '<div class="st-card t' + e.tier + '"><div class="st-chead">' +
+          '<span class="st-tier">' + (e.tier === 'A' ? 'A-SETUP' : e.tier) + '</span>' +
+          '<span class="st-verb">' + action + '</span>' +
+          '<span class="st-size">' + size + (e.score >= 0 ? '+' : '') + e.score.toFixed(2) + '</span></div>' +
+          why(e.parts) + chips(e.parts) +
+          '<div class="st-foot"><span>' + foot + '</span>' +
+          ((e.tier === 'A' || e.tier === 'FADE') ? takeBtn(e) : '') + '</div></div>';
+      }
+      function liveCard(l) {
+        var es = l.entry_score == null ? '?' : (l.entry_score >= 0 ? '+' : '') + l.entry_score.toFixed(2);
+        var ns = l.score == null ? '—' : (l.score >= 0 ? '+' : '') + l.score.toFixed(2);
+        return '<div class="st-card tLIVE s' + l.state + '"><div class="st-chead">' +
+          '<span class="st-tier">LIVE · ' + l.state + '</span>' +
+          '<span class="st-verb">' + l.verb + ' — taken ' + l.taken + '</span>' +
+          '<span class="st-size">entry ' + es + ' → ' + ns + '</span></div>' +
+          '<div class="st-why">' + l.why + (l.note ? ' · ' + l.note : '') + '</div>' +
+          (l.parts.length ? chips(l.parts) : '') + '</div>';
+      }
+      function render(d) {
+        var acts = d.cards.filter(function(e){ return e.tier === 'A'; });
+        var fades = d.cards.filter(function(e){ return e.tier === 'FADE'; });
+        var watch = d.cards.filter(function(e){ return e.tier === 'WATCH'; });
+        var avoid = d.cards.filter(function(e){ return e.tier === 'AVOID'; });
+        var nAct = acts.length + fades.length;
+        var head = nAct
+          ? '<b>' + nAct + ' setup' + (nAct === 1 ? '' : 's') + ' to act on</b> · ' + watch.length +
+            ' watching · ' + avoid.length + ' stand-aside — ' + d.counts.hidden + ' signals hidden'
+          : '<b>Nothing to act on.</b> ' + watch.length + ' watching · ' + avoid.length +
+            ' stand-aside — ' + d.counts.hidden + ' signals hidden';
+        var chg = (d.changes && d.changes.length)
+          ? '<div class="st-chg">since last run: ' + d.changes.slice(0, 5).join(' · ') + '</div>' : '';
+        var h = '<div class="st-head">' + head + chg + '</div>';
+        function sec(title, arr, fn) {
+          if (!arr.length) return '';
+          return '<div class="st-h2">' + title + '</div><div class="st-grid">' + arr.map(fn).join('') + '</div>';
+        }
+        h += sec('Act', acts, card);
+        h += sec('Act — fade the cross', fades, card);
+        h += sec('Live — taken', d.live || [], liveCard);
+        h += sec('Watch', watch, card);
+        h += sec('Stand aside', avoid, card);
+        el.innerHTML = h;
+      }
+    })();
+    </script>
+
     <!-- Momentum sub-tabs -->
     <div class="tabs" id="mom-sub-tabs" style="margin-bottom:24px;">
       <button class="tab active" data-sub="equity_commod">Equities / Commods</button>

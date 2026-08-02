@@ -1,0 +1,239 @@
+{
+ "_updated": "2026-08-02 22:47",
+ "counts": {
+  "act": 5,
+  "watch": 2,
+  "avoid": 0,
+  "hidden": 100,
+  "total_signals": 107
+ },
+ "changes": [
+  "NEW A HALF: PAY JGB 10Y / short JB (+1.55)",
+  "NEW A PROBE: RECEIVE KRW 5Y (+1.25)",
+  "NEW A PROBE: PAY Bund 10Y / short RX (+1.05)",
+  "NEW FADE PROBE: BUY gold (+1.00)",
+  "NEW FADE PROBE: BUY USDINR (+1.00)"
+ ],
+ "cards": [
+  {
+   "key": "jgb",
+   "label": "JGB 10Y (bond)",
+   "dir": "bear",
+   "verb": "PAY JGB 10Y / short JB",
+   "tier": "A",
+   "size": "HALF",
+   "score": 1.55,
+   "parts": [
+    [
+     "MOM Confluence t +3.3 \u00b7 in regime",
+     1.0,
+     "ok",
+     "Confluence cross (t +3.3, 60% 1M)"
+    ],
+    [
+     "CTA trend -0.76",
+     0.8,
+     "ok",
+     "CTA trend -0.76 same way"
+    ],
+    [
+     "FV -0.1z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -10.0bp/3m costs",
+     -0.25,
+     "bad",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "krw5",
+   "label": "KRW 5Y (bond)",
+   "dir": "bull",
+   "verb": "RECEIVE KRW 5Y",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 1.25,
+   "parts": [
+    [
+     "CTA flow turning \u2014 $+1.4m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind (just turned, $+1.4m/bp on the flat path)"
+    ],
+    [
+     "carry -8.0bp/3m earns",
+     0.5,
+     "ok",
+     "paid 8bp/3m to hold"
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "bund",
+   "label": "Bund 10Y (bond)",
+   "dir": "bear",
+   "verb": "PAY Bund 10Y / short RX",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 1.05,
+   "parts": [
+    [
+     "MOM Confluence t +2.1 \u00b7 in regime",
+     1.0,
+     "ok",
+     "Confluence cross (t +2.1, 69% 1W)"
+    ],
+    [
+     "CTA trend -0.82",
+     0.8,
+     "ok",
+     "CTA trend -0.82 same way"
+    ],
+    [
+     "CTA -1.8sd CROWDED",
+     -0.75,
+     "bad",
+     "CTA crowded same way \u2014 TP regime"
+    ],
+    [
+     "FV +0.5z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -3.8bp/3m",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "gold",
+   "label": "Gold",
+   "dir": "bull",
+   "verb": "BUY gold",
+   "tier": "FADE",
+   "size": "PROBE",
+   "score": 1.0,
+   "parts": [
+    [
+     "MOM FADE of SMA 5/20 t -2.4 \u00b7 day 3/20",
+     1.0,
+     "ok",
+     "backtest says fade the SMA 5/20 cross (t -2.4)"
+    ]
+   ],
+   "veto": null,
+   "fade": true,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "usdinr",
+   "label": "USDINR",
+   "dir": "bull",
+   "verb": "BUY USDINR",
+   "tier": "FADE",
+   "size": "PROBE",
+   "score": 1.0,
+   "parts": [
+    [
+     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 0/20",
+     1.0,
+     "ok",
+     "backtest says fade the SMA 5/20 cross (t -2.8)"
+    ]
+   ],
+   "veto": null,
+   "fade": true,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "inr5",
+   "label": "INR 5Y (bond)",
+   "dir": "bear",
+   "verb": "PAY INR 5Y",
+   "tier": "WATCH",
+   "size": "",
+   "score": 0.75,
+   "parts": [
+    [
+     "MOM Confluence t +3.0 \u00b7 in regime",
+     1.0,
+     "ok",
+     "Confluence cross (t +3.0, 62% 1W)"
+    ],
+    [
+     "carry -9.5bp/3m costs",
+     -0.25,
+     "bad",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-02"
+  },
+  {
+   "key": "us10y",
+   "label": "US 10Y (bond)",
+   "dir": "bear",
+   "verb": "PAY US 10Y / short TY",
+   "tier": "WATCH",
+   "size": "",
+   "score": 0.3,
+   "parts": [
+    [
+     "MOM Confluence t +2.4 \u00b7 in regime",
+     1.0,
+     "ok",
+     "Confluence cross (t +2.4, 65% 1W)"
+    ],
+    [
+     "CTA trend -0.72",
+     0.8,
+     "ok",
+     "CTA trend -0.72 same way"
+    ],
+    [
+     "CTA -2.0sd CROWDED",
+     -0.75,
+     "bad",
+     "CTA crowded same way \u2014 TP regime"
+    ],
+    [
+     "FV +1.7z AGAINST",
+     -0.75,
+     "bad",
+     "FV 1.7z against"
+    ],
+    [
+     "carry -3.5bp/3m",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-02"
+  }
+ ],
+ "live": [],
+ "params": "anchors: cross t\u22652 +1.0 / CTA trend +0.6-0.8 / flow-turn \u00b7 FV \u00b11.0 (veto \u22652z) \u00b7 flow \u00b10.75 (veto \u22652.25sd) \u00b7 carry \u00b10.5/-0.25 \u00b7 KOSPI +0.75 \u00b7 FULL \u22652.25, HALF \u22651.5, PROBE \u22651.0"
+}
