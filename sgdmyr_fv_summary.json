@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 15:37",
+  "_updated": "2026-08-02 18:52",
   "asset": "SGDMYR",
   "periods": {
     "6m": [
@@ -10,7 +10,7 @@
         "spot": 3.184,
         "misval": "+2.0%",
         "zscore": 1.84,
-        "signal": "RICH",
+        "signal": "n/a (low R\u00b2)",
         "signs_ok": true,
         "_series": {
           "d": [
@@ -551,7 +551,7 @@
         "spot": 3.184,
         "misval": "+2.0%",
         "zscore": 1.83,
-        "signal": "RICH",
+        "signal": "n/a (low R\u00b2)",
         "signs_ok": true,
         "_series": {
           "d": [
@@ -2165,7 +2165,8 @@
             0.030341
           ],
           "rs": 0.023898
-        }
+        },
+        "constrained": true
       }
     ],
     "1y": [
@@ -4811,7 +4812,8 @@
             0.089827
           ],
           "rs": 0.044032
-        }
+        },
+        "constrained": true
       }
     ],
     "2y": [
@@ -7457,7 +7459,8 @@
             0.081746
           ],
           "rs": 0.042174
-        }
+        },
+        "constrained": true
       }
     ],
     "3y": [
@@ -8129,7 +8132,7 @@
         "spot": 3.184,
         "misval": "-4.0%",
         "zscore": 0.25,
-        "signal": "FAIR (sign?)",
+        "signal": "n/a (\u03b2 sign: brent)",
         "signs_ok": false,
         "_series": {
           "d": [
@@ -8781,7 +8784,10 @@
             -0.126663
           ],
           "rs": 0.138769
-        }
+        },
+        "sign_fail": [
+          "brent"
+        ]
       },
       {
         "model": "USDCNH",
@@ -10103,7 +10109,8 @@
             0.067911
           ],
           "rs": 0.057757
-        }
+        },
+        "constrained": true
       }
     ],
     "5y": [
@@ -10775,7 +10782,7 @@
         "spot": 3.184,
         "misval": "-4.0%",
         "zscore": 0.25,
-        "signal": "FAIR (sign?)",
+        "signal": "n/a (\u03b2 sign: brent)",
         "signs_ok": false,
         "_series": {
           "d": [
@@ -11427,7 +11434,10 @@
             -0.126663
           ],
           "rs": 0.138769
-        }
+        },
+        "sign_fail": [
+          "brent"
+        ]
       },
       {
         "model": "USDCNH",
@@ -12749,7 +12759,8 @@
             0.067911
           ],
           "rs": 0.057757
-        }
+        },
+        "constrained": true
       }
     ]
   }

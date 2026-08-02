@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-02 15:37",
+  "_updated": "2026-08-02 18:51",
   "asset": "USDTHB",
   "periods": {
     "6m": [
@@ -2165,7 +2165,8 @@
             0.150317
           ],
           "rs": 0.250218
-        }
+        },
+        "constrained": true
       }
     ],
     "1y": [
@@ -2176,7 +2177,7 @@
         "spot": 33.393,
         "misval": "+2.9%",
         "zscore": 1.56,
-        "signal": "RICH",
+        "signal": "n/a (low R\u00b2)",
         "signs_ok": true,
         "_series": {
           "d": [
@@ -4811,7 +4812,8 @@
             0.606856
           ],
           "rs": 0.389008
-        }
+        },
+        "constrained": true
       }
     ],
     "2y": [
@@ -6144,7 +6146,7 @@
         "spot": 33.393,
         "misval": "+2.7%",
         "zscore": 1.85,
-        "signal": "FAIR (sign?)",
+        "signal": "n/a (\u03b2 sign: rate_spread_2y)",
         "signs_ok": false,
         "_series": {
           "d": [
@@ -6796,7 +6798,10 @@
             0.885477
           ],
           "rs": 0.990982
-        }
+        },
+        "sign_fail": [
+          "rate_spread_2y"
+        ]
       },
       {
         "model": "Combined (XAU + DXY)",
@@ -7457,7 +7462,8 @@
             0.84897
           ],
           "rs": 0.501566
-        }
+        },
+        "constrained": true
       }
     ],
     "3y": [
@@ -8790,7 +8796,7 @@
         "spot": 33.393,
         "misval": "-1.5%",
         "zscore": 1.55,
-        "signal": "RICH",
+        "signal": "n/a (low R\u00b2)",
         "signs_ok": true,
         "_series": {
           "d": [
@@ -10103,7 +10109,8 @@
             0.806533
           ],
           "rs": 0.813788
-        }
+        },
+        "constrained": true
       }
     ],
     "5y": [
@@ -11436,7 +11443,7 @@
         "spot": 33.393,
         "misval": "-1.5%",
         "zscore": 1.55,
-        "signal": "RICH",
+        "signal": "n/a (low R\u00b2)",
         "signs_ok": true,
         "_series": {
           "d": [
@@ -12749,7 +12756,8 @@
             0.806533
           ],
           "rs": 0.813788
-        }
+        },
+        "constrained": true
       }
     ]
   }

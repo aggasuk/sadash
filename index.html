@@ -789,34 +789,45 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
-    <!-- ── EURUSD Nominal sub-page ── -->
-    <div class="fv-subpage" id="fv-sub-eurusdnom" style="display:none;">
+    <!-- ── USDJPY sub-page ── -->
+    <div class="fv-subpage" id="fv-sub-usdjpy" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
         <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-        <div class="tabs" id="eurusdnom-period-tabs" style="margin-bottom:0;">
-          <button class="tab" data-p="6m">6M</button>
-          <button class="tab active" data-p="1y">1Y</button>
+        <div class="tabs" id="usdjpy-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="1y">1Y</button>
           <button class="tab" data-p="2y">2Y</button>
           <button class="tab" data-p="3y">3Y</button>
-          <button class="tab" data-p="5y">5Y</button>
+          <button class="tab active" data-p="5y">5Y</button>
         </div>
-        <span style="font-size:0.7rem;color:var(--text-dim);">Default 1Y per JPM short-term FV research</span>
+        <span style="font-size:0.7rem;color:var(--text-dim);">5Y kept for this pair — the fiscal-premium fit is structural</span>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDJPY</b> (added 2026-08) — <b>2Y real rate diff</b> = (SOFR 2Y &minus; US 2Y ZC infl swap) &minus;
+        (TONA 2Y &minus; JGBi 10Y breakeven; JPY inflation swaps unpermissioned and the JP BE curve is flat/thin,
+        so the 10Y BE stands in). <b>JGB 5s30s</b> is the "residual JPY cheapness" driver — the fiscal-premium
+        channel (steeper JGB long end = JPY cheaper), which dominates on long windows (R&sup2; ~0.70 at 5y,
+        right-signed). Caveat: BoJ-normalization episodes flatten the curve <i>and</i> strengthen JPY —
+        opposite sign, dominates short windows, which then honestly flag &ldquo;n/a (&beta; sign)&rdquo;.
+        The classic <b>10Y spread</b> is kept as a diagnostic: it fits the recent window with the <i>wrong</i>
+        sign (spread narrowed while JPY weakened) — that flag <i>is</i> the cheapness puzzle. 2y/3y windows are
+        weak for every driver (2024-25 carry/positioning/intervention era) → &ldquo;n/a (low R&sup2;)&rdquo;
+        rather than fake signals. Headline: <b>Combined (Real 2Y + JGB 5s30s)</b>, sign-constrained, R&sup2; ~0.84 at 5y.
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: 2Y Nominal Rate Differential (EUR OIS - USD OIS)</div>
-        <div class="fvchart" id="eurusdnom-img-nomrate"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: US-JP 2Y Real Rate Diff</div>
+        <div class="fvchart" id="usdjpy-img-rr2"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
-        <div class="fvchart" id="eurusdnom-img-tot"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: US-JP 10Y Rate Diff (diagnostic — wrong-signed = the puzzle)</div>
+        <div class="fvchart" id="usdjpy-img-nom10"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <div class="fvchart" id="eurusdnom-img-btpbund"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: JGB 5s30s (fiscal premium)</div>
+        <div class="fvchart" id="usdjpy-img-jgb530"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Nominal Rate + ToT + BTP-Bund)</div>
-        <div class="fvchart" id="eurusdnom-img-combined"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Real 2Y + JGB 5s30s)</div>
+        <div class="fvchart" id="usdjpy-img-combined"></div>
       </div>
     </div>
 
@@ -976,12 +987,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: V2X (European Equity Risk)</div>
-        <div class="fvchart" id="eurgbp-img-risk"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + Curve + Risk)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rates + Curve) — V2X dropped 2026-08 (R&sup2;&le;0.13, wrong-signed 4/5 windows)</div>
         <div class="fvchart" id="eurgbp-img-combined"></div>
       </div>
     </div>
@@ -1039,8 +1045,9 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         highest-R&sup2; series but carry the <b>wrong sign</b> — higher SA-vs-US yields coincide with a
         <i>weaker</i> rand because in ZAR rate differentials are endogenous to risk (sell-off → yields
         spike on fiscal/risk premium + SARB defence). Best read on a <b>2-3y</b> window; levels links
-        decay at 5y. Note: in the Combined, the gold coefficient flips sign at the 2y/5y windows
-        (gold-copper collinearity) → the sign-guard auto-labels those &ldquo;FAIR (sign?)&rdquo;.
+        decay at 5y. The Combined is <b>sign-constrained</b> (2026-08): gold-copper collinearity used to
+        flip the gold beta at some windows — the constrained fit shrinks the offender toward zero instead
+        of letting the sign flip, so the model stays signal-capable.
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Gold (XAU)</div>
@@ -1079,22 +1086,12 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: VIX</div>
-        <div class="fvchart" id="audusd-img-vix"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (HG1)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Copper (HG1)</div>
         <div class="fvchart" id="audusd-img-copper"></div>
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Iron Ore (SCO1)</div>
-        <div class="fvchart" id="audusd-img-ironore"></div>
-      </div>
-
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Rates + VIX + Copper)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rates + Copper) — VIX &amp; Iron Ore dropped 2026-08 (R&sup2;~0, sign-vetoed the fit)</div>
         <div class="fvchart" id="audusd-img-combined"></div>
       </div>
     </div>
@@ -1112,16 +1109,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         </div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: AU-NZ 2Y Rate Spread</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">AU-NZ 2Y Rate Spread — single-model pair (Iron Ore dropped 2026-08: R&sup2; 0.00-0.19, wrong-signed half the windows)</div>
         <div class="fvchart" id="audnzd-img-rates"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Iron Ore (SCO1)</div>
-        <div class="fvchart" id="audnzd-img-ironore"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rates + IronOre)</div>
-        <div class="fvchart" id="audnzd-img-combined"></div>
       </div>
     </div>
 
@@ -1191,11 +1180,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div class="fvchart" id="eurnok-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <div class="fvchart" id="eurnok-img-btpbund"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + BTP-Bund)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Brent + Rate Diff + log(SPX)) — BTP-Bund dropped 2026-08 (wrong-signed most windows)</div>
         <div class="fvchart" id="eurnok-img-combined"></div>
       </div>
     </div>
@@ -1260,11 +1245,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div class="fvchart" id="eursek-img-copper"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: BTP-Bund 10Y Spread (peripheral / sovereign stress)</div>
-        <div class="fvchart" id="eursek-img-btpbund"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: EU-SE 2Y Rate Spread (added 2026-08; BTP-Bund dropped — wrong-signed in all 5 windows)</div>
+        <div class="fvchart" id="eursek-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (log(SPX) + Copper + BTP-Bund)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + log(SPX) + Copper)</div>
         <div class="fvchart" id="eursek-img-combined"></div>
       </div>
     </div>
@@ -3015,6 +3000,15 @@ window.FV_NAV = (function() {
     backBtn.style.display = 'none';
     // regression-window selector is meaningless for the Inflation tab (fixed 7y fit)
     if (ovCtrls) ovCtrls.style.display = (which === 'inflation') ? 'none' : '';
+    // FX display cut: hide 6M/5Y on the FX overview (data still in the JSONs)
+    document.querySelectorAll('#summary-period-tabs .tab').forEach(function(b) {
+      var hide = (which === 'fx') && (b.dataset.p === '6m' || b.dataset.p === '5y');
+      b.style.display = hide ? 'none' : '';
+      if (hide && b.classList.contains('active')) {
+        var t2 = document.querySelector('#summary-period-tabs .tab[data-p="2y"]');
+        if (t2) t2.click();
+      }
+    });
     if (which === 'inflation' && window.INFL_FV) window.INFL_FV.load();
     subTabs.forEach(s => s.classList.toggle('active', s.dataset.sub === which));
     subPages.forEach(p => p.style.display = 'none');
@@ -3047,9 +3041,32 @@ window.FV_NAV = (function() {
     let cls = 'neutral';
     if (s.includes('cheap')) cls = 'bull';
     else if (s.includes('rich')) cls = 'bear';
-    // Sign-mismatch flag from JPM-style filter — render muted
-    const muted = s.includes('sign?') ? ' style="opacity:0.55;font-style:italic;" title="Combined-model beta sign mismatch — model unreliable for trade signal"' : '';
+    // Suppression flags (JPM-style filters) — render muted, label names the reason
+    let muted = '';
+    if (s.includes('sign')) muted = ' style="opacity:0.55;font-style:italic;" title="The named factor’s fitted beta contradicts its economic prior — residual presumed spurious, signal suppressed (JPM sign filter)"';
+    else if (s.includes('low r')) muted = ' style="opacity:0.55;font-style:italic;" title="Window R² below 0.25 — a z-score off a fit that explains nothing is noise, signal suppressed"';
     return '<span class="badge ' + cls + '"' + muted + '>' + signal + '</span>';
+  }
+
+  // Window-consensus chip: how many displayed windows agree on the headline
+  // model's direction (FX shows 1y/2y/3y; rates/equities all five).
+  function consensusChip(d) {
+    var periods = (isRates(d.asset) || isEquities(d.asset)) ? HM_PERIODS : FX_PERIODS;
+    var rich = 0, cheap = 0, n = 0;
+    periods.forEach(function(p) {
+      var models = d.periods && d.periods[p];
+      if (!models || !models.length) return;
+      n++;
+      var s = (models[models.length - 1].signal || '');
+      if (s.indexOf('RICH') >= 0) rich++;
+      else if (s.indexOf('CHEAP') >= 0) cheap++;
+    });
+    if (!n || (rich === 0 && cheap === 0)) return '';
+    var side = rich >= cheap ? 'RICH' : 'CHEAP';
+    var cls = side === 'CHEAP' ? 'bull' : 'bear';
+    return ' <span class="badge ' + cls + '" style="opacity:0.7;font-size:0.62rem;" title="' +
+      Math.max(rich, cheap) + ' of ' + n + ' displayed windows signal ' + side + ' on the headline model">' +
+      Math.max(rich, cheap) + '/' + n + '</span>';
   }
 
   // Equity index FV assets — TPNBNK lives here, CL1 grouped here too (commodities sub-page). Add new equity-FV assets to this list.
@@ -3070,8 +3087,6 @@ window.FV_NAV = (function() {
 
   function subIdFor(d) {
     var a = (d.asset || '').toUpperCase();
-    var v = d.variant || '';
-    if (a === 'EURUSD' && v === 'nominal') return 'eurusdnom';
     if (a === 'UST 10Y') return 'ust10y';
     if (a === 'BUND 10Y') return 'bund10y';
     if (a === 'JGB 10Y') return 'jgb10y';
@@ -3118,7 +3133,7 @@ window.FV_NAV = (function() {
     row += '<td style="white-space:nowrap;">' + (spot !== undefined ? spot : '--') + '</td>';
     row += '<td style="white-space:nowrap;">' + (misval !== undefined ? misval : '--') + '</td>';
     row += '<td class="' + zClass(zscore) + '" style="white-space:nowrap;">' + zDisplay(zscore) + '</td>';
-    row += '<td style="white-space:nowrap;">' + sigBadge(m.signal) + '</td>';
+    row += '<td style="white-space:nowrap;">' + sigBadge(m.signal) + consensusChip(d) + '</td>';
     row += '<td style="white-space:nowrap;color:var(--text-dim);font-size:0.78rem;">' + modelName + '</td>';
     row += '</tr>';
     return row;
@@ -3151,6 +3166,9 @@ window.FV_NAV = (function() {
 
   // ── Heatmap: asset (rows) x window (cols), combined-model residual z-score ──
   var HM_PERIODS = ['6m', '1y', '2y', '3y', '5y'];
+  // FX display cut (2026-08): 6m betas are unstable small-sample fits and 5y spans
+  // regime breaks — FX renders 1y/2y/3y only. The JSONs still carry all five.
+  var FX_PERIODS = ['1y', '2y', '3y'];
   function hmCell(z) {
     if (z === null) return 'background:transparent;color:var(--text-dim);';
     var a = Math.min(Math.abs(z) / 2.5, 1);
@@ -3158,26 +3176,27 @@ window.FV_NAV = (function() {
     return 'background:rgba(' + rgb + ',' + (0.10 + 0.55 * a).toFixed(2) + ');' +
            'color:' + (a > 0.55 ? '#fff' : 'var(--text)') + ';font-weight:' + (Math.abs(z) >= 1.5 ? '700' : '500') + ';';
   }
-  function buildHeatmap(items, containerId) {
+  function buildHeatmap(items, containerId, periods) {
+    var P = periods || HM_PERIODS;
     var el = document.getElementById(containerId);
     if (!el) return;
     if (!items.length) { el.innerHTML = ''; return; }
     var h = '<div class="chart-wrap" style="padding:12px;margin-bottom:24px;">' +
       '<div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">' +
-      'Residual Z-score heatmap — all windows (green = cheap, red = rich · ' +
+      'Residual Z-score heatmap (green = cheap, red = rich · ' +
       '<span style="outline:2px solid var(--text);outline-offset:-2px;padding:0 4px;">ring</span> = highest R² · click to open)</div>' +
       '<table class="vol-table no-sort"><thead><tr><th style="text-align:left;">Asset</th>' +
-      HM_PERIODS.map(function(p) { return '<th>' + p.toUpperCase() + '</th>'; }).join('') + '</tr></thead><tbody>';
+      P.map(function(p) { return '<th>' + p.toUpperCase() + '</th>'; }).join('') + '</tr></thead><tbody>';
     items.forEach(function(it) {
       // Find the window with the highest R² for this asset's headline model.
       var bestP = null, bestR2 = -Infinity;
-      HM_PERIODS.forEach(function(p) {
+      P.forEach(function(p) {
         var r2 = getR2(it.d, p);
         if (r2 !== null && r2 > bestR2) { bestR2 = r2; bestP = p; }
       });
       h += '<tr class="fv-row" data-sub="' + subIdFor(it.d) + '" style="cursor:pointer;">' +
         '<td style="font-weight:700;text-align:left;white-space:nowrap;">' + it.label + '</td>';
-      HM_PERIODS.forEach(function(p) {
+      P.forEach(function(p) {
         var z = getZ(it.d, p);
         var ring = (p === bestP) ? 'outline:2px solid var(--text);outline-offset:-2px;' : '';
         var r2 = getR2(it.d, p);
@@ -3277,7 +3296,7 @@ window.FV_NAV = (function() {
     var eqTable = document.getElementById('fv-summary-table-equities');
     if (eqTable) eqTable.innerHTML = header + equitiesRows + '</tbody></table>';
     buildHeatmap(ratesItems, 'fv-heatmap-rates');
-    buildHeatmap(fxItems, 'fv-heatmap-fx');
+    buildHeatmap(fxItems, 'fv-heatmap-fx', FX_PERIODS);
     buildHeatmap(equitiesItems, 'fv-heatmap-equities');
     attachRowClicks();
     chartRates = renderChart('fv-chart-rates', ratesItems, chartRates);
@@ -3307,7 +3326,7 @@ window.FV_NAV = (function() {
     window.__fvLoadStarted = true;
     Promise.all([
     fetch('eurusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('eurusd_fvnom_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdjpy_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eurnok_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('ust10y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('bund10y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3574,20 +3593,20 @@ window.FVDETAIL = (function() {
     cl1:        { tabsId: "cl1-period-tabs", containers: ["cl1-img-modelA", "cl1-img-modelB"] },
     tpnbnk:     { tabsId: "tpnbnk-period-tabs", containers: ["tpnbnk-img-modelA", "tpnbnk-img-modelB"] },
     eurusd:     { tabsId: "fv-period-tabs", containers: ["fv-img-realrate", "fv-img-tot", "fv-img-btpbund", "fv-img-combined"] },
-    eurusdnom:  { tabsId: "eurusdnom-period-tabs", containers: ["eurusdnom-img-nomrate", "eurusdnom-img-tot", "eurusdnom-img-btpbund", "eurusdnom-img-combined"] },
+    usdjpy:     { tabsId: "usdjpy-period-tabs", containers: ["usdjpy-img-rr2", "usdjpy-img-nom10", "usdjpy-img-jgb530", "usdjpy-img-combined"] },
     ust10y:     { tabsId: "ust-period-tabs", containers: ["ust-img-combined"] },
     bund10y:    { tabsId: "bund-period-tabs", containers: ["bund-img-policy", "bund-img-inflation", "bund-img-risk", "bund-img-combined"] },
     jgb10y:     { tabsId: "jgb-period-tabs", containers: ["jgb-img-policy", "jgb-img-inflation", "jgb-img-risk", "jgb-img-combined"] },
     jgb5s30s:   { tabsId: "jgb5s30s-period-tabs", containers: ["jgb5s30s-img-policy", "jgb5s30s-img-global", "jgb5s30s-img-fx", "jgb5s30s-img-supply", "jgb5s30s-img-combined"] },
-    eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-risk", "eurgbp-img-combined"] },
+    eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-combined"] },
     usdthb:     { tabsId: "usdthb-period-tabs", containers: ["usdthb-img-xau", "usdthb-img-dxy", "usdthb-img-rates", "usdthb-img-combined"] },
     usdzar:     { tabsId: "usdzar-period-tabs", containers: ["usdzar-img-xau", "usdzar-img-dxy", "usdzar-img-copper", "usdzar-img-combined"] },
-    audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-vix", "audusd-img-copper", "audusd-img-ironore", "audusd-img-combined"] },
-    audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates", "audnzd-img-ironore", "audnzd-img-combined"] },
+    audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-copper", "audusd-img-combined"] },
+    audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates"] },
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
-    eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-btpbund", "eurnok-img-combined"] },
+    eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
-    eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-btpbund", "eursek-img-combined"] },
+    eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
     gbpsek:     { tabsId: "gbpsek-period-tabs", containers: ["gbpsek-img-rates", "gbpsek-img-spx", "gbpsek-img-copper", "gbpsek-img-combined"] },
     sgdthb:     { tabsId: "sgdthb-period-tabs", containers: ["sgdthb-img-rates", "sgdthb-img-xau", "sgdthb-img-dxy", "sgdthb-img-combined"] },
     sgdmyr:     { tabsId: "sgdmyr-period-tabs", containers: ["sgdmyr-img-rates", "sgdmyr-img-brent", "sgdmyr-img-cnh", "sgdmyr-img-combined"] },
@@ -3668,6 +3687,17 @@ window.FVDETAIL = (function() {
   Object.keys(CONFIG).forEach(function(subId) {
     document.querySelectorAll('#' + CONFIG[subId].tabsId + ' .tab').forEach(function(t) {
       t.addEventListener('click', function() { render(subId, t.dataset.p); });
+    });
+  });
+
+  // FX display cut (2026-08): hide the 6M/5Y tabs on FX asset pages — those
+  // windows stay in the JSONs but are noise (unstable betas / regime breaks).
+  // USDJPY deliberately keeps 5Y: its fiscal-premium fit is structural.
+  ['eurusd', 'eurgbp', 'usdthb', 'usdzar', 'audusd', 'audnzd', 'usdchf',
+   'eurnok', 'noksek', 'eursek', 'gbpsek', 'sgdthb', 'sgdmyr'].forEach(function(subId) {
+    var cfg = CONFIG[subId]; if (!cfg) return;
+    document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) {
+      if (t.dataset.p === '6m' || t.dataset.p === '5y') t.style.display = 'none';
     });
   });
 
