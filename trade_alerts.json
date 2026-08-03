@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-02T15:35:26",
+  "last_updated": "2026-08-03T09:40:24",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 738.15,
-        "sma_long": 585.66,
-        "last": 728.22
+        "sma_short": 737.98,
+        "sma_long": 586.94,
+        "last": 704.46
       },
-      "current_bp": 26.04,
+      "current_bp": 25.73,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 26.04,
+      "distance_bp": 25.73,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 41665.96,
-        "sma_long": 44850.41,
-        "last": 43119.75
+        "sma_short": 41594.4,
+        "sma_long": 44854.03,
+        "last": 43276.4
       },
-      "current_bp": -7.1,
+      "current_bp": -7.27,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -7.1,
+      "distance_bp": -7.27,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,11 +58,11 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.22,
+        "USDHKD": 784.14,
         "HKD12M": -70800.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8422,
+        "USDHKD": 7.8414,
         "HKD12M": -708.0
       },
       "current_bp": 7.77,

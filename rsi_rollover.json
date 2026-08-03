@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-02 15:35",
+  "generated": "2026-08-03 09:40",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,15 +12,29 @@
     {
       "ticker": "USDJPY Curncy",
       "category": "fx",
-      "last": 157.4,
-      "rsi_now": 23.9,
-      "rsi_yest": 31.0,
+      "last": 156.34,
+      "rsi_now": 21.3,
+      "rsi_yest": 23.9,
       "rsi_peak": 71.2,
-      "peak_bars_ago": 6,
-      "drop": 47.3,
+      "peak_bars_ago": 7,
+      "drop": 50.0,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "CO1 Comdty",
+      "category": "equity_commod",
+      "last": 83.77,
+      "rsi_now": 46.9,
+      "rsi_yest": 54.5,
+      "rsi_peak": 75.6,
+      "peak_bars_ago": 7,
+      "drop": 28.7,
+      "divergence": false,
+      "st_label": "STRONG BEARISH",
+      "st_score": 20,
       "strength": "MODERATE"
     },
     {
@@ -38,22 +52,7 @@
       "strength": "WEAK"
     }
   ],
-  "bullish": [
-    {
-      "ticker": "USDKRW Curncy",
-      "category": "fx",
-      "last": 1439.05,
-      "rsi_now": 32.3,
-      "rsi_yest": 23.0,
-      "rsi_trough": 23.0,
-      "trough_bars_ago": 1,
-      "rise": 9.3,
-      "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 0,
-      "strength": "MODERATE"
-    }
-  ],
+  "bullish": [],
   "stats": {
     "_horizons": [
       "5",
@@ -202,10 +201,10 @@
             "hit_rate": 41.7
           },
           "20": {
-            "n": 10,
-            "mean": -0.17,
-            "median": -0.6,
-            "hit_rate": 70.0
+            "n": 11,
+            "mean": -0.14,
+            "median": -0.53,
+            "hit_rate": 63.6
           }
         },
         "bullish": {
@@ -336,10 +335,10 @@
         },
         "bullish": {
           "5": {
-            "n": 0,
-            "mean": null,
-            "median": null,
-            "hit_rate": null
+            "n": 1,
+            "mean": -2.5,
+            "median": -2.5,
+            "hit_rate": 0.0
           },
           "10": {
             "n": 0,
@@ -412,10 +411,10 @@
             "hit_rate": 40.0
           },
           "20": {
-            "n": 8,
-            "mean": -0.75,
-            "median": -0.92,
-            "hit_rate": 87.5
+            "n": 9,
+            "mean": -0.79,
+            "median": -0.98,
+            "hit_rate": 88.9
           }
         },
         "bullish": {
