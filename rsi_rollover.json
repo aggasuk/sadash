@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-03 09:40",
+  "generated": "2026-08-04 08:05",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -10,49 +10,36 @@
   },
   "bearish": [
     {
-      "ticker": "USDJPY Curncy",
-      "category": "fx",
-      "last": 156.34,
-      "rsi_now": 21.3,
-      "rsi_yest": 23.9,
-      "rsi_peak": 71.2,
+      "ticker": "GDBR10 Index",
+      "category": "rates",
+      "last": 3.152,
+      "rsi_now": 57.0,
+      "rsi_yest": 65.5,
+      "rsi_peak": 73.6,
       "peak_bars_ago": 7,
-      "drop": 50.0,
+      "drop": 16.6,
+      "divergence": false,
+      "st_label": "BULLISH",
+      "st_score": 60,
+      "strength": "MODERATE"
+    }
+  ],
+  "bullish": [
+    {
+      "ticker": "USDKRW Curncy",
+      "category": "fx",
+      "last": 1432.8,
+      "rsi_now": 31.0,
+      "rsi_yest": 30.5,
+      "rsi_trough": 23.0,
+      "trough_bars_ago": 3,
+      "rise": 8.1,
       "divergence": false,
       "st_label": "STRONG BEARISH",
       "st_score": 0,
       "strength": "MODERATE"
-    },
-    {
-      "ticker": "CO1 Comdty",
-      "category": "equity_commod",
-      "last": 83.77,
-      "rsi_now": 46.9,
-      "rsi_yest": 54.5,
-      "rsi_peak": 75.6,
-      "peak_bars_ago": 7,
-      "drop": 28.7,
-      "divergence": false,
-      "st_label": "STRONG BEARISH",
-      "st_score": 20,
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "GDBR10 Index",
-      "category": "rates",
-      "last": 3.206,
-      "rsi_now": 65.5,
-      "rsi_yest": 60.3,
-      "rsi_peak": 73.6,
-      "peak_bars_ago": 6,
-      "drop": 8.1,
-      "divergence": true,
-      "st_label": "STRONG BULLISH",
-      "st_score": 100,
-      "strength": "WEAK"
     }
   ],
-  "bullish": [],
   "stats": {
     "_horizons": [
       "5",
@@ -336,8 +323,8 @@
         "bullish": {
           "5": {
             "n": 1,
-            "mean": -2.5,
-            "median": -2.5,
+            "mean": -2.43,
+            "median": -2.43,
             "hit_rate": 0.0
           },
           "10": {
@@ -412,8 +399,8 @@
           },
           "20": {
             "n": 9,
-            "mean": -0.79,
-            "median": -0.98,
+            "mean": -0.77,
+            "median": -0.95,
             "hit_rate": 88.9
           }
         },
@@ -893,10 +880,10 @@
             "hit_rate": 43.8
           },
           "20": {
-            "n": 14,
-            "mean": -1.6,
-            "median": -2.88,
-            "hit_rate": 35.7
+            "n": 15,
+            "mean": -0.68,
+            "median": -2.44,
+            "hit_rate": 40.0
           }
         }
       },
@@ -935,9 +922,9 @@
             "hit_rate": 88.9
           },
           "20": {
-            "n": 6,
-            "mean": 17.57,
-            "median": 15.07,
+            "n": 7,
+            "mean": 16.97,
+            "median": 13.32,
             "hit_rate": 100.0
           }
         }
