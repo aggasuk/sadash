@@ -1,5 +1,5 @@
 {
- "_updated": "2026-08-05 10:01",
+ "_updated": "2026-08-05 10:11",
  "counts": {
   "act": 5,
   "watch": 2,
@@ -7,10 +7,7 @@
   "hidden": 95,
   "total_signals": 102
  },
- "changes": [
-  "NEW A HALF: BUY KOSPI (+1.75)",
-  "US 10Y (bond): A PROBE \u2192 WATCH  (+1.05 \u2192 +0.05)"
- ],
+ "changes": [],
  "cards": [
   {
    "key": "kospi",
@@ -213,6 +210,88 @@
    "_d": "2026-08-05"
   }
  ],
- "live": [],
+ "live": [
+  {
+   "key": "kospi",
+   "dir": "bull",
+   "verb": "BUY KOSPI",
+   "taken": "2026-08-05",
+   "note": "",
+   "entry_score": 1.75,
+   "score": 1.75,
+   "state": "HOLD",
+   "why": "legs intact",
+   "parts": [
+    [
+     "MOM MACD t +2.8 \u00b7 day 0/20",
+     1.0,
+     "ok",
+     "MACD cross (t +2.8, 60% 1W)"
+    ],
+    [
+     "positioning z -1.5 \u00b7 FLOW ON",
+     0.75,
+     "ok",
+     "positioning washed out + flow trigger"
+    ]
+   ]
+  },
+  {
+   "key": "jgb",
+   "dir": "bear",
+   "verb": "PAY JGB 10Y / short JB",
+   "taken": "2026-08-05",
+   "note": "",
+   "entry_score": 1.55,
+   "score": 1.55,
+   "state": "HOLD",
+   "why": "legs intact",
+   "parts": [
+    [
+     "MOM Confluence t +3.3 \u00b7 in regime",
+     1.0,
+     "ok",
+     "Confluence cross (t +3.3, 60% 1M)"
+    ],
+    [
+     "CTA trend -0.81",
+     0.8,
+     "ok",
+     "CTA trend -0.81 same way"
+    ],
+    [
+     "FV +0.6z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -10.2bp/3m costs",
+     -0.25,
+     "bad",
+     null
+    ]
+   ]
+  },
+  {
+   "key": "ustech",
+   "dir": "bull",
+   "verb": "BUY NDX/SPX",
+   "taken": "2026-08-05",
+   "note": "",
+   "entry_score": 1.0,
+   "score": 1.0,
+   "state": "HOLD",
+   "why": "legs intact",
+   "parts": [
+    [
+     "MOM MACD t +2.9 \u00b7 day 1/20",
+     1.0,
+     "ok",
+     "MACD cross (t +2.9, 62% 2W)"
+    ]
+   ]
+  }
+ ],
  "params": "anchors: cross t\u22652 +1.0 / CTA trend +0.6-0.8 / flow-turn \u00b7 FV \u00b11.0 (veto \u22652z) \u00b7 flow \u00b10.75 (veto \u22652.25sd) \u00b7 carry \u00b10.5/-0.25 \u00b7 KOSPI +0.75 \u00b7 FULL \u22652.25, HALF \u22651.5, PROBE \u22651.0"
 }
