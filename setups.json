@@ -1,5 +1,5 @@
 {
- "_updated": "2026-08-06 11:15",
+ "_updated": "2026-08-06 11:52",
  "counts": {
   "act": 6,
   "watch": 0,
@@ -7,11 +7,7 @@
   "hidden": 99,
   "total_signals": 105
  },
- "changes": [
-  "US 10Y (bond): WATCH  \u2192 A FULL (+0.05 \u2192 +2.50)",
-  "Bund 10Y (bond): WATCH  \u2192 A PROBE (+0.80 \u2192 +1.25)",
-  "DROPPED: BUY NDX/SPX (was A PROBE +1.00)"
- ],
+ "changes": [],
  "cards": [
   {
    "key": "us10y",
@@ -267,6 +263,37 @@
      1.0,
      "ok",
      "Confluence cross (t +3.1, 74% 1W)"
+    ]
+   ]
+  },
+  {
+   "key": "bund",
+   "dir": "bull",
+   "verb": "RECEIVE Bund 10Y / long RX",
+   "taken": "2026-08-06",
+   "note": "",
+   "entry_score": 1.25,
+   "score": 1.25,
+   "state": "HOLD",
+   "why": "legs intact",
+   "parts": [
+    [
+     "CTA flow turning \u2014 $+1.3m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind (just turned, $+1.3m/bp on the flat path)"
+    ],
+    [
+     "FV -0.3z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -3.3bp/3m earns",
+     0.5,
+     "ok",
+     "paid 3bp/3m to hold"
     ]
    ]
   }
