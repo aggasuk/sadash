@@ -1,14 +1,50 @@
 {
- "_updated": "2026-08-05 10:11",
+ "_updated": "2026-08-06 11:15",
  "counts": {
-  "act": 5,
-  "watch": 2,
+  "act": 6,
+  "watch": 0,
   "avoid": 0,
-  "hidden": 95,
-  "total_signals": 102
+  "hidden": 99,
+  "total_signals": 105
  },
- "changes": [],
+ "changes": [
+  "US 10Y (bond): WATCH  \u2192 A FULL (+0.05 \u2192 +2.50)",
+  "Bund 10Y (bond): WATCH  \u2192 A PROBE (+0.80 \u2192 +1.25)",
+  "DROPPED: BUY NDX/SPX (was A PROBE +1.00)"
+ ],
  "cards": [
+  {
+   "key": "us10y",
+   "label": "US 10Y (bond)",
+   "dir": "bull",
+   "verb": "RECEIVE US 10Y / long TY",
+   "tier": "A",
+   "size": "FULL",
+   "score": 2.5,
+   "parts": [
+    [
+     "CTA flow turning \u2014 $+1.0m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind (just turned, $+1.0m/bp on the flat path)"
+    ],
+    [
+     "FV +1.3z (3y) \u00b7 \u00bd-life 17d",
+     1.25,
+     "ok",
+     "FV 1.3z with you, fades ~17d"
+    ],
+    [
+     "carry -3.2bp/3m earns",
+     0.5,
+     "ok",
+     "paid 3bp/3m to hold"
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-06"
+  },
   {
    "key": "kospi",
    "label": "KOSPI",
@@ -19,13 +55,13 @@
    "score": 1.75,
    "parts": [
     [
-     "MOM MACD t +2.8 \u00b7 day 0/20",
+     "MOM MACD t +2.8 \u00b7 day 1/20",
      1.0,
      "ok",
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -1.5 \u00b7 FLOW ON",
+     "positioning z -1.2 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -33,7 +69,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-05"
+   "_d": "2026-08-06"
   },
   {
    "key": "jgb",
@@ -51,19 +87,19 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.81",
+     "CTA trend -0.78",
      0.8,
      "ok",
-     "CTA trend -0.81 same way"
+     "CTA trend -0.78 same way"
     ],
     [
-     "FV +0.6z",
+     "FV +0.1z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -10.2bp/3m costs",
+     "carry -10.1bp/3m costs",
      -0.25,
      "bad",
      null
@@ -71,7 +107,39 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-05"
+   "_d": "2026-08-06"
+  },
+  {
+   "key": "bund",
+   "label": "Bund 10Y (bond)",
+   "dir": "bull",
+   "verb": "RECEIVE Bund 10Y / long RX",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 1.25,
+   "parts": [
+    [
+     "CTA flow turning \u2014 $+1.3m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind (just turned, $+1.3m/bp on the flat path)"
+    ],
+    [
+     "FV -0.3z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -3.3bp/3m earns",
+     0.5,
+     "ok",
+     "paid 3bp/3m to hold"
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-06"
   },
   {
    "key": "krw5",
@@ -83,13 +151,13 @@
    "score": 1.25,
    "parts": [
     [
-     "CTA flow turning \u2014 $+2.3m/bp next 5d",
+     "CTA flow turning \u2014 $+1.7m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $+2.3m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $+1.7m/bp on the flat path)"
     ],
     [
-     "carry -7.4bp/3m earns",
+     "carry -7.2bp/3m earns",
      0.5,
      "ok",
      "paid 7bp/3m to hold"
@@ -97,27 +165,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-05"
-  },
-  {
-   "key": "ustech",
-   "label": "US tech",
-   "dir": "bull",
-   "verb": "BUY NDX/SPX",
-   "tier": "A",
-   "size": "PROBE",
-   "score": 1.0,
-   "parts": [
-    [
-     "MOM MACD t +2.9 \u00b7 day 1/20",
-     1.0,
-     "ok",
-     "MACD cross (t +2.9, 62% 2W)"
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-05"
+   "_d": "2026-08-06"
   },
   {
    "key": "usdinr",
@@ -129,7 +177,7 @@
    "score": 1.0,
    "parts": [
     [
-     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 4/20",
+     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 5/20",
      1.0,
      "ok",
      "backtest says fade the SMA 5/20 cross (t -2.8)"
@@ -137,77 +185,7 @@
    ],
    "veto": null,
    "fade": true,
-   "_d": "2026-08-05"
-  },
-  {
-   "key": "bund",
-   "label": "Bund 10Y (bond)",
-   "dir": "bear",
-   "verb": "PAY Bund 10Y / short RX",
-   "tier": "WATCH",
-   "size": "",
-   "score": 0.8,
-   "parts": [
-    [
-     "CTA trend -0.76",
-     0.8,
-     "ok",
-     "CTA trend -0.76 same way"
-    ],
-    [
-     "FV -0.3z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -3.3bp/3m",
-     0.0,
-     "mut",
-     null
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-05"
-  },
-  {
-   "key": "us10y",
-   "label": "US 10Y (bond)",
-   "dir": "bear",
-   "verb": "PAY US 10Y / short TY",
-   "tier": "WATCH",
-   "size": "",
-   "score": 0.05,
-   "parts": [
-    [
-     "CTA trend -0.67",
-     0.8,
-     "ok",
-     "CTA trend -0.67 same way"
-    ],
-    [
-     "CTA -1.8sd CROWDED",
-     -0.75,
-     "bad",
-     "CTA crowded same way \u2014 TP regime"
-    ],
-    [
-     "FV +1.1z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -3.2bp/3m",
-     0.0,
-     "mut",
-     null
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-05"
+   "_d": "2026-08-06"
   }
  ],
  "live": [
@@ -223,13 +201,13 @@
    "why": "legs intact",
    "parts": [
     [
-     "MOM MACD t +2.8 \u00b7 day 0/20",
+     "MOM MACD t +2.8 \u00b7 day 1/20",
      1.0,
      "ok",
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -1.5 \u00b7 FLOW ON",
+     "positioning z -1.2 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -254,19 +232,19 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.81",
+     "CTA trend -0.78",
      0.8,
      "ok",
-     "CTA trend -0.81 same way"
+     "CTA trend -0.78 same way"
     ],
     [
-     "FV +0.6z",
+     "FV +0.1z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -10.2bp/3m costs",
+     "carry -10.1bp/3m costs",
      -0.25,
      "bad",
      null
@@ -285,10 +263,10 @@
    "why": "legs intact",
    "parts": [
     [
-     "MOM MACD t +2.9 \u00b7 day 1/20",
+     "MOM Confluence t +3.1 \u00b7 in regime",
      1.0,
      "ok",
-     "MACD cross (t +2.9, 62% 2W)"
+     "Confluence cross (t +3.1, 74% 1W)"
     ]
    ]
   }

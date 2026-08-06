@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-05T09:56:08",
+  "last_updated": "2026-08-06T11:11:53",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 28416.56,
-        "sma_long": 26554.66,
-        "last": 29733.16
+        "sma_short": 28875.66,
+        "sma_long": 26578.81,
+        "last": 29487.79
       },
-      "current_bp": 7.01,
+      "current_bp": 8.64,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 7.01,
+      "distance_bp": 8.64,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 738.72,
-        "sma_long": 589.73,
-        "last": 726.78
+        "sma_short": 739.55,
+        "sma_long": 591.17,
+        "last": 737.93
       },
-      "current_bp": 25.26,
+      "current_bp": 25.1,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 25.26,
+      "distance_bp": 25.1,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 42899.31,
-        "sma_long": 44814.06,
-        "last": 44696.44
+        "sma_short": 43807.27,
+        "sma_long": 44775.89,
+        "last": 44557.91
       },
-      "current_bp": -4.27,
+      "current_bp": -2.16,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": -4.27,
+      "distance_bp": -2.16,
       "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.34,
-        "HKD12M": -72529.0
+        "USDHKD": 784.33,
+        "HKD12M": -73200.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8434,
-        "HKD12M": -725.29
+        "USDHKD": 7.8433,
+        "HKD12M": -732.0
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
@@ -78,15 +78,15 @@
       "label": "XAU > 50d MA",
       "formula": "1d > 50d MA",
       "inputs": {
-        "sma_short": 4098.69,
-        "sma_long": 4159.15,
-        "last": 4098.69
+        "sma_short": 4279.59,
+        "sma_long": 4157.8,
+        "last": 4279.59
       },
-      "current_bp": -1.45,
+      "current_bp": 2.93,
       "trigger_bp": 0.0,
       "direction": "above",
-      "distance_bp": 1.45,
-      "status": "ARMED",
+      "distance_bp": -2.93,
+      "status": "TRIGGERED",
       "rationale": "Gold in a downtrend (death cross 26-Jun, 20<50<100<200) but basing on the 50% retrace of the 2025-26 advance (4,060) with MACD hist flipped +ve and a Bollinger squeeze. A close back above the 50d is the first real evidence of a turn; opens 4,356/4,380 (pivot cluster + 38.2% fib). short_ma=1 makes this spot-vs-50d, not an MA/MA cross.",
       "added": "2026-08-05"
     }
