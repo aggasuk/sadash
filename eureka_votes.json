@@ -1,6 +1,6 @@
 {
- "as_of": "2026-08-07",
- "generated": "2026-08-09T13:33:40",
+ "as_of": "2026-08-13",
+ "generated": "2026-08-13T10:41:42",
  "pair": "EURUSD",
  "votes": {
   "rates": 1,
@@ -11,6 +11,6 @@
  "net": -2,
  "equal_vote": -0.5,
  "checklist": "FLAT",
- "spot": 1.1559,
+ "spot": 1.1521,
  "note": "Citi EUReka replication (55d-MA votes; CECID>0). Backtest: this file's module."
 }
