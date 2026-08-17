@@ -1,14 +1,17 @@
 {
- "_updated": "2026-08-14 10:39",
+ "_updated": "2026-08-17 09:44",
  "counts": {
-  "act": 5,
-  "watch": 3,
-  "avoid": 0,
+  "act": 6,
+  "watch": 0,
+  "avoid": 1,
   "hidden": 99,
-  "total_signals": 107
+  "total_signals": 106
  },
  "changes": [
-  "NEW A PROBE: BUY USDKRW (+1.00)"
+  "Bund 10Y (bond): WATCH  \u2192 A HALF (+0.80 \u2192 +1.55)",
+  "KRW 5Y (bond): WATCH  \u2192 A PROBE (+0.35 \u2192 +1.10)",
+  "US 10Y (bond): WATCH  \u2192 AVOID  (+0.05 \u2192 -0.70)",
+  "DROPPED: BUY USDKRW (was A PROBE +1.00)"
  ],
  "cards": [
   {
@@ -27,25 +30,25 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.81",
+     "CTA trend -0.84",
      0.8,
      "ok",
-     "CTA trend -0.81 same way"
+     "CTA trend -0.84 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.0m/bp next 5d",
+     "CTA flow turning \u2014 $-0.5m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $-0.0m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.5m/bp on the flat path)"
     ],
     [
-     "FV -0.4z",
+     "FV -0.8z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -9.9bp/3m costs",
+     "carry -10.1bp/3m costs",
      -0.25,
      "bad",
      null
@@ -53,7 +56,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-14"
+   "_d": "2026-08-17"
   },
   {
    "key": "kospi",
@@ -71,7 +74,7 @@
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -1.0 \u00b7 FLOW ON",
+     "positioning z -0.9 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -79,7 +82,77 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-14"
+   "_d": "2026-08-17"
+  },
+  {
+   "key": "bund",
+   "label": "Bund 10Y (bond)",
+   "dir": "bear",
+   "verb": "PAY Bund 10Y / short RX",
+   "tier": "A",
+   "size": "HALF",
+   "score": 1.55,
+   "parts": [
+    [
+     "CTA trend -0.75",
+     0.8,
+     "ok",
+     "CTA trend -0.75 same way"
+    ],
+    [
+     "CTA flow $-0.3m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind ($-0.3m/bp on the flat path)"
+    ],
+    [
+     "FV +0.0z",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "carry -3.9bp/3m",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-17"
+  },
+  {
+   "key": "krw5",
+   "label": "KRW 5Y (bond)",
+   "dir": "bear",
+   "verb": "PAY KRW 5Y",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 1.1,
+   "parts": [
+    [
+     "CTA trend -0.38",
+     0.6,
+     "ok",
+     "CTA trend -0.38 same way"
+    ],
+    [
+     "CTA flow turning \u2014 $-0.1m/bp next 5d",
+     0.75,
+     "ok",
+     "CTA flow tailwind (just turned, $-0.1m/bp on the flat path)"
+    ],
+    [
+     "carry -8.1bp/3m costs",
+     -0.25,
+     "bad",
+     null
+    ]
+   ],
+   "veto": null,
+   "fade": false,
+   "_d": "2026-08-17"
   },
   {
    "key": "ustech",
@@ -99,27 +172,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-08-14"
-  },
-  {
-   "key": "usdkrw",
-   "label": "USDKRW",
-   "dir": "bull",
-   "verb": "BUY USDKRW",
-   "tier": "A",
-   "size": "PROBE",
-   "score": 1.0,
-   "parts": [
-    [
-     "MOM Confluence t +2.9 \u00b7 in regime",
-     1.0,
-     "ok",
-     "Confluence cross (t +2.9, 68% 1W)"
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-14"
+   "_d": "2026-08-17"
   },
   {
    "key": "usdinr",
@@ -131,7 +184,7 @@
    "score": 1.0,
    "parts": [
     [
-     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 13/20",
+     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 14/20",
      1.0,
      "ok",
      "backtest says fade the SMA 5/20 cross (t -2.8)"
@@ -139,97 +192,45 @@
    ],
    "veto": null,
    "fade": true,
-   "_d": "2026-08-14"
-  },
-  {
-   "key": "bund",
-   "label": "Bund 10Y (bond)",
-   "dir": "bear",
-   "verb": "PAY Bund 10Y / short RX",
-   "tier": "WATCH",
-   "size": "",
-   "score": 0.8,
-   "parts": [
-    [
-     "CTA trend -0.70",
-     0.8,
-     "ok",
-     "CTA trend -0.70 same way"
-    ],
-    [
-     "FV -0.8z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -3.7bp/3m",
-     0.0,
-     "mut",
-     null
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-14"
-  },
-  {
-   "key": "krw5",
-   "label": "KRW 5Y (bond)",
-   "dir": "bear",
-   "verb": "PAY KRW 5Y",
-   "tier": "WATCH",
-   "size": "",
-   "score": 0.35,
-   "parts": [
-    [
-     "CTA trend -0.35",
-     0.6,
-     "ok",
-     "CTA trend -0.35 same way"
-    ],
-    [
-     "carry -8.1bp/3m costs",
-     -0.25,
-     "bad",
-     null
-    ]
-   ],
-   "veto": null,
-   "fade": false,
-   "_d": "2026-08-14"
+   "_d": "2026-08-17"
   },
   {
    "key": "us10y",
    "label": "US 10Y (bond)",
    "dir": "bear",
    "verb": "PAY US 10Y / short TY",
-   "tier": "WATCH",
+   "tier": "AVOID",
    "size": "",
-   "score": 0.05,
+   "score": -0.7,
    "parts": [
     [
-     "CTA trend -0.64",
+     "CTA trend -0.65",
      0.8,
      "ok",
-     "CTA trend -0.64 same way"
+     "CTA trend -0.65 same way"
     ],
     [
-     "FV +1.8z AGAINST",
+     "CTA -1.8sd CROWDED",
      -0.75,
      "bad",
-     "FV 1.8z against"
+     "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "carry -3.6bp/3m",
+     "FV +2.4z AGAINST",
+     -0.75,
+     "bad",
+     "FV 2.4z against"
+    ],
+    [
+     "carry -3.8bp/3m",
      0.0,
      "mut",
      null
     ]
    ],
-   "veto": null,
+   "veto": "FV 2.4z against",
    "fade": false,
-   "_d": "2026-08-14"
+   "_d": "2026-08-17"
   }
  ],
  "live": [
@@ -251,7 +252,7 @@
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -1.0 \u00b7 FLOW ON",
+     "positioning z -0.9 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -276,25 +277,25 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.81",
+     "CTA trend -0.84",
      0.8,
      "ok",
-     "CTA trend -0.81 same way"
+     "CTA trend -0.84 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.0m/bp next 5d",
+     "CTA flow turning \u2014 $-0.5m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $-0.0m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.5m/bp on the flat path)"
     ],
     [
-     "FV -0.4z",
+     "FV -0.8z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -9.9bp/3m costs",
+     "carry -10.1bp/3m costs",
      -0.25,
      "bad",
      null
