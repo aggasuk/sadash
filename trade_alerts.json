@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-17T09:41:27",
+  "last_updated": "2026-08-17T10:21:38",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 742.98,
-        "sma_long": 600.5,
-        "last": 762.81
+        "sma_short": 742.87,
+        "sma_long": 600.48,
+        "last": 760.62
       },
-      "current_bp": 23.73,
+      "current_bp": 23.71,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 23.73,
+      "distance_bp": 23.71,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 45678.81,
-        "sma_long": 44585.38,
-        "last": 45922.76
+        "sma_short": 45688.64,
+        "sma_long": 44586.78,
+        "last": 45971.9
       },
-      "current_bp": 2.45,
+      "current_bp": 2.47,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 2.45,
+      "distance_bp": 2.47,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -72,23 +72,6 @@
       "status": "ARMED",
       "rationale": "1Y USDHKD outright fwd (spot + 12M points). Carry/peg-defense gauge; alert at 7.73 (toward the strong-side band). Watch vs short-HKD / +gamma book.",
       "added": "2026-06-03"
-    },
-    {
-      "id": "xau_50d_ma_bull",
-      "label": "XAU > 50d MA",
-      "formula": "1d > 50d MA",
-      "inputs": {
-        "sma_short": 4399.21,
-        "sma_long": 4148.09,
-        "last": 4399.21
-      },
-      "current_bp": 6.05,
-      "trigger_bp": 0.0,
-      "direction": "above",
-      "distance_bp": -6.05,
-      "status": "TRIGGERED",
-      "rationale": "Gold in a downtrend (death cross 26-Jun, 20<50<100<200) but basing on the 50% retrace of the 2025-26 advance (4,060) with MACD hist flipped +ve and a Bollinger squeeze. A close back above the 50d is the first real evidence of a turn; opens 4,356/4,380 (pivot cluster + 38.2% fib). short_ma=1 makes this spot-vs-50d, not an MA/MA cross.",
-      "added": "2026-08-05"
     }
   ]
 }
