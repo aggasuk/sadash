@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-18 09:44",
+  "generated": "2026-08-18 21:39",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -11,18 +11,18 @@
   "bearish": [],
   "bullish": [
     {
-      "ticker": "USDKRW Curncy",
+      "ticker": "USDJPY Curncy",
       "category": "fx",
-      "last": 1411.25,
-      "rsi_now": 30.8,
-      "rsi_yest": 31.8,
-      "rsi_trough": 25.1,
-      "trough_bars_ago": 7,
-      "rise": 5.7,
-      "divergence": true,
+      "last": 159.6,
+      "rsi_now": 45.5,
+      "rsi_yest": 44.4,
+      "rsi_trough": 28.3,
+      "trough_bars_ago": 10,
+      "rise": 17.3,
+      "divergence": false,
       "st_label": "BEARISH",
       "st_score": 40,
-      "strength": "WEAK"
+      "strength": "MODERATE"
     }
   ],
   "stats": {
@@ -36,7 +36,7 @@
         "bearish": {
           "5": {
             "n": 11,
-            "mean": -0.25,
+            "mean": -0.24,
             "median": -0.11,
             "hit_rate": 54.5
           },
@@ -62,7 +62,7 @@
           },
           "10": {
             "n": 3,
-            "mean": -0.13,
+            "mean": -0.09,
             "median": -0.1,
             "hit_rate": 33.3
           },

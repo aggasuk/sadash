@@ -1,15 +1,13 @@
 {
- "_updated": "2026-08-18 09:47",
+ "_updated": "2026-08-18 21:41",
  "counts": {
   "act": 6,
   "watch": 0,
   "avoid": 1,
-  "hidden": 99,
-  "total_signals": 106
+  "hidden": 98,
+  "total_signals": 105
  },
- "changes": [
-  "Bund 10Y (bond): A HALF \u2192 A FULL (+1.55 \u2192 +2.55)"
- ],
+ "changes": [],
  "cards": [
   {
    "key": "bund",
@@ -27,19 +25,19 @@
      "Confluence cross (t +2.1, 68% 1W)"
     ],
     [
-     "CTA trend -0.78",
+     "CTA trend -0.79",
      0.8,
      "ok",
-     "CTA trend -0.78 same way"
+     "CTA trend -0.79 same way"
     ],
     [
-     "CTA flow $-0.3m/bp next 5d",
+     "CTA flow $-0.8m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind ($-0.3m/bp on the flat path)"
+     "CTA flow tailwind ($-0.8m/bp on the flat path)"
     ],
     [
-     "FV +0.0z",
+     "FV +0.5z",
      0.0,
      "mut",
      null
@@ -71,19 +69,19 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.85",
+     "CTA trend -0.86",
      0.8,
      "ok",
-     "CTA trend -0.85 same way"
+     "CTA trend -0.86 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.4m/bp next 5d",
+     "CTA flow turning \u2014 $-0.6m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $-0.4m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.6m/bp on the flat path)"
     ],
     [
-     "FV -0.4z",
+     "FV +0.1z",
      0.0,
      "mut",
      null
@@ -115,7 +113,7 @@
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -0.7 \u00b7 FLOW ON",
+     "positioning z -0.9 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -135,16 +133,16 @@
    "score": 1.1,
    "parts": [
     [
-     "CTA trend -0.42",
+     "CTA trend -0.41",
      0.6,
      "ok",
-     "CTA trend -0.42 same way"
+     "CTA trend -0.41 same way"
     ],
     [
-     "CTA flow turning \u2014 $-1.2m/bp next 5d",
+     "CTA flow turning \u2014 $-0.8m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $-1.2m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.8m/bp on the flat path)"
     ],
     [
      "carry -8.5bp/3m costs",
@@ -187,7 +185,7 @@
    "score": 1.0,
    "parts": [
     [
-     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 17/20",
+     "MOM FADE of SMA 5/20 t -2.8 \u00b7 day 18/20",
      1.0,
      "ok",
      "backtest says fade the SMA 5/20 cross (t -2.8)"
@@ -225,10 +223,10 @@
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +3.0z AGAINST",
+     "FV +2.8z AGAINST",
      -0.75,
      "bad",
-     "FV 3.0z against"
+     "FV 2.8z against"
     ],
     [
      "carry -4.0bp/3m",
@@ -237,7 +235,7 @@
      null
     ]
    ],
-   "veto": "FV 3.0z against",
+   "veto": "FV 2.8z against",
    "fade": false,
    "_d": "2026-08-18"
   }
@@ -261,7 +259,7 @@
      "MACD cross (t +2.8, 60% 1W)"
     ],
     [
-     "positioning z -0.7 \u00b7 FLOW ON",
+     "positioning z -0.9 \u00b7 FLOW ON",
      0.75,
      "ok",
      "positioning washed out + flow trigger"
@@ -286,19 +284,19 @@
      "Confluence cross (t +3.3, 60% 1M)"
     ],
     [
-     "CTA trend -0.85",
+     "CTA trend -0.86",
      0.8,
      "ok",
-     "CTA trend -0.85 same way"
+     "CTA trend -0.86 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.4m/bp next 5d",
+     "CTA flow turning \u2014 $-0.6m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $-0.4m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.6m/bp on the flat path)"
     ],
     [
-     "FV -0.4z",
+     "FV +0.1z",
      0.0,
      "mut",
      null
