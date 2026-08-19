@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18T21:39:11",
+  "last_updated": "2026-08-19T08:24:10",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 29900.98,
-        "sma_long": 26775.68,
-        "last": 29636.27
+        "sma_short": 29871.92,
+        "sma_long": 26774.95,
+        "last": 29490.96
       },
-      "current_bp": 11.67,
+      "current_bp": 11.57,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 11.67,
+      "distance_bp": 11.57,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 745.47,
-        "sma_long": 602.05,
-        "last": 763.02
+        "sma_short": 745.23,
+        "sma_long": 603.48,
+        "last": 734.44
       },
-      "current_bp": 23.82,
+      "current_bp": 23.49,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 23.82,
+      "distance_bp": 23.49,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -58,17 +58,17 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.37,
-        "HKD12M": -68000.0
+        "USDHKD": 784.4,
+        "HKD12M": -69500.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8437,
-        "HKD12M": -680.0
+        "USDHKD": 7.844,
+        "HKD12M": -695.0
       },
-      "current_bp": 7.78,
+      "current_bp": 7.77,
       "trigger_bp": 7.73,
       "direction": "below",
-      "distance_bp": 0.05,
+      "distance_bp": 0.04,
       "status": "ARMED",
       "rationale": "1Y USDHKD outright fwd (spot + 12M points). Carry/peg-defense gauge; alert at 7.73 (toward the strong-side band). Watch vs short-HKD / +gamma book.",
       "added": "2026-06-03"
