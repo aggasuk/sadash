@@ -827,6 +827,40 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── XAG sub-page (silver — grouped under Equities tab) ── -->
+    <div class="fv-subpage" id="fv-sub-xag" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="xag-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>XAG (silver)</b> — two-factor fair value. <b>Model A</b> = gold only (the anchor: R&sup2;
+        0.88&ndash;0.93 in every window, but the beta wanders 1.1&rarr;2.2). <b>Model B</b> = gold +
+        copper, sign-constrained — the FV of record. Copper is the only driver that adds anything to
+        the gold/silver ratio (R&sup2; 0.4&ndash;0.6); real yields, breakevens, DXY and VIX were tested
+        and add <i>nothing</i> beyond gold. Daily beta to gold &asymp;1.6, asymmetric (1.4 gold-up /
+        1.9 gold-down).
+        <br><b style="color:var(--red);">One-sided signal by design:</b> the cheap residual mean-reverts
+        (fade it: +2.7% 3m gold-hedged, 63% hit); the <i>rich</i> residual TRENDS &mdash; that is the
+        2011/2020-21 squeeze regime (ECM half-life ~200bd). Rich prints are momentum context, never a
+        short signal, and are labelled &ldquo;RICH (no fade)&rdquo;.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model A: Gold only</div>
+        <div class="fvchart" id="xag-img-modelA"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: Gold + Copper (sign-constrained)</div>
+        <div class="fvchart" id="xag-img-modelB"></div>
+      </div>
+    </div>
+
     <!-- ── TPNBNK sub-page ── -->
     <div class="fv-subpage" id="fv-sub-tpnbnk" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3157,7 +3191,7 @@ window.FV_NAV = (function() {
   }
 
   // Equity index FV assets — TPNBNK lives here, CL1 grouped here too (commodities sub-page). Add new equity-FV assets to this list.
-  var EQUITIES_ASSETS = ['TPNBNK', 'TPNBANK', 'CL1'];
+  var EQUITIES_ASSETS = ['TPNBNK', 'TPNBANK', 'CL1', 'XAG'];
   function isEquities(asset) {
     var a = (asset || '').toUpperCase();
     return EQUITIES_ASSETS.indexOf(a) !== -1;
@@ -3435,6 +3469,7 @@ window.FV_NAV = (function() {
     fetch('sgdmyr_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('cl1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('xag_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     ]).then(function(results) {
       FV_DATA = results.filter(Boolean);
       window.FV_DATA = FV_DATA;
@@ -3681,6 +3716,7 @@ window.FV_NAV = (function() {
 window.FVDETAIL = (function() {
   var CONFIG = {
     cl1:        { tabsId: "cl1-period-tabs", containers: ["cl1-img-modelA", "cl1-img-modelB"] },
+    xag:        { tabsId: "xag-period-tabs", containers: ["xag-img-modelA", "xag-img-modelB"] },
     tpnbnk:     { tabsId: "tpnbnk-period-tabs", containers: ["tpnbnk-img-modelA", "tpnbnk-img-modelB"] },
     eurusd:     { tabsId: "fv-period-tabs", containers: ["fv-img-realrate", "fv-img-tot", "fv-img-btpbund", "fv-img-combined"] },
     usdjpy:     { tabsId: "usdjpy-period-tabs", containers: ["usdjpy-img-rr2", "usdjpy-img-nom10", "usdjpy-img-jgb530", "usdjpy-img-combined"] },
