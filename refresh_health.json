@@ -1,18 +1,18 @@
 {
- "run_at_utc": "2026-08-30T11:41:54Z",
+ "run_at_utc": "2026-08-30T11:52:14Z",
  "n_feeds": 49,
  "n_flagged": 5,
  "refresh_log": {
   "ok": 0,
   "fail": 0,
-  "log_age_days": 27.41
+  "log_age_days": 27.42
  },
  "feeds": [
   {
    "file": "data.json",
    "label": "Momentum",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:29",
    "series_date": "2026-08-28",
@@ -23,7 +23,7 @@
    "file": "signal_backtest.json",
    "label": "Signal backtests",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:29"
   },
@@ -31,7 +31,7 @@
    "file": "setups.json",
    "label": "Setups strip",
    "status": "ok",
-   "age_days": 0.25,
+   "age_days": 0.26,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:35"
   },
@@ -39,7 +39,7 @@
    "file": "eureka_votes.json",
    "label": "EUReka votes",
    "status": "ok",
-   "age_days": 0.25,
+   "age_days": 0.26,
    "max_age_days": 2.8,
    "updated": "2026-08-30T13:35:16"
   },
@@ -47,7 +47,7 @@
    "file": "alerts.json",
    "label": "MA-cross alerts",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:29"
   },
@@ -87,7 +87,7 @@
    "file": "fxvol.json",
    "label": "FX vol",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:29"
   },
@@ -95,7 +95,7 @@
    "file": "eqvol.json",
    "label": "Equity vol",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30T13:29:55",
    "series_date": "2026-08-28",
@@ -106,7 +106,7 @@
    "file": "ratesvol.json",
    "label": "Rates vol",
    "status": "ok",
-   "age_days": 0.26,
+   "age_days": 0.27,
    "max_age_days": 2.8,
    "updated": "2026-08-30T13:30:11",
    "series_date": "2026-08-27",
@@ -168,7 +168,7 @@
    "file": "carry_roll.json",
    "label": "Carry & Roll",
    "status": "ok",
-   "age_days": 0.25,
+   "age_days": 0.26,
    "max_age_days": 2.8,
    "updated": "2026-08-30 13:34"
   },
@@ -192,7 +192,7 @@
    "file": "cycle_framework_krw.html",
    "label": "Cycle FW KRW",
    "status": "ok",
-   "age_days": 0.13,
+   "age_days": 0.14,
    "max_age_days": 10,
    "updated": null
   },
@@ -218,7 +218,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 10,
-   "updated": "2026-08-30 19:41"
+   "updated": "2026-08-30 19:52"
   },
   {
    "file": "fx_quadrant.json",
@@ -232,7 +232,7 @@
    "file": "japan_fiscal.json",
    "label": "Japan fiscal",
    "status": "stale",
-   "age_days": 74.43,
+   "age_days": 74.44,
    "max_age_days": 60,
    "updated": "2026-05-18 20:57"
   },
