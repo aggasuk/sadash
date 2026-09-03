@@ -1,13 +1,15 @@
 {
- "_updated": "2026-09-02 10:17",
+ "_updated": "2026-09-03 10:40",
  "counts": {
   "act": 6,
-  "watch": 0,
-  "avoid": 1,
-  "hidden": 96,
-  "total_signals": 103
+  "watch": 1,
+  "avoid": 0,
+  "hidden": 99,
+  "total_signals": 106
  },
- "changes": [],
+ "changes": [
+  "US 10Y (bond): AVOID  \u2192 WATCH  (+0.30 \u2192 +0.30)"
+ ],
  "cards": [
   {
    "key": "jgb",
@@ -16,7 +18,7 @@
    "verb": "PAY JGB 10Y / short JB",
    "tier": "A",
    "size": "FULL",
-   "score": 2.3,
+   "score": 2.8,
    "parts": [
     [
      "MOM Confluence t +3.3 \u00b7 in regime",
@@ -31,19 +33,13 @@
      "CTA trend -0.89 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.3m/bp next 5d",
-     0.75,
+     "FV -1.3z (3y) \u00b7 \u00bd-life 8d",
+     1.25,
      "ok",
-     "CTA flow tailwind (just turned, $-0.3m/bp on the flat path)"
+     "FV 1.3z with you, fades ~8d"
     ],
     [
-     "FV -0.8z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -10.1bp/3m costs",
+     "carry -9.6bp/3m costs",
      -0.25,
      "bad",
      null
@@ -51,7 +47,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "krw5",
@@ -69,19 +65,19 @@
      "Confluence cross (t +3.3, 71% 1W)"
     ],
     [
-     "CTA trend -0.41",
+     "CTA trend -0.44",
      0.6,
      "ok",
-     "CTA trend -0.41 same way"
+     "CTA trend -0.44 same way"
     ],
     [
-     "CTA flow $-1.0m/bp next 5d",
+     "CTA flow turning \u2014 $-0.3m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind ($-1.0m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $-0.3m/bp on the flat path)"
     ],
     [
-     "carry -7.2bp/3m costs",
+     "carry -7.0bp/3m costs",
      -0.25,
      "bad",
      null
@@ -89,7 +85,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "inr5",
@@ -107,10 +103,10 @@
      "Confluence cross (t +3.0, 62% 1W)"
     ],
     [
-     "CTA trend -0.34",
+     "CTA trend -0.39",
      0.6,
      "ok",
-     "CTA trend -0.34 same way"
+     "CTA trend -0.39 same way"
     ],
     [
      "CTA flow turning \u2014 $-0.6m/bp next 5d",
@@ -119,7 +115,7 @@
      "CTA flow tailwind (just turned, $-0.6m/bp on the flat path)"
     ],
     [
-     "carry -10.1bp/3m costs",
+     "carry -10.4bp/3m costs",
      -0.25,
      "bad",
      null
@@ -127,7 +123,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "bund",
@@ -145,19 +141,19 @@
      "Confluence cross (t +2.1, 68% 1W)"
     ],
     [
-     "CTA trend -0.87",
+     "CTA trend -0.89",
      0.8,
      "ok",
-     "CTA trend -0.87 same way"
+     "CTA trend -0.89 same way"
     ],
     [
-     "CTA -2.0sd CROWDED",
+     "CTA -2.1sd CROWDED",
      -0.75,
      "bad",
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +0.9z",
+     "FV +1.4z",
      0.0,
      "mut",
      null
@@ -171,7 +167,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "usdjpy",
@@ -189,7 +185,7 @@
      "Confluence cross (t +2.4, 60% 1W)"
     ],
     [
-     "FV +0.6z",
+     "FV +0.9z",
      0.0,
      "mut",
      null
@@ -197,7 +193,7 @@
    ],
    "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "gold",
@@ -209,7 +205,7 @@
    "score": 1.0,
    "parts": [
     [
-     "MOM FADE of MACD t -2.8 \u00b7 day 2/20",
+     "MOM FADE of MACD t -2.8 \u00b7 day 3/20",
      1.0,
      "ok",
      "backtest says fade the MACD cross (t -2.8)"
@@ -217,14 +213,14 @@
    ],
    "veto": null,
    "fade": true,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   },
   {
    "key": "us10y",
    "label": "US 10Y (bond)",
    "dir": "bear",
    "verb": "PAY US 10Y / short TY",
-   "tier": "AVOID",
+   "tier": "WATCH",
    "size": "",
    "score": 0.3,
    "parts": [
@@ -247,21 +243,21 @@
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +2.0z AGAINST",
+     "FV +1.5z AGAINST",
      -0.75,
      "bad",
-     "FV 2.0z against"
+     "FV 1.5z against"
     ],
     [
-     "carry -3.3bp/3m",
+     "carry -3.2bp/3m",
      0.0,
      "mut",
      null
     ]
    ],
-   "veto": "FV 2.0z against",
+   "veto": null,
    "fade": false,
-   "_d": "2026-09-02"
+   "_d": "2026-09-03"
   }
  ],
  "live": [
@@ -291,7 +287,7 @@
    "taken": "2026-08-05",
    "note": "",
    "entry_score": 1.55,
-   "score": 2.3,
+   "score": 2.8,
    "state": "HOLD",
    "why": "legs intact",
    "parts": [
@@ -308,19 +304,13 @@
      "CTA trend -0.89 same way"
     ],
     [
-     "CTA flow turning \u2014 $-0.3m/bp next 5d",
-     0.75,
+     "FV -1.3z (3y) \u00b7 \u00bd-life 8d",
+     1.25,
      "ok",
-     "CTA flow tailwind (just turned, $-0.3m/bp on the flat path)"
+     "FV 1.3z with you, fades ~8d"
     ],
     [
-     "FV -0.8z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -10.1bp/3m costs",
+     "carry -9.6bp/3m costs",
      -0.25,
      "bad",
      null
