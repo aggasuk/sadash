@@ -1653,9 +1653,26 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         each z-scored on an <b>expanding</b> window (+ = crowded long, &minus; = washed out).
         SHFE top-20 member net longs (months 1&ndash;4 summed), COMEX managed-money net (CFTC disaggregated COT),
         GLD options call&minus;put open-interest skew (net-delta proxy), and global gold-ETF 3m $ inflow.
-        Contrarian read: the 2024&ndash;26 local tops (~1.4 / 1.5 / 1.9 / 2.1) each preceded a correction; the late-2022 trough was the price low.
-        Alerts fire on crossing <b>+1.5</b> (crowded, trim) and <b>&minus;1.0</b> (washout, add). Context rows are zero weight.
-        COMEX prints weekly (Tuesday data, Friday release); the other legs are daily.
+        <b>How to read it (backtested 04-Sep-26, Dec-2019&ndash;Sep-2026, 351 weeks):</b> the composite is <b>pro-cyclical, not contrarian</b> in this sample &mdash;
+        rank correlation with the 13-week forward XAU return is <b>+0.28</b>, and the best forward returns came from the <b>0.75&ndash;1.5</b> band (positioning builds during rallies that persisted).
+        The only reading above <b>+1.5</b> (23-Jan-26, XAU 4,988) coincided with the top (&minus;5.6% at 13w, &minus;18.7% at 26w, 9.9% max drawdown) &mdash; a real precedent, but n&nbsp;=&nbsp;1.
+        Washouts below &minus;1.0 (2021&ndash;22, 8 crossings) returned roughly the unconditional drift. Per leg, SHFE and COMEX carry the trend information; the GLD skew is the only contrarian leg.
+        So: use it as a <b>risk gauge for sizing</b> (how much speculative fuel is in the trade), do <b>not</b> fade mid-range readings, and treat the +1.5 alert as a prompt to review rather than an automatic trim.
+        Alerts fire on crossing <b>+1.5</b> and <b>&minus;1.0</b>. Context rows are zero weight. COMEX prints weekly (Tuesday data, Friday release); the other legs are daily.
+      </div>
+      <div style="margin-bottom:18px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Backtest &mdash; forward XAU return by composite bucket (static, weekly obs Dec-2019 to Sep-2026; overlapping windows, one bull regime)</div>
+        <div style="overflow-x:auto;"><table class="vol-table">
+          <thead><tr><th>Composite</th><th>n</th><th>4w mean</th><th>4w hit</th><th>13w mean</th><th>13w hit</th><th>26w mean</th><th>26w hit</th></tr></thead>
+          <tbody>
+            <tr><td>below &minus;1.0</td><td>33</td><td>+1.5%</td><td>76%</td><td>+3.9%</td><td>79%</td><td>+6.4%</td><td>85%</td></tr>
+            <tr><td>&minus;1.0 to 0</td><td>104</td><td>+0.3%</td><td>51%</td><td>+1.3%</td><td>57%</td><td>+4.5%</td><td>65%</td></tr>
+            <tr><td>0 to 0.75</td><td>137</td><td>+1.1%</td><td>54%</td><td>+3.9%</td><td>61%</td><td>+11.8%</td><td>66%</td></tr>
+            <tr><td>0.75 to 1.5</td><td>72</td><td>+3.4%</td><td>73%</td><td>+9.3%</td><td>77%</td><td>+13.0%</td><td>73%</td></tr>
+            <tr><td>above 1.5</td><td>1</td><td>+2.4%</td><td>&mdash;</td><td>&minus;5.6%</td><td>&mdash;</td><td>&minus;18.7%</td><td>&mdash;</td></tr>
+            <tr style="color:var(--text-dim);"><td>all weeks</td><td>347</td><td>+1.4%</td><td>59%</td><td>+4.2%</td><td>65%</td><td>+9.1%</td><td>69%</td></tr>
+          </tbody></table></div>
+        <div style="font-size:0.7rem;color:var(--text-dim);margin-top:6px;">Rank IC of level vs forward return: 4w +0.20 &middot; 13w +0.28 &middot; 26w +0.23 (all positive = pro-trend). Per-leg 13w IC: SHFE +0.34 &middot; COMEX +0.30 &middot; ETF +0.19 &middot; GLD skew &minus;0.24. Effective independent sample at 13w is ~25 observations; p-values overstate significance.</div>
       </div>
       <div id="gpos-tables"></div>
       <div class="chart-wrap" style="padding:12px;margin-top:16px;">
