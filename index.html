@@ -1597,6 +1597,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <button class="tab active" data-sub="ctot-fx">CTOT vs FX</button>
       <button class="tab" data-sub="fx-quadrant">FX Quadrant</button>
       <button class="tab" data-sub="kospi-pos">KOSPI Positioning</button>
+      <button class="tab" data-sub="gold-pos">Gold Positioning</button>
     </div>
 
     <div class="studies-subpage" id="studies-sub-ctot-fx">
@@ -1641,6 +1642,29 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div class="chart-wrap" style="padding:12px;margin-top:16px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">KOSPI200 vs positioning composite (weekly) — orange bands = flow trigger ON</div>
         <div style="position:relative;height:380px;"><canvas id="kpos-chart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ── Gold Positioning (gold_positioning.json from gold_positioning.py) ── -->
+    <div class="studies-subpage" id="studies-sub-gold-pos" style="display:none;">
+      <div id="gpos-verdict" style="margin-bottom:16px;padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);font-size:0.9rem;line-height:1.5;"></div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.6;">
+        <b>Gold positioning composite</b> — replication of the Exante/Vanda indicator: four volume-term legs, equal weight,
+        each z-scored on an <b>expanding</b> window (+ = crowded long, &minus; = washed out).
+        SHFE top-20 member net longs (months 1&ndash;4 summed), COMEX managed-money net (CFTC disaggregated COT),
+        GLD options call&minus;put open-interest skew (net-delta proxy), and global gold-ETF 3m $ inflow.
+        Contrarian read: the 2024&ndash;26 local tops (~1.4 / 1.5 / 1.9 / 2.1) each preceded a correction; the late-2022 trough was the price low.
+        Alerts fire on crossing <b>+1.5</b> (crowded, trim) and <b>&minus;1.0</b> (washout, add). Context rows are zero weight.
+        COMEX prints weekly (Tuesday data, Friday release); the other legs are daily.
+      </div>
+      <div id="gpos-tables"></div>
+      <div class="chart-wrap" style="padding:12px;margin-top:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">XAU vs positioning composite (weekly) — dashed = +1.5 / &minus;1.0 alert levels</div>
+        <div style="position:relative;height:380px;"><canvas id="gpos-chart"></canvas></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;margin-top:16px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Leg z-scores (weekly)</div>
+        <div style="position:relative;height:300px;"><canvas id="gpos-legs"></canvas></div>
       </div>
     </div>
   </div>
@@ -3559,6 +3583,79 @@ window.FV_NAV = (function() {
     return { load: load };
   })();
 
+  /* ── Studies > Gold Positioning (gold_positioning.json) ── */
+  window.GPOS = (function() {
+    var loaded = false, chart = null, legs = null;
+    function zc(z) { return z == null ? 'var(--text-dim)' : (z >= 1.5 ? 'var(--red)' : (z <= -1.0 ? 'var(--green)' : 'var(--text)')); }
+    function fz(z) { return z == null ? '—' : (z > 0 ? '+' : '') + z.toFixed(2); }
+    function render(d) {
+      var comp = d.composite_z, r = d.range_1y || {}, c = d.context || {};
+      var v = document.getElementById('gpos-verdict');
+      var hot = comp >= 1.5, cold = comp <= -1.0;
+      v.style.borderColor = hot ? 'rgba(239,68,68,0.55)' : (cold ? 'rgba(34,197,94,0.55)' : 'var(--border)');
+      v.innerHTML =
+        '<div style="font-size:1.02rem;margin-bottom:6px;"><b>' + (hot ? '🔴 CROWDED LONG' : (cold ? '🟢 WASHED OUT' : '⚪ Mid-range')) +
+        '</b> — composite <b style="color:' + zc(comp) + '">' + fz(comp) + '</b> (pctile ' + d.composite_pctile +
+        ', 1y range ' + fz(r.low) + ' … ' + fz(r.high) + ') · ' + d.read + '</div>' +
+        '<span style="color:var(--text-dim);font-size:0.78rem;">XAU ' + (c.xau != null ? Number(c.xau).toLocaleString() : '—') +
+        ' · SHFE net ' + (c.shfe_net_lots != null ? Number(c.shfe_net_lots).toLocaleString() + ' lots (' + c.shfe_asof + ')' : '—') +
+        ' · COMEX MM net ' + (c.comex_mm_net_lots != null ? Number(c.comex_mm_net_lots).toLocaleString() + ' (' + c.comex_asof + ')' : '—') +
+        ' · ETF 3m $' + c.etf_flow_3m_bn + 'bn · GLD (C−P)/(C+P) ' + c.gld_cp_ratio + ' · as of ' + d.as_of + '</span>';
+      var h = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">';
+      h += '<div><div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Composite legs (equal weight)</div>';
+      h += '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr><th>Leg</th><th>Level</th><th>z</th><th>%ile</th><th>wt</th></tr></thead><tbody>';
+      (d.signals || []).forEach(function(s) {
+        h += '<tr title="' + s.src + '"><td>' + s.name + '</td><td>' + (s.level == null ? '—' : Number(s.level).toLocaleString()) +
+             '</td><td style="color:' + zc(s.pos_z) + '"><b>' + fz(s.pos_z) + '</b></td><td>' + (s.pctile == null ? '—' : s.pctile) +
+             '</td><td>' + s.weight.toFixed(2) + '</td></tr>';
+      });
+      h += '</tbody></table></div></div>';
+      h += '<div><div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Context (zero weight)</div>';
+      h += '<div style="overflow-x:auto;"><table class="vol-table"><thead><tr><th>Row</th><th>Level</th><th>z</th><th>%ile</th></tr></thead><tbody>';
+      (d.context_rows || []).forEach(function(s) {
+        h += '<tr title="' + (s.note || '') + '"><td>' + s.name + '</td><td>' + (s.level == null ? '—' : Number(s.level).toLocaleString()) +
+             '</td><td style="color:' + zc(s.z) + '"><b>' + fz(s.z) + '</b></td><td>' + (s.pctile == null ? '—' : s.pctile) + '</td></tr>';
+      });
+      h += '</tbody></table></div>';
+      h += '<div style="font-size:0.7rem;color:var(--text-dim);margin-top:8px;">' + (d.method || '') + '</div></div></div>';
+      document.getElementById('gpos-tables').innerHTML = h;
+      var H = d.history;
+      if (H && H.dates) {
+        var opts = function(lc, rc) { return { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+          plugins: { legend: { labels: { color: '#cbd5e1', boxWidth: 16, font: { size: 10 } } } },
+          scales: { x: { ticks: { color: '#94a3b8', maxTicksLimit: 14, font: { size: 9 } }, grid: { color: 'rgba(148,163,184,0.08)' } },
+                    y: { position: 'left', ticks: { color: lc }, grid: { color: 'rgba(148,163,184,0.1)' } },
+                    y2: { position: 'right', ticks: { color: rc }, grid: { display: false }, display: !!rc } } }; };
+        if (chart) chart.destroy();
+        var hi = H.dates.map(function() { return 1.5; }), lo = H.dates.map(function() { return -1.0; });
+        chart = new Chart(document.getElementById('gpos-chart'), { type: 'line',
+          data: { labels: H.dates, datasets: [
+            { label: 'XAU', data: H.xau, yAxisID: 'y', borderColor: '#f5c542', borderWidth: 1.6, pointRadius: 0, tension: 0.2 },
+            { label: 'composite z', data: H.composite, yAxisID: 'y2', borderColor: '#4da3ff', borderWidth: 1.4, pointRadius: 0, tension: 0.2 },
+            { label: '+1.5 crowded', data: hi, yAxisID: 'y2', borderColor: 'rgba(239,68,68,0.6)', borderDash: [4, 4], borderWidth: 1, pointRadius: 0 },
+            { label: '−1.0 washout', data: lo, yAxisID: 'y2', borderColor: 'rgba(34,197,94,0.6)', borderDash: [4, 4], borderWidth: 1, pointRadius: 0 }
+          ]}, options: opts('#f5c542', '#4da3ff') });
+        if (legs) legs.destroy();
+        var cols = ['#4da3ff', '#f5a623', '#a78bfa', '#34d399'], i = 0, ds = [];
+        Object.keys(H.legs || {}).forEach(function(k) {
+          ds.push({ label: k, data: H.legs[k], yAxisID: 'y', borderColor: cols[i++ % cols.length], borderWidth: 1.2, pointRadius: 0, tension: 0.2 });
+        });
+        legs = new Chart(document.getElementById('gpos-legs'), { type: 'line', data: { labels: H.dates, datasets: ds }, options: opts('#cbd5e1', null) });
+      }
+    }
+    function load() {
+      if (loaded) return;
+      fetch('gold_positioning.json?t=' + Date.now())
+        .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(d) { loaded = true; render(d); })
+        .catch(function(e) {
+          document.getElementById('gpos-tables').innerHTML =
+            '<div style="color:var(--text-dim);font-size:0.8rem;">gold_positioning.json unavailable (' + e.message + ') — run <code>python gold_positioning.py</code> and redeploy.</div>';
+        });
+    }
+    return { load: load };
+  })();
+
   /* ── Fair Value > Inflation sub-tab (infl_fv.json) ── */
   window.INFL_FV = (function() {
     var loaded = false, charts = {};
@@ -4844,6 +4941,7 @@ window.FVDETAIL = (function() {
     const el = document.getElementById('studies-sub-' + t.dataset.sub);
     if (el) el.style.display = 'block';
     if (t.dataset.sub === 'kospi-pos' && window.KPOS) window.KPOS.load();
+    if (t.dataset.sub === 'gold-pos' && window.GPOS) window.GPOS.load();
   }));
 
   // Fiscal sub-tabs
