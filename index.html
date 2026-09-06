@@ -343,6 +343,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
   <!-- Top Navigation -->
   <div class="top-nav">
     <button class="nav-btn active" data-page="momentum">Momentum</button>
+    <button class="nav-btn" data-page="setups">Setups</button>
     <button class="nav-btn" data-page="vol">Vol</button>
     <button class="nav-btn" data-page="citi" style="display:none;">Citi Signals</button>
     <button class="nav-btn" data-page="fairvalue">Fair Value</button>
@@ -369,109 +370,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </header>
 
     <div id="alerts-banner"></div>
-
-    <!-- ── Setups strip (step 7f: setups.py → setups.json) — the resolver ── -->
-    <style>
-    .st-head{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;}
-    .st-chg{font-size:0.72rem;color:var(--text-dim);margin-top:4px;}
-    .st-h2{font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:14px 0 6px;font-weight:700;}
-    .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px;}
-    .st-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
-    .st-card.tA{border-left:4px solid var(--green);}
-    .st-card.tFADE{border-left:4px solid var(--accent);}
-    .st-card.tWATCH{border-left:4px solid var(--amber);opacity:.85;}
-    .st-card.tAVOID{border-left:4px solid var(--red);opacity:.75;}
-    .st-card.tLIVE{border-left:4px solid var(--green);}
-    .st-card.tLIVE.sDEGRADED{border-left-color:var(--amber);}
-    .st-card.tLIVE.sEXIT{border-left-color:var(--red);}
-    .st-chead{display:flex;align-items:center;gap:8px;}
-    .st-tier{font-size:0.62rem;font-weight:800;letter-spacing:.08em;color:var(--text-dim);white-space:nowrap;}
-    .tA .st-tier{color:var(--green);}.tFADE .st-tier{color:var(--accent);}
-    .tWATCH .st-tier{color:var(--amber);}.tAVOID .st-tier{color:var(--red);}
-    .st-verb{font-weight:750;font-size:0.9rem;flex:1;}
-    .st-size{font-size:0.62rem;font-weight:800;background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:2px 8px;color:var(--text-dim);white-space:nowrap;}
-    .st-why{font-size:0.76rem;color:var(--text-dim);}
-    .st-chips{display:flex;flex-wrap:wrap;gap:5px;}
-    .st-chip{font-size:0.66rem;font-weight:600;border-radius:6px;padding:1px 7px;border:1px solid var(--border);font-variant-numeric:tabular-nums;}
-    .st-chip.ok{color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);}
-    .st-chip.bad{color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent);}
-    .st-chip.mut{color:var(--text-dim);}
-    .st-foot{font-size:0.66rem;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
-    .st-take{margin-left:auto;font-size:0.64rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:2px 8px;font-family:inherit;}
-    </style>
-    <div id="setups-strip" style="margin-bottom:22px;"></div>
-    <script>
-    (function() {
-      var el = document.getElementById('setups-strip');
-      fetch('setups.json?v=' + Date.now()).then(function(r){ return r.json(); }).then(render)
-        .catch(function(){ el.innerHTML = ''; });
-      function chips(parts) {
-        return '<div class="st-chips">' + parts.map(function(p){
-          return '<span class="st-chip ' + p[2] + '">' + p[0] + ' <b>' + (p[1] >= 0 ? '+' : '') + p[1].toFixed(2) + '</b></span>';
-        }).join('') + '</div>';
-      }
-      function why(parts) {
-        var w = parts.map(function(p){ return p[3]; }).filter(Boolean);
-        return w.length ? '<div class="st-why">' + w.join(' · ') + '</div>' : '';
-      }
-      function takeBtn(e) {
-        var snip = JSON.stringify({ key: e.key, dir: e.dir, taken: new Date().toISOString().slice(0,10) });
-        return '<button class="st-take" onclick=\'navigator.clipboard.writeText(' + JSON.stringify(snip) +
-          ').then(function(){ event.target.textContent = "copied ✓ → setups_taken.json"; })\'>mark taken</button>';
-      }
-      function card(e) {
-        var action = e.tier === 'FADE' ? 'FADE the cross → ' + e.verb :
-                     e.tier === 'WATCH' ? e.verb + ' — <i>not yet</i>' :
-                     e.tier === 'AVOID' ? 'stand aside — ' + e.label : e.verb;
-        var size = e.size ? e.size + ' · ' : '';
-        var foot = e.tier === 'WATCH'
-          ? 'score ' + e.score.toFixed(2) + ' — needs +' + (1.0 - e.score).toFixed(2) + ' more (FV +1.0 / flow +0.75 / carry +0.5)'
-          : e.tier === 'AVOID' ? 'veto: ' + (e.veto || '') : 're-scored every refresh · drops below 1.0';
-        return '<div class="st-card t' + e.tier + '"><div class="st-chead">' +
-          '<span class="st-tier">' + (e.tier === 'A' ? 'A-SETUP' : e.tier) + '</span>' +
-          '<span class="st-verb">' + action + '</span>' +
-          '<span class="st-size">' + size + (e.score >= 0 ? '+' : '') + e.score.toFixed(2) + '</span></div>' +
-          why(e.parts) + chips(e.parts) +
-          '<div class="st-foot"><span>' + foot + '</span>' +
-          ((e.tier === 'A' || e.tier === 'FADE') ? takeBtn(e) : '') + '</div></div>';
-      }
-      function liveCard(l) {
-        var es = l.entry_score == null ? '?' : (l.entry_score >= 0 ? '+' : '') + l.entry_score.toFixed(2);
-        var ns = l.score == null ? '—' : (l.score >= 0 ? '+' : '') + l.score.toFixed(2);
-        return '<div class="st-card tLIVE s' + l.state + '"><div class="st-chead">' +
-          '<span class="st-tier">LIVE · ' + l.state + '</span>' +
-          '<span class="st-verb">' + l.verb + ' — taken ' + l.taken + '</span>' +
-          '<span class="st-size">entry ' + es + ' → ' + ns + '</span></div>' +
-          '<div class="st-why">' + l.why + (l.note ? ' · ' + l.note : '') + '</div>' +
-          (l.parts.length ? chips(l.parts) : '') + '</div>';
-      }
-      function render(d) {
-        var acts = d.cards.filter(function(e){ return e.tier === 'A'; });
-        var fades = d.cards.filter(function(e){ return e.tier === 'FADE'; });
-        var watch = d.cards.filter(function(e){ return e.tier === 'WATCH'; });
-        var avoid = d.cards.filter(function(e){ return e.tier === 'AVOID'; });
-        var nAct = acts.length + fades.length;
-        var head = nAct
-          ? '<b>' + nAct + ' setup' + (nAct === 1 ? '' : 's') + ' to act on</b> · ' + watch.length +
-            ' watching · ' + avoid.length + ' stand-aside — ' + d.counts.hidden + ' signals hidden'
-          : '<b>Nothing to act on.</b> ' + watch.length + ' watching · ' + avoid.length +
-            ' stand-aside — ' + d.counts.hidden + ' signals hidden';
-        var chg = (d.changes && d.changes.length)
-          ? '<div class="st-chg">since last run: ' + d.changes.slice(0, 5).join(' · ') + '</div>' : '';
-        var h = '<div class="st-head">' + head + chg + '</div>';
-        function sec(title, arr, fn) {
-          if (!arr.length) return '';
-          return '<div class="st-h2">' + title + '</div><div class="st-grid">' + arr.map(fn).join('') + '</div>';
-        }
-        h += sec('Act', acts, card);
-        h += sec('Act — fade the cross', fades, card);
-        h += sec('Live — taken', d.live || [], liveCard);
-        h += sec('Watch', watch, card);
-        h += sec('Stand aside', avoid, card);
-        el.innerHTML = h;
-      }
-    })();
-    </script>
 
     <!-- Momentum sub-tabs -->
     <div class="tabs" id="mom-sub-tabs" style="margin-bottom:24px;">
@@ -539,6 +437,199 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div class="scores" id="scores"></div>
       <div id="indicators"></div>
     </div>
+  </div>
+
+  <!-- ============ SETUPS PAGE (setups.py → setups.json, setups_blotter.py → setups_blotter.json) ============ -->
+  <div class="page" id="page-setups">
+    <header>
+      <h1><span>&gt;</span> Setups</h1>
+      <div class="updated" id="setups-updated"></div>
+    </header>
+    <style>
+    .st-head{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;}
+    .st-chg{font-size:0.72rem;color:var(--text-dim);margin-top:4px;}
+    .st-h2{font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:18px 0 6px;font-weight:700;}
+    .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;}
+    .st-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+    .st-card.tA{border-left:4px solid var(--green);}
+    .st-card.tWATCH{border-left:4px solid var(--amber);opacity:.9;}
+    .st-card.tWATCH.noanchor{border-left-color:var(--border);opacity:.7;}
+    .st-card.tAVOID{border-left:4px solid var(--red);opacity:.8;}
+    .st-chead{display:flex;align-items:center;gap:8px;}
+    .st-tier{font-size:0.62rem;font-weight:800;letter-spacing:.08em;color:var(--text-dim);white-space:nowrap;}
+    .tA .st-tier{color:var(--green);}.tWATCH .st-tier{color:var(--amber);}.tAVOID .st-tier{color:var(--red);}
+    .st-verb{font-weight:750;font-size:0.9rem;flex:1;}
+    .st-size{font-size:0.62rem;font-weight:800;background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:2px 8px;color:var(--text-dim);white-space:nowrap;}
+    .st-why{font-size:0.76rem;color:var(--text-dim);}
+    .st-chips{display:flex;flex-wrap:wrap;gap:5px;}
+    .st-chip{font-size:0.66rem;font-weight:600;border-radius:6px;padding:1px 7px;border:1px solid var(--border);font-variant-numeric:tabular-nums;}
+    .st-chip.ok{color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);}
+    .st-chip.bad{color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent);}
+    .st-chip.mut{color:var(--text-dim);}
+    .st-chip.anchor{border-color:var(--accent);color:var(--accent);font-weight:800;}
+    .st-foot{font-size:0.66rem;color:var(--text-dim);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .st-stat{display:inline-flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;min-width:110px;}
+    .st-stat .l{font-size:0.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);}
+    .st-stat .v{font-size:1.05rem;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
+    .st-toggle{font-size:0.66rem;border:1px solid var(--border);border-radius:99px;padding:2px 9px;cursor:pointer;background:var(--surface);color:var(--text-dim);font-family:inherit;}
+    .st-toggle.on{border-color:var(--accent);color:var(--accent);}
+    .pos{color:var(--green);} .neg{color:var(--red);}
+    </style>
+    <div id="setups-head" class="st-head">loading…</div>
+    <div id="setups-cards"></div>
+    <div class="st-h2">Score history — held / best direction per cluster (enter ≥1.0, exit &lt;0.5)</div>
+    <div id="setups-hist-toggles" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;"></div>
+    <div class="chart-wrap" style="height:360px;position:relative;"><canvas id="setups-hist-chart"></canvas></div>
+    <div class="st-h2">Paper blotter — every sized card, FULL = $10k DV01 / $5m notional, no costs</div>
+    <div id="setups-blotter"></div>
+    <div class="st-h2">Change log</div>
+    <div id="setups-changelog" style="font-size:0.74rem;color:var(--text-dim);line-height:1.7;"></div>
+    <div id="setups-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
+    <script>
+    (function() {
+      var HIST = null, CHART = null, SEL = {};
+      function f2(x) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(2); }
+      function money(x) { return x == null ? '—' : (x < 0 ? '−' : '+') + '$' + Math.abs(Math.round(x)).toLocaleString(); }
+      function cls(x) { return x == null ? '' : x > 0 ? 'pos' : x < 0 ? 'neg' : ''; }
+      function chips(parts) {
+        return '<div class="st-chips">' + parts.map(function(p) {
+          return '<span class="st-chip ' + p[2] + '">' + p[0] + ' <b>' + f2(p[1]) + '</b></span>';
+        }).join('') + '</div>';
+      }
+      function why(parts) {
+        var w = parts.map(function(p) { return p[3]; }).filter(Boolean);
+        return w.length ? '<div class="st-why">' + w.join(' · ') + '</div>' : '';
+      }
+      function card(e) {
+        var noanchor = !e.anchor;
+        var head = e.tier === 'A' ? e.verb :
+                   e.tier === 'AVOID' ? 'stand aside — ' + e.label :
+                   noanchor ? e.label + ' — <i>no anchor</i>' : e.verb + ' — <i>not yet</i>';
+        var size = e.size ? e.size + ' · ' : '';
+        var foot = '';
+        if (e.tier === 'A') foot = 'held ' + (e.days_held == null ? '?' : e.days_held) + 'd since ' + e.since +
+                                    ' · entry ' + f2(e.entry_score) + ' → now ' + f2(e.score) + ' · exits below 0.5';
+        else if (e.tier === 'AVOID') foot = 'veto: ' + (e.veto || '');
+        else if (noanchor) foot = 'trend ' + f2(e.trend) + ' (' + (e.cls === 'rates' ? 'below 0.3' : e.cls + ': trend is not an anchor') +
+                                  ') — waits for ' + (e.cls === 'rates' ? 'trend ≥0.3 or a CTA flow turn' :
+                                  e.cls === 'fx' ? 'FV ≥1z / EUReka checklist' : 'Bottoming entry / positioning / FV');
+        else foot = 'score ' + f2(e.score) + ' — needs +' + f2(e.needs).replace('+', '') + ' more';
+        if (e.note) foot += ' · ' + e.note;
+        var other = e.other && Object.keys(e.other).length > 1 ?
+          ' · other side ' + Object.keys(e.other).filter(function(k){ return k !== e.dir; }).map(function(k){ return k + ' ' + f2(e.other[k]); }).join(', ') : '';
+        return '<div class="st-card t' + e.tier + (noanchor ? ' noanchor' : '') + '"><div class="st-chead">' +
+          '<span class="st-tier">' + (e.tier === 'A' ? 'A-SETUP' : e.tier) + '</span>' +
+          '<span class="st-verb">' + head + '</span>' +
+          '<span class="st-size">' + size + (e.score == null ? '—' : f2(e.score)) + '</span></div>' +
+          (e.anchor ? '<div class="st-chips"><span class="st-chip anchor">anchor: ' + e.anchor + '</span></div>' : '') +
+          why(e.parts) + chips(e.parts) +
+          '<div class="st-foot"><span>' + foot + other + '</span></div></div>';
+      }
+      function sec(title, arr, fn) {
+        if (!arr.length) return '';
+        return '<div class="st-h2">' + title + '</div><div class="st-grid">' + arr.map(fn).join('') + '</div>';
+      }
+      function renderCards(d) {
+        var acts = d.cards.filter(function(e){ return e.tier === 'A'; });
+        var avoid = d.cards.filter(function(e){ return e.tier === 'AVOID'; });
+        var watch = d.cards.filter(function(e){ return e.tier === 'WATCH' && e.anchor; });
+        var idle = d.cards.filter(function(e){ return e.tier === 'WATCH' && !e.anchor; });
+        var head = (acts.length ? '<b>' + acts.length + ' setup' + (acts.length === 1 ? '' : 's') + ' on</b>' : '<b>Nothing on.</b>') +
+          ' · ' + watch.length + ' anchored but short of 1.0 · ' + idle.length + ' without an anchor · ' + avoid.length + ' vetoed';
+        var chg = (d.changes && d.changes.length) ? '<div class="st-chg">this run: ' + d.changes.join(' · ') + '</div>' : '';
+        document.getElementById('setups-head').innerHTML = head + chg;
+        document.getElementById('setups-updated').textContent = 'Last updated: ' + (d._updated || '');
+        document.getElementById('setups-cards').innerHTML =
+          sec('On', acts, card) + sec('Stand aside', avoid, card) + sec('Watch — anchored, short of the bar', watch, card) +
+          sec('No anchor — context only', idle, card);
+        document.getElementById('setups-changelog').innerHTML = (d.changelog || []).slice().reverse().map(function(c) {
+          return '<div><span style="color:var(--text-dim);font-variant-numeric:tabular-nums;">' + c.d + '</span> &nbsp;' + c.msg + '</div>';
+        }).join('') || '<div>—</div>';
+        document.getElementById('setups-method').innerHTML = '<b>Method.</b> ' + (d.method || '') +
+          ' <br>v2 07-Sep-26: v1 anchored on a crossover backtest that measured drift plus a look-ahead bug; see signal_study.py. ' +
+          'The blotter closed the v1 book at the rebuild — episodes before 07-Sep-26 are v1.';
+      }
+      var PAL = ['#3b82f6','#22c55e','#ef4444','#f59e0b','#a855f7','#06b6d4','#ec4899','#84cc16','#f97316','#14b8a6','#6366f1','#eab308','#10b981','#f43f5e','#8b5cf6','#0ea5e9'];
+      function renderHist(d) {
+        HIST = d.history || {};
+        var keys = Object.keys(HIST);
+        var byKey = {}; d.cards.forEach(function(c){ byKey[c.key] = c; });
+        keys.sort(function(a, b) { var ta = (byKey[a] || {}).tier === 'A' ? 0 : 1, tb = (byKey[b] || {}).tier === 'A' ? 0 : 1; return ta - tb || a.localeCompare(b); });
+        var tg = document.getElementById('setups-hist-toggles');
+        tg.innerHTML = keys.map(function(k, i) {
+          var c = byKey[k] || {}; SEL[k] = (c.tier === 'A') || (c.cls === 'rates');
+          return '<button class="st-toggle' + (SEL[k] ? ' on' : '') + '" data-k="' + k + '" style="border-color:' + (SEL[k] ? PAL[i % PAL.length] : '') + '">' + (c.label || k) + '</button>';
+        }).join('');
+        tg.querySelectorAll('.st-toggle').forEach(function(b, i) {
+          b.addEventListener('click', function() { SEL[b.dataset.k] = !SEL[b.dataset.k]; b.classList.toggle('on', SEL[b.dataset.k]); b.style.borderColor = SEL[b.dataset.k] ? PAL[i % PAL.length] : ''; draw(keys, byKey); });
+        });
+        draw(keys, byKey);
+      }
+      function draw(keys, byKey) {
+        var dates = {}; keys.forEach(function(k){ (HIST[k] || []).forEach(function(r){ dates[r.d] = 1; }); });
+        var labels = Object.keys(dates).sort();
+        var ds = [];
+        keys.forEach(function(k, i) {
+          if (!SEL[k]) return;
+          var m = {}; (HIST[k] || []).forEach(function(r){ m[r.d] = r; });
+          var vals = labels.map(function(dt) {
+            var r = m[dt]; if (!r) return null;
+            var v = r.dir === 'bull' ? r.bull : r.dir === 'bear' ? r.bear : Math.max(r.bull == null ? -9 : r.bull, r.bear == null ? -9 : r.bear);
+            return (v == null || v === -9) ? null : v;
+          });
+          var lastDir = (HIST[k] || []).length ? HIST[k][HIST[k].length - 1].dir : null;
+          ds.push({ label: (byKey[k] || {}).label || k, data: vals, borderColor: PAL[i % PAL.length], backgroundColor: PAL[i % PAL.length],
+                    borderDash: lastDir === 'bear' ? [5, 4] : [], tension: 0.2, pointRadius: labels.length < 40 ? 3 : 0, spanGaps: true, borderWidth: 1.8 });
+        });
+        var dark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
+        var grid = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)', txt = dark ? '#94a3b8' : '#475569';
+        ds.push({ label: 'enter 1.0', data: labels.map(function(){ return 1.0; }), borderColor: 'rgba(34,197,94,0.5)', borderDash: [2, 3], pointRadius: 0, borderWidth: 1 });
+        ds.push({ label: 'exit 0.5', data: labels.map(function(){ return 0.5; }), borderColor: 'rgba(239,68,68,0.5)', borderDash: [2, 3], pointRadius: 0, borderWidth: 1 });
+        if (CHART) CHART.destroy();
+        CHART = new Chart(document.getElementById('setups-hist-chart'), { type: 'line', data: { labels: labels, datasets: ds },
+          options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'nearest', intersect: false },
+                     plugins: { legend: { labels: { color: txt, boxWidth: 12, font: { size: 10 } } },
+                                tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': ' + (c.parsed.y == null ? '—' : c.parsed.y.toFixed(2)); } } } },
+                     scales: { x: { ticks: { color: txt, maxTicksLimit: 12, font: { size: 10 } }, grid: { color: grid } },
+                               y: { ticks: { color: txt, font: { size: 10 } }, grid: { color: grid }, title: { display: true, text: 'score (dashed = bear side)', color: txt, font: { size: 10 } } } } } });
+      }
+      function renderBlotter(b) {
+        var el = document.getElementById('setups-blotter');
+        if (!b || !b.stats) { el.innerHTML = '<div style="color:var(--text-dim);font-size:0.78rem;">setups_blotter.json not available</div>'; return; }
+        var s = b.stats;
+        var h = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">' +
+          '<div class="st-stat"><span class="l">total P&amp;L</span><span class="v ' + cls(s.total) + '">' + money(s.total) + '</span></div>' +
+          '<div class="st-stat"><span class="l">realised</span><span class="v ' + cls(s.realised) + '">' + money(s.realised) + '</span></div>' +
+          '<div class="st-stat"><span class="l">unrealised</span><span class="v ' + cls(s.unrealised) + '">' + money(s.unrealised) + '</span></div>' +
+          '<div class="st-stat"><span class="l">closed episodes</span><span class="v">' + s.n_closed + ' <span style="font-size:0.72rem;color:var(--text-dim);">(' + s.wins + ' wins' + (s.n_closed ? ', ' + Math.round(100 * s.wins / s.n_closed) + '%' : '') + ')</span></span></div>' +
+          '<div class="st-stat"><span class="l">avg hold</span><span class="v">' + (s.avg_days == null ? '—' : s.avg_days + 'd') + '</span></div>';
+        ['FULL', 'HALF', 'PROBE'].forEach(function(k) { var v = (s.by_size || {})[k]; if (!v) return;
+          h += '<div class="st-stat"><span class="l">' + k + '</span><span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">' + v.wins + '/' + v.n + '</span></span></div>'; });
+        Object.keys(s.by_kind || {}).forEach(function(k) { var v = s.by_kind[k];
+          h += '<div class="st-stat"><span class="l">' + k + '</span><span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">' + v.wins + '/' + v.n + '</span></span></div>'; });
+        h += '</div>';
+        h += '<div class="ind-section" style="margin-bottom:14px;"><h3>Open paper positions</h3><table class="vol-table"><thead><tr><th>key</th><th>instrument</th><th>position</th><th>size</th><th>opened</th><th>days</th><th>avg</th><th>mark</th><th>unrealised</th><th>realised</th></tr></thead><tbody>';
+        (b.open || []).forEach(function(r) {
+          var pos = r.kind === 'rates' ? (r.units >= 0 ? '+' : '') + Math.round(r.units).toLocaleString() + ' $/bp' : (r.units >= 0 ? '+' : '') + (r.units / 1e6).toFixed(2) + 'm USD';
+          h += '<tr><td>' + r.key + '</td><td style="text-align:left;">' + r.instrument + '<div style="font-size:0.66rem;color:var(--text-dim);">' + (r.verb || '') + '</div></td><td>' + pos + '</td><td>' + (r.size || '') + '</td><td>' + r.opened + '</td><td>' + r.days + '</td><td>' + r.avg + '</td><td>' + (r.mark == null ? '—' : r.mark) + '</td><td class="' + cls(r.unrealised) + '">' + money(r.unrealised) + '</td><td class="' + cls(r.realised) + '">' + money(r.realised) + '</td></tr>';
+        });
+        if (!(b.open || []).length) h += '<tr><td colspan="10" style="color:var(--text-dim);">flat</td></tr>';
+        h += '</tbody></table></div>';
+        h += '<div class="ind-section"><h3>Closed episodes (latest 25)</h3><table class="vol-table"><thead><tr><th>opened</th><th>closed</th><th>days</th><th>key</th><th>trade</th><th>size</th><th>entry</th><th>exit</th><th>P&amp;L</th></tr></thead><tbody>';
+        (b.closed || []).slice(0, 25).forEach(function(e) {
+          h += '<tr><td>' + e.opened + '</td><td>' + e.closed + '</td><td>' + e.days + '</td><td>' + e.key + '</td><td style="text-align:left;">' + (e.verb || '') + '</td><td>' + (e.size || '') + '</td><td>' + e.entry + '</td><td>' + e.exit + '</td><td class="' + cls(e.pnl) + '">' + money(e.pnl) + '</td></tr>';
+        });
+        h += '</tbody></table></div>';
+        h += '<div style="font-size:0.68rem;color:var(--text-dim);margin-top:6px;">' + (b.convention || '') + ' · started ' + (b.created || '') + ' · last update ' + (b.last_update || '') + '</div>';
+        el.innerHTML = h;
+      }
+      // this block runs before the shared bust() helper is defined further down — local equivalent
+      var _b = function(u) { return u + '?v=' + Date.now(); };
+      fetch(_b('setups.json')).then(function(r){ return r.json(); }).then(function(d) { renderCards(d); renderHist(d); })
+        .catch(function(e) { document.getElementById('setups-head').innerHTML = 'setups.json not available'; });
+      fetch(_b('setups_blotter.json')).then(function(r){ return r.json(); }).then(renderBlotter).catch(function(){ renderBlotter(null); });
+    })();
+    </script>
   </div>
 
   <!-- ============ VOL PAGE (FX + Equity + Rates combined) ============ -->
@@ -2193,20 +2284,40 @@ function renderRsiMacd(d) {
   });
 }
 function renderScores(d) {
-  const cards = [
-    { title: 'Short-Term Momentum', ...d.st },
-    { title: 'Long-Term Momentum', ...d.lt },
-  ];
-  document.getElementById('scores').innerHTML = cards.map(c => `
-    <div class="score-card">
-      <div class="title">${c.title}</div>
-      <div class="score-bar-bg"><div class="score-bar-fill" style="width:${c.score}%;background:${scoreColor(c.score)}"></div></div>
-      <div class="score-meta">
-        <div class="score-num" style="color:${scoreColor(c.score)}">${c.score}</div>
-        <span class="score-label badge ${badgeClass(c.label)}">${c.label}</span>
-      </div>
-    </div>
-  `).join('');
+  const tr = d.trend;
+  if (!tr) { document.getElementById('scores').innerHTML = ''; return; }
+  const col = trendColor(tr.score);
+  const pts = (tr.hist || []);
+  let spark = '';
+  if (pts.length > 2) {
+    const W = 260, H = 60;
+    const xs = pts.map((p, i) => (i / (pts.length - 1)) * W);
+    const ys = pts.map(p => H / 2 - (p.s * (H / 2 - 4)));
+    const path = xs.map((x, i) => (i ? 'L' : 'M') + x.toFixed(1) + ',' + ys[i].toFixed(1)).join(' ');
+    spark = '<svg width="' + W + '" height="' + H + '" style="display:block;max-width:100%;">' +
+      '<line x1="0" y1="' + H / 2 + '" x2="' + W + '" y2="' + H / 2 + '" stroke="var(--border)" stroke-width="1"/>' +
+      '<path d="' + path + '" fill="none" stroke="' + col + '" stroke-width="1.6"/>' +
+      '<circle cx="' + xs[xs.length - 1].toFixed(1) + '" cy="' + ys[ys.length - 1].toFixed(1) + '" r="2.5" fill="' + col + '"/></svg>' +
+      '<div style="font-size:0.62rem;color:var(--text-dim);">score, last ' + pts.length + ' points (~1y) · ' + pts[0].d + ' → ' + pts[pts.length - 1].d + '</div>';
+  }
+  const speeds = (tr.speeds || []).map(sp =>
+    '<span class="st-chip-like" style="font-size:0.68rem;border:1px solid var(--border);border-radius:6px;padding:2px 7px;color:' + trendColor(sp.resp) + ';">' +
+    sp.speed + ' <b>' + fsig(sp.resp) + '</b> <span style="color:var(--text-dim);">z ' + fsig(sp.z, 1) + ' · ' + (sp.days_since_flip == null ? '—' : sp.days_since_flip + 'd') + '</span></span>').join(' ');
+  document.getElementById('scores').innerHTML =
+    '<div class="score-card" style="grid-column:1/-1;">' +
+      '<div class="title">Trend score (vol-scaled 3-speed EWMA + 12M anchor · same engine as CTA Rates)</div>' +
+      '<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;">' +
+        '<div style="min-width:160px;"><div style="font-size:2rem;font-weight:800;color:' + col + ';font-variant-numeric:tabular-nums;">' + fsig(tr.score) + '</div>' +
+          '<span class="badge ' + (tr.score >= 0.2 ? 'bull' : tr.score <= -0.2 ? 'bear' : 'neutral') + '">' + (tr.band || '') + '</span>' +
+          '<div style="font-size:0.7rem;color:var(--text-dim);margin-top:6px;">' + (tr.days_since_flip == null ? '' : tr.days_since_flip + 'd since sign flip') +
+          ' · Δ1d ' + fsig(tr.chg_1d) + ' · Δ5d ' + fsig(tr.chg_5d) + '</div></div>' +
+        '<div style="flex:1;min-width:220px;">' + spark + '</div>' +
+        '<div style="min-width:220px;font-size:0.72rem;color:var(--text-dim);line-height:1.7;">' +
+          '<div>' + speeds + '</div>' +
+          '<div>12M anchor <b style="color:' + trendColor(tr.anchor) + ';">' + fsig(tr.anchor, 1) + '</b> · 1M move <b>' + fsig(tr.ret_1m_z, 1) + 'σ</b> · vol <b>' + (tr.vol_ann == null ? '—' : tr.vol_ann.toFixed(tr.vol_unit === 'bp' ? 0 : 1) + (tr.vol_unit || '')) + '</b> · 52w position <b>' + (tr.pos_52w == null ? '—' : Math.round(tr.pos_52w * 100) + '%') + '</b></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
 }
 function renderIndicators(d) {
   const shortRows = SHORT_KEYS.filter(k => d.ind[k]).map(k => {
@@ -2276,6 +2387,23 @@ function renderMomSummary() {
   });
 }
 
+function trendColor(s) {
+  if (s == null) return 'var(--text-dim)';
+  if (s >= 0.6) return 'var(--green)';
+  if (s >= 0.2) return '#4ade80';
+  if (s <= -0.6) return 'var(--red)';
+  if (s <= -0.2) return '#f87171';
+  return 'var(--text-dim)';
+}
+function trendBar(s) {
+  if (s == null) return '';
+  var w = Math.min(100, Math.abs(s) * 100) / 2;   // half-width in % of an 84px track
+  var left = s >= 0 ? 50 : 50 - w;
+  return '<span style="display:inline-block;position:relative;width:84px;height:8px;background:var(--surface2);border-radius:4px;vertical-align:middle;">' +
+         '<span style="position:absolute;left:50%;top:0;width:1px;height:8px;background:var(--border);"></span>' +
+         '<span style="position:absolute;left:' + left + '%;top:0;width:' + w + '%;height:8px;border-radius:4px;background:' + trendColor(s) + ';"></span></span>';
+}
+function fsig(x, dp) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(dp == null ? 2 : dp); }
 function renderMomSummaryCategory(cat, tickers) {
   const target = document.getElementById('mom-summary-table-' + cat);
   if (!target) return;
@@ -2283,29 +2411,28 @@ function renderMomSummaryCategory(cat, tickers) {
     target.innerHTML = '<div style="color:var(--text-dim);padding:20px;">No tickers in this category.</div>';
     return;
   }
-
   let rows = '';
   tickers.forEach(t => {
     const d = DATA[t];
+    const tr = d.trend || {};
     const rsi14 = d.ind['RSI (14d)'];
-    const macdSig = d.ind['MACD histogram'];
-    const sma50_200 = d.ind['SMA 50/200'];
-
     rows += '<tr style="cursor:pointer;" onclick="switchToDetail(\'' + t + '\')">';
     rows += '<td>' + t + '</td>';
     rows += '<td>' + d.last.toFixed(d.last > 1000 ? 2 : 4) + '</td>';
-
-    // ST score with color
-    const stColor = scoreColor(d.st.score);
-    rows += '<td style="font-weight:700;color:' + stColor + '">' + d.st.score + '</td>';
-    rows += '<td><span class="badge ' + badgeClass(d.st.label) + '">' + d.st.label + '</span></td>';
-
-    // LT score with color
-    const ltColor = scoreColor(d.lt.score);
-    rows += '<td style="font-weight:700;color:' + ltColor + '">' + d.lt.score + '</td>';
-    rows += '<td><span class="badge ' + badgeClass(d.lt.label) + '">' + d.lt.label + '</span></td>';
-
-    // RSI
+    rows += '<td data-sort="' + (tr.score == null ? -9 : tr.score) + '" style="white-space:nowrap;">' + trendBar(tr.score) +
+            ' <b style="color:' + trendColor(tr.score) + ';font-variant-numeric:tabular-nums;">' + fsig(tr.score) + '</b></td>';
+    rows += '<td><span class="badge ' + (tr.score >= 0.2 ? 'bull' : tr.score <= -0.2 ? 'bear' : 'neutral') + '">' + (tr.band || '—') + '</span></td>';
+    const dsf = tr.days_since_flip;
+    rows += '<td data-sort="' + (dsf == null ? 9999 : dsf) + '" style="color:' + (dsf != null && dsf <= 5 ? 'var(--amber)' : 'var(--text-dim)') + ';">' + (dsf == null ? '—' : dsf + 'd') + '</td>';
+    rows += '<td data-sort="' + (tr.chg_5d == null ? 0 : tr.chg_5d) + '" style="color:' + (tr.chg_5d > 0.05 ? 'var(--green)' : tr.chg_5d < -0.05 ? 'var(--red)' : 'var(--text-dim)') + ';">' + fsig(tr.chg_5d) + '</td>';
+    (tr.speeds || []).forEach(sp => {
+      rows += '<td data-sort="' + sp.resp + '" title="z ' + sp.z + ', ' + sp.days_since_flip + 'd since flip" style="color:' + trendColor(sp.resp) + ';">' + fsig(sp.resp) + '</td>';
+    });
+    if (!(tr.speeds || []).length) rows += '<td>—</td><td>—</td><td>—</td>';
+    rows += '<td data-sort="' + (tr.anchor == null ? 0 : tr.anchor) + '" style="color:' + trendColor(tr.anchor) + ';">' + fsig(tr.anchor, 1) + '</td>';
+    rows += '<td data-sort="' + (tr.ret_1m_z == null ? 0 : tr.ret_1m_z) + '">' + fsig(tr.ret_1m_z, 1) + 'σ</td>';
+    rows += '<td>' + (tr.vol_ann == null ? '—' : tr.vol_ann.toFixed(tr.vol_unit === 'bp' ? 0 : 1) + (tr.vol_unit || '')) + '</td>';
+    rows += '<td data-sort="' + (tr.pos_52w == null ? 0 : tr.pos_52w) + '">' + (tr.pos_52w == null ? '—' : Math.round(tr.pos_52w * 100) + '%') + '</td>';
     if (rsi14) {
       const rsiVal = parseFloat(rsi14.v);
       const rsiColor = rsiVal > 70 ? 'var(--red)' : rsiVal < 30 ? 'var(--green)' : 'var(--text-dim)';
@@ -2313,51 +2440,6 @@ function renderMomSummaryCategory(cat, tickers) {
     } else {
       rows += '<td>-</td>';
     }
-
-    // MACD
-    if (macdSig) {
-      rows += '<td><span class="badge ' + badgeClass(macdSig.s) + '">' + macdSig.s + '</span></td>';
-    } else {
-      rows += '<td>-</td>';
-    }
-
-    // SMA 50/200
-    if (sma50_200) {
-      rows += '<td><span class="badge ' + badgeClass(sma50_200.s) + '">' + sma50_200.s.replace(' (BULLISH)','').replace(' (BEARISH)','') + '</span></td>';
-    } else {
-      rows += '<td>-</td>';
-    }
-
-    // Momentum shift column (1d / 1w label or score change)
-    const sh = d.shift || {};
-    let shiftHtml = '';
-    function shortLabel(lbl) {
-      if (!lbl) return '';
-      return lbl.replace('STRONG BULLISH', 'STR BULL')
-                .replace('STRONG BEARISH', 'STR BEAR')
-                .replace('BULLISH', 'BULL')
-                .replace('BEARISH', 'BEAR')
-                .replace('NEUTRAL', 'NEU');
-    }
-    function shiftBadge(chg, prevLabel, curLabel, period) {
-      if (chg === null || chg === undefined) return '';
-      const labelChanged = prevLabel && prevLabel !== curLabel;
-      // Surface if score moved >=10 points OR label crossed a regime
-      if (Math.abs(chg) < 10 && !labelChanged) return '';
-      const arrow = chg > 0 ? '▲' : (chg < 0 ? '▼' : '·');
-      const cls = chg > 0 ? 'cross-bull' : (chg < 0 ? 'cross-bear' : '');
-      const tip = prevLabel ? (period + ' ago: ' + prevLabel + ' -> now: ' + curLabel) : '';
-      const txt = period + ' ' + arrow + ' ' + (chg > 0 ? '+' : '') + chg
-                + (labelChanged ? ' (' + shortLabel(prevLabel) + '→' + shortLabel(curLabel) + ')' : '');
-      return '<span class="cross-badge ' + cls + '" title="' + tip + '">' + txt + '</span> ';
-    }
-    shiftHtml += shiftBadge(sh.st_1d_chg, sh.st_1d_label, d.st.label, 'ST 1d');
-    shiftHtml += shiftBadge(sh.st_5d_chg, sh.st_5d_label, d.st.label, 'ST 1w');
-    shiftHtml += shiftBadge(sh.lt_1d_chg, sh.lt_1d_label, d.lt.label, 'LT 1d');
-    shiftHtml += shiftBadge(sh.lt_5d_chg, sh.lt_5d_label, d.lt.label, 'LT 1w');
-    rows += shiftHtml ? '<td>' + shiftHtml + '</td>' : '<td style="color:var(--text-dim)">—</td>';
-
-    // Crossovers column
     const cxList = d.crossovers || [];
     if (cxList.length > 0) {
       let badges = '';
@@ -2375,19 +2457,19 @@ function renderMomSummaryCategory(cat, tickers) {
     } else {
       rows += '<td style="color:var(--text-dim)">—</td>';
     }
-
     rows += '</tr>';
   });
-
   target.innerHTML =
+    '<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:8px;line-height:1.5;">' +
+    'Trend = vol-scaled 3-speed EWMA score in [−1, +1] with a 12M anchor (same engine as CTA Rates); + means the <i>ticker</i> is trending up (yields up for rates). ' +
+    'Timing edge on the 2015-26 panel is real for <b>rates</b> only (1M rank-IC +0.05, +0.11 at 6M); FX ≈ 0, equity indices mildly mean-revert at 1-3M — treat the score as context there. Click a header to sort.</div>' +
     '<table class="vol-table"><thead><tr>' +
     '<th>Ticker</th><th>Last</th>' +
-    '<th>ST</th><th>ST Signal</th>' +
-    '<th>LT</th><th>LT Signal</th>' +
-    '<th>RSI(14)</th><th>MACD</th><th>50/200</th><th>Shift</th><th>Crossovers</th>' +
+    '<th>Trend</th><th>Band</th><th>Since flip</th><th>Δ5d</th>' +
+    '<th title="EWMA 10/30 response">10/30</th><th title="EWMA 20/60 response">20/60</th><th title="EWMA 40/120 response">40/120</th><th title="12M TSMOM anchor (mean sign over 5 lookbacks)">12M</th>' +
+    '<th title="last 21d move in vol units">1M σ</th><th>Vol</th><th>52w pos</th><th>RSI(14)</th><th>Crossovers</th>' +
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
-
 fetch(bust('data.json')).then(r => r.json()).then(data => {
   DATA = data;
   const tickers = Object.keys(data).filter(k => k !== '_updated');
@@ -2490,7 +2572,7 @@ function renderRsiRollover(d) {
       html += '<td>' + b.rsi_now.toFixed(1) + '</td>';
       html += '<td style="color:var(--red);">-' + b.drop.toFixed(1) + '</td>';
       html += '<td style="color:var(--text-dim);">' + b.peak_bars_ago + '</td>';
-      html += '<td style="color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
+      html += '<td data-sort="' + (b.trend == null ? 0 : b.trend) + '" style="color:' + trendColor(b.trend) + ';white-space:nowrap;">' + fsig(b.trend) + ' <span style="color:var(--text-dim);font-size:0.68rem;">' + (b.trend_band || '') + '</span></td>';
       html += '<td>' + strengthBadge(b.strength) + '</td>';
       html += '<td>' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
       html += '</tr>';
@@ -2525,7 +2607,7 @@ function renderRsiRollover(d) {
       html += '<td>' + b.rsi_now.toFixed(1) + '</td>';
       html += '<td style="color:var(--green);">+' + b.rise.toFixed(1) + '</td>';
       html += '<td style="color:var(--text-dim);">' + b.trough_bars_ago + '</td>';
-      html += '<td style="color:' + (b.st_score > 0 ? 'var(--green)' : b.st_score < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + (b.st_label || '') + '</td>';
+      html += '<td data-sort="' + (b.trend == null ? 0 : b.trend) + '" style="color:' + trendColor(b.trend) + ';white-space:nowrap;">' + fsig(b.trend) + ' <span style="color:var(--text-dim);font-size:0.68rem;">' + (b.trend_band || '') + '</span></td>';
       html += '<td>' + strengthBadge(b.strength) + '</td>';
       html += '<td>' + (b.divergence ? '<span style="color:var(--amber);font-weight:700;">DIV</span>' : '') + '</td>';
       html += '</tr>';
@@ -2637,8 +2719,15 @@ fetch(bust('alerts.json')).then(r => r.json()).then(d => {
   if (startCollapsed) banner.classList.add('collapsed');
   let body = '';
   d.alerts.forEach(a => {
-    const dirClass = a.direction.includes('BEARISH') || a.direction.includes('DEATH') ? ' bearish' : '';
-    if (a.type === 'crossover') {
+    const dirClass = a.direction.includes('BEARISH') || a.direction.includes('DEATH') || a.direction === 'DOWN' ? ' bearish' : '';
+    if (a.type === 'trend_flip') {
+      body += '<div class="alert-row">' +
+        '<span class="alert-ticker">' + a.ticker + '</span>' +
+        '<span class="alert-cross-type">TREND FLIP</span>' +
+        '<span class="alert-dir' + dirClass + '">' + (a.direction === 'UP' ? '▲' : '▼') + ' ' + a.direction + ' (score ' + (a.score >= 0 ? '+' : '') + a.score.toFixed(2) + ')</span>' +
+        '<span class="alert-days">' + a.days_ago + 'd ago</span>' +
+        '</div>';
+    } else if (a.type === 'crossover') {
       const arrow = dirClass ? '▼' : '▲';
       body += '<div class="alert-row">' +
         '<span class="alert-ticker">' + a.ticker + '</span>' +
@@ -2667,153 +2756,70 @@ fetch(bust('alerts.json')).then(r => r.json()).then(d => {
   });
 }).catch(() => {});
 
-// ── Signal Backtests ──
+// ── Signal event study (signal_study.py) ──
 fetch(bust('signal_backtest.json')).then(r => r.json()).then(d => {
   const container = document.getElementById('signal-backtests');
-  if (!d.backtests || d.backtests.length === 0) {
-    container.innerHTML = '<div style="color:var(--text-dim);padding:20px;">No active signal triggers.</div>';
+  if (!d.tickers || d.tickers.length === 0) {
+    container.innerHTML = '<div style="color:var(--text-dim);padding:20px;">No event-study output.</div>';
     return;
   }
-
+  const S = d.summary || {};
+  function pCls(p) { return p == null ? '' : p <= (S.p_edge || 0.025) ? 'z-high' : p <= (S.p_weak || 0.1) ? 'z-elevated' : ''; }
+  function fx(v, u, dp) { return v == null ? '—' : (v >= 0 ? '+' : '') + v.toFixed(dp) + u; }
   let html = '';
-
-  // ── Summary box: actionable signals (HIGH importance, active) ──
-  // Use effective_direction (auto-flipped for fades) to show actionable bias
-  const highBts = d.backtests.filter(b => b.importance === 'HIGH' && b.is_active);
-  const watchBts = d.backtests.filter(b => b.importance === 'HIGH' && !b.is_active);
-  const activeBts = d.backtests.filter(b => b.is_active);
-  function badgeFor(b) {
-    const eff = b.effective_direction || b.direction;
-    const effBear = eff === 'BEARISH';
-    const arrow = effBear ? '▼' : '▲';
-    const t = (b.t_stat !== undefined) ? ' t=' + (b.t_stat >= 0 ? '+' : '') + b.t_stat.toFixed(1) : '';
-    const fadePrefix = b.is_fade ? 'FADE ' : '';
-    return `<span class="badge ${effBear ? 'bear' : 'bull'}" style="margin:2px 4px;">${arrow} ${fadePrefix}${b.name} ${b.signal}${t}</span>`;
-  }
-  if (highBts.length > 0) {
-    const items = highBts.map(badgeFor).join('');
-    html += `<div style="background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);border-radius:8px;padding:14px 18px;margin-bottom:20px;">`;
-    html += `<div style="font-size:0.8rem;font-weight:700;color:#2ecc71;margin-bottom:8px;">Actionable Signals (${highBts.length}) &middot; |t|&ge;2.0 &middot; ACTIVE (fresh trigger in last 3d) &middot; arrow shows effective direction (auto-flipped for fades)</div>`;
-    html += `<div style="font-size:0.78rem;line-height:1.8;">${items}</div>`;
-    html += `</div>`;
+  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:16px;font-size:0.78rem;line-height:1.6;">' +
+    '<div style="font-weight:700;margin-bottom:4px;">Drift-adjusted event study · ' + S.n_tests + ' tests · <span class="z-high">' + S.n_edge + ' EDGE</span> (' + S.expected_false_edge + ' expected by chance at p≤' + S.p_edge + ') · ' + S.n_weak + ' WEAK</div>' +
+    '<div style="color:var(--text-dim);">Each crossover is tested in <b>both</b> directions. <b>Excess</b> = mean forward return after the signal minus the unconditional mean over the same sample, signed so + is with the stated direction. ' +
+    '<b>p</b> = share of ' + S.k_sims + ' random-date placebos (same n) that did as well — drift and fat tails are inside the placebo. Confluence is causal (≥2 signals the same way in the prior ' + S.conf_window_days + ' calendar days). ' +
+    'Verdict at ' + S.verdict_horizon + ': EDGE p≤' + S.p_edge + ' with n≥' + S.min_n + ', WEAK p≤' + S.p_weak + '. This replaced a t-vs-zero backtest on 07-Sep-26 that badged 21 signals HIGH, none of which survived drift removal. Read as context — Setups no longer consumes it.</div></div>';
+  const live = [];
+  d.tickers.forEach(t => t.signals.forEach(b => { if (b.live && (b.verdict === 'EDGE' || b.verdict === 'WEAK')) live.push({ t, b }); }));
+  if (live.length) {
+    html += '<div style="background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);border-radius:8px;padding:12px 18px;margin-bottom:16px;font-size:0.78rem;">' +
+      '<div style="font-weight:700;color:#2ecc71;margin-bottom:6px;">Live crossovers with a drift-adjusted verdict (' + live.length + ')</div>' +
+      live.map(x => { const s1 = (x.b.stats || {})['1M'] || {}; return '<span class="badge ' + (x.b.dir === 'BEAR' ? 'bear' : 'bull') + '" style="margin:2px 4px;">' + (x.b.dir === 'BEAR' ? '▼' : '▲') + ' ' + x.t.name + ' ' + x.b.signal + ' · 1M ' + fx(s1.excess, x.t.unit, 2) + ' p=' + (s1.p == null ? '—' : s1.p.toFixed(3)) + ' · ' + x.b.verdict + (x.b.days_since != null ? ' · ' + x.b.days_since + 'd' : '') + '</span>'; }).join('') + '</div>';
   } else {
-    html += `<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:14px 18px;margin-bottom:20px;">`;
-    html += `<div style="font-size:0.8rem;color:var(--text-dim);">No high-conviction signals currently triggering. ${activeBts.length} active signal(s) tested across all types.</div>`;
-    html += `</div>`;
+    html += '<div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px 18px;margin-bottom:16px;font-size:0.78rem;color:var(--text-dim);">No live crossover carries a drift-adjusted EDGE or WEAK verdict today.</div>';
   }
-  // ── Watch List: HIGH conviction, NOT currently firing ──
-  if (watchBts.length > 0) {
-    const items = watchBts.map(badgeFor).join('');
-    html += `<div style="background:rgba(241,196,15,0.06);border:1px solid rgba(241,196,15,0.20);border-radius:8px;padding:14px 18px;margin-bottom:20px;">`;
-    html += `<div style="font-size:0.8rem;font-weight:700;color:#f1c40f;margin-bottom:8px;">Watch List (${watchBts.length}) &middot; |t|&ge;2.0 historical edge but NOT currently triggering &middot; would become actionable if a fresh crossover fires</div>`;
-    html += `<div style="font-size:0.78rem;line-height:1.8;">${items}</div>`;
-    html += `</div>`;
-  }
-  // ── Filter toggle: show all vs active-only ──
-  html += `<div style="margin-bottom:16px;">`;
-  html += `<label style="font-size:0.78rem;color:var(--text-dim);cursor:pointer;"><input type="checkbox" id="bt-active-only" style="vertical-align:middle;margin-right:6px;"> Show only active backtests (hide snapshot-only)</label>`;
-  html += `</div>`;
-
-  d.backtests.forEach(bt => {
-    const arrow = bt.is_bearish ? '▼' : '▲';
-    const dirCls = bt.is_bearish ? 'bear' : 'bull';
-
-    // Importance badge
-    let impBadge = '';
-    if (bt.importance === 'HIGH') impBadge = '<span style="background:#2ecc71;color:#000;font-size:0.65rem;padding:2px 6px;border-radius:3px;margin-left:8px;font-weight:700;">HIGH</span>';
-    else if (bt.importance === 'MODERATE') impBadge = '<span style="background:rgba(241,196,15,0.25);color:#f1c40f;font-size:0.65rem;padding:2px 6px;border-radius:3px;margin-left:8px;font-weight:700;">MODERATE</span>';
-    else if (bt.importance === 'LOW') impBadge = '<span style="background:rgba(255,255,255,0.1);color:var(--text-dim);font-size:0.65rem;padding:2px 6px;border-radius:3px;margin-left:8px;">LOW</span>';
-
-    // Active badge — persists while the regime holds; shows age, NEW (green) if <=3d old
-    let activeBadge = '';
-    if (bt.is_active) {
-      const da = (bt.cross_days_ago != null) ? bt.cross_days_ago : null;
-      const ageTxt = (da != null) ? ' · ' + da + 'd' : '';
-      const isNew = (da != null && da <= 3);
-      const lbl = isNew ? 'NEW' : 'ACTIVE';
-      const rgb = isNew ? '46,204,113' : '52,152,219';
-      const hex = isNew ? '#2ecc71' : '#3498db';
-      activeBadge = '<span title="days since cross" style="background:rgba(' + rgb + ',0.2);color:' + hex + ';font-size:0.6rem;padding:2px 5px;border-radius:3px;margin-left:6px;">' + lbl + ageTxt + '</span>';
+  html += '<div style="margin-bottom:12px;font-size:0.76rem;color:var(--text-dim);"><label style="cursor:pointer;"><input type="checkbox" id="bt-live-only" style="vertical-align:middle;margin-right:6px;"> Show only signals currently in state (live)</label></div>';
+  d.tickers.forEach(t => {
+    const u = t.unit || '%'; const dp = u === 'bp' ? 1 : 2;
+    const tr = t.trend;
+    html += '<div class="ind-section" style="margin-bottom:18px;">';
+    html += '<h3>' + t.name + ' <span style="font-size:0.7rem;color:var(--text-dim);font-weight:400;">' + t.n_days + ' days from ' + t.first_date + ' · unconditional 1M ' + fx(t.uncond['1M'], u, dp) + ' · 3M ' + fx(t.uncond['3M'], u, dp) + '</span></h3>';
+    if (tr) {
+      html += '<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:8px;line-height:1.6;">Trend score on this asset: rank-IC vs next 1M <b style="color:' + (tr.ic >= 0.03 ? 'var(--green)' : tr.ic <= -0.03 ? 'var(--red)' : 'var(--text)') + ';">' + fsig(tr.ic, 3) + '</b>' +
+        (tr.long_short != null ? ' · strong-up minus strong-down 1M <b>' + fx(tr.long_short, u, dp) + '</b>' : '') + ' · now ' + fsig(tr.score_now) +
+        ' · by band: ' + tr.bands.map(b => b.band + ' ' + (b.excess == null ? '—' : fx(b.excess, '', dp)) + ' <span style="opacity:.6;">(n' + b.n + ')</span>').join(' · ') + '</div>';
     }
-
-    // Confluence badge
-    const confBadge = bt.is_confluence ? '<span style="background:rgba(155,89,182,0.2);color:#9b59b6;font-size:0.6rem;padding:2px 5px;border-radius:3px;margin-left:6px;">CONFLUENCE</span>' : '';
-
-    // Fade badge (signal is statistically significant in the OPPOSITE direction)
-    const fadeBadge = bt.is_fade ? '<span style="background:rgba(231,76,60,0.25);color:#e74c3c;font-size:0.6rem;padding:2px 5px;border-radius:3px;margin-left:6px;font-weight:700;">FADE</span>' : '';
-
-    // t-stat badge (always show)
-    const tVal = (bt.t_stat !== undefined && bt.t_stat !== null) ? bt.t_stat : null;
-    const tBadge = (tVal !== null) ?
-      `<span style="background:rgba(255,255,255,0.06);color:var(--text-dim);font-size:0.6rem;padding:2px 5px;border-radius:3px;margin-left:6px;font-family:monospace;">t=${tVal >= 0 ? '+' : ''}${tVal.toFixed(2)}</span>` : '';
-
-    // Dim LOW importance entries
-    const dimStyle = bt.importance === 'LOW' ? 'opacity:0.6;' : '';
-
-    html += `<div class="ind-section bt-card" data-active="${bt.is_active ? '1' : '0'}" data-snapshot="${bt.from_snapshot ? '1' : '0'}" style="margin-bottom:24px;${dimStyle}">`;
-    const snapTag = bt.from_snapshot ? '<span style="background:rgba(255,255,255,0.06);color:var(--text-dim);font-size:0.6rem;padding:2px 5px;border-radius:3px;margin-left:6px;">SNAPSHOT</span>' : '';
-    html += `<h3>${bt.name} — ${bt.signal} <span class="badge ${dirCls}">${arrow} ${bt.direction}</span>${tBadge}${impBadge}${activeBadge}${confBadge}${fadeBadge}${snapTag}</h3>`;
-
-    // Note
-    if (bt.note) {
-      html += `<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:4px;font-style:italic;">${bt.note}</div>`;
-    }
-
-    html += `<div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:12px;">${bt.total_triggers} triggers since ${bt.first_trigger}</div>`;
-
-    // Stats table
-    const u = bt.unit || '%';
-    const dp = u === 'bp' ? 1 : 2;
-    html += '<table class="vol-table"><thead><tr><th>Horizon</th><th>Mean</th><th>Median</th><th>StdDev</th><th>Hit Rate</th><th>W/L</th><th>Best</th><th>Worst</th></tr></thead><tbody>';
-    ['1W', '2W', '1M', '3M'].forEach(h => {
-      const s = bt.stats[h];
-      if (!s) return;
-      const hitCls = s.hit_pct >= 60 ? 'z-high' : s.hit_pct <= 40 ? 'z-extreme' : '';
-      const fmt = v => (v >= 0 ? '+' : '') + v.toFixed(dp) + u;
-      html += `<tr><td style="font-weight:700;">${h}</td>`;
-      html += `<td>${fmt(s.mean)}</td>`;
-      html += `<td>${fmt(s.median)}</td>`;
-      html += `<td>${s.std.toFixed(dp)}${u}</td>`;
-      html += `<td class="${hitCls}" style="font-weight:700;">${s.hit_pct}%</td>`;
-      html += `<td>${s.wins}/${s.losses}</td>`;
-      html += `<td>${fmt(s.best)}</td>`;
-      html += `<td>${fmt(s.worst)}</td>`;
-      html += `</tr>`;
-    });
-    html += '</tbody></table>';
-
-    // Recent instances
-    const pxLabel = bt.is_yield ? 'Yield' : 'Price';
-    html += '<div style="margin-top:16px;"><div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Recent Triggers</div>';
-    html += `<table class="vol-table"><thead><tr><th>Date</th><th>${pxLabel}</th><th>1W</th><th>2W</th><th>1M</th><th>3M</th></tr></thead><tbody>`;
-    bt.recent.forEach(r => {
-      const pxDp = bt.is_yield ? 3 : 2;
-      html += `<tr><td>${r.date}</td><td>${r.price.toFixed(pxDp)}</td>`;
-      ['1W', '2W', '1M', '3M'].forEach(h => {
-        const v = r['ret_' + h];
-        if (v == null) { html += '<td>--</td>'; return; }
-        const correct = bt.is_bearish ? v < 0 : v > 0;
-        const cls = correct ? 'z-high' : 'z-extreme';
-        html += `<td class="${cls}">${v >= 0 ? '+' : ''}${v.toFixed(dp)}${u}</td>`;
-      });
-      html += '</tr>';
+    html += '<table class="vol-table"><thead><tr><th>Signal</th><th>Dir</th><th>Live</th><th>n</th><th>1W excess</th><th>2W excess</th><th>1M excess</th><th>1M p</th><th>1M hit</th><th>3M excess</th><th>3M p</th><th>Verdict</th></tr></thead><tbody>';
+    t.signals.forEach((b, i) => {
+      const st = b.stats || {};
+      const row = ['1W', '2W', '1M', '3M'].map(h => st[h] || {});
+      const vcol = b.verdict === 'EDGE' ? 'var(--green)' : b.verdict === 'WEAK' ? 'var(--amber)' : 'var(--text-dim)';
+      const rid = 'btr-' + t.name + '-' + i;
+      html += '<tr class="bt-row" data-live="' + (b.live ? 1 : 0) + '" style="cursor:pointer;' + (b.live ? '' : 'opacity:.75;') + '" onclick="var r=document.getElementById(\'' + rid + '\');r.style.display=r.style.display===\'none\'?\'\':\'none\';">' +
+        '<td>' + b.signal + '</td><td><span class="badge ' + (b.dir === 'BEAR' ? 'bear' : 'bull') + '">' + (b.dir === 'BEAR' ? '▼' : '▲') + ' ' + b.dir + '</span></td>' +
+        '<td>' + (b.live ? '<span style="color:#3498db;font-weight:700;">LIVE' + (b.days_since != null ? ' · ' + b.days_since + 'd' : '') + '</span>' : '—') + '</td>' +
+        '<td>' + b.n + '</td>' +
+        '<td>' + fx(row[0].excess, u, dp) + '</td><td>' + fx(row[1].excess, u, dp) + '</td>' +
+        '<td class="' + pCls(row[2].p) + '" style="font-weight:700;">' + fx(row[2].excess, u, dp) + '</td><td class="' + pCls(row[2].p) + '">' + (row[2].p == null ? '—' : row[2].p.toFixed(3)) + '</td>' +
+        '<td>' + (row[2].hit == null ? '—' : row[2].hit + '%') + '</td>' +
+        '<td class="' + pCls(row[3].p) + '">' + fx(row[3].excess, u, dp) + '</td><td class="' + pCls(row[3].p) + '">' + (row[3].p == null ? '—' : row[3].p.toFixed(3)) + '</td>' +
+        '<td style="color:' + vcol + ';font-weight:700;">' + b.verdict + '</td></tr>';
+      html += '<tr id="' + rid + '" class="bt-row" data-live="' + (b.live ? 1 : 0) + '" style="display:none;"><td colspan="12" style="text-align:left;background:var(--surface2);">' +
+        '<div style="font-size:0.7rem;color:var(--text-dim);margin-bottom:4px;">' + b.why + ' · raw mean 1M ' + fx(row[2].mean, u, dp) + ' vs unconditional ' + fx(row[2].uncond, u, dp) + ' · triggers ' + (b.first || '—') + ' → ' + (b.last || '—') + '</div>' +
+        '<table class="vol-table no-sort" style="font-size:0.74rem;"><thead><tr><th>Trigger</th><th>' + (t.is_yield ? 'Yield' : 'Price') + '</th><th>1W</th><th>2W</th><th>1M</th><th>3M</th></tr></thead><tbody>' +
+        (b.recent || []).slice().reverse().map(r => '<tr><td>' + r.date + '</td><td>' + r.px + '</td>' + ['1W', '2W', '1M', '3M'].map(h => { const v = r[h]; if (v == null) return '<td>—</td>'; const ok = b.dir === 'BEAR' ? v < 0 : v > 0; return '<td class="' + (ok ? 'z-high' : 'z-extreme') + '">' + fx(v, u, dp) + '</td>'; }).join('') + '</tr>').join('') +
+        '</tbody></table></td></tr>';
     });
     html += '</tbody></table></div>';
-    html += '</div>';
   });
-
   container.innerHTML = html;
-  // Wire up the active-only toggle
-  const toggle = document.getElementById('bt-active-only');
-  if (toggle) {
-    toggle.addEventListener('change', () => {
-      const cards = container.querySelectorAll('.bt-card');
-      cards.forEach(c => {
-        if (toggle.checked && c.dataset.active !== '1') c.style.display = 'none';
-        else c.style.display = '';
-      });
-    });
-  }
+  const toggle = document.getElementById('bt-live-only');
+  if (toggle) toggle.addEventListener('change', () => {
+    container.querySelectorAll('tr.bt-row').forEach(r => { if (toggle.checked && r.dataset.live !== '1') r.style.display = 'none'; else if (!r.id) r.style.display = ''; });
+  });
 }).catch(() => {});
 
 /* ========== FX VOL ========== */
