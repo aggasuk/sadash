@@ -1,5 +1,5 @@
 {
- "_updated": "2026-09-07 10:31",
+ "_updated": "2026-09-07 10:43",
  "counts": {
   "act": 4,
   "watch": 12,
@@ -31,7 +31,7 @@
      null
     ],
     [
-     "CTA flow $+1.1m/bp (< floor)",
+     "CTA flow $+0.7m/bp (< floor)",
      0.0,
      "mut",
      null
@@ -61,11 +61,11 @@
      "name": "GJGB10",
      "s": -0.85,
      "flip_days": 499,
-     "chg5": -0.009
+     "chg5": -0.01
     }
    ],
    "other": {
-    "bull": 0.5,
+    "bull": 0.25,
     "bear": 2.25
    },
    "needs": null
@@ -87,10 +87,10 @@
      null
     ],
     [
-     "FV +2.3z (2y) \u00b7 \u00bd-life 25d",
+     "FV +2.0z (2y) \u00b7 \u00bd-life 23d",
      1.25,
      "ok",
-     "FV 2.3z with you, fades ~25d"
+     "FV 2.0z with you, fades ~23d"
     ],
     [
      "EUReka split 2/4 drivers",
@@ -99,7 +99,7 @@
      null
     ],
     [
-     "RSI rollover DXY/EURUSD",
+     "RSI rollover EURUSD",
      0.25,
      "ok",
      "RSI rolling over from an extreme, with you"
@@ -117,17 +117,66 @@
      "name": "DXY",
      "s": -0.17,
      "flip_days": 14,
-     "chg5": -0.122
+     "chg5": -0.123
     },
     {
      "name": "EURUSD",
      "s": -0.23,
      "flip_days": 14,
-     "chg5": -0.019
+     "chg5": -0.018
     }
    ],
    "other": {
     "bull": 1.5
+   },
+   "needs": null
+  },
+  {
+   "key": "audusd",
+   "label": "AUDUSD",
+   "cls": "fx",
+   "dir": "bear",
+   "verb": "SELL AUDUSD",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 1.25,
+   "parts": [
+    [
+     "trend +0.56 against",
+     -0.25,
+     "bad",
+     null
+    ],
+    [
+     "FV +1.6z (2y) \u00b7 \u00bd-life 20d",
+     1.25,
+     "ok",
+     "FV 1.6z with you, fades ~20d"
+    ],
+    [
+     "RSI rollover AUDUSD",
+     0.25,
+     "ok",
+     "RSI rolling over from an extreme, with you"
+    ]
+   ],
+   "veto": null,
+   "anchor": "VALUE",
+   "note": "",
+   "since": "2026-09-07",
+   "days_held": 0,
+   "entry_score": 1.0,
+   "trend": 0.56,
+   "members": [
+    {
+     "name": "AUDUSD",
+     "s": 0.56,
+     "flip_days": 37,
+     "chg5": 0.036
+    }
+   ],
+   "other": {
+    "bear": 1.25
    },
    "needs": null
   },
@@ -148,10 +197,10 @@
      null
     ],
     [
-     "FV +1.2z (2y) \u00b7 \u00bd-life 12d",
+     "FV +1.1z (2y) \u00b7 \u00bd-life 13d",
      1.25,
      "ok",
-     "FV 1.2z with you, fades ~12d"
+     "FV 1.1z with you, fades ~13d"
     ]
    ],
    "veto": null,
@@ -175,49 +224,6 @@
    "needs": null
   },
   {
-   "key": "audusd",
-   "label": "AUDUSD",
-   "cls": "fx",
-   "dir": "bear",
-   "verb": "SELL AUDUSD",
-   "tier": "A",
-   "size": "PROBE",
-   "score": 1.0,
-   "parts": [
-    [
-     "trend +0.56 against",
-     -0.25,
-     "bad",
-     null
-    ],
-    [
-     "FV +1.7z (2y) \u00b7 \u00bd-life 19d",
-     1.25,
-     "ok",
-     "FV 1.7z with you, fades ~19d"
-    ]
-   ],
-   "veto": null,
-   "anchor": "VALUE",
-   "note": "",
-   "since": "2026-09-07",
-   "days_held": 0,
-   "entry_score": 1.0,
-   "trend": 0.56,
-   "members": [
-    {
-     "name": "AUDUSD",
-     "s": 0.56,
-     "flip_days": 37,
-     "chg5": 0.036
-    }
-   ],
-   "other": {
-    "bear": 1.0
-   },
-   "needs": null
-  },
-  {
    "key": "krw5",
    "label": "KRW 5Y (bond)",
    "cls": "rates",
@@ -234,19 +240,19 @@
      "trend 0.41 with you, 233d old"
     ],
     [
-     "CTA mom -0.44",
+     "CTA mom -0.43",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA flow $-0.0m/bp (< floor)",
+     "CTA flow $+0.2m/bp (< floor)",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -6.8bp/3m costs",
+     "carry -6.7bp/3m costs",
      0.0,
      "mut",
      null
@@ -289,13 +295,13 @@
      "trend 0.37 with you, 36d old"
     ],
     [
-     "CTA mom -0.37",
+     "CTA mom -0.38",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA flow $-0.1m/bp (< floor)",
+     "CTA flow $-0.0m/bp (< floor)",
      0.0,
      "mut",
      null
@@ -350,19 +356,19 @@
      null
     ],
     [
-     "CTA -2.0sd CROWDED",
+     "CTA -2.1sd CROWDED",
      -0.75,
      "bad",
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +0.9z",
+     "FV +0.7z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -3.8bp/3m costs",
+     "carry -3.6bp/3m costs",
      0.0,
      "mut",
      null
@@ -405,13 +411,13 @@
      "trend 0.70 with you, 123d old"
     ],
     [
-     "CTA mom -0.70",
+     "CTA mom -0.71",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA -2.0sd CROWDED",
+     "CTA -2.1sd CROWDED",
      -0.75,
      "bad",
      "CTA crowded same way \u2014 TP regime"
@@ -423,7 +429,7 @@
      "FV 1.6z against"
     ],
     [
-     "carry -3.4bp/3m costs",
+     "carry -3.2bp/3m costs",
      0.0,
      "mut",
      null
@@ -471,7 +477,7 @@
      "name": "USDJPY",
      "s": -0.14,
      "flip_days": 3,
-     "chg5": -0.247
+     "chg5": -0.246
     }
    ],
    "other": {},
@@ -499,7 +505,7 @@
      "name": "USDKRW",
      "s": -0.89,
      "flip_days": 33,
-     "chg5": -0.076
+     "chg5": -0.077
     }
    ],
    "other": {},
@@ -555,13 +561,13 @@
      "name": "XAU",
      "s": 0.29,
      "flip_days": 21,
-     "chg5": -0.075
+     "chg5": -0.074
     },
     {
      "name": "XAG",
      "s": 0.19,
      "flip_days": 20,
-     "chg5": -0.029
+     "chg5": -0.028
     }
    ],
    "other": {},
@@ -712,12 +718,12 @@
   "jgb": [
    {
     "d": "2026-09-07",
-    "bull": 0.5,
+    "bull": 0.25,
     "bear": 2.25,
     "tier": "A",
     "size": "FULL",
     "dir": "bear",
-    "trend": -0.852
+    "trend": -0.853
    }
   ],
   "krw5": [
@@ -750,7 +756,7 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": -0.139
+    "trend": -0.138
    }
   ],
   "usd": [
@@ -768,7 +774,7 @@
    {
     "d": "2026-09-07",
     "bull": null,
-    "bear": 1.0,
+    "bear": 1.25,
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
@@ -794,7 +800,7 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": -0.891
+    "trend": -0.892
    }
   ],
   "usdinr": [
@@ -816,7 +822,7 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.238
+    "trend": 0.239
    }
   ],
   "oil": [
@@ -827,7 +833,7 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.357
+    "trend": 0.358
    }
   ],
   "kospi": [
