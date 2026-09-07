@@ -1,8 +1,8 @@
 {
- "_updated": "2026-09-07 10:20",
+ "_updated": "2026-09-07 10:31",
  "created": "2026-08-17",
  "last_update": "2026-09-07",
- "setups_asof": "2026-09-07 10:19",
+ "setups_asof": "2026-09-07 10:31",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -23,6 +23,23 @@
    "score_at_open": 2.0
   },
   {
+   "key": "usd",
+   "instrument": "DXY",
+   "kind": "fx",
+   "verb": "BUY USD (DXY)",
+   "units": 2500000.0,
+   "size": "HALF",
+   "tier": "A",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 0,
+   "avg": 99.176,
+   "mark": 99.195,
+   "unrealised": 479.0,
+   "realised": 0.0,
+   "score_at_open": 1.5
+  },
+  {
    "key": "audusd",
    "instrument": "AUDUSD spot",
    "kind": "fx",
@@ -34,8 +51,8 @@
    "opened": "2026-09-07",
    "days": 0,
    "avg": 0.7203,
-   "mark": 0.7199,
-   "unrealised": 694.0,
+   "mark": 0.7201,
+   "unrealised": 347.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -51,27 +68,10 @@
    "opened": "2026-09-07",
    "days": 0,
    "avg": 32.935,
-   "mark": 32.94,
-   "unrealised": -190.0,
+   "mark": 32.93,
+   "unrealised": 190.0,
    "realised": 0.0,
    "score_at_open": 1.25
-  },
-  {
-   "key": "usd",
-   "instrument": "DXY",
-   "kind": "fx",
-   "verb": "BUY USD (DXY)",
-   "units": 2500000.0,
-   "size": "HALF",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 0,
-   "avg": 99.176,
-   "mark": 99.178,
-   "unrealised": 50.0,
-   "realised": 0.0,
-   "score_at_open": 1.5
   }
  ],
  "closed": [
@@ -320,8 +320,8 @@
   "n_closed": 16,
   "wins": 7,
   "realised": -101495.0,
-  "unrealised": 7554.0,
-  "total": -93941.0,
+  "unrealised": 8016.0,
+  "total": -93479.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -375,7 +375,7 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 554.0
+    "open_pnl": 1016.0
    },
    "TREND": {
     "n": 0,

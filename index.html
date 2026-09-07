@@ -475,6 +475,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     .st-toggle.on{border-color:var(--accent);color:var(--accent);}
     .pos{color:var(--green);} .neg{color:var(--red);}
     </style>
+    <div class="tabs" id="setups-sub-tabs" style="margin-bottom:18px;">
+      <button class="tab active" data-sub="setups">Setups</button>
+      <button class="tab" data-sub="manage">Manage</button>
+    </div>
+    <div id="setups-sub-setups">
     <div id="setups-head" class="st-head">loading…</div>
     <div id="setups-cards"></div>
     <div class="st-h2">Score history — held / best direction per cluster (enter ≥1.0, exit &lt;0.5)</div>
@@ -485,6 +490,14 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <div class="st-h2">Change log</div>
     <div id="setups-changelog" style="font-size:0.74rem;color:var(--text-dim);line-height:1.7;"></div>
     <div id="setups-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
+    </div>
+    <div id="setups-sub-manage" style="display:none;">
+      <div class="st-head" id="manage-head">loading…</div>
+      <div class="st-h2">Held positions — click a chip to cycle — / long / short (saved in this browser; file defaults from held_positions.json)</div>
+      <div id="manage-picker" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center;"></div>
+      <div id="manage-cards"></div>
+      <div id="manage-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
+    </div>
     <script>
     (function() {
       var HIST = null, CHART = null, SEL = {};
@@ -638,6 +651,133 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       fetch(_b('setups.json')).then(function(r){ return r.json(); }).then(function(d) { renderCards(d); renderHist(d); })
         .catch(function(e) { document.getElementById('setups-head').innerHTML = 'setups.json not available'; });
       fetch(_b('setups_blotter.json')).then(function(r){ return r.json(); }).then(renderBlotter).catch(function(){ renderBlotter(null); });
+    })();
+    </script>
+    <script>
+    (function() {
+      var _b = function(u) { return u + '?v=' + Date.now(); };
+      // sub-tab switching
+      document.querySelectorAll('#setups-sub-tabs .tab').forEach(function(t) {
+        t.addEventListener('click', function() {
+          document.querySelectorAll('#setups-sub-tabs .tab').forEach(function(x){ x.classList.remove('active'); });
+          t.classList.add('active');
+          document.getElementById('setups-sub-setups').style.display = t.dataset.sub === 'setups' ? '' : 'none';
+          document.getElementById('setups-sub-manage').style.display = t.dataset.sub === 'manage' ? '' : 'none';
+        });
+      });
+      var D = null, HELD = null;
+      function f2(x, dp) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(dp == null ? 2 : dp); }
+      function fu(x, u, dp) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(dp) + u; }
+      function vcol(v) { return v === 'LIGHTEN' ? 'var(--red)' : v === 'LEAN' ? 'var(--amber)' : v === 'ADD' ? 'var(--green)' : 'var(--text-dim)'; }
+      function loadHeld() {
+        try { var x = JSON.parse(localStorage.getItem('manageHeld') || 'null'); if (x && typeof x === 'object') return x; } catch (e) {}
+        var h = {}; (D.tickers || []).forEach(function(t){ if (t.held) h[t.ticker] = t.held.side; }); return h;
+      }
+      function saveHeld() { try { localStorage.setItem('manageHeld', JSON.stringify(HELD)); } catch (e) {} }
+      function sideLabel(t, side) {
+        if (!side) return '—';
+        if (t.is_yield) return side === 'long' ? 'PAID' : 'RECEIVED';
+        return side.toUpperCase();
+      }
+      function picker() {
+        var el = document.getElementById('manage-picker');
+        var h = '';
+        (D.tickers || []).forEach(function(t) {
+          var sd = HELD[t.ticker];
+          h += '<button class="st-toggle' + (sd ? ' on' : '') + '" data-tk="' + t.ticker + '" style="' + (sd === 'long' ? 'border-color:var(--green);color:var(--green);' : sd === 'short' ? 'border-color:var(--red);color:var(--red);' : '') + '">' +
+               t.name + (sd ? ' · ' + sideLabel(t, sd) : '') + '</button>';
+        });
+        h += '<button class="st-toggle" id="manage-reset" title="back to held_positions.json">reset to file</button>';
+        el.innerHTML = h;
+        el.querySelectorAll('.st-toggle[data-tk]').forEach(function(b) {
+          b.addEventListener('click', function() {
+            var cur = HELD[b.dataset.tk]; HELD[b.dataset.tk] = cur === 'long' ? 'short' : cur === 'short' ? null : 'long';
+            if (!HELD[b.dataset.tk]) delete HELD[b.dataset.tk];
+            saveHeld(); picker(); cards();
+          });
+        });
+        document.getElementById('manage-reset').addEventListener('click', function() { try { localStorage.removeItem('manageHeld'); } catch (e) {} HELD = loadHeld(); picker(); cards(); });
+      }
+      function ctxLine(t, side) {
+        var c = t.context || {}, out = [];
+        if (c.positioning) out.push(c.positioning.src + ' z <b>' + f2(c.positioning.z, 1) + '</b> (' + (c.positioning.read || '') + '; ' + c.positioning.thr + ')');
+        if (c.cta) out.push('CTA exposure <b>' + f2(c.cta.exp_sd, 1) + 'sd</b>' + (Math.abs(c.cta.exp_sd) >= 1.75 ? ' <span style="color:var(--amber);">crowded</span>' : ''));
+        if (c.fv) {
+          var z = c.fv.z; var hl = c.fv.hl;
+          var richFor = t.is_yield ? (z > 0 ? 'yield above fair (bond cheap)' : 'yield below fair (bond rich)') : (z > 0 ? 'rich vs fair' : 'cheap vs fair');
+          var against = (side === 'long') ? (z > 0) : (z < 0);
+          out.push('FV <b>' + f2(z, 1) + 'z</b> ' + richFor + (hl ? ', ½-life ' + hl.toFixed(0) + 'd' : '') + (c.fv.no_mr ? ' ⚠ not mean-reverting' : '') +
+                   (Math.abs(z) >= 1 ? (against ? ' <span style="color:var(--amber);">against you</span>' : ' <span style="color:var(--green);">with you</span>') : ''));
+        }
+        return out.length ? '<div class="st-why">' + out.join(' · ') + '</div>' : '';
+      }
+      function card(t, side) {
+        var S = t.sides[side]; if (!S) return '';
+        var st = t.state, u = t.unit, dp = u === 'bp' ? 1 : 2;
+        var sgn = side === 'long' ? 1 : -1;
+        var withYou = (st.score * sgn);
+        var trendCol = withYou >= 0.2 ? 'var(--green)' : withYou <= -0.2 ? 'var(--red)' : 'var(--text-dim)';
+        var liveRows = S.signals.filter(function(r){ return r.live && r.live.on; });
+        var worst = 'NONE';
+        liveRows.forEach(function(r){ if (r.verdict === 'LIGHTEN') worst = 'LIGHTEN'; else if (r.verdict === 'LEAN' && worst !== 'LIGHTEN') worst = 'LEAN'; });
+        var border = worst === 'LIGHTEN' ? 'var(--red)' : worst === 'LEAN' ? 'var(--amber)' : 'var(--green)';
+        var label = t.held && HELD[t.ticker] === t.held.side ? t.held.label : (sideLabel(t, side) + ' ' + t.name);
+        var h = '<div class="st-card" style="border-left:4px solid ' + border + ';margin-bottom:12px;">';
+        h += '<div class="st-chead"><span class="st-tier">MANAGE</span><span class="st-verb">' + label + ' <span style="font-weight:400;color:var(--text-dim);font-size:0.78rem;">' + t.ticker + ' · ' + st.last + (t.held && t.held.note ? ' · ' + t.held.note : '') + '</span></span>' +
+             '<span class="st-size">trend <b style="color:' + trendCol + ';">' + f2(st.score) + '</b> ' + st.band + '</span></div>';
+        h += '<div class="st-chips">' +
+             '<span class="st-chip mut">' + (st.days_since_flip == null ? '—' : st.days_since_flip + 'd since flip') + ' · Δ5d ' + f2(st.chg_5d) + '</span>' +
+             '<span class="st-chip mut">speeds ' + f2(st.speeds['10/30']) + ' / ' + f2(st.speeds['20/60']) + ' / ' + f2(st.speeds['40/120']) + '</span>' +
+             '<span class="st-chip ' + (Math.abs(st.ret_1m_z) >= 2 ? 'bad' : 'mut') + '">1M ' + f2(st.ret_1m_z, 1) + 'σ</span>' +
+             '<span class="st-chip ' + ((side === 'long' ? st.rsi_peak_10d >= 70 : st.rsi_trough_10d <= 30) ? 'bad' : 'mut') + '">RSI ' + st.rsi14 + ' (10d ' + (side === 'long' ? 'peak ' + st.rsi_peak_10d : 'trough ' + st.rsi_trough_10d) + ')</span>' +
+             '<span class="st-chip ' + (Math.abs(st.dist50_z) >= 2 ? 'bad' : 'mut') + '">vs 50d ' + f2(st.dist50_z, 1) + 'σ</span>' +
+             '<span class="st-chip mut">vol ' + st.vol_ann + u + '</span></div>';
+        h += ctxLine(t, side);
+        // live line
+        if (liveRows.length) {
+          h += '<div class="st-why" style="color:var(--text);">Live now: ' + liveRows.map(function(r){ return '<b>' + r.label + '</b> (day ' + r.live.days_since + ') → <span style="color:' + vcol(r.verdict) + ';font-weight:700;">' + r.verdict + '</span>'; }).join(' · ') + '</div>';
+        } else {
+          h += '<div class="st-why">No exhaustion signal live right now' + (withYou < 0.2 ? ' — but the trend is no longer in your favour (score ' + f2(st.score) + '), so the exhaustion study does not apply; this is a trend question' : '') + '.</div>';
+        }
+        // table
+        h += '<table class="vol-table no-sort" style="margin-top:6px;font-size:0.76rem;"><thead><tr><th>Exhaustion signal</th><th>Now</th><th>n</th><th>1W excess</th><th>1M fwd</th><th>baseline 1M</th><th>1M excess</th><th>p weak</th><th>% negative</th><th>worst 1M</th><th>3M excess</th><th>Verdict</th></tr></thead><tbody>';
+        S.signals.forEach(function(r) {
+          var m1 = (r.stats || {})['1M'] || {}, w1 = (r.stats || {})['1W'] || {}, m3 = (r.stats || {})['3M'] || {};
+          var now = r.live && r.live.on ? '<span style="color:var(--amber);font-weight:700;">ON · d' + r.live.days_since + '</span>' : '—';
+          h += '<tr title="last onsets: ' + (r.recent || []).join(', ') + '"><td>' + r.label + '</td><td>' + now + '</td><td>' + r.n + '</td>' +
+               '<td>' + fu(w1.excess, u, dp) + '</td><td>' + fu(m1.mean, u, dp) + '</td><td>' + fu(m1.base, u, dp) + '</td>' +
+               '<td style="font-weight:700;color:' + (m1.excess == null ? 'var(--text-dim)' : m1.excess < 0 ? 'var(--red)' : 'var(--green)') + ';">' + fu(m1.excess, u, dp) + '</td>' +
+               '<td>' + (m1.p_weak == null ? '—' : m1.p_weak.toFixed(3)) + '</td><td>' + (m1.neg_pct == null ? '—' : m1.neg_pct + '%') + '</td>' +
+               '<td>' + (r.mae == null ? '—' : r.mae.toFixed(dp) + u) + '</td><td>' + fu(m3.excess, u, dp) + '</td>' +
+               '<td style="color:' + vcol(r.verdict) + ';font-weight:700;">' + r.verdict + '</td></tr>';
+        });
+        h += '</tbody></table>';
+        var B = S.baseline || {};
+        var lig = S.signals.filter(function(r){ return r.verdict === 'LIGHTEN' || r.verdict === 'LEAN'; }).map(function(r){ return r.label; });
+        var add = S.signals.filter(function(r){ return r.verdict === 'ADD'; }).map(function(r){ return r.label; });
+        h += '<div class="st-foot"><span>Baseline = holding through any day the trend was in your favour since 2015 (' + Math.round((B.share_days || 0) * 100) + '% of days, n ' + ((B['1M'] || {}).n || '—') + '): 1M ' + fu((B['1M'] || {}).mean, u, dp) + ', worst-1M ' + (B.mae == null ? '—' : B.mae.toFixed(dp) + u) + '. ' +
+             (lig.length ? '<b>Evidence-backed lighten signals on ' + t.name + ':</b> ' + lig.join('; ') + '.' : '<b>No exhaustion signal has beaten holding on ' + t.name + '.</b>') +
+             (add.length ? ' Signals that preceded <i>stronger</i> returns (do not sell on them): ' + add.join('; ') + '.' : '') + '</span></div>';
+        h += '</div>';
+        return h;
+      }
+      function cards() {
+        var el = document.getElementById('manage-cards');
+        var held = (D.tickers || []).filter(function(t){ return HELD[t.ticker]; });
+        var n = held.length, alert = 0, lean = 0;
+        var h = held.map(function(t) {
+          var S = t.sides[HELD[t.ticker]];
+          var live = S ? S.signals.filter(function(r){ return r.live && r.live.on; }) : [];
+          if (live.some(function(r){ return r.verdict === 'LIGHTEN'; })) alert++; else if (live.some(function(r){ return r.verdict === 'LEAN'; })) lean++;
+          return card(t, HELD[t.ticker]);
+        }).join('');
+        el.innerHTML = h || '<div style="color:var(--text-dim);font-size:0.8rem;">No held positions selected — click chips above.</div>';
+        document.getElementById('manage-head').innerHTML = '<b>' + n + ' held position' + (n === 1 ? '' : 's') + '</b> · ' + alert + ' with a live evidence-backed LIGHTEN signal · ' + lean + ' with a LEAN · updated ' + (D._updated || '');
+      }
+      fetch(_b('manage.json')).then(function(r){ return r.json(); }).then(function(d) {
+        D = d; HELD = loadHeld(); picker(); cards();
+        document.getElementById('manage-method').innerHTML = '<b>Method.</b> ' + (d.method || '').replace(/\n/g, '<br>');
+      }).catch(function(e){ document.getElementById('manage-head').innerHTML = 'manage.json not available'; });
     })();
     </script>
   </div>
