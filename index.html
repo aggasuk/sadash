@@ -608,16 +608,26 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         Object.keys(s.by_kind || {}).forEach(function(k) { var v = s.by_kind[k];
           h += '<div class="st-stat"><span class="l">' + k + '</span><span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">' + v.wins + '/' + v.n + '</span></span></div>'; });
         h += '</div>';
-        h += '<div class="ind-section" style="margin-bottom:14px;"><h3>Open paper positions</h3><table class="vol-table"><thead><tr><th>key</th><th>instrument</th><th>position</th><th>size</th><th>opened</th><th>days</th><th>avg</th><th>mark</th><th>unrealised</th><th>realised</th></tr></thead><tbody>';
+        // by anchor — which justification is making or losing the money (closed realised; open marked separately)
+        var ba = s.by_anchor || {};
+        if (Object.keys(ba).length) {
+          h += '<div class="st-h2" style="margin-top:4px;">By anchor</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">';
+          Object.keys(ba).sort().forEach(function(k) { var v = ba[k];
+            h += '<div class="st-stat" style="border-color:' + (k === 'v1' ? 'var(--border)' : 'var(--accent)') + ';"><span class="l">' + k + '</span>' +
+                 '<span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">closed ' + v.wins + '/' + v.n + '</span></span>' +
+                 (v.open_n ? '<span style="font-size:0.7rem;color:var(--text-dim);">open ' + v.open_n + ': <span class="' + cls(v.open_pnl) + '">' + money(v.open_pnl) + '</span></span>' : '') + '</div>'; });
+          h += '</div>';
+        }
+        h += '<div class="ind-section" style="margin-bottom:14px;"><h3>Open paper positions</h3><table class="vol-table"><thead><tr><th>key</th><th>instrument</th><th>position</th><th>size</th><th>anchor</th><th>opened</th><th>days</th><th>avg</th><th>mark</th><th>unrealised</th><th>realised</th></tr></thead><tbody>';
         (b.open || []).forEach(function(r) {
           var pos = r.kind === 'rates' ? (r.units >= 0 ? '+' : '') + Math.round(r.units).toLocaleString() + ' $/bp' : (r.units >= 0 ? '+' : '') + (r.units / 1e6).toFixed(2) + 'm USD';
-          h += '<tr><td>' + r.key + '</td><td style="text-align:left;">' + r.instrument + '<div style="font-size:0.66rem;color:var(--text-dim);">' + (r.verb || '') + '</div></td><td>' + pos + '</td><td>' + (r.size || '') + '</td><td>' + r.opened + '</td><td>' + r.days + '</td><td>' + r.avg + '</td><td>' + (r.mark == null ? '—' : r.mark) + '</td><td class="' + cls(r.unrealised) + '">' + money(r.unrealised) + '</td><td class="' + cls(r.realised) + '">' + money(r.realised) + '</td></tr>';
+          h += '<tr><td>' + r.key + '</td><td style="text-align:left;">' + r.instrument + '<div style="font-size:0.66rem;color:var(--text-dim);">' + (r.verb || '') + '</div></td><td>' + pos + '</td><td>' + (r.size || '') + '</td><td><span class="st-chip ' + (r.anchor && r.anchor !== 'v1' ? 'anchor' : 'mut') + '">' + (r.anchor || 'v1') + '</span></td><td>' + r.opened + '</td><td>' + r.days + '</td><td>' + r.avg + '</td><td>' + (r.mark == null ? '—' : r.mark) + '</td><td class="' + cls(r.unrealised) + '">' + money(r.unrealised) + '</td><td class="' + cls(r.realised) + '">' + money(r.realised) + '</td></tr>';
         });
-        if (!(b.open || []).length) h += '<tr><td colspan="10" style="color:var(--text-dim);">flat</td></tr>';
+        if (!(b.open || []).length) h += '<tr><td colspan="11" style="color:var(--text-dim);">flat</td></tr>';
         h += '</tbody></table></div>';
-        h += '<div class="ind-section"><h3>Closed episodes (latest 25)</h3><table class="vol-table"><thead><tr><th>opened</th><th>closed</th><th>days</th><th>key</th><th>trade</th><th>size</th><th>entry</th><th>exit</th><th>P&amp;L</th></tr></thead><tbody>';
+        h += '<div class="ind-section"><h3>Closed episodes (latest 25)</h3><table class="vol-table"><thead><tr><th>opened</th><th>closed</th><th>days</th><th>key</th><th>trade</th><th>size</th><th>anchor</th><th>entry</th><th>exit</th><th>P&amp;L</th></tr></thead><tbody>';
         (b.closed || []).slice(0, 25).forEach(function(e) {
-          h += '<tr><td>' + e.opened + '</td><td>' + e.closed + '</td><td>' + e.days + '</td><td>' + e.key + '</td><td style="text-align:left;">' + (e.verb || '') + '</td><td>' + (e.size || '') + '</td><td>' + e.entry + '</td><td>' + e.exit + '</td><td class="' + cls(e.pnl) + '">' + money(e.pnl) + '</td></tr>';
+          h += '<tr><td>' + e.opened + '</td><td>' + e.closed + '</td><td>' + e.days + '</td><td>' + e.key + '</td><td style="text-align:left;">' + (e.verb || '') + '</td><td>' + (e.size || '') + '</td><td><span class="st-chip ' + (e.anchor && e.anchor !== 'v1' ? 'anchor' : 'mut') + '">' + (e.anchor || 'v1') + '</span></td><td>' + e.entry + '</td><td>' + e.exit + '</td><td class="' + cls(e.pnl) + '">' + money(e.pnl) + '</td></tr>';
         });
         h += '</tbody></table></div>';
         h += '<div style="font-size:0.68rem;color:var(--text-dim);margin-top:6px;">' + (b.convention || '') + ' · started ' + (b.created || '') + ' · last update ' + (b.last_update || '') + '</div>';
