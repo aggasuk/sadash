@@ -1,8 +1,8 @@
 {
- "_updated": "2026-09-08 09:42",
+ "_updated": "2026-09-09 09:19",
  "created": "2026-08-17",
- "last_update": "2026-09-08",
- "setups_asof": "2026-09-08 09:41",
+ "last_update": "2026-09-09",
+ "setups_asof": "2026-09-09 09:19",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,10 +15,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 1,
+   "days": 2,
    "avg": 2.924,
-   "mark": 2.909,
-   "unrealised": -15000.0,
+   "mark": 2.8810000000000002,
+   "unrealised": -43000.0,
    "realised": 0.0,
    "score_at_open": 2.0
   },
@@ -32,29 +32,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 1,
+   "days": 2,
    "avg": 99.176,
-   "mark": 98.766,
-   "unrealised": -10335.0,
+   "mark": 98.788,
+   "unrealised": -9781.0,
    "realised": 0.0,
    "score_at_open": 1.5
-  },
-  {
-   "key": "usdthb",
-   "instrument": "USDTHB spot",
-   "kind": "fx",
-   "verb": "SELL USDTHB",
-   "units": -1250000.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 1,
-   "avg": 32.935,
-   "mark": 32.84,
-   "unrealised": 3606.0,
-   "realised": 0.0,
-   "score_at_open": 1.25
   },
   {
    "key": "audusd",
@@ -66,12 +49,29 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 1,
+   "days": 2,
    "avg": 0.7203,
-   "mark": 0.7214,
-   "unrealised": -1909.0,
+   "mark": 0.7224,
+   "unrealised": -3644.0,
    "realised": 0.0,
    "score_at_open": 1.0
+  },
+  {
+   "key": "usdthb",
+   "instrument": "USDTHB spot",
+   "kind": "fx",
+   "verb": "SELL USDTHB",
+   "units": -1250000.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 2,
+   "avg": 32.935,
+   "mark": 32.88,
+   "unrealised": 2087.0,
+   "realised": 0.0,
+   "score_at_open": 1.25
   }
  ],
  "closed": [
@@ -320,8 +320,8 @@
   "n_closed": 16,
   "wins": 7,
   "realised": -101495.0,
-  "unrealised": -23638.0,
-  "total": -125133.0,
+  "unrealised": -54338.0,
+  "total": -155833.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -375,14 +375,14 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": -8638.0
+    "open_pnl": -11338.0
    },
    "TREND": {
     "n": 0,
     "wins": 0,
     "pnl": 0.0,
     "open_n": 1,
-    "open_pnl": -15000.0
+    "open_pnl": -43000.0
    }
   }
  },
