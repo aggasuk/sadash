@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-09T09:15:14",
+  "last_updated": "2026-09-10T09:24:16",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 29350.94,
-        "sma_long": 27054.51,
-        "last": 29507.7
+        "sma_short": 29419.81,
+        "sma_long": 27078.42,
+        "last": 29421.55
       },
-      "current_bp": 8.49,
+      "current_bp": 8.65,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 8.49,
+      "distance_bp": 8.65,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 756.95,
-        "sma_long": 625.88,
-        "last": 759.59
+        "sma_short": 756.03,
+        "sma_long": 627.23,
+        "last": 759.98
       },
-      "current_bp": 20.94,
+      "current_bp": 20.53,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 20.94,
+      "distance_bp": 20.53,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46601.11,
-        "sma_long": 44835.42,
-        "last": 47105.78
+        "sma_short": 47002.92,
+        "sma_long": 44959.84,
+        "last": 46848.06
       },
-      "current_bp": 3.94,
+      "current_bp": 4.54,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 3.94,
+      "distance_bp": 4.54,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,12 +58,12 @@
       "label": "1Y USDHKD fwd <= 7.73",
       "formula": "USDHKD + HKD12M / 10000",
       "inputs": {
-        "USDHKD": 784.19,
-        "HKD12M": -71080.0
+        "USDHKD": 784.18,
+        "HKD12M": -70300.0
       },
       "inputs_pct": {
-        "USDHKD": 7.8419,
-        "HKD12M": -710.8
+        "USDHKD": 7.8418,
+        "HKD12M": -703.0
       },
       "current_bp": 7.77,
       "trigger_bp": 7.73,
