@@ -1,43 +1,43 @@
 {
- "_updated": "2026-09-10 09:28",
+ "_updated": "2026-09-11 10:35",
  "created": "2026-08-17",
- "last_update": "2026-09-10",
- "setups_asof": "2026-09-10 09:28",
+ "last_update": "2026-09-11",
+ "setups_asof": "2026-09-11 10:35",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
+  {
+   "key": "krw5",
+   "instrument": "KRW 5Y NDIRS",
+   "kind": "rates",
+   "verb": "PAY KRW 5Y",
+   "units": -2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-10",
+   "days": 1,
+   "avg": 4.109,
+   "mark": 4.19,
+   "unrealised": 20250.0,
+   "realised": 0.0,
+   "score_at_open": 1.35
+  },
   {
    "key": "jgb",
    "instrument": "JGB 10Y yield",
    "kind": "rates",
    "verb": "PAY JGB 10Y / short JB",
-   "units": -10000.0,
-   "size": "FULL",
+   "units": -2500.0,
+   "size": "PROBE",
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 3,
+   "days": 4,
    "avg": 2.924,
-   "mark": 2.935,
-   "unrealised": 11000.0,
-   "realised": 0.0,
+   "mark": 2.99,
+   "unrealised": 16500.0,
+   "realised": 49500.0,
    "score_at_open": 2.0
-  },
-  {
-   "key": "usd",
-   "instrument": "DXY",
-   "kind": "fx",
-   "verb": "BUY USD (DXY)",
-   "units": 2500000.0,
-   "size": "HALF",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 3,
-   "avg": 99.176,
-   "mark": 98.767,
-   "unrealised": -10310.0,
-   "realised": 0.0,
-   "score_at_open": 1.5
   },
   {
    "key": "audusd",
@@ -49,10 +49,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 3,
+   "days": 4,
    "avg": 0.7203,
-   "mark": 0.7211,
-   "unrealised": -1388.0,
+   "mark": 0.7154,
+   "unrealised": 8503.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -66,29 +66,29 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 3,
+   "days": 4,
    "avg": 32.935,
-   "mark": 32.927,
-   "unrealised": 304.0,
+   "mark": 33.145,
+   "unrealised": -7970.0,
    "realised": 0.0,
    "score_at_open": 1.25
   },
   {
-   "key": "krw5",
-   "instrument": "KRW 5Y NDIRS",
-   "kind": "rates",
-   "verb": "PAY KRW 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
+   "key": "usd",
+   "instrument": "DXY",
+   "kind": "fx",
+   "verb": "BUY USD (DXY)",
+   "units": 2500000.0,
+   "size": "HALF",
    "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-10",
-   "days": 0,
-   "avg": 4.109,
-   "mark": 4.109,
-   "unrealised": -0.0,
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 4,
+   "avg": 99.176,
+   "mark": 99.119,
+   "unrealised": -1437.0,
    "realised": 0.0,
-   "score_at_open": 1.35
+   "score_at_open": 1.5
   }
  ],
  "closed": [
@@ -336,9 +336,9 @@
  "stats": {
   "n_closed": 16,
   "wins": 7,
-  "realised": -101495.0,
-  "unrealised": -394.0,
-  "total": -101889.0,
+  "realised": -51995.0,
+  "unrealised": 35846.0,
+  "total": -16149.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -392,18 +392,26 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": -11394.0
+    "open_pnl": -904.0
    },
    "TREND": {
     "n": 0,
     "wins": 0,
     "pnl": 0.0,
     "open_n": 2,
-    "open_pnl": 11000.0
+    "open_pnl": 86250.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-09-11",
+   "key": "jgb",
+   "units": 7500.0,
+   "price": 2.99,
+   "note": "resize -> A PROBE",
+   "anchor": "TREND"
+  },
   {
    "date": "2026-09-10",
    "key": "krw5",
@@ -714,14 +722,6 @@
    "units": 7500.0,
    "price": 3.262,
    "note": "resize -> A PROBE",
-   "anchor": null
-  },
-  {
-   "date": "2026-08-19",
-   "key": "krw5",
-   "units": -2500.0,
-   "price": 4.0085,
-   "note": "resize -> A HALF",
    "anchor": null
   }
  ]
