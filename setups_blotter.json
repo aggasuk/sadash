@@ -1,5 +1,5 @@
 {
- "_updated": "2026-09-15 10:02",
+ "_updated": "2026-09-15 10:06",
  "created": "2026-08-17",
  "last_update": "2026-09-15",
  "setups_asof": "2026-09-15 10:02",
@@ -51,8 +51,8 @@
    "opened": "2026-09-07",
    "days": 8,
    "avg": 0.7203,
-   "mark": 0.7134,
-   "unrealised": 11974.0,
+   "mark": 0.7132,
+   "unrealised": 12321.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -68,8 +68,8 @@
    "opened": "2026-09-07",
    "days": 8,
    "avg": 32.935,
-   "mark": 33.24,
-   "unrealised": -11576.0,
+   "mark": 33.25,
+   "unrealised": -11955.0,
    "realised": 0.0,
    "score_at_open": 1.25
   },
@@ -85,8 +85,8 @@
    "opened": "2026-09-07",
    "days": 8,
    "avg": 99.176,
-   "mark": 99.589,
-   "unrealised": 10411.0,
+   "mark": 99.596,
+   "unrealised": 10587.0,
    "realised": 0.0,
    "score_at_open": 1.5
   },
@@ -354,8 +354,8 @@
   "n_closed": 16,
   "wins": 7,
   "realised": -51995.0,
-  "unrealised": 57934.0,
-  "total": 5939.0,
+  "unrealised": 58078.0,
+  "total": 6083.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -402,21 +402,24 @@
     "wins": 7,
     "pnl": -101495.0,
     "open_n": 0,
-    "open_pnl": 0.0
+    "open_pnl": 0.0,
+    "open_realised": 0.0
    },
    "VALUE": {
     "n": 0,
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 10809.0
+    "open_pnl": 10953.0,
+    "open_realised": 0.0
    },
    "TREND": {
     "n": 0,
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 96625.0
+    "open_pnl": 47125.0,
+    "open_realised": 49500.0
    }
   }
  },
