@@ -1844,14 +1844,12 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <div class="studies-subpage" id="studies-sub-ctot-fx">
       <div style="margin-bottom:18px; font-size:13px; color:var(--muted); line-height:1.6;">
-        <b>USD performance vs Commodity Terms of Trade change</b> &mdash; replicates Citi&rsquo;s Fig. 25 scatter.
-        X-axis: change in Citi&rsquo;s CTOT index (FX.CTOT.{DM,EM} via Velocity) over the window.
-        Y-axis: % USD appreciation vs each currency over the same window (BBG spot).
-        Currencies above the line are <b>USD overshooters</b> &mdash; USD strengthened more than the CTOT move would imply (mean-reversion candidates: short USD).
-        Currencies below the line: USD undershoot &mdash; CCY strengthened despite weak CTOT.
+        <b>USD performance vs Commodity Terms of Trade</b> &mdash; Citi&rsquo;s Fig. 25 scatter, <b>year-to-date</b>.
+        Currencies above the fit are <b>USD overshooters</b> (dollar rose more than the terms-of-trade move implies &mdash; mean-reversion candidates: short USD);
+        below it, USD undershoot. Residual ranking, leverage diagnostics and the full cross-section table are on the page below.
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="ctot_fx_performance.html" loading="lazy" style="width:100%;height:820px;border:0;background:#fff;border-radius:8px;"></iframe>
+        <iframe src="ctot_fx_performance.html" loading="lazy" style="width:100%;height:3060px;border:0;background:#0f1117;border-radius:8px;"></iframe>
       </div>
     </div>
 

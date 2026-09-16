@@ -1,8 +1,8 @@
 {
- "_updated": "2026-09-15 10:06",
+ "_updated": "2026-09-16 09:40",
  "created": "2026-08-17",
- "last_update": "2026-09-15",
- "setups_asof": "2026-09-15 10:02",
+ "last_update": "2026-09-16",
+ "setups_asof": "2026-09-16 09:40",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,46 +15,29 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-10",
-   "days": 5,
+   "days": 6,
    "avg": 4.1582,
-   "mark": 4.2075,
-   "unrealised": 24625.0,
+   "mark": 4.2425,
+   "unrealised": 42125.0,
    "realised": 0.0,
    "score_at_open": 1.35
   },
   {
-   "key": "jgb",
-   "instrument": "JGB 10Y yield",
+   "key": "inr5",
+   "instrument": "INR 5Y NDOIS",
    "kind": "rates",
-   "verb": "PAY JGB 10Y / short JB",
-   "units": -10000.0,
-   "size": "FULL",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-07",
-   "days": 8,
-   "avg": 2.9915,
-   "mark": 3.014,
-   "unrealised": 22500.0,
-   "realised": 49500.0,
-   "score_at_open": 2.0
-  },
-  {
-   "key": "audusd",
-   "instrument": "AUDUSD spot",
-   "kind": "fx",
-   "verb": "SELL AUDUSD",
-   "units": -1250000.0,
+   "verb": "PAY INR 5Y",
+   "units": -2500.0,
    "size": "PROBE",
    "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 8,
-   "avg": 0.7203,
-   "mark": 0.7132,
-   "unrealised": 12321.0,
+   "anchor": "TREND",
+   "opened": "2026-09-13",
+   "days": 3,
+   "avg": 6.5825,
+   "mark": 6.69,
+   "unrealised": 26875.0,
    "realised": 0.0,
-   "score_at_open": 1.0
+   "score_at_open": 1.35
   },
   {
    "key": "usdthb",
@@ -66,10 +49,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 8,
+   "days": 9,
    "avg": 32.935,
-   "mark": 33.25,
-   "unrealised": -11955.0,
+   "mark": 33.302,
+   "unrealised": -13929.0,
    "realised": 0.0,
    "score_at_open": 1.25
   },
@@ -83,29 +66,46 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 8,
+   "days": 9,
    "avg": 99.176,
-   "mark": 99.596,
-   "unrealised": 10587.0,
+   "mark": 99.719,
+   "unrealised": 13688.0,
    "realised": 0.0,
    "score_at_open": 1.5
   },
   {
-   "key": "inr5",
-   "instrument": "INR 5Y NDOIS",
+   "key": "audusd",
+   "instrument": "AUDUSD spot",
+   "kind": "fx",
+   "verb": "SELL AUDUSD",
+   "units": -1250000.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 9,
+   "avg": 0.7203,
+   "mark": 0.7125,
+   "unrealised": 13536.0,
+   "realised": 0.0,
+   "score_at_open": 1.0
+  },
+  {
+   "key": "jgb",
+   "instrument": "JGB 10Y yield",
    "kind": "rates",
-   "verb": "PAY INR 5Y",
+   "verb": "PAY JGB 10Y / short JB",
    "units": -2500.0,
    "size": "PROBE",
    "tier": "A",
    "anchor": "TREND",
-   "opened": "2026-09-13",
-   "days": 2,
-   "avg": 6.5825,
-   "mark": 6.5825,
-   "unrealised": -0.0,
-   "realised": 0.0,
-   "score_at_open": 1.35
+   "opened": "2026-09-07",
+   "days": 9,
+   "avg": 2.9915,
+   "mark": 3.029,
+   "unrealised": 9375.0,
+   "realised": 77625.0,
+   "score_at_open": 2.0
   }
  ],
  "closed": [
@@ -353,9 +353,9 @@
  "stats": {
   "n_closed": 16,
   "wins": 7,
-  "realised": -51995.0,
-  "unrealised": 58078.0,
-  "total": 6083.0,
+  "realised": -23870.0,
+  "unrealised": 91670.0,
+  "total": 67800.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -410,7 +410,7 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 10953.0,
+    "open_pnl": 13295.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -418,12 +418,20 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 47125.0,
-    "open_realised": 49500.0
+    "open_pnl": 78375.0,
+    "open_realised": 77625.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-09-16",
+   "key": "jgb",
+   "units": 7500.0,
+   "price": 3.029,
+   "note": "resize -> A PROBE",
+   "anchor": "TREND"
+  },
   {
    "date": "2026-09-15",
    "key": "krw5",
@@ -734,14 +742,6 @@
    "units": -1250000.0,
    "price": 29426.02,
    "note": "close (dropped off strip)",
-   "anchor": null
-  },
-  {
-   "date": "2026-08-20",
-   "key": "krw5",
-   "units": 2500.0,
-   "price": 3.9725,
-   "note": "resize -> A PROBE",
    "anchor": null
   }
  ]
