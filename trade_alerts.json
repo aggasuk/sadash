@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-16T09:36:51",
+  "last_updated": "2026-09-16T09:50:35",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -24,9 +24,9 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 759.14,
+        "sma_short": 759.13,
         "sma_long": 633.23,
-        "last": 772.51
+        "last": 772.39
       },
       "current_bp": 19.88,
       "trigger_bp": 0.0,
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46038.43,
-        "sma_long": 45371.63,
-        "last": 45692.81
+        "sma_short": 46062.39,
+        "sma_long": 45375.05,
+        "last": 45812.58
       },
-      "current_bp": 1.47,
+      "current_bp": 1.51,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 1.47,
+      "distance_bp": 1.51,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -72,6 +72,26 @@
       "status": "ARMED",
       "rationale": "1Y USDHKD outright fwd (spot + 12M points). Carry/peg-defense gauge; alert at 7.73 (toward the strong-side band). Watch vs short-HKD / +gamma book.",
       "added": "2026-06-03"
+    },
+    {
+      "id": "rba_sep_nov_pay",
+      "label": "Pay RBA Sep/Nov",
+      "formula": "NOV26 - SEP26 (bp)",
+      "inputs": {
+        "SEP26": 454.4,
+        "NOV26": 466.8
+      },
+      "inputs_pct": {
+        "SEP26": 4.544,
+        "NOV26": 4.668
+      },
+      "current_bp": 12.4,
+      "trigger_bp": 10.0,
+      "direction": "below",
+      "distance_bp": 2.4,
+      "status": "NEAR",
+      "rationale": "Pay the RBA Sep/Nov meeting spread at 10bp. Legs are WIRP post-meeting OIS forwards (AU0BFR {MMM}{YYYY}), not the IB futures proxy. House convention: spread = later - earlier, pay = pay the back leg (Nov) / rec the front (Sep), so the position earns as the spread WIDENS. Enter once hike pricing between the two meetings compresses to 10bp (was +12.4bp on 16-Sep-26, i.e. Sep meeting +19bp then Nov +12bp on top). NOTE: there is no Oct-26 RBA meeting (AU0BFR OCT2026 is empty), and this spread dies with the ~29/30-Sep meeting - roll to NOV/DEC after it passes.",
+      "added": "2026-09-16"
     }
   ]
 }
