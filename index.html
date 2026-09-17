@@ -1633,96 +1633,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
-    <!-- ── GBPSEK sub-page ── -->
-    <div class="fv-subpage" id="fv-sub-gbpsek" style="display:none;">
-      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-        <div class="tabs" id="gbpsek-period-tabs" style="margin-bottom:0;">
-          <button class="tab" data-p="6m">6M</button>
-          <button class="tab" data-p="1y">1Y</button>
-          <button class="tab active" data-p="2y">2Y</button>
-          <button class="tab" data-p="3y">3Y</button>
-          <button class="tab" data-p="5y">5Y</button>
-        </div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: GBP-SEK 2Y Rate Spread</div>
-        <div class="fvchart" id="gbpsek-img-rates"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: log(SPX)</div>
-        <div class="fvchart" id="gbpsek-img-spx"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (HG1)</div>
-        <div class="fvchart" id="gbpsek-img-copper"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + log(SPX) + Copper)</div>
-        <div class="fvchart" id="gbpsek-img-combined"></div>
-      </div>
-    </div>
-
-    <!-- ── SGDTHB sub-page ── -->
-    <div class="fv-subpage" id="fv-sub-sgdthb" style="display:none;">
-      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-        <div class="tabs" id="sgdthb-period-tabs" style="margin-bottom:0;">
-          <button class="tab" data-p="6m">6M</button>
-          <button class="tab" data-p="1y">1Y</button>
-          <button class="tab active" data-p="2y">2Y</button>
-          <button class="tab" data-p="3y">3Y</button>
-          <button class="tab" data-p="5y">5Y</button>
-        </div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: SG-TH 2Y Rate Spread</div>
-        <div class="fvchart" id="sgdthb-img-rates"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: XAU</div>
-        <div class="fvchart" id="sgdthb-img-xau"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: DXY</div>
-        <div class="fvchart" id="sgdthb-img-dxy"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + XAU + DXY)</div>
-        <div class="fvchart" id="sgdthb-img-combined"></div>
-      </div>
-    </div>
-
-    <!-- ── SGDMYR sub-page ── -->
-    <div class="fv-subpage" id="fv-sub-sgdmyr" style="display:none;">
-      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
-        <div class="tabs" id="sgdmyr-period-tabs" style="margin-bottom:0;">
-          <button class="tab" data-p="6m">6M</button>
-          <button class="tab" data-p="1y">1Y</button>
-          <button class="tab active" data-p="2y">2Y</button>
-          <button class="tab" data-p="3y">3Y</button>
-          <button class="tab" data-p="5y">5Y</button>
-        </div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: SG-MY 2Y Rate Spread</div>
-        <div class="fvchart" id="sgdmyr-img-rates"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Brent (CO1)</div>
-        <div class="fvchart" id="sgdmyr-img-brent"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: USDCNH</div>
-        <div class="fvchart" id="sgdmyr-img-cnh"></div>
-      </div>
-      <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + Brent + CNH)</div>
-        <div class="fvchart" id="sgdmyr-img-combined"></div>
-      </div>
-    </div>
-
   </div>
 
     <!-- ============ CURVES PAGE ============ -->
@@ -3573,7 +3483,7 @@ window.FV_NAV = (function() {
   function renderSummary() {
     var header = '<table class="vol-table"><thead><tr>' +
       '<th>Asset</th><th>R\u00b2</th><th>Fair Value</th>' +
-      '<th>Current</th><th>Misval</th><th>Z-score</th>' +
+      '<th>Current</th><th>Misval</th><th title="Residual / regression sigma (zero-anchored, 16-Sep-26). FX detail pages also show the legacy rolling-mean z as ‘drift’.">Z-score</th>' +
       '<th title="AR(1) half-life of the model residual \u2014 the expected fade horizon. \u221e = not mean-reverting (spurious/level-shift risk)">\u00bd-life</th>' +
       '<th>Signal</th><th>Model</th></tr></thead><tbody>';
     var fxRows = '', ratesRows = '', equitiesRows = '';
@@ -3660,9 +3570,6 @@ window.FV_NAV = (function() {
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eursek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('noksek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('gbpsek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('sgdthb_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
-    fetch('sgdmyr_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('cl1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('xag_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -4002,9 +3909,6 @@ window.FVDETAIL = (function() {
     eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
     eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
-    gbpsek:     { tabsId: "gbpsek-period-tabs", containers: ["gbpsek-img-rates", "gbpsek-img-spx", "gbpsek-img-copper", "gbpsek-img-combined"] },
-    sgdthb:     { tabsId: "sgdthb-period-tabs", containers: ["sgdthb-img-rates", "sgdthb-img-xau", "sgdthb-img-dxy", "sgdthb-img-combined"] },
-    sgdmyr:     { tabsId: "sgdmyr-period-tabs", containers: ["sgdmyr-img-rates", "sgdmyr-img-brent", "sgdmyr-img-cnh", "sgdmyr-img-combined"] },
   };
   var charts = {};       // canvasId -> Chart
   var curPeriod = {};    // subId -> period
@@ -4032,6 +3936,7 @@ window.FVDETAIL = (function() {
         '<span>Spot <b style="color:var(--text)">' + model.spot + '</b></span>' +
         '<span>Misval <b style="color:var(--text)">' + model.misval + '</b></span>' +
         '<span>Z <b style="color:' + zc + '">' + (z > 0 ? '+' : '') + z + '</b></span>' +
+        (model.z_drift != null ? '<span title="Legacy rolling-252d z: residual vs its own trailing-year mean. Diagnostic only — large |drift| with small |Z| = a recent move that sits near fair; small |drift| with large |Z| = a persistent misvaluation the model is not closing.">drift <b style="color:var(--text)">' + (model.z_drift > 0 ? '+' : '') + model.z_drift + '</b></span>' : '') +
         (model.no_mr ? '<span title="Residual not mean-reverting — spurious/level-shift risk">½-life <b style="color:#dc2626">∞ ⚠</b></span>'
           : (model.halflife != null ? '<span>½-life <b style="color:var(--text)">' + Math.round(model.halflife) + 'd</b></span>' : '')) +
         '<span style="margin-left:auto;font-weight:700;color:' + zc + ';">' + (model.signal || '') + '</span>' +
@@ -4091,7 +3996,7 @@ window.FVDETAIL = (function() {
   // windows stay in the JSONs but are noise (unstable betas / regime breaks).
   // USDJPY deliberately keeps 5Y: its fiscal-premium fit is structural.
   ['eurusd', 'eurgbp', 'usdthb', 'usdzar', 'audusd', 'audnzd', 'usdchf',
-   'eurnok', 'noksek', 'eursek', 'gbpsek', 'sgdthb', 'sgdmyr'].forEach(function(subId) {
+   'eurnok', 'noksek', 'eursek'].forEach(function(subId) {
     var cfg = CONFIG[subId]; if (!cfg) return;
     document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) {
       if (t.dataset.p === '6m' || t.dataset.p === '5y') t.style.display = 'none';

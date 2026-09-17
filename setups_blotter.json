@@ -1,26 +1,26 @@
 {
- "_updated": "2026-09-16 09:40",
+ "_updated": "2026-09-17 10:42",
  "created": "2026-08-17",
- "last_update": "2026-09-16",
- "setups_asof": "2026-09-16 09:40",
+ "last_update": "2026-09-17",
+ "setups_asof": "2026-09-17 10:42",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
-   "key": "krw5",
-   "instrument": "KRW 5Y NDIRS",
-   "kind": "rates",
-   "verb": "PAY KRW 5Y",
-   "units": -5000.0,
+   "key": "usd",
+   "instrument": "DXY",
+   "kind": "fx",
+   "verb": "BUY USD (DXY)",
+   "units": 2500000.0,
    "size": "HALF",
    "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-10",
-   "days": 6,
-   "avg": 4.1582,
-   "mark": 4.2425,
-   "unrealised": 42125.0,
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 10,
+   "avg": 99.176,
+   "mark": 100.344,
+   "unrealised": 29443.0,
    "realised": 0.0,
-   "score_at_open": 1.35
+   "score_at_open": 1.5
   },
   {
    "key": "inr5",
@@ -32,10 +32,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 3,
+   "days": 4,
    "avg": 6.5825,
-   "mark": 6.69,
-   "unrealised": 26875.0,
+   "mark": 6.6575,
+   "unrealised": 18750.0,
    "realised": 0.0,
    "score_at_open": 1.35
   },
@@ -49,29 +49,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 9,
+   "days": 10,
    "avg": 32.935,
-   "mark": 33.302,
-   "unrealised": -13929.0,
+   "mark": 33.41,
+   "unrealised": -18028.0,
    "realised": 0.0,
    "score_at_open": 1.25
-  },
-  {
-   "key": "usd",
-   "instrument": "DXY",
-   "kind": "fx",
-   "verb": "BUY USD (DXY)",
-   "units": 2500000.0,
-   "size": "HALF",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 9,
-   "avg": 99.176,
-   "mark": 99.719,
-   "unrealised": 13688.0,
-   "realised": 0.0,
-   "score_at_open": 1.5
   },
   {
    "key": "audusd",
@@ -83,27 +66,44 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 9,
+   "days": 10,
    "avg": 0.7203,
-   "mark": 0.7125,
-   "unrealised": 13536.0,
+   "mark": 0.7101,
+   "unrealised": 17701.0,
    "realised": 0.0,
    "score_at_open": 1.0
+  },
+  {
+   "key": "krw5",
+   "instrument": "KRW 5Y NDIRS",
+   "kind": "rates",
+   "verb": "PAY KRW 5Y",
+   "units": -2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-10",
+   "days": 7,
+   "avg": 4.1582,
+   "mark": 4.215,
+   "unrealised": 14188.0,
+   "realised": 14188.0,
+   "score_at_open": 1.35
   },
   {
    "key": "jgb",
    "instrument": "JGB 10Y yield",
    "kind": "rates",
    "verb": "PAY JGB 10Y / short JB",
-   "units": -2500.0,
-   "size": "PROBE",
+   "units": -10000.0,
+   "size": "FULL",
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 9,
-   "avg": 2.9915,
-   "mark": 3.029,
-   "unrealised": 9375.0,
+   "days": 10,
+   "avg": 3.0091,
+   "mark": 3.015,
+   "unrealised": 5875.0,
    "realised": 77625.0,
    "score_at_open": 2.0
   }
@@ -353,9 +353,9 @@
  "stats": {
   "n_closed": 16,
   "wins": 7,
-  "realised": -23870.0,
-  "unrealised": 91670.0,
-  "total": 67800.0,
+  "realised": -9682.0,
+  "unrealised": 67929.0,
+  "total": 58247.0,
   "avg_days": 7.4,
   "by_size": {
    "PROBE": {
@@ -410,7 +410,7 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 13295.0,
+    "open_pnl": 29116.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -418,12 +418,28 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 78375.0,
-    "open_realised": 77625.0
+    "open_pnl": 38813.0,
+    "open_realised": 91813.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-09-17",
+   "key": "krw5",
+   "units": 2500.0,
+   "price": 4.215,
+   "note": "resize -> A PROBE",
+   "anchor": "TREND"
+  },
+  {
+   "date": "2026-09-17",
+   "key": "jgb",
+   "units": -7500.0,
+   "price": 3.015,
+   "note": "resize -> A FULL",
+   "anchor": "TREND"
+  },
   {
    "date": "2026-09-16",
    "key": "jgb",
@@ -726,22 +742,6 @@
    "units": -2500.0,
    "price": 3.99,
    "note": "resize -> A HALF",
-   "anchor": null
-  },
-  {
-   "date": "2026-08-21",
-   "key": "jgb",
-   "units": 5000.0,
-   "price": 2.88,
-   "note": "resize -> A HALF",
-   "anchor": null
-  },
-  {
-   "date": "2026-08-20",
-   "key": "ustech",
-   "units": -1250000.0,
-   "price": 29426.02,
-   "note": "close (dropped off strip)",
    "anchor": null
   }
  ]
