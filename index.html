@@ -1446,6 +1446,33 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── USDEGP sub-page (Brent-only, added 17-Sep-26) ── -->
+    <div class="fv-subpage" id="fv-sub-usdegp" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="usdegp-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab active" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDEGP</b> — USDEGP up = pound weaker. <b>Brent-only by design.</b> Egypt is a net energy
+        importer, so oil up &rarr; EGP weaker (positive beta). <b>Only the post-float regime is one market</b>
+        (CBE float 6-Mar-2024, ~30.9 &rarr; 47+): windows reaching back into the peg and the 2022-24 step
+        devaluations flip the beta and read n/a, so this page shows <b>6M / 1Y / 2Y</b>. The link holds in
+        weekly % changes too (elasticity ~+0.10, t~7 post-float) — size oil shocks off that elasticity, not the
+        level beta, which also carries shared drift. CBE-managed and NDF-traded offshore: the short
+        residual half-life makes this a read on where oil puts the pound, not a stand-alone trade.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Brent (CO1)</div>
+        <div class="fvchart" id="usdegp-img-brent"></div>
+      </div>
+    </div>
+
     <!-- ── AUDUSD sub-page ── -->
     <div class="fv-subpage" id="fv-sub-audusd" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3565,6 +3592,7 @@ window.FV_NAV = (function() {
     fetch('eurgbp_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdthb_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdzar_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdegp_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audnzd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3903,6 +3931,7 @@ window.FVDETAIL = (function() {
     eurgbp:     { tabsId: "eurgbp-period-tabs", containers: ["eurgbp-img-ratediff", "eurgbp-img-gbp2s30s", "eurgbp-img-combined"] },
     usdthb:     { tabsId: "usdthb-period-tabs", containers: ["usdthb-img-xau", "usdthb-img-dxy", "usdthb-img-rates", "usdthb-img-combined"] },
     usdzar:     { tabsId: "usdzar-period-tabs", containers: ["usdzar-img-xau", "usdzar-img-dxy", "usdzar-img-copper", "usdzar-img-combined"] },
+    usdegp:     { tabsId: "usdegp-period-tabs", containers: ["usdegp-img-brent"] },
     audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-copper", "audusd-img-combined"] },
     audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates"] },
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
@@ -4001,6 +4030,11 @@ window.FVDETAIL = (function() {
     document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) {
       if (t.dataset.p === '6m' || t.dataset.p === '5y') t.style.display = 'none';
     });
+  });
+  // USDEGP: post-float regime only (CBE float Mar-2024) — 6M/1Y/2Y are the model;
+  // 3Y/5Y span the peg + step devaluations, flip the beta sign and read n/a.
+  document.querySelectorAll('#usdegp-period-tabs .tab').forEach(function(t) {
+    if (t.dataset.p === '3y' || t.dataset.p === '5y') t.style.display = 'none';
   });
 
   function onShow(subId) { if (CONFIG[subId]) render(subId, defaultPeriod(subId)); }
