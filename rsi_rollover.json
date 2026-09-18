@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17 10:39",
+  "generated": "2026-09-18 10:40",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,57 +12,71 @@
     {
       "ticker": "CO1 Comdty",
       "category": "equity_commod",
-      "last": 105.47,
-      "rsi_now": 65.3,
-      "rsi_yest": 66.1,
+      "last": 103.91,
+      "rsi_now": 61.8,
+      "rsi_yest": 63.9,
       "rsi_peak": 76.3,
-      "peak_bars_ago": 5,
-      "drop": 11.0,
+      "peak_bars_ago": 6,
+      "drop": 14.5,
       "divergence": false,
-      "trend": 0.545,
+      "trend": 0.542,
       "trend_band": "up",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "KWSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 4.15,
+      "rsi_now": 57.8,
+      "rsi_yest": 60.5,
+      "rsi_peak": 71.5,
+      "peak_bars_ago": 3,
+      "drop": 13.7,
+      "divergence": false,
+      "trend": 0.725,
+      "trend_band": "strong up",
       "strength": "MODERATE"
     },
     {
       "ticker": "CL1 Comdty",
       "category": "equity_commod",
-      "last": 102.0,
-      "rsi_now": 67.6,
-      "rsi_yest": 68.6,
+      "last": 101.2,
+      "rsi_now": 65.8,
+      "rsi_yest": 67.4,
       "rsi_peak": 78.1,
-      "peak_bars_ago": 5,
-      "drop": 10.4,
+      "peak_bars_ago": 6,
+      "drop": 12.3,
       "divergence": false,
-      "trend": 0.567,
+      "trend": 0.572,
       "trend_band": "up",
       "strength": "MODERATE"
     },
     {
       "ticker": "GDBR10 Index",
       "category": "rates",
-      "last": 3.507,
-      "rsi_now": 71.9,
-      "rsi_yest": 78.0,
+      "last": 3.477,
+      "rsi_now": 66.5,
+      "rsi_yest": 71.9,
       "rsi_peak": 78.0,
-      "peak_bars_ago": 1,
-      "drop": 6.1,
+      "peak_bars_ago": 2,
+      "drop": 11.5,
       "divergence": false,
-      "trend": 0.956,
+      "trend": 0.951,
       "trend_band": "strong up",
       "strength": "MODERATE"
     },
     {
-      "ticker": "USGG10YR Index",
+      "ticker": "IRSWNI5 BGN Curncy",
       "category": "rates",
-      "last": 4.9959,
-      "rsi_now": 72.0,
-      "rsi_yest": 76.7,
-      "rsi_peak": 76.7,
-      "peak_bars_ago": 1,
-      "drop": 4.6,
+      "last": 6.605,
+      "rsi_now": 61.9,
+      "rsi_yest": 62.3,
+      "rsi_peak": 73.0,
+      "peak_bars_ago": 3,
+      "drop": 11.1,
       "divergence": false,
-      "trend": 0.876,
-      "trend_band": "strong up",
+      "trend": 0.528,
+      "trend_band": "up",
       "strength": "MODERATE"
     }
   ],
@@ -70,28 +84,42 @@
     {
       "ticker": "USDKRW Curncy",
       "category": "fx",
-      "last": 1381.0,
-      "rsi_now": 51.2,
-      "rsi_yest": 48.5,
+      "last": 1384.3,
+      "rsi_now": 53.0,
+      "rsi_yest": 50.7,
       "rsi_trough": 17.6,
-      "trough_bars_ago": 6,
-      "rise": 33.6,
+      "trough_bars_ago": 7,
+      "rise": 35.4,
       "divergence": false,
-      "trend": -0.675,
+      "trend": -0.64,
       "trend_band": "strong down",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "USDJPY Curncy",
+      "category": "fx",
+      "last": 156.17,
+      "rsi_now": 45.5,
+      "rsi_yest": 44.3,
+      "rsi_trough": 24.9,
+      "trough_bars_ago": 7,
+      "rise": 20.6,
+      "divergence": false,
+      "trend": -0.374,
+      "trend_band": "down",
       "strength": "MODERATE"
     },
     {
       "ticker": "NIFTY Index",
       "category": "equity_commod",
-      "last": 23217.6,
-      "rsi_now": 27.3,
-      "rsi_yest": 22.2,
+      "last": 23270.6,
+      "rsi_now": 29.9,
+      "rsi_yest": 27.3,
       "rsi_trough": 22.2,
-      "trough_bars_ago": 1,
-      "rise": 5.1,
+      "trough_bars_ago": 2,
+      "rise": 7.7,
       "divergence": false,
-      "trend": -0.479,
+      "trend": -0.497,
       "trend_band": "down",
       "strength": "MODERATE"
     }
@@ -127,15 +155,15 @@
         "bullish": {
           "5": {
             "n": 9,
-            "mean": 0.45,
+            "mean": 0.43,
             "median": 0.68,
             "hit_rate": 66.7
           },
           "10": {
-            "n": 7,
-            "mean": 0.02,
-            "median": -0.07,
-            "hit_rate": 42.9
+            "n": 8,
+            "mean": 0.01,
+            "median": -0.06,
+            "hit_rate": 37.5
           },
           "20": {
             "n": 7,
@@ -154,10 +182,10 @@
             "hit_rate": 75.0
           },
           "10": {
-            "n": 11,
-            "mean": -0.45,
-            "median": -0.42,
-            "hit_rate": 72.7
+            "n": 12,
+            "mean": -0.51,
+            "median": -0.55,
+            "hit_rate": 75.0
           },
           "20": {
             "n": 8,
@@ -281,7 +309,7 @@
           },
           "10": {
             "n": 14,
-            "mean": 0.4,
+            "mean": 0.41,
             "median": 0.5,
             "hit_rate": 21.4
           },
@@ -379,7 +407,7 @@
         "bullish": {
           "5": {
             "n": 9,
-            "mean": -1.25,
+            "mean": -1.26,
             "median": -1.9,
             "hit_rate": 11.1
           },
@@ -391,7 +419,7 @@
           },
           "20": {
             "n": 6,
-            "mean": -4.06,
+            "mean": -4.07,
             "median": -4.49,
             "hit_rate": 0.0
           }
@@ -468,10 +496,10 @@
             "hit_rate": 50.0
           },
           "10": {
-            "n": 7,
-            "mean": 0.08,
-            "median": 0.09,
-            "hit_rate": 57.1
+            "n": 8,
+            "mean": 0.2,
+            "median": 0.13,
+            "hit_rate": 62.5
           },
           "20": {
             "n": 3,
@@ -490,10 +518,10 @@
             "hit_rate": 34.8
           },
           "10": {
-            "n": 22,
-            "mean": 3.21,
-            "median": 4.15,
-            "hit_rate": 27.3
+            "n": 23,
+            "mean": 2.99,
+            "median": 3.76,
+            "hit_rate": 30.4
           },
           "20": {
             "n": 20,
@@ -526,22 +554,22 @@
       "XAG Curncy": {
         "bearish": {
           "5": {
-            "n": 22,
-            "mean": 4.26,
-            "median": 5.77,
-            "hit_rate": 18.2
+            "n": 21,
+            "mean": 4.44,
+            "median": 6.16,
+            "hit_rate": 19.0
           },
           "10": {
-            "n": 22,
-            "mean": 9.72,
-            "median": 11.06,
-            "hit_rate": 22.7
+            "n": 21,
+            "mean": 9.77,
+            "median": 11.41,
+            "hit_rate": 23.8
           },
           "20": {
-            "n": 22,
-            "mean": 15.46,
-            "median": 10.72,
-            "hit_rate": 18.2
+            "n": 21,
+            "mean": 15.31,
+            "median": 10.08,
+            "hit_rate": 19.0
           }
         },
         "bullish": {
@@ -610,22 +638,22 @@
       "CCMP Index": {
         "bearish": {
           "5": {
-            "n": 20,
-            "mean": 0.44,
-            "median": 0.65,
-            "hit_rate": 35.0
+            "n": 19,
+            "mean": 0.31,
+            "median": 0.51,
+            "hit_rate": 36.8
           },
           "10": {
-            "n": 20,
-            "mean": 1.14,
+            "n": 19,
+            "mean": 1.05,
             "median": 2.01,
-            "hit_rate": 40.0
+            "hit_rate": 42.1
           },
           "20": {
-            "n": 20,
-            "mean": 2.38,
-            "median": 1.95,
-            "hit_rate": 20.0
+            "n": 19,
+            "mean": 2.12,
+            "median": 1.84,
+            "hit_rate": 21.1
           }
         },
         "bullish": {
@@ -736,22 +764,22 @@
       "KOSPI Index": {
         "bearish": {
           "5": {
-            "n": 22,
-            "mean": 3.08,
-            "median": 3.0,
-            "hit_rate": 31.8
+            "n": 21,
+            "mean": 3.32,
+            "median": 3.22,
+            "hit_rate": 28.6
           },
           "10": {
-            "n": 22,
-            "mean": 2.9,
-            "median": 1.82,
-            "hit_rate": 40.9
+            "n": 21,
+            "mean": 3.04,
+            "median": 2.39,
+            "hit_rate": 38.1
           },
           "20": {
-            "n": 22,
-            "mean": 6.25,
-            "median": 3.89,
-            "hit_rate": 22.7
+            "n": 21,
+            "mean": 6.37,
+            "median": 3.88,
+            "hit_rate": 23.8
           }
         },
         "bullish": {
@@ -946,10 +974,10 @@
       "CO1 Comdty": {
         "bearish": {
           "5": {
-            "n": 14,
-            "mean": 0.48,
-            "median": -0.54,
-            "hit_rate": 57.1
+            "n": 15,
+            "mean": 0.4,
+            "median": -0.67,
+            "hit_rate": 60.0
           },
           "10": {
             "n": 14,
@@ -988,10 +1016,10 @@
       "CL1 Comdty": {
         "bearish": {
           "5": {
-            "n": 13,
-            "mean": 3.08,
-            "median": 0.93,
-            "hit_rate": 38.5
+            "n": 14,
+            "mean": 2.94,
+            "median": 1.04,
+            "hit_rate": 35.7
           },
           "10": {
             "n": 13,
@@ -1135,21 +1163,21 @@
         "bullish": {
           "5": {
             "n": 5,
-            "mean": 0.93,
+            "mean": 0.82,
             "median": 1.45,
             "hit_rate": 80.0
           },
           "10": {
             "n": 5,
-            "mean": 2.77,
-            "median": 3.71,
+            "mean": 2.57,
+            "median": 2.74,
             "hit_rate": 100.0
           },
           "20": {
             "n": 5,
-            "mean": 2.69,
-            "median": 2.93,
-            "hit_rate": 80.0
+            "mean": 1.94,
+            "median": 0.87,
+            "hit_rate": 60.0
           }
         }
       },
@@ -1163,7 +1191,7 @@
           },
           "10": {
             "n": 30,
-            "mean": 2.64,
+            "mean": 2.62,
             "median": 2.45,
             "hit_rate": 30.0
           },
@@ -1204,10 +1232,10 @@
             "hit_rate": 27.3
           },
           "10": {
-            "n": 10,
-            "mean": 0.38,
+            "n": 11,
+            "mean": 0.71,
             "median": 0.42,
-            "hit_rate": 30.0
+            "hit_rate": 27.3
           },
           "20": {
             "n": 10,

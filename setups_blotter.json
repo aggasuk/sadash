@@ -1,10 +1,27 @@
 {
- "_updated": "2026-09-17 10:42",
+ "_updated": "2026-09-18 10:43",
  "created": "2026-08-17",
- "last_update": "2026-09-17",
- "setups_asof": "2026-09-17 10:42",
+ "last_update": "2026-09-18",
+ "setups_asof": "2026-09-18 10:43",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
+  {
+   "key": "jgb",
+   "instrument": "JGB 10Y yield",
+   "kind": "rates",
+   "verb": "PAY JGB 10Y / short JB",
+   "units": -10000.0,
+   "size": "FULL",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-07",
+   "days": 11,
+   "avg": 3.0091,
+   "mark": 2.949,
+   "unrealised": -60125.0,
+   "realised": 77625.0,
+   "score_at_open": 2.0
+  },
   {
    "key": "usd",
    "instrument": "DXY",
@@ -15,29 +32,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 10,
+   "days": 11,
    "avg": 99.176,
-   "mark": 100.344,
-   "unrealised": 29443.0,
+   "mark": 100.212,
+   "unrealised": 26115.0,
    "realised": 0.0,
    "score_at_open": 1.5
-  },
-  {
-   "key": "inr5",
-   "instrument": "INR 5Y NDOIS",
-   "kind": "rates",
-   "verb": "PAY INR 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-13",
-   "days": 4,
-   "avg": 6.5825,
-   "mark": 6.6575,
-   "unrealised": 18750.0,
-   "realised": 0.0,
-   "score_at_open": 1.35
   },
   {
    "key": "usdthb",
@@ -49,29 +49,29 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 10,
+   "days": 11,
    "avg": 32.935,
-   "mark": 33.41,
-   "unrealised": -18028.0,
+   "mark": 33.27,
+   "unrealised": -12714.0,
    "realised": 0.0,
    "score_at_open": 1.25
   },
   {
-   "key": "audusd",
-   "instrument": "AUDUSD spot",
-   "kind": "fx",
-   "verb": "SELL AUDUSD",
-   "units": -1250000.0,
+   "key": "inr5",
+   "instrument": "INR 5Y NDOIS",
+   "kind": "rates",
+   "verb": "PAY INR 5Y",
+   "units": -2500.0,
    "size": "PROBE",
    "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 10,
-   "avg": 0.7203,
-   "mark": 0.7101,
-   "unrealised": 17701.0,
+   "anchor": "TREND",
+   "opened": "2026-09-13",
+   "days": 5,
+   "avg": 6.5825,
+   "mark": 6.605,
+   "unrealised": 5625.0,
    "realised": 0.0,
-   "score_at_open": 1.0
+   "score_at_open": 1.35
   },
   {
    "key": "krw5",
@@ -83,32 +83,30 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-10",
-   "days": 7,
+   "days": 8,
    "avg": 4.1582,
-   "mark": 4.215,
-   "unrealised": 14188.0,
+   "mark": 4.152,
+   "unrealised": -1562.0,
    "realised": 14188.0,
    "score_at_open": 1.35
-  },
-  {
-   "key": "jgb",
-   "instrument": "JGB 10Y yield",
-   "kind": "rates",
-   "verb": "PAY JGB 10Y / short JB",
-   "units": -10000.0,
-   "size": "FULL",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-07",
-   "days": 10,
-   "avg": 3.0091,
-   "mark": 3.015,
-   "unrealised": 5875.0,
-   "realised": 77625.0,
-   "score_at_open": 2.0
   }
  ],
  "closed": [
+  {
+   "key": "audusd",
+   "kind": "fx",
+   "verb": "SELL AUDUSD",
+   "tier": "A",
+   "size": "PROBE",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "closed": "2026-09-18",
+   "entry": 0.7203,
+   "exit": 0.7118,
+   "pnl": 14751.0,
+   "score": 1.0,
+   "days": 11
+  },
   {
    "key": "bund",
    "kind": "rates",
@@ -351,17 +349,17 @@
   }
  ],
  "stats": {
-  "n_closed": 16,
-  "wins": 7,
-  "realised": -9682.0,
-  "unrealised": 67929.0,
-  "total": 58247.0,
-  "avg_days": 7.4,
+  "n_closed": 17,
+  "wins": 8,
+  "realised": 5069.0,
+  "unrealised": -42661.0,
+  "total": -37592.0,
+  "avg_days": 7.6,
   "by_size": {
    "PROBE": {
-    "n": 9,
-    "wins": 4,
-    "pnl": -36254.0
+    "n": 10,
+    "wins": 5,
+    "pnl": -21503.0
    },
    "FULL": {
     "n": 2,
@@ -381,9 +379,9 @@
     "pnl": -97728.0
    },
    "fx": {
-    "n": 5,
-    "wins": 2,
-    "pnl": -24542.0
+    "n": 6,
+    "wins": 3,
+    "pnl": -9791.0
    },
    "rates": {
     "n": 7,
@@ -406,11 +404,11 @@
     "open_realised": 0.0
    },
    "VALUE": {
-    "n": 0,
-    "wins": 0,
-    "pnl": 0.0,
-    "open_n": 3,
-    "open_pnl": 29116.0,
+    "n": 1,
+    "wins": 1,
+    "pnl": 14751.0,
+    "open_n": 2,
+    "open_pnl": 13401.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -418,12 +416,20 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 3,
-    "open_pnl": 38813.0,
+    "open_pnl": -56062.0,
     "open_realised": 91813.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-09-18",
+   "key": "audusd",
+   "units": 1250000.0,
+   "price": 0.7118,
+   "note": "close (dropped off strip)",
+   "anchor": null
+  },
   {
    "date": "2026-09-17",
    "key": "krw5",
@@ -734,14 +740,6 @@
    "units": -1250000.0,
    "price": 95.7125,
    "note": "close (dropped off strip)",
-   "anchor": null
-  },
-  {
-   "date": "2026-08-21",
-   "key": "krw5",
-   "units": -2500.0,
-   "price": 3.99,
-   "note": "resize -> A HALF",
    "anchor": null
   }
  ]
