@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-22T09:12:47",
+  "last_updated": "2026-09-23T10:20:07",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 29491.28,
-        "sma_long": 27254.91,
-        "last": 30482.35
+        "sma_short": 29850.19,
+        "sma_long": 27280.54,
+        "last": 30732.4
       },
-      "current_bp": 8.21,
+      "current_bp": 9.42,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 8.21,
+      "distance_bp": 9.42,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 46509.6,
-        "sma_long": 45797.46,
-        "last": 47718.84
+        "sma_short": 47424.12,
+        "sma_long": 46024.91,
+        "last": 48132.83
       },
-      "current_bp": 1.55,
+      "current_bp": 3.04,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 1.55,
+      "distance_bp": 3.04,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,17 +58,17 @@
       "label": "Pay RBA Sep/Nov",
       "formula": "NOV26 - SEP26 (bp)",
       "inputs": {
-        "SEP26": 456.7,
-        "NOV26": 469.9
+        "SEP26": 456.4,
+        "NOV26": 469.5
       },
       "inputs_pct": {
-        "SEP26": 4.567,
-        "NOV26": 4.699
+        "SEP26": 4.564,
+        "NOV26": 4.695
       },
-      "current_bp": 13.2,
+      "current_bp": 13.1,
       "trigger_bp": 10.0,
       "direction": "below",
-      "distance_bp": 3.2,
+      "distance_bp": 3.1,
       "status": "ARMED",
       "rationale": "Pay the RBA Sep/Nov meeting spread at 10bp. Legs are WIRP post-meeting OIS forwards (AU0BFR {MMM}{YYYY}), not the IB futures proxy. House convention: spread = later - earlier, pay = pay the back leg (Nov) / rec the front (Sep), so the position earns as the spread WIDENS. Enter once hike pricing between the two meetings compresses to 10bp (was +12.4bp on 16-Sep-26, i.e. Sep meeting +19bp then Nov +12bp on top). NOTE: there is no Oct-26 RBA meeting (AU0BFR OCT2026 is empty), and this spread dies with the ~29/30-Sep meeting - roll to NOV/DEC after it passes.",
       "added": "2026-09-16"

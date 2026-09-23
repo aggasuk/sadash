@@ -1,0 +1,19 @@
+{
+  "as_of": "2026-09-23 10:22",
+  "generated": "2026-09-23T02:22:27Z",
+  "market": "TWD 5Y IRS",
+  "side": "PAID",
+  "pos_dv01": -5355229,
+  "pos_m": -5.36,
+  "flow_5d": 3365749,
+  "flow_5d_m": 3.37,
+  "sd_flow_5_m": 1.62,
+  "peak_1y_m": 9.94,
+  "band_m": 2.98,
+  "approach_m": 4.47,
+  "stall_m": 0.81,
+  "reducing": true,
+  "retrace_pct": 46,
+  "state": "ARMED",
+  "note": "Model proxy (TDSWNI generics), not real TWD holdings. +DV01=rec, -DV01=pay. Fires when CTA one-way flow is spent -> clean to pay."
+}
