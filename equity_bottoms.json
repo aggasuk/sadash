@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-09-24 10:26",
+  "_updated": "2026-09-25 09:22",
   "config": {
     "horizons": [
       "1W",
@@ -18,8 +18,8 @@
       "key": "NDX",
       "name": "NASDAQ-100",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-09-23",
-      "n_days": 6469,
+      "sample_end": "2026-09-24",
+      "n_days": 6470,
       "arm_thr": 3,
       "mode": "gated",
       "low_conviction": false,
@@ -39,30 +39,30 @@
           "mean": 0.25,
           "median": 0.47,
           "hit": 58.0,
-          "n": 6464
+          "n": 6465
         },
         "1M": {
           "mean": 1.01,
-          "median": 1.56,
+          "median": 1.57,
           "hit": 63.0,
-          "n": 6448
+          "n": 6449
         },
         "3M": {
           "mean": 3.2,
-          "median": 4.29,
+          "median": 4.28,
           "hit": 69.0,
-          "n": 6406
+          "n": 6407
         },
         "6M": {
           "mean": 6.61,
           "median": 8.83,
           "hit": 75.0,
-          "n": 6343
+          "n": 6344
         }
       },
       "snapshot": {
-        "date": "2026-09-23",
-        "px": 30470.0,
+        "date": "2026-09-24",
+        "px": 30479.0,
         "score": 0,
         "cap_max": 9,
         "on": [],
@@ -882,8 +882,8 @@
       "key": "SPX",
       "name": "S&P 500",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-09-23",
-      "n_days": 6469,
+      "sample_end": "2026-09-24",
+      "n_days": 6470,
       "arm_thr": 3,
       "mode": "deep",
       "low_conviction": false,
@@ -903,30 +903,30 @@
           "mean": 0.17,
           "median": 0.33,
           "hit": 58.0,
-          "n": 6464
+          "n": 6465
         },
         "1M": {
           "mean": 0.69,
           "median": 1.27,
           "hit": 64.0,
-          "n": 6448
+          "n": 6449
         },
         "3M": {
           "mean": 2.08,
-          "median": 3.23,
+          "median": 3.24,
           "hit": 69.0,
-          "n": 6406
+          "n": 6407
         },
         "6M": {
           "mean": 4.23,
           "median": 5.72,
           "hit": 72.0,
-          "n": 6343
+          "n": 6344
         }
       },
       "snapshot": {
-        "date": "2026-09-23",
-        "px": 7706.0,
+        "date": "2026-09-24",
+        "px": 7704.0,
         "score": 0,
         "cap_max": 9,
         "on": [],
@@ -1749,8 +1749,8 @@
       "key": "NKY",
       "name": "Nikkei 225",
       "sample_start": "2001-01-04",
-      "sample_end": "2026-09-24",
-      "n_days": 6300,
+      "sample_end": "2026-09-25",
+      "n_days": 6301,
       "arm_thr": 2,
       "mode": "gated",
       "low_conviction": false,
@@ -1765,41 +1765,41 @@
           "mean": 0.17,
           "median": 0.34,
           "hit": 55.0,
-          "n": 6295
+          "n": 6296
         },
         "1M": {
           "mean": 0.71,
           "median": 1.02,
           "hit": 58.0,
-          "n": 6279
+          "n": 6280
         },
         "3M": {
           "mean": 2.22,
-          "median": 1.96,
+          "median": 1.95,
           "hit": 58.0,
-          "n": 6237
+          "n": 6238
         },
         "6M": {
           "mean": 4.48,
           "median": 3.28,
           "hit": 59.0,
-          "n": 6174
+          "n": 6175
         }
       },
       "snapshot": {
-        "date": "2026-09-24",
-        "px": 65905.0,
+        "date": "2026-09-25",
+        "px": 65873.0,
         "score": 0,
         "cap_max": 4,
         "on": [],
         "recent_events": [
           {
             "event": "Reclaim 50dma",
-            "date": "2026-09-24"
+            "date": "2026-09-25"
           }
         ],
         "armed": false,
-        "last_entry": "2026-09-24",
+        "last_entry": "2026-09-25",
         "entry_active_10d": true,
         "armed_new": false,
         "entry_today": true
@@ -2076,7 +2076,7 @@
           "signal": "Reclaim 50dma",
           "n": 64,
           "first": "2001-10-17",
-          "last": "2026-09-24",
+          "last": "2026-09-25",
           "1W": {
             "n": 63,
             "mean": 0.13,
@@ -2228,7 +2228,7 @@
           "signal": "gated reclaim50 42d",
           "n": 37,
           "first": "2001-10-17",
-          "last": "2026-09-24",
+          "last": "2026-09-25",
           "1W": {
             "n": 36,
             "mean": 0.18,
@@ -2345,7 +2345,7 @@
         "signal": "PRIMARY [gated]",
         "n": 37,
         "first": "2001-10-17",
-        "last": "2026-09-24",
+        "last": "2026-09-25",
         "1W": {
           "n": 36,
           "mean": 0.18,
@@ -2416,7 +2416,7 @@
           "2025-05-01",
           "2026-04-08",
           "2026-08-12",
-          "2026-09-24"
+          "2026-09-25"
         ]
       }
     },
@@ -3412,7 +3412,7 @@
       },
       "snapshot": {
         "date": "2026-09-24",
-        "px": 47983.0,
+        "px": 48025.0,
         "score": 0,
         "cap_max": 2,
         "on": [],

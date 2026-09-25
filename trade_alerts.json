@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-24T10:26:26",
+  "last_updated": "2026-09-25T09:22:34",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 30155.24,
-        "sma_long": 27304.99,
-        "last": 30470.29
+        "sma_short": 30361.61,
+        "sma_long": 27328.92,
+        "last": 30478.86
       },
-      "current_bp": 10.44,
+      "current_bp": 11.1,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 10.44,
+      "distance_bp": 11.1,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 763.05,
-        "sma_long": 637.31,
-        "last": 749.01
+        "sma_short": 764.62,
+        "sma_long": 638.69,
+        "last": 770.58
       },
-      "current_bp": 19.73,
+      "current_bp": 19.72,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 19.73,
+      "distance_bp": 19.72,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,14 +41,14 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 47761.95,
-        "sma_long": 46127.21,
-        "last": 47952.72
+        "sma_short": 47776.33,
+        "sma_long": 46129.27,
+        "last": 48024.6
       },
-      "current_bp": 3.54,
+      "current_bp": 3.57,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 3.54,
+      "distance_bp": 3.57,
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
@@ -58,18 +58,18 @@
       "label": "Pay RBA Sep/Nov",
       "formula": "NOV26 - SEP26 (bp)",
       "inputs": {
-        "SEP26": 457.2,
-        "NOV26": 470.7
+        "SEP26": 461.4,
+        "NOV26": 469.4
       },
       "inputs_pct": {
-        "SEP26": 4.572,
-        "NOV26": 4.707
+        "SEP26": 4.614,
+        "NOV26": 4.694
       },
-      "current_bp": 13.5,
+      "current_bp": 8.0,
       "trigger_bp": 10.0,
       "direction": "below",
-      "distance_bp": 3.5,
-      "status": "ARMED",
+      "distance_bp": -2.0,
+      "status": "TRIGGERED",
       "rationale": "Pay the RBA Sep/Nov meeting spread at 10bp. Legs are WIRP post-meeting OIS forwards (AU0BFR {MMM}{YYYY}), not the IB futures proxy. House convention: spread = later - earlier, pay = pay the back leg (Nov) / rec the front (Sep), so the position earns as the spread WIDENS. Enter once hike pricing between the two meetings compresses to 10bp (was +12.4bp on 16-Sep-26, i.e. Sep meeting +19bp then Nov +12bp on top). NOTE: there is no Oct-26 RBA meeting (AU0BFR OCT2026 is empty), and this spread dies with the ~29/30-Sep meeting - roll to NOV/DEC after it passes.",
       "added": "2026-09-16"
     }
