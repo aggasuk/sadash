@@ -1561,6 +1561,74 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── USDSEK sub-page (added 26-Sep-26) ── -->
+    <div class="fv-subpage" id="fv-sub-usdsek" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="usdsek-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDSEK</b> — USDSEK up = krona weaker. <b>Rates</b> (USD SOFR OIS 2Y − SEK 2Y swap) carry the short
+        windows (R²~0.3-0.6 at 6M-2Y). <b>SPX</b> and <b>copper</b> take the expected sign (risk-on = SEK stronger)
+        only from 2Y out, where the <b>Combined</b> reaches R²~0.74-0.76; on 6M/1Y they are sign-suppressed and
+        the Combined collapses to rates. VIX tested — no fit. EURUSD/DXY excluded (mechanical).
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: US-SE 2Y Rate Differential</div>
+        <div class="fvchart" id="usdsek-img-rates"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: log(SPX)</div>
+        <div class="fvchart" id="usdsek-img-spx"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Copper (HG1)</div>
+        <div class="fvchart" id="usdsek-img-copper"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + log(SPX) + Copper)</div>
+        <div class="fvchart" id="usdsek-img-combined"></div>
+      </div>
+    </div>
+
+    <!-- ── USDCAD sub-page (added 26-Sep-26) ── -->
+    <div class="fv-subpage" id="fv-sub-usdcad" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="usdcad-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>USDCAD</b> — USDCAD up = loonie weaker. <b>Rates</b> (US − Canada 2Y govt) dominate every window
+        (R²~0.5-0.8). <b>WTI</b> takes the expected sign (oil up = CAD stronger) but only adds on 6M/5Y.
+        <b>Combined (Rates + WTI)</b> R²~0.5-0.8. SPX and copper tested — wrong-signed on their own and added
+        &lt;0.06 R², so excluded.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: US-CA 2Y Rate Differential</div>
+        <div class="fvchart" id="usdcad-img-rates"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: WTI (CL1)</div>
+        <div class="fvchart" id="usdcad-img-wti"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rates + WTI)</div>
+        <div class="fvchart" id="usdcad-img-combined"></div>
+      </div>
+    </div>
+
     <!-- ── EURNOK sub-page ── -->
     <div class="fv-subpage" id="fv-sub-eurnok" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3596,6 +3664,8 @@ window.FV_NAV = (function() {
     fetch('audusd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('audnzd_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdsek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('usdcad_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eursek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('noksek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3935,6 +4005,8 @@ window.FVDETAIL = (function() {
     audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-copper", "audusd-img-combined"] },
     audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates"] },
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
+    usdsek:     { tabsId: "usdsek-period-tabs", containers: ["usdsek-img-rates", "usdsek-img-spx", "usdsek-img-copper", "usdsek-img-combined"] },
+    usdcad:     { tabsId: "usdcad-period-tabs", containers: ["usdcad-img-rates", "usdcad-img-wti", "usdcad-img-combined"] },
     eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
     eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
@@ -4025,7 +4097,7 @@ window.FVDETAIL = (function() {
   // windows stay in the JSONs but are noise (unstable betas / regime breaks).
   // USDJPY deliberately keeps 5Y: its fiscal-premium fit is structural.
   ['eurusd', 'eurgbp', 'usdthb', 'usdzar', 'audusd', 'audnzd', 'usdchf',
-   'eurnok', 'noksek', 'eursek'].forEach(function(subId) {
+   'eurnok', 'noksek', 'eursek', 'usdsek', 'usdcad'].forEach(function(subId) {
     var cfg = CONFIG[subId]; if (!cfg) return;
     document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) {
       if (t.dataset.p === '6m' || t.dataset.p === '5y') t.style.display = 'none';
