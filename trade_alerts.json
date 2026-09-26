@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-26T14:49:16",
+  "last_updated": "2026-09-26T14:56:09",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -52,26 +52,6 @@
       "status": "ARMED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
-    },
-    {
-      "id": "rba_sep_nov_pay",
-      "label": "Pay RBA Sep/Nov",
-      "formula": "NOV26 - SEP26 (bp)",
-      "inputs": {
-        "SEP26": 457.6,
-        "NOV26": 470.5
-      },
-      "inputs_pct": {
-        "SEP26": 4.576,
-        "NOV26": 4.705
-      },
-      "current_bp": 12.9,
-      "trigger_bp": 10.0,
-      "direction": "below",
-      "distance_bp": 2.9,
-      "status": "NEAR",
-      "rationale": "Pay the RBA Sep/Nov meeting spread at 10bp. Legs are WIRP post-meeting OIS forwards (AU0BFR {MMM}{YYYY}), not the IB futures proxy. House convention: spread = later - earlier, pay = pay the back leg (Nov) / rec the front (Sep), so the position earns as the spread WIDENS. Enter once hike pricing between the two meetings compresses to 10bp (was +12.4bp on 16-Sep-26, i.e. Sep meeting +19bp then Nov +12bp on top). NOTE: there is no Oct-26 RBA meeting (AU0BFR OCT2026 is empty), and this spread dies with the ~29/30-Sep meeting - roll to NOV/DEC after it passes.",
-      "added": "2026-09-16"
     }
   ]
 }
