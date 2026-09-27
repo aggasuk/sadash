@@ -1958,12 +1958,13 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <h1><span>&gt;</span> Seasonality <span id="seas-window" style="font-weight:400;color:var(--text-dim);font-size:15px;"></span></h1>
     </header>
     <div style="color:var(--text-dim);font-size:13px;margin:0 0 16px;max-width:900px;">
-      10-year weekly seasonality for the current week + next 3. Cell = <b>median</b> / μ&nbsp;mean / hit%. Equities &amp; FX in&nbsp;%, rates (swap) in&nbsp;bp.
+      10-year weekly seasonality for the current week + next 3. Cell = <b>median</b> / μ&nbsp;mean / hit%. Equities, FX &amp; commodities in&nbsp;%, rates (swap) in&nbsp;bp. Oil/copper are front-month generics — the roll week carries the roll gap.
       <b>Full</b> = cumulative over all 4 weeks. Color = median (green +, red −; for rates green = yields up / steeper). <b>Click any row</b> for the 10-year breakdown. <span id="seas-updated"></span>
     </div>
     <div class="tabs" id="seas-sub-tabs" style="margin-bottom:18px;">
       <button class="tab active" data-seas="FX">FX</button>
       <button class="tab" data-seas="Equities">Equities</button>
+      <button class="tab" data-seas="Commodities">Commodities</button>
       <button class="tab" data-seas="Rates">Rates</button>
     </div>
     <div id="seas-top"></div>
