@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-26 14:49",
+  "generated": "2026-09-28 09:01",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -9,34 +9,6 @@
     "divergence_window": 14
   },
   "bearish": [
-    {
-      "ticker": "CL1 Comdty",
-      "category": "equity_commod",
-      "last": 92.41,
-      "rsi_now": 48.9,
-      "rsi_yest": 52.6,
-      "rsi_peak": 76.8,
-      "peak_bars_ago": 8,
-      "drop": 27.9,
-      "divergence": false,
-      "trend": 0.466,
-      "trend_band": "up",
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "CO1 Comdty",
-      "category": "equity_commod",
-      "last": 104.32,
-      "rsi_now": 58.5,
-      "rsi_yest": 62.9,
-      "rsi_peak": 72.9,
-      "peak_bars_ago": 8,
-      "drop": 14.5,
-      "divergence": false,
-      "trend": 0.517,
-      "trend_band": "up",
-      "strength": "MODERATE"
-    },
     {
       "ticker": "IRSWNI5 BGN Curncy",
       "category": "rates",
@@ -66,20 +38,6 @@
       "strength": "MODERATE"
     },
     {
-      "ticker": "USGG10YR Index",
-      "category": "rates",
-      "last": 5.1604,
-      "rsi_now": 70.8,
-      "rsi_yest": 75.1,
-      "rsi_peak": 76.7,
-      "peak_bars_ago": 7,
-      "drop": 5.8,
-      "divergence": false,
-      "trend": 0.915,
-      "trend_band": "strong up",
-      "strength": "MODERATE"
-    },
-    {
       "ticker": "GDBR10 Index",
       "category": "rates",
       "last": 3.601,
@@ -92,20 +50,34 @@
       "trend": 0.945,
       "trend_band": "strong up",
       "strength": "WEAK"
+    },
+    {
+      "ticker": "USGG10YR Index",
+      "category": "rates",
+      "last": 5.2045,
+      "rsi_now": 72.8,
+      "rsi_yest": 70.8,
+      "rsi_peak": 76.7,
+      "peak_bars_ago": 8,
+      "drop": 3.9,
+      "divergence": true,
+      "trend": 0.923,
+      "trend_band": "strong up",
+      "strength": "WEAK"
     }
   ],
   "bullish": [
     {
       "ticker": "USDCNH Curncy",
       "category": "fx",
-      "last": 6.7227,
-      "rsi_now": 54.1,
-      "rsi_yest": 49.6,
+      "last": 6.7234,
+      "rsi_now": 54.6,
+      "rsi_yest": 54.1,
       "rsi_trough": 29.1,
-      "trough_bars_ago": 4,
-      "rise": 25.0,
+      "trough_bars_ago": 5,
+      "rise": 25.5,
       "divergence": false,
-      "trend": -0.733,
+      "trend": -0.699,
       "trend_band": "strong down",
       "strength": "MODERATE"
     },
@@ -126,14 +98,14 @@
     {
       "ticker": "EURUSD Curncy",
       "category": "fx",
-      "last": 1.1391,
-      "rsi_now": 28.6,
-      "rsi_yest": 26.1,
+      "last": 1.1386,
+      "rsi_now": 28.2,
+      "rsi_yest": 28.6,
       "rsi_trough": 26.1,
-      "trough_bars_ago": 1,
-      "rise": 2.6,
+      "trough_bars_ago": 2,
+      "rise": 2.1,
       "divergence": true,
-      "trend": -0.472,
+      "trend": -0.505,
       "trend_band": "down",
       "strength": "WEAK"
     }
@@ -426,10 +398,10 @@
             "hit_rate": 20.0
           },
           "10": {
-            "n": 9,
-            "mean": -1.92,
-            "median": -2.51,
-            "hit_rate": 11.1
+            "n": 10,
+            "mean": -1.66,
+            "median": -2.4,
+            "hit_rate": 20.0
           },
           "20": {
             "n": 7,
@@ -568,22 +540,22 @@
       "XAG Curncy": {
         "bearish": {
           "5": {
-            "n": 20,
-            "mean": 4.45,
+            "n": 19,
+            "mean": 4.32,
             "median": 6.16,
-            "hit_rate": 20.0
+            "hit_rate": 21.1
           },
           "10": {
-            "n": 20,
-            "mean": 9.87,
-            "median": 12.48,
-            "hit_rate": 25.0
+            "n": 19,
+            "mean": 9.79,
+            "median": 13.54,
+            "hit_rate": 26.3
           },
           "20": {
-            "n": 20,
-            "mean": 15.23,
-            "median": 9.69,
-            "hit_rate": 20.0
+            "n": 19,
+            "mean": 14.95,
+            "median": 9.3,
+            "hit_rate": 21.1
           }
         },
         "bullish": {
@@ -1115,21 +1087,21 @@
         "bearish": {
           "5": {
             "n": 19,
-            "mean": 1.29,
-            "median": 0.22,
-            "hit_rate": 42.1
+            "mean": 1.35,
+            "median": 0.26,
+            "hit_rate": 36.8
           },
           "10": {
             "n": 19,
-            "mean": 2.45,
-            "median": 1.01,
-            "hit_rate": 36.8
+            "mean": 2.63,
+            "median": 1.28,
+            "hit_rate": 31.6
           },
           "20": {
             "n": 19,
-            "mean": 2.39,
+            "mean": 2.45,
             "median": 3.56,
-            "hit_rate": 31.6
+            "hit_rate": 26.3
           }
         },
         "bullish": {
@@ -1156,10 +1128,10 @@
       "USGG10YR Index": {
         "bearish": {
           "5": {
-            "n": 3,
-            "mean": 1.35,
-            "median": 1.65,
-            "hit_rate": 33.3
+            "n": 4,
+            "mean": 2.29,
+            "median": 3.38,
+            "hit_rate": 25.0
           },
           "10": {
             "n": 2,
