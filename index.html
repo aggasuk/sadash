@@ -1054,18 +1054,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
         <b>CL1 (WTI front-month)</b> — weekly fair value (Wednesdays, EIA release day), minimal inputs:
         inventories + curve shape only. <b>Model A</b> = US commercial crude inventory ex-SPR + CL1−CL3.
-        <b>Model B</b> = adds CL1−CL6 (whole-curve tightness; collinear with CL1−CL3, so B effectively
-        loads the 3-to-6-month segment — read fit/residual, not individual betas). Curve spreads contain
+        <b>Model B</b> = adds CL1−CL6, <b>sign-constrained since 29-Sep-26</b> (CL1−CL3 and CL1−CL6 are collinear;
+        plain OLS gave CL1−CL3 a negative beta and read "STRONG RICH" — now a wrong-signed driver is pinned at 0,
+        and B prices off the 1-to-6-month spread). Curve spreads contain
         CL1 mechanically: read the residual as "front rich/cheap given inventories + curve state",
-        not as a causal model. <b>29-Sep-26 check:</b> US stocks carry ~0 weight in every window and B's
-        CL1−CL3 beta goes negative (it prices off CL3−CL6 only) — for global tightness see <b>Brent (CO1)</b>.
+        not as a causal model. <b>29-Sep-26 check:</b> US commercial stocks carry ~0 weight in every window — the
+        tightness is global and priced in Brent: see <b>Brent (CO1)</b>.
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model A: Inventory (ex-SPR) + CL1−CL3</div>
         <div class="fvchart" id="cl1-img-modelA"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: Inventory (ex-SPR) + CL1−CL3 + CL1−CL6</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: Inventory (ex-SPR) + CL1−CL3 + CL1−CL6 (sign-constrained)</div>
         <div class="fvchart" id="cl1-img-modelB"></div>
       </div>
     </div>
