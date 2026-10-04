@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-02 08:59",
+  "generated": "2026-10-04 14:02",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -12,32 +12,60 @@
     {
       "ticker": "GDBR10 Index",
       "category": "rates",
-      "last": 3.508,
-      "rsi_now": 54.8,
-      "rsi_yest": 64.9,
+      "last": 3.462,
+      "rsi_now": 49.9,
+      "rsi_yest": 54.8,
       "rsi_peak": 73.9,
-      "peak_bars_ago": 3,
-      "drop": 19.1,
+      "peak_bars_ago": 4,
+      "drop": 24.0,
       "divergence": false,
-      "trend": 0.931,
+      "trend": 0.906,
+      "trend_band": "strong up",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "DXY Curncy",
+      "category": "fx",
+      "last": 101.932,
+      "rsi_now": 72.5,
+      "rsi_yest": 76.2,
+      "rsi_peak": 76.2,
+      "peak_bars_ago": 1,
+      "drop": 3.7,
+      "divergence": false,
+      "trend": 0.652,
       "trend_band": "strong up",
       "strength": "MODERATE"
     }
   ],
   "bullish": [
     {
-      "ticker": "USDCNH Curncy",
+      "ticker": "AUDUSD Curncy",
       "category": "fx",
-      "last": 6.7167,
-      "rsi_now": 50.9,
-      "rsi_yest": 49.1,
-      "rsi_trough": 29.1,
-      "trough_bars_ago": 9,
-      "rise": 21.8,
+      "last": 0.6956,
+      "rsi_now": 31.2,
+      "rsi_yest": 25.2,
+      "rsi_trough": 25.2,
+      "trough_bars_ago": 1,
+      "rise": 6.0,
       "divergence": false,
-      "trend": -0.672,
-      "trend_band": "strong down",
+      "trend": 0.004,
+      "trend_band": "flat",
       "strength": "MODERATE"
+    },
+    {
+      "ticker": "EURUSD Curncy",
+      "category": "fx",
+      "last": 1.1255,
+      "rsi_now": 20.6,
+      "rsi_yest": 18.1,
+      "rsi_trough": 18.1,
+      "trough_bars_ago": 1,
+      "rise": 2.5,
+      "divergence": true,
+      "trend": -0.687,
+      "trend_band": "strong down",
+      "strength": "WEAK"
     }
   ],
   "stats": {
@@ -77,13 +105,13 @@
           },
           "10": {
             "n": 10,
-            "mean": 0.42,
+            "mean": 0.4,
             "median": 0.28,
             "hit_rate": 60.0
           },
           "20": {
             "n": 8,
-            "mean": -0.77,
+            "mean": -0.79,
             "median": -0.42,
             "hit_rate": 50.0
           }
@@ -105,7 +133,7 @@
           },
           "20": {
             "n": 12,
-            "mean": -0.86,
+            "mean": -0.84,
             "median": -1.33,
             "hit_rate": 75.0
           }
@@ -113,7 +141,7 @@
         "bullish": {
           "5": {
             "n": 7,
-            "mean": -0.2,
+            "mean": -0.17,
             "median": -0.02,
             "hit_rate": 42.9
           },
@@ -387,7 +415,7 @@
         "bearish": {
           "5": {
             "n": 8,
-            "mean": 0.24,
+            "mean": 0.22,
             "median": 0.21,
             "hit_rate": 37.5
           },
@@ -419,7 +447,7 @@
           },
           "20": {
             "n": 8,
-            "mean": 1.78,
+            "mean": 1.76,
             "median": 1.57,
             "hit_rate": 100.0
           }
@@ -441,7 +469,7 @@
           },
           "20": {
             "n": 20,
-            "mean": 5.36,
+            "mean": 5.34,
             "median": 4.61,
             "hit_rate": 30.0
           }
@@ -764,22 +792,22 @@
       "TWSE Index": {
         "bearish": {
           "5": {
-            "n": 31,
-            "mean": 1.07,
-            "median": 1.97,
-            "hit_rate": 38.7
+            "n": 30,
+            "mean": 1.04,
+            "median": 1.77,
+            "hit_rate": 40.0
           },
           "10": {
-            "n": 31,
-            "mean": 2.8,
-            "median": 3.34,
-            "hit_rate": 22.6
+            "n": 30,
+            "mean": 2.79,
+            "median": 3.52,
+            "hit_rate": 23.3
           },
           "20": {
-            "n": 31,
-            "mean": 4.88,
-            "median": 6.4,
-            "hit_rate": 12.9
+            "n": 30,
+            "mean": 4.79,
+            "median": 5.99,
+            "hit_rate": 13.3
           }
         },
         "bullish": {
@@ -891,7 +919,7 @@
         "bearish": {
           "5": {
             "n": 17,
-            "mean": -0.25,
+            "mean": -0.28,
             "median": -1.04,
             "hit_rate": 64.7
           },
@@ -933,9 +961,9 @@
         "bearish": {
           "5": {
             "n": 16,
-            "mean": 1.94,
-            "median": 0.61,
-            "hit_rate": 37.5
+            "mean": 1.8,
+            "median": 0.34,
+            "hit_rate": 43.8
           },
           "10": {
             "n": 15,
@@ -1059,8 +1087,8 @@
         "bearish": {
           "5": {
             "n": 6,
-            "mean": 2.5,
-            "median": 2.59,
+            "mean": 2.55,
+            "median": 2.74,
             "hit_rate": 16.7
           },
           "10": {

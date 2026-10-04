@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-02 09:03",
+ "_updated": "2026-10-04 14:05",
  "created": "2026-08-17",
- "last_update": "2026-10-02",
- "setups_asof": "2026-10-02 09:03",
+ "last_update": "2026-10-04",
+ "setups_asof": "2026-10-04 14:05",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,46 +15,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 25,
+   "days": 27,
    "avg": 99.176,
-   "mark": 102.066,
-   "unrealised": 72850.0,
+   "mark": 101.932,
+   "unrealised": 69472.0,
    "realised": 0.0,
    "score_at_open": 1.5
-  },
-  {
-   "key": "usdthb",
-   "instrument": "USDTHB spot",
-   "kind": "fx",
-   "verb": "SELL USDTHB",
-   "units": -1250000.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 25,
-   "avg": 32.935,
-   "mark": 33.693,
-   "unrealised": -28769.0,
-   "realised": 0.0,
-   "score_at_open": 1.25
-  },
-  {
-   "key": "inr5",
-   "instrument": "INR 5Y NDOIS",
-   "kind": "rates",
-   "verb": "PAY INR 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-13",
-   "days": 19,
-   "avg": 6.6738,
-   "mark": 6.765,
-   "unrealised": 22812.0,
-   "realised": 11562.0,
-   "score_at_open": 1.35
   },
   {
    "key": "krw5",
@@ -66,11 +32,62 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-10",
-   "days": 22,
+   "days": 24,
    "avg": 4.1979,
-   "mark": 4.1085,
-   "unrealised": -22344.0,
+   "mark": 4.0826,
+   "unrealised": -28819.0,
    "realised": 29144.0,
+   "score_at_open": 1.35
+  },
+  {
+   "key": "usdthb",
+   "instrument": "USDTHB spot",
+   "kind": "fx",
+   "verb": "SELL USDTHB",
+   "units": -1250000.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 27,
+   "avg": 32.935,
+   "mark": 33.568,
+   "unrealised": -24025.0,
+   "realised": 0.0,
+   "score_at_open": 1.25
+  },
+  {
+   "key": "bund",
+   "instrument": "Bund 10Y yield",
+   "kind": "rates",
+   "verb": "RECEIVE Bund 10Y / long RX",
+   "units": 5000.0,
+   "size": "HALF",
+   "tier": "A",
+   "anchor": "CTA FLOW TURN",
+   "opened": "2026-10-02",
+   "days": 2,
+   "avg": 3.508,
+   "mark": 3.462,
+   "unrealised": 23000.0,
+   "realised": 0.0,
+   "score_at_open": 1.75
+  },
+  {
+   "key": "inr5",
+   "instrument": "INR 5Y NDOIS",
+   "kind": "rates",
+   "verb": "PAY INR 5Y",
+   "units": -2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-13",
+   "days": 21,
+   "avg": 6.6738,
+   "mark": 6.765,
+   "unrealised": 22812.0,
+   "realised": 11562.0,
    "score_at_open": 1.35
   },
   {
@@ -83,29 +100,12 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 25,
+   "days": 27,
    "avg": 3.0091,
-   "mark": 3.087,
-   "unrealised": 19469.0,
+   "mark": 3.093,
+   "unrealised": 20969.0,
    "realised": 136031.0,
    "score_at_open": 2.0
-  },
-  {
-   "key": "bund",
-   "instrument": "Bund 10Y yield",
-   "kind": "rates",
-   "verb": "RECEIVE Bund 10Y / long RX",
-   "units": 5000.0,
-   "size": "HALF",
-   "tier": "A",
-   "anchor": "CTA FLOW TURN",
-   "opened": "2026-10-02",
-   "days": 0,
-   "avg": 3.508,
-   "mark": 3.508,
-   "unrealised": 0.0,
-   "realised": 0.0,
-   "score_at_open": 1.75
   }
  ],
  "closed": [
@@ -414,8 +414,8 @@
   "n_closed": 20,
   "wins": 11,
   "realised": 127393.0,
-  "unrealised": 64018.0,
-  "total": 191411.0,
+  "unrealised": 83409.0,
+  "total": 210802.0,
   "avg_days": 7.0,
   "by_size": {
    "PROBE": {
@@ -470,7 +470,7 @@
     "wins": 1,
     "pnl": 14751.0,
     "open_n": 2,
-    "open_pnl": 44081.0,
+    "open_pnl": 45447.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -478,7 +478,7 @@
     "wins": 3,
     "pnl": 37400.0,
     "open_n": 3,
-    "open_pnl": 19937.0,
+    "open_pnl": 14962.0,
     "open_realised": 176737.0
    },
    "CTA FLOW TURN": {
@@ -486,7 +486,7 @@
     "wins": 0,
     "pnl": 0.0,
     "open_n": 1,
-    "open_pnl": 0.0,
+    "open_pnl": 23000.0,
     "open_realised": 0.0
    }
   }

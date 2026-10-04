@@ -1,15 +1,12 @@
 {
- "_updated": "2026-10-02 09:03",
+ "_updated": "2026-10-04 14:05",
  "counts": {
   "act": 6,
   "watch": 9,
   "avoid": 1,
   "total": 16
  },
- "changes": [
-  "Bund 10Y (bond): FLIP bear\u2192bull HALF (+1.75)",
-  "JGB 10Y (bond): FULL \u2192 PROBE (+1.00)"
- ],
+ "changes": [],
  "cards": [
   {
    "key": "usd",
@@ -28,10 +25,10 @@
      "trend 0.67 with you (no timing edge in fx \u2014 confirmation only)"
     ],
     [
-     "FV +2.9z (2y) \u00b7 \u00bd-life 27d",
+     "FV +2.6z (2y) \u00b7 \u00bd-life 25d",
      1.25,
      "ok",
-     "FV 2.9z with you, fades ~27d"
+     "FV 2.6z with you, fades ~25d"
     ],
     [
      "EUReka 3/4 drivers",
@@ -44,21 +41,21 @@
    "anchor": "VALUE",
    "note": "",
    "since": "2026-09-07",
-   "days_held": 25,
+   "days_held": 27,
    "entry_score": 1.5,
    "trend": 0.67,
    "members": [
     {
      "name": "DXY",
-     "s": 0.66,
+     "s": 0.65,
      "flip_days": 13,
-     "chg5": 0.227
+     "chg5": 0.221
     },
     {
      "name": "EURUSD",
      "s": 0.69,
      "flip_days": 14,
-     "chg5": 0.22
+     "chg5": 0.215
     }
    ],
    "other": {
@@ -77,31 +74,31 @@
    "score": 1.75,
    "parts": [
     [
-     "TREND -0.93 AGAINST",
+     "TREND -0.91 AGAINST",
      -0.5,
      "bad",
-     "trend 0.93 against you"
+     "trend 0.91 against you"
     ],
     [
-     "CTA mom -0.92",
+     "CTA mom -0.91",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA flow turning \u2014 $+0.7m/bp next 5d",
+     "CTA flow turning \u2014 $+1.0m/bp next 5d",
      0.75,
      "ok",
-     "CTA flow tailwind (just turned, $+0.7m/bp on the flat path)"
+     "CTA flow tailwind (just turned, $+1.0m/bp on the flat path)"
     ],
     [
-     "FV +1.6z (3y) \u00b7 \u00bd-life 27d",
+     "FV +1.1z (3y) \u00b7 \u00bd-life 25d",
      1.25,
      "ok",
-     "FV 1.6z with you, fades ~27d"
+     "FV 1.1z with you, fades ~25d"
     ],
     [
-     "carry -3.1bp/3m earns",
+     "carry -3.0bp/3m earns",
      0.0,
      "mut",
      null
@@ -117,20 +114,20 @@
    "anchor": "CTA FLOW TURN",
    "note": "",
    "since": "2026-10-02",
-   "days_held": 0,
+   "days_held": 2,
    "entry_score": 1.75,
-   "trend": -0.93,
+   "trend": -0.91,
    "members": [
     {
      "name": "GDBR10",
-     "s": -0.93,
-     "flip_days": 63,
-     "chg5": 0.011
+     "s": -0.91,
+     "flip_days": 64,
+     "chg5": 0.039
     }
    ],
    "other": {
     "bull": 1.75,
-    "bear": 0.25
+    "bear": 1.0
    },
    "needs": null
   },
@@ -151,7 +148,7 @@
      "trend 0.91 with you, 518d old"
     ],
     [
-     "CTA mom -0.92",
+     "CTA mom -0.91",
      0.0,
      "mut",
      null
@@ -163,13 +160,13 @@
      null
     ],
     [
-     "FV -1.0z",
+     "FV -0.9z",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -10.0bp/3m costs",
+     "carry -10.1bp/3m costs",
      0.0,
      "mut",
      null
@@ -179,7 +176,7 @@
    "anchor": "TREND",
    "note": "",
    "since": "2026-09-07",
-   "days_held": 25,
+   "days_held": 27,
    "entry_score": 2.0,
    "trend": -0.91,
    "members": [
@@ -187,7 +184,7 @@
      "name": "GJGB10",
      "s": -0.91,
      "flip_days": 518,
-     "chg5": -0.031
+     "chg5": -0.032
     }
    ],
    "other": {
@@ -212,19 +209,19 @@
      "trend 0.69 with you, 252d old"
     ],
     [
-     "CTA mom -0.72",
+     "CTA mom -0.71",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA flow $+0.7m/bp (< floor)",
+     "CTA flow $+0.9m/bp (< floor)",
      0.0,
      "mut",
      null
     ],
     [
-     "carry -6.9bp/3m costs",
+     "carry -6.6bp/3m costs",
      0.0,
      "mut",
      null
@@ -234,7 +231,7 @@
    "anchor": "TREND",
    "note": "",
    "since": "2026-09-10",
-   "days_held": 22,
+   "days_held": 24,
    "entry_score": 1.35,
    "trend": -0.69,
    "members": [
@@ -242,7 +239,7 @@
      "name": "KWSWNI5",
      "s": -0.69,
      "flip_days": 252,
-     "chg5": -0.007
+     "chg5": 0.004
     }
    ],
    "other": {
@@ -290,7 +287,7 @@
    "anchor": "TREND",
    "note": "",
    "since": "2026-09-13",
-   "days_held": 19,
+   "days_held": 21,
    "entry_score": 1.35,
    "trend": -0.66,
    "members": [
@@ -317,31 +314,31 @@
    "score": 1.0,
    "parts": [
     [
-     "trend +0.49 against",
+     "trend +0.47 against",
      -0.25,
      "bad",
      null
     ],
     [
-     "FV +1.6z (2y) \u00b7 \u00bd-life 14d",
+     "FV +1.4z (2y) \u00b7 \u00bd-life 14d",
      1.25,
      "ok",
-     "FV 1.6z with you, fades ~14d"
+     "FV 1.4z with you, fades ~14d"
     ]
    ],
    "veto": null,
    "anchor": "VALUE",
    "note": "",
    "since": "2026-09-07",
-   "days_held": 25,
+   "days_held": 27,
    "entry_score": 1.25,
-   "trend": 0.49,
+   "trend": 0.47,
    "members": [
     {
      "name": "USDTHB",
-     "s": 0.49,
+     "s": 0.47,
      "flip_days": 133,
-     "chg5": 0.121
+     "chg5": 0.108
     }
    ],
    "other": {
@@ -378,21 +375,21 @@
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +2.0z AGAINST",
+     "FV +2.1z AGAINST",
      -0.75,
      "bad",
-     "FV 2.0z against"
+     "FV 2.1z against"
     ],
     [
-     "carry -3.9bp/3m costs",
+     "carry -3.8bp/3m costs",
      0.0,
      "mut",
      null
     ]
    ],
-   "veto": "FV 2.0z against",
+   "veto": "FV 2.1z against",
    "anchor": "TREND",
-   "note": "veto: FV 2.0z against",
+   "note": "veto: FV 2.1z against",
    "since": null,
    "days_held": null,
    "entry_score": null,
@@ -402,7 +399,7 @@
      "name": "USGG10YR",
      "s": -0.94,
      "flip_days": 142,
-     "chg5": -0.028
+     "chg5": -0.029
     }
    ],
    "other": {
@@ -432,7 +429,7 @@
      "name": "USDJPY",
      "s": -0.11,
      "flip_days": 22,
-     "chg5": 0.04
+     "chg5": 0.033
     }
    ],
    "other": {},
@@ -454,13 +451,13 @@
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": -0.01,
+   "trend": 0.0,
    "members": [
     {
      "name": "AUDUSD",
-     "s": -0.01,
-     "flip_days": 1,
-     "chg5": -0.233
+     "s": 0.0,
+     "flip_days": 56,
+     "chg5": -0.217
     }
    ],
    "other": {},
@@ -482,13 +479,13 @@
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": -0.61,
+   "trend": -0.69,
    "members": [
     {
      "name": "USDKRW",
-     "s": -0.61,
+     "s": -0.69,
      "flip_days": 52,
-     "chg5": 0.096
+     "chg5": 0.016
     }
    ],
    "other": {},
@@ -544,13 +541,13 @@
      "name": "XAU",
      "s": -0.06,
      "flip_days": 4,
-     "chg5": -0.114
+     "chg5": -0.117
     },
     {
      "name": "XAG",
      "s": -0.02,
      "flip_days": 2,
-     "chg5": -0.092
+     "chg5": -0.094
     }
    ],
    "other": {},
@@ -572,13 +569,13 @@
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": 0.38,
+   "trend": 0.36,
    "members": [
     {
      "name": "CL1",
-     "s": 0.38,
+     "s": 0.36,
      "flip_days": 54,
-     "chg5": -0.091
+     "chg5": -0.101
     }
    ],
    "other": {},
@@ -606,7 +603,7 @@
      "name": "KOSPI",
      "s": 0.26,
      "flip_days": 34,
-     "chg5": -0.002
+     "chg5": -0.001
     }
    ],
    "other": {},
@@ -628,18 +625,18 @@
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": 0.52,
+   "trend": 0.53,
    "members": [
     {
      "name": "SPX",
-     "s": 0.5,
-     "flip_days": 122,
-     "chg5": -0.038
+     "s": 0.51,
+     "flip_days": 123,
+     "chg5": -0.041
     },
     {
      "name": "CCMP",
-     "s": 0.53,
-     "flip_days": 121,
+     "s": 0.55,
+     "flip_days": 122,
      "chg5": 0.006
     }
    ],
@@ -662,13 +659,13 @@
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": 0.67,
+   "trend": 0.66,
    "members": [
     {
      "name": "TPNBNK",
-     "s": 0.67,
+     "s": 0.66,
      "flip_days": 341,
-     "chg5": -0.022
+     "chg5": -0.034
     }
    ],
    "other": {},
@@ -865,6 +862,15 @@
     "size": "",
     "dir": "bear",
     "trend": -0.943
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": -0.5,
+    "tier": "AVOID",
+    "size": "",
+    "dir": "bear",
+    "trend": -0.944
    }
   ],
   "bund": [
@@ -1056,6 +1062,15 @@
     "size": "HALF",
     "dir": "bull",
     "trend": -0.931
+   },
+   {
+    "d": "2026-10-04",
+    "bull": 1.75,
+    "bear": 1.0,
+    "tier": "A",
+    "size": "HALF",
+    "dir": "bull",
+    "trend": -0.906
    }
   ],
   "jgb": [
@@ -1241,6 +1256,15 @@
    },
    {
     "d": "2026-10-02",
+    "bull": null,
+    "bear": 1.0,
+    "tier": "A",
+    "size": "PROBE",
+    "dir": "bear",
+    "trend": -0.909
+   },
+   {
+    "d": "2026-10-04",
     "bull": null,
     "bear": 1.0,
     "tier": "A",
@@ -1438,6 +1462,15 @@
     "size": "PROBE",
     "dir": "bear",
     "trend": -0.695
+   },
+   {
+    "d": "2026-10-04",
+    "bull": 0.25,
+    "bear": 1.0,
+    "tier": "A",
+    "size": "PROBE",
+    "dir": "bear",
+    "trend": -0.685
    }
   ],
   "inr5": [
@@ -1623,6 +1656,15 @@
    },
    {
     "d": "2026-10-02",
+    "bull": null,
+    "bear": 1.0,
+    "tier": "A",
+    "size": "PROBE",
+    "dir": "bear",
+    "trend": -0.657
+   },
+   {
+    "d": "2026-10-04",
     "bull": null,
     "bear": 1.0,
     "tier": "A",
@@ -1820,6 +1862,15 @@
     "size": "",
     "dir": null,
     "trend": -0.106
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": -0.113
    }
   ],
   "usd": [
@@ -2011,6 +2062,15 @@
     "size": "HALF",
     "dir": "bull",
     "trend": 0.674
+   },
+   {
+    "d": "2026-10-04",
+    "bull": 2.0,
+    "bear": null,
+    "tier": "A",
+    "size": "HALF",
+    "dir": "bull",
+    "trend": 0.669
    }
   ],
   "audusd": [
@@ -2202,6 +2262,15 @@
     "size": "",
     "dir": null,
     "trend": -0.012
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.004
    }
   ],
   "usdthb": [
@@ -2393,6 +2462,15 @@
     "size": "PROBE",
     "dir": "bear",
     "trend": 0.487
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": 1.0,
+    "tier": "A",
+    "size": "PROBE",
+    "dir": "bear",
+    "trend": 0.474
    }
   ],
   "usdkrw": [
@@ -2584,6 +2662,15 @@
     "size": "",
     "dir": null,
     "trend": -0.608
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": -0.688
    }
   ],
   "usdinr": [
@@ -2769,6 +2856,15 @@
    },
    {
     "d": "2026-10-02",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.572
+   },
+   {
+    "d": "2026-10-04",
     "bull": null,
     "bear": null,
     "tier": "WATCH",
@@ -2966,6 +3062,15 @@
     "size": "",
     "dir": null,
     "trend": -0.037
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": -0.04
    }
   ],
   "oil": [
@@ -3157,6 +3262,15 @@
     "size": "",
     "dir": null,
     "trend": 0.375
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.364
    }
   ],
   "kospi": [
@@ -3348,6 +3462,15 @@
     "size": "",
     "dir": null,
     "trend": 0.259
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.26
    }
   ],
   "ustech": [
@@ -3539,6 +3662,15 @@
     "size": "",
     "dir": null,
     "trend": 0.518
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.53
    }
   ],
   "tpnbnk": [
@@ -3730,6 +3862,15 @@
     "size": "",
     "dir": null,
     "trend": 0.668
+   },
+   {
+    "d": "2026-10-04",
+    "bull": null,
+    "bear": null,
+    "tier": "WATCH",
+    "size": "",
+    "dir": null,
+    "trend": 0.655
    }
   ]
  },
