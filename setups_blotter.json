@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-06 09:45",
+ "_updated": "2026-10-07 08:58",
  "created": "2026-08-17",
- "last_update": "2026-10-06",
- "setups_asof": "2026-10-06 09:45",
+ "last_update": "2026-10-07",
+ "setups_asof": "2026-10-07 08:58",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,46 +15,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 29,
+   "days": 30,
    "avg": 99.176,
-   "mark": 102.065,
-   "unrealised": 72825.0,
+   "mark": 101.932,
+   "unrealised": 69472.0,
    "realised": 0.0,
    "score_at_open": 1.5
-  },
-  {
-   "key": "jgb",
-   "instrument": "JGB 10Y yield",
-   "kind": "rates",
-   "verb": "PAY JGB 10Y / short JB",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-07",
-   "days": 29,
-   "avg": 3.0091,
-   "mark": 3.125,
-   "unrealised": 28969.0,
-   "realised": 136031.0,
-   "score_at_open": 2.0
-  },
-  {
-   "key": "usdthb",
-   "instrument": "USDTHB spot",
-   "kind": "fx",
-   "verb": "SELL USDTHB",
-   "units": -1250000.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-09-07",
-   "days": 29,
-   "avg": 32.935,
-   "mark": 33.675,
-   "unrealised": -28086.0,
-   "realised": 0.0,
-   "score_at_open": 1.25
   },
   {
    "key": "krw5",
@@ -66,12 +32,63 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-10",
-   "days": 26,
+   "days": 27,
    "avg": 4.1979,
-   "mark": 4.1015,
-   "unrealised": -24094.0,
+   "mark": 4.084,
+   "unrealised": -28469.0,
    "realised": 29144.0,
    "score_at_open": 1.35
+  },
+  {
+   "key": "usdthb",
+   "instrument": "USDTHB spot",
+   "kind": "fx",
+   "verb": "SELL USDTHB",
+   "units": -1250000.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "VALUE",
+   "opened": "2026-09-07",
+   "days": 30,
+   "avg": 32.935,
+   "mark": 33.627,
+   "unrealised": -26264.0,
+   "realised": 0.0,
+   "score_at_open": 1.25
+  },
+  {
+   "key": "jgb",
+   "instrument": "JGB 10Y yield",
+   "kind": "rates",
+   "verb": "PAY JGB 10Y / short JB",
+   "units": -10000.0,
+   "size": "FULL",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-07",
+   "days": 30,
+   "avg": 3.0645,
+   "mark": 3.083,
+   "unrealised": 18469.0,
+   "realised": 136031.0,
+   "score_at_open": 2.0
+  },
+  {
+   "key": "bund",
+   "instrument": "Bund 10Y yield",
+   "kind": "rates",
+   "verb": "RECEIVE Bund 10Y / long RX",
+   "units": 2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "CTA FLOW TURN",
+   "opened": "2026-10-02",
+   "days": 5,
+   "avg": 3.508,
+   "mark": 3.4779999999999998,
+   "unrealised": 7500.0,
+   "realised": 7500.0,
+   "score_at_open": 1.75
   },
   {
    "key": "inr5",
@@ -83,29 +100,12 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 23,
+   "days": 24,
    "avg": 6.6738,
-   "mark": 6.744,
-   "unrealised": 17562.0,
+   "mark": 6.701,
+   "unrealised": 6812.0,
    "realised": 11562.0,
    "score_at_open": 1.35
-  },
-  {
-   "key": "bund",
-   "instrument": "Bund 10Y yield",
-   "kind": "rates",
-   "verb": "RECEIVE Bund 10Y / long RX",
-   "units": 5000.0,
-   "size": "HALF",
-   "tier": "A",
-   "anchor": "CTA FLOW TURN",
-   "opened": "2026-10-02",
-   "days": 4,
-   "avg": 3.508,
-   "mark": 3.493,
-   "unrealised": 7500.0,
-   "realised": 0.0,
-   "score_at_open": 1.75
   }
  ],
  "closed": [
@@ -413,9 +413,9 @@
  "stats": {
   "n_closed": 20,
   "wins": 11,
-  "realised": 127393.0,
-  "unrealised": 74676.0,
-  "total": 202069.0,
+  "realised": 134893.0,
+  "unrealised": 47520.0,
+  "total": 182413.0,
   "avg_days": 7.0,
   "by_size": {
    "PROBE": {
@@ -470,7 +470,7 @@
     "wins": 1,
     "pnl": 14751.0,
     "open_n": 2,
-    "open_pnl": 44739.0,
+    "open_pnl": 43208.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -478,7 +478,7 @@
     "wins": 3,
     "pnl": 37400.0,
     "open_n": 3,
-    "open_pnl": 22437.0,
+    "open_pnl": -3188.0,
     "open_realised": 176737.0
    },
    "CTA FLOW TURN": {
@@ -487,11 +487,27 @@
     "pnl": 0.0,
     "open_n": 1,
     "open_pnl": 7500.0,
-    "open_realised": 0.0
+    "open_realised": 7500.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-10-07",
+   "key": "jgb",
+   "units": -7500.0,
+   "price": 3.083,
+   "note": "resize -> A FULL",
+   "anchor": "TREND"
+  },
+  {
+   "date": "2026-10-07",
+   "key": "bund",
+   "units": -2500.0,
+   "price": 3.4779999999999998,
+   "note": "resize -> A PROBE",
+   "anchor": "CTA FLOW TURN"
+  },
   {
    "date": "2026-10-02",
    "key": "jgb",
@@ -794,22 +810,6 @@
    "units": 5000.0,
    "price": 4.7780000000000005,
    "note": "close (dropped off strip)",
-   "anchor": null
-  },
-  {
-   "date": "2026-09-01",
-   "key": "krw5",
-   "units": -7500.0,
-   "price": 4.03,
-   "note": "resize -> A HALF",
-   "anchor": null
-  },
-  {
-   "date": "2026-09-01",
-   "key": "jgb",
-   "units": -5000.0,
-   "price": 2.991,
-   "note": "resize -> A FULL",
    "anchor": null
   }
  ]
