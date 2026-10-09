@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-08 10:59",
+  "_updated": "2026-10-09 10:10",
   "config": {
     "horizons": [
       "1W",
@@ -18,8 +18,8 @@
       "key": "NDX",
       "name": "NASDAQ-100",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-10-07",
-      "n_days": 6479,
+      "sample_end": "2026-10-08",
+      "n_days": 6480,
       "arm_thr": 3,
       "mode": "gated",
       "low_conviction": false,
@@ -39,30 +39,30 @@
           "mean": 0.25,
           "median": 0.47,
           "hit": 58.0,
-          "n": 6474
+          "n": 6475
         },
         "1M": {
           "mean": 1.02,
           "median": 1.58,
           "hit": 63.0,
-          "n": 6458
+          "n": 6459
         },
         "3M": {
           "mean": 3.2,
           "median": 4.28,
           "hit": 69.0,
-          "n": 6416
+          "n": 6417
         },
         "6M": {
           "mean": 6.64,
           "median": 8.85,
           "hit": 75.0,
-          "n": 6353
+          "n": 6354
         }
       },
       "snapshot": {
-        "date": "2026-10-07",
-        "px": 31160.0,
+        "date": "2026-10-08",
+        "px": 30726.0,
         "score": 0,
         "cap_max": 9,
         "on": [],
@@ -882,8 +882,8 @@
       "key": "SPX",
       "name": "S&P 500",
       "sample_start": "2001-01-02",
-      "sample_end": "2026-10-07",
-      "n_days": 6479,
+      "sample_end": "2026-10-08",
+      "n_days": 6480,
       "arm_thr": 3,
       "mode": "deep",
       "low_conviction": false,
@@ -903,30 +903,30 @@
           "mean": 0.17,
           "median": 0.33,
           "hit": 58.0,
-          "n": 6474
+          "n": 6475
         },
         "1M": {
           "mean": 0.68,
-          "median": 1.26,
+          "median": 1.27,
           "hit": 64.0,
-          "n": 6458
+          "n": 6459
         },
         "3M": {
           "mean": 2.08,
           "median": 3.24,
           "hit": 69.0,
-          "n": 6416
+          "n": 6417
         },
         "6M": {
           "mean": 4.25,
           "median": 5.74,
           "hit": 72.0,
-          "n": 6353
+          "n": 6354
         }
       },
       "snapshot": {
-        "date": "2026-10-07",
-        "px": 7802.0,
+        "date": "2026-10-08",
+        "px": 7765.0,
         "score": 0,
         "cap_max": 9,
         "on": [],
@@ -1749,8 +1749,8 @@
       "key": "NKY",
       "name": "Nikkei 225",
       "sample_start": "2001-01-04",
-      "sample_end": "2026-10-08",
-      "n_days": 6310,
+      "sample_end": "2026-10-09",
+      "n_days": 6311,
       "arm_thr": 2,
       "mode": "gated",
       "low_conviction": false,
@@ -1765,39 +1765,34 @@
           "mean": 0.18,
           "median": 0.34,
           "hit": 55.0,
-          "n": 6305
+          "n": 6306
         },
         "1M": {
           "mean": 0.72,
           "median": 1.02,
           "hit": 58.0,
-          "n": 6289
+          "n": 6290
         },
         "3M": {
           "mean": 2.21,
           "median": 1.94,
           "hit": 58.0,
-          "n": 6247
+          "n": 6248
         },
         "6M": {
           "mean": 4.52,
           "median": 3.34,
           "hit": 59.0,
-          "n": 6184
+          "n": 6185
         }
       },
       "snapshot": {
-        "date": "2026-10-08",
-        "px": 69373.0,
+        "date": "2026-10-09",
+        "px": 68623.0,
         "score": 0,
         "cap_max": 4,
         "on": [],
-        "recent_events": [
-          {
-            "event": "Reclaim 50dma",
-            "date": "2026-09-25"
-          }
-        ],
+        "recent_events": [],
         "armed": false,
         "last_entry": "2026-09-25",
         "entry_active_10d": true,
@@ -1909,10 +1904,10 @@
           },
           "6M": {
             "n": 73,
-            "mean": 5.19,
+            "mean": 5.18,
             "median": 0.8,
             "hit": 58.0,
-            "excess": 0.67
+            "excess": 0.66
           },
           "t_3M": 2.33,
           "mae_mean": -7.62,
@@ -2466,7 +2461,7 @@
       },
       "snapshot": {
         "date": "2026-10-08",
-        "px": 1062.0,
+        "px": 1045.0,
         "score": 2,
         "cap_max": 7,
         "on": [
@@ -2814,10 +2809,10 @@
           },
           "6M": {
             "n": 86,
-            "mean": 9.56,
+            "mean": 9.53,
             "median": 7.77,
             "hit": 70.0,
-            "excess": 2.01
+            "excess": 1.98
           },
           "t_3M": 3.26,
           "mae_mean": -8.15,
@@ -3411,7 +3406,7 @@
       },
       "snapshot": {
         "date": "2026-10-08",
-        "px": 49501.0,
+        "px": 49313.0,
         "score": 0,
         "cap_max": 2,
         "on": [],
