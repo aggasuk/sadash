@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12 11:29",
+  "generated": "2026-10-12 19:15",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -9,20 +9,6 @@
     "divergence_window": 14
   },
   "bearish": [
-    {
-      "ticker": "DXY Curncy",
-      "category": "fx",
-      "last": 102.187,
-      "rsi_now": 69.0,
-      "rsi_yest": 69.5,
-      "rsi_peak": 76.2,
-      "peak_bars_ago": 7,
-      "drop": 7.2,
-      "divergence": true,
-      "trend": 0.77,
-      "trend_band": "strong up",
-      "strength": "STRONG"
-    },
     {
       "ticker": "GDBR10 Index",
       "category": "rates",
@@ -40,19 +26,47 @@
     {
       "ticker": "TWSE Index",
       "category": "equity_commod",
-      "last": 49241.25,
-      "rsi_now": 65.1,
-      "rsi_yest": 66.0,
+      "last": 49313.44,
+      "rsi_now": 66.0,
+      "rsi_yest": 72.2,
       "rsi_peak": 72.4,
-      "peak_bars_ago": 3,
-      "drop": 7.3,
+      "peak_bars_ago": 2,
+      "drop": 6.4,
       "divergence": false,
-      "trend": 0.776,
+      "trend": 0.778,
       "trend_band": "strong up",
       "strength": "MODERATE"
+    },
+    {
+      "ticker": "DXY Curncy",
+      "category": "fx",
+      "last": 102.213,
+      "rsi_now": 69.5,
+      "rsi_yest": 68.8,
+      "rsi_peak": 76.2,
+      "peak_bars_ago": 6,
+      "drop": 6.7,
+      "divergence": true,
+      "trend": 0.761,
+      "trend_band": "strong up",
+      "strength": "WEAK"
     }
   ],
   "bullish": [
+    {
+      "ticker": "AUDUSD Curncy",
+      "category": "fx",
+      "last": 0.6983,
+      "rsi_now": 39.9,
+      "rsi_yest": 33.9,
+      "rsi_trough": 25.2,
+      "trough_bars_ago": 6,
+      "rise": 14.7,
+      "divergence": false,
+      "trend": -0.052,
+      "trend_band": "flat",
+      "strength": "MODERATE"
+    },
     {
       "ticker": "NIFTY Index",
       "category": "equity_commod",
@@ -70,16 +84,16 @@
     {
       "ticker": "EURUSD Curncy",
       "category": "fx",
-      "last": 1.1209,
-      "rsi_now": 26.5,
-      "rsi_yest": 24.6,
+      "last": 1.12,
+      "rsi_now": 24.6,
+      "rsi_yest": 25.3,
       "rsi_trough": 18.1,
-      "trough_bars_ago": 7,
-      "rise": 8.4,
-      "divergence": false,
-      "trend": -0.81,
+      "trough_bars_ago": 6,
+      "rise": 6.5,
+      "divergence": true,
+      "trend": -0.801,
       "trend_band": "strong down",
-      "strength": "MODERATE"
+      "strength": "WEAK"
     }
   ],
   "stats": {
@@ -376,9 +390,9 @@
             "hit_rate": 18.2
           },
           "20": {
-            "n": 10,
-            "mean": -2.82,
-            "median": -2.29,
+            "n": 9,
+            "mean": -3.03,
+            "median": -3.29,
             "hit_rate": 0.0
           }
         }
@@ -807,8 +821,8 @@
         "bearish": {
           "5": {
             "n": 30,
-            "mean": 1.12,
-            "median": 2.02,
+            "mean": 1.09,
+            "median": 1.77,
             "hit_rate": 36.7
           },
           "10": {
@@ -819,8 +833,8 @@
           },
           "20": {
             "n": 30,
-            "mean": 4.78,
-            "median": 5.99,
+            "mean": 4.73,
+            "median": 5.57,
             "hit_rate": 13.3
           }
         },
@@ -1100,10 +1114,10 @@
       "USGG10YR Index": {
         "bearish": {
           "5": {
-            "n": 8,
-            "mean": 1.72,
-            "median": 1.89,
-            "hit_rate": 37.5
+            "n": 7,
+            "mean": 2.15,
+            "median": 2.14,
+            "hit_rate": 28.6
           },
           "10": {
             "n": 6,

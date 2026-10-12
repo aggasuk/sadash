@@ -376,7 +376,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <button class="tab active" data-sub="equity_commod">Equities / Commods</button>
       <button class="tab" data-sub="rates">Rates</button>
       <button class="tab" data-sub="fx">FX</button>
-      <button class="tab" data-sub="signals">Signal Backtests</button>
       <button class="tab" data-sub="rsi-roll">RSI Screen</button>
       <button class="tab" data-sub="bottoming">Bottoming</button>
     </div>
@@ -398,10 +397,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div id="mom-summary-table-fx"></div>
     </div>
 
-    <!-- ── Signal Backtests sub-page ── -->
-    <div class="mom-subpage" id="mom-sub-signals" style="display:none;">
-      <div id="signal-backtests"></div>
-    </div>
 
     <!-- ── RSI Rollover Screen sub-page ── -->
     <div class="mom-subpage" id="mom-sub-rsi-roll" style="display:none;">
@@ -435,7 +430,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div class="chart-wrap"><canvas id="chart"></canvas></div>
       <div class="chart-wrap"><canvas id="chart-rsi"></canvas></div>
       <div class="scores" id="scores"></div>
-      <div id="indicators"></div>
     </div>
   </div>
 
@@ -475,10 +469,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     .st-toggle.on{border-color:var(--accent);color:var(--accent);}
     .pos{color:var(--green);} .neg{color:var(--red);}
     </style>
-    <div class="tabs" id="setups-sub-tabs" style="margin-bottom:18px;">
-      <button class="tab active" data-sub="setups">Setups</button>
-      <button class="tab" data-sub="manage">Manage</button>
-    </div>
     <div id="setups-sub-setups">
     <div id="setups-head" class="st-head">loading…</div>
     <div id="setups-cards"></div>
@@ -490,13 +480,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <div class="st-h2">Change log</div>
     <div id="setups-changelog" style="font-size:0.74rem;color:var(--text-dim);line-height:1.7;"></div>
     <div id="setups-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
-    </div>
-    <div id="setups-sub-manage" style="display:none;">
-      <div class="st-head" id="manage-head">loading…</div>
-      <div class="st-h2">Held positions — click a chip to cycle — / long / short (saved in this browser; file defaults from held_positions.json)</div>
-      <div id="manage-picker" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center;"></div>
-      <div id="manage-cards"></div>
-      <div id="manage-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
     </div>
     <script>
     (function() {
@@ -518,16 +501,17 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         var head = e.tier === 'A' ? e.verb :
                    e.tier === 'AVOID' ? 'stand aside — ' + e.label :
                    noanchor ? e.label + ' — <i>no anchor</i>' : e.verb + ' — <i>not yet</i>';
-        var size = e.size ? e.size + ' · ' : '';
+        var size = e.size ? e.size + (e.max_size === 'PROBE' && e.tier === 'A' ? ' (cap)' : '') + ' · ' : '';
         var foot = '';
         if (e.tier === 'A') foot = 'held ' + (e.days_held == null ? '?' : e.days_held) + 'd since ' + e.since +
-                                    ' · entry ' + f2(e.entry_score) + ' → now ' + f2(e.score) + ' · exits below 0.5';
+                                    ' · entry ' + f2(e.entry_score) + ' → now ' + f2(e.score) + ' · exits below 0.5 (3 runs, 14d min hold)';
         else if (e.tier === 'AVOID') foot = 'veto: ' + (e.veto || '');
         else if (noanchor) foot = 'trend ' + f2(e.trend) + ' (' + (e.cls === 'rates' ? 'below 0.3' : e.cls + ': trend is not an anchor') +
-                                  ') — waits for ' + (e.cls === 'rates' ? 'trend ≥0.3 or a CTA flow turn' :
+                                  ') — waits for ' + (e.cls === 'rates' ? 'trend ≥0.3' :
                                   e.cls === 'fx' ? 'FV ≥1z / EUReka checklist' : 'Bottoming entry / positioning / FV');
         else foot = 'score ' + f2(e.score) + ' — needs +' + f2(e.needs).replace('+', '') + ' more';
         if (e.note) foot += ' · ' + e.note;
+        if (e.pending) { var pq = e.pending; foot += ' · <b style="color:var(--amber);">pending ' + pq.action + (pq.size ? ' ' + pq.size : '') + ' ' + pq.n + '/' + pq.need + (pq.hold_block ? ', min hold ' + pq.hold_left + 'd left' : '') + '</b>'; }
         var other = e.other && Object.keys(e.other).length > 1 ?
           ' · other side ' + Object.keys(e.other).filter(function(k){ return k !== e.dir; }).map(function(k){ return k + ' ' + f2(e.other[k]); }).join(', ') : '';
         return '<div class="st-card t' + e.tier + (noanchor ? ' noanchor' : '') + '"><div class="st-chead">' +
@@ -550,7 +534,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         var head = (acts.length ? '<b>' + acts.length + ' setup' + (acts.length === 1 ? '' : 's') + ' on</b>' : '<b>Nothing on.</b>') +
           ' · ' + watch.length + ' anchored but short of 1.0 · ' + idle.length + ' without an anchor · ' + avoid.length + ' vetoed';
         var chg = (d.changes && d.changes.length) ? '<div class="st-chg">this run: ' + d.changes.join(' · ') + '</div>' : '';
-        document.getElementById('setups-head').innerHTML = head + chg;
+        var pnd = (d.pending && d.pending.length) ? '<div class="st-chg">pending: ' + d.pending.join(' · ') + '</div>' : '';
+        document.getElementById('setups-head').innerHTML = head + chg + pnd;
         document.getElementById('setups-updated').textContent = 'Last updated: ' + (d._updated || '');
         document.getElementById('setups-cards').innerHTML =
           sec('On', acts, card) + sec('Stand aside', avoid, card) + sec('Watch — anchored, short of the bar', watch, card) +
@@ -559,8 +544,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
           return '<div><span style="color:var(--text-dim);font-variant-numeric:tabular-nums;">' + c.d + '</span> &nbsp;' + c.msg + '</div>';
         }).join('') || '<div>—</div>';
         document.getElementById('setups-method').innerHTML = '<b>Method.</b> ' + (d.method || '') +
-          ' <br>v2 07-Sep-26: v1 anchored on a crossover backtest that measured drift plus a look-ahead bug; see signal_study.py. ' +
-          'The blotter closed the v1 book at the rebuild — episodes before 07-Sep-26 are v1.';
+          ' <br>v3 12-Oct-26 (momentum_review.py): continuous legs, 3-run confirmation, 14-day minimum hold, CTA flow never an anchor, FX VALUE cards capped at PROBE until the pair passes the out-of-sample fade test, failed FV models at half weight. ' +
+          'v2 07-Sep-26 replaced the crossover backtest; the blotter closed the v1 book then — episodes before 07-Sep-26 are v1.';
       }
       var PAL = ['#3b82f6','#22c55e','#ef4444','#f59e0b','#a855f7','#06b6d4','#ec4899','#84cc16','#f97316','#14b8a6','#6366f1','#eab308','#10b981','#f43f5e','#8b5cf6','#0ea5e9'];
       function renderHist(d) {
@@ -652,133 +637,6 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       fetch(_b('setups.json')).then(function(r){ return r.json(); }).then(function(d) { renderCards(d); renderHist(d); })
         .catch(function(e) { document.getElementById('setups-head').innerHTML = 'setups.json not available'; });
       fetch(_b('setups_blotter.json')).then(function(r){ return r.json(); }).then(renderBlotter).catch(function(){ renderBlotter(null); });
-    })();
-    </script>
-    <script>
-    (function() {
-      var _b = function(u) { return u + '?v=' + Date.now(); };
-      // sub-tab switching
-      document.querySelectorAll('#setups-sub-tabs .tab').forEach(function(t) {
-        t.addEventListener('click', function() {
-          document.querySelectorAll('#setups-sub-tabs .tab').forEach(function(x){ x.classList.remove('active'); });
-          t.classList.add('active');
-          document.getElementById('setups-sub-setups').style.display = t.dataset.sub === 'setups' ? '' : 'none';
-          document.getElementById('setups-sub-manage').style.display = t.dataset.sub === 'manage' ? '' : 'none';
-        });
-      });
-      var D = null, HELD = null;
-      function f2(x, dp) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(dp == null ? 2 : dp); }
-      function fu(x, u, dp) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(dp) + u; }
-      function vcol(v) { return v === 'LIGHTEN' ? 'var(--red)' : v === 'LEAN' ? 'var(--amber)' : v === 'ADD' ? 'var(--green)' : 'var(--text-dim)'; }
-      function loadHeld() {
-        try { var x = JSON.parse(localStorage.getItem('manageHeld') || 'null'); if (x && typeof x === 'object') return x; } catch (e) {}
-        var h = {}; (D.tickers || []).forEach(function(t){ if (t.held) h[t.ticker] = t.held.side; }); return h;
-      }
-      function saveHeld() { try { localStorage.setItem('manageHeld', JSON.stringify(HELD)); } catch (e) {} }
-      function sideLabel(t, side) {
-        if (!side) return '—';
-        if (t.is_yield) return side === 'long' ? 'PAID' : 'RECEIVED';
-        return side.toUpperCase();
-      }
-      function picker() {
-        var el = document.getElementById('manage-picker');
-        var h = '';
-        (D.tickers || []).forEach(function(t) {
-          var sd = HELD[t.ticker];
-          h += '<button class="st-toggle' + (sd ? ' on' : '') + '" data-tk="' + t.ticker + '" style="' + (sd === 'long' ? 'border-color:var(--green);color:var(--green);' : sd === 'short' ? 'border-color:var(--red);color:var(--red);' : '') + '">' +
-               t.name + (sd ? ' · ' + sideLabel(t, sd) : '') + '</button>';
-        });
-        h += '<button class="st-toggle" id="manage-reset" title="back to held_positions.json">reset to file</button>';
-        el.innerHTML = h;
-        el.querySelectorAll('.st-toggle[data-tk]').forEach(function(b) {
-          b.addEventListener('click', function() {
-            var cur = HELD[b.dataset.tk]; HELD[b.dataset.tk] = cur === 'long' ? 'short' : cur === 'short' ? null : 'long';
-            if (!HELD[b.dataset.tk]) delete HELD[b.dataset.tk];
-            saveHeld(); picker(); cards();
-          });
-        });
-        document.getElementById('manage-reset').addEventListener('click', function() { try { localStorage.removeItem('manageHeld'); } catch (e) {} HELD = loadHeld(); picker(); cards(); });
-      }
-      function ctxLine(t, side) {
-        var c = t.context || {}, out = [];
-        if (c.positioning) out.push(c.positioning.src + ' z <b>' + f2(c.positioning.z, 1) + '</b> (' + (c.positioning.read || '') + '; ' + c.positioning.thr + ')');
-        if (c.cta) out.push('CTA exposure <b>' + f2(c.cta.exp_sd, 1) + 'sd</b>' + (Math.abs(c.cta.exp_sd) >= 1.75 ? ' <span style="color:var(--amber);">crowded</span>' : ''));
-        if (c.fv) {
-          var z = c.fv.z; var hl = c.fv.hl;
-          var richFor = t.is_yield ? (z > 0 ? 'yield above fair (bond cheap)' : 'yield below fair (bond rich)') : (z > 0 ? 'rich vs fair' : 'cheap vs fair');
-          var against = (side === 'long') ? (z > 0) : (z < 0);
-          out.push('FV <b>' + f2(z, 1) + 'z</b> ' + richFor + (hl ? ', ½-life ' + hl.toFixed(0) + 'd' : '') + (c.fv.no_mr ? ' ⚠ not mean-reverting' : '') +
-                   (Math.abs(z) >= 1 ? (against ? ' <span style="color:var(--amber);">against you</span>' : ' <span style="color:var(--green);">with you</span>') : ''));
-        }
-        return out.length ? '<div class="st-why">' + out.join(' · ') + '</div>' : '';
-      }
-      function card(t, side) {
-        var S = t.sides[side]; if (!S) return '';
-        var st = t.state, u = t.unit, dp = u === 'bp' ? 1 : 2;
-        var sgn = side === 'long' ? 1 : -1;
-        var withYou = (st.score * sgn);
-        var trendCol = withYou >= 0.2 ? 'var(--green)' : withYou <= -0.2 ? 'var(--red)' : 'var(--text-dim)';
-        var liveRows = S.signals.filter(function(r){ return r.live && r.live.on; });
-        var worst = 'NONE';
-        liveRows.forEach(function(r){ if (r.verdict === 'LIGHTEN') worst = 'LIGHTEN'; else if (r.verdict === 'LEAN' && worst !== 'LIGHTEN') worst = 'LEAN'; });
-        var border = worst === 'LIGHTEN' ? 'var(--red)' : worst === 'LEAN' ? 'var(--amber)' : 'var(--green)';
-        var label = t.held && HELD[t.ticker] === t.held.side ? t.held.label : (sideLabel(t, side) + ' ' + t.name);
-        var h = '<div class="st-card" style="border-left:4px solid ' + border + ';margin-bottom:12px;">';
-        h += '<div class="st-chead"><span class="st-tier">MANAGE</span><span class="st-verb">' + label + ' <span style="font-weight:400;color:var(--text-dim);font-size:0.78rem;">' + t.ticker + ' · ' + st.last + (t.held && t.held.note ? ' · ' + t.held.note : '') + '</span></span>' +
-             '<span class="st-size">trend <b style="color:' + trendCol + ';">' + f2(st.score) + '</b> ' + st.band + '</span></div>';
-        h += '<div class="st-chips">' +
-             '<span class="st-chip mut">' + (st.days_since_flip == null ? '—' : st.days_since_flip + 'd since flip') + ' · Δ5d ' + f2(st.chg_5d) + '</span>' +
-             '<span class="st-chip mut">speeds ' + f2(st.speeds['10/30']) + ' / ' + f2(st.speeds['20/60']) + ' / ' + f2(st.speeds['40/120']) + '</span>' +
-             '<span class="st-chip ' + (Math.abs(st.ret_1m_z) >= 2 ? 'bad' : 'mut') + '">1M ' + f2(st.ret_1m_z, 1) + 'σ</span>' +
-             '<span class="st-chip ' + ((side === 'long' ? st.rsi_peak_10d >= 70 : st.rsi_trough_10d <= 30) ? 'bad' : 'mut') + '">RSI ' + st.rsi14 + ' (10d ' + (side === 'long' ? 'peak ' + st.rsi_peak_10d : 'trough ' + st.rsi_trough_10d) + ')</span>' +
-             '<span class="st-chip ' + (Math.abs(st.dist50_z) >= 2 ? 'bad' : 'mut') + '">vs 50d ' + f2(st.dist50_z, 1) + 'σ</span>' +
-             '<span class="st-chip mut">vol ' + st.vol_ann + u + '</span></div>';
-        h += ctxLine(t, side);
-        // live line
-        if (liveRows.length) {
-          h += '<div class="st-why" style="color:var(--text);">Live now: ' + liveRows.map(function(r){ return '<b>' + r.label + '</b> (day ' + r.live.days_since + ') → <span style="color:' + vcol(r.verdict) + ';font-weight:700;">' + r.verdict + '</span>'; }).join(' · ') + '</div>';
-        } else {
-          h += '<div class="st-why">No exhaustion signal live right now' + (withYou < 0.2 ? ' — but the trend is no longer in your favour (score ' + f2(st.score) + '), so the exhaustion study does not apply; this is a trend question' : '') + '.</div>';
-        }
-        // table
-        h += '<table class="vol-table no-sort" style="margin-top:6px;font-size:0.76rem;"><thead><tr><th>Exhaustion signal</th><th>Now</th><th>n</th><th>1W excess</th><th>1M fwd</th><th>baseline 1M</th><th>1M excess</th><th>p weak</th><th>% negative</th><th>worst 1M</th><th>3M excess</th><th>Verdict</th></tr></thead><tbody>';
-        S.signals.forEach(function(r) {
-          var m1 = (r.stats || {})['1M'] || {}, w1 = (r.stats || {})['1W'] || {}, m3 = (r.stats || {})['3M'] || {};
-          var now = r.live && r.live.on ? '<span style="color:var(--amber);font-weight:700;">ON · d' + r.live.days_since + '</span>' : '—';
-          h += '<tr title="last onsets: ' + (r.recent || []).join(', ') + '"><td>' + r.label + '</td><td>' + now + '</td><td>' + r.n + '</td>' +
-               '<td>' + fu(w1.excess, u, dp) + '</td><td>' + fu(m1.mean, u, dp) + '</td><td>' + fu(m1.base, u, dp) + '</td>' +
-               '<td style="font-weight:700;color:' + (m1.excess == null ? 'var(--text-dim)' : m1.excess < 0 ? 'var(--red)' : 'var(--green)') + ';">' + fu(m1.excess, u, dp) + '</td>' +
-               '<td>' + (m1.p_weak == null ? '—' : m1.p_weak.toFixed(3)) + '</td><td>' + (m1.neg_pct == null ? '—' : m1.neg_pct + '%') + '</td>' +
-               '<td>' + (r.mae == null ? '—' : r.mae.toFixed(dp) + u) + '</td><td>' + fu(m3.excess, u, dp) + '</td>' +
-               '<td style="color:' + vcol(r.verdict) + ';font-weight:700;">' + r.verdict + '</td></tr>';
-        });
-        h += '</tbody></table>';
-        var B = S.baseline || {};
-        var lig = S.signals.filter(function(r){ return r.verdict === 'LIGHTEN' || r.verdict === 'LEAN'; }).map(function(r){ return r.label; });
-        var add = S.signals.filter(function(r){ return r.verdict === 'ADD'; }).map(function(r){ return r.label; });
-        h += '<div class="st-foot"><span>Baseline = holding through any day the trend was in your favour since 2015 (' + Math.round((B.share_days || 0) * 100) + '% of days, n ' + ((B['1M'] || {}).n || '—') + '): 1M ' + fu((B['1M'] || {}).mean, u, dp) + ', worst-1M ' + (B.mae == null ? '—' : B.mae.toFixed(dp) + u) + '. ' +
-             (lig.length ? '<b>Evidence-backed lighten signals on ' + t.name + ':</b> ' + lig.join('; ') + '.' : '<b>No exhaustion signal has beaten holding on ' + t.name + '.</b>') +
-             (add.length ? ' Signals that preceded <i>stronger</i> returns (do not sell on them): ' + add.join('; ') + '.' : '') + '</span></div>';
-        h += '</div>';
-        return h;
-      }
-      function cards() {
-        var el = document.getElementById('manage-cards');
-        var held = (D.tickers || []).filter(function(t){ return HELD[t.ticker]; });
-        var n = held.length, alert = 0, lean = 0;
-        var h = held.map(function(t) {
-          var S = t.sides[HELD[t.ticker]];
-          var live = S ? S.signals.filter(function(r){ return r.live && r.live.on; }) : [];
-          if (live.some(function(r){ return r.verdict === 'LIGHTEN'; })) alert++; else if (live.some(function(r){ return r.verdict === 'LEAN'; })) lean++;
-          return card(t, HELD[t.ticker]);
-        }).join('');
-        el.innerHTML = h || '<div style="color:var(--text-dim);font-size:0.8rem;">No held positions selected — click chips above.</div>';
-        document.getElementById('manage-head').innerHTML = '<b>' + n + ' held position' + (n === 1 ? '' : 's') + '</b> · ' + alert + ' with a live evidence-backed LIGHTEN signal · ' + lean + ' with a LEAN · updated ' + (D._updated || '');
-      }
-      fetch(_b('manage.json')).then(function(r){ return r.json(); }).then(function(d) {
-        D = d; HELD = loadHeld(); picker(); cards();
-        document.getElementById('manage-method').innerHTML = '<b>Method.</b> ' + (d.method || '').replace(/\n/g, '<br>');
-      }).catch(function(e){ document.getElementById('manage-head').innerHTML = 'manage.json not available'; });
     })();
     </script>
   </div>
@@ -2506,26 +2364,11 @@ function renderScores(d) {
       '</div>' +
     '</div>';
 }
-function renderIndicators(d) {
-  const shortRows = SHORT_KEYS.filter(k => d.ind[k]).map(k => {
-    const { v, s } = d.ind[k];
-    return `<tr><td>${k}</td><td>${v}</td><td><span class="badge ${badgeClass(s)}">${s}</span></td></tr>`;
-  }).join('');
-  const longKeys = Object.keys(d.ind).filter(k => !SHORT_KEYS.includes(k));
-  const longRows = longKeys.map(k => {
-    const { v, s } = d.ind[k];
-    return `<tr><td>${k}</td><td>${v}</td><td><span class="badge ${badgeClass(s)}">${s}</span></td></tr>`;
-  }).join('');
-  document.getElementById('indicators').innerHTML = `
-    <div class="ind-section"><h3>Short-Term Indicators</h3><table class="ind-table">${shortRows}</table></div>
-    <div class="ind-section"><h3>Long-Term Indicators</h3><table class="ind-table">${longRows}</table></div>
-  `;
-}
 function renderMomentum() {
   const d = DATA[activeTicker];
   const title = document.getElementById('detail-title');
   if (title) title.textContent = activeTicker;
-  renderTabs(); renderSnapshot(d); renderChart(d); renderRsiMacd(d); renderScores(d); renderIndicators(d);
+  renderTabs(); renderSnapshot(d); renderChart(d); renderRsiMacd(d); renderScores(d);
 }
 
 /* ========== MOMENTUM: Sub-tabs ========== */
@@ -2602,7 +2445,8 @@ function renderMomSummaryCategory(cat, tickers) {
   tickers.forEach(t => {
     const d = DATA[t];
     const tr = d.trend || {};
-    const rsi14 = d.ind['RSI (14d)'];
+    const rsiArr = (d.rsi14 || []).filter(v => v != null);
+    const rsi14 = rsiArr.length ? { v: rsiArr[rsiArr.length - 1].toFixed(1) } : null;
     rows += '<tr style="cursor:pointer;" onclick="switchToDetail(\'' + t + '\')">';
     rows += '<td>' + t + '</td>';
     rows += '<td>' + d.last.toFixed(d.last > 1000 ? 2 : 4) + '</td>';
@@ -2627,34 +2471,17 @@ function renderMomSummaryCategory(cat, tickers) {
     } else {
       rows += '<td>-</td>';
     }
-    const cxList = d.crossovers || [];
-    if (cxList.length > 0) {
-      let badges = '';
-      cxList.forEach(cx => {
-        const isBull = cx.direction.includes('BULLISH') || cx.direction.includes('GOLDEN');
-        const arrow = isBull ? '▲' : '▼';
-        let cls = 'cross-badge ';
-        if (cx.type === 'SMA 50/200') cls += isBull ? 'cross-golden' : 'cross-death';
-        else cls += isBull ? 'cross-bull' : 'cross-bear';
-        const label = cx.type === 'SMA 50/200' ? (isBull ? 'GOLDEN' : 'DEATH') :
-                      cx.type === 'SMA 5/20' ? '5/20' : 'MACD';
-        badges += '<span class="' + cls + '">' + arrow + ' ' + label + ' (' + cx.days_ago + 'd)</span> ';
-      });
-      rows += '<td>' + badges + '</td>';
-    } else {
-      rows += '<td style="color:var(--text-dim)">—</td>';
-    }
     rows += '</tr>';
   });
   target.innerHTML =
     '<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:8px;line-height:1.5;">' +
     'Trend = vol-scaled 3-speed EWMA score in [−1, +1] with a 12M anchor (same engine as CTA Rates); + means the <i>ticker</i> is trending up (yields up for rates). ' +
-    'Timing edge on the 2015-26 panel is real for <b>rates</b> only (1M rank-IC +0.05, +0.11 at 6M); FX ≈ 0, equity indices mildly mean-revert at 1-3M — treat the score as context there. Click a header to sort.</div>' +
+    '12-Oct-26 review (momentum_review.py, pooled by class, drift removed, block-bootstrap CIs): the score has a modest, real timing edge in <b>rates</b> (unit-vol Sharpe ~0.7 pooled, t≈2; ~+0.14σ next month beyond |score| 0.3 — the 0.3-0.6 and ≥0.6 bands predict alike); FX, equity and commodity trend are statistically indistinguishable from zero on 2015-26 (an 11y Sharpe carries a ±0.6 CI), so the score is context there, never an anchor. Equity <b>strong down</b> persisting is a contrarian state (+0.26σ next month pooled) — shown on the Bottoming scorecard. Crossovers, the indicator table and the exhaustion signals were retired: pooled, they carried nothing. Click a header to sort.</div>' +
     '<table class="vol-table"><thead><tr>' +
     '<th>Ticker</th><th>Last</th>' +
     '<th>Trend</th><th>Band</th><th>Since flip</th><th>Δ5d</th>' +
     '<th title="EWMA 10/30 response">10/30</th><th title="EWMA 20/60 response">20/60</th><th title="EWMA 40/120 response">40/120</th><th title="12M TSMOM anchor (mean sign over 5 lookbacks)">12M</th>' +
-    '<th title="last 21d move in vol units">1M σ</th><th>Vol</th><th>52w pos</th><th>RSI(14)</th><th>Crossovers</th>' +
+    '<th title="last 21d move in vol units">1M σ</th><th>Vol</th><th>52w pos</th><th>RSI(14)</th>' +
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 fetch(bust('data.json')).then(r => r.json()).then(data => {
@@ -2943,71 +2770,6 @@ fetch(bust('alerts.json')).then(r => r.json()).then(d => {
   });
 }).catch(() => {});
 
-// ── Signal event study (signal_study.py) ──
-fetch(bust('signal_backtest.json')).then(r => r.json()).then(d => {
-  const container = document.getElementById('signal-backtests');
-  if (!d.tickers || d.tickers.length === 0) {
-    container.innerHTML = '<div style="color:var(--text-dim);padding:20px;">No event-study output.</div>';
-    return;
-  }
-  const S = d.summary || {};
-  function pCls(p) { return p == null ? '' : p <= (S.p_edge || 0.025) ? 'z-high' : p <= (S.p_weak || 0.1) ? 'z-elevated' : ''; }
-  function fx(v, u, dp) { return v == null ? '—' : (v >= 0 ? '+' : '') + v.toFixed(dp) + u; }
-  let html = '';
-  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:16px;font-size:0.78rem;line-height:1.6;">' +
-    '<div style="font-weight:700;margin-bottom:4px;">Drift-adjusted event study · ' + S.n_tests + ' tests · <span class="z-high">' + S.n_edge + ' EDGE</span> (' + S.expected_false_edge + ' expected by chance at p≤' + S.p_edge + ') · ' + S.n_weak + ' WEAK</div>' +
-    '<div style="color:var(--text-dim);">Each crossover is tested in <b>both</b> directions. <b>Excess</b> = mean forward return after the signal minus the unconditional mean over the same sample, signed so + is with the stated direction. ' +
-    '<b>p</b> = share of ' + S.k_sims + ' random-date placebos (same n) that did as well — drift and fat tails are inside the placebo. Confluence is causal (≥2 signals the same way in the prior ' + S.conf_window_days + ' calendar days). ' +
-    'Verdict at ' + S.verdict_horizon + ': EDGE p≤' + S.p_edge + ' with n≥' + S.min_n + ', WEAK p≤' + S.p_weak + '. This replaced a t-vs-zero backtest on 07-Sep-26 that badged 21 signals HIGH, none of which survived drift removal. Read as context — Setups no longer consumes it.</div></div>';
-  const live = [];
-  d.tickers.forEach(t => t.signals.forEach(b => { if (b.live && (b.verdict === 'EDGE' || b.verdict === 'WEAK')) live.push({ t, b }); }));
-  if (live.length) {
-    html += '<div style="background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);border-radius:8px;padding:12px 18px;margin-bottom:16px;font-size:0.78rem;">' +
-      '<div style="font-weight:700;color:#2ecc71;margin-bottom:6px;">Live crossovers with a drift-adjusted verdict (' + live.length + ')</div>' +
-      live.map(x => { const s1 = (x.b.stats || {})['1M'] || {}; return '<span class="badge ' + (x.b.dir === 'BEAR' ? 'bear' : 'bull') + '" style="margin:2px 4px;">' + (x.b.dir === 'BEAR' ? '▼' : '▲') + ' ' + x.t.name + ' ' + x.b.signal + ' · 1M ' + fx(s1.excess, x.t.unit, 2) + ' p=' + (s1.p == null ? '—' : s1.p.toFixed(3)) + ' · ' + x.b.verdict + (x.b.days_since != null ? ' · ' + x.b.days_since + 'd' : '') + '</span>'; }).join('') + '</div>';
-  } else {
-    html += '<div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px 18px;margin-bottom:16px;font-size:0.78rem;color:var(--text-dim);">No live crossover carries a drift-adjusted EDGE or WEAK verdict today.</div>';
-  }
-  html += '<div style="margin-bottom:12px;font-size:0.76rem;color:var(--text-dim);"><label style="cursor:pointer;"><input type="checkbox" id="bt-live-only" style="vertical-align:middle;margin-right:6px;"> Show only signals currently in state (live)</label></div>';
-  d.tickers.forEach(t => {
-    const u = t.unit || '%'; const dp = u === 'bp' ? 1 : 2;
-    const tr = t.trend;
-    html += '<div class="ind-section" style="margin-bottom:18px;">';
-    html += '<h3>' + t.name + ' <span style="font-size:0.7rem;color:var(--text-dim);font-weight:400;">' + t.n_days + ' days from ' + t.first_date + ' · unconditional 1M ' + fx(t.uncond['1M'], u, dp) + ' · 3M ' + fx(t.uncond['3M'], u, dp) + '</span></h3>';
-    if (tr) {
-      html += '<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:8px;line-height:1.6;">Trend score on this asset: rank-IC vs next 1M <b style="color:' + (tr.ic >= 0.03 ? 'var(--green)' : tr.ic <= -0.03 ? 'var(--red)' : 'var(--text)') + ';">' + fsig(tr.ic, 3) + '</b>' +
-        (tr.long_short != null ? ' · strong-up minus strong-down 1M <b>' + fx(tr.long_short, u, dp) + '</b>' : '') + ' · now ' + fsig(tr.score_now) +
-        ' · by band: ' + tr.bands.map(b => b.band + ' ' + (b.excess == null ? '—' : fx(b.excess, '', dp)) + ' <span style="opacity:.6;">(n' + b.n + ')</span>').join(' · ') + '</div>';
-    }
-    html += '<table class="vol-table"><thead><tr><th>Signal</th><th>Dir</th><th>Live</th><th>n</th><th>1W excess</th><th>2W excess</th><th>1M excess</th><th>1M p</th><th>1M hit</th><th>3M excess</th><th>3M p</th><th>Verdict</th></tr></thead><tbody>';
-    t.signals.forEach((b, i) => {
-      const st = b.stats || {};
-      const row = ['1W', '2W', '1M', '3M'].map(h => st[h] || {});
-      const vcol = b.verdict === 'EDGE' ? 'var(--green)' : b.verdict === 'WEAK' ? 'var(--amber)' : 'var(--text-dim)';
-      const rid = 'btr-' + t.name + '-' + i;
-      html += '<tr class="bt-row" data-live="' + (b.live ? 1 : 0) + '" style="cursor:pointer;' + (b.live ? '' : 'opacity:.75;') + '" onclick="var r=document.getElementById(\'' + rid + '\');r.style.display=r.style.display===\'none\'?\'\':\'none\';">' +
-        '<td>' + b.signal + '</td><td><span class="badge ' + (b.dir === 'BEAR' ? 'bear' : 'bull') + '">' + (b.dir === 'BEAR' ? '▼' : '▲') + ' ' + b.dir + '</span></td>' +
-        '<td>' + (b.live ? '<span style="color:#3498db;font-weight:700;">LIVE' + (b.days_since != null ? ' · ' + b.days_since + 'd' : '') + '</span>' : '—') + '</td>' +
-        '<td>' + b.n + '</td>' +
-        '<td>' + fx(row[0].excess, u, dp) + '</td><td>' + fx(row[1].excess, u, dp) + '</td>' +
-        '<td class="' + pCls(row[2].p) + '" style="font-weight:700;">' + fx(row[2].excess, u, dp) + '</td><td class="' + pCls(row[2].p) + '">' + (row[2].p == null ? '—' : row[2].p.toFixed(3)) + '</td>' +
-        '<td>' + (row[2].hit == null ? '—' : row[2].hit + '%') + '</td>' +
-        '<td class="' + pCls(row[3].p) + '">' + fx(row[3].excess, u, dp) + '</td><td class="' + pCls(row[3].p) + '">' + (row[3].p == null ? '—' : row[3].p.toFixed(3)) + '</td>' +
-        '<td style="color:' + vcol + ';font-weight:700;">' + b.verdict + '</td></tr>';
-      html += '<tr id="' + rid + '" class="bt-row" data-live="' + (b.live ? 1 : 0) + '" style="display:none;"><td colspan="12" style="text-align:left;background:var(--surface2);">' +
-        '<div style="font-size:0.7rem;color:var(--text-dim);margin-bottom:4px;">' + b.why + ' · raw mean 1M ' + fx(row[2].mean, u, dp) + ' vs unconditional ' + fx(row[2].uncond, u, dp) + ' · triggers ' + (b.first || '—') + ' → ' + (b.last || '—') + '</div>' +
-        '<table class="vol-table no-sort" style="font-size:0.74rem;"><thead><tr><th>Trigger</th><th>' + (t.is_yield ? 'Yield' : 'Price') + '</th><th>1W</th><th>2W</th><th>1M</th><th>3M</th></tr></thead><tbody>' +
-        (b.recent || []).slice().reverse().map(r => '<tr><td>' + r.date + '</td><td>' + r.px + '</td>' + ['1W', '2W', '1M', '3M'].map(h => { const v = r[h]; if (v == null) return '<td>—</td>'; const ok = b.dir === 'BEAR' ? v < 0 : v > 0; return '<td class="' + (ok ? 'z-high' : 'z-extreme') + '">' + fx(v, u, dp) + '</td>'; }).join('') + '</tr>').join('') +
-        '</tbody></table></td></tr>';
-    });
-    html += '</tbody></table></div>';
-  });
-  container.innerHTML = html;
-  const toggle = document.getElementById('bt-live-only');
-  if (toggle) toggle.addEventListener('change', () => {
-    container.querySelectorAll('tr.bt-row').forEach(r => { if (toggle.checked && r.dataset.live !== '1') r.style.display = 'none'; else if (!r.id) r.style.display = ''; });
-  });
-}).catch(() => {});
 
 /* ========== FX VOL ========== */
 function zClass(z) {

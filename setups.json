@@ -1,12 +1,17 @@
 {
- "_updated": "2026-10-12 11:32",
+ "_updated": "2026-10-12 19:15",
  "counts": {
   "act": 7,
-  "watch": 9,
+  "watch": 7,
   "avoid": 0,
-  "total": 16
+  "total": 14
  },
  "changes": [],
+ "pending": [
+  "JGB 10Y (bond): RESIZE HALF pending (1/3)",
+  "Broad USD: EXIT pending (1/3)",
+  "USDTHB: EXIT pending (1/3)"
+ ],
  "cards": [
   {
    "key": "jgb",
@@ -16,7 +21,7 @@
    "verb": "PAY JGB 10Y / short JB",
    "tier": "A",
    "size": "FULL",
-   "score": 2.25,
+   "score": 1.5,
    "parts": [
     [
      "TREND -0.87 (GJGB10 -0.87) \u00b7 523d since flip",
@@ -31,14 +36,14 @@
      null
     ],
     [
-     "CTA flow $+1.2m/bp (< floor)",
+     "CTA flow $+1.2m/bp against",
      0.0,
      "mut",
      null
     ],
     [
-     "FV -2.7z (3y) \u00b7 \u00bd-life 10d",
-     1.25,
+     "FV -2.7z (3y) \u00b7 \u00bd-life 10d \u00b7 OOS \u2717 \u00bdwt",
+     0.5,
      "ok",
      "FV 2.7z with you, fades ~10d"
     ],
@@ -51,7 +56,18 @@
    ],
    "veto": null,
    "anchor": "TREND",
+   "max_size": "FULL",
    "note": "",
+   "pending": {
+    "action": "resize",
+    "dir": "bear",
+    "size": "HALF",
+    "n": 1,
+    "need": 3,
+    "hold_block": false,
+    "hold_left": 0,
+    "note": null
+   },
    "since": "2026-09-07",
    "days_held": 35,
    "entry_score": 2.0,
@@ -65,102 +81,40 @@
     }
    ],
    "other": {
-    "bull": -0.5,
-    "bear": 2.25
+    "bear": 1.5
    },
    "needs": null
   },
   {
-   "key": "usd",
-   "label": "Broad USD",
-   "cls": "fx",
-   "dir": "bull",
-   "verb": "BUY USD (DXY)",
-   "tier": "A",
-   "size": "HALF",
-   "score": 2.0,
-   "parts": [
-    [
-     "trend +0.79",
-     0.25,
-     "ok",
-     "trend 0.79 with you (no timing edge in fx \u2014 confirmation only)"
-    ],
-    [
-     "FV +2.0z (2y) \u00b7 \u00bd-life 25d",
-     1.25,
-     "ok",
-     "FV 2.0z with you, fades ~25d"
-    ],
-    [
-     "EUReka 3/4 drivers",
-     0.5,
-     "ok",
-     "EUReka majority with you (3/4)"
-    ]
-   ],
-   "veto": null,
-   "anchor": "VALUE",
-   "note": "",
-   "since": "2026-09-07",
-   "days_held": 35,
-   "entry_score": 1.5,
-   "trend": 0.79,
-   "members": [
-    {
-     "name": "DXY",
-     "s": 0.77,
-     "flip_days": 19,
-     "chg5": 0.081
-    },
-    {
-     "name": "EURUSD",
-     "s": 0.81,
-     "flip_days": 20,
-     "chg5": 0.086
-    }
-   ],
-   "other": {
-    "bull": 2.0
-   },
-   "needs": null
-  },
-  {
-   "key": "bund",
-   "label": "Bund 10Y (bond)",
+   "key": "krw5",
+   "label": "KRW 5Y (bond)",
    "cls": "rates",
    "dir": "bear",
-   "verb": "PAY Bund 10Y / short RX",
+   "verb": "PAY KRW 5Y",
    "tier": "A",
    "size": "PROBE",
    "score": 1.0,
    "parts": [
     [
-     "TREND -0.81 (GDBR10 -0.81) \u00b7 69d since flip",
+     "TREND -0.62 (KWSWNI5 -0.62) \u00b7 256d since flip",
      1.0,
      "ok",
-     "trend 0.81 with you, 69d old"
+     "trend 0.62 with you, 256d old"
     ],
     [
-     "CTA mom -0.79",
+     "CTA mom -0.58",
      0.0,
      "mut",
      null
     ],
     [
-     "CTA flow $+0.7m/bp (< floor)",
+     "CTA flow $+0.9m/bp against",
      0.0,
      "mut",
      null
     ],
     [
-     "FV +1.1z",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -3.7bp/3m costs",
+     "carry -6.1bp/3m costs",
      0.0,
      "mut",
      null
@@ -168,17 +122,19 @@
    ],
    "veto": null,
    "anchor": "TREND",
+   "max_size": "FULL",
    "note": "",
-   "since": "2026-10-08",
-   "days_held": 4,
-   "entry_score": 1.0,
-   "trend": -0.81,
+   "pending": null,
+   "since": "2026-09-10",
+   "days_held": 32,
+   "entry_score": 1.35,
+   "trend": -0.62,
    "members": [
     {
-     "name": "GDBR10",
-     "s": -0.81,
-     "flip_days": 69,
-     "chg5": 0.1
+     "name": "KWSWNI5",
+     "s": -0.62,
+     "flip_days": 256,
+     "chg5": 0.104
     }
    ],
    "other": {
@@ -197,10 +153,10 @@
    "score": 1.0,
    "parts": [
     [
-     "TREND -0.68 (IRSWNI5 -0.68) \u00b7 61d since flip",
+     "TREND -0.69 (IRSWNI5 -0.69) \u00b7 60d since flip",
      1.0,
      "ok",
-     "trend 0.68 with you, 61d old"
+     "trend 0.69 with you, 60d old"
     ],
     [
      "CTA mom -0.68",
@@ -209,7 +165,7 @@
      null
     ],
     [
-     "CTA flow $+0.2m/bp (< floor)",
+     "CTA flow $+0.2m/bp against",
      0.0,
      "mut",
      null
@@ -223,22 +179,157 @@
    ],
    "veto": null,
    "anchor": "TREND",
+   "max_size": "FULL",
    "note": "",
+   "pending": null,
    "since": "2026-09-13",
    "days_held": 29,
    "entry_score": 1.35,
-   "trend": -0.68,
+   "trend": -0.69,
    "members": [
     {
      "name": "IRSWNI5",
-     "s": -0.68,
-     "flip_days": 61,
-     "chg5": -0.019
+     "s": -0.69,
+     "flip_days": 60,
+     "chg5": -0.028
     }
    ],
    "other": {
     "bear": 1.0
    },
+   "needs": null
+  },
+  {
+   "key": "bund",
+   "label": "Bund 10Y (bond)",
+   "cls": "rates",
+   "dir": "bear",
+   "verb": "PAY Bund 10Y / short RX",
+   "tier": "A",
+   "size": "PROBE",
+   "score": 0.78,
+   "parts": [
+    [
+     "TREND -0.81 (GDBR10 -0.81) \u00b7 69d since flip",
+     1.0,
+     "ok",
+     "trend 0.81 with you, 69d old"
+    ],
+    [
+     "CTA mom -0.79",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "CTA -1.3sd crowded",
+     -0.02,
+     "bad",
+     null
+    ],
+    [
+     "CTA flow $+0.7m/bp against",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "FV +1.1z AGAINST \u00b7 OOS \u2717 \u00bdwt",
+     -0.2,
+     "bad",
+     "FV 1.1z against"
+    ],
+    [
+     "carry -3.7bp/3m costs",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
+   "veto": null,
+   "anchor": "TREND",
+   "max_size": "FULL",
+   "note": "",
+   "pending": null,
+   "since": "2026-10-08",
+   "days_held": 4,
+   "entry_score": 1.0,
+   "trend": -0.81,
+   "members": [
+    {
+     "name": "GDBR10",
+     "s": -0.81,
+     "flip_days": 69,
+     "chg5": 0.1
+    }
+   ],
+   "other": {
+    "bear": 0.78
+   },
+   "needs": null
+  },
+  {
+   "key": "usd",
+   "label": "Broad USD",
+   "cls": "fx",
+   "dir": "bull",
+   "verb": "BUY USD (DXY)",
+   "tier": "A",
+   "size": "HALF",
+   "score": 0.75,
+   "parts": [
+    [
+     "trend +0.78",
+     0.25,
+     "ok",
+     "trend 0.78 with you (no timing edge in fx \u2014 confirmation only)"
+    ],
+    [
+     "FV -0.6z \u00b7 OOS \u2713",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "EUReka 3/4 drivers",
+     0.5,
+     "ok",
+     "EUReka majority with you (3/4)"
+    ]
+   ],
+   "veto": null,
+   "anchor": null,
+   "max_size": "FULL",
+   "note": "anchor gone \u2014 exit pending",
+   "pending": {
+    "action": "exit",
+    "dir": "bull",
+    "size": "",
+    "n": 1,
+    "need": 3,
+    "hold_block": false,
+    "hold_left": 0,
+    "note": "anchor gone"
+   },
+   "since": "2026-09-07",
+   "days_held": 35,
+   "entry_score": 1.5,
+   "trend": 0.78,
+   "members": [
+    {
+     "name": "DXY",
+     "s": 0.76,
+     "flip_days": 18,
+     "chg5": 0.109
+    },
+    {
+     "name": "EURUSD",
+     "s": 0.8,
+     "flip_days": 19,
+     "chg5": 0.115
+    }
+   ],
+   "other": {},
    "needs": null
   },
   {
@@ -249,38 +340,40 @@
    "verb": "SELL USDJPY",
    "tier": "A",
    "size": "PROBE",
-   "score": 1.0,
+   "score": 0.57,
    "parts": [
     [
-     "trend +0.05 flat",
+     "trend +0.04 flat",
      0.0,
      "mut",
      null
     ],
     [
-     "FV +1.1z (5y) \u00b7 \u00bd-life 37d",
-     1.0,
+     "FV +1.1z (5y) \u00b7 \u00bd-life 37d \u00b7 OOS n<10",
+     0.57,
      "ok",
-     "FV 1.1z with you, fades ~37d"
+     "FV 1.1z with you, fades ~37d \u2014 OOS unvalidated, PROBE cap"
     ]
    ],
    "veto": null,
    "anchor": "VALUE",
+   "max_size": "PROBE",
    "note": "",
+   "pending": null,
    "since": "2026-10-09",
    "days_held": 3,
    "entry_score": 1.0,
-   "trend": 0.05,
+   "trend": 0.04,
    "members": [
     {
      "name": "USDJPY",
-     "s": 0.05,
-     "flip_days": 2,
-     "chg5": 0.145
+     "s": 0.04,
+     "flip_days": 1,
+     "chg5": 0.149
     }
    ],
    "other": {
-    "bear": 1.0
+    "bear": 0.57
    },
    "needs": null
   },
@@ -292,93 +385,49 @@
    "verb": "SELL USDTHB",
    "tier": "A",
    "size": "PROBE",
-   "score": 1.0,
+   "score": 0.37,
    "parts": [
     [
-     "trend +0.49 against",
-     -0.25,
+     "trend +0.50 against",
+     -0.21,
      "bad",
      null
     ],
     [
-     "FV +1.2z (2y) \u00b7 \u00bd-life 15d",
-     1.25,
+     "FV +1.2z (2y) \u00b7 \u00bd-life 15d \u00b7 OOS n<10",
+     0.58,
      "ok",
-     "FV 1.2z with you, fades ~15d"
+     "FV 1.2z with you, fades ~15d \u2014 OOS unvalidated, PROBE cap"
     ]
    ],
    "veto": null,
    "anchor": "VALUE",
+   "max_size": "PROBE",
    "note": "",
+   "pending": {
+    "action": "exit",
+    "dir": "bear",
+    "size": "",
+    "n": 1,
+    "need": 3,
+    "hold_block": false,
+    "hold_left": 0,
+    "note": "score +0.37 below 0.5"
+   },
    "since": "2026-09-07",
    "days_held": 35,
    "entry_score": 1.25,
-   "trend": 0.49,
+   "trend": 0.5,
    "members": [
     {
      "name": "USDTHB",
-     "s": 0.49,
-     "flip_days": 139,
-     "chg5": 0.001
+     "s": 0.5,
+     "flip_days": 138,
+     "chg5": 0.03
     }
    ],
    "other": {
-    "bear": 1.0
-   },
-   "needs": null
-  },
-  {
-   "key": "krw5",
-   "label": "KRW 5Y (bond)",
-   "cls": "rates",
-   "dir": "bear",
-   "verb": "PAY KRW 5Y",
-   "tier": "A",
-   "size": "PROBE",
-   "score": 0.6,
-   "parts": [
-    [
-     "TREND -0.57 (KWSWNI5 -0.57) \u00b7 257d since flip",
-     0.6,
-     "ok",
-     "trend 0.57 with you, 257d old"
-    ],
-    [
-     "CTA mom -0.58",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "CTA flow $+0.9m/bp (< floor)",
-     0.0,
-     "mut",
-     null
-    ],
-    [
-     "carry -6.1bp/3m costs",
-     0.0,
-     "mut",
-     null
-    ]
-   ],
-   "veto": null,
-   "anchor": "TREND",
-   "note": "",
-   "since": "2026-09-10",
-   "days_held": 32,
-   "entry_score": 1.35,
-   "trend": -0.57,
-   "members": [
-    {
-     "name": "KWSWNI5",
-     "s": -0.57,
-     "flip_days": 257,
-     "chg5": 0.112
-    }
-   ],
-   "other": {
-    "bear": 0.6
+    "bear": 0.37
    },
    "needs": null
   },
@@ -390,13 +439,13 @@
    "verb": "PAY US 10Y / short TY",
    "tier": "WATCH",
    "size": "",
-   "score": -0.5,
+   "score": -0.46,
    "parts": [
     [
-     "TREND -0.93 (USGG10YR -0.93) \u00b7 148d since flip",
+     "TREND -0.94 (USGG10YR -0.94) \u00b7 147d since flip",
      1.0,
      "ok",
-     "trend 0.93 with you, 148d old"
+     "trend 0.94 with you, 147d old"
     ],
     [
      "CTA mom -0.94",
@@ -405,14 +454,20 @@
      null
     ],
     [
-     "CTA -2.0sd CROWDED",
+     "CTA -2.0sd crowded",
      -0.75,
      "bad",
      "CTA crowded same way \u2014 TP regime"
     ],
     [
-     "FV +1.9z AGAINST",
-     -0.75,
+     "CTA flow $+0.2m/bp against",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "FV +1.9z AGAINST \u00b7 OOS n<10",
+     -0.71,
      "bad",
      "FV 1.9z against"
     ],
@@ -425,23 +480,25 @@
    ],
    "veto": null,
    "anchor": "TREND",
+   "max_size": "FULL",
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": -0.93,
+   "trend": -0.94,
    "members": [
     {
      "name": "USGG10YR",
-     "s": -0.93,
-     "flip_days": 148,
-     "chg5": 0.014
+     "s": -0.94,
+     "flip_days": 147,
+     "chg5": 0.006
     }
    ],
    "other": {
-    "bear": -0.5
+    "bear": -0.46
    },
-   "needs": 1.5
+   "needs": 1.46
   },
   {
    "key": "audusd",
@@ -452,10 +509,31 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend -0.05 flat",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "FV -0.3z \u00b7 OOS \u2717 \u00bdwt",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "RSI rollover AUDUSD",
+     0.25,
+     "ok",
+     "RSI rolling over from an extreme, with you"
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
@@ -464,64 +542,8 @@
     {
      "name": "AUDUSD",
      "s": -0.05,
-     "flip_days": 6,
-     "chg5": -0.039
-    }
-   ],
-   "other": {},
-   "needs": null
-  },
-  {
-   "key": "usdkrw",
-   "label": "USDKRW",
-   "cls": "fx",
-   "dir": null,
-   "verb": null,
-   "tier": "WATCH",
-   "size": "",
-   "score": null,
-   "parts": [],
-   "veto": null,
-   "anchor": null,
-   "note": "",
-   "since": null,
-   "days_held": null,
-   "entry_score": null,
-   "trend": -0.7,
-   "members": [
-    {
-     "name": "USDKRW",
-     "s": -0.7,
-     "flip_days": 58,
-     "chg5": -0.007
-    }
-   ],
-   "other": {},
-   "needs": null
-  },
-  {
-   "key": "usdinr",
-   "label": "USDINR",
-   "cls": "fx",
-   "dir": null,
-   "verb": null,
-   "tier": "WATCH",
-   "size": "",
-   "score": null,
-   "parts": [],
-   "veto": null,
-   "anchor": null,
-   "note": "",
-   "since": null,
-   "days_held": null,
-   "entry_score": null,
-   "trend": 0.7,
-   "members": [
-    {
-     "name": "USDINR",
-     "s": 0.7,
-     "flip_days": 333,
-     "chg5": 0.126
+     "flip_days": 5,
+     "chg5": -0.056
     }
    ],
    "other": {},
@@ -536,10 +558,25 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend -0.13 flat",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "gold positioning z +1.1",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
@@ -547,15 +584,15 @@
    "members": [
     {
      "name": "XAU",
-     "s": -0.2,
-     "flip_days": 10,
-     "chg5": -0.071
+     "s": -0.21,
+     "flip_days": 9,
+     "chg5": -0.154
     },
     {
      "name": "XAG",
-     "s": -0.05,
-     "flip_days": 8,
-     "chg5": -0.025
+     "s": -0.06,
+     "flip_days": 7,
+     "chg5": -0.034
     }
    ],
    "other": {},
@@ -570,20 +607,35 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend +0.30 flat",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "FV +2.7z (1y) \u00b7 \u00bd-life \u2013 \u00b7 OOS \u2717 \u00bdwt",
+     0.5,
+     "ok",
+     "FV 2.7z with you"
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": 0.29,
+   "trend": 0.3,
    "members": [
     {
      "name": "CL1",
-     "s": 0.29,
-     "flip_days": 60,
-     "chg5": -0.053
+     "s": 0.3,
+     "flip_days": 59,
+     "chg5": -0.066
     }
    ],
    "other": {},
@@ -598,20 +650,35 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend +0.22 flat",
+     0.0,
+     "mut",
+     null
+    ],
+    [
+     "KOSPI positioning z -0.7",
+     0.0,
+     "mut",
+     null
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
-   "trend": 0.18,
+   "trend": 0.22,
    "members": [
     {
      "name": "KOSPI",
-     "s": 0.18,
-     "flip_days": 38,
-     "chg5": -0.071
+     "s": 0.22,
+     "flip_days": 37,
+     "chg5": -0.026
     }
    ],
    "other": {},
@@ -626,10 +693,19 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend +0.60",
+     0.25,
+     "ok",
+     "trend 0.60 with you (no timing edge in eq \u2014 confirmation only)"
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
@@ -660,10 +736,25 @@
    "tier": "WATCH",
    "size": "",
    "score": null,
-   "parts": [],
+   "parts": [
+    [
+     "trend +0.54",
+     0.23,
+     "ok",
+     "trend 0.54 with you (no timing edge in eq \u2014 confirmation only)"
+    ],
+    [
+     "FV -2.2z (2y) \u00b7 \u00bd-life \u2013 \u00b7 OOS \u2717 \u00bdwt",
+     0.5,
+     "ok",
+     "FV 2.2z with you"
+    ]
+   ],
    "veto": null,
    "anchor": null,
+   "max_size": null,
    "note": "",
+   "pending": null,
    "since": null,
    "days_held": null,
    "entry_score": null,
@@ -919,11 +1010,12 @@
    {
     "d": "2026-10-12",
     "bull": null,
-    "bear": -0.5,
+    "bear": -0.46,
     "tier": "WATCH",
     "size": "",
     "dir": "bear",
-    "trend": -0.932
+    "trend": -0.937,
+    "pend": null
    }
   ],
   "bund": [
@@ -1164,11 +1256,12 @@
    {
     "d": "2026-10-12",
     "bull": null,
-    "bear": 1.0,
+    "bear": 0.78,
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
-    "trend": -0.806
+    "trend": -0.806,
+    "pend": null
    }
   ],
   "jgb": [
@@ -1408,12 +1501,13 @@
    },
    {
     "d": "2026-10-12",
-    "bull": -0.5,
-    "bear": 2.25,
+    "bull": null,
+    "bear": 1.5,
     "tier": "A",
     "size": "FULL",
     "dir": "bear",
-    "trend": -0.874
+    "trend": -0.874,
+    "pend": "resize:HALF 1/3"
    }
   ],
   "krw5": [
@@ -1654,11 +1748,12 @@
    {
     "d": "2026-10-12",
     "bull": null,
-    "bear": 0.6,
+    "bear": 1.0,
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
-    "trend": -0.573
+    "trend": -0.62,
+    "pend": null
    }
   ],
   "inr5": [
@@ -1903,7 +1998,8 @@
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
-    "trend": -0.683
+    "trend": -0.685,
+    "pend": null
    }
   ],
   "usdjpy": [
@@ -2144,11 +2240,12 @@
    {
     "d": "2026-10-12",
     "bull": null,
-    "bear": 1.0,
+    "bear": 0.57,
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
-    "trend": 0.05
+    "trend": 0.036,
+    "pend": null
    }
   ],
   "usd": [
@@ -2388,12 +2485,13 @@
    },
    {
     "d": "2026-10-12",
-    "bull": 2.0,
+    "bull": null,
     "bear": null,
     "tier": "A",
     "size": "HALF",
     "dir": "bull",
-    "trend": 0.79
+    "trend": 0.781,
+    "pend": "exit: 1/3"
    }
   ],
   "audusd": [
@@ -2638,7 +2736,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": -0.052
+    "trend": -0.052,
+    "pend": null
    }
   ],
   "usdthb": [
@@ -2879,11 +2978,12 @@
    {
     "d": "2026-10-12",
     "bull": null,
-    "bear": 1.0,
+    "bear": 0.37,
     "tier": "A",
     "size": "PROBE",
     "dir": "bear",
-    "trend": 0.491
+    "trend": 0.504,
+    "pend": "exit: 1/3"
    }
   ],
   "usdkrw": [
@@ -3618,7 +3718,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": -0.128
+    "trend": -0.134,
+    "pend": null
    }
   ],
   "oil": [
@@ -3863,7 +3964,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.288
+    "trend": 0.298,
+    "pend": null
    }
   ],
   "kospi": [
@@ -4108,7 +4210,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.182
+    "trend": 0.221,
+    "pend": null
    }
   ],
   "ustech": [
@@ -4353,7 +4456,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.605
+    "trend": 0.605,
+    "pend": null
    }
   ],
   "tpnbnk": [
@@ -4598,7 +4702,8 @@
     "tier": "WATCH",
     "size": "",
     "dir": null,
-    "trend": 0.544
+    "trend": 0.544,
+    "pend": null
    }
   ]
  },
@@ -4743,8 +4848,16 @@
   },
   "trend_strong": 0.6,
   "trend_weak": 0.3,
+  "fv_min": 0.5,
+  "fv_anchor_z": 1.0,
   "flow_floor": 0.25,
-  "turn_floor": 0.5
+  "crowd": [
+   1.25,
+   1.75,
+   2.25
+  ],
+  "confirm_days": 3,
+  "min_hold_days": 14
  },
- "method": "anchors \u2014 RATES: trend score (\u22650.6 \u2192 +1.0, \u22650.3 \u2192 +0.6) or CTA flow turn; FX: fair value (\u22651z, half-life \u226490d) or EUReka checklist; EQ/CMD: Bottoming entry, KOSPI washout/flow trigger, gold positioning \u00b1thresholds, fair value. Trend is a \u00b10.25 confirmation leg outside rates (no timing edge in FX/EQ 2015-26). Legs: FV \u00b11.0 (veto \u22652z), CTA crowded \u22120.75 (veto \u22652.25sd) / flow +0.75 above a 0.25sd floor, carry shown but not scored, RSI \u00b10.25, EUReka \u00b10.5. Hysteresis: enter \u22651.0, exit <0.5; FULL \u22652.25 (down <2.0), HALF \u22651.5 (down <1.25), PROBE \u22651.0."
+ "method": "v3 12-Oct-26. Anchors \u2014 RATES: trend score (continuous, pts = min(|score|/0.6, 1) from 0.3); FX: fair value (\u22651z, half-life \u226490d; pts = min(|z|/2, 1)) or the EUReka checklist; EQ/CMD: Bottoming entry, KOSPI washout/flow trigger, gold positioning \u00b1thresholds, fair value. Trend outside rates is a \u00b10.25 confirmation leg (no provable timing edge in FX/EQ/CMD on 2015-26). Legs: FV \u00b1(|z|/2) (veto \u22652z against), CTA crowding \u22120.75 ramp 1.25\u21921.75sd (veto \u22652.25sd) / flow +0.75 ramp 0.25\u21921.0sd (never an anchor), carry shown not scored, RSI \u00b10.25, EUReka \u00b10.5/0.75. Hysteresis: enter \u22651.0, exit <0.5; FULL \u22652.25 (down <2.0), HALF \u22651.5 (down <1.25), PROBE \u22651.0. Every change must be proposed on 3 consecutive runs; exits, downsizes and flips also wait 14 calendar days from entry; vetoes apply at once. FX VALUE-anchored cards are capped at PROBE until the pair passes the out-of-sample fade test (fv_oos.json); an FV leg whose model fails that test carries half weight."
 }
