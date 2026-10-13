@@ -1232,6 +1232,33 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── THB 5Y sub-page (added 13-Oct-26; Citi THOR, zero BBG) ── -->
+    <div class="fv-subpage" id="fv-sub-thb5y" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="thb5y-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>THB 5Y OIS (THOR)</b> = f(<b>THB 1Y</b> as the BoT-path proxy, <b>USD SOFR 5Y</b>), sign-constrained.
+        The residual is THB term premium vs the policy path plus US spillover; yield above FV = CHEAP.
+        <b>No 5Y window</b>: Citi THOR history starts Mar-2021 and a 5y fit is dominated by 2021-22, when the BoT
+        lagged the Fed (USD beta pins to 0, residual half-life ~190d). USDTHB and gold tested and left out.
+        Not out-of-sample fade-tested — a read, not a Setups anchor.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">THB 1Y (BoT path) + USD SOFR 5Y</div>
+        <div class="fvchart" id="thb5y-img-combined"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">What moved THB 5Y — weekly-change attribution (bp)</div>
+        <div id="thb5y-decomp" style="font-size:0.8rem;color:var(--text-dim);">loading…</div>
+      </div>
+    </div>
+
     <!-- ── EURGBP sub-page ── -->
     <div class="fv-subpage" id="fv-sub-eurgbp" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3475,6 +3502,34 @@ window.FV_NAV = (function() {
 
   // Load all summary JSONs — deferred until the Fair Value tab is first opened
   // (~5MB across 20 files; no reason to pull it on Momentum first-paint)
+  // THB 5Y: weekly-change attribution table (thb5y_fv.py -> summary.decomposition)
+  function renderTHB5YDecomp(all) {
+    var el = document.getElementById('thb5y-decomp');
+    if (!el) return;
+    var d = (all || []).filter(function(x) { return x && x.asset === 'THB 5Y'; })[0];
+    var dc = d && d.decomposition;
+    if (!dc || !dc.horizons) { el.textContent = 'No decomposition in thb5y_fv_summary.json.'; return; }
+    function f(v) { return (v > 0 ? '+' : '') + Number(v).toFixed(1); }
+    function zc(z) { var a = Math.abs(z); return a >= 2 ? 'color:#dc2626;font-weight:700;' : a >= 1 ? 'color:#ea580c;font-weight:600;' : ''; }
+    var h = '<table class="vol-table no-sort"><thead><tr><th style="text-align:left;">Window</th>' +
+      '<th>THB 5Y move</th><th>USD 5Y</th><th>BoT path</th><th>USDTHB</th><th>Unexplained</th>' +
+      '<th title="Unexplained vs the same out-of-sample residual every week since history allows">Resid z</th>' +
+      '<th>Pctile</th><th>Resid sd</th></tr></thead><tbody>';
+    dc.horizons.forEach(function(r) {
+      h += '<tr><td style="text-align:left;font-weight:700;">' + r.weeks + 'w</td>' +
+        '<td style="font-weight:700;">' + f(r.move_bp) + '</td><td>' + f(r.usd5y_bp) + '</td><td>' + f(r.bot_bp) + '</td>' +
+        '<td>' + f(r.usdthb_bp) + '</td><td>' + f(r.resid_bp) + '</td>' +
+        '<td style="' + zc(r.resid_z) + '">' + f(r.resid_z) + '</td><td>' + r.resid_pctile + '</td><td>' + Number(r.resid_sd_bp).toFixed(1) + '</td></tr>';
+    });
+    var b = dc.betas || {};
+    h += '</tbody></table><div style="font-size:0.68rem;margin-top:8px;line-height:1.5;">' +
+      'Weekly changes, no intercept; betas from the ' + dc.beta_weeks + ' weeks <b>before</b> each window (no look-ahead). ' +
+      '<b>BoT path</b> = THB 1Y orthogonalised to USD 5Y (local component; USD 5Y keeps its spillover through the front end, ' +
+      'γ ' + dc.gamma_thb1y_on_usd5y + '). Latest betas: USD 5Y ' + b.usd5y + ' · BoT ' + b.thb1y_loc + ' · USDTHB ' + b.usdthb +
+      ' per 1% · R² ' + dc.r2 + '. Source: Citi THOR/SOFR OIS, data through ' + (d.data_through || '?') + '.</div>';
+    el.innerHTML = h;
+  }
+
   function loadFVData() {
     if (window.__fvLoadStarted) return;
     window.__fvLoadStarted = true;
@@ -3495,6 +3550,7 @@ window.FV_NAV = (function() {
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdsek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdcad_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('thb5y_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('dxy_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eursek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('noksek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3508,6 +3564,7 @@ window.FV_NAV = (function() {
       window.FV_SUBID = subIdFor;
       renderSummary();
       if (window.FVDETAIL) window.FVDETAIL.refreshVisible();
+      renderTHB5YDecomp(FV_DATA);
     });
   }
   // trigger on first visit to the Fair Value page (or immediately if it's already visible)
@@ -3840,6 +3897,7 @@ window.FVDETAIL = (function() {
     usdsek:     { tabsId: "usdsek-period-tabs", containers: ["usdsek-img-rates", "usdsek-img-spx", "usdsek-img-copper", "usdsek-img-combined"] },
     usdcad:     { tabsId: "usdcad-period-tabs", containers: ["usdcad-img-rates", "usdcad-img-wti", "usdcad-img-combined"] },
     dxy:        { tabsId: "dxy-period-tabs", containers: ["dxy-img-real", "dxy-img-releq", "dxy-img-rates"] },
+    thb5y:      { tabsId: "thb5y-period-tabs", containers: ["thb5y-img-combined"] },
     eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
     eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
