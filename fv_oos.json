@@ -1,5 +1,5 @@
 {
- "_updated": "2026-10-13 09:26",
+ "_updated": "2026-10-13 17:10",
  "method": "Added 12-Oct-26 (momentum/setups review). The FV suite had only ever been\nvalidated on NOKSEK / EURSEK / AUDNZD (one of three worked), and none of the\npairs Setups actually anchors on (EURUSD, USDJPY, AUDUSD, USDTHB) had been\ntested. This makes the test a feed: setups.py caps a VALUE-anchored FX card at\nPROBE until its pair passes here.",
  "criteria": {
   "fade_z": 1.5,
@@ -1379,6 +1379,120 @@
    "validated": true,
    "status": "pass",
    "label": "n 11 \u00b7 hit 82% \u00b7 +2.46 @63d / +2.53 @126d \u00b7 \u03c1 -0.26"
+  },
+  "DXY": {
+   "kind": "fx",
+   "unit": "%",
+   "setups_window": "2y",
+   "windows": {
+    "2y": {
+     "n_refits": 260,
+     "63d": {
+      "rho": -0.033,
+      "n": 8,
+      "hit": 0.5,
+      "mean": -0.47,
+      "median": -0.75,
+      "worst": -5.03
+     },
+     "126d": {
+      "rho": -0.107,
+      "n": 8,
+      "hit": 0.5,
+      "mean": 0.09,
+      "median": 0.53,
+      "worst": -6.9
+     },
+     "mean_r2": 0.52,
+     "first": "2021-10-19",
+     "last": "2026-10-06",
+     "z_now": -0.01,
+     "validated": false,
+     "status": "insufficient",
+     "label": "only 8 fades (<10) \u00b7 \u03c1 -0.03"
+    },
+    "1y": {
+     "n_refits": 312,
+     "63d": {
+      "rho": -0.172,
+      "n": 13,
+      "hit": 0.54,
+      "mean": -0.27,
+      "median": 0.74,
+      "worst": -7.98
+     },
+     "126d": {
+      "rho": -0.254,
+      "n": 12,
+      "hit": 0.58,
+      "mean": 1.04,
+      "median": 1.01,
+      "worst": -9.93
+     },
+     "mean_r2": 0.42,
+     "first": "2020-10-20",
+     "last": "2026-10-06",
+     "z_now": 1.01,
+     "validated": false,
+     "status": "fail",
+     "label": "n 13 \u00b7 hit 54% \u00b7 -0.27 @63d / +1.04 @126d \u00b7 \u03c1 -0.17"
+    },
+    "3y": {
+     "n_refits": 208,
+     "63d": {
+      "rho": -0.17,
+      "n": 5,
+      "hit": 0.6,
+      "mean": 1.8,
+      "median": 1.05,
+      "worst": -2.39
+     },
+     "126d": {
+      "rho": -0.086,
+      "n": 5,
+      "hit": 0.4,
+      "mean": 2.43,
+      "median": -0.03,
+      "worst": -1.47
+     },
+     "mean_r2": 0.59,
+     "first": "2022-10-18",
+     "last": "2026-10-06",
+     "z_now": -0.34,
+     "validated": false,
+     "status": "insufficient",
+     "label": "only 5 fades (<10) \u00b7 \u03c1 -0.17"
+    },
+    "5y": {
+     "n_refits": 104,
+     "63d": {
+      "rho": -0.147,
+      "n": 4,
+      "hit": 0.5,
+      "mean": -0.06,
+      "median": -0.12,
+      "worst": -2.39
+     },
+     "126d": {
+      "rho": -0.495,
+      "n": 4,
+      "hit": 0.25,
+      "mean": 0.54,
+      "median": -0.67,
+      "worst": -1.47
+     },
+     "mean_r2": 0.75,
+     "first": "2024-10-15",
+     "last": "2026-10-06",
+     "z_now": -0.59,
+     "validated": false,
+     "status": "insufficient",
+     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.15"
+    }
+   },
+   "validated": false,
+   "status": "insufficient",
+   "label": "only 8 fades (<10) \u00b7 \u03c1 -0.03"
   },
   "USDEGP": {
    "kind": "fx",

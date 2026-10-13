@@ -1519,6 +1519,40 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── DXY sub-page (added 13-Oct-26) ── -->
+    <div class="fv-subpage" id="fv-sub-dxy" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="dxy-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>DXY</b> — DXY up = USD stronger. Fair value of record = <b>US − G10 2Y rate diff</b>
+        (US SOFR OIS minus the 2Y of each basket ccy at its DXY weight: EUR 57.6 / JPY 13.6 / GBP 11.9 /
+        CAD 9.1 / SEK 4.2 / CHF 3.6), R²~0.45-0.77 on every window with a stable beta. US−EUR 2Y real diff
+        and US-vs-RoW equities are shown as diagnostics only (equity beta unstable across windows).
+        Gold and the ACM term premium fit 2025-26 well but are short-term regime drivers, so they are
+        deliberately excluded. <b>Out-of-sample fade test: not validated</b> — a read, not a fade signal.
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Diagnostic: US-EUR 2Y Real Rate Diff</div>
+        <div class="fvchart" id="dxy-img-real"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Diagnostic: US vs RoW Equities (SPX / MSCI World ex-US)</div>
+        <div class="fvchart" id="dxy-img-releq"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model of record: US − G10 2Y Rate Diff (DXY-weighted)</div>
+        <div class="fvchart" id="dxy-img-rates"></div>
+      </div>
+    </div>
+
     <!-- ── EURNOK sub-page ── -->
     <div class="fv-subpage" id="fv-sub-eurnok" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3461,6 +3495,7 @@ window.FV_NAV = (function() {
     fetch('usdchf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdsek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('usdcad_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('dxy_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('eursek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('noksek_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('tpbnk_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
@@ -3804,6 +3839,7 @@ window.FVDETAIL = (function() {
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
     usdsek:     { tabsId: "usdsek-period-tabs", containers: ["usdsek-img-rates", "usdsek-img-spx", "usdsek-img-copper", "usdsek-img-combined"] },
     usdcad:     { tabsId: "usdcad-period-tabs", containers: ["usdcad-img-rates", "usdcad-img-wti", "usdcad-img-combined"] },
+    dxy:        { tabsId: "dxy-period-tabs", containers: ["dxy-img-real", "dxy-img-releq", "dxy-img-rates"] },
     eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
     eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
@@ -3894,7 +3930,7 @@ window.FVDETAIL = (function() {
   // windows stay in the JSONs but are noise (unstable betas / regime breaks).
   // USDJPY deliberately keeps 5Y: its fiscal-premium fit is structural.
   ['eurusd', 'eurgbp', 'usdthb', 'usdzar', 'audusd', 'audnzd', 'usdchf',
-   'eurnok', 'noksek', 'eursek', 'usdsek', 'usdcad'].forEach(function(subId) {
+   'eurnok', 'noksek', 'eursek', 'usdsek', 'usdcad', 'dxy'].forEach(function(subId) {
     var cfg = CONFIG[subId]; if (!cfg) return;
     document.querySelectorAll('#' + cfg.tabsId + ' .tab').forEach(function(t) {
       if (t.dataset.p === '6m' || t.dataset.p === '5y') t.style.display = 'none';
