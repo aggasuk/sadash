@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-12 11:32",
+ "_updated": "2026-10-13 09:26",
  "created": "2026-08-17",
- "last_update": "2026-10-12",
- "setups_asof": "2026-10-12 11:32",
+ "last_update": "2026-10-13",
+ "setups_asof": "2026-10-13 09:26",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,29 +15,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 35,
+   "days": 36,
    "avg": 99.176,
-   "mark": 102.18,
-   "unrealised": 75724.0,
+   "mark": 102.453,
+   "unrealised": 82606.0,
    "realised": 0.0,
    "score_at_open": 1.5
-  },
-  {
-   "key": "jgb",
-   "instrument": "JGB 10Y yield",
-   "kind": "rates",
-   "verb": "PAY JGB 10Y / short JB",
-   "units": -10000.0,
-   "size": "FULL",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-07",
-   "days": 35,
-   "avg": 3.0645,
-   "mark": 3.018,
-   "unrealised": -46531.0,
-   "realised": 136031.0,
-   "score_at_open": 2.0
   },
   {
    "key": "krw5",
@@ -49,11 +32,45 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-10",
-   "days": 32,
+   "days": 33,
    "avg": 4.1979,
-   "mark": 4.05,
-   "unrealised": -36969.0,
+   "mark": 4.0,
+   "unrealised": -49469.0,
    "realised": 29144.0,
+   "score_at_open": 1.35
+  },
+  {
+   "key": "jgb",
+   "instrument": "JGB 10Y yield",
+   "kind": "rates",
+   "verb": "PAY JGB 10Y / short JB",
+   "units": -10000.0,
+   "size": "FULL",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-07",
+   "days": 36,
+   "avg": 3.0645,
+   "mark": 3.017,
+   "unrealised": -47531.0,
+   "realised": 136031.0,
+   "score_at_open": 2.0
+  },
+  {
+   "key": "inr5",
+   "instrument": "INR 5Y NDOIS",
+   "kind": "rates",
+   "verb": "PAY INR 5Y",
+   "units": -2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-13",
+   "days": 30,
+   "avg": 6.6738,
+   "mark": 6.847,
+   "unrealised": 43313.0,
+   "realised": 11562.0,
    "score_at_open": 1.35
   },
   {
@@ -66,29 +83,12 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-09-07",
-   "days": 35,
+   "days": 36,
    "avg": 32.935,
-   "mark": 33.507,
-   "unrealised": -21709.0,
+   "mark": 33.61,
+   "unrealised": -25619.0,
    "realised": 0.0,
    "score_at_open": 1.25
-  },
-  {
-   "key": "inr5",
-   "instrument": "INR 5Y NDOIS",
-   "kind": "rates",
-   "verb": "PAY INR 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-13",
-   "days": 29,
-   "avg": 6.6738,
-   "mark": 6.76,
-   "unrealised": 21562.0,
-   "realised": 11562.0,
-   "score_at_open": 1.35
   },
   {
    "key": "usdjpy",
@@ -100,10 +100,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 3,
+   "days": 4,
    "avg": 157.96,
-   "mark": 158.22,
-   "unrealised": -2057.0,
+   "mark": 158.43,
+   "unrealised": -3719.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -117,10 +117,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-10-08",
-   "days": 4,
+   "days": 5,
    "avg": 3.475,
-   "mark": 3.481,
-   "unrealised": 1500.0,
+   "mark": 3.477,
+   "unrealised": 500.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
@@ -431,8 +431,8 @@
   "n_closed": 20,
   "wins": 11,
   "realised": 127393.0,
-  "unrealised": -8480.0,
-  "total": 118913.0,
+  "unrealised": 81.0,
+  "total": 127474.0,
   "avg_days": 7.0,
   "by_size": {
    "PROBE": {
@@ -487,7 +487,7 @@
     "wins": 1,
     "pnl": 14751.0,
     "open_n": 3,
-    "open_pnl": 51958.0,
+    "open_pnl": 53268.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -495,7 +495,7 @@
     "wins": 3,
     "pnl": 37400.0,
     "open_n": 4,
-    "open_pnl": -60438.0,
+    "open_pnl": -53187.0,
     "open_realised": 176737.0
    }
   }
