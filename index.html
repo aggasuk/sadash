@@ -1605,7 +1605,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div class="fvchart" id="eurnok-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Brent + Rate Diff + log(SPX)) — BTP-Bund dropped 2026-08 (wrong-signed most windows)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: log(TTF gas, front-month) - Norway's pipeline-gas exports</div>
+        <div class="fvchart" id="eurnok-img-ttf"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + log(SPX) + log(TTF)) — TTF added 14-Oct-26 (OOS fade test improved at 1y/2y); BTP-Bund dropped 2026-08</div>
         <div class="fvchart" id="eurnok-img-combined"></div>
       </div>
     </div>
@@ -3898,7 +3902,7 @@ window.FVDETAIL = (function() {
     usdcad:     { tabsId: "usdcad-period-tabs", containers: ["usdcad-img-rates", "usdcad-img-wti", "usdcad-img-combined"] },
     dxy:        { tabsId: "dxy-period-tabs", containers: ["dxy-img-real", "dxy-img-releq", "dxy-img-rates"] },
     thb5y:      { tabsId: "thb5y-period-tabs", containers: ["thb5y-img-combined"] },
-    eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-combined"] },
+    eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-ttf", "eurnok-img-combined"] },
     noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
     eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
   };
