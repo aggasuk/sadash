@@ -1,27 +1,10 @@
 {
- "_updated": "2026-10-16 12:37",
+ "_updated": "2026-10-19 09:33",
  "created": "2026-08-17",
- "last_update": "2026-10-16",
- "setups_asof": "2026-10-16 12:37",
+ "last_update": "2026-10-19",
+ "setups_asof": "2026-10-19 09:32",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
-  {
-   "key": "krw5",
-   "instrument": "KRW 5Y NDIRS",
-   "kind": "rates",
-   "verb": "PAY KRW 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-10",
-   "days": 36,
-   "avg": 4.1979,
-   "mark": 3.922,
-   "unrealised": -68969.0,
-   "realised": 29144.0,
-   "score_at_open": 1.35
-  },
   {
    "key": "jgb",
    "instrument": "JGB 10Y yield",
@@ -32,12 +15,29 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 39,
+   "days": 42,
    "avg": 3.0645,
-   "mark": 2.945,
-   "unrealised": -59766.0,
+   "mark": 2.9050000000000002,
+   "unrealised": -79766.0,
    "realised": 109766.0,
    "score_at_open": 2.0
+  },
+  {
+   "key": "krw5",
+   "instrument": "KRW 5Y NDIRS",
+   "kind": "rates",
+   "verb": "PAY KRW 5Y",
+   "units": -2500.0,
+   "size": "PROBE",
+   "tier": "A",
+   "anchor": "TREND",
+   "opened": "2026-09-10",
+   "days": 39,
+   "avg": 4.1979,
+   "mark": 3.895,
+   "unrealised": -75719.0,
+   "realised": 29144.0,
+   "score_at_open": 1.35
   },
   {
    "key": "inr5",
@@ -49,10 +49,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 33,
+   "days": 36,
    "avg": 6.6738,
-   "mark": 6.84,
-   "unrealised": 41562.0,
+   "mark": 6.81,
+   "unrealised": 34062.0,
    "realised": 11562.0,
    "score_at_open": 1.35
   },
@@ -66,10 +66,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-10-08",
-   "days": 8,
+   "days": 11,
    "avg": 3.475,
-   "mark": 3.413,
-   "unrealised": -15500.0,
+   "mark": 3.426,
+   "unrealised": -12250.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -83,10 +83,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 7,
+   "days": 10,
    "avg": 157.96,
-   "mark": 157.83,
-   "unrealised": 1029.0,
+   "mark": 158.01,
+   "unrealised": -396.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
@@ -427,8 +427,8 @@
   "n_closed": 22,
   "wins": 12,
   "realised": 153335.0,
-  "unrealised": -101644.0,
-  "total": 51691.0,
+  "unrealised": -134069.0,
+  "total": 19266.0,
   "avg_days": 9.7,
   "by_size": {
    "PROBE": {
@@ -483,7 +483,7 @@
     "wins": 2,
     "pnl": 66958.0,
     "open_n": 1,
-    "open_pnl": 1029.0,
+    "open_pnl": -396.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -491,7 +491,7 @@
     "wins": 3,
     "pnl": 37400.0,
     "open_n": 4,
-    "open_pnl": -102673.0,
+    "open_pnl": -133673.0,
     "open_realised": 150472.0
    }
   }
