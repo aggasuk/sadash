@@ -405,22 +405,29 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
 
     <!-- ── Equity Bottoming sub-page ── -->
     <div class="mom-subpage" id="mom-sub-bottoming" style="display:none;">
-      <div style="color:var(--text-dim);font-size:0.78rem;margin-bottom:16px;line-height:1.5;">
-        Capitulation/exhaustion signals identify the <b>zone</b> (fire at the low, often too early);
-        price confirmations <b>time the entry</b> (fire after the low, low drawdown). The
-        <b>arm-and-confirm</b> composite arms when an index's capitulation score crosses its threshold,
-        then enters only when price reclaims its 50-day average within a window. Whether to wait is a
-        property of the market, not a universal rule — so each index runs its own backtested mode (below).
-        Edge = forward return <i>in excess of</i> the unconditional baseline; MAE = avg worst drawdown in
-        the 3M after entry. <span id="eqbot-updated"></span>
+      <div style="color:var(--text-dim);font-size:0.78rem;margin-bottom:14px;line-height:1.5;">
+        One named state per index from two composites. <b>Capitulation</b> (0-1) blends a short, per-index set of
+        stress legs (vol, momentum unwind, RSI, drawdown, credit) whose weights were fitted on 2001-13 and tested on
+        2013-26; <b>Recovery</b> (0-1) is a fixed set of six tells that the flush is over, asked only inside a
+        capitulation episode. <b>Turning</b> is the buy read; it feeds the Setups tab as the bottoming anchor and
+        Capitulation building / Flush, not over as the armed lean. Click a card for the reasoning and what is on now.
+        <span id="eqbot-updated"></span>
       </div>
-      <div id="eqbot-summary"></div>
       <div id="eqbot-cards"></div>
-      <h3 style="font-size:0.95rem;font-weight:700;margin:26px 0 6px;color:var(--text);">Signal map (select index)</h3>
+      <div id="eqbot-summary"></div>
+      <h3 style="font-size:0.95rem;font-weight:700;margin:22px 0 6px;color:var(--text);">Signal map (select index)</h3>
       <div style="color:var(--text-dim);font-size:0.74rem;margin-bottom:10px;">
-        Green ▲ = primary entries · faint red ✕ = armed-but-unconfirmed capitulations the gate filtered out · lower panel = capitulation score vs arm threshold.
+        Green ▲ = labelled low caught by Turning · red ✕ = labelled low not caught · blue ◆ = Turning entries · bands: amber building, red flush, green Turning, blue recovered · lower panel = the two composites vs their thresholds.
       </div>
       <iframe src="equity_bottoms.html" loading="lazy" style="width:100%;height:840px;border:0;background:#fff;border-radius:8px;"></iframe>
+      <details style="margin-top:22px;">
+        <summary style="cursor:pointer;font-size:0.9rem;font-weight:700;color:var(--text);">Indicator detail (v1 binary states and the old entry modes)</summary>
+        <div style="color:var(--text-dim);font-size:0.72rem;margin:8px 0 10px;line-height:1.5;">
+          The pre-20-Oct-26 scorecard: each index's binary capitulation states (count, not weighted) and the
+          per-index entry mode they drove. Kept as the drill-down behind the state cards; no longer the signal of record.
+        </div>
+        <div id="eqbot-v1"></div>
+      </details>
     </div>
 
     <!-- ── Detail page (opened via row click, hidden by default) ── -->
@@ -2696,19 +2703,21 @@ function renderRsiRollover(d) {
   target.innerHTML = html;
 }
 
-/* ========== MOMENTUM: Equity Bottoming ========== */
+/* ========== MOMENTUM: Equity Bottoming (v2 state cards + v1 drill-down) ========== */
 const BOT_ORDER = ['NDX', 'SPX', 'NKY', 'KOSPI2', 'TWSE'];
-const BOT_CONTEXT = {
-  NDX: { tag: 'Gate for timing',
-    why: 'Rich US signal set with a strong capitulation edge (MTUM momentum-basket washout &amp; VIX&gt;30 both ~+4.5% 3M excess), but raw entries bleed. Gating on a 50dma reclaim lifts the 1-month hit-rate from 59% to 74% and cuts drawdown — you enter closer to the turn.' },
-  SPX: { tag: 'Low conviction',
-    why: 'The most efficient index: drawdowns are shallow and the blended composite barely beats the unconditional drift either way. Trade the individual winners (MTUM washout, RSI&lt;30, VIX&gt;30) rather than the composite score.' },
-  NKY: { tag: 'Gate essential',
-    why: 'Japan is a poor mean-reversion market — “oversold stays oversold” (daily RSI&lt;30 has <b>negative</b> forward excess). The raw capitulation composite loses money; gating on a 50dma reclaim flips it positive and roughly halves the drawdown.' },
-  KOSPI2: { tag: 'Buy raw — don’t wait',
-    why: 'High-beta with sharp V-bounces, and VKOSPI is its native implied-vol gauge (KOSPI 200). The raw capitulation score is among the strongest signals in the panel; waiting for confirmation makes you miss the rebound. Buy the panic directly.' },
-  TWSE: { tag: 'Gate essential',
-    why: 'Price-only (no Taiwan vol index on the terminal), so raw capitulation over-fires. Gating on a 50dma reclaim turns a negative raw composite into +3.0% 3M excess and cuts drawdown from −10.5% to −6.2%. Deep drawdowns (≤−20%) are themselves strong buys here.' },
+const BOT_STATE_STYLE = {
+  'Normal':                { clr: 'var(--text-dim)', bg: 'transparent',               short: 'Normal' },
+  'Capitulation building': { clr: 'var(--amber)',    bg: 'rgba(217,119,6,0.10)',      short: 'Building' },
+  'Flush, not over':       { clr: 'var(--red)',      bg: 'rgba(220,38,38,0.10)',      short: 'Flush' },
+  'Turning':               { clr: 'var(--green)',    bg: 'rgba(22,163,74,0.12)',      short: 'TURNING' },
+  'Recovered':             { clr: 'var(--accent)',   bg: 'rgba(91,82,230,0.08)',      short: 'Recovered' },
+};
+const BOT_CONTEXT_V1 = {
+  NDX: { tag: 'v1: gate for timing', why: 'v1 arm-and-confirm: capitulation count &ge; 3, enter on a 50dma reclaim within 42d.' },
+  SPX: { tag: 'v1: deep re-entry', why: 'v1: enter at a deeper capitulation count (&ge; 5 of 9).' },
+  NKY: { tag: 'v1: gate essential', why: 'v1: count &ge; 2, enter on a 50dma reclaim within 42d.' },
+  KOSPI2: { tag: 'v1: flow-gated', why: 'v1: count &ge; 3, enter on the KSFINET flow trigger (washout + inflection + dd &gt; 15%).' },
+  TWSE: { tag: 'v1: gate essential', why: 'v1: price-only count &ge; 2, enter on a 50dma reclaim within 42d.' },
 };
 
 fetch(bust('equity_bottoms.json')).then(r => r.json()).then(renderEquityBottoms).catch(() => {
@@ -2716,77 +2725,163 @@ fetch(bust('equity_bottoms.json')).then(r => r.json()).then(renderEquityBottoms)
   if (t) t.innerHTML = '<div style="color:var(--text-dim);padding:20px;">equity_bottoms.json not available — run equity_bottom_indicators.py to generate.</div>';
 });
 
+function botFmt(x, d) { return (x == null || isNaN(x)) ? '–' : Number(x).toFixed(d == null ? 1 : d); }
+function botSigned(x, d) { return (x == null || isNaN(x)) ? '–' : (x > 0 ? '+' : '') + Number(x).toFixed(d == null ? 1 : d); }
+function botBar(v, marks, clr) {
+  // 0-1 bar with threshold ticks
+  const pct = Math.max(0, Math.min(1, v || 0)) * 100;
+  let h = '<div style="position:relative;height:8px;border-radius:4px;background:var(--border);overflow:visible;margin:4px 0 2px;">';
+  h += '<div style="position:absolute;left:0;top:0;bottom:0;width:' + pct + '%;background:' + clr + ';border-radius:4px;"></div>';
+  (marks || []).forEach(m => {
+    h += '<div title="' + m.label + ' ' + botFmt(m.v, 2) + '" style="position:absolute;top:-3px;bottom:-3px;width:2px;left:' + (Math.max(0, Math.min(1, m.v)) * 100) + '%;background:' + m.clr + ';"></div>';
+  });
+  h += '</div>';
+  return h;
+}
+function botRecordLine(r) {
+  if (!r || !r.n) return 'no entry record';
+  const m = r['3M'] || {}, ci = m.ci95;
+  return 'n ' + r.n + ' · 3M hit ' + botFmt(m.hit, 0) + '% · excess ' + botSigned(m.excess) + '%' +
+         (ci ? ' [' + ci[0] + ', ' + ci[1] + ']' : '') + ' · MAE ' + botFmt(r.mae_mean) + '%';
+}
+
 function renderEquityBottoms(d) {
   const idx = d.indices || {};
   const up = document.getElementById('eqbot-updated');
   if (up) up.textContent = 'Updated ' + (d._updated || '') + '.';
 
-  // ── Summary table ──
-  let h = '<table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:8px;">';
-  h += '<thead><tr style="background:var(--surface2);text-align:left;">' +
-       '<th style="padding:8px;">Index</th>' +
-       '<th style="padding:8px;text-align:right;">Last</th>' +
-       '<th style="padding:8px;text-align:center;">Cap score</th>' +
-       '<th style="padding:8px;">State</th>' +
-       '<th style="padding:8px;">Mode</th>' +
-       '<th style="padding:8px;text-align:right;">Primary 3M edge</th>' +
-       '<th style="padding:8px;text-align:right;">MAE</th>' +
-       '<th style="padding:8px;text-align:right;">t</th>' +
-       '<th style="padding:8px;text-align:right;">n</th>' +
-       '<th style="padding:8px;">Best signals (this market)</th>' +
-       '</tr></thead><tbody>';
+  // ── v2 state cards ──
+  let c = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;margin-bottom:14px;">';
   BOT_ORDER.forEach(k => {
-    const r = idx[k]; if (!r) return;
-    const s = r.snapshot || {}, p = r.composite_primary || {}, p3 = p['3M'] || {};
-    const armed = s.armed;
-    const exc = (p3.excess != null) ? p3.excess : null;
-    const excClr = exc > 0 ? 'var(--green)' : exc < 0 ? 'var(--red)' : 'var(--text-dim)';
-    const stateTxt = armed ? '<span style="color:var(--amber);font-weight:700;">ARMED</span>'
-      : (s.entry_active_10d ? '<span style="color:var(--green);font-weight:700;">ENTRY</span>'
-      : '<span style="color:var(--text-dim);">watching</span>');
-    const best = (r.capitulation || []).filter(c => c.is_cap).slice(0, 3).map(c => c.signal).join(', ');
-    h += '<tr style="border-top:1px solid var(--border);">';
-    h += '<td style="padding:8px;font-weight:700;">' + k + '<div style="font-size:0.66rem;color:var(--text-dim);font-weight:400;">' + (r.name || '') + '</div></td>';
-    h += '<td style="padding:8px;text-align:right;">' + (s.px != null ? Number(s.px).toLocaleString() : '-') + '</td>';
-    h += '<td style="padding:8px;text-align:center;color:' + (armed ? 'var(--amber)' : 'var(--text)') + ';font-weight:700;">' + (s.score != null ? s.score : '-') + '<span style="color:var(--text-dim);font-weight:400;">/' + (s.cap_max || '-') + '</span></td>';
-    h += '<td style="padding:8px;">' + stateTxt + '</td>';
-    h += '<td style="padding:8px;">' + (r.mode === 'gated' ? 'gated 50dma' : 'raw') + (r.low_conviction ? ' <span style="color:var(--text-dim);font-size:0.66rem;">(low conv)</span>' : '') + '</td>';
-    h += '<td style="padding:8px;text-align:right;color:' + excClr + ';font-weight:700;">' + (exc != null ? (exc > 0 ? '+' : '') + exc.toFixed(1) + '%' : '-') + '</td>';
-    h += '<td style="padding:8px;text-align:right;color:var(--red);">' + (p.mae_mean != null ? p.mae_mean.toFixed(1) + '%' : '-') + '</td>';
-    h += '<td style="padding:8px;text-align:right;color:var(--text-dim);">' + (p.t_3M != null ? p.t_3M.toFixed(1) : '-') + '</td>';
-    h += '<td style="padding:8px;text-align:right;color:var(--text-dim);">' + (p.n != null ? p.n : '-') + '</td>';
-    h += '<td style="padding:8px;color:var(--text-dim);font-size:0.72rem;">' + best + '</td>';
-    h += '</tr>';
-  });
-  h += '</tbody></table>';
-  h += '<div style="color:var(--text-dim);font-size:0.70rem;margin-bottom:18px;">“Primary 3M edge” = forward 3-month return in excess of baseline for that index’s chosen (raw or gated) entry signal. Positive = beats buy-and-hold drift.</div>';
-  document.getElementById('eqbot-summary').innerHTML = h;
-
-  // ── Per-index context cards ──
-  let c = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;">';
-  BOT_ORDER.forEach(k => {
-    const r = idx[k]; if (!r) return;
-    const s = r.snapshot || {}, p = r.composite_primary || {}, p3 = p['3M'] || {}, ctx = BOT_CONTEXT[k] || {};
-    const armed = s.armed;
-    let card = '<div style="background:var(--surface2);border:1px solid ' + (armed ? 'var(--amber)' : 'var(--border)') + ';border-radius:8px;padding:14px;">';
+    const r = idx[k]; if (!r || !r.v2) return;
+    const v = r.v2, s = v.snapshot || {}, th = v.thresholds || {};
+    const st = s.state || 'Normal', sty = BOT_STATE_STYLE[st] || BOT_STATE_STYLE['Normal'];
+    const rec = ((v.states || {})[st] || {}).all;
+    const tr = ((v.states || {})['Turning'] || {}).all || {};
+    const t3 = tr['3M'] || {};
+    const inEp = ['Capitulation building', 'Flush, not over', 'Turning'].indexOf(st) >= 0;
+    let card = '<div style="background:var(--surface2);border:1px solid ' + (st === 'Normal' ? 'var(--border)' : sty.clr) + ';border-radius:8px;padding:14px;">';
     card += '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;">';
-    card += '<div style="font-weight:700;font-size:0.9rem;">' + k + ' <span style="color:var(--text-dim);font-weight:400;font-size:0.74rem;">' + (r.name || '') + '</span></div>';
-    card += '<div style="font-size:0.7rem;font-weight:700;text-align:right;color:' + (r.mode === 'gated' ? '#4c6ef5' : 'var(--green)') + ';">' + (ctx.tag || '') + '</div>';
+    card += '<div style="font-weight:700;font-size:0.95rem;">' + k + ' <span style="color:var(--text-dim);font-weight:400;font-size:0.72rem;">' + (r.name || '') + ' · ' + (s.px != null ? Number(s.px).toLocaleString() : '') + '</span></div>';
+    card += '<div style="font-size:0.78rem;font-weight:800;color:' + sty.clr + ';background:' + sty.bg + ';padding:2px 8px;border-radius:6px;">' + st.toUpperCase() + '</div>';
     card += '</div>';
-    card += '<div style="font-size:0.74rem;color:var(--text-dim);line-height:1.5;margin:8px 0 10px;">' + (ctx.why || '') + '</div>';
-    card += '<div style="font-size:0.72rem;margin-bottom:6px;">Live: <b style="color:' + (armed ? 'var(--amber)' : 'var(--text)') + ';">score ' + (s.score != null ? s.score : '-') + '/' + (s.cap_max || '-') + (armed ? ' — ARMED' : '') + '</b>';
-    if (s.on && s.on.length) card += ' <span style="color:var(--text-dim);">· on: ' + s.on.join(', ') + '</span>';
-    card += '</div>';
-    const exc = p3.excess;
-    card += '<div style="font-size:0.72rem;color:var(--text-dim);">Primary (' + (r.mode === 'gated' ? 'gated' : 'raw') + '): ' +
-            '3M ' + (p3.mean != null ? (p3.mean > 0 ? '+' : '') + p3.mean.toFixed(1) + '%' : '-') +
-            ' (exc ' + (exc != null ? (exc > 0 ? '+' : '') + exc.toFixed(1) : '-') + '), ' +
-            'hit ' + (p3.hit != null ? p3.hit.toFixed(0) + '%' : '-') + ', MAE ' + (p.mae_mean != null ? p.mae_mean.toFixed(1) + '%' : '-') + ', n=' + (p.n != null ? p.n : '-') + '</div>';
+    card += '<div style="font-size:0.7rem;color:var(--text-dim);margin:4px 0 8px;">since ' + (s.state_since || '') + ' (' + (s.state_days || 0) + 'd)' +
+            (st === 'Turning' && s.turn_from ? ' · from ' + s.turn_from : '') +
+            (st === 'Recovered' && s.turn_from ? ' · turned from ' + s.turn_from : '') + '</div>';
+    // composites
+    card += '<div style="font-size:0.72rem;display:flex;justify-content:space-between;"><span>Capitulation <b>' + botFmt(s.cap, 2) + '</b></span><span style="color:var(--text-dim);">build ' + botFmt(th.t_build, 2) + ' · flush ' + botFmt(th.t_flush, 2) + '</span></div>';
+    card += botBar(s.cap, [{ v: th.t_build, label: 'build', clr: 'var(--amber)' }, { v: th.t_flush, label: 'flush', clr: 'var(--red)' }], 'var(--amber)');
+    card += '<div style="font-size:0.72rem;display:flex;justify-content:space-between;margin-top:6px;"><span>Recovery <b>' + botFmt(s.rec, 2) + '</b>' + (inEp ? '' : ' <span style="color:var(--text-dim);">(outside an episode)</span>') + '</span><span style="color:var(--text-dim);">turn at ' + botFmt(th.t_rec, 2) + '</span></div>';
+    card += botBar(inEp ? s.rec : 0, [{ v: th.t_rec, label: 'turn', clr: 'var(--green)' }], 'var(--accent)');
+    // next state + record
+    card += '<div style="font-size:0.72rem;line-height:1.45;margin:10px 0 6px;color:var(--text);">' + (s.next_state || '') + '</div>';
+    card += '<div style="font-size:0.7rem;color:var(--text-dim);">' + (st === 'Normal' ? 'Turning record here: ' + botRecordLine(tr) : 'This state’s record: ' + botRecordLine(rec)) + '</div>';
+    // legs / tells now
+    const legs = (s.legs || []).map(l => '<span title="' + l.label + '">' + l.leg + ' <b>' + botFmt(l.value, 2) + '</b><span style="color:var(--text-dim);">×' + botFmt(l.weight, 2) + '</span></span>').join(' · ');
+    const tells = (s.tells || []).map(t => '<span title="' + t.label + '">' + t.tell + ' <b>' + botFmt(t.value, 2) + '</b></span>').join(' · ');
+    card += '<details style="margin-top:8px;font-size:0.68rem;color:var(--text-dim);"><summary style="cursor:pointer;color:var(--text);">Why these legs · what is on now</summary>';
+    card += '<div style="margin:6px 0;line-height:1.5;">' + (v.rationale || '') + '</div>';
+    card += '<div style="margin:4px 0;"><b style="color:var(--text);">Capitulation legs now:</b> ' + legs + '</div>';
+    card += '<div style="margin:4px 0;"><b style="color:var(--text);">Recovery tells now:</b> ' + tells + '</div>';
+    card += '</details>';
     card += '</div>';
     c += card;
   });
   c += '</div>';
+
+  // ── record table: Turning vs old primary, per index ──
+  let h = '<table style="width:100%;border-collapse:collapse;font-size:0.76rem;margin-bottom:6px;">';
+  h += '<thead><tr style="background:var(--surface2);text-align:left;">' +
+       '<th style="padding:7px;">Index</th><th style="padding:7px;">State</th>' +
+       '<th style="padding:7px;text-align:right;">Turning n</th><th style="padding:7px;text-align:right;">3M hit</th>' +
+       '<th style="padding:7px;text-align:right;">3M excess</th><th style="padding:7px;text-align:right;">95% CI</th>' +
+       '<th style="padding:7px;text-align:right;">MAE</th><th style="padding:7px;text-align:right;">OOS excess</th>' +
+       '<th style="padding:7px;text-align:right;">from flush / dip</th>' +
+       '<th style="padding:7px;text-align:right;">deep lows caught</th><th style="padding:7px;text-align:right;">lag</th>' +
+       '<th style="padding:7px;text-align:right;">old primary excess</th></tr></thead><tbody>';
+  BOT_ORDER.forEach(k => {
+    const r = idx[k]; if (!r || !r.v2) return;
+    const v = r.v2, s = v.snapshot || {}, st = s.state || 'Normal', sty = BOT_STATE_STYLE[st] || BOT_STATE_STYLE['Normal'];
+    const T = (v.states || {})['Turning'] || {}, ta = T.all || {}, to = T.oos || {}, bo = T.by_origin || {};
+    const m = ta['3M'] || {}, ci = m.ci95, mo = to['3M'] || {};
+    const old = ((v.compare || {}).old_primary || {}).all || {}, mold = old['3M'] || {};
+    const tu = v.turning || {};
+    const exClr = x => x > 0 ? 'var(--green)' : x < 0 ? 'var(--red)' : 'var(--text-dim)';
+    h += '<tr style="border-top:1px solid var(--border);">';
+    h += '<td style="padding:7px;font-weight:700;">' + k + '</td>';
+    h += '<td style="padding:7px;color:' + sty.clr + ';font-weight:700;">' + sty.short + '</td>';
+    h += '<td style="padding:7px;text-align:right;">' + (ta.n || 0) + '</td>';
+    h += '<td style="padding:7px;text-align:right;">' + botFmt(m.hit, 0) + '%</td>';
+    h += '<td style="padding:7px;text-align:right;color:' + exClr(m.excess) + ';font-weight:700;">' + botSigned(m.excess) + '%</td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--text-dim);">' + (ci ? ci[0] + ' … ' + ci[1] : '–') + '</td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--red);">' + botFmt(ta.mae_mean) + '%</td>';
+    h += '<td style="padding:7px;text-align:right;color:' + exClr(mo.excess) + ';">' + botSigned(mo.excess) + '% <span style="color:var(--text-dim);">(n' + (to.n || 0) + ')</span></td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--text-dim);">' + botSigned(((bo.from_flush || {})['3M'] || {}).excess) + ' / ' + botSigned(((bo.from_building || {})['3M'] || {}).excess) + '</td>';
+    h += '<td style="padding:7px;text-align:right;">' + (tu.deep_caught != null ? tu.deep_caught + '/' + tu.deep_total : '–') + ' <span style="color:var(--text-dim);">(OOS ' + (tu.deep_caught_oos != null ? tu.deep_caught_oos + '/' + tu.deep_total_oos : '–') + ')</span></td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--text-dim);">' + botFmt(tu.lag_median_td, 0) + 'd</td>';
+    h += '<td style="padding:7px;text-align:right;color:' + exClr(mold.excess) + ';">' + botSigned(mold.excess) + '% <span style="color:var(--text-dim);">(n' + (old.n || 0) + ')</span></td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  h += '<div style="color:var(--text-dim);font-size:0.68rem;margin-bottom:14px;line-height:1.5;">Excess = forward 3M return minus that calendar year’s mean (era-matched); n = de-clustered Turning entries (&ge;21 trading days apart); CI = 95% block bootstrap over calendar quarters; OOS = second half of the sample (late-2013 on), the half the legs were not fitted on. Deep lows = labelled lows of &ge;15%; lag = median trading days from the low to Turning. Old primary = the v1 per-index entry signal this replaced.</div>';
+  const pooled = d.v2_recovery_pooled || {};
+  const rr = (idx[BOT_ORDER[0]] || {}).v2 || {};
+  h += '<details style="font-size:0.72rem;color:var(--text-dim);margin-bottom:16px;"><summary style="cursor:pointer;color:var(--text);">Recovery set (shared by all indices) · how the states work</summary>';
+  h += '<div style="margin:6px 0;line-height:1.5;">' + (rr.rationale_recovery || '') + '</div>';
+  h += '<div style="margin:6px 0;line-height:1.5;">States: <b>Normal</b> → <b>Capitulation building</b> (composite above its build threshold, roughly the worst 10% of days) → <b>Flush, not over</b> (above the flush threshold, roughly the worst 5%) → <b>Turning</b> (recovery composite &ge; ' + botFmt(((d.v2_params || {}).t_rec), 1) + ' inside an episode, from a dip or a flush: the buy read) → <b>Recovered</b>. Episodes end only after the composite has been 0.10 below the build threshold for ' + ((d.v2_params || {}).flush_grace || 20) + ' days without a turn; Turning drops back to the episode’s severity state if recovery falls 0.15 below its threshold.</div>';
+  h += '</details>';
+
   document.getElementById('eqbot-cards').innerHTML = c;
+  document.getElementById('eqbot-summary').innerHTML = h;
+
+  // ── v1 indicator drill-down (collapsed): the binary states and old entry modes ──
+  const v1 = document.getElementById('eqbot-v1');
+  if (v1) v1.innerHTML = renderEquityBottomsV1(d);
+}
+
+function renderEquityBottomsV1(d) {
+  const idx = d.indices || {};
+  let h = '<table style="width:100%;border-collapse:collapse;font-size:0.74rem;margin-bottom:8px;">';
+  h += '<thead><tr style="background:var(--surface2);text-align:left;">' +
+       '<th style="padding:7px;">Index</th><th style="padding:7px;text-align:center;">v1 count</th>' +
+       '<th style="padding:7px;">v1 states on now</th><th style="padding:7px;">v1 mode</th>' +
+       '<th style="padding:7px;text-align:right;">v1 primary 3M edge</th><th style="padding:7px;text-align:right;">MAE</th>' +
+       '<th style="padding:7px;text-align:right;">n</th></tr></thead><tbody>';
+  BOT_ORDER.forEach(k => {
+    const r = idx[k]; if (!r) return;
+    const s = r.snapshot || {}, p = r.composite_primary_v1 || r.composite_primary || {}, p3 = p['3M'] || {};
+    const score = s.v1_score != null ? s.v1_score : s.score, cm = s.v1_cap_max != null ? s.v1_cap_max : s.cap_max;
+    const exc = p3.excess;
+    h += '<tr style="border-top:1px solid var(--border);">';
+    h += '<td style="padding:7px;font-weight:700;">' + k + '</td>';
+    h += '<td style="padding:7px;text-align:center;">' + (score != null ? score : '–') + '<span style="color:var(--text-dim);">/' + (cm || '–') + '</span></td>';
+    h += '<td style="padding:7px;color:var(--text-dim);">' + ((s.on || []).join(', ') || '(none)') + '</td>';
+    h += '<td style="padding:7px;color:var(--text-dim);">' + (r.mode_v1 || '') + '</td>';
+    h += '<td style="padding:7px;text-align:right;color:' + (exc > 0 ? 'var(--green)' : exc < 0 ? 'var(--red)' : 'var(--text-dim)') + ';">' + botSigned(exc) + '%</td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--red);">' + botFmt(p.mae_mean) + '%</td>';
+    h += '<td style="padding:7px;text-align:right;color:var(--text-dim);">' + (p.n != null ? p.n : '–') + '</td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  // per-index indicator scorecards
+  h += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;">';
+  BOT_ORDER.forEach(k => {
+    const r = idx[k]; if (!r) return;
+    const ctx = BOT_CONTEXT_V1[k] || {};
+    let card = '<div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;">';
+    card += '<div style="font-weight:700;font-size:0.82rem;">' + k + ' <span style="color:var(--text-dim);font-weight:400;font-size:0.7rem;">' + (ctx.tag || '') + '</span></div>';
+    card += '<div style="font-size:0.68rem;color:var(--text-dim);margin:4px 0 8px;">' + (ctx.why || '') + '</div>';
+    card += '<table style="width:100%;border-collapse:collapse;font-size:0.68rem;"><thead><tr style="color:var(--text-dim);text-align:left;"><th style="padding:3px 4px;">state</th><th style="padding:3px 4px;text-align:right;">n</th><th style="padding:3px 4px;text-align:right;">3M hit</th><th style="padding:3px 4px;text-align:right;">3M exc</th><th style="padding:3px 4px;text-align:right;">MAE</th><th style="padding:3px 4px;">on</th></tr></thead><tbody>';
+    const on = new Set((r.snapshot || {}).on || []);
+    (r.capitulation || []).forEach(c => {
+      const m = c['3M'] || {};
+      card += '<tr style="border-top:1px solid var(--border);' + (on.has(c.signal) ? 'color:var(--amber);font-weight:600;' : '') + '"><td style="padding:3px 4px;">' + c.signal + (c.is_cap ? '' : ' <span style="color:var(--text-dim);font-weight:400;">(info)</span>') + '</td><td style="padding:3px 4px;text-align:right;">' + c.n + '</td><td style="padding:3px 4px;text-align:right;">' + botFmt(m.hit, 0) + '</td><td style="padding:3px 4px;text-align:right;">' + botSigned(m.excess) + '</td><td style="padding:3px 4px;text-align:right;">' + botFmt(c.mae_mean) + '</td><td style="padding:3px 4px;">' + (on.has(c.signal) ? '●' : '') + '</td></tr>';
+    });
+    card += '</tbody></table></div>';
+    h += card;
+  });
+  h += '</div>';
+  return h;
 }
 
 // ── Alerts banner ──
