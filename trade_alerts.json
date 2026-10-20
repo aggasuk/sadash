@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-19T09:29:02",
+  "last_updated": "2026-10-20T09:49:45",
   "near_bp": 3.0,
   "alerts": [
     {
@@ -7,14 +7,14 @@
       "label": "NASDAQ 5d<200d",
       "formula": "5d < 200d MA",
       "inputs": {
-        "sma_short": 30061.63,
-        "sma_long": 27737.98,
-        "last": 29187.55
+        "sma_short": 29834.56,
+        "sma_long": 27759.38,
+        "last": 29529.34
       },
-      "current_bp": 8.38,
+      "current_bp": 7.48,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 8.38,
+      "distance_bp": 7.48,
       "status": "ARMED",
       "rationale": "Bearish 5d/200d MA cross on long Nasdaq (NQU6) - momentum risk flag",
       "added": "2026-05-31"
@@ -24,14 +24,14 @@
       "label": "TPNBNK 20d<200d",
       "formula": "20d < 200d MA",
       "inputs": {
-        "sma_short": 751.71,
-        "sma_long": 656.84,
-        "last": 711.91
+        "sma_short": 749.52,
+        "sma_long": 657.87,
+        "last": 706.39
       },
-      "current_bp": 14.44,
+      "current_bp": 13.93,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 14.44,
+      "distance_bp": 13.93,
       "status": "ARMED",
       "rationale": "Bearish 20d/200d MA cross on long Topix banks - momentum risk flag",
       "added": "2026-05-31"
@@ -41,15 +41,15 @@
       "label": "TWSE 5d<35d",
       "formula": "5d < 35d MA",
       "inputs": {
-        "sma_short": 47498.47,
-        "sma_long": 47398.31,
-        "last": 46444.06
+        "sma_short": 47263.22,
+        "sma_long": 47432.3,
+        "last": 46787.05
       },
-      "current_bp": 0.21,
+      "current_bp": -0.36,
       "trigger_bp": 0.0,
       "direction": "below",
-      "distance_bp": 0.21,
-      "status": "NEAR",
+      "distance_bp": -0.36,
+      "status": "TRIGGERED",
       "rationale": "Bearish 5d/35d MA cross on long Taiwan index - momentum risk flag",
       "added": "2026-05-31"
     }
