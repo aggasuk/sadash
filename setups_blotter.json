@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-20 09:53",
+ "_updated": "2026-10-21 09:25",
  "created": "2026-08-17",
- "last_update": "2026-10-20",
- "setups_asof": "2026-10-20 09:53",
+ "last_update": "2026-10-21",
+ "setups_asof": "2026-10-21 09:25",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,29 +15,12 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 43,
+   "days": 44,
    "avg": 3.0645,
-   "mark": 2.922,
-   "unrealised": -71266.0,
+   "mark": 2.904,
+   "unrealised": -80266.0,
    "realised": 109766.0,
    "score_at_open": 2.0
-  },
-  {
-   "key": "krw5",
-   "instrument": "KRW 5Y NDIRS",
-   "kind": "rates",
-   "verb": "PAY KRW 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-09-10",
-   "days": 40,
-   "avg": 4.1979,
-   "mark": 3.9425,
-   "unrealised": -63844.0,
-   "realised": 29144.0,
-   "score_at_open": 1.35
   },
   {
    "key": "inr5",
@@ -49,10 +32,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 37,
+   "days": 38,
    "avg": 6.6738,
-   "mark": 6.804,
-   "unrealised": 32563.0,
+   "mark": 6.8075,
+   "unrealised": 33438.0,
    "realised": 11562.0,
    "score_at_open": 1.35
   },
@@ -66,10 +49,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-10-08",
-   "days": 12,
+   "days": 13,
    "avg": 3.475,
-   "mark": 3.456,
-   "unrealised": -4750.0,
+   "mark": 3.4,
+   "unrealised": -18750.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -83,15 +66,30 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 11,
+   "days": 12,
    "avg": 157.96,
-   "mark": 158.56,
-   "unrealised": -4748.0,
+   "mark": 158.34,
+   "unrealised": -3007.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
  ],
  "closed": [
+  {
+   "key": "krw5",
+   "kind": "rates",
+   "verb": "PAY KRW 5Y",
+   "tier": "A",
+   "size": "HALF",
+   "anchor": "TREND",
+   "opened": "2026-09-10",
+   "closed": "2026-10-21",
+   "entry": 4.1979,
+   "exit": 3.9,
+   "pnl": -45325.0,
+   "score": 1.35,
+   "days": 41
+  },
   {
    "key": "usd",
    "kind": "fx",
@@ -424,12 +422,12 @@
   }
  ],
  "stats": {
-  "n_closed": 22,
+  "n_closed": 23,
   "wins": 12,
-  "realised": 153335.0,
-  "unrealised": -112045.0,
-  "total": 41290.0,
-  "avg_days": 9.7,
+  "realised": 78866.0,
+  "unrealised": -68585.0,
+  "total": 10281.0,
+  "avg_days": 11.1,
   "by_size": {
    "PROBE": {
     "n": 14,
@@ -442,9 +440,9 @@
     "pnl": 23250.0
    },
    "HALF": {
-    "n": 6,
+    "n": 7,
     "wins": 3,
-    "pnl": -12943.0
+    "pnl": -58268.0
    }
   },
   "by_kind": {
@@ -459,9 +457,9 @@
     "pnl": 42416.0
    },
    "rates": {
-    "n": 10,
+    "n": 11,
     "wins": 7,
-    "pnl": 61100.0
+    "pnl": 15775.0
    },
    "cmd": {
     "n": 1,
@@ -483,20 +481,28 @@
     "wins": 2,
     "pnl": 66958.0,
     "open_n": 1,
-    "open_pnl": -4748.0,
+    "open_pnl": -3007.0,
     "open_realised": 0.0
    },
    "TREND": {
-    "n": 3,
+    "n": 4,
     "wins": 3,
-    "pnl": 37400.0,
-    "open_n": 4,
-    "open_pnl": -107297.0,
-    "open_realised": 150472.0
+    "pnl": -7925.0,
+    "open_n": 3,
+    "open_pnl": -65578.0,
+    "open_realised": 121328.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-10-21",
+   "key": "krw5",
+   "units": 2500.0,
+   "price": 3.9,
+   "note": "close (dropped off strip)",
+   "anchor": null
+  },
   {
    "date": "2026-10-14",
    "key": "usdthb",
@@ -806,14 +812,6 @@
    "key": "gold",
    "units": -1250000.0,
    "price": 4429.98,
-   "note": "close (dropped off strip)",
-   "anchor": null
-  },
-  {
-   "date": "2026-09-07",
-   "key": "bund",
-   "units": 2500.0,
-   "price": 3.339,
    "note": "close (dropped off strip)",
    "anchor": null
   }
