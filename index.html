@@ -2767,7 +2767,8 @@ function renderEquityBottoms(d) {
     card += '</div>';
     card += '<div style="font-size:0.7rem;color:var(--text-dim);margin:4px 0 8px;">since ' + (s.state_since || '') + ' (' + (s.state_days || 0) + 'd)' +
             (st === 'Turning' && s.turn_from ? ' · from ' + s.turn_from : '') +
-            (st === 'Recovered' && s.turn_from ? ' · turned from ' + s.turn_from : '') + '</div>';
+            (st === 'Turning' && s.turn_days ? ' · day ' + s.turn_days : '') +
+            (st === 'Normal' && s.last_entry ? ' · last Turning ' + s.last_entry + (s.last_turn_from ? ' (from ' + (s.last_turn_from === 'Flush, not over' ? 'a flush' : 'a dip') + ')' : '') : '') + '</div>';
     // intraday run: price legs on a futures-implied row (bottoming_v2.py --intraday)
     const ix = s.intraday;
     if (ix && ix.used) {
@@ -2835,7 +2836,7 @@ function renderEquityBottoms(d) {
   const rr = (idx[BOT_ORDER[0]] || {}).v2 || {};
   h += '<details style="font-size:0.72rem;color:var(--text-dim);margin-bottom:16px;"><summary style="cursor:pointer;color:var(--text);">Recovery set (shared by all indices) · how the states work</summary>';
   h += '<div style="margin:6px 0;line-height:1.5;">' + (rr.rationale_recovery || '') + '</div>';
-  h += '<div style="margin:6px 0;line-height:1.5;">States: <b>Normal</b> → <b>Capitulation building</b> (composite above its build threshold, roughly the worst 10% of days) → <b>Flush, not over</b> (above the flush threshold, roughly the worst 5%) → <b>Turning</b> (recovery composite &ge; ' + botFmt(((d.v2_params || {}).t_rec), 1) + ' inside an episode, from a dip or a flush: the buy read) → <b>Recovered</b>. Episodes end only after the composite has been 0.10 below the build threshold for ' + ((d.v2_params || {}).flush_grace || 20) + ' days without a turn; Turning drops back to the episode’s severity state if recovery falls 0.15 below its threshold.</div>';
+  h += '<div style="margin:6px 0;line-height:1.5;">States: <b>Normal</b> → <b>Capitulation building</b> (composite above its build threshold, roughly the worst 10% of days) → <b>Flush, not over</b> (above the flush threshold, roughly the worst 5%) → <b>Turning</b> (recovery composite &ge; ' + botFmt(((d.v2_params || {}).t_rec), 1) + ' inside an episode, from a dip or a flush: the buy read) → back to <b>Normal</b>. An episode ends once the composite has been 0.10 below the build threshold for ' + ((d.v2_params || {}).flush_grace || 20) + ' days without a turn, or after a turn once Turning has been held ' + ((d.v2_params || {}).turn_min_days || 10) + ' days and capitulation is below exit; Turning drops back to the episode’s severity state if recovery falls 0.15 below its threshold after that hold. The last Turning stays on a Normal card as a date.</div>';
   h += '</details>';
 
   document.getElementById('eqbot-cards').innerHTML = c;
