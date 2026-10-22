@@ -1,5 +1,5 @@
 {
- "_updated": "2026-10-22 10:35",
+ "_updated": "2026-10-22 15:27 (intraday, futures-implied)",
  "config": {
   "horizons": [
    "1W",
@@ -64,7 +64,7 @@
    "snapshot": {
     "date": "2026-10-21",
     "px": 29823.0,
-    "score": 0.166,
+    "score": 0.171,
     "cap_max": 1.0,
     "on": [
      "MTUM dd<=-10%"
@@ -80,12 +80,27 @@
     "v1_armed": false,
     "state": "Recovered",
     "state_since": "2026-08-05",
-    "state_days": 55,
+    "state_days": 56,
     "turn_from": "Capitulation building",
-    "cap": 0.166,
-    "rec": 0.2,
+    "cap": 0.171,
+    "rec": 0.224,
     "state_changed": false,
-    "prev_state": "Recovered"
+    "prev_state": "Recovered",
+    "intraday": {
+     "fut": "NQ1 Index",
+     "contract": "NQZ6",
+     "time": "15:28:12",
+     "last": 29499.75,
+     "settle": 30007.0,
+     "settle_dt": "2026-10-21",
+     "used": true,
+     "cash_last": 29822.52,
+     "cash_last_dt": "2026-10-21",
+     "move_pct": -1.69,
+     "implied": 29318.39,
+     "implied_dt": "2026-10-22",
+     "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+    }
    },
    "capitulation": [
     {
@@ -954,7 +969,7 @@
     "mae_worst": -48.97,
     "t_3M": 2.54,
     "ci95_3M": [
-     1.2,
+     1.21,
      7.83
     ],
     "1M": {
@@ -985,9 +1000,9 @@
     "key": "NDX",
     "name": "NASDAQ-100",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-10-21",
-    "n_days": 6489,
-    "split_date": "2013-11-25",
+    "sample_end": "2026-10-22",
+    "n_days": 6490,
+    "split_date": "2013-11-26",
     "rationale": "NDX capitulation is read as a momentum-factor unwind plus a vol event: MTUM's drawdown from its 1y high carries the most weight (it starts in 2013, so its weight is set on 2013-19 and tested on 2020-26), with the absolute VIX level, daily RSI14, the equity put/call percentile and the index's own drawdown confirming. VXN percentile, VRP, VIX term structure, VVIX/VIX, HY OAS and the trend score all test positive alone but add nothing to this combination in-sample, so they are out. Capitulation building is the top decile of the composite in 2001-13, Flush the top 2%.",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -1013,11 +1028,11 @@
      "cap_pct_flush_is": 0.0225
     },
     "cap_weights": {
-     "mtum_dd": 0.30248661251541786,
-     "rsi14": 0.26138065158090534,
-     "vix_level": 0.2341769093082971,
-     "putcall_pct": 0.10800901031716288,
-     "dd_1y": 0.09394681627821684
+     "mtum_dd": 0.30248594931740175,
+     "rsi14": 0.26138516389548594,
+     "vix_level": 0.23417681236047339,
+     "putcall_pct": 0.10800773235570314,
+     "dd_1y": 0.09394434207093583
     },
     "rec_weights": {
      "iv_off_peak": 0.16666666666666666,
@@ -1034,14 +1049,14 @@
       "starts": "2013-07-12",
       "is_": {
        "n_on": 37,
-       "lift": 5.82,
+       "lift": 5.79,
        "excess": 10.94,
        "on_off": 11.49,
        "on_share": 0.0222,
        "on_off_1m": 3.26,
        "mae_on": -4.04,
-       "mae_off": -4.56,
-       "mae_gain": 0.52
+       "mae_off": -4.57,
+       "mae_gain": 0.53
       },
       "oos": {
        "n_on": 369,
@@ -1049,13 +1064,13 @@
        "excess": 4.11,
        "on_off": 4.85,
        "on_share": 0.2295,
-       "on_off_1m": 2.0,
+       "on_off_1m": 1.98,
        "mae_on": -7.98,
-       "mae_off": -5.12,
-       "mae_gain": -2.86
+       "mae_off": -5.11,
+       "mae_gain": -2.87
       },
       "note": "weights from own first half (leg starts late)",
-      "split": "2020-02-28",
+      "split": "2020-03-02",
       "status": "kept",
       "weight": 0.302
      },
@@ -1086,7 +1101,7 @@
        "mae_gain": -0.23
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.261
      },
@@ -1107,17 +1122,17 @@
       },
       "oos": {
        "n_on": 96,
-       "lift": 3.33,
+       "lift": 3.32,
        "excess": 11.79,
-       "on_off": 12.17,
+       "on_off": 12.18,
        "on_share": 0.0302,
-       "on_off_1m": 5.98,
+       "on_off_1m": 5.97,
        "mae_on": -3.51,
        "mae_off": -5.33,
        "mae_gain": 1.82
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.234
      },
@@ -1130,25 +1145,25 @@
        "lift": 1.81,
        "excess": 3.43,
        "on_off": 3.62,
-       "on_share": 0.1309,
-       "on_off_1m": 2.08,
+       "on_share": 0.1308,
+       "on_off_1m": 2.07,
        "mae_on": -8.01,
-       "mae_off": -6.98,
-       "mae_gain": -1.03
+       "mae_off": -6.97,
+       "mae_gain": -1.04
       },
       "oos": {
-       "n_on": 455,
-       "lift": 1.65,
-       "excess": 2.77,
-       "on_off": 3.25,
-       "on_share": 0.143,
+       "n_on": 456,
+       "lift": 1.66,
+       "excess": 2.75,
+       "on_off": 3.23,
+       "on_share": 0.1433,
        "on_off_1m": 1.07,
        "mae_on": -6.29,
-       "mae_off": -5.1,
-       "mae_gain": -1.19
+       "mae_off": -5.11,
+       "mae_gain": -1.18
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.108
      },
@@ -1161,7 +1176,7 @@
        "lift": 1.83,
        "excess": 2.36,
        "on_off": 3.02,
-       "on_share": 0.2826,
+       "on_share": 0.2825,
        "on_off_1m": 1.31,
        "mae_on": -13.16,
        "mae_off": -4.98,
@@ -1169,7 +1184,7 @@
       },
       "oos": {
        "n_on": 311,
-       "lift": 2.64,
+       "lift": 2.63,
        "excess": 5.87,
        "on_off": 6.52,
        "on_share": 0.0977,
@@ -1179,7 +1194,7 @@
        "mae_gain": -1.93
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.094
      },
@@ -1193,7 +1208,7 @@
        "excess": 4.58,
        "on_off": 5.09,
        "on_share": 0.1536,
-       "on_off_1m": 2.92,
+       "on_off_1m": 2.91,
        "mae_on": -11.71,
        "mae_off": -6.28,
        "mae_gain": -5.43
@@ -1206,12 +1221,12 @@
        "on_share": 0.1681,
        "on_off_1m": 1.81,
        "mae_on": -7.2,
-       "mae_off": -4.88,
-       "mae_gain": -2.32
+       "mae_off": -4.89,
+       "mae_gain": -2.31
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (31.55 vs 31.01)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (31.56 vs 31.02)",
       "weight": 0.0
      },
      {
@@ -1223,26 +1238,26 @@
        "lift": 2.0,
        "excess": 1.79,
        "on_off": 1.56,
-       "on_share": 0.108,
+       "on_share": 0.1079,
        "on_off_1m": 0.36,
        "mae_on": -9.48,
        "mae_off": -6.61,
        "mae_gain": -2.87
       },
       "oos": {
-       "n_on": 509,
-       "lift": 2.47,
-       "excess": 4.33,
-       "on_off": 5.18,
-       "on_share": 0.16,
+       "n_on": 510,
+       "lift": 2.48,
+       "excess": 4.32,
+       "on_off": 5.17,
+       "on_share": 0.1603,
        "on_off_1m": 2.08,
-       "mae_on": -5.85,
-       "mae_off": -5.16,
-       "mae_gain": -0.69
+       "mae_on": -5.84,
+       "mae_off": -5.17,
+       "mae_gain": -0.67
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (22.37 vs 33.65)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (22.38 vs 33.66)",
       "weight": 0.0
      },
      {
@@ -1254,15 +1269,15 @@
        "lift": 2.51,
        "excess": 7.1,
        "on_off": 7.85,
-       "on_share": 0.0996,
+       "on_share": 0.0995,
        "on_off_1m": 0.74,
        "mae_on": -13.25,
-       "mae_off": -5.91,
-       "mae_gain": -7.34
+       "mae_off": -5.9,
+       "mae_gain": -7.35
       },
       "oos": {
        "n_on": 190,
-       "lift": 3.99,
+       "lift": 3.98,
        "excess": 8.02,
        "on_off": 8.55,
        "on_share": 0.0597,
@@ -1272,8 +1287,8 @@
        "mae_gain": 0.27
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (31.33 vs 31.01)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (31.34 vs 31.02)",
       "weight": 0.0
      },
      {
@@ -1288,12 +1303,12 @@
        "on_share": 0.0818,
        "on_off_1m": 1.36,
        "mae_on": -11.68,
-       "mae_off": -6.2,
-       "mae_gain": -5.48
+       "mae_off": -6.19,
+       "mae_gain": -5.49
       },
       "oos": {
        "n_on": 90,
-       "lift": 4.11,
+       "lift": 4.1,
        "excess": 10.24,
        "on_off": 10.56,
        "on_share": 0.0283,
@@ -1303,8 +1318,8 @@
        "mae_gain": -0.43
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (27.14 vs 31.01)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (27.14 vs 31.02)",
       "weight": 0.0
      },
      {
@@ -1319,12 +1334,12 @@
        "on_share": 0.0219,
        "on_off_1m": 2.87,
        "mae_on": -6.58,
-       "mae_off": -6.93,
-       "mae_gain": 0.35
+       "mae_off": -6.92,
+       "mae_gain": 0.34
       },
       "oos": {
        "n_on": 58,
-       "lift": 1.73,
+       "lift": 1.72,
        "excess": 2.13,
        "on_off": 2.19,
        "on_share": 0.0182,
@@ -1334,8 +1349,8 @@
        "mae_gain": 2.5
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (24.63 vs 31.01)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (24.64 vs 31.02)",
       "weight": 0.0
      },
      {
@@ -1343,30 +1358,30 @@
       "label": "VVIX/VIX low, 1y percentile (below 25th)",
       "starts": "2006-10-13",
       "is_": {
-       "n_on": 317,
+       "n_on": 318,
        "lift": 2.13,
-       "excess": 2.67,
+       "excess": 2.66,
        "on_off": 3.22,
-       "on_share": 0.177,
-       "on_off_1m": 0.56,
-       "mae_on": -9.77,
+       "on_share": 0.1775,
+       "on_off_1m": 0.57,
+       "mae_on": -9.74,
        "mae_off": -5.64,
-       "mae_gain": -4.13
+       "mae_gain": -4.1
       },
       "oos": {
-       "n_on": 487,
+       "n_on": 486,
        "lift": 2.82,
        "excess": 5.14,
-       "on_off": 6.09,
-       "on_share": 0.153,
+       "on_off": 6.1,
+       "on_share": 0.1527,
        "on_off_1m": 2.46,
-       "mae_on": -6.41,
+       "mae_on": -6.43,
        "mae_off": -5.07,
-       "mae_gain": -1.34
+       "mae_gain": -1.36
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (29.61 vs 31.01)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (29.61 vs 31.02)",
       "weight": 0.0
      },
      {
@@ -1382,23 +1397,23 @@
         "leg": "rsi14",
         "obj": 15.17,
         "excess": 6.97,
-        "lift": 2.17
+        "lift": 2.18
        },
        {
         "leg": "vix_level",
-        "obj": 31.01,
+        "obj": 31.02,
         "excess": 10.57,
-        "lift": 2.93
+        "lift": 2.94
        },
        {
         "leg": "putcall_pct",
-        "obj": 33.65,
+        "obj": 33.66,
         "excess": 11.71,
         "lift": 2.87
        },
        {
         "leg": "dd_1y",
-        "obj": 35.61,
+        "obj": 35.62,
         "excess": 11.75,
         "lift": 3.03
        }
@@ -1500,12 +1515,12 @@
        "mae_on": -7.68,
        "mae_flush": -7.21,
        "mae_gain": -0.47,
-       "exc_on": 3.66,
+       "exc_on": 3.67,
        "exc_flush": 5.47,
        "false_over": 0.73,
        "lag_median": 9.5
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -1602,12 +1617,12 @@
        "mae_on": -6.92,
        "mae_flush": -7.21,
        "mae_gain": 0.3,
-       "exc_on": 4.37,
+       "exc_on": 4.38,
        "exc_flush": 5.47,
        "false_over": 0.36,
        "lag_median": 3.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -1636,7 +1651,7 @@
        "mae_on": -9.16,
        "mae_flush": -7.21,
        "mae_gain": -1.95,
-       "exc_on": 2.57,
+       "exc_on": 2.58,
        "exc_flush": 5.47,
        "false_over": 0.64,
        "lag_median": 4.0
@@ -1675,7 +1690,7 @@
        "false_over": 0.55,
        "lag_median": 3.0
       },
-      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
      },
      {
@@ -1705,7 +1720,7 @@
        "mae_flush": -8.17,
        "mae_gain": -1.31,
        "exc_on": 2.84,
-       "exc_flush": 4.52,
+       "exc_flush": 4.53,
        "false_over": 0.6,
        "lag_median": 4.0
       },
@@ -2435,7 +2450,7 @@
         "hit": 65.0,
         "median": 9.35,
         "mean": 5.49,
-        "excess": 4.51,
+        "excess": 4.52,
         "t": 2.28
        },
        "mae_mean": -9.29,
@@ -2503,8 +2518,8 @@
         "hit": 62.0,
         "median": 1.83,
         "mean": 2.08,
-        "excess": 1.37,
-        "t": 0.51
+        "excess": 1.38,
+        "t": 0.52
        },
        "3M": {
         "n": 12,
@@ -2514,7 +2529,7 @@
         "excess": 5.93,
         "t": 2.34,
         "ci95": [
-         1.23,
+         1.24,
          11.04
         ]
        },
@@ -2523,7 +2538,7 @@
         "hit": 75.0,
         "median": 10.87,
         "mean": 10.24,
-        "excess": 3.77,
+        "excess": 3.78,
         "t": 1.18
        },
        "mae_mean": -6.15,
@@ -2694,7 +2709,7 @@
         "excess": 4.4,
         "t": 2.54,
         "ci95": [
-         1.2,
+         1.21,
          7.83
         ]
        },
@@ -2772,18 +2787,18 @@
         "median": 1.49,
         "mean": 1.96,
         "excess": 1.16,
-        "t": 0.74
+        "t": 0.75
        },
        "3M": {
         "n": 17,
         "hit": 76.0,
         "median": 7.58,
         "mean": 7.81,
-        "excess": 4.88,
+        "excess": 4.89,
         "t": 2.05,
         "ci95": [
          -0.92,
-         9.93
+         9.94
         ]
        },
        "6M": {
@@ -2791,7 +2806,7 @@
         "hit": 82.0,
         "median": 15.91,
         "mean": 14.11,
-        "excess": 5.7,
+        "excess": 5.71,
         "t": 2.18
        },
        "mae_mean": -7.37,
@@ -2876,7 +2891,7 @@
          "hit": 68.0,
          "median": 10.34,
          "mean": 5.74,
-         "excess": 1.24,
+         "excess": 1.25,
          "t": 0.52
         },
         "mae_mean": -10.26,
@@ -2981,7 +2996,7 @@
      "Recovered": {
       "all": {
        "n": 39,
-       "days": 1817,
+       "days": 1818,
        "near_low_share": 0.185,
        "first": "2001-01-31",
        "last": "2026-08-05",
@@ -2998,7 +3013,7 @@
         "median": 0.05,
         "mean": -0.34,
         "excess": -0.57,
-        "t": -0.48
+        "t": -0.47
        },
        "3M": {
         "n": 38,
@@ -3069,7 +3084,7 @@
       },
       "oos": {
        "n": 15,
-       "days": 709,
+       "days": 710,
        "near_low_share": 0.144,
        "first": "2015-09-11",
        "last": "2026-08-05",
@@ -3085,8 +3100,8 @@
         "hit": 53.0,
         "median": 0.05,
         "mean": 1.22,
-        "excess": -0.14,
-        "t": -0.09
+        "excess": -0.13,
+        "t": -0.08
        },
        "3M": {
         "n": 14,
@@ -3105,8 +3120,8 @@
         "hit": 86.0,
         "median": 13.6,
         "mean": 12.95,
-        "excess": 2.87,
-        "t": 1.23
+        "excess": 2.88,
+        "t": 1.24
        },
        "mae_mean": -7.35,
        "mae_worst": -22.83
@@ -3166,7 +3181,7 @@
       "is_excess": 4.1,
       "oos_n": 17,
       "oos_hit": 76.0,
-      "oos_excess": 4.88,
+      "oos_excess": 4.89,
       "is_mae": -10.42,
       "oos_mae": -7.37
      },
@@ -3177,7 +3192,7 @@
       "is_excess": 2.63,
       "oos_n": 17,
       "oos_hit": 82.0,
-      "oos_excess": 5.45,
+      "oos_excess": 5.46,
       "is_mae": -11.49,
       "oos_mae": -6.25
      },
@@ -3295,7 +3310,7 @@
         "hit": 80.0,
         "median": 5.12,
         "mean": 4.44,
-        "excess": 3.36,
+        "excess": 3.37,
         "t": 2.57
        },
        "3M": {
@@ -3315,7 +3330,7 @@
         "hit": 86.0,
         "median": 14.44,
         "mean": 13.89,
-        "excess": 5.04,
+        "excess": 5.05,
         "t": 1.85
        },
        "mae_mean": -4.53,
@@ -3325,8 +3340,8 @@
      "or_vrp_vix30_mtum": {
       "all": {
        "n": 58,
-       "days": 1095,
-       "near_low_share": 0.436,
+       "days": 1096,
+       "near_low_share": 0.435,
        "first": "2001-03-12",
        "last": "2026-10-14",
        "last5": [
@@ -3413,8 +3428,8 @@
       },
       "oos": {
        "n": 31,
-       "days": 619,
-       "near_low_share": 0.388,
+       "days": 620,
+       "near_low_share": 0.387,
        "first": "2014-10-15",
        "last": "2026-10-14",
        "last5": [
@@ -3440,8 +3455,8 @@
         "excess": 3.49,
         "t": 2.47,
         "ci95": [
-         0.44,
-         6.47
+         0.45,
+         6.48
         ]
        },
        "6M": {
@@ -3450,7 +3465,7 @@
         "median": 14.74,
         "mean": 13.29,
         "excess": 2.52,
-        "t": 1.13
+        "t": 1.14
        },
        "mae_mean": -4.74,
        "mae_worst": -17.1
@@ -3491,7 +3506,7 @@
         "excess": 4.4,
         "t": 2.54,
         "ci95": [
-         1.2,
+         1.21,
          7.83
         ]
        },
@@ -3569,18 +3584,18 @@
         "median": 1.49,
         "mean": 1.96,
         "excess": 1.16,
-        "t": 0.74
+        "t": 0.75
        },
        "3M": {
         "n": 17,
         "hit": 76.0,
         "median": 7.58,
         "mean": 7.81,
-        "excess": 4.88,
+        "excess": 4.89,
         "t": 2.05,
         "ci95": [
          -0.92,
-         9.93
+         9.94
         ]
        },
        "6M": {
@@ -3588,7 +3603,7 @@
         "hit": 82.0,
         "median": 15.91,
         "mean": 14.11,
-        "excess": 5.7,
+        "excess": 5.71,
         "t": 2.18
        },
        "mae_mean": -7.37,
@@ -3673,7 +3688,7 @@
          "hit": 68.0,
          "median": 10.34,
          "mean": 5.74,
-         "excess": 1.24,
+         "excess": 1.25,
          "t": 0.52
         },
         "mae_mean": -10.26,
@@ -3791,17 +3806,17 @@
      }
     },
     "snapshot": {
-     "date": "2026-10-21",
-     "px": 29822.5,
+     "date": "2026-10-22",
+     "px": 29318.4,
      "state": "Recovered",
      "state_since": "2026-08-05",
-     "state_days": 55,
+     "state_days": 56,
      "turn_from": "Capitulation building",
-     "cap": 0.166,
-     "rec": 0.2,
+     "cap": 0.171,
+     "rec": 0.224,
      "rec_meaningful": false,
-     "cap_1d": 0.19,
-     "cap_5d": 0.135,
+     "cap_1d": 0.166,
+     "cap_5d": 0.154,
      "legs": [
       {
        "leg": "mtum_dd",
@@ -3831,7 +3846,7 @@
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.094,
-       "value": 0.0
+       "value": 0.06
       }
      ],
      "tells": [
@@ -3869,7 +3884,7 @@
        "tell": "putcall_off",
        "label": "Put/call (5d avg) off its 20d peak (5% -> 25%)",
        "weight": 0.167,
-       "value": 0.0
+       "value": 0.14
       }
      ],
      "next_state": "Normal after 63 trading days, or a new Capitulation building episode if the capitulation composite reaches 0.39 again (now 0.17).",
@@ -3879,11 +3894,26 @@
      "last_entry": "2026-08-04",
      "arm_thr": 0.385,
      "mode": "v2-turning",
-     "score": 0.166,
+     "score": 0.171,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
-     "prev_state": "Recovered"
+     "prev_state": "Recovered",
+     "intraday": {
+      "fut": "NQ1 Index",
+      "contract": "NQZ6",
+      "time": "15:28:12",
+      "last": 29499.75,
+      "settle": 30007.0,
+      "settle_dt": "2026-10-21",
+      "used": true,
+      "cash_last": 29822.52,
+      "cash_last_dt": "2026-10-21",
+      "move_pct": -1.69,
+      "implied": 29318.39,
+      "implied_dt": "2026-10-22",
+      "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+     }
     }
    },
    "mode_v1": "v2-turning",
@@ -4030,12 +4060,27 @@
     "v1_armed": false,
     "state": "Recovered",
     "state_since": "2026-08-05",
-    "state_days": 55,
+    "state_days": 56,
     "turn_from": "Capitulation building",
     "cap": 0.176,
-    "rec": 0.447,
+    "rec": 0.268,
     "state_changed": false,
-    "prev_state": "Recovered"
+    "prev_state": "Recovered",
+    "intraday": {
+     "fut": "ES1 Index",
+     "contract": "ESZ6",
+     "time": "15:28:12",
+     "last": 7725.5,
+     "settle": 7800.25,
+     "settle_dt": "2026-10-21",
+     "used": true,
+     "cash_last": 7757.17,
+     "cash_last_dt": "2026-10-21",
+     "move_pct": -0.96,
+     "implied": 7682.83,
+     "implied_dt": "2026-10-22",
+     "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+    }
    },
    "capitulation": [
     {
@@ -4951,9 +4996,9 @@
     "key": "SPX",
     "name": "S&P 500",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-10-21",
-    "n_days": 6489,
-    "split_date": "2013-11-25",
+    "sample_end": "2026-10-22",
+    "n_days": 6490,
+    "split_date": "2013-11-26",
     "rationale": "SPX uses the same frame as NDX: MTUM drawdown and RSI14 lead, the VIX level and VIX's 1y percentile follow. Drawdown and the trend score were dropped as redundant with the VIX level (r 0.7-0.8), term structure and VVIX as redundant with the VIX percentile; put/call, HY OAS and VRP add nothing to the combination. SPX flushes are rare by construction (top 2% of composite days in 2001-13).",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -4979,10 +5024,10 @@
      "cap_pct_flush_is": 0.0203
     },
     "cap_weights": {
-     "mtum_dd": 0.32023416888814976,
-     "rsi14": 0.29135374004934367,
-     "vix_level": 0.205178266901293,
-     "own_vol_pct": 0.18323382416121348
+     "mtum_dd": 0.3202467189740483,
+     "rsi14": 0.2913606402629906,
+     "vix_level": 0.20516830862515714,
+     "own_vol_pct": 0.18322433213780404
     },
     "rec_weights": {
      "iv_off_peak": 0.16666666666666666,
@@ -4999,14 +5044,14 @@
       "starts": "2013-07-12",
       "is_": {
        "n_on": 37,
-       "lift": 8.73,
+       "lift": 8.74,
        "excess": 9.2,
-       "on_off": 9.9,
+       "on_off": 9.91,
        "on_share": 0.0222,
        "on_off_1m": 3.33,
        "mae_on": -3.79,
-       "mae_off": -4.4,
-       "mae_gain": 0.61
+       "mae_off": -4.41,
+       "mae_gain": 0.62
       },
       "oos": {
        "n_on": 369,
@@ -5014,13 +5059,13 @@
        "excess": 2.27,
        "on_off": 2.31,
        "on_share": 0.2295,
-       "on_off_1m": 1.23,
+       "on_off_1m": 1.22,
        "mae_on": -6.33,
-       "mae_off": -3.64,
-       "mae_gain": -2.69
+       "mae_off": -3.62,
+       "mae_gain": -2.71
       },
       "note": "weights from own first half (leg starts late)",
-      "split": "2020-02-28",
+      "split": "2020-03-02",
       "status": "kept",
       "weight": 0.32
      },
@@ -5051,7 +5096,7 @@
        "mae_gain": -1.53
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.291
      },
@@ -5076,13 +5121,13 @@
        "excess": 8.93,
        "on_off": 9.22,
        "on_share": 0.0302,
-       "on_off_1m": 5.02,
+       "on_off_1m": 5.01,
        "mae_on": -4.25,
        "mae_off": -4.4,
        "mae_gain": 0.15
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.205
      },
@@ -5113,7 +5158,7 @@
        "mae_gain": -0.83
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "kept",
       "weight": 0.183
      },
@@ -5126,7 +5171,7 @@
        "lift": 3.07,
        "excess": 1.17,
        "on_off": 1.51,
-       "on_share": 0.2383,
+       "on_share": 0.2382,
        "on_off_1m": 0.74,
        "mae_on": -10.62,
        "mae_off": -4.45,
@@ -5144,7 +5189,7 @@
        "mae_gain": 0.53
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "pruned: redundant with vix_level (r=0.79)",
       "weight": 0.0
      },
@@ -5175,8 +5220,8 @@
        "mae_gain": -2.23
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (26.52 vs 27.74)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (26.53 vs 27.75)",
       "weight": 0.0
      },
      {
@@ -5188,26 +5233,26 @@
        "lift": 1.52,
        "excess": 2.19,
        "on_off": 2.43,
-       "on_share": 0.1309,
+       "on_share": 0.1308,
        "on_off_1m": 1.46,
        "mae_on": -6.76,
        "mae_off": -5.75,
        "mae_gain": -1.01
       },
       "oos": {
-       "n_on": 455,
+       "n_on": 456,
        "lift": 2.01,
-       "excess": 1.95,
-       "on_off": 2.29,
-       "on_share": 0.143,
+       "excess": 1.94,
+       "on_off": 2.28,
+       "on_share": 0.1433,
        "on_off_1m": 0.71,
-       "mae_on": -5.34,
+       "mae_on": -5.33,
        "mae_off": -4.24,
-       "mae_gain": -1.1
+       "mae_gain": -1.09
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (26.64 vs 27.74)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (26.65 vs 27.75)",
       "weight": 0.0
      },
      {
@@ -5219,7 +5264,7 @@
        "lift": 4.44,
        "excess": 2.91,
        "on_off": 3.3,
-       "on_share": 0.1213,
+       "on_share": 0.1212,
        "on_off_1m": 0.12,
        "mae_on": -14.11,
        "mae_off": -4.55,
@@ -5229,15 +5274,15 @@
        "n_on": 195,
        "lift": 6.2,
        "excess": 7.68,
-       "on_off": 8.2,
+       "on_off": 8.19,
        "on_share": 0.0613,
        "on_off_1m": 5.32,
        "mae_on": -3.5,
-       "mae_off": -4.46,
-       "mae_gain": 0.96
+       "mae_off": -4.45,
+       "mae_gain": 0.95
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "pruned: redundant with vix_level (r=0.71)",
       "weight": 0.0
      },
@@ -5268,7 +5313,7 @@
        "mae_gain": -2.23
       },
       "note": null,
-      "split": "2013-11-25",
+      "split": "2013-11-26",
       "status": "pruned: redundant with own_vol_pct (r=0.72)",
       "weight": 0.0
      },
@@ -5295,12 +5340,12 @@
        "on_share": 0.0267,
        "on_off_1m": 1.68,
        "mae_on": -2.99,
-       "mae_off": -4.44,
-       "mae_gain": 1.45
+       "mae_off": -4.43,
+       "mae_gain": 1.44
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: no gain in combination (26.29 vs 27.74)",
+      "split": "2013-11-26",
+      "status": "pruned: no gain in combination (26.29 vs 27.75)",
       "weight": 0.0
      },
      {
@@ -5308,30 +5353,30 @@
       "label": "VVIX/VIX low, 1y percentile (below 25th)",
       "starts": "2006-10-13",
       "is_": {
-       "n_on": 317,
+       "n_on": 318,
        "lift": 2.7,
-       "excess": 2.07,
-       "on_off": 2.5,
-       "on_share": 0.177,
+       "excess": 2.05,
+       "on_off": 2.49,
+       "on_share": 0.1775,
        "on_off_1m": 0.49,
-       "mae_on": -9.98,
+       "mae_on": -9.96,
        "mae_off": -5.65,
-       "mae_gain": -4.33
+       "mae_gain": -4.31
       },
       "oos": {
-       "n_on": 487,
-       "lift": 3.91,
-       "excess": 3.9,
-       "on_off": 4.62,
-       "on_share": 0.153,
+       "n_on": 486,
+       "lift": 3.92,
+       "excess": 3.91,
+       "on_off": 4.63,
+       "on_share": 0.1527,
        "on_off_1m": 1.89,
        "mae_on": -5.51,
-       "mae_off": -4.2,
-       "mae_gain": -1.31
+       "mae_off": -4.19,
+       "mae_gain": -1.32
       },
       "note": null,
-      "split": "2013-11-25",
-      "status": "pruned: redundant with own_vol_pct (r=0.77)",
+      "split": "2013-11-26",
+      "status": "pruned: redundant with own_vol_pct (r=0.76)",
       "weight": 0.0
      },
      {
@@ -5339,8 +5384,8 @@
       "path": [
        {
         "leg": "mtum_dd",
-        "obj": 0.3,
-        "excess": 0.3,
+        "obj": 0.27,
+        "excess": 0.27,
         "lift": 1.0
        },
        {
@@ -5351,13 +5396,13 @@
        },
        {
         "leg": "vix_level",
-        "obj": 23.55,
+        "obj": 23.56,
         "excess": 4.82,
         "lift": 4.89
        },
        {
         "leg": "own_vol_pct",
-        "obj": 27.74,
+        "obj": 27.75,
         "excess": 5.83,
         "lift": 4.76
        }
@@ -5464,7 +5509,7 @@
        "false_over": 0.38,
        "lag_median": 13.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -5566,7 +5611,7 @@
        "false_over": 0.25,
        "lag_median": 4.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -5634,7 +5679,7 @@
        "false_over": 0.38,
        "lag_median": 4.0
       },
-      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
      },
      {
@@ -6274,7 +6319,7 @@
         "hit": 77.0,
         "median": 10.44,
         "mean": 7.7,
-        "excess": 2.12,
+        "excess": 2.13,
         "t": 1.29
        },
        "mae_mean": -5.99,
@@ -6748,8 +6793,8 @@
      "Recovered": {
       "all": {
        "n": 45,
-       "days": 2142,
-       "near_low_share": 0.085,
+       "days": 2143,
+       "near_low_share": 0.084,
        "first": "2001-01-31",
        "last": "2026-08-05",
        "last5": [
@@ -6764,7 +6809,7 @@
         "hit": 73.0,
         "median": 2.49,
         "mean": 1.51,
-        "excess": 1.19,
+        "excess": 1.2,
         "t": 1.8
        },
        "3M": {
@@ -6836,7 +6881,7 @@
       },
       "oos": {
        "n": 23,
-       "days": 1069,
+       "days": 1070,
        "near_low_share": 0.09,
        "first": "2014-02-12",
        "last": "2026-08-05",
@@ -6873,7 +6918,7 @@
         "median": 9.88,
         "mean": 7.88,
         "excess": 1.08,
-        "t": 0.65
+        "t": 0.66
        },
        "mae_mean": -4.43,
        "mae_worst": -18.73
@@ -7092,8 +7137,8 @@
      "or_vrp_vix30_mtum": {
       "all": {
        "n": 62,
-       "days": 1121,
-       "near_low_share": 0.433,
+       "days": 1122,
+       "near_low_share": 0.432,
        "first": "2001-03-12",
        "last": "2026-10-14",
        "last5": [
@@ -7180,8 +7225,8 @@
       },
       "oos": {
        "n": 32,
-       "days": 639,
-       "near_low_share": 0.426,
+       "days": 640,
+       "near_low_share": 0.425,
        "first": "2014-10-15",
        "last": "2026-10-14",
        "last5": [
@@ -7208,7 +7253,7 @@
         "t": 2.17,
         "ci95": [
          0.07,
-         3.86
+         3.87
         ]
        },
        "6M": {
@@ -7574,17 +7619,17 @@
      }
     },
     "snapshot": {
-     "date": "2026-10-21",
-     "px": 7757.2,
+     "date": "2026-10-22",
+     "px": 7682.8,
      "state": "Recovered",
      "state_since": "2026-08-05",
-     "state_days": 55,
+     "state_days": 56,
      "turn_from": "Capitulation building",
      "cap": 0.176,
-     "rec": 0.447,
+     "rec": 0.268,
      "rec_meaningful": false,
-     "cap_1d": 0.199,
-     "cap_5d": 0.143,
+     "cap_1d": 0.176,
+     "cap_5d": 0.163,
      "legs": [
       {
        "leg": "mtum_dd",
@@ -7622,7 +7667,7 @@
        "tell": "rv_down",
        "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
        "weight": 0.167,
-       "value": 0.22
+       "value": 0.0
       },
       {
        "tell": "vix_term_back",
@@ -7634,7 +7679,7 @@
        "tell": "reclaim_20",
        "label": "Close above 20dma",
        "weight": 0.167,
-       "value": 1.0
+       "value": 0.0
       },
       {
        "tell": "trend_turn",
@@ -7646,7 +7691,7 @@
        "tell": "putcall_off",
        "label": "Put/call (5d avg) off its 20d peak (5% -> 25%)",
        "weight": 0.167,
-       "value": 0.0
+       "value": 0.14
       }
      ],
      "next_state": "Normal after 63 trading days, or a new Capitulation building episode if the capitulation composite reaches 0.33 again (now 0.18).",
@@ -7660,7 +7705,22 @@
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
-     "prev_state": "Recovered"
+     "prev_state": "Recovered",
+     "intraday": {
+      "fut": "ES1 Index",
+      "contract": "ESZ6",
+      "time": "15:28:12",
+      "last": 7725.5,
+      "settle": 7800.25,
+      "settle_dt": "2026-10-21",
+      "used": true,
+      "cash_last": 7757.17,
+      "cash_last_dt": "2026-10-21",
+      "move_pct": -0.96,
+      "implied": 7682.83,
+      "implied_dt": "2026-10-22",
+      "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+     }
     }
    },
    "mode_v1": "v2-turning",
@@ -7788,8 +7848,8 @@
    },
    "snapshot": {
     "date": "2026-10-22",
-    "px": 63916.0,
-    "score": 0.126,
+    "px": 62908.0,
+    "score": 0.195,
     "cap_max": 1.0,
     "on": [],
     "recent_events": [],
@@ -7805,10 +7865,23 @@
     "state_since": "2025-07-31",
     "state_days": 298,
     "turn_from": null,
-    "cap": 0.126,
-    "rec": 0.291,
+    "cap": 0.195,
+    "rec": 0.266,
     "state_changed": false,
-    "prev_state": "Normal"
+    "prev_state": "Normal",
+    "intraday": {
+     "fut": "NK1 Index",
+     "contract": "NKZ6",
+     "time": "14:56:08",
+     "last": 63200.0,
+     "settle": 63200.0,
+     "settle_dt": "2026-10-22",
+     "used": false,
+     "cash_last": 62907.84,
+     "cash_last_dt": "2026-10-22",
+     "move_pct": 0.0,
+     "reason": "future unchanged since the settle that matches the cash close"
+    }
    },
    "capitulation": [
     {
@@ -8742,7 +8815,7 @@
       "oos": {
        "n_on": 83,
        "lift": 3.49,
-       "excess": 6.43,
+       "excess": 6.44,
        "on_off": 6.75,
        "on_share": 0.0268,
        "on_off_1m": 1.88,
@@ -8882,7 +8955,7 @@
        "false_over": 0.58,
        "lag_median": 12.5
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -8984,7 +9057,7 @@
        "false_over": 0.42,
        "lag_median": 2.5
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -9052,7 +9125,7 @@
        "false_over": 0.5,
        "lag_median": 4.0
       },
-      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
      },
      {
@@ -11228,13 +11301,13 @@
     },
     "snapshot": {
      "date": "2026-10-22",
-     "px": 63914.9,
+     "px": 62907.8,
      "state": "Normal",
      "state_since": "2025-07-31",
      "state_days": 298,
      "turn_from": null,
-     "cap": 0.126,
-     "rec": 0.291,
+     "cap": 0.195,
+     "rec": 0.266,
      "rec_meaningful": false,
      "cap_1d": 0.04,
      "cap_5d": 0.146,
@@ -11249,19 +11322,19 @@
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.286,
-       "value": 0.02
+       "value": 0.17
       },
       {
        "leg": "own_vol_pct",
        "label": "Own implied vol, 1y percentile (stress above 75th)",
        "weight": 0.267,
-       "value": 0.28
+       "value": 0.33
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.141,
-       "value": 0.33
+       "value": 0.4
       }
      ],
      "tells": [
@@ -11275,7 +11348,7 @@
        "tell": "rv_down",
        "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
        "weight": 0.2,
-       "value": 0.45
+       "value": 0.33
       },
       {
        "tell": "vix_term_back",
@@ -11296,18 +11369,31 @@
        "value": 0.0
       }
      ],
-     "next_state": "Capitulation building when the capitulation composite reaches 0.45 (now 0.13).",
+     "next_state": "Capitulation building when the capitulation composite reaches 0.45 (now 0.20).",
      "armed": false,
      "entry_today": false,
      "entry_active_10d": false,
      "last_entry": "2025-04-23",
      "arm_thr": 0.452,
      "mode": "v2-turning",
-     "score": 0.126,
+     "score": 0.195,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
-     "prev_state": "Normal"
+     "prev_state": "Normal",
+     "intraday": {
+      "fut": "NK1 Index",
+      "contract": "NKZ6",
+      "time": "14:56:08",
+      "last": 63200.0,
+      "settle": 63200.0,
+      "settle_dt": "2026-10-22",
+      "used": false,
+      "cash_last": 62907.84,
+      "cash_last_dt": "2026-10-22",
+      "move_pct": 0.0,
+      "reason": "future unchanged since the settle that matches the cash close"
+     }
     }
    },
    "mode_v1": "v2-turning",
@@ -11436,8 +11522,8 @@
    },
    "snapshot": {
     "date": "2026-10-22",
-    "px": 870.0,
-    "score": 0.478,
+    "px": 858.0,
+    "score": 0.494,
     "cap_max": 1.0,
     "on": [
      "dd<=-15%",
@@ -11458,10 +11544,22 @@
     "state_since": "2026-10-13",
     "state_days": 8,
     "turn_from": null,
-    "cap": 0.478,
-    "rec": 0.259,
+    "cap": 0.494,
+    "rec": 0.243,
     "state_changed": false,
-    "prev_state": "Flush, not over"
+    "prev_state": "Flush, not over",
+    "intraday": {
+     "fut": "KM1 Index",
+     "contract": "KMZ6",
+     "time": "14:45:00",
+     "last": 857.0,
+     "settle": 893.0500000000001,
+     "settle_dt": "2026-10-21",
+     "used": false,
+     "cash_last": 858.02,
+     "cash_last_dt": "2026-10-22",
+     "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+    }
    },
    "capitulation": [
     {
@@ -11585,10 +11683,10 @@
      "last": "2026-10-15",
      "1W": {
       "n": 24,
-      "mean": 1.73,
-      "median": 1.56,
-      "hit": 67.0,
-      "excess": 1.47
+      "mean": 1.67,
+      "median": 1.43,
+      "hit": 62.0,
+      "excess": 1.41
      },
      "1M": {
       "n": 23,
@@ -12232,10 +12330,10 @@
     "last": "2026-10-15",
     "1W": {
      "n": 14,
-     "mean": 1.95,
+     "mean": 1.85,
      "median": 4.25,
-     "hit": 79.0,
-     "excess": 1.69
+     "hit": 71.0,
+     "excess": 1.59
     },
     "1M": {
      "n": 13,
@@ -12561,9 +12659,9 @@
        "n_on": 115,
        "lift": 2.96,
        "excess": 4.83,
-       "on_off": 5.06,
+       "on_off": 5.05,
        "on_share": 0.0369,
-       "on_off_1m": -1.64,
+       "on_off_1m": -1.63,
        "mae_on": -11.24,
        "mae_off": -5.7,
        "mae_gain": -5.54
@@ -12687,7 +12785,7 @@
        "excess": -0.54,
        "on_off": -0.56,
        "on_share": 0.1032,
-       "on_off_1m": 1.57,
+       "on_off_1m": 1.58,
        "mae_on": -8.54,
        "mae_off": -5.6,
        "mae_gain": -2.94
@@ -12848,7 +12946,7 @@
        "mae_flush": -3.15,
        "mae_gain": -2.05,
        "exc_on": 5.45,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.37,
        "lag_median": 3.0
       },
@@ -12882,11 +12980,11 @@
        "mae_flush": -3.15,
        "mae_gain": -0.65,
        "exc_on": 5.32,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.42,
        "lag_median": 8.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -12916,7 +13014,7 @@
        "mae_flush": -3.15,
        "mae_gain": -1.11,
        "exc_on": 5.12,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.37,
        "lag_median": 10.0
       },
@@ -12984,11 +13082,11 @@
        "mae_flush": -3.15,
        "mae_gain": 0.98,
        "exc_on": 7.31,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.26,
        "lag_median": 0.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
@@ -13018,7 +13116,7 @@
        "mae_flush": -3.15,
        "mae_gain": -1.24,
        "exc_on": 5.67,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.32,
        "lag_median": 4.0
       },
@@ -13078,7 +13176,7 @@
        "mae_on": -6.81,
        "mae_flush": -6.56,
        "mae_gain": -0.25,
-       "exc_on": -6.95,
+       "exc_on": -6.94,
        "exc_flush": 13.89,
        "false_over": 0.25,
        "lag_median": 28.0
@@ -13113,11 +13211,11 @@
        "mae_flush": -3.15,
        "mae_gain": -1.2,
        "exc_on": 4.44,
-       "exc_flush": 7.4,
+       "exc_flush": 7.41,
        "false_over": 0.32,
        "lag_median": 3.0
       },
-      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
      },
      {
@@ -13181,7 +13279,7 @@
        "mae_flush": -3.54,
        "mae_gain": 0.79,
        "exc_on": 4.9,
-       "exc_flush": 9.34,
+       "exc_flush": 9.35,
        "false_over": 0.21,
        "lag_median": 17.5
       },
@@ -14345,7 +14443,7 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.11,
+         "excess": 0.12,
          "t": 0.07
         },
         "3M": {
@@ -14353,7 +14451,7 @@
          "hit": 64.0,
          "median": 4.92,
          "mean": 9.05,
-         "excess": 4.66,
+         "excess": 4.67,
          "t": 1.34,
          "ci95": [
           -3.64,
@@ -14366,7 +14464,7 @@
          "median": 6.41,
          "mean": 12.2,
          "excess": 3.36,
-         "t": 0.99
+         "t": 1.0
         },
         "mae_mean": -9.52,
         "mae_worst": -40.94
@@ -14751,7 +14849,7 @@
         "excess": 0.7,
         "t": 0.1,
         "ci95": [
-         -17.8,
+         -17.79,
          11.28
         ]
        },
@@ -14833,7 +14931,7 @@
         "excess": -7.91,
         "t": -0.8,
         "ci95": [
-         -37.58,
+         -37.57,
          2.76
         ]
        },
@@ -15137,7 +15235,7 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.11,
+         "excess": 0.12,
          "t": 0.07
         },
         "3M": {
@@ -15145,7 +15243,7 @@
          "hit": 64.0,
          "median": 4.92,
          "mean": 9.05,
-         "excess": 4.66,
+         "excess": 4.67,
          "t": 1.34,
          "ci95": [
           -3.64,
@@ -15158,7 +15256,7 @@
          "median": 6.41,
          "mean": 12.2,
          "excess": 3.36,
-         "t": 0.99
+         "t": 1.0
         },
         "mae_mean": -9.52,
         "mae_worst": -40.94
@@ -15316,13 +15414,13 @@
     },
     "snapshot": {
      "date": "2026-10-22",
-     "px": 870.2,
+     "px": 858.0,
      "state": "Flush, not over",
      "state_since": "2026-10-13",
      "state_days": 8,
      "turn_from": null,
-     "cap": 0.478,
-     "rec": 0.259,
+     "cap": 0.494,
+     "rec": 0.243,
      "rec_meaningful": true,
      "cap_1d": 0.611,
      "cap_5d": 0.728,
@@ -15337,13 +15435,13 @@
        "leg": "crash_1d",
        "label": "Worst 1d return in last 5d (-2% -> -6%)",
        "weight": 0.265,
-       "value": 0.41
+       "value": 0.43
       },
       {
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.231,
-       "value": 0.41
+       "value": 0.47
       },
       {
        "leg": "trend_dn",
@@ -15357,7 +15455,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.2,
-       "value": 0.29
+       "value": 0.22
       },
       {
        "tell": "rv_down",
@@ -15384,18 +15482,30 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.26): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.48) for 20 days.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.24): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.49) for 20 days.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
      "last_entry": "2026-08-12",
      "arm_thr": 0.302,
      "mode": "v2-turning",
-     "score": 0.478,
+     "score": 0.494,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
-     "prev_state": "Flush, not over"
+     "prev_state": "Flush, not over",
+     "intraday": {
+      "fut": "KM1 Index",
+      "contract": "KMZ6",
+      "time": "14:45:00",
+      "last": 857.0,
+      "settle": 893.0500000000001,
+      "settle_dt": "2026-10-21",
+      "used": false,
+      "cash_last": 858.02,
+      "cash_last_dt": "2026-10-22",
+      "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+     }
     }
    },
    "mode_v1": "v2-turning",
@@ -15455,7 +15565,7 @@
    "sample_start": "2001-01-02",
    "sample_end": "2026-10-22",
    "n_days": 6351,
-   "arm_thr": 0.553,
+   "arm_thr": 0.47,
    "mode": "v2-turning",
    "low_conviction": false,
    "cap_keys": [
@@ -15490,8 +15600,8 @@
    },
    "snapshot": {
     "date": "2026-10-22",
-    "px": 46793.0,
-    "score": 0.2,
+    "px": 46041.0,
+    "score": 0.034,
     "cap_max": 1.0,
     "on": [],
     "recent_events": [],
@@ -15504,13 +15614,28 @@
     "v1_cap_max": 2,
     "v1_armed": false,
     "state": "Normal",
-    "state_since": "2025-07-31",
-    "state_days": 299,
+    "state_since": "2025-07-29",
+    "state_days": 302,
     "turn_from": null,
-    "cap": 0.2,
-    "rec": 0.336,
+    "cap": 0.034,
+    "rec": 0.314,
     "state_changed": false,
-    "prev_state": "Normal"
+    "prev_state": "Normal",
+    "intraday": {
+     "fut": "FT1 Index",
+     "contract": "FTX6",
+     "time": "15:13:10",
+     "last": 46173.0,
+     "settle": 46234.0,
+     "settle_dt": "2026-10-22",
+     "used": true,
+     "cash_last": 46041.43,
+     "cash_last_dt": "2026-10-22",
+     "move_pct": -0.13,
+     "implied": 45980.68,
+     "implied_dt": "2026-10-23",
+     "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+    }
    },
    "capitulation": [
     {
@@ -16013,21 +16138,25 @@
    "composite_flow": null,
    "composite_primary": {
     "signal": "PRIMARY [v2-turning]",
-    "n": 21,
+    "n": 26,
     "mode": "v2-turning",
     "entry_dates": [
-     "2001-04-19",
+     "2001-08-10",
      "2001-10-18",
      "2002-08-19",
      "2002-10-21",
+     "2005-11-02",
      "2008-02-13",
      "2008-07-23",
      "2008-12-01",
      "2009-02-06",
      "2009-03-17",
+     "2010-06-11",
      "2011-08-31",
      "2011-10-11",
      "2011-12-13",
+     "2012-06-15",
+     "2015-07-27",
      "2015-09-03",
      "2016-01-28",
      "2018-11-01",
@@ -16036,18 +16165,10 @@
      "2022-05-25",
      "2022-07-19",
      "2022-10-27",
+     "2024-08-16",
      "2025-04-23"
     ],
     "entry_origin": [
-     "building",
-     "flush",
-     "flush",
-     "flush",
-     "building",
-     "flush",
-     "flush",
-     "flush",
-     "flush",
      "flush",
      "flush",
      "flush",
@@ -16056,49 +16177,63 @@
      "building",
      "flush",
      "flush",
+     "flush",
+     "flush",
      "building",
      "flush",
      "flush",
+     "flush",
+     "building",
+     "building",
+     "flush",
+     "building",
+     "building",
+     "building",
+     "flush",
+     "flush",
+     "flush",
+     "flush",
+     "building",
      "flush"
     ],
-    "mae_mean": -6.82,
+    "mae_mean": -6.3,
     "mae_worst": -35.29,
-    "t_3M": 1.98,
+    "t_3M": 2.77,
     "ci95_3M": [
-     -0.07,
-     13.82
+     2.05,
+     13.17
     ],
     "1M": {
-     "n": 21,
-     "mean": 3.87,
-     "median": 4.23,
-     "hit": 76.0,
-     "excess": 4.11
+     "n": 26,
+     "mean": 3.25,
+     "median": 3.88,
+     "hit": 69.0,
+     "excess": 3.3
     },
     "3M": {
-     "n": 21,
-     "mean": 7.32,
-     "median": 3.74,
-     "hit": 67.0,
-     "excess": 7.42
+     "n": 26,
+     "mean": 7.91,
+     "median": 4.82,
+     "hit": 73.0,
+     "excess": 7.69
     },
     "6M": {
-     "n": 21,
-     "mean": 12.47,
-     "median": 7.27,
-     "hit": 71.0,
-     "excess": 10.91
+     "n": 26,
+     "mean": 14.0,
+     "median": 7.76,
+     "hit": 77.0,
+     "excess": 12.16
     },
-    "first": "2001-04-19",
+    "first": "2001-08-10",
     "last": "2025-04-23"
    },
    "v2": {
     "key": "TWSE",
     "name": "Taiwan TAIEX",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-10-22",
-    "n_days": 6351,
-    "split_date": "2013-10-21",
+    "sample_end": "2026-10-23",
+    "n_days": 6352,
+    "split_date": "2013-10-22",
     "rationale": "Taiwan has no index vol or positioning data on the terminal, so the read is global risk against local price: the VIX level leads, the strong-down trend score, HY OAS percentile and drawdown complete the set (RSI14 is redundant with them here). USDTWD stress has only 2015+ history and tests at zero. TWSE flushes are global vol events by construction, which is why the composite misses most shallow local corrections and catches the 2008/2011/2015/2020/2022/2025 lows.",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -16109,22 +16244,22 @@
      "fx": "USDTWD Curncy"
     },
     "thresholds": {
-     "t_build": 0.553,
-     "t_flush": 0.719,
+     "t_build": 0.47,
+     "t_flush": 0.622,
      "t_rec": 0.5,
-     "t_exit": 0.453,
+     "t_exit": 0.37,
      "t_rec_exit": 0.35,
      "is_lows": 21,
-     "recall_build_is": 0.38095238095238093,
-     "recall_flush_is": 0.23809523809523808,
-     "cap_pct_build_is": 0.1002,
+     "recall_build_is": 0.5238095238095238,
+     "recall_flush_is": 0.2857142857142857,
+     "cap_pct_build_is": 0.1001,
      "cap_pct_flush_is": 0.0501
     },
     "cap_weights": {
-     "vix_level": 0.351569660297558,
-     "trend_dn": 0.2498729674252948,
-     "hy_oas_pct": 0.20703377332765419,
-     "dd_1y": 0.19152359894949306
+     "vix_level": 0.3515340969331741,
+     "trend_dn": 0.2497246799618314,
+     "rsi14": 0.2072903378057164,
+     "dd_1y": 0.191450885299278
     },
     "rec_weights": {
      "iv_off_peak": 0.2,
@@ -16144,14 +16279,14 @@
        "excess": 10.0,
        "on_off": 11.16,
        "on_share": 0.102,
-       "on_off_1m": 2.08,
+       "on_off_1m": 2.09,
        "mae_on": -8.23,
        "mae_off": -7.54,
        "mae_gain": -0.69
       },
       "oos": {
        "n_on": 92,
-       "lift": 3.52,
+       "lift": 3.51,
        "excess": 5.56,
        "on_off": 5.71,
        "on_share": 0.0296,
@@ -16161,7 +16296,7 @@
        "mae_gain": 0.46
       },
       "note": null,
-      "split": "2013-10-21",
+      "split": "2013-10-22",
       "status": "kept",
       "weight": 0.352
      },
@@ -16182,7 +16317,7 @@
       },
       "oos": {
        "n_on": 283,
-       "lift": 4.5,
+       "lift": 4.49,
        "excess": 5.12,
        "on_off": 5.61,
        "on_share": 0.0909,
@@ -16192,38 +16327,38 @@
        "mae_gain": -0.9
       },
       "note": null,
-      "split": "2013-10-21",
+      "split": "2013-10-22",
       "status": "kept (minimum leg count)",
       "weight": 0.25
      },
      {
-      "leg": "hy_oas_pct",
-      "label": "HY OAS, 1y percentile (above 75th)",
-      "starts": "2001-07-02",
+      "leg": "rsi14",
+      "label": "RSI14 daily (40 -> 20)",
+      "starts": "2001-01-30",
       "is_": {
-       "n_on": 470,
-       "lift": 1.73,
-       "excess": 5.47,
-       "on_off": 5.73,
-       "on_share": 0.1539,
-       "on_off_1m": 1.47,
-       "mae_on": -12.07,
-       "mae_off": -6.38,
-       "mae_gain": -5.69
+       "n_on": 134,
+       "lift": 1.82,
+       "excess": 4.95,
+       "on_off": 5.18,
+       "on_share": 0.0424,
+       "on_off_1m": 3.28,
+       "mae_on": -10.6,
+       "mae_off": -7.5,
+       "mae_gain": -3.1
       },
       "oos": {
-       "n_on": 522,
-       "lift": 3.03,
-       "excess": 2.46,
-       "on_off": 2.94,
-       "on_share": 0.1677,
-       "on_off_1m": 0.93,
-       "mae_on": -6.3,
-       "mae_off": -4.75,
-       "mae_gain": -1.55
+       "n_on": 91,
+       "lift": 4.63,
+       "excess": 5.63,
+       "on_off": 5.78,
+       "on_share": 0.0292,
+       "on_off_1m": 2.43,
+       "mae_on": -5.86,
+       "mae_off": -4.99,
+       "mae_gain": -0.87
       },
       "note": null,
-      "split": "2013-10-21",
+      "split": "2013-10-22",
       "status": "kept (minimum leg count)",
       "weight": 0.207
      },
@@ -16236,7 +16371,7 @@
        "lift": 1.82,
        "excess": 4.2,
        "on_off": 6.08,
-       "on_share": 0.3444,
+       "on_share": 0.3442,
        "on_off_1m": 1.14,
        "mae_on": -9.29,
        "mae_off": -6.63,
@@ -16244,7 +16379,7 @@
       },
       "oos": {
        "n_on": 353,
-       "lift": 3.99,
+       "lift": 3.98,
        "excess": 5.17,
        "on_off": 5.81,
        "on_share": 0.1134,
@@ -16254,9 +16389,9 @@
        "mae_gain": 0.15
       },
       "note": null,
-      "split": "2013-10-21",
+      "split": "2013-10-22",
       "status": "kept",
-      "weight": 0.192
+      "weight": 0.191
      },
      {
       "leg": "fx_stress",
@@ -16268,7 +16403,7 @@
        "excess": -0.18,
        "on_off": -1.0,
        "on_share": 0.1206,
-       "on_off_1m": -0.69,
+       "on_off_1m": -0.68,
        "mae_on": -10.18,
        "mae_off": -6.81,
        "mae_gain": -3.37
@@ -16276,48 +16411,48 @@
       "oos": {
        "n_on": 427,
        "lift": 0.72,
-       "excess": 1.1,
+       "excess": 1.11,
        "on_off": 1.26,
        "on_share": 0.1372,
        "on_off_1m": 0.17,
        "mae_on": -5.45,
-       "mae_off": -4.94,
-       "mae_gain": -0.51
+       "mae_off": -4.95,
+       "mae_gain": -0.5
       },
       "note": null,
-      "split": "2013-10-21",
+      "split": "2013-10-22",
       "status": "pruned: <= 0 in-sample",
       "weight": 0.0
      },
      {
-      "leg": "rsi14",
-      "label": "RSI14 daily (40 -> 20)",
-      "starts": "2001-01-30",
+      "leg": "hy_oas_pct",
+      "label": "HY OAS, 1y percentile (above 75th)",
+      "starts": "2001-07-02",
       "is_": {
-       "n_on": 134,
-       "lift": 1.81,
-       "excess": 4.95,
-       "on_off": 5.18,
-       "on_share": 0.0424,
-       "on_off_1m": 3.28,
-       "mae_on": -10.6,
-       "mae_off": -7.5,
-       "mae_gain": -3.1
+       "n_on": 470,
+       "lift": 1.73,
+       "excess": 5.47,
+       "on_off": 5.73,
+       "on_share": 0.1538,
+       "on_off_1m": 1.47,
+       "mae_on": -12.07,
+       "mae_off": -6.37,
+       "mae_gain": -5.7
       },
       "oos": {
-       "n_on": 91,
-       "lift": 4.64,
-       "excess": 5.63,
-       "on_off": 5.78,
-       "on_share": 0.0292,
-       "on_off_1m": 2.43,
-       "mae_on": -5.86,
-       "mae_off": -4.99,
-       "mae_gain": -0.87
+       "n_on": 522,
+       "lift": 3.03,
+       "excess": 2.46,
+       "on_off": 2.94,
+       "on_share": 0.1677,
+       "on_off_1m": 0.92,
+       "mae_on": -6.3,
+       "mae_off": -4.76,
+       "mae_gain": -1.54
       },
       "note": null,
-      "split": "2013-10-21",
-      "status": "pruned: no gain in combination (18.41 vs 25.57)",
+      "split": "2013-10-22",
+      "status": "pruned: no gain in combination (18.41 vs 22.52)",
       "weight": 0.0
      },
      {
@@ -16337,7 +16472,7 @@
       },
       "oos": {
        "n_on": 83,
-       "lift": 4.9,
+       "lift": 4.89,
        "excess": 5.41,
        "on_off": 5.54,
        "on_share": 0.0267,
@@ -16347,8 +16482,8 @@
        "mae_gain": -0.74
       },
       "note": null,
-      "split": "2013-10-21",
-      "status": "pruned: no gain in combination (30.65 vs 31.71)",
+      "split": "2013-10-22",
+      "status": "pruned: no gain in combination (24.89 vs 26.16)",
       "weight": 0.0
      },
      {
@@ -16356,27 +16491,27 @@
       "path": [
        {
         "leg": "vix_level",
-        "obj": 37.5,
+        "obj": 37.51,
         "excess": 14.99,
         "lift": 2.5
        },
        {
         "leg": "trend_dn",
-        "obj": 27.16,
+        "obj": 27.17,
         "excess": 12.05,
-        "lift": 2.25
+        "lift": 2.26
        },
        {
-        "leg": "hy_oas_pct",
-        "obj": 25.57,
-        "excess": 10.86,
-        "lift": 2.35
+        "leg": "rsi14",
+        "obj": 22.52,
+        "excess": 10.57,
+        "lift": 2.13
        },
        {
         "leg": "dd_1y",
-        "obj": 31.71,
-        "excess": 13.33,
-        "lift": 2.38
+        "obj": 26.16,
+        "excess": 11.86,
+        "lift": 2.21
        }
       ]
      }
@@ -16386,32 +16521,32 @@
       "leg": "iv_off_peak",
       "label": "Implied vol off its 20d peak (5% -> 30%)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.17,
-       "lift": 0.47,
-       "mae_on": -13.18,
-       "mae_flush": -13.34,
-       "mae_gain": 0.15,
-       "exc_on": 7.07,
-       "exc_flush": 5.61,
-       "false_over": 0.67,
-       "lag_median": 4.5
+       "timed_share": 0.4,
+       "lift": 0.92,
+       "mae_on": -9.43,
+       "mae_flush": -11.37,
+       "mae_gain": 1.94,
+       "exc_on": 8.63,
+       "exc_flush": 3.92,
+       "false_over": 0.5,
+       "lag_median": 6.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.43,
-       "lift": 0.91,
-       "mae_on": -4.65,
-       "mae_flush": -9.92,
-       "mae_gain": 5.26,
-       "exc_on": 7.3,
-       "exc_flush": 2.51,
-       "false_over": 0.43,
-       "lag_median": 5.0
+       "timed_share": 0.5,
+       "lift": 0.99,
+       "mae_on": -4.71,
+       "mae_flush": -8.51,
+       "mae_gain": 3.8,
+       "exc_on": 6.9,
+       "exc_flush": 3.64,
+       "false_over": 0.5,
+       "lag_median": 4.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: pruned: adds nothing out of sample",
       "weight": 0.167
@@ -16420,66 +16555,66 @@
       "leg": "reclaim_20",
       "label": "Close above 20dma",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.33,
-       "lift": 0.94,
-       "mae_on": -16.12,
-       "mae_flush": -13.34,
-       "mae_gain": -2.79,
-       "exc_on": 3.01,
-       "exc_flush": 5.61,
-       "false_over": 0.67,
-       "lag_median": 14.5
+       "timed_share": 0.6,
+       "lift": 1.38,
+       "mae_on": -10.58,
+       "mae_flush": -11.37,
+       "mae_gain": 0.79,
+       "exc_on": 5.54,
+       "exc_flush": 3.92,
+       "false_over": 0.5,
+       "lag_median": 15.5
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.71,
-       "lift": 1.51,
-       "mae_on": -2.67,
-       "mae_flush": -9.92,
-       "mae_gain": 7.25,
-       "exc_on": 6.5,
-       "exc_flush": 2.51,
-       "false_over": 0.29,
-       "lag_median": 14.0
+       "timed_share": 0.8,
+       "lift": 1.59,
+       "mae_on": -3.77,
+       "mae_flush": -8.51,
+       "mae_gain": 4.74,
+       "exc_on": 4.56,
+       "exc_flush": 3.64,
+       "false_over": 0.4,
+       "lag_median": 16.0
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
       "leg": "rv_down",
       "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.33,
-       "lift": 0.94,
-       "mae_on": -14.32,
-       "mae_flush": -13.34,
-       "mae_gain": -0.98,
-       "exc_on": 3.54,
-       "exc_flush": 5.61,
-       "false_over": 0.67,
-       "lag_median": 11.0
+       "timed_share": 0.5,
+       "lift": 1.15,
+       "mae_on": -11.51,
+       "mae_flush": -11.37,
+       "mae_gain": -0.14,
+       "exc_on": 4.07,
+       "exc_flush": 3.92,
+       "false_over": 0.5,
+       "lag_median": 10.5
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.29,
-       "lift": 0.61,
-       "mae_on": -8.66,
-       "mae_flush": -9.92,
-       "mae_gain": 1.26,
-       "exc_on": 1.78,
-       "exc_flush": 2.51,
-       "false_over": 0.57,
-       "lag_median": 0.0
+       "timed_share": 0.3,
+       "lift": 0.6,
+       "mae_on": -8.19,
+       "mae_flush": -8.51,
+       "mae_gain": 0.32,
+       "exc_on": 2.06,
+       "exc_flush": 3.64,
+       "false_over": 0.6,
+       "lag_median": 5.5
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
@@ -16488,32 +16623,32 @@
       "leg": "trend_turn",
       "label": "Trend score up >= 0.1 from a 20d low below -0.6",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 4,
-       "fire_share": 0.67,
-       "timed_share": 0.5,
-       "lift": 1.41,
-       "mae_on": -14.17,
-       "mae_flush": -14.54,
-       "mae_gain": 0.38,
-       "exc_on": 2.73,
-       "exc_flush": 4.01,
-       "false_over": 0.5,
-       "lag_median": 21.5
+       "n_ep": 10,
+       "n_fired": 5,
+       "fire_share": 0.5,
+       "timed_share": 0.6,
+       "lift": 1.38,
+       "mae_on": -11.41,
+       "mae_flush": -12.26,
+       "mae_gain": 0.86,
+       "exc_on": 4.59,
+       "exc_flush": 5.48,
+       "false_over": 0.4,
+       "lag_median": 18.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
-       "fire_share": 1.0,
-       "timed_share": 0.71,
-       "lift": 1.51,
-       "mae_on": -2.03,
-       "mae_flush": -9.92,
-       "mae_gain": 7.89,
-       "exc_on": 6.83,
-       "exc_flush": 2.51,
-       "false_over": 0.14,
-       "lag_median": 16.0
+       "n_ep": 10,
+       "n_fired": 9,
+       "fire_share": 0.9,
+       "timed_share": 0.67,
+       "lift": 1.33,
+       "mae_on": -3.46,
+       "mae_flush": -9.83,
+       "mae_gain": 6.37,
+       "exc_on": 5.73,
+       "exc_flush": 2.57,
+       "false_over": 0.22,
+       "lag_median": 18.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
@@ -16522,66 +16657,66 @@
       "leg": "vix_term_back",
       "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 4,
-       "fire_share": 0.67,
-       "timed_share": 0.25,
-       "lift": 0.7,
-       "mae_on": -16.4,
-       "mae_flush": -14.54,
-       "mae_gain": -1.85,
-       "exc_on": 0.48,
-       "exc_flush": 4.01,
-       "false_over": 0.75,
-       "lag_median": 15.0
+       "n_ep": 10,
+       "n_fired": 7,
+       "fire_share": 0.7,
+       "timed_share": 0.43,
+       "lift": 0.99,
+       "mae_on": -8.18,
+       "mae_flush": -9.28,
+       "mae_gain": 1.1,
+       "exc_on": 6.03,
+       "exc_flush": 5.4,
+       "false_over": 0.43,
+       "lag_median": 3.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.14,
-       "lift": 0.3,
-       "mae_on": -5.49,
-       "mae_flush": -9.92,
-       "mae_gain": 4.43,
-       "exc_on": 4.37,
-       "exc_flush": 2.51,
-       "false_over": 0.43,
-       "lag_median": 2.0
+       "timed_share": 0.3,
+       "lift": 0.6,
+       "mae_on": -5.06,
+       "mae_flush": -8.51,
+       "mae_gain": 3.45,
+       "exc_on": 4.26,
+       "exc_flush": 3.64,
+       "false_over": 0.5,
+       "lag_median": 2.5
       },
-      "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
      },
      {
       "leg": "above_5d_high",
       "label": "First close above the prior 5d high (event, 10d decay)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.33,
-       "lift": 0.94,
-       "mae_on": -15.15,
-       "mae_flush": -13.34,
-       "mae_gain": -1.81,
-       "exc_on": 4.88,
-       "exc_flush": 5.61,
-       "false_over": 0.83,
-       "lag_median": 9.0
+       "timed_share": 0.5,
+       "lift": 1.15,
+       "mae_on": -10.35,
+       "mae_flush": -11.37,
+       "mae_gain": 1.02,
+       "exc_on": 5.82,
+       "exc_flush": 3.92,
+       "false_over": 0.6,
+       "lag_median": 8.5
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.43,
-       "lift": 0.91,
-       "mae_on": -7.81,
-       "mae_flush": -9.92,
-       "mae_gain": 2.1,
-       "exc_on": 2.21,
-       "exc_flush": 2.51,
-       "false_over": 0.57,
-       "lag_median": 6.0
+       "timed_share": 0.6,
+       "lift": 1.19,
+       "mae_on": -6.97,
+       "mae_flush": -8.51,
+       "mae_gain": 1.54,
+       "exc_on": 2.73,
+       "exc_flush": 3.64,
+       "false_over": 0.5,
+       "lag_median": 7.0
       },
       "status": "not in set: fires in most flushes but gains ~0 in-sample \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
       "weight": 0.0
@@ -16590,66 +16725,66 @@
       "leg": "macd_turn",
       "label": "MACD histogram rising 2d or positive",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.17,
-       "lift": 0.47,
-       "mae_on": -14.18,
-       "mae_flush": -13.34,
-       "mae_gain": -0.85,
-       "exc_on": 4.64,
-       "exc_flush": 5.61,
-       "false_over": 0.67,
-       "lag_median": 5.5
+       "timed_share": 0.4,
+       "lift": 0.92,
+       "mae_on": -9.13,
+       "mae_flush": -11.37,
+       "mae_gain": 2.23,
+       "exc_on": 6.41,
+       "exc_flush": 3.92,
+       "false_over": 0.5,
+       "lag_median": 4.5
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
+       "n_ep": 10,
+       "n_fired": 10,
        "fire_share": 1.0,
-       "timed_share": 0.29,
-       "lift": 0.61,
-       "mae_on": -4.86,
-       "mae_flush": -9.92,
-       "mae_gain": 5.05,
-       "exc_on": 6.72,
-       "exc_flush": 2.51,
-       "false_over": 0.43,
-       "lag_median": 5.0
+       "timed_share": 0.4,
+       "lift": 0.8,
+       "mae_on": -5.43,
+       "mae_flush": -8.51,
+       "mae_gain": 3.08,
+       "exc_on": 5.17,
+       "exc_flush": 3.64,
+       "false_over": 0.5,
+       "lag_median": 4.5
       },
-      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+      "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
      },
      {
       "leg": "rally_2d",
       "label": "2d rally >= +3% from within 2% of a 20d low (event, 10d decay)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 6,
-       "fire_share": 1.0,
-       "timed_share": 0.33,
-       "lift": 0.94,
-       "mae_on": -14.68,
-       "mae_flush": -13.34,
-       "mae_gain": -1.34,
-       "exc_on": 5.51,
-       "exc_flush": 5.61,
-       "false_over": 0.67,
+       "n_ep": 10,
+       "n_fired": 9,
+       "fire_share": 0.9,
+       "timed_share": 0.56,
+       "lift": 1.28,
+       "mae_on": -10.8,
+       "mae_flush": -12.89,
+       "mae_gain": 2.1,
+       "exc_on": 5.62,
+       "exc_flush": 2.85,
+       "false_over": 0.56,
        "lag_median": 6.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 6,
-       "fire_share": 0.86,
-       "timed_share": 0.67,
-       "lift": 1.41,
-       "mae_on": -3.96,
-       "mae_flush": -8.08,
-       "mae_gain": 4.13,
-       "exc_on": 4.31,
-       "exc_flush": 3.72,
-       "false_over": 0.33,
-       "lag_median": 9.5
+       "n_ep": 10,
+       "n_fired": 7,
+       "fire_share": 0.7,
+       "timed_share": 0.71,
+       "lift": 1.42,
+       "mae_on": -3.68,
+       "mae_flush": -6.92,
+       "mae_gain": 3.24,
+       "exc_on": 4.51,
+       "exc_flush": 4.33,
+       "false_over": 0.29,
+       "lag_median": 12.0
       },
       "status": "not in set: no drawdown gain in either half; fires on the first bounce \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
       "weight": 0.0
@@ -16658,32 +16793,32 @@
       "leg": "reclaim_50",
       "label": "Close above 50dma",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 5,
-       "fire_share": 0.83,
+       "n_ep": 10,
+       "n_fired": 9,
+       "fire_share": 0.9,
        "timed_share": 1.0,
-       "lift": 2.82,
-       "mae_on": -5.56,
-       "mae_flush": -13.41,
-       "mae_gain": 7.85,
-       "exc_on": 20.32,
-       "exc_flush": 10.08,
-       "false_over": 0.4,
-       "lag_median": 48.0
+       "lift": 2.31,
+       "mae_on": -7.05,
+       "mae_flush": -12.09,
+       "mae_gain": 5.05,
+       "exc_on": 12.11,
+       "exc_flush": 4.42,
+       "false_over": 0.33,
+       "lag_median": 25.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 7,
-       "fire_share": 1.0,
-       "timed_share": 0.43,
-       "lift": 0.91,
-       "mae_on": -4.26,
-       "mae_flush": -9.92,
-       "mae_gain": 5.65,
-       "exc_on": 2.43,
-       "exc_flush": 2.51,
-       "false_over": 0.29,
-       "lag_median": 27.0
+       "n_ep": 10,
+       "n_fired": 8,
+       "fire_share": 0.8,
+       "timed_share": 0.5,
+       "lift": 0.99,
+       "mae_on": -4.95,
+       "mae_flush": -10.52,
+       "mae_gain": 5.57,
+       "exc_on": 2.05,
+       "exc_flush": 2.8,
+       "false_over": 0.25,
+       "lag_median": 28.5
       },
       "status": "not in set: median lag ~30 td after the flush \u2014 too late to be a turning read \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
@@ -16692,25 +16827,32 @@
       "leg": "rsi_div",
       "label": "RSI higher-low divergence at a new 30d low (event, 10d decay)",
       "is_": {
-       "n_ep": 6,
-       "n_fired": 5,
-       "fire_share": 0.83,
-       "timed_share": 0.2,
-       "lift": 0.56,
-       "mae_on": -15.95,
-       "mae_flush": -13.41,
-       "mae_gain": -2.54,
-       "exc_on": 8.51,
-       "exc_flush": 10.08,
-       "false_over": 0.8,
-       "lag_median": 0.0
+       "n_ep": 10,
+       "n_fired": 6,
+       "fire_share": 0.6,
+       "timed_share": 0.33,
+       "lift": 0.77,
+       "mae_on": -14.27,
+       "mae_flush": -14.67,
+       "mae_gain": 0.4,
+       "exc_on": 7.81,
+       "exc_flush": 6.65,
+       "false_over": 0.67,
+       "lag_median": 3.0
       },
       "oos": {
-       "n_ep": 7,
-       "n_fired": 2,
-       "fire_share": 0.29,
-       "lift": null,
-       "mae_gain": null
+       "n_ep": 10,
+       "n_fired": 3,
+       "fire_share": 0.3,
+       "timed_share": 0.0,
+       "lift": 0.0,
+       "mae_on": -7.77,
+       "mae_flush": -8.85,
+       "mae_gain": 1.08,
+       "exc_on": 3.35,
+       "exc_flush": 2.55,
+       "false_over": 0.67,
+       "lag_median": 1.0
       },
       "status": "not in set: fires in a quarter of flushes; lift below 1 in-sample \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
@@ -16719,18 +16861,18 @@
     "lows": [
      {
       "rec_max_30d": 0.61,
-      "state_at_low": "Normal",
+      "state_at_low": "Flush, not over",
       "deepest_state": "Recovered",
       "date": "2001-07-24",
       "low": 4040.8,
       "depth": -33.8,
       "rally_3m": 16.0,
       "rally_to_next": 16.0,
-      "cap_max_15d": 0.4,
-      "flushed": false,
-      "caught": false,
-      "lag_td": null,
-      "turn_date": null,
+      "cap_max_15d": 0.63,
+      "flushed": true,
+      "caught": true,
+      "lag_td": 12,
+      "turn_date": "2001-08-10",
       "half": "IS"
      },
      {
@@ -16758,7 +16900,7 @@
       "depth": -19.3,
       "rally_3m": 25.8,
       "rally_to_next": 31.2,
-      "cap_max_15d": 0.44,
+      "cap_max_15d": 0.38,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16774,7 +16916,7 @@
       "depth": -40.4,
       "rally_3m": 25.6,
       "rally_to_next": 25.3,
-      "cap_max_15d": 0.88,
+      "cap_max_15d": 0.86,
       "flushed": true,
       "caught": true,
       "lag_td": 6,
@@ -16800,13 +16942,13 @@
      {
       "rec_max_30d": 0.64,
       "state_at_low": "Normal",
-      "deepest_state": "Normal",
+      "deepest_state": "Capitulation building",
       "date": "2003-04-28",
       "low": 4139.5,
       "depth": -34.9,
       "rally_3m": 31.7,
       "rally_to_next": 22.0,
-      "cap_max_15d": 0.37,
+      "cap_max_15d": 0.38,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16838,7 +16980,7 @@
       "depth": -22.1,
       "rally_3m": 11.9,
       "rally_to_next": 11.9,
-      "cap_max_15d": 0.2,
+      "cap_max_15d": 0.33,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16854,7 +16996,7 @@
       "depth": -24.4,
       "rally_3m": 14.8,
       "rally_to_next": 14.8,
-      "cap_max_15d": 0.32,
+      "cap_max_15d": 0.39,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16870,7 +17012,7 @@
       "depth": -19.7,
       "rally_3m": 8.7,
       "rally_to_next": 10.8,
-      "cap_max_15d": 0.14,
+      "cap_max_15d": 0.21,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16886,7 +17028,7 @@
       "depth": -16.5,
       "rally_3m": 12.8,
       "rally_to_next": 13.4,
-      "cap_max_15d": 0.19,
+      "cap_max_15d": 0.29,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16895,18 +17037,18 @@
      },
      {
       "rec_max_30d": 0.99,
-      "state_at_low": "Normal",
-      "deepest_state": "Normal",
+      "state_at_low": "Capitulation building",
+      "deepest_state": "Recovered",
       "date": "2005-10-28",
       "low": 5633.0,
       "depth": -12.7,
       "rally_3m": 19.7,
       "rally_to_next": 32.7,
-      "cap_max_15d": 0.32,
+      "cap_max_15d": 0.48,
       "flushed": false,
-      "caught": false,
-      "lag_td": null,
-      "turn_date": null,
+      "caught": true,
+      "lag_td": 3,
+      "turn_date": "2005-11-02",
       "half": "IS"
      },
      {
@@ -16918,7 +17060,7 @@
       "depth": -16.3,
       "rally_3m": 14.3,
       "rally_to_next": 55.7,
-      "cap_max_15d": 0.11,
+      "cap_max_15d": 0.2,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16934,7 +17076,7 @@
       "depth": -17.0,
       "rally_3m": 21.3,
       "rally_to_next": 21.3,
-      "cap_max_15d": 0.46,
+      "cap_max_15d": 0.38,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16950,7 +17092,7 @@
       "depth": -24.5,
       "rally_3m": 22.7,
       "rally_to_next": 19.7,
-      "cap_max_15d": 0.69,
+      "cap_max_15d": 0.57,
       "flushed": false,
       "caught": true,
       "lag_td": 9,
@@ -16966,7 +17108,7 @@
       "depth": -14.2,
       "rally_3m": 10.4,
       "rally_to_next": 10.4,
-      "cap_max_15d": 0.51,
+      "cap_max_15d": 0.3,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -16982,7 +17124,7 @@
       "depth": -56.0,
       "rally_3m": 17.1,
       "rally_to_next": 17.1,
-      "cap_max_15d": 1.0,
+      "cap_max_15d": 0.95,
       "flushed": true,
       "caught": true,
       "lag_td": 7,
@@ -16998,7 +17140,7 @@
       "depth": -54.4,
       "rally_3m": 41.4,
       "rally_to_next": 27.1,
-      "cap_max_15d": 0.77,
+      "cap_max_15d": 0.72,
       "flushed": true,
       "caught": true,
       "lag_td": 6,
@@ -17014,7 +17156,7 @@
       "depth": -44.0,
       "rally_3m": 33.6,
       "rally_to_next": 33.6,
-      "cap_max_15d": 0.69,
+      "cap_max_15d": 0.58,
       "flushed": false,
       "caught": true,
       "lag_td": 4,
@@ -17030,7 +17172,7 @@
       "depth": -25.2,
       "rally_3m": 21.1,
       "rally_to_next": 36.0,
-      "cap_max_15d": 0.36,
+      "cap_max_15d": 0.37,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17046,7 +17188,7 @@
       "depth": -13.7,
       "rally_3m": 13.3,
       "rally_to_next": 13.3,
-      "cap_max_15d": 0.17,
+      "cap_max_15d": 0.31,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17055,18 +17197,18 @@
      },
      {
       "rec_max_30d": 0.8,
-      "state_at_low": "Normal",
-      "deepest_state": "Normal",
+      "state_at_low": "Capitulation building",
+      "deepest_state": "Recovered",
       "date": "2010-06-09",
       "low": 7071.7,
       "depth": -15.4,
       "rally_3m": 13.6,
       "rally_to_next": 29.3,
-      "cap_max_15d": 0.41,
+      "cap_max_15d": 0.5,
       "flushed": false,
-      "caught": false,
-      "lag_td": null,
-      "turn_date": null,
+      "caught": true,
+      "lag_td": 2,
+      "turn_date": "2010-06-11",
       "half": "IS"
      },
      {
@@ -17078,7 +17220,7 @@
       "depth": -24.8,
       "rally_3m": 10.8,
       "rally_to_next": 10.8,
-      "cap_max_15d": 0.98,
+      "cap_max_15d": 0.8,
       "flushed": true,
       "caught": true,
       "lag_td": 10,
@@ -17094,7 +17236,7 @@
       "depth": -27.5,
       "rally_3m": 22.8,
       "rally_to_next": 22.8,
-      "cap_max_15d": 0.7,
+      "cap_max_15d": 0.6,
       "flushed": false,
       "caught": true,
       "lag_td": -4,
@@ -17103,18 +17245,18 @@
      },
      {
       "rec_max_30d": 0.8,
-      "state_at_low": "Normal",
-      "deepest_state": "Normal",
+      "state_at_low": "Capitulation building",
+      "deepest_state": "Recovered",
       "date": "2012-06-04",
       "low": 6894.7,
       "depth": -23.9,
       "rally_3m": 8.9,
       "rally_to_next": 12.9,
-      "cap_max_15d": 0.4,
+      "cap_max_15d": 0.47,
       "flushed": false,
-      "caught": false,
-      "lag_td": null,
-      "turn_date": null,
+      "caught": true,
+      "lag_td": 9,
+      "turn_date": "2012-06-15",
       "half": "IS"
      },
      {
@@ -17126,7 +17268,7 @@
       "depth": -13.0,
       "rally_3m": 13.3,
       "rally_to_next": 35.0,
-      "cap_max_15d": 0.14,
+      "cap_max_15d": 0.22,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17142,7 +17284,7 @@
       "depth": -11.0,
       "rally_3m": 9.3,
       "rally_to_next": 17.2,
-      "cap_max_15d": 0.4,
+      "cap_max_15d": 0.38,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17174,7 +17316,7 @@
       "depth": -23.2,
       "rally_3m": 15.0,
       "rally_to_next": 15.0,
-      "cap_max_15d": 0.68,
+      "cap_max_15d": 0.57,
       "flushed": false,
       "caught": true,
       "lag_td": 5,
@@ -17190,7 +17332,7 @@
       "depth": -18.0,
       "rally_3m": 14.2,
       "rally_to_next": 39.7,
-      "cap_max_15d": 0.21,
+      "cap_max_15d": 0.37,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17206,8 +17348,8 @@
       "depth": -16.6,
       "rally_3m": 17.2,
       "rally_to_next": 29.8,
-      "cap_max_15d": 0.72,
-      "flushed": true,
+      "cap_max_15d": 0.55,
+      "flushed": false,
       "caught": true,
       "lag_td": 0,
       "turn_date": "2019-01-04",
@@ -17238,7 +17380,7 @@
       "depth": -12.7,
       "rally_3m": 17.5,
       "rally_to_next": 20.7,
-      "cap_max_15d": 0.15,
+      "cap_max_15d": 0.24,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17254,7 +17396,7 @@
       "depth": -24.7,
       "rally_3m": 10.9,
       "rally_to_next": 10.9,
-      "cap_max_15d": 0.74,
+      "cap_max_15d": 0.68,
       "flushed": true,
       "caught": true,
       "lag_td": 5,
@@ -17270,7 +17412,7 @@
       "depth": -31.6,
       "rally_3m": 23.1,
       "rally_to_next": 25.2,
-      "cap_max_15d": 0.8,
+      "cap_max_15d": 0.75,
       "flushed": true,
       "caught": true,
       "lag_td": 2,
@@ -17286,7 +17428,7 @@
       "depth": -14.2,
       "rally_3m": 13.9,
       "rally_to_next": 60.2,
-      "cap_max_15d": 0.28,
+      "cap_max_15d": 0.17,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17295,18 +17437,18 @@
      },
      {
       "rec_max_30d": 0.8,
-      "state_at_low": "Normal",
-      "deepest_state": "Normal",
+      "state_at_low": "Capitulation building",
+      "deepest_state": "Recovered",
       "date": "2024-08-05",
       "low": 19830.9,
       "depth": -18.7,
       "rally_3m": 18.7,
       "rally_to_next": 19.7,
-      "cap_max_15d": 0.43,
+      "cap_max_15d": 0.54,
       "flushed": false,
-      "caught": false,
-      "lag_td": null,
-      "turn_date": null,
+      "caught": true,
+      "lag_td": 9,
+      "turn_date": "2024-08-16",
       "half": "OOS"
      },
      {
@@ -17334,7 +17476,7 @@
       "depth": -10.4,
       "rally_3m": 50.5,
       "rally_to_next": 50.5,
-      "cap_max_15d": 0.3,
+      "cap_max_15d": 0.18,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17350,7 +17492,7 @@
       "depth": -16.4,
       "rally_3m": 24.8,
       "rally_to_next": 24.8,
-      "cap_max_15d": 0.18,
+      "cap_max_15d": 0.2,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -17365,504 +17507,508 @@
     "states": {
      "Capitulation building": {
       "all": {
-       "n": 13,
-       "days": 103,
-       "near_low_share": 0.466,
-       "first": "2001-04-03",
-       "last": "2022-09-23",
+       "n": 22,
+       "days": 165,
+       "near_low_share": 0.582,
+       "first": "2001-07-11",
+       "last": "2024-08-05",
        "last5": [
-        "2018-12-20",
         "2020-03-09",
         "2022-05-09",
-        "2022-06-13",
-        "2022-09-23"
+        "2022-06-17",
+        "2022-09-22",
+        "2024-08-05"
+       ],
+       "1M": {
+        "n": 22,
+        "hit": 50.0,
+        "median": -0.66,
+        "mean": -0.76,
+        "excess": -0.21,
+        "t": -0.14
+       },
+       "3M": {
+        "n": 22,
+        "hit": 59.0,
+        "median": 5.84,
+        "mean": 2.44,
+        "excess": 3.46,
+        "t": 1.3,
+        "ci95": [
+         -0.65,
+         7.62
+        ]
+       },
+       "6M": {
+        "n": 22,
+        "hit": 68.0,
+        "median": 9.85,
+        "mean": 5.88,
+        "excess": 5.93,
+        "t": 2.0
+       },
+       "mae_mean": -11.06,
+       "mae_worst": -37.89
+      },
+      "is": {
+       "n": 13,
+       "days": 99,
+       "near_low_share": 0.525,
+       "first": "2001-07-11",
+       "last": "2012-06-04",
+       "last5": [
+        "2008-09-03",
+        "2010-05-20",
+        "2011-08-05",
+        "2011-11-21",
+        "2012-06-04"
        ],
        "1M": {
         "n": 13,
         "hit": 38.0,
         "median": -2.46,
-        "mean": -2.12,
-        "excess": -1.08,
-        "t": -0.54
+        "mean": -1.47,
+        "excess": -0.59,
+        "t": -0.27
        },
        "3M": {
         "n": 13,
         "hit": 62.0,
-        "median": 2.3,
-        "mean": 0.14,
-        "excess": 2.24,
-        "t": 0.67,
+        "median": 6.73,
+        "mean": 1.12,
+        "excess": 3.19,
+        "t": 0.75,
         "ci95": [
-         -4.13,
-         8.68
+         -3.76,
+         10.41
         ]
        },
        "6M": {
         "n": 13,
-        "hit": 46.0,
-        "median": -2.14,
-        "mean": -3.27,
-        "excess": -1.94,
-        "t": -0.4
+        "hit": 62.0,
+        "median": 1.33,
+        "mean": 5.24,
+        "excess": 7.1,
+        "t": 1.62
        },
-       "mae_mean": -11.08,
-       "mae_worst": -23.66
-      },
-      "is": {
-       "n": 5,
-       "days": 44,
-       "near_low_share": 0.227,
-       "first": "2001-04-03",
-       "last": "2011-11-21",
-       "last5": [
-        "2001-04-03",
-        "2002-07-22",
-        "2008-01-22",
-        "2008-07-02",
-        "2011-11-21"
-       ],
-       "1M": {
-        "n": 5,
-        "hit": 20.0,
-        "median": -3.72,
-        "mean": -1.08,
-        "excess": 0.99,
-        "t": 0.27
-       },
-       "3M": {
-        "n": 5,
-        "hit": 40.0,
-        "median": -11.5,
-        "mean": -3.09,
-        "excess": 2.28,
-        "t": 0.27,
-        "ci95": [
-         -12.06,
-         17.13
-        ]
-       },
-       "6M": {
-        "n": 5,
-        "hit": 20.0,
-        "median": -6.75,
-        "mean": -16.22,
-        "excess": -9.11,
-        "t": -0.86
-       },
-       "mae_mean": -13.61,
-       "mae_worst": -23.66
+       "mae_mean": -13.34,
+       "mae_worst": -37.89
       },
       "oos": {
-       "n": 8,
-       "days": 59,
-       "near_low_share": 0.644,
-       "first": "2015-08-11",
-       "last": "2022-09-23",
+       "n": 9,
+       "days": 66,
+       "near_low_share": 0.667,
+       "first": "2015-08-19",
+       "last": "2024-08-05",
        "last5": [
-        "2018-12-20",
         "2020-03-09",
         "2022-05-09",
-        "2022-06-13",
-        "2022-09-23"
+        "2022-06-17",
+        "2022-09-22",
+        "2024-08-05"
        ],
        "1M": {
-        "n": 8,
-        "hit": 50.0,
-        "median": 0.13,
-        "mean": -2.78,
-        "excess": -2.37,
-        "t": -0.98
+        "n": 9,
+        "hit": 67.0,
+        "median": 2.46,
+        "mean": 0.25,
+        "excess": 0.34,
+        "t": 0.15
        },
        "3M": {
-        "n": 8,
-        "hit": 75.0,
-        "median": 2.86,
-        "mean": 2.16,
-        "excess": 2.21,
-        "t": 0.99,
+        "n": 9,
+        "hit": 56.0,
+        "median": 5.68,
+        "mean": 4.34,
+        "excess": 3.85,
+        "t": 1.62,
         "ci95": [
-         -2.46,
-         6.76
+         -0.49,
+         8.38
         ]
        },
        "6M": {
-        "n": 8,
-        "hit": 62.0,
-        "median": 11.92,
-        "mean": 4.82,
-        "excess": 2.55,
-        "t": 0.58
+        "n": 9,
+        "hit": 78.0,
+        "median": 11.03,
+        "mean": 6.8,
+        "excess": 4.24,
+        "t": 1.13
        },
-       "mae_mean": -9.51,
+       "mae_mean": -7.75,
        "mae_worst": -20.92
       }
      },
      "Flush, not over": {
       "all": {
-       "n": 17,
-       "days": 279,
-       "near_low_share": 0.638,
-       "first": "2001-09-19",
+       "n": 19,
+       "days": 303,
+       "near_low_share": 0.614,
+       "first": "2001-07-24",
        "last": "2025-04-07",
        "last5": [
-        "2018-12-25",
-        "2020-03-13",
-        "2022-06-30",
-        "2022-09-27",
+        "2020-03-12",
+        "2022-05-12",
+        "2022-07-01",
+        "2022-09-26",
         "2025-04-07"
        ],
        "1M": {
-        "n": 17,
-        "hit": 65.0,
-        "median": 3.14,
-        "mean": 1.67,
-        "excess": 1.56,
-        "t": 1.0
+        "n": 19,
+        "hit": 53.0,
+        "median": 2.26,
+        "mean": 1.81,
+        "excess": 1.41,
+        "t": 0.78
        },
        "3M": {
-        "n": 17,
-        "hit": 71.0,
-        "median": 8.97,
-        "mean": 8.72,
-        "excess": 7.74,
-        "t": 2.13,
+        "n": 19,
+        "hit": 68.0,
+        "median": 6.64,
+        "mean": 9.16,
+        "excess": 7.42,
+        "t": 2.47,
         "ci95": [
-         -0.21,
-         16.48
+         0.91,
+         13.71
         ]
        },
        "6M": {
-        "n": 17,
-        "hit": 76.0,
+        "n": 19,
+        "hit": 79.0,
         "median": 10.03,
-        "mean": 15.19,
-        "excess": 12.37,
-        "t": 2.95
+        "mean": 17.01,
+        "excess": 12.97,
+        "t": 3.32
        },
-       "mae_mean": -10.69,
-       "mae_worst": -37.89
+       "mae_mean": -10.39,
+       "mae_worst": -32.43
       },
       "is": {
-       "n": 11,
-       "days": 203,
-       "near_low_share": 0.522,
-       "first": "2001-09-19",
-       "last": "2011-11-25",
+       "n": 13,
+       "days": 223,
+       "near_low_share": 0.538,
+       "first": "2001-07-24",
+       "last": "2011-11-23",
        "last5": [
-        "2009-02-23",
         "2009-03-30",
+        "2009-04-28",
         "2011-08-08",
         "2011-09-22",
-        "2011-11-25"
+        "2011-11-23"
        ],
        "1M": {
-        "n": 11,
-        "hit": 55.0,
-        "median": 2.26,
-        "mean": 1.13,
-        "excess": 1.0,
+        "n": 13,
+        "hit": 46.0,
+        "median": -1.05,
+        "mean": 1.69,
+        "excess": 1.1,
         "t": 0.45
        },
        "3M": {
-        "n": 11,
-        "hit": 64.0,
-        "median": 4.49,
-        "mean": 9.35,
-        "excess": 8.83,
-        "t": 1.62,
+        "n": 13,
+        "hit": 69.0,
+        "median": 6.64,
+        "mean": 11.17,
+        "excess": 9.34,
+        "t": 2.22,
         "ci95": [
-         -5.02,
-         22.18
+         0.43,
+         17.41
         ]
        },
        "6M": {
-        "n": 11,
-        "hit": 73.0,
-        "median": 4.74,
-        "mean": 14.41,
-        "excess": 14.27,
-        "t": 2.26
+        "n": 13,
+        "hit": 85.0,
+        "median": 10.03,
+        "mean": 19.36,
+        "excess": 17.03,
+        "t": 3.37
        },
-       "mae_mean": -12.18,
-       "mae_worst": -37.89
+       "mae_mean": -10.88,
+       "mae_worst": -32.43
       },
       "oos": {
        "n": 6,
-       "days": 76,
-       "near_low_share": 0.947,
+       "days": 80,
+       "near_low_share": 0.825,
        "first": "2015-08-21",
        "last": "2025-04-07",
        "last5": [
-        "2018-12-25",
-        "2020-03-13",
-        "2022-06-30",
-        "2022-09-27",
+        "2020-03-12",
+        "2022-05-12",
+        "2022-07-01",
+        "2022-09-26",
         "2025-04-07"
        ],
        "1M": {
         "n": 6,
-        "hit": 83.0,
-        "median": 3.89,
-        "mean": 2.66,
-        "excess": 2.59,
-        "t": 1.39
+        "hit": 67.0,
+        "median": 3.68,
+        "mean": 2.07,
+        "excess": 2.08,
+        "t": 0.91
        },
        "3M": {
         "n": 6,
-        "hit": 83.0,
-        "median": 10.3,
-        "mean": 7.57,
-        "excess": 5.74,
-        "t": 1.81,
+        "hit": 67.0,
+        "median": 6.28,
+        "mean": 4.81,
+        "excess": 3.24,
+        "t": 1.37,
         "ci95": [
-         0.02,
-         11.21
+         -0.08,
+         8.13
         ]
        },
        "6M": {
         "n": 6,
-        "hit": 83.0,
-        "median": 14.29,
-        "mean": 16.6,
-        "excess": 8.9,
-        "t": 2.83
+        "hit": 67.0,
+        "median": 12.24,
+        "mean": 11.9,
+        "excess": 4.17,
+        "t": 0.96
        },
-       "mae_mean": -7.96,
-       "mae_worst": -14.29
+       "mae_mean": -9.33,
+       "mae_worst": -16.7
       }
      },
      "Turning": {
       "all": {
-       "n": 21,
-       "days": 233,
-       "near_low_share": 0.549,
-       "first": "2001-04-19",
+       "n": 26,
+       "days": 208,
+       "near_low_share": 0.683,
+       "first": "2001-08-10",
        "last": "2025-04-23",
        "last5": [
-        "2020-04-07",
         "2022-05-25",
         "2022-07-19",
         "2022-10-27",
+        "2024-08-16",
         "2025-04-23"
        ],
        "1M": {
-        "n": 21,
-        "hit": 76.0,
-        "median": 4.23,
-        "mean": 3.87,
-        "excess": 4.11,
-        "t": 2.58
+        "n": 26,
+        "hit": 69.0,
+        "median": 3.88,
+        "mean": 3.25,
+        "excess": 3.3,
+        "t": 2.5
        },
        "3M": {
-        "n": 21,
-        "hit": 67.0,
-        "median": 3.74,
-        "mean": 7.32,
-        "excess": 7.42,
-        "t": 1.98,
+        "n": 26,
+        "hit": 73.0,
+        "median": 4.82,
+        "mean": 7.91,
+        "excess": 7.69,
+        "t": 2.77,
         "ci95": [
-         -0.07,
-         13.82
+         2.05,
+         13.17
         ]
        },
        "6M": {
-        "n": 21,
-        "hit": 71.0,
-        "median": 7.27,
-        "mean": 12.47,
-        "excess": 10.91,
-        "t": 2.26
+        "n": 26,
+        "hit": 77.0,
+        "median": 7.76,
+        "mean": 14.0,
+        "excess": 12.16,
+        "t": 3.49
        },
-       "mae_mean": -6.82,
+       "mae_mean": -6.3,
        "mae_worst": -35.29
       },
       "is": {
-       "n": 12,
-       "days": 163,
-       "near_low_share": 0.528,
-       "first": "2001-04-19",
-       "last": "2011-12-13",
+       "n": 15,
+       "days": 144,
+       "near_low_share": 0.646,
+       "first": "2001-08-10",
+       "last": "2012-06-15",
        "last5": [
-        "2009-02-06",
-        "2009-03-17",
+        "2010-06-11",
         "2011-08-31",
         "2011-10-11",
-        "2011-12-13"
+        "2011-12-13",
+        "2012-06-15"
        ],
        "1M": {
-        "n": 12,
+        "n": 15,
         "hit": 67.0,
-        "median": 2.86,
-        "mean": 2.23,
-        "excess": 2.84,
-        "t": 1.15
+        "median": 3.51,
+        "mean": 2.84,
+        "excess": 3.15,
+        "t": 1.79
        },
        "3M": {
-        "n": 12,
-        "hit": 58.0,
-        "median": 6.19,
-        "mean": 7.21,
-        "excess": 8.57,
-        "t": 1.37,
+        "n": 15,
+        "hit": 67.0,
+        "median": 7.34,
+        "mean": 9.01,
+        "excess": 9.69,
+        "t": 2.2,
         "ci95": [
-         -4.09,
-         19.34
+         1.03,
+         17.83
         ]
        },
        "6M": {
-        "n": 12,
-        "hit": 58.0,
-        "median": 3.28,
-        "mean": 11.35,
-        "excess": 13.33,
-        "t": 1.61
+        "n": 15,
+        "hit": 73.0,
+        "median": 7.47,
+        "mean": 16.19,
+        "excess": 16.72,
+        "t": 3.01
        },
-       "mae_mean": -9.51,
+       "mae_mean": -7.69,
        "mae_worst": -35.29
       },
       "oos": {
-       "n": 9,
-       "days": 70,
-       "near_low_share": 0.6,
-       "first": "2015-09-03",
+       "n": 11,
+       "days": 64,
+       "near_low_share": 0.766,
+       "first": "2015-07-27",
        "last": "2025-04-23",
        "last5": [
-        "2020-04-07",
         "2022-05-25",
         "2022-07-19",
         "2022-10-27",
+        "2024-08-16",
         "2025-04-23"
        ],
        "1M": {
-        "n": 9,
-        "hit": 89.0,
-        "median": 7.55,
-        "mean": 6.07,
-        "excess": 5.81,
-        "t": 3.36
+        "n": 11,
+        "hit": 73.0,
+        "median": 5.25,
+        "mean": 3.82,
+        "excess": 3.51,
+        "t": 1.67
        },
        "3M": {
-        "n": 9,
-        "hit": 78.0,
-        "median": 3.74,
-        "mean": 7.47,
-        "excess": 5.9,
-        "t": 1.9,
+        "n": 11,
+        "hit": 82.0,
+        "median": 3.18,
+        "mean": 6.41,
+        "excess": 4.96,
+        "t": 1.87,
         "ci95": [
-         0.11,
-         12.02
+         0.3,
+         10.02
         ]
        },
        "6M": {
-        "n": 9,
-        "hit": 89.0,
-        "median": 15.1,
-        "mean": 13.97,
-        "excess": 7.67,
-        "t": 2.82
+        "n": 11,
+        "hit": 82.0,
+        "median": 8.05,
+        "mean": 11.01,
+        "excess": 5.95,
+        "t": 2.39
        },
-       "mae_mean": -3.24,
-       "mae_worst": -13.37
+       "mae_mean": -4.41,
+       "mae_worst": -13.4
       },
       "by_origin": {
        "from_flush": {
-        "n": 16,
-        "first": "2001-10-18",
+        "n": 17,
+        "first": "2001-08-10",
         "last": "2025-04-23",
         "last5": [
-         "2019-01-04",
          "2020-04-07",
+         "2022-05-25",
          "2022-07-19",
          "2022-10-27",
          "2025-04-23"
         ],
         "1M": {
-         "n": 16,
-         "hit": 81.0,
-         "median": 4.74,
-         "mean": 4.98,
-         "excess": 5.04,
-         "t": 3.13
+         "n": 17,
+         "hit": 71.0,
+         "median": 3.68,
+         "mean": 3.71,
+         "excess": 3.89,
+         "t": 2.3
         },
         "3M": {
-         "n": 16,
-         "hit": 69.0,
-         "median": 12.78,
-         "mean": 10.0,
-         "excess": 9.63,
-         "t": 2.46,
+         "n": 17,
+         "hit": 59.0,
+         "median": 3.74,
+         "mean": 7.79,
+         "excess": 7.54,
+         "t": 1.95,
          "ci95": [
-          2.61,
-          16.93
+          0.44,
+          14.6
          ]
         },
         "6M": {
-         "n": 16,
-         "hit": 81.0,
-         "median": 11.58,
-         "mean": 17.55,
-         "excess": 15.53,
-         "t": 2.93
+         "n": 17,
+         "hit": 76.0,
+         "median": 8.05,
+         "mean": 16.61,
+         "excess": 14.49,
+         "t": 2.8
         },
-        "mae_mean": -6.63,
+        "mae_mean": -8.49,
         "mae_worst": -35.29
        },
        "from_building": {
-        "n": 5,
-        "first": "2001-04-19",
-        "last": "2022-05-25",
+        "n": 9,
+        "first": "2005-11-02",
+        "last": "2024-08-16",
         "last5": [
-         "2001-04-19",
-         "2008-02-13",
+         "2015-07-27",
          "2016-01-28",
          "2018-11-01",
-         "2022-05-25"
+         "2019-01-04",
+         "2024-08-16"
         ],
         "1M": {
-         "n": 5,
-         "hit": 60.0,
-         "median": 0.44,
-         "mean": 0.31,
-         "excess": 1.14,
-         "t": 0.26
+         "n": 9,
+         "hit": 67.0,
+         "median": 4.08,
+         "mean": 2.4,
+         "excess": 2.19,
+         "t": 1.0
         },
         "3M": {
-         "n": 5,
-         "hit": 60.0,
-         "median": 0.89,
-         "mean": -1.24,
-         "excess": 0.36,
-         "t": 0.04,
+         "n": 9,
+         "hit": 100.0,
+         "median": 5.91,
+         "mean": 8.12,
+         "excess": 7.98,
+         "t": 2.22,
          "ci95": [
-          -17.12,
-          18.71
+          2.29,
+          15.24
          ]
         },
         "6M": {
-         "n": 5,
-         "hit": 40.0,
-         "median": -3.42,
-         "mean": -3.79,
-         "excess": -3.87,
-         "t": -0.43
+         "n": 9,
+         "hit": 78.0,
+         "median": 7.47,
+         "mean": 9.07,
+         "excess": 7.76,
+         "t": 3.46
         },
-        "mae_mean": -7.44,
-        "mae_worst": -25.28
+        "mae_mean": -2.16,
+        "mae_worst": -13.4
        }
       },
       "entry_dates": [
-       "2001-04-19",
+       "2001-08-10",
        "2001-10-18",
        "2002-08-19",
        "2002-10-21",
+       "2005-11-02",
        "2008-02-13",
        "2008-07-23",
        "2008-12-01",
        "2009-02-06",
        "2009-03-17",
+       "2010-06-11",
        "2011-08-31",
        "2011-10-11",
        "2011-12-13",
+       "2012-06-15",
+       "2015-07-27",
        "2015-09-03",
        "2016-01-28",
        "2018-11-01",
@@ -17871,18 +18017,10 @@
        "2022-05-25",
        "2022-07-19",
        "2022-10-27",
+       "2024-08-16",
        "2025-04-23"
       ],
       "entry_origin": [
-       "building",
-       "flush",
-       "flush",
-       "flush",
-       "building",
-       "flush",
-       "flush",
-       "flush",
-       "flush",
        "flush",
        "flush",
        "flush",
@@ -17891,225 +18029,239 @@
        "building",
        "flush",
        "flush",
+       "flush",
+       "flush",
        "building",
        "flush",
        "flush",
+       "flush",
+       "building",
+       "building",
+       "flush",
+       "building",
+       "building",
+       "building",
+       "flush",
+       "flush",
+       "flush",
+       "flush",
+       "building",
        "flush"
       ]
      },
      "Recovered": {
       "all": {
-       "n": 16,
-       "days": 848,
-       "near_low_share": 0.248,
-       "first": "2001-04-20",
-       "last": "2025-05-02",
+       "n": 22,
+       "days": 1097,
+       "near_low_share": 0.223,
+       "first": "2001-08-13",
+       "last": "2025-04-29",
        "last5": [
-        "2020-04-27",
-        "2022-05-30",
+        "2022-05-26",
         "2022-07-29",
-        "2022-11-10",
-        "2025-05-02"
+        "2022-11-11",
+        "2024-08-19",
+        "2025-04-29"
        ],
        "1M": {
-        "n": 16,
-        "hit": 69.0,
-        "median": 3.87,
-        "mean": 3.67,
-        "excess": 3.61,
-        "t": 1.66
+        "n": 22,
+        "hit": 64.0,
+        "median": 3.52,
+        "mean": 1.71,
+        "excess": 1.68,
+        "t": 1.09
        },
        "3M": {
-        "n": 16,
-        "hit": 56.0,
-        "median": 7.53,
-        "mean": 6.02,
-        "excess": 5.14,
-        "t": 1.44,
+        "n": 22,
+        "hit": 73.0,
+        "median": 6.1,
+        "mean": 4.27,
+        "excess": 3.9,
+        "t": 1.47,
         "ci95": [
-         -1.97,
-         11.46
+         -1.0,
+         8.61
         ]
        },
        "6M": {
-        "n": 16,
-        "hit": 75.0,
-        "median": 6.49,
-        "mean": 8.2,
-        "excess": 4.67,
-        "t": 1.32
+        "n": 22,
+        "hit": 77.0,
+        "median": 6.15,
+        "mean": 7.99,
+        "excess": 5.55,
+        "t": 2.47
        },
-       "mae_mean": -4.65,
-       "mae_worst": -25.12
+       "mae_mean": -7.04,
+       "mae_worst": -40.39
       },
       "is": {
-       "n": 7,
-       "days": 398,
-       "near_low_share": 0.407,
-       "first": "2001-04-20",
-       "last": "2011-12-20",
+       "n": 12,
+       "days": 566,
+       "near_low_share": 0.323,
+       "first": "2001-08-13",
+       "last": "2012-06-18",
        "last5": [
-        "2002-11-14",
-        "2008-02-19",
-        "2009-04-09",
-        "2011-10-24",
-        "2011-12-20"
+        "2009-05-06",
+        "2010-06-14",
+        "2011-10-26",
+        "2011-12-23",
+        "2012-06-18"
        ],
        "1M": {
-        "n": 7,
-        "hit": 57.0,
-        "median": 3.9,
-        "mean": 5.34,
-        "excess": 5.53,
-        "t": 1.19
+        "n": 12,
+        "hit": 58.0,
+        "median": 2.63,
+        "mean": 0.83,
+        "excess": 1.17,
+        "t": 0.43
        },
        "3M": {
-        "n": 7,
-        "hit": 57.0,
-        "median": 12.35,
-        "mean": 8.04,
-        "excess": 8.05,
-        "t": 1.09,
+        "n": 12,
+        "hit": 75.0,
+        "median": 6.54,
+        "mean": 4.46,
+        "excess": 5.35,
+        "t": 1.21,
         "ci95": [
-         -7.49,
-         18.88
+         -3.75,
+         13.0
         ]
        },
        "6M": {
-        "n": 7,
-        "hit": 57.0,
-        "median": 0.14,
-        "mean": 3.59,
-        "excess": 3.63,
-        "t": 0.49
+        "n": 12,
+        "hit": 67.0,
+        "median": 4.57,
+        "mean": 4.86,
+        "excess": 5.51,
+        "t": 1.5
        },
-       "mae_mean": -5.21,
-       "mae_worst": -25.12
+       "mae_mean": -9.52,
+       "mae_worst": -40.39
       },
       "oos": {
-       "n": 9,
-       "days": 450,
-       "near_low_share": 0.107,
-       "first": "2015-09-16",
-       "last": "2025-05-02",
+       "n": 10,
+       "days": 531,
+       "near_low_share": 0.117,
+       "first": "2015-09-11",
+       "last": "2025-04-29",
        "last5": [
-        "2020-04-27",
-        "2022-05-30",
+        "2022-05-26",
         "2022-07-29",
-        "2022-11-10",
-        "2025-05-02"
+        "2022-11-11",
+        "2024-08-19",
+        "2025-04-29"
        ],
        "1M": {
-        "n": 9,
-        "hit": 78.0,
-        "median": 3.84,
-        "mean": 2.37,
-        "excess": 2.11,
-        "t": 1.35
+        "n": 10,
+        "hit": 70.0,
+        "median": 3.94,
+        "mean": 2.77,
+        "excess": 2.28,
+        "t": 2.06
        },
        "3M": {
-        "n": 9,
-        "hit": 56.0,
-        "median": 2.7,
-        "mean": 4.45,
-        "excess": 2.88,
-        "t": 0.95,
+        "n": 10,
+        "hit": 70.0,
+        "median": 0.83,
+        "mean": 4.05,
+        "excess": 2.15,
+        "t": 0.82,
         "ci95": [
-         -2.73,
-         8.53
+         -2.58,
+         6.69
         ]
        },
        "6M": {
-        "n": 9,
-        "hit": 89.0,
-        "median": 12.11,
-        "mean": 11.79,
-        "excess": 5.49,
-        "t": 1.8
+        "n": 10,
+        "hit": 90.0,
+        "median": 9.58,
+        "mean": 11.75,
+        "excess": 5.59,
+        "t": 2.29
        },
-       "mae_mean": -4.22,
-       "mae_worst": -16.01
+       "mae_mean": -4.06,
+       "mae_worst": -15.56
       }
      }
     },
     "turning": {
-     "n": 21,
-     "deep_caught": 15,
+     "n": 26,
+     "deep_caught": 19,
      "deep_total": 31,
-     "deep_caught_oos": 7,
+     "deep_caught_oos": 8,
      "deep_total_oos": 10,
      "deep_flushed": 11,
-     "shallow_caught": 0,
+     "shallow_caught": 1,
      "shallow_total": 9,
      "shallow_caught_oos": 0,
      "shallow_total_oos": 4,
-     "lows_caught": 15,
+     "lows_caught": 20,
      "lows_total": 40,
-     "lows_caught_oos": 7,
+     "lows_caught_oos": 8,
      "lows_total_oos": 14,
-     "lag_median_td": 6.0,
+     "lag_median_td": 6.5,
      "lag_iqr_td": [
-      4.5,
-      9.5
+      3.75,
+      9.25
      ],
-     "false_over_rate": 0.333,
-     "false_over_n": 21
+     "false_over_rate": 0.308,
+     "false_over_n": 26
     },
     "t_rec_grid": [
      {
       "t_rec": 0.3,
-      "is_n": 12,
-      "is_hit": 50.0,
-      "is_excess": 8.22,
-      "oos_n": 8,
-      "oos_hit": 88.0,
-      "oos_excess": 8.16,
-      "is_mae": -10.22,
-      "oos_mae": -4.09
+      "is_n": 17,
+      "is_hit": 59.0,
+      "is_excess": 6.38,
+      "oos_n": 11,
+      "oos_hit": 73.0,
+      "oos_excess": 6.68,
+      "is_mae": -10.13,
+      "oos_mae": -4.38
      },
      {
       "t_rec": 0.4,
-      "is_n": 12,
-      "is_hit": 50.0,
-      "is_excess": 7.99,
-      "oos_n": 8,
-      "oos_hit": 88.0,
-      "oos_excess": 8.57,
-      "is_mae": -10.69,
-      "oos_mae": -2.46
+      "is_n": 16,
+      "is_hit": 62.0,
+      "is_excess": 8.17,
+      "oos_n": 11,
+      "oos_hit": 73.0,
+      "oos_excess": 6.59,
+      "is_mae": -8.41,
+      "oos_mae": -3.43
      },
      {
       "t_rec": 0.5,
-      "is_n": 12,
-      "is_hit": 58.0,
-      "is_excess": 8.57,
-      "oos_n": 9,
-      "oos_hit": 78.0,
-      "oos_excess": 5.9,
-      "is_mae": -9.51,
-      "oos_mae": -3.24
+      "is_n": 15,
+      "is_hit": 67.0,
+      "is_excess": 9.69,
+      "oos_n": 11,
+      "oos_hit": 82.0,
+      "oos_excess": 4.96,
+      "is_mae": -7.69,
+      "oos_mae": -4.41
      },
      {
       "t_rec": 0.6,
-      "is_n": 12,
-      "is_hit": 58.0,
-      "is_excess": 9.46,
-      "oos_n": 9,
-      "oos_hit": 78.0,
-      "oos_excess": 5.14,
-      "is_mae": -9.93,
-      "oos_mae": -3.52
+      "is_n": 16,
+      "is_hit": 69.0,
+      "is_excess": 9.97,
+      "oos_n": 11,
+      "oos_hit": 82.0,
+      "oos_excess": 4.28,
+      "is_mae": -7.84,
+      "oos_mae": -4.66
      },
      {
       "t_rec": 0.7,
-      "is_n": 9,
-      "is_hit": 56.0,
-      "is_excess": 8.03,
-      "oos_n": 9,
-      "oos_hit": 67.0,
-      "oos_excess": 4.81,
-      "is_mae": -10.67,
-      "oos_mae": -3.49
+      "is_n": 12,
+      "is_hit": 67.0,
+      "is_excess": 7.99,
+      "oos_n": 10,
+      "oos_hit": 70.0,
+      "oos_excess": 3.91,
+      "is_mae": -8.66,
+      "oos_mae": -3.76
      }
     ],
     "compare": {
@@ -18141,8 +18293,8 @@
         "excess": 5.66,
         "t": 2.04,
         "ci95": [
-         -0.08,
-         11.04
+         -0.29,
+         11.39
         ]
        },
        "6M": {
@@ -18183,8 +18335,8 @@
         "excess": 9.44,
         "t": 2.08,
         "ci95": [
-         -0.12,
-         18.56
+         0.51,
+         17.98
         ]
        },
        "6M": {
@@ -18225,8 +18377,8 @@
         "excess": 1.12,
         "t": 0.51,
         "ci95": [
-         -2.62,
-         5.31
+         -2.99,
+         5.29
         ]
        },
        "6M": {
@@ -18271,8 +18423,8 @@
         "excess": 2.49,
         "t": 1.12,
         "ci95": [
-         -1.98,
-         7.18
+         -1.41,
+         7.2
         ]
        },
        "6M": {
@@ -18281,7 +18433,7 @@
         "median": 6.59,
         "mean": 7.49,
         "excess": 1.85,
-        "t": 0.88
+        "t": 0.89
        },
        "mae_mean": -8.71,
        "mae_worst": -32.43
@@ -18315,8 +18467,8 @@
         "excess": 1.71,
         "t": 0.48,
         "ci95": [
-         -4.61,
-         8.95
+         -5.04,
+         8.94
         ]
        },
        "6M": {
@@ -18348,7 +18500,7 @@
         "hit": 65.0,
         "median": 2.25,
         "mean": 2.05,
-        "excess": 0.98,
+        "excess": 0.99,
         "t": 0.51
        },
        "3M": {
@@ -18356,11 +18508,11 @@
         "hit": 65.0,
         "median": 10.02,
         "mean": 7.95,
-        "excess": 3.49,
+        "excess": 3.5,
         "t": 1.52,
         "ci95": [
-         -0.7,
-         8.41
+         -0.93,
+         7.87
         ]
        },
        "6M": {
@@ -18368,7 +18520,7 @@
         "hit": 71.0,
         "median": 15.3,
         "mean": 12.45,
-        "excess": 1.79,
+        "excess": 1.81,
         "t": 0.63
        },
        "mae_mean": -6.07,
@@ -18380,236 +18532,240 @@
      },
      "turning": {
       "all": {
-       "n": 21,
-       "days": 233,
-       "near_low_share": 0.549,
-       "first": "2001-04-19",
+       "n": 26,
+       "days": 208,
+       "near_low_share": 0.683,
+       "first": "2001-08-10",
        "last": "2025-04-23",
        "last5": [
-        "2020-04-07",
         "2022-05-25",
         "2022-07-19",
         "2022-10-27",
+        "2024-08-16",
         "2025-04-23"
        ],
        "1M": {
-        "n": 21,
-        "hit": 76.0,
-        "median": 4.23,
-        "mean": 3.87,
-        "excess": 4.11,
-        "t": 2.58
+        "n": 26,
+        "hit": 69.0,
+        "median": 3.88,
+        "mean": 3.25,
+        "excess": 3.3,
+        "t": 2.5
        },
        "3M": {
-        "n": 21,
-        "hit": 67.0,
-        "median": 3.74,
-        "mean": 7.32,
-        "excess": 7.42,
-        "t": 1.98,
+        "n": 26,
+        "hit": 73.0,
+        "median": 4.82,
+        "mean": 7.91,
+        "excess": 7.69,
+        "t": 2.77,
         "ci95": [
-         -0.07,
-         13.82
+         2.05,
+         13.17
         ]
        },
        "6M": {
-        "n": 21,
-        "hit": 71.0,
-        "median": 7.27,
-        "mean": 12.47,
-        "excess": 10.91,
-        "t": 2.26
+        "n": 26,
+        "hit": 77.0,
+        "median": 7.76,
+        "mean": 14.0,
+        "excess": 12.16,
+        "t": 3.49
        },
-       "mae_mean": -6.82,
+       "mae_mean": -6.3,
        "mae_worst": -35.29
       },
       "is": {
-       "n": 12,
-       "days": 163,
-       "near_low_share": 0.528,
-       "first": "2001-04-19",
-       "last": "2011-12-13",
+       "n": 15,
+       "days": 144,
+       "near_low_share": 0.646,
+       "first": "2001-08-10",
+       "last": "2012-06-15",
        "last5": [
-        "2009-02-06",
-        "2009-03-17",
+        "2010-06-11",
         "2011-08-31",
         "2011-10-11",
-        "2011-12-13"
+        "2011-12-13",
+        "2012-06-15"
        ],
        "1M": {
-        "n": 12,
+        "n": 15,
         "hit": 67.0,
-        "median": 2.86,
-        "mean": 2.23,
-        "excess": 2.84,
-        "t": 1.15
+        "median": 3.51,
+        "mean": 2.84,
+        "excess": 3.15,
+        "t": 1.79
        },
        "3M": {
-        "n": 12,
-        "hit": 58.0,
-        "median": 6.19,
-        "mean": 7.21,
-        "excess": 8.57,
-        "t": 1.37,
+        "n": 15,
+        "hit": 67.0,
+        "median": 7.34,
+        "mean": 9.01,
+        "excess": 9.69,
+        "t": 2.2,
         "ci95": [
-         -4.09,
-         19.34
+         1.03,
+         17.83
         ]
        },
        "6M": {
-        "n": 12,
-        "hit": 58.0,
-        "median": 3.28,
-        "mean": 11.35,
-        "excess": 13.33,
-        "t": 1.61
+        "n": 15,
+        "hit": 73.0,
+        "median": 7.47,
+        "mean": 16.19,
+        "excess": 16.72,
+        "t": 3.01
        },
-       "mae_mean": -9.51,
+       "mae_mean": -7.69,
        "mae_worst": -35.29
       },
       "oos": {
-       "n": 9,
-       "days": 70,
-       "near_low_share": 0.6,
-       "first": "2015-09-03",
+       "n": 11,
+       "days": 64,
+       "near_low_share": 0.766,
+       "first": "2015-07-27",
        "last": "2025-04-23",
        "last5": [
-        "2020-04-07",
         "2022-05-25",
         "2022-07-19",
         "2022-10-27",
+        "2024-08-16",
         "2025-04-23"
        ],
        "1M": {
-        "n": 9,
-        "hit": 89.0,
-        "median": 7.55,
-        "mean": 6.07,
-        "excess": 5.81,
-        "t": 3.36
+        "n": 11,
+        "hit": 73.0,
+        "median": 5.25,
+        "mean": 3.82,
+        "excess": 3.51,
+        "t": 1.67
        },
        "3M": {
-        "n": 9,
-        "hit": 78.0,
-        "median": 3.74,
-        "mean": 7.47,
-        "excess": 5.9,
-        "t": 1.9,
+        "n": 11,
+        "hit": 82.0,
+        "median": 3.18,
+        "mean": 6.41,
+        "excess": 4.96,
+        "t": 1.87,
         "ci95": [
-         0.11,
-         12.02
+         0.3,
+         10.02
         ]
        },
        "6M": {
-        "n": 9,
-        "hit": 89.0,
-        "median": 15.1,
-        "mean": 13.97,
-        "excess": 7.67,
-        "t": 2.82
+        "n": 11,
+        "hit": 82.0,
+        "median": 8.05,
+        "mean": 11.01,
+        "excess": 5.95,
+        "t": 2.39
        },
-       "mae_mean": -3.24,
-       "mae_worst": -13.37
+       "mae_mean": -4.41,
+       "mae_worst": -13.4
       },
       "by_origin": {
        "from_flush": {
-        "n": 16,
-        "first": "2001-10-18",
+        "n": 17,
+        "first": "2001-08-10",
         "last": "2025-04-23",
         "last5": [
-         "2019-01-04",
          "2020-04-07",
+         "2022-05-25",
          "2022-07-19",
          "2022-10-27",
          "2025-04-23"
         ],
         "1M": {
-         "n": 16,
-         "hit": 81.0,
-         "median": 4.74,
-         "mean": 4.98,
-         "excess": 5.04,
-         "t": 3.13
+         "n": 17,
+         "hit": 71.0,
+         "median": 3.68,
+         "mean": 3.71,
+         "excess": 3.89,
+         "t": 2.3
         },
         "3M": {
-         "n": 16,
-         "hit": 69.0,
-         "median": 12.78,
-         "mean": 10.0,
-         "excess": 9.63,
-         "t": 2.46,
+         "n": 17,
+         "hit": 59.0,
+         "median": 3.74,
+         "mean": 7.79,
+         "excess": 7.54,
+         "t": 1.95,
          "ci95": [
-          2.61,
-          16.93
+          0.44,
+          14.6
          ]
         },
         "6M": {
-         "n": 16,
-         "hit": 81.0,
-         "median": 11.58,
-         "mean": 17.55,
-         "excess": 15.53,
-         "t": 2.93
+         "n": 17,
+         "hit": 76.0,
+         "median": 8.05,
+         "mean": 16.61,
+         "excess": 14.49,
+         "t": 2.8
         },
-        "mae_mean": -6.63,
+        "mae_mean": -8.49,
         "mae_worst": -35.29
        },
        "from_building": {
-        "n": 5,
-        "first": "2001-04-19",
-        "last": "2022-05-25",
+        "n": 9,
+        "first": "2005-11-02",
+        "last": "2024-08-16",
         "last5": [
-         "2001-04-19",
-         "2008-02-13",
+         "2015-07-27",
          "2016-01-28",
          "2018-11-01",
-         "2022-05-25"
+         "2019-01-04",
+         "2024-08-16"
         ],
         "1M": {
-         "n": 5,
-         "hit": 60.0,
-         "median": 0.44,
-         "mean": 0.31,
-         "excess": 1.14,
-         "t": 0.26
+         "n": 9,
+         "hit": 67.0,
+         "median": 4.08,
+         "mean": 2.4,
+         "excess": 2.19,
+         "t": 1.0
         },
         "3M": {
-         "n": 5,
-         "hit": 60.0,
-         "median": 0.89,
-         "mean": -1.24,
-         "excess": 0.36,
-         "t": 0.04,
+         "n": 9,
+         "hit": 100.0,
+         "median": 5.91,
+         "mean": 8.12,
+         "excess": 7.98,
+         "t": 2.22,
          "ci95": [
-          -17.12,
-          18.71
+          2.29,
+          15.24
          ]
         },
         "6M": {
-         "n": 5,
-         "hit": 40.0,
-         "median": -3.42,
-         "mean": -3.79,
-         "excess": -3.87,
-         "t": -0.43
+         "n": 9,
+         "hit": 78.0,
+         "median": 7.47,
+         "mean": 9.07,
+         "excess": 7.76,
+         "t": 3.46
         },
-        "mae_mean": -7.44,
-        "mae_worst": -25.28
+        "mae_mean": -2.16,
+        "mae_worst": -13.4
        }
       },
       "entry_dates": [
-       "2001-04-19",
+       "2001-08-10",
        "2001-10-18",
        "2002-08-19",
        "2002-10-21",
+       "2005-11-02",
        "2008-02-13",
        "2008-07-23",
        "2008-12-01",
        "2009-02-06",
        "2009-03-17",
+       "2010-06-11",
        "2011-08-31",
        "2011-10-11",
        "2011-12-13",
+       "2012-06-15",
+       "2015-07-27",
        "2015-09-03",
        "2016-01-28",
        "2018-11-01",
@@ -18618,18 +18774,10 @@
        "2022-05-25",
        "2022-07-19",
        "2022-10-27",
+       "2024-08-16",
        "2025-04-23"
       ],
       "entry_origin": [
-       "building",
-       "flush",
-       "flush",
-       "flush",
-       "building",
-       "flush",
-       "flush",
-       "flush",
-       "flush",
        "flush",
        "flush",
        "flush",
@@ -18638,9 +18786,23 @@
        "building",
        "flush",
        "flush",
+       "flush",
+       "flush",
        "building",
        "flush",
        "flush",
+       "flush",
+       "building",
+       "building",
+       "flush",
+       "building",
+       "building",
+       "building",
+       "flush",
+       "flush",
+       "flush",
+       "flush",
+       "building",
        "flush"
       ]
      }
@@ -18655,22 +18817,22 @@
       "hit": 65.0
      },
      "6M": {
-      "mean": 5.81,
+      "mean": 5.82,
       "hit": 67.0
      }
     },
     "snapshot": {
-     "date": "2026-10-22",
-     "px": 46773.9,
+     "date": "2026-10-23",
+     "px": 45980.7,
      "state": "Normal",
-     "state_since": "2025-07-31",
-     "state_days": 299,
+     "state_since": "2025-07-29",
+     "state_days": 302,
      "turn_from": null,
-     "cap": 0.2,
-     "rec": 0.336,
+     "cap": 0.034,
+     "rec": 0.314,
      "rec_meaningful": false,
-     "cap_1d": 0.199,
-     "cap_5d": 0.204,
+     "cap_1d": 0.029,
+     "cap_5d": 0.004,
      "legs": [
       {
        "leg": "vix_level",
@@ -18685,16 +18847,16 @@
        "value": 0.0
       },
       {
-       "leg": "hy_oas_pct",
-       "label": "HY OAS, 1y percentile (above 75th)",
+       "leg": "rsi14",
+       "label": "RSI14 daily (40 -> 20)",
        "weight": 0.207,
-       "value": 0.91
+       "value": 0.04
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
-       "weight": 0.192,
-       "value": 0.06
+       "weight": 0.191,
+       "value": 0.14
       }
      ],
      "tells": [
@@ -18708,7 +18870,7 @@
        "tell": "rv_down",
        "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
        "weight": 0.2,
-       "value": 0.22
+       "value": 0.11
       },
       {
        "tell": "vix_term_back",
@@ -18729,18 +18891,33 @@
        "value": 0.0
       }
      ],
-     "next_state": "Capitulation building when the capitulation composite reaches 0.55 (now 0.20).",
+     "next_state": "Capitulation building when the capitulation composite reaches 0.47 (now 0.03).",
      "armed": false,
      "entry_today": false,
      "entry_active_10d": false,
      "last_entry": "2025-04-23",
-     "arm_thr": 0.553,
+     "arm_thr": 0.47,
      "mode": "v2-turning",
-     "score": 0.2,
+     "score": 0.034,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
-     "prev_state": "Normal"
+     "prev_state": "Normal",
+     "intraday": {
+      "fut": "FT1 Index",
+      "contract": "FTX6",
+      "time": "15:13:10",
+      "last": 46173.0,
+      "settle": 46234.0,
+      "settle_dt": "2026-10-22",
+      "used": true,
+      "cash_last": 46041.43,
+      "cash_last_dt": "2026-10-22",
+      "move_pct": -0.13,
+      "implied": 45980.68,
+      "implied_dt": "2026-10-23",
+      "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+     }
     }
    },
    "mode_v1": "v2-turning",
@@ -18824,31 +19001,31 @@
     "label": "Implied vol off its 20d peak (5% -> 30%)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 72,
+     "n_ep": 90,
+     "n_fired": 76,
      "fire_share": 0.84,
-     "timed_share": 0.39,
-     "lift": 1.08,
-     "mae_on": -8.44,
-     "mae_flush": -10.0,
-     "mae_gain": 1.55,
-     "exc_on": 3.17,
-     "exc_flush": 2.0,
-     "false_over": 0.51,
+     "timed_share": 0.41,
+     "lift": 1.1,
+     "mae_on": -8.2,
+     "mae_flush": -9.91,
+     "mae_gain": 1.71,
+     "exc_on": 3.58,
+     "exc_flush": 1.97,
+     "false_over": 0.5,
      "lag_median": 8.5
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.37,
-     "lift": 0.92,
-     "mae_on": -6.18,
-     "mae_flush": -6.14,
-     "mae_gain": -0.04,
-     "exc_on": 3.91,
-     "exc_flush": 4.35,
-     "false_over": 0.42,
+     "timed_share": 0.39,
+     "lift": 0.94,
+     "mae_on": -6.12,
+     "mae_flush": -6.1,
+     "mae_gain": -0.02,
+     "exc_on": 4.0,
+     "exc_flush": 4.43,
+     "false_over": 0.43,
      "lag_median": 4.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: pruned: adds nothing out of sample",
@@ -18894,34 +19071,34 @@
     "label": "Close above 20dma",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 86,
+     "n_ep": 90,
+     "n_fired": 90,
      "fire_share": 1.0,
-     "timed_share": 0.42,
-     "lift": 1.16,
-     "mae_on": -10.89,
-     "mae_flush": -10.61,
-     "mae_gain": -0.28,
-     "exc_on": 0.55,
+     "timed_share": 0.44,
+     "lift": 1.19,
+     "mae_on": -10.5,
+     "mae_flush": -10.51,
+     "mae_gain": 0.01,
+     "exc_on": 0.94,
      "exc_flush": 1.45,
-     "false_over": 0.59,
+     "false_over": 0.58,
      "lag_median": 13.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.46,
-     "lift": 1.14,
-     "mae_on": -4.94,
-     "mae_flush": -6.14,
-     "mae_gain": 1.2,
-     "exc_on": 3.76,
-     "exc_flush": 4.35,
-     "false_over": 0.48,
+     "timed_share": 0.49,
+     "lift": 1.18,
+     "mae_on": -5.0,
+     "mae_flush": -6.1,
+     "mae_gain": 1.1,
+     "exc_on": 3.59,
+     "exc_flush": 4.43,
+     "false_over": 0.49,
      "lag_median": 12.0
     },
-    "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+    "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
     "weight": 0.167
    },
    {
@@ -18929,32 +19106,32 @@
     "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 85,
+     "n_ep": 90,
+     "n_fired": 89,
      "fire_share": 0.99,
-     "timed_share": 0.34,
-     "lift": 0.95,
-     "mae_on": -9.67,
-     "mae_flush": -10.59,
-     "mae_gain": 0.92,
-     "exc_on": 2.39,
+     "timed_share": 0.36,
+     "lift": 0.97,
+     "mae_on": -9.56,
+     "mae_flush": -10.49,
+     "mae_gain": 0.93,
+     "exc_on": 2.5,
      "exc_flush": 1.43,
-     "false_over": 0.53,
+     "false_over": 0.52,
      "lag_median": 10.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.42,
-     "lift": 1.03,
-     "mae_on": -5.7,
-     "mae_flush": -6.14,
-     "mae_gain": 0.44,
-     "exc_on": 3.01,
-     "exc_flush": 4.35,
-     "false_over": 0.45,
-     "lag_median": 11.0
+     "timed_share": 0.41,
+     "lift": 1.01,
+     "mae_on": -5.76,
+     "mae_flush": -6.1,
+     "mae_gain": 0.34,
+     "exc_on": 3.0,
+     "exc_flush": 4.43,
+     "false_over": 0.46,
+     "lag_median": 10.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
     "weight": 0.167
@@ -18964,32 +19141,32 @@
     "label": "Trend score up >= 0.1 from a 20d low below -0.6",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 31,
+     "n_ep": 90,
+     "n_fired": 32,
      "fire_share": 0.36,
-     "timed_share": 0.42,
-     "lift": 1.16,
-     "mae_on": -14.0,
-     "mae_flush": -14.9,
-     "mae_gain": 0.9,
-     "exc_on": 1.38,
-     "exc_flush": -0.68,
-     "false_over": 0.77,
-     "lag_median": 17.0
+     "timed_share": 0.44,
+     "lift": 1.18,
+     "mae_on": -13.58,
+     "mae_flush": -14.54,
+     "mae_gain": 0.96,
+     "exc_on": 1.71,
+     "exc_flush": -0.3,
+     "false_over": 0.75,
+     "lag_median": 17.5
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 38,
+     "n_ep": 70,
+     "n_fired": 40,
      "fire_share": 0.57,
-     "timed_share": 0.71,
-     "lift": 1.74,
-     "mae_on": -4.35,
-     "mae_flush": -9.29,
-     "mae_gain": 4.94,
-     "exc_on": 4.78,
-     "exc_flush": 1.23,
-     "false_over": 0.39,
-     "lag_median": 19.0
+     "timed_share": 0.7,
+     "lift": 1.7,
+     "mae_on": -4.56,
+     "mae_flush": -9.31,
+     "mae_gain": 4.75,
+     "exc_on": 4.64,
+     "exc_flush": 1.31,
+     "false_over": 0.4,
+     "lag_median": 19.5
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
     "weight": 0.167
@@ -18999,34 +19176,34 @@
     "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 70,
+     "n_ep": 90,
+     "n_fired": 73,
      "fire_share": 0.81,
-     "timed_share": 0.3,
-     "lift": 0.83,
-     "mae_on": -9.36,
-     "mae_flush": -9.32,
-     "mae_gain": -0.04,
-     "exc_on": 2.2,
-     "exc_flush": 2.04,
-     "false_over": 0.51,
-     "lag_median": 3.0
+     "timed_share": 0.32,
+     "lift": 0.85,
+     "mae_on": -8.86,
+     "mae_flush": -9.03,
+     "mae_gain": 0.17,
+     "exc_on": 2.66,
+     "exc_flush": 2.25,
+     "false_over": 0.49,
+     "lag_median": 2.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.28,
-     "lift": 0.7,
-     "mae_on": -4.14,
-     "mae_flush": -6.14,
-     "mae_gain": 2.0,
-     "exc_on": 4.86,
-     "exc_flush": 4.35,
-     "false_over": 0.32,
-     "lag_median": 1.0
+     "timed_share": 0.3,
+     "lift": 0.73,
+     "mae_on": -4.13,
+     "mae_flush": -6.1,
+     "mae_gain": 1.97,
+     "exc_on": 4.82,
+     "exc_flush": 4.43,
+     "false_over": 0.34,
+     "lag_median": 1.5
     },
-    "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+    "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
     "weight": 0.167
    },
    {
@@ -19034,30 +19211,30 @@
     "label": "First close above the prior 5d high (event, 10d decay)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 86,
+     "n_ep": 90,
+     "n_fired": 90,
      "fire_share": 1.0,
-     "timed_share": 0.3,
-     "lift": 0.84,
-     "mae_on": -11.59,
-     "mae_flush": -10.61,
-     "mae_gain": -0.98,
-     "exc_on": 0.38,
+     "timed_share": 0.32,
+     "lift": 0.87,
+     "mae_on": -11.21,
+     "mae_flush": -10.51,
+     "mae_gain": -0.7,
+     "exc_on": 0.69,
      "exc_flush": 1.45,
-     "false_over": 0.59,
+     "false_over": 0.58,
      "lag_median": 6.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.37,
-     "lift": 0.92,
-     "mae_on": -6.48,
-     "mae_flush": -6.14,
-     "mae_gain": -0.34,
-     "exc_on": 3.06,
-     "exc_flush": 4.35,
+     "timed_share": 0.4,
+     "lift": 0.97,
+     "mae_on": -6.42,
+     "mae_flush": -6.1,
+     "mae_gain": -0.32,
+     "exc_on": 3.1,
+     "exc_flush": 4.43,
      "false_over": 0.49,
      "lag_median": 4.0
     },
@@ -19119,7 +19296,7 @@
      "mae_on": -6.81,
      "mae_flush": -6.56,
      "mae_gain": -0.25,
-     "exc_on": -6.95,
+     "exc_on": -6.94,
      "exc_flush": 13.89,
      "false_over": 0.25,
      "lag_median": 28.0
@@ -19132,34 +19309,34 @@
     "label": "MACD histogram rising 2d or positive",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 86,
+     "n_ep": 90,
+     "n_fired": 90,
      "fire_share": 1.0,
-     "timed_share": 0.27,
-     "lift": 0.74,
-     "mae_on": -10.85,
-     "mae_flush": -10.61,
-     "mae_gain": -0.24,
-     "exc_on": 0.32,
+     "timed_share": 0.29,
+     "lift": 0.78,
+     "mae_on": -10.44,
+     "mae_flush": -10.51,
+     "mae_gain": 0.07,
+     "exc_on": 0.71,
      "exc_flush": 1.45,
-     "false_over": 0.56,
+     "false_over": 0.54,
      "lag_median": 3.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 67,
+     "n_ep": 70,
+     "n_fired": 70,
      "fire_share": 1.0,
-     "timed_share": 0.34,
-     "lift": 0.84,
-     "mae_on": -5.67,
-     "mae_flush": -6.14,
-     "mae_gain": 0.47,
-     "exc_on": 4.25,
-     "exc_flush": 4.35,
-     "false_over": 0.42,
+     "timed_share": 0.36,
+     "lift": 0.87,
+     "mae_on": -5.72,
+     "mae_flush": -6.1,
+     "mae_gain": 0.38,
+     "exc_on": 4.13,
+     "exc_flush": 4.43,
+     "false_over": 0.43,
      "lag_median": 4.0
     },
-    "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
+    "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
     "weight": 0.0
    },
    {
@@ -19167,31 +19344,31 @@
     "label": "2d rally >= +3% from within 2% of a 20d low (event, 10d decay)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 68,
+     "n_ep": 90,
+     "n_fired": 71,
      "fire_share": 0.79,
-     "timed_share": 0.31,
-     "lift": 0.86,
-     "mae_on": -12.99,
-     "mae_flush": -12.54,
-     "mae_gain": -0.45,
-     "exc_on": -0.83,
-     "exc_flush": 0.41,
-     "false_over": 0.66,
+     "timed_share": 0.34,
+     "lift": 0.91,
+     "mae_on": -12.57,
+     "mae_flush": -12.52,
+     "mae_gain": -0.05,
+     "exc_on": -0.54,
+     "exc_flush": 0.28,
+     "false_over": 0.65,
      "lag_median": 6.0
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 48,
-     "fire_share": 0.72,
-     "timed_share": 0.42,
-     "lift": 1.02,
-     "mae_on": -6.58,
-     "mae_flush": -7.67,
-     "mae_gain": 1.1,
-     "exc_on": 4.25,
-     "exc_flush": 3.97,
-     "false_over": 0.53,
+     "n_ep": 70,
+     "n_fired": 49,
+     "fire_share": 0.7,
+     "timed_share": 0.43,
+     "lift": 1.04,
+     "mae_on": -6.48,
+     "mae_flush": -7.51,
+     "mae_gain": 1.03,
+     "exc_on": 4.28,
+     "exc_flush": 4.05,
+     "false_over": 0.52,
      "lag_median": 4.0
     },
     "status": "not in set: no drawdown gain in either half; fires on the first bounce \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -19202,31 +19379,31 @@
     "label": "Close above 50dma",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 66,
-     "fire_share": 0.77,
-     "timed_share": 0.67,
-     "lift": 1.85,
-     "mae_on": -7.9,
-     "mae_flush": -9.86,
-     "mae_gain": 1.96,
-     "exc_on": 3.43,
-     "exc_flush": 2.8,
-     "false_over": 0.48,
-     "lag_median": 25.5
+     "n_ep": 90,
+     "n_fired": 70,
+     "fire_share": 0.78,
+     "timed_share": 0.69,
+     "lift": 1.84,
+     "mae_on": -7.96,
+     "mae_flush": -9.9,
+     "mae_gain": 1.94,
+     "exc_on": 3.34,
+     "exc_flush": 2.49,
+     "false_over": 0.47,
+     "lag_median": 24.5
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 58,
-     "fire_share": 0.87,
-     "timed_share": 0.55,
-     "lift": 1.35,
-     "mae_on": -3.94,
-     "mae_flush": -6.5,
-     "mae_gain": 2.56,
-     "exc_on": 2.08,
-     "exc_flush": 4.48,
-     "false_over": 0.29,
+     "n_ep": 70,
+     "n_fired": 59,
+     "fire_share": 0.84,
+     "timed_share": 0.56,
+     "lift": 1.36,
+     "mae_on": -4.04,
+     "mae_flush": -6.64,
+     "mae_gain": 2.6,
+     "exc_on": 2.03,
+     "exc_flush": 4.49,
+     "false_over": 0.28,
      "lag_median": 19.0
     },
     "status": "not in set: median lag ~30 td after the flush \u2014 too late to be a turning read \u2014 evidence: gain > 0 both halves",
@@ -19237,32 +19414,32 @@
     "label": "RSI higher-low divergence at a new 30d low (event, 10d decay)",
     "indices": 5,
     "is_": {
-     "n_ep": 86,
-     "n_fired": 35,
-     "fire_share": 0.41,
-     "timed_share": 0.23,
-     "lift": 0.63,
-     "mae_on": -12.27,
-     "mae_flush": -14.32,
-     "mae_gain": 2.05,
-     "exc_on": 3.05,
-     "exc_flush": -0.23,
-     "false_over": 0.63,
-     "lag_median": 4.0
+     "n_ep": 90,
+     "n_fired": 36,
+     "fire_share": 0.4,
+     "timed_share": 0.25,
+     "lift": 0.67,
+     "mae_on": -12.09,
+     "mae_flush": -14.5,
+     "mae_gain": 2.42,
+     "exc_on": 3.09,
+     "exc_flush": -0.52,
+     "false_over": 0.61,
+     "lag_median": 4.5
     },
     "oos": {
-     "n_ep": 67,
-     "n_fired": 19,
-     "fire_share": 0.28,
-     "timed_share": 0.47,
-     "lift": 1.16,
-     "mae_on": -5.14,
-     "mae_flush": -8.64,
-     "mae_gain": 3.5,
-     "exc_on": 6.83,
-     "exc_flush": 1.37,
-     "false_over": 0.47,
-     "lag_median": 18.0
+     "n_ep": 70,
+     "n_fired": 20,
+     "fire_share": 0.29,
+     "timed_share": 0.45,
+     "lift": 1.09,
+     "mae_on": -5.35,
+     "mae_flush": -8.81,
+     "mae_gain": 3.46,
+     "exc_on": 6.38,
+     "exc_flush": 1.6,
+     "false_over": 0.5,
+     "lag_median": 16.5
     },
     "status": "not in set: fires in a quarter of flushes; lift below 1 in-sample \u2014 evidence: gain > 0 both halves",
     "weight": 0.0
@@ -19315,5 +19492,81 @@
   "Flush, not over",
   "Turning",
   "Recovered"
- ]
+ ],
+ "intraday": {
+  "asof": "2026-10-22 15:28",
+  "quotes": {
+   "NDX": {
+    "fut": "NQ1 Index",
+    "contract": "NQZ6",
+    "time": "15:28:12",
+    "last": 29499.75,
+    "settle": 30007.0,
+    "settle_dt": "2026-10-21",
+    "used": true,
+    "cash_last": 29822.52,
+    "cash_last_dt": "2026-10-21",
+    "move_pct": -1.69,
+    "implied": 29318.39,
+    "implied_dt": "2026-10-22",
+    "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+   },
+   "SPX": {
+    "fut": "ES1 Index",
+    "contract": "ESZ6",
+    "time": "15:28:12",
+    "last": 7725.5,
+    "settle": 7800.25,
+    "settle_dt": "2026-10-21",
+    "used": true,
+    "cash_last": 7757.17,
+    "cash_last_dt": "2026-10-21",
+    "move_pct": -0.96,
+    "implied": 7682.83,
+    "implied_dt": "2026-10-22",
+    "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+   },
+   "NKY": {
+    "fut": "NK1 Index",
+    "contract": "NKZ6",
+    "time": "14:56:08",
+    "last": 63200.0,
+    "settle": 63200.0,
+    "settle_dt": "2026-10-22",
+    "used": false,
+    "cash_last": 62907.84,
+    "cash_last_dt": "2026-10-22",
+    "move_pct": 0.0,
+    "reason": "future unchanged since the settle that matches the cash close"
+   },
+   "KOSPI2": {
+    "fut": "KM1 Index",
+    "contract": "KMZ6",
+    "time": "14:45:00",
+    "last": 857.0,
+    "settle": 893.0500000000001,
+    "settle_dt": "2026-10-21",
+    "used": false,
+    "cash_last": 858.02,
+    "cash_last_dt": "2026-10-22",
+    "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+   },
+   "TWSE": {
+    "fut": "FT1 Index",
+    "contract": "FTX6",
+    "time": "15:13:10",
+    "last": 46173.0,
+    "settle": 46234.0,
+    "settle_dt": "2026-10-22",
+    "used": true,
+    "cash_last": 46041.43,
+    "cash_last_dt": "2026-10-22",
+    "move_pct": -0.13,
+    "implied": 45980.68,
+    "implied_dt": "2026-10-23",
+    "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+   }
+  },
+  "note": "price legs on futures-implied rows where a future has moved since the settle matching the cash close; vol / HY-OAS / FX / flow legs at last print. Indicative only \u2014 no alerts, not a Setups input."
+ }
 }

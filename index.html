@@ -2768,6 +2768,13 @@ function renderEquityBottoms(d) {
     card += '<div style="font-size:0.7rem;color:var(--text-dim);margin:4px 0 8px;">since ' + (s.state_since || '') + ' (' + (s.state_days || 0) + 'd)' +
             (st === 'Turning' && s.turn_from ? ' · from ' + s.turn_from : '') +
             (st === 'Recovered' && s.turn_from ? ' · turned from ' + s.turn_from : '') + '</div>';
+    // intraday run: price legs on a futures-implied row (bottoming_v2.py --intraday)
+    const ix = s.intraday;
+    if (ix && ix.used) {
+      card += '<div style="font-size:0.68rem;margin:-4px 0 8px;color:var(--amber);font-weight:600;">INTRADAY · ' +
+              (ix.contract || ix.fut) + ' ' + (ix.move_pct > 0 ? '+' : '') + ix.move_pct + '% since the ' + ix.settle_dt +
+              ' settle → implied ' + Number(ix.implied).toLocaleString() + ' <span style="color:var(--text-dim);font-weight:400;">(vol legs at last print)</span></div>';
+    }
     // composites
     card += '<div style="font-size:0.72rem;display:flex;justify-content:space-between;"><span>Capitulation <b>' + botFmt(s.cap, 2) + '</b></span><span style="color:var(--text-dim);">build ' + botFmt(th.t_build, 2) + ' · flush ' + botFmt(th.t_flush, 2) + '</span></div>';
     card += botBar(s.cap, [{ v: th.t_build, label: 'build', clr: 'var(--amber)' }, { v: th.t_flush, label: 'flush', clr: 'var(--red)' }], 'var(--amber)');
