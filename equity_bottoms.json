@@ -1,5 +1,5 @@
 {
- "_updated": "2026-10-22 15:27 (intraday, futures-implied)",
+ "_updated": "2026-10-22 21:18 (intraday, futures-implied)",
  "config": {
   "horizons": [
    "1W",
@@ -64,7 +64,7 @@
    "snapshot": {
     "date": "2026-10-21",
     "px": 29823.0,
-    "score": 0.171,
+    "score": 0.173,
     "cap_max": 1.0,
     "on": [
      "MTUM dd<=-10%"
@@ -82,24 +82,24 @@
     "state_since": "2026-08-05",
     "state_days": 56,
     "turn_from": "Capitulation building",
-    "cap": 0.171,
+    "cap": 0.173,
     "rec": 0.224,
     "state_changed": false,
     "prev_state": "Recovered",
     "intraday": {
      "fut": "NQ1 Index",
      "contract": "NQZ6",
-     "time": "15:28:12",
-     "last": 29499.75,
+     "time": "21:19:07",
+     "last": 29473.25,
      "settle": 30007.0,
      "settle_dt": "2026-10-21",
      "used": true,
      "cash_last": 29822.52,
      "cash_last_dt": "2026-10-21",
-     "move_pct": -1.69,
-     "implied": 29318.39,
+     "move_pct": -1.78,
+     "implied": 29292.05,
      "implied_dt": "2026-10-22",
-     "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+     "reason": "NQZ6 -1.78% since the 2026-10-21 settle"
     }
    },
    "capitulation": [
@@ -3807,12 +3807,12 @@
     },
     "snapshot": {
      "date": "2026-10-22",
-     "px": 29318.4,
+     "px": 29292.1,
      "state": "Recovered",
      "state_since": "2026-08-05",
      "state_days": 56,
      "turn_from": "Capitulation building",
-     "cap": 0.171,
+     "cap": 0.173,
      "rec": 0.224,
      "rec_meaningful": false,
      "cap_1d": 0.166,
@@ -3828,7 +3828,7 @@
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.261,
-       "value": 0.0
+       "value": 0.01
       },
       {
        "leg": "vix_level",
@@ -3894,7 +3894,7 @@
      "last_entry": "2026-08-04",
      "arm_thr": 0.385,
      "mode": "v2-turning",
-     "score": 0.171,
+     "score": 0.173,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -3902,17 +3902,17 @@
      "intraday": {
       "fut": "NQ1 Index",
       "contract": "NQZ6",
-      "time": "15:28:12",
-      "last": 29499.75,
+      "time": "21:19:07",
+      "last": 29473.25,
       "settle": 30007.0,
       "settle_dt": "2026-10-21",
       "used": true,
       "cash_last": 29822.52,
       "cash_last_dt": "2026-10-21",
-      "move_pct": -1.69,
-      "implied": 29318.39,
+      "move_pct": -1.78,
+      "implied": 29292.05,
       "implied_dt": "2026-10-22",
-      "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+      "reason": "NQZ6 -1.78% since the 2026-10-21 settle"
      }
     }
    },
@@ -4063,23 +4063,23 @@
     "state_days": 56,
     "turn_from": "Capitulation building",
     "cap": 0.176,
-    "rec": 0.268,
+    "rec": 0.221,
     "state_changed": false,
     "prev_state": "Recovered",
     "intraday": {
      "fut": "ES1 Index",
      "contract": "ESZ6",
-     "time": "15:28:12",
-     "last": 7725.5,
+     "time": "21:19:05",
+     "last": 7723.25,
      "settle": 7800.25,
      "settle_dt": "2026-10-21",
      "used": true,
      "cash_last": 7757.17,
      "cash_last_dt": "2026-10-21",
-     "move_pct": -0.96,
-     "implied": 7682.83,
+     "move_pct": -0.99,
+     "implied": 7680.6,
      "implied_dt": "2026-10-22",
-     "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+     "reason": "ESZ6 -0.99% since the 2026-10-21 settle"
     }
    },
    "capitulation": [
@@ -5470,7 +5470,7 @@
        "mae_on": -5.02,
        "mae_flush": -6.57,
        "mae_gain": 1.55,
-       "exc_on": 3.08,
+       "exc_on": 3.09,
        "exc_flush": 0.88,
        "false_over": 0.36,
        "lag_median": 9.0
@@ -7620,13 +7620,13 @@
     },
     "snapshot": {
      "date": "2026-10-22",
-     "px": 7682.8,
+     "px": 7680.6,
      "state": "Recovered",
      "state_since": "2026-08-05",
      "state_days": 56,
      "turn_from": "Capitulation building",
      "cap": 0.176,
-     "rec": 0.268,
+     "rec": 0.221,
      "rec_meaningful": false,
      "cap_1d": 0.176,
      "cap_5d": 0.163,
@@ -7661,7 +7661,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.167,
-       "value": 0.46
+       "value": 0.18
       },
       {
        "tell": "rv_down",
@@ -7709,17 +7709,17 @@
      "intraday": {
       "fut": "ES1 Index",
       "contract": "ESZ6",
-      "time": "15:28:12",
-      "last": 7725.5,
+      "time": "21:19:05",
+      "last": 7723.25,
       "settle": 7800.25,
       "settle_dt": "2026-10-21",
       "used": true,
       "cash_last": 7757.17,
       "cash_last_dt": "2026-10-21",
-      "move_pct": -0.96,
-      "implied": 7682.83,
+      "move_pct": -0.99,
+      "implied": 7680.6,
       "implied_dt": "2026-10-22",
-      "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+      "reason": "ESZ6 -0.99% since the 2026-10-21 settle"
      }
     }
    },
@@ -7849,7 +7849,7 @@
    "snapshot": {
     "date": "2026-10-22",
     "px": 62908.0,
-    "score": 0.195,
+    "score": 0.187,
     "cap_max": 1.0,
     "on": [],
     "recent_events": [],
@@ -7863,24 +7863,26 @@
     "v1_armed": false,
     "state": "Normal",
     "state_since": "2025-07-31",
-    "state_days": 298,
+    "state_days": 299,
     "turn_from": null,
-    "cap": 0.195,
-    "rec": 0.266,
+    "cap": 0.187,
+    "rec": 0.257,
     "state_changed": false,
     "prev_state": "Normal",
     "intraday": {
      "fut": "NK1 Index",
      "contract": "NKZ6",
-     "time": "14:56:08",
-     "last": 63200.0,
+     "time": "21:04:03",
+     "last": 63270.0,
      "settle": 63200.0,
      "settle_dt": "2026-10-22",
-     "used": false,
+     "used": true,
      "cash_last": 62907.84,
      "cash_last_dt": "2026-10-22",
-     "move_pct": 0.0,
-     "reason": "future unchanged since the settle that matches the cash close"
+     "move_pct": 0.11,
+     "implied": 62977.52,
+     "implied_dt": "2026-10-23",
+     "reason": "NKZ6 +0.11% since the 2026-10-22 settle"
     }
    },
    "capitulation": [
@@ -8573,9 +8575,9 @@
     "key": "NKY",
     "name": "Nikkei 225",
     "sample_start": "2001-01-04",
-    "sample_end": "2026-10-22",
-    "n_days": 6319,
-    "split_date": "2013-11-13",
+    "sample_end": "2026-10-23",
+    "n_days": 6320,
+    "split_date": "2013-11-14",
     "rationale": "Nikkei has no positioning series, so capitulation is price-and-vol: the strong-down trend score, RSI14 and VNKY's 1y percentile share the weight, drawdown confirms. US VIX and HY OAS were tested and do not help in-sample \u2014 Japan's 2001-13 bears were local. Nikkei is the weakest market for this read: Turning's 3M excess is positive but its 2001-13 record is poor (a 12-year bear with repeated false bottoms).",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -8587,21 +8589,21 @@
     },
     "thresholds": {
      "t_build": 0.452,
-     "t_flush": 0.589,
+     "t_flush": 0.59,
      "t_rec": 0.5,
      "t_exit": 0.352,
      "t_rec_exit": 0.35,
      "is_lows": 17,
      "recall_build_is": 0.7647058823529411,
      "recall_flush_is": 0.47058823529411764,
-     "cap_pct_build_is": 0.1002,
+     "cap_pct_build_is": 0.1001,
      "cap_pct_flush_is": 0.0502
     },
     "cap_weights": {
-     "trend_dn": 0.30470697083339593,
-     "rsi14": 0.2863680955519158,
-     "own_vol_pct": 0.267498996438699,
-     "dd_1y": 0.14142593717598925
+     "trend_dn": 0.30421644526004354,
+     "rsi14": 0.2856696502613544,
+     "own_vol_pct": 0.26890659190737837,
+     "dd_1y": 0.14120731257122376
     },
     "rec_weights": {
      "iv_off_peak": 0.2,
@@ -8623,12 +8625,12 @@
        "on_share": 0.1743,
        "on_off_1m": 0.92,
        "mae_on": -10.22,
-       "mae_off": -7.11,
-       "mae_gain": -3.11
+       "mae_off": -7.1,
+       "mae_gain": -3.12
       },
       "oos": {
        "n_on": 188,
-       "lift": 4.36,
+       "lift": 4.35,
        "excess": 5.42,
        "on_off": 5.91,
        "on_share": 0.0607,
@@ -8638,9 +8640,9 @@
        "mae_gain": 3.35
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "kept",
-      "weight": 0.305
+      "weight": 0.304
      },
      {
       "leg": "rsi14",
@@ -8669,7 +8671,7 @@
        "mae_gain": -1.14
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "kept",
       "weight": 0.286
      },
@@ -8679,10 +8681,10 @@
       "starts": "2001-06-28",
       "is_": {
        "n_on": 473,
-       "lift": 1.68,
+       "lift": 1.69,
        "excess": 3.56,
        "on_off": 3.96,
-       "on_share": 0.1556,
+       "on_share": 0.1555,
        "on_off_1m": 1.95,
        "mae_on": -7.41,
        "mae_off": -7.91,
@@ -8691,8 +8693,8 @@
       "oos": {
        "n_on": 432,
        "lift": 2.55,
-       "excess": 3.63,
-       "on_off": 4.37,
+       "excess": 3.64,
+       "on_off": 4.38,
        "on_share": 0.1395,
        "on_off_1m": 1.89,
        "mae_on": -5.08,
@@ -8700,9 +8702,9 @@
        "mae_gain": 0.96
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "kept",
-      "weight": 0.267
+      "weight": 0.269
      },
      {
       "leg": "dd_1y",
@@ -8712,8 +8714,8 @@
        "n_on": 1243,
        "lift": 1.33,
        "excess": 2.02,
-       "on_off": 3.37,
-       "on_share": 0.401,
+       "on_off": 3.38,
+       "on_share": 0.4008,
        "on_off_1m": 1.05,
        "mae_on": -9.44,
        "mae_off": -7.07,
@@ -8721,7 +8723,7 @@
       },
       "oos": {
        "n_on": 322,
-       "lift": 2.92,
+       "lift": 2.91,
        "excess": 3.57,
        "on_off": 4.13,
        "on_share": 0.104,
@@ -8731,7 +8733,7 @@
        "mae_gain": 1.93
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "kept",
       "weight": 0.141
      },
@@ -8741,7 +8743,7 @@
       "starts": "2001-06-28",
       "is_": {
        "n_on": 465,
-       "lift": 1.17,
+       "lift": 1.18,
        "excess": -0.31,
        "on_off": -0.6,
        "on_share": 0.1532,
@@ -8762,7 +8764,7 @@
        "mae_gain": -1.66
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "pruned: <= 0 in-sample",
       "weight": 0.0
      },
@@ -8775,7 +8777,7 @@
        "lift": 1.26,
        "excess": 1.74,
        "on_off": 1.8,
-       "on_share": 0.1004,
+       "on_share": 0.1003,
        "on_off_1m": -0.41,
        "mae_on": -9.97,
        "mae_off": -7.83,
@@ -8783,7 +8785,7 @@
       },
       "oos": {
        "n_on": 90,
-       "lift": 3.1,
+       "lift": 3.09,
        "excess": 7.15,
        "on_off": 7.49,
        "on_share": 0.0291,
@@ -8793,8 +8795,8 @@
        "mae_gain": 2.16
       },
       "note": null,
-      "split": "2013-11-13",
-      "status": "pruned: no gain in combination (9.95 vs 11.33)",
+      "split": "2013-11-14",
+      "status": "pruned: no gain in combination (9.96 vs 11.33)",
       "weight": 0.0
      },
      {
@@ -8806,15 +8808,15 @@
        "lift": 1.42,
        "excess": -0.14,
        "on_off": -0.31,
-       "on_share": 0.0811,
-       "on_off_1m": -0.94,
+       "on_share": 0.081,
+       "on_off_1m": -0.95,
        "mae_on": -12.34,
        "mae_off": -7.24,
        "mae_gain": -5.1
       },
       "oos": {
        "n_on": 83,
-       "lift": 3.49,
+       "lift": 3.48,
        "excess": 6.44,
        "on_off": 6.75,
        "on_share": 0.0268,
@@ -8824,7 +8826,7 @@
        "mae_gain": -1.47
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "pruned: <= 0 in-sample",
       "weight": 0.0
      },
@@ -8851,11 +8853,11 @@
        "on_share": 0.0236,
        "on_off_1m": 1.84,
        "mae_on": -5.18,
-       "mae_off": -5.92,
-       "mae_gain": 0.74
+       "mae_off": -5.93,
+       "mae_gain": 0.75
       },
       "note": null,
-      "split": "2013-11-13",
+      "split": "2013-11-14",
       "status": "pruned: no gain in combination (8.96 vs 9.99)",
       "weight": 0.0
      },
@@ -8870,9 +8872,9 @@
        },
        {
         "leg": "rsi14",
-        "obj": 8.43,
-        "excess": 4.85,
-        "lift": 1.74
+        "obj": 8.51,
+        "excess": 4.86,
+        "lift": 1.75
        },
        {
         "leg": "own_vol_pct",
@@ -9289,7 +9291,7 @@
       "depth": -30.7,
       "rally_3m": 11.0,
       "rally_to_next": 11.0,
-      "cap_max_15d": 0.53,
+      "cap_max_15d": 0.54,
       "flushed": false,
       "caught": true,
       "lag_td": 5,
@@ -9305,7 +9307,7 @@
       "depth": -36.5,
       "rally_3m": 31.3,
       "rally_to_next": 46.7,
-      "cap_max_15d": 0.44,
+      "cap_max_15d": 0.43,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -9913,7 +9915,7 @@
       "depth": -13.2,
       "rally_3m": 41.7,
       "rally_to_next": 41.7,
-      "cap_max_15d": 0.33,
+      "cap_max_15d": 0.34,
       "flushed": false,
       "caught": false,
       "lag_td": null,
@@ -10739,7 +10741,7 @@
         "hit": 47.0,
         "median": -0.12,
         "mean": 0.5,
-        "excess": 0.19,
+        "excess": 0.2,
         "t": 0.2
        },
        "3M": {
@@ -10747,11 +10749,11 @@
         "hit": 57.0,
         "median": 0.66,
         "mean": 3.18,
-        "excess": 2.27,
-        "t": 1.87,
+        "excess": 2.28,
+        "t": 1.88,
         "ci95": [
-         0.05,
-         4.56
+         0.06,
+         4.57
         ]
        },
        "6M": {
@@ -10760,7 +10762,7 @@
         "median": 4.13,
         "mean": 5.98,
         "excess": 3.73,
-        "t": 2.28
+        "t": 2.29
        },
        "mae_mean": -5.43,
        "mae_worst": -18.08
@@ -10824,18 +10826,18 @@
         "median": 0.67,
         "mean": 1.85,
         "excess": 0.82,
-        "t": 0.53
+        "t": 0.54
        },
        "3M": {
         "n": 16,
         "hit": 62.0,
         "median": 1.11,
         "mean": 2.8,
-        "excess": -0.21,
-        "t": -0.16,
+        "excess": -0.2,
+        "t": -0.15,
         "ci95": [
          -2.66,
-         2.33
+         2.35
         ]
        },
        "6M": {
@@ -10843,8 +10845,8 @@
         "hit": 50.0,
         "median": 1.11,
         "mean": 6.62,
-        "excess": -0.07,
-        "t": -0.04
+        "excess": -0.06,
+        "t": -0.03
        },
        "mae_mean": -4.96,
        "mae_worst": -15.15
@@ -10881,7 +10883,7 @@
         "t": 1.26,
         "ci95": [
          -1.38,
-         4.27
+         4.28
         ]
        },
        "6M": {
@@ -10889,7 +10891,7 @@
         "hit": 67.0,
         "median": 3.73,
         "mean": 4.47,
-        "excess": 2.75,
+        "excess": 2.76,
         "t": 2.25
        },
        "mae_mean": -7.8,
@@ -10965,7 +10967,7 @@
         "hit": 84.0,
         "median": 5.56,
         "mean": 6.97,
-        "excess": 3.04,
+        "excess": 3.05,
         "t": 2.1,
         "ci95": [
          0.33,
@@ -10977,8 +10979,8 @@
         "hit": 88.0,
         "median": 9.9,
         "mean": 12.96,
-        "excess": 3.95,
-        "t": 2.38
+        "excess": 3.96,
+        "t": 2.39
        },
        "mae_mean": -5.08,
        "mae_worst": -24.58
@@ -11300,34 +11302,34 @@
      }
     },
     "snapshot": {
-     "date": "2026-10-22",
-     "px": 62907.8,
+     "date": "2026-10-23",
+     "px": 62977.5,
      "state": "Normal",
      "state_since": "2025-07-31",
-     "state_days": 298,
+     "state_days": 299,
      "turn_from": null,
-     "cap": 0.195,
-     "rec": 0.266,
+     "cap": 0.187,
+     "rec": 0.257,
      "rec_meaningful": false,
-     "cap_1d": 0.04,
-     "cap_5d": 0.146,
+     "cap_1d": 0.195,
+     "cap_5d": 0.033,
      "legs": [
       {
        "leg": "trend_dn",
        "label": "Trend score strong-down (-0.2 -> -0.8)",
-       "weight": 0.305,
+       "weight": 0.304,
        "value": 0.0
       },
       {
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.286,
-       "value": 0.17
+       "value": 0.15
       },
       {
        "leg": "own_vol_pct",
        "label": "Own implied vol, 1y percentile (stress above 75th)",
-       "weight": 0.267,
+       "weight": 0.269,
        "value": 0.33
       },
       {
@@ -11348,7 +11350,7 @@
        "tell": "rv_down",
        "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
        "weight": 0.2,
-       "value": 0.33
+       "value": 0.28
       },
       {
        "tell": "vix_term_back",
@@ -11369,14 +11371,14 @@
        "value": 0.0
       }
      ],
-     "next_state": "Capitulation building when the capitulation composite reaches 0.45 (now 0.20).",
+     "next_state": "Capitulation building when the capitulation composite reaches 0.45 (now 0.19).",
      "armed": false,
      "entry_today": false,
      "entry_active_10d": false,
      "last_entry": "2025-04-23",
      "arm_thr": 0.452,
      "mode": "v2-turning",
-     "score": 0.195,
+     "score": 0.187,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -11384,15 +11386,17 @@
      "intraday": {
       "fut": "NK1 Index",
       "contract": "NKZ6",
-      "time": "14:56:08",
-      "last": 63200.0,
+      "time": "21:04:03",
+      "last": 63270.0,
       "settle": 63200.0,
       "settle_dt": "2026-10-22",
-      "used": false,
+      "used": true,
       "cash_last": 62907.84,
       "cash_last_dt": "2026-10-22",
-      "move_pct": 0.0,
-      "reason": "future unchanged since the settle that matches the cash close"
+      "move_pct": 0.11,
+      "implied": 62977.52,
+      "implied_dt": "2026-10-23",
+      "reason": "NKZ6 +0.11% since the 2026-10-22 settle"
      }
     }
    },
@@ -11523,7 +11527,7 @@
    "snapshot": {
     "date": "2026-10-22",
     "px": 858.0,
-    "score": 0.494,
+    "score": 0.497,
     "cap_max": 1.0,
     "on": [
      "dd<=-15%",
@@ -11542,23 +11546,26 @@
     "v1_armed": true,
     "state": "Flush, not over",
     "state_since": "2026-10-13",
-    "state_days": 8,
+    "state_days": 9,
     "turn_from": null,
-    "cap": 0.494,
+    "cap": 0.497,
     "rec": 0.243,
     "state_changed": false,
     "prev_state": "Flush, not over",
     "intraday": {
      "fut": "KM1 Index",
      "contract": "KMZ6",
-     "time": "14:45:00",
-     "last": 857.0,
-     "settle": 893.0500000000001,
-     "settle_dt": "2026-10-21",
-     "used": false,
+     "time": "20:59:07",
+     "last": 855.95,
+     "settle": 857.0,
+     "settle_dt": "2026-10-22",
+     "used": true,
      "cash_last": 858.02,
      "cash_last_dt": "2026-10-22",
-     "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+     "move_pct": -0.12,
+     "implied": 856.97,
+     "implied_dt": "2026-10-23",
+     "reason": "KMZ6 -0.12% since the 2026-10-22 settle"
     }
    },
    "capitulation": [
@@ -12536,31 +12543,31 @@
     ],
     "mae_mean": -7.66,
     "mae_worst": -40.94,
-    "t_3M": 1.77,
+    "t_3M": 1.78,
     "ci95_3M": [
-     -1.64,
-     9.7
+     -1.63,
+     9.74
     ],
     "1M": {
      "n": 44,
      "mean": 1.56,
      "median": 3.11,
      "hit": 59.0,
-     "excess": 0.39
+     "excess": 0.4
     },
     "3M": {
      "n": 43,
      "mean": 8.01,
      "median": 5.11,
      "hit": 67.0,
-     "excess": 4.27
+     "excess": 4.29
     },
     "6M": {
      "n": 42,
      "mean": 12.56,
      "median": 6.9,
      "hit": 67.0,
-     "excess": 4.44
+     "excess": 4.47
     },
     "first": "2001-02-14",
     "last": "2026-08-12"
@@ -12569,8 +12576,8 @@
     "key": "KOSPI2",
     "name": "KOSPI 200",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-10-22",
-    "n_days": 6364,
+    "sample_end": "2026-10-23",
+    "n_days": 6365,
     "split_date": "2013-11-01",
     "rationale": "Korea is read on its OWN tape, not global vol: the VKOSPI level, the one-day crash flush, RSI14 and the strong-down trend score share the weight; drawdown, VRP, KRW stress and the foreign-flow washout were candidates and add nothing to the mix. The VIX / HY OAS-led set was tried first and catches almost none of Korea's 10-15% local dips (2 of 13); the local set catches 5 of 13 and more of the deep lows at the same hit rate. The old flow trigger was tested as a recovery tell and fires in too few episodes to measure, so it is not in the composite.",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
@@ -12625,15 +12632,15 @@
        "mae_gain": -2.22
       },
       "oos": {
-       "n_on": 175,
-       "lift": 2.48,
-       "excess": 2.52,
-       "on_off": 2.71,
-       "on_share": 0.0561,
-       "on_off_1m": 0.95,
-       "mae_on": -12.33,
+       "n_on": 176,
+       "lift": 2.49,
+       "excess": 2.49,
+       "on_off": 2.67,
+       "on_share": 0.0564,
+       "on_off_1m": 1.02,
+       "mae_on": -12.37,
        "mae_off": -5.52,
-       "mae_gain": -6.81
+       "mae_gain": -6.85
       },
       "note": null,
       "split": "2013-11-01",
@@ -12656,15 +12663,15 @@
        "mae_gain": -2.6
       },
       "oos": {
-       "n_on": 115,
-       "lift": 2.96,
-       "excess": 4.83,
-       "on_off": 5.05,
-       "on_share": 0.0369,
-       "on_off_1m": -1.63,
-       "mae_on": -11.24,
+       "n_on": 116,
+       "lift": 2.98,
+       "excess": 4.6,
+       "on_off": 4.82,
+       "on_share": 0.0372,
+       "on_off_1m": -1.59,
+       "mae_on": -11.32,
        "mae_off": -5.7,
-       "mae_gain": -5.54
+       "mae_gain": -5.62
       },
       "note": null,
       "split": "2013-11-01",
@@ -12688,14 +12695,14 @@
       },
       "oos": {
        "n_on": 110,
-       "lift": 2.87,
+       "lift": 2.86,
        "excess": 4.24,
        "on_off": 4.43,
        "on_share": 0.0353,
-       "on_off_1m": 3.08,
+       "on_off_1m": 3.07,
        "mae_on": -4.24,
-       "mae_off": -5.96,
-       "mae_gain": 1.72
+       "mae_off": -5.97,
+       "mae_gain": 1.73
       },
       "note": null,
       "split": "2013-11-01",
@@ -12722,8 +12729,8 @@
        "lift": 2.85,
        "excess": 3.48,
        "on_off": 4.17,
-       "on_share": 0.1552,
-       "on_off_1m": 2.66,
+       "on_share": 0.1551,
+       "on_off_1m": 2.65,
        "mae_on": -4.85,
        "mae_off": -6.1,
        "mae_gain": 1.25
@@ -12749,15 +12756,15 @@
        "mae_gain": -2.68
       },
       "oos": {
-       "n_on": 563,
+       "n_on": 564,
        "lift": 2.68,
-       "excess": 1.6,
-       "on_off": 2.0,
-       "on_share": 0.1805,
-       "on_off_1m": 1.31,
-       "mae_on": -6.08,
+       "excess": 1.54,
+       "on_off": 1.93,
+       "on_share": 0.1808,
+       "on_off_1m": 1.3,
+       "mae_on": -6.11,
        "mae_off": -5.86,
-       "mae_gain": -0.22
+       "mae_gain": -0.25
       },
       "note": null,
       "split": "2013-11-01",
@@ -12780,15 +12787,15 @@
        "mae_gain": -0.19
       },
       "oos": {
-       "n_on": 322,
+       "n_on": 323,
        "lift": 2.96,
-       "excess": -0.54,
-       "on_off": -0.56,
-       "on_share": 0.1032,
-       "on_off_1m": 1.58,
-       "mae_on": -8.54,
+       "excess": -0.57,
+       "on_off": -0.59,
+       "on_share": 0.1035,
+       "on_off_1m": 1.6,
+       "mae_on": -8.57,
        "mae_off": -5.6,
-       "mae_gain": -2.94
+       "mae_gain": -2.97
       },
       "note": null,
       "split": "2013-11-01",
@@ -12813,13 +12820,13 @@
       "oos": {
        "n_on": 411,
        "lift": 1.13,
-       "excess": 0.56,
-       "on_off": 0.69,
-       "on_share": 0.1318,
+       "excess": 0.58,
+       "on_off": 0.71,
+       "on_share": 0.1317,
        "on_off_1m": -0.61,
        "mae_on": -6.88,
-       "mae_off": -5.75,
-       "mae_gain": -1.13
+       "mae_off": -5.76,
+       "mae_gain": -1.12
       },
       "note": null,
       "split": "2013-11-01",
@@ -12842,15 +12849,15 @@
        "mae_gain": -3.42
       },
       "oos": {
-       "n_on": 592,
-       "lift": 1.9,
-       "excess": 1.53,
-       "on_off": 1.93,
-       "on_share": 0.1898,
-       "on_off_1m": 0.11,
-       "mae_on": -8.09,
+       "n_on": 593,
+       "lift": 1.91,
+       "excess": 1.52,
+       "on_off": 1.92,
+       "on_share": 0.1901,
+       "on_off_1m": 0.13,
+       "mae_on": -8.11,
        "mae_off": -5.39,
-       "mae_gain": -2.7
+       "mae_gain": -2.72
       },
       "note": null,
       "split": "2013-11-01",
@@ -12875,10 +12882,10 @@
       "oos": {
        "n_on": 103,
        "lift": 2.04,
-       "excess": 2.87,
-       "on_off": 3.01,
+       "excess": 2.95,
+       "on_off": 3.09,
        "on_share": 0.033,
-       "on_off_1m": 2.78,
+       "on_off_1m": 2.81,
        "mae_on": -7.52,
        "mae_off": -5.85,
        "mae_gain": -1.67
@@ -12945,8 +12952,8 @@
        "mae_on": -5.21,
        "mae_flush": -3.15,
        "mae_gain": -2.05,
-       "exc_on": 5.45,
-       "exc_flush": 7.41,
+       "exc_on": 5.47,
+       "exc_flush": 7.42,
        "false_over": 0.37,
        "lag_median": 3.0
       },
@@ -12975,12 +12982,12 @@
        "n_fired": 19,
        "fire_share": 1.0,
        "timed_share": 0.58,
-       "lift": 1.35,
+       "lift": 1.36,
        "mae_on": -3.8,
        "mae_flush": -3.15,
        "mae_gain": -0.65,
-       "exc_on": 5.32,
-       "exc_flush": 7.41,
+       "exc_on": 5.34,
+       "exc_flush": 7.42,
        "false_over": 0.42,
        "lag_median": 8.0
       },
@@ -13013,8 +13020,8 @@
        "mae_on": -4.27,
        "mae_flush": -3.15,
        "mae_gain": -1.11,
-       "exc_on": 5.12,
-       "exc_flush": 7.41,
+       "exc_on": 5.13,
+       "exc_flush": 7.42,
        "false_over": 0.37,
        "lag_median": 10.0
       },
@@ -13077,12 +13084,12 @@
        "n_fired": 19,
        "fire_share": 1.0,
        "timed_share": 0.42,
-       "lift": 0.98,
+       "lift": 0.99,
        "mae_on": -2.17,
        "mae_flush": -3.15,
        "mae_gain": 0.98,
-       "exc_on": 7.31,
-       "exc_flush": 7.41,
+       "exc_on": 7.32,
+       "exc_flush": 7.42,
        "false_over": 0.26,
        "lag_median": 0.0
       },
@@ -13115,8 +13122,8 @@
        "mae_on": -4.39,
        "mae_flush": -3.15,
        "mae_gain": -1.24,
-       "exc_on": 5.67,
-       "exc_flush": 7.41,
+       "exc_on": 5.69,
+       "exc_flush": 7.42,
        "false_over": 0.32,
        "lag_median": 4.0
       },
@@ -13149,8 +13156,8 @@
        "mae_on": -2.89,
        "mae_flush": -3.61,
        "mae_gain": 0.72,
-       "exc_on": 5.56,
-       "exc_flush": 9.19,
+       "exc_on": 5.58,
+       "exc_flush": 9.21,
        "false_over": 0.31,
        "lag_median": 19.0
       },
@@ -13172,12 +13179,12 @@
        "n_fired": 4,
        "fire_share": 0.21,
        "timed_share": 0.75,
-       "lift": 1.75,
+       "lift": 1.76,
        "mae_on": -6.81,
        "mae_flush": -6.56,
        "mae_gain": -0.25,
-       "exc_on": -6.94,
-       "exc_flush": 13.89,
+       "exc_on": -6.87,
+       "exc_flush": 13.96,
        "false_over": 0.25,
        "lag_median": 28.0
       },
@@ -13210,8 +13217,8 @@
        "mae_on": -4.36,
        "mae_flush": -3.15,
        "mae_gain": -1.2,
-       "exc_on": 4.44,
-       "exc_flush": 7.41,
+       "exc_on": 4.46,
+       "exc_flush": 7.42,
        "false_over": 0.32,
        "lag_median": 3.0
       },
@@ -13244,8 +13251,8 @@
        "mae_on": -5.89,
        "mae_flush": -4.42,
        "mae_gain": -1.46,
-       "exc_on": 7.03,
-       "exc_flush": 9.42,
+       "exc_on": 7.06,
+       "exc_flush": 9.45,
        "false_over": 0.4,
        "lag_median": 3.5
       },
@@ -13278,8 +13285,8 @@
        "mae_on": -2.75,
        "mae_flush": -3.54,
        "mae_gain": 0.79,
-       "exc_on": 4.9,
-       "exc_flush": 9.35,
+       "exc_on": 4.93,
+       "exc_flush": 9.37,
        "false_over": 0.21,
        "lag_median": 17.5
       },
@@ -14162,8 +14169,8 @@
      "Flush, not over": {
       "all": {
        "n": 31,
-       "days": 542,
-       "near_low_share": 0.554,
+       "days": 543,
+       "near_low_share": 0.552,
        "first": "2001-01-10",
        "last": "2026-10-13",
        "last5": [
@@ -14178,19 +14185,19 @@
         "hit": 73.0,
         "median": 4.99,
         "mean": 4.75,
-        "excess": 3.72,
-        "t": 2.88
+        "excess": 3.74,
+        "t": 2.9
        },
        "3M": {
         "n": 30,
         "hit": 73.0,
         "median": 11.0,
         "mean": 11.16,
-        "excess": 7.22,
-        "t": 2.33,
+        "excess": 7.25,
+        "t": 2.34,
         "ci95": [
-         1.34,
-         14.71
+         1.35,
+         14.77
         ]
        },
        "6M": {
@@ -14198,8 +14205,8 @@
         "hit": 72.0,
         "median": 9.09,
         "mean": 14.69,
-        "excess": 6.62,
-        "t": 1.79
+        "excess": 6.66,
+        "t": 1.8
        },
        "mae_mean": -7.22,
        "mae_worst": -32.73
@@ -14250,8 +14257,8 @@
       },
       "oos": {
        "n": 12,
-       "days": 197,
-       "near_low_share": 0.523,
+       "days": 198,
+       "near_low_share": 0.52,
        "first": "2015-08-21",
        "last": "2026-10-13",
        "last5": [
@@ -14266,19 +14273,19 @@
         "hit": 64.0,
         "median": 4.46,
         "mean": 2.73,
-        "excess": 0.76,
-        "t": 0.46
+        "excess": 0.8,
+        "t": 0.49
        },
        "3M": {
         "n": 11,
         "hit": 73.0,
         "median": 4.91,
         "mean": 14.7,
-        "excess": 7.6,
-        "t": 1.15,
+        "excess": 7.68,
+        "t": 1.16,
         "ci95": [
-         -7.2,
-         20.39
+         -7.11,
+         20.53
         ]
        },
        "6M": {
@@ -14286,8 +14293,8 @@
         "hit": 80.0,
         "median": 9.67,
         "mean": 16.25,
-        "excess": 1.87,
-        "t": 0.72
+        "excess": 1.99,
+        "t": 0.77
        },
        "mae_mean": -7.47,
        "mae_worst": -32.73
@@ -14312,19 +14319,19 @@
         "hit": 59.0,
         "median": 3.11,
         "mean": 1.56,
-        "excess": 0.39,
-        "t": 0.32
+        "excess": 0.4,
+        "t": 0.34
        },
        "3M": {
         "n": 43,
         "hit": 67.0,
         "median": 5.11,
         "mean": 8.01,
-        "excess": 4.27,
-        "t": 1.77,
+        "excess": 4.29,
+        "t": 1.78,
         "ci95": [
-         -1.64,
-         9.7
+         -1.63,
+         9.74
         ]
        },
        "6M": {
@@ -14332,8 +14339,8 @@
         "hit": 67.0,
         "median": 6.9,
         "mean": 12.56,
-        "excess": 4.44,
-        "t": 1.79
+        "excess": 4.47,
+        "t": 1.81
        },
        "mae_mean": -7.66,
        "mae_worst": -40.94
@@ -14400,19 +14407,19 @@
         "hit": 68.0,
         "median": 4.53,
         "mean": 1.63,
-        "excess": -0.23,
-        "t": -0.13
+        "excess": -0.2,
+        "t": -0.11
        },
        "3M": {
         "n": 21,
         "hit": 67.0,
         "median": 5.52,
         "mean": 10.12,
-        "excess": 4.53,
-        "t": 1.23,
+        "excess": 4.57,
+        "t": 1.24,
         "ci95": [
-         -3.15,
-         12.63
+         -3.09,
+         12.72
         ]
        },
        "6M": {
@@ -14420,8 +14427,8 @@
         "hit": 75.0,
         "median": 7.93,
         "mean": 17.88,
-        "excess": 5.58,
-        "t": 2.06
+        "excess": 5.64,
+        "t": 2.09
        },
        "mae_mean": -6.4,
        "mae_worst": -40.94
@@ -14443,19 +14450,19 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.12,
-         "t": 0.07
+         "excess": 0.14,
+         "t": 0.08
         },
         "3M": {
          "n": 28,
          "hit": 64.0,
          "median": 4.92,
          "mean": 9.05,
-         "excess": 4.67,
-         "t": 1.34,
+         "excess": 4.7,
+         "t": 1.35,
          "ci95": [
-          -3.64,
-          11.82
+          -3.63,
+          11.9
          ]
         },
         "6M": {
@@ -14463,8 +14470,8 @@
          "hit": 59.0,
          "median": 6.41,
          "mean": 12.2,
-         "excess": 3.36,
-         "t": 1.0
+         "excess": 3.4,
+         "t": 1.01
         },
         "mae_mean": -9.52,
         "mae_worst": -40.94
@@ -14771,7 +14778,7 @@
       "is_excess": 1.42,
       "oos_n": 21,
       "oos_hit": 71.0,
-      "oos_excess": 7.96,
+      "oos_excess": 7.99,
       "is_mae": -10.46,
       "oos_mae": -3.55
      },
@@ -14782,7 +14789,7 @@
       "is_excess": 1.55,
       "oos_n": 23,
       "oos_hit": 65.0,
-      "oos_excess": 3.27,
+      "oos_excess": 3.33,
       "is_mae": -10.57,
       "oos_mae": -6.17
      },
@@ -14793,7 +14800,7 @@
       "is_excess": 4.03,
       "oos_n": 21,
       "oos_hit": 67.0,
-      "oos_excess": 4.53,
+      "oos_excess": 4.57,
       "is_mae": -8.86,
       "oos_mae": -6.4
      },
@@ -14804,7 +14811,7 @@
       "is_excess": 4.22,
       "oos_n": 21,
       "oos_hit": 67.0,
-      "oos_excess": 4.13,
+      "oos_excess": 4.16,
       "is_mae": -8.5,
       "oos_mae": -4.23
      },
@@ -14815,7 +14822,7 @@
       "is_excess": 2.23,
       "oos_n": 20,
       "oos_hit": 70.0,
-      "oos_excess": 3.22,
+      "oos_excess": 3.25,
       "is_mae": -9.93,
       "oos_mae": -4.58
      }
@@ -14838,18 +14845,18 @@
         "hit": 62.0,
         "median": 5.5,
         "mean": 3.62,
-        "excess": 1.13,
-        "t": 0.45
+        "excess": 1.17,
+        "t": 0.47
        },
        "3M": {
         "n": 7,
         "hit": 86.0,
         "median": 9.27,
         "mean": 8.27,
-        "excess": 0.7,
-        "t": 0.1,
+        "excess": 0.74,
+        "t": 0.11,
         "ci95": [
-         -17.79,
+         -17.65,
          11.28
         ]
        },
@@ -14920,18 +14927,18 @@
         "hit": 60.0,
         "median": 3.42,
         "mean": 3.44,
-        "excess": -1.75,
-        "t": -0.67
+        "excess": -1.69,
+        "t": -0.65
        },
        "3M": {
         "n": 4,
         "hit": 75.0,
         "median": 15.1,
         "mean": 9.3,
-        "excess": -7.91,
+        "excess": -7.83,
         "t": -0.8,
         "ci95": [
-         -37.57,
+         -37.27,
          2.76
         ]
        },
@@ -14966,19 +14973,19 @@
         "hit": 51.0,
         "median": 0.29,
         "mean": 0.16,
-        "excess": -1.18,
-        "t": -0.97
+        "excess": -1.17,
+        "t": -0.96
        },
        "3M": {
         "n": 57,
         "hit": 65.0,
         "median": 4.31,
         "mean": 5.15,
-        "excess": 0.68,
-        "t": 0.39,
+        "excess": 0.7,
+        "t": 0.4,
         "ci95": [
-         -3.6,
-         4.72
+         -3.59,
+         4.73
         ]
        },
        "6M": {
@@ -14986,8 +14993,8 @@
         "hit": 60.0,
         "median": 5.66,
         "mean": 10.42,
-        "excess": 1.62,
-        "t": 1.01
+        "excess": 1.64,
+        "t": 1.02
        },
        "mae_mean": -8.87,
        "mae_worst": -40.94
@@ -15054,19 +15061,19 @@
         "hit": 63.0,
         "median": 2.33,
         "mean": 1.16,
-        "excess": -0.58,
-        "t": -0.33
+        "excess": -0.56,
+        "t": -0.32
        },
        "3M": {
         "n": 30,
         "hit": 63.0,
         "median": 4.31,
         "mean": 7.19,
-        "excess": 1.12,
-        "t": 0.45,
+        "excess": 1.16,
+        "t": 0.46,
         "ci95": [
-         -5.22,
-         6.57
+         -5.16,
+         6.61
         ]
        },
        "6M": {
@@ -15074,8 +15081,8 @@
         "hit": 71.0,
         "median": 9.11,
         "mean": 14.52,
-        "excess": 2.23,
-        "t": 1.07
+        "excess": 2.28,
+        "t": 1.09
        },
        "mae_mean": -7.57,
        "mae_worst": -40.94
@@ -15104,19 +15111,19 @@
         "hit": 59.0,
         "median": 3.11,
         "mean": 1.56,
-        "excess": 0.39,
-        "t": 0.32
+        "excess": 0.4,
+        "t": 0.34
        },
        "3M": {
         "n": 43,
         "hit": 67.0,
         "median": 5.11,
         "mean": 8.01,
-        "excess": 4.27,
-        "t": 1.77,
+        "excess": 4.29,
+        "t": 1.78,
         "ci95": [
-         -1.64,
-         9.7
+         -1.63,
+         9.74
         ]
        },
        "6M": {
@@ -15124,8 +15131,8 @@
         "hit": 67.0,
         "median": 6.9,
         "mean": 12.56,
-        "excess": 4.44,
-        "t": 1.79
+        "excess": 4.47,
+        "t": 1.81
        },
        "mae_mean": -7.66,
        "mae_worst": -40.94
@@ -15192,19 +15199,19 @@
         "hit": 68.0,
         "median": 4.53,
         "mean": 1.63,
-        "excess": -0.23,
-        "t": -0.13
+        "excess": -0.2,
+        "t": -0.11
        },
        "3M": {
         "n": 21,
         "hit": 67.0,
         "median": 5.52,
         "mean": 10.12,
-        "excess": 4.53,
-        "t": 1.23,
+        "excess": 4.57,
+        "t": 1.24,
         "ci95": [
-         -3.15,
-         12.63
+         -3.09,
+         12.72
         ]
        },
        "6M": {
@@ -15212,8 +15219,8 @@
         "hit": 75.0,
         "median": 7.93,
         "mean": 17.88,
-        "excess": 5.58,
-        "t": 2.06
+        "excess": 5.64,
+        "t": 2.09
        },
        "mae_mean": -6.4,
        "mae_worst": -40.94
@@ -15235,19 +15242,19 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.12,
-         "t": 0.07
+         "excess": 0.14,
+         "t": 0.08
         },
         "3M": {
          "n": 28,
          "hit": 64.0,
          "median": 4.92,
          "mean": 9.05,
-         "excess": 4.67,
-         "t": 1.34,
+         "excess": 4.7,
+         "t": 1.35,
          "ci95": [
-          -3.64,
-          11.82
+          -3.63,
+          11.9
          ]
         },
         "6M": {
@@ -15255,8 +15262,8 @@
          "hit": 59.0,
          "median": 6.41,
          "mean": 12.2,
-         "excess": 3.36,
-         "t": 1.0
+         "excess": 3.4,
+         "t": 1.01
         },
         "mae_mean": -9.52,
         "mae_worst": -40.94
@@ -15400,7 +15407,7 @@
     },
     "baseline": {
      "1M": {
-      "mean": 1.11,
+      "mean": 1.1,
       "hit": 58.0
      },
      "3M": {
@@ -15413,17 +15420,17 @@
      }
     },
     "snapshot": {
-     "date": "2026-10-22",
-     "px": 858.0,
+     "date": "2026-10-23",
+     "px": 857.0,
      "state": "Flush, not over",
      "state_since": "2026-10-13",
-     "state_days": 8,
+     "state_days": 9,
      "turn_from": null,
-     "cap": 0.494,
+     "cap": 0.497,
      "rec": 0.243,
      "rec_meaningful": true,
-     "cap_1d": 0.611,
-     "cap_5d": 0.728,
+     "cap_1d": 0.494,
+     "cap_5d": 0.686,
      "legs": [
       {
        "leg": "vkospi_level",
@@ -15447,7 +15454,7 @@
        "leg": "trend_dn",
        "label": "Trend score strong-down (-0.2 -> -0.8)",
        "weight": 0.231,
-       "value": 0.0
+       "value": 0.01
       }
      ],
      "tells": [
@@ -15482,14 +15489,14 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.24): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.49) for 20 days.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.24): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.50) for 20 days.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
      "last_entry": "2026-08-12",
      "arm_thr": 0.302,
      "mode": "v2-turning",
-     "score": 0.494,
+     "score": 0.497,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -15497,14 +15504,17 @@
      "intraday": {
       "fut": "KM1 Index",
       "contract": "KMZ6",
-      "time": "14:45:00",
-      "last": 857.0,
-      "settle": 893.0500000000001,
-      "settle_dt": "2026-10-21",
-      "used": false,
+      "time": "20:59:07",
+      "last": 855.95,
+      "settle": 857.0,
+      "settle_dt": "2026-10-22",
+      "used": true,
       "cash_last": 858.02,
       "cash_last_dt": "2026-10-22",
-      "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+      "move_pct": -0.12,
+      "implied": 856.97,
+      "implied_dt": "2026-10-23",
+      "reason": "KMZ6 -0.12% since the 2026-10-22 settle"
      }
     }
    },
@@ -15601,7 +15611,7 @@
    "snapshot": {
     "date": "2026-10-22",
     "px": 46041.0,
-    "score": 0.034,
+    "score": 0.033,
     "cap_max": 1.0,
     "on": [],
     "recent_events": [],
@@ -15617,24 +15627,24 @@
     "state_since": "2025-07-29",
     "state_days": 302,
     "turn_from": null,
-    "cap": 0.034,
-    "rec": 0.314,
+    "cap": 0.033,
+    "rec": 0.258,
     "state_changed": false,
     "prev_state": "Normal",
     "intraday": {
      "fut": "FT1 Index",
      "contract": "FTX6",
-     "time": "15:13:10",
-     "last": 46173.0,
+     "time": "21:03:43",
+     "last": 46188.0,
      "settle": 46234.0,
      "settle_dt": "2026-10-22",
      "used": true,
      "cash_last": 46041.43,
      "cash_last_dt": "2026-10-22",
-     "move_pct": -0.13,
-     "implied": 45980.68,
+     "move_pct": -0.1,
+     "implied": 45995.62,
      "implied_dt": "2026-10-23",
-     "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+     "reason": "FTX6 -0.10% since the 2026-10-22 settle"
     }
    },
    "capitulation": [
@@ -18823,13 +18833,13 @@
     },
     "snapshot": {
      "date": "2026-10-23",
-     "px": 45980.7,
+     "px": 45995.6,
      "state": "Normal",
      "state_since": "2025-07-29",
      "state_days": 302,
      "turn_from": null,
-     "cap": 0.034,
-     "rec": 0.314,
+     "cap": 0.033,
+     "rec": 0.258,
      "rec_meaningful": false,
      "cap_1d": 0.029,
      "cap_5d": 0.004,
@@ -18850,13 +18860,13 @@
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.207,
-       "value": 0.04
+       "value": 0.03
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.191,
-       "value": 0.14
+       "value": 0.13
       }
      ],
      "tells": [
@@ -18864,7 +18874,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.2,
-       "value": 0.46
+       "value": 0.18
       },
       {
        "tell": "rv_down",
@@ -18898,7 +18908,7 @@
      "last_entry": "2025-04-23",
      "arm_thr": 0.47,
      "mode": "v2-turning",
-     "score": 0.034,
+     "score": 0.033,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -18906,17 +18916,17 @@
      "intraday": {
       "fut": "FT1 Index",
       "contract": "FTX6",
-      "time": "15:13:10",
-      "last": 46173.0,
+      "time": "21:03:43",
+      "last": 46188.0,
       "settle": 46234.0,
       "settle_dt": "2026-10-22",
       "used": true,
       "cash_last": 46041.43,
       "cash_last_dt": "2026-10-22",
-      "move_pct": -0.13,
-      "implied": 45980.68,
+      "move_pct": -0.1,
+      "implied": 45995.62,
       "implied_dt": "2026-10-23",
-      "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+      "reason": "FTX6 -0.10% since the 2026-10-22 settle"
      }
     }
    },
@@ -19024,7 +19034,7 @@
      "mae_flush": -6.1,
      "mae_gain": -0.02,
      "exc_on": 4.0,
-     "exc_flush": 4.43,
+     "exc_flush": 4.44,
      "false_over": 0.43,
      "lag_median": 4.0
     },
@@ -19093,8 +19103,8 @@
      "mae_on": -5.0,
      "mae_flush": -6.1,
      "mae_gain": 1.1,
-     "exc_on": 3.59,
-     "exc_flush": 4.43,
+     "exc_on": 3.6,
+     "exc_flush": 4.44,
      "false_over": 0.49,
      "lag_median": 12.0
     },
@@ -19129,7 +19139,7 @@
      "mae_flush": -6.1,
      "mae_gain": 0.34,
      "exc_on": 3.0,
-     "exc_flush": 4.43,
+     "exc_flush": 4.44,
      "false_over": 0.46,
      "lag_median": 10.0
     },
@@ -19199,7 +19209,7 @@
      "mae_flush": -6.1,
      "mae_gain": 1.97,
      "exc_on": 4.82,
-     "exc_flush": 4.43,
+     "exc_flush": 4.44,
      "false_over": 0.34,
      "lag_median": 1.5
     },
@@ -19233,8 +19243,8 @@
      "mae_on": -6.42,
      "mae_flush": -6.1,
      "mae_gain": -0.32,
-     "exc_on": 3.1,
-     "exc_flush": 4.43,
+     "exc_on": 3.11,
+     "exc_flush": 4.44,
      "false_over": 0.49,
      "lag_median": 4.0
     },
@@ -19268,8 +19278,8 @@
      "mae_on": -2.89,
      "mae_flush": -3.61,
      "mae_gain": 0.72,
-     "exc_on": 5.56,
-     "exc_flush": 9.19,
+     "exc_on": 5.58,
+     "exc_flush": 9.21,
      "false_over": 0.31,
      "lag_median": 19.0
     },
@@ -19292,12 +19302,12 @@
      "n_fired": 4,
      "fire_share": 0.21,
      "timed_share": 0.75,
-     "lift": 1.75,
+     "lift": 1.76,
      "mae_on": -6.81,
      "mae_flush": -6.56,
      "mae_gain": -0.25,
-     "exc_on": -6.94,
-     "exc_flush": 13.89,
+     "exc_on": -6.87,
+     "exc_flush": 13.96,
      "false_over": 0.25,
      "lag_median": 28.0
     },
@@ -19332,7 +19342,7 @@
      "mae_flush": -6.1,
      "mae_gain": 0.38,
      "exc_on": 4.13,
-     "exc_flush": 4.43,
+     "exc_flush": 4.44,
      "false_over": 0.43,
      "lag_median": 4.0
     },
@@ -19366,8 +19376,8 @@
      "mae_on": -6.48,
      "mae_flush": -7.51,
      "mae_gain": 1.03,
-     "exc_on": 4.28,
-     "exc_flush": 4.05,
+     "exc_on": 4.29,
+     "exc_flush": 4.06,
      "false_over": 0.52,
      "lag_median": 4.0
     },
@@ -19401,8 +19411,8 @@
      "mae_on": -4.04,
      "mae_flush": -6.64,
      "mae_gain": 2.6,
-     "exc_on": 2.03,
-     "exc_flush": 4.49,
+     "exc_on": 2.04,
+     "exc_flush": 4.5,
      "false_over": 0.28,
      "lag_median": 19.0
     },
@@ -19494,77 +19504,82 @@
   "Recovered"
  ],
  "intraday": {
-  "asof": "2026-10-22 15:28",
+  "asof": "2026-10-22 21:19",
   "quotes": {
    "NDX": {
     "fut": "NQ1 Index",
     "contract": "NQZ6",
-    "time": "15:28:12",
-    "last": 29499.75,
+    "time": "21:19:07",
+    "last": 29473.25,
     "settle": 30007.0,
     "settle_dt": "2026-10-21",
     "used": true,
     "cash_last": 29822.52,
     "cash_last_dt": "2026-10-21",
-    "move_pct": -1.69,
-    "implied": 29318.39,
+    "move_pct": -1.78,
+    "implied": 29292.05,
     "implied_dt": "2026-10-22",
-    "reason": "NQZ6 -1.69% since the 2026-10-21 settle"
+    "reason": "NQZ6 -1.78% since the 2026-10-21 settle"
    },
    "SPX": {
     "fut": "ES1 Index",
     "contract": "ESZ6",
-    "time": "15:28:12",
-    "last": 7725.5,
+    "time": "21:19:05",
+    "last": 7723.25,
     "settle": 7800.25,
     "settle_dt": "2026-10-21",
     "used": true,
     "cash_last": 7757.17,
     "cash_last_dt": "2026-10-21",
-    "move_pct": -0.96,
-    "implied": 7682.83,
+    "move_pct": -0.99,
+    "implied": 7680.6,
     "implied_dt": "2026-10-22",
-    "reason": "ESZ6 -0.96% since the 2026-10-21 settle"
+    "reason": "ESZ6 -0.99% since the 2026-10-21 settle"
    },
    "NKY": {
     "fut": "NK1 Index",
     "contract": "NKZ6",
-    "time": "14:56:08",
-    "last": 63200.0,
+    "time": "21:04:03",
+    "last": 63270.0,
     "settle": 63200.0,
     "settle_dt": "2026-10-22",
-    "used": false,
+    "used": true,
     "cash_last": 62907.84,
     "cash_last_dt": "2026-10-22",
-    "move_pct": 0.0,
-    "reason": "future unchanged since the settle that matches the cash close"
+    "move_pct": 0.11,
+    "implied": 62977.52,
+    "implied_dt": "2026-10-23",
+    "reason": "NKZ6 +0.11% since the 2026-10-22 settle"
    },
    "KOSPI2": {
     "fut": "KM1 Index",
     "contract": "KMZ6",
-    "time": "14:45:00",
-    "last": 857.0,
-    "settle": 893.0500000000001,
-    "settle_dt": "2026-10-21",
-    "used": false,
+    "time": "20:59:07",
+    "last": 855.95,
+    "settle": 857.0,
+    "settle_dt": "2026-10-22",
+    "used": true,
     "cash_last": 858.02,
     "cash_last_dt": "2026-10-22",
-    "reason": "cash already printed 2026-10-22 (futures settle 2026-10-21) \u2014 cash is current, nothing spliced"
+    "move_pct": -0.12,
+    "implied": 856.97,
+    "implied_dt": "2026-10-23",
+    "reason": "KMZ6 -0.12% since the 2026-10-22 settle"
    },
    "TWSE": {
     "fut": "FT1 Index",
     "contract": "FTX6",
-    "time": "15:13:10",
-    "last": 46173.0,
+    "time": "21:03:43",
+    "last": 46188.0,
     "settle": 46234.0,
     "settle_dt": "2026-10-22",
     "used": true,
     "cash_last": 46041.43,
     "cash_last_dt": "2026-10-22",
-    "move_pct": -0.13,
-    "implied": 45980.68,
+    "move_pct": -0.1,
+    "implied": 45995.62,
     "implied_dt": "2026-10-23",
-    "reason": "FTX6 -0.13% since the 2026-10-22 settle"
+    "reason": "FTX6 -0.10% since the 2026-10-22 settle"
    }
   },
   "note": "price legs on futures-implied rows where a future has moved since the settle matching the cash close; vol / HY-OAS / FX / flow legs at last print. Indicative only \u2014 no alerts, not a Setups input."
