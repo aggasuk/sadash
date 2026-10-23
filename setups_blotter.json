@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-22 10:39",
+ "_updated": "2026-10-23 10:55",
  "created": "2026-08-17",
- "last_update": "2026-10-22",
- "setups_asof": "2026-10-22 10:39",
+ "last_update": "2026-10-23",
+ "setups_asof": "2026-10-23 10:55",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,10 +15,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-07",
-   "days": 45,
+   "days": 46,
    "avg": 3.0645,
-   "mark": 2.89,
-   "unrealised": -87266.0,
+   "mark": 2.763,
+   "unrealised": -150766.0,
    "realised": 109766.0,
    "score_at_open": 2.0
   },
@@ -32,10 +32,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 39,
+   "days": 40,
    "avg": 6.6738,
-   "mark": 6.89,
-   "unrealised": 54062.0,
+   "mark": 6.82,
+   "unrealised": 36563.0,
    "realised": 11562.0,
    "score_at_open": 1.35
   },
@@ -49,10 +49,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-10-08",
-   "days": 14,
+   "days": 15,
    "avg": 3.475,
-   "mark": 3.421,
-   "unrealised": -13500.0,
+   "mark": 3.334,
+   "unrealised": -35250.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -66,10 +66,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 13,
+   "days": 14,
    "avg": 157.96,
-   "mark": 157.97,
-   "unrealised": -79.0,
+   "mark": 156.93,
+   "unrealised": 8151.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
@@ -425,8 +425,8 @@
   "n_closed": 23,
   "wins": 12,
   "realised": 78866.0,
-  "unrealised": -46783.0,
-  "total": 32083.0,
+  "unrealised": -141302.0,
+  "total": -62436.0,
   "avg_days": 11.1,
   "by_size": {
    "PROBE": {
@@ -481,7 +481,7 @@
     "wins": 2,
     "pnl": 66958.0,
     "open_n": 1,
-    "open_pnl": -79.0,
+    "open_pnl": 8151.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -489,7 +489,7 @@
     "wins": 3,
     "pnl": -7925.0,
     "open_n": 3,
-    "open_pnl": -46704.0,
+    "open_pnl": -149453.0,
     "open_realised": 121328.0
    }
   }
