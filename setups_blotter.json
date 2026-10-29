@@ -1,8 +1,8 @@
 {
- "_updated": "2026-10-28 11:48",
+ "_updated": "2026-10-29 13:14",
  "created": "2026-08-17",
- "last_update": "2026-10-28",
- "setups_asof": "2026-10-28 11:48",
+ "last_update": "2026-10-29",
+ "setups_asof": "2026-10-29 13:14",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,10 +15,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 45,
+   "days": 46,
    "avg": 6.6738,
-   "mark": 6.905,
-   "unrealised": 57813.0,
+   "mark": 6.923,
+   "unrealised": 62312.0,
    "realised": 11562.0,
    "score_at_open": 1.35
   },
@@ -32,10 +32,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-10-08",
-   "days": 20,
+   "days": 21,
    "avg": 3.475,
-   "mark": 3.36,
-   "unrealised": -28750.0,
+   "mark": 3.371,
+   "unrealised": -26000.0,
    "realised": 0.0,
    "score_at_open": 1.0
   },
@@ -49,10 +49,10 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 19,
+   "days": 20,
    "avg": 157.96,
-   "mark": 157.98,
-   "unrealised": -158.0,
+   "mark": 157.85,
+   "unrealised": 870.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
@@ -423,8 +423,8 @@
   "n_closed": 24,
   "wins": 12,
   "realised": -39900.0,
-  "unrealised": 28905.0,
-  "total": -10995.0,
+  "unrealised": 37182.0,
+  "total": -2718.0,
   "avg_days": 12.8,
   "by_size": {
    "PROBE": {
@@ -479,7 +479,7 @@
     "wins": 2,
     "pnl": 66958.0,
     "open_n": 1,
-    "open_pnl": -158.0,
+    "open_pnl": 870.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -487,7 +487,7 @@
     "wins": 3,
     "pnl": -16925.0,
     "open_n": 2,
-    "open_pnl": 29063.0,
+    "open_pnl": 36312.0,
     "open_realised": 11562.0
    }
   }
