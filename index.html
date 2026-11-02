@@ -1050,7 +1050,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Terms of Trade Differential</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Relative Commodity ToT (Citi CTOT, JPM-style)</div>
         <div class="fvchart" id="fv-img-tot"></div>
       </div>
 
@@ -1060,7 +1060,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
 
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Real Rate + ToT + BTP-Bund)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Real Rate + CTOT + BTP-Bund)</div>
         <div class="fvchart" id="fv-img-combined"></div>
       </div>
     </div>
@@ -1439,8 +1439,16 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         </div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">AU-NZ 2Y Rate Spread — single-model pair (Iron Ore dropped 2026-08: R&sup2; 0.00-0.19, wrong-signed half the windows)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: AU-NZ 2Y Rate Spread (Iron Ore dropped 2026-08: R&sup2; 0.00-0.19, wrong-signed half the windows)</div>
         <div class="fvchart" id="audnzd-img-rates"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 2: Relative Commodity ToT (Citi CTOT AUD &minus; NZD, JPM-style)</div>
+        <div class="fvchart" id="audnzd-img-ctot"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 3: Combined (Rate Spread + CTOT)</div>
+        <div class="fvchart" id="audnzd-img-combined"></div>
       </div>
     </div>
 
@@ -3999,7 +4007,7 @@ window.FVDETAIL = (function() {
     usdzar:     { tabsId: "usdzar-period-tabs", containers: ["usdzar-img-xau", "usdzar-img-dxy", "usdzar-img-copper", "usdzar-img-combined"] },
     usdegp:     { tabsId: "usdegp-period-tabs", containers: ["usdegp-img-brent"] },
     audusd:     { tabsId: "audusd-period-tabs", containers: ["audusd-img-rates", "audusd-img-copper", "audusd-img-combined"] },
-    audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates"] },
+    audnzd:     { tabsId: "audnzd-period-tabs", containers: ["audnzd-img-rates", "audnzd-img-ctot", "audnzd-img-combined"] },
     usdchf:     { tabsId: "usdchf-period-tabs", containers: ["usdchf-img-rates", "usdchf-img-real", "usdchf-img-gold", "usdchf-img-vix", "usdchf-img-combined"] },
     usdsek:     { tabsId: "usdsek-period-tabs", containers: ["usdsek-img-rates", "usdsek-img-spx", "usdsek-img-copper", "usdsek-img-combined"] },
     usdcad:     { tabsId: "usdcad-period-tabs", containers: ["usdcad-img-rates", "usdcad-img-wti", "usdcad-img-combined"] },

@@ -1,5 +1,5 @@
 {
- "_updated": "2026-11-01 15:01",
+ "_updated": "2026-11-02 15:54",
  "method": "Added 12-Oct-26 (momentum/setups review). The FV suite had only ever been\nvalidated on NOKSEK / EURSEK / AUDNZD (one of three worked), and none of the\npairs Setups actually anchors on (EURUSD, USDJPY, AUDUSD, USDTHB) had been\ntested. This makes the test a feed: setups.py caps a VALUE-anchored FX card at\nPROBE until its pair passes here.",
  "criteria": {
   "fade_z": 1.5,
@@ -20,71 +20,71 @@
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.237,
+      "rho": -0.226,
       "n": 19,
       "hit": 0.74,
-      "mean": 2.28,
+      "mean": 2.18,
       "median": 1.34,
       "worst": -4.87
      },
      "126d": {
-      "rho": -0.294,
+      "rho": -0.331,
       "n": 18,
       "hit": 0.61,
-      "mean": 2.69,
-      "median": 1.92,
+      "mean": 2.44,
+      "median": 1.95,
       "worst": -7.67
      },
-     "mean_r2": 0.68,
+     "mean_r2": 0.67,
      "first": "2020-11-09",
      "last": "2026-10-26",
      "z_now": -0.67,
      "validated": true,
      "status": "pass",
-     "label": "n 19 \u00b7 hit 74% \u00b7 +2.28 @63d / +2.69 @126d \u00b7 \u03c1 -0.24"
+     "label": "n 19 \u00b7 hit 74% \u00b7 +2.18 @63d / +2.44 @126d \u00b7 \u03c1 -0.23"
     },
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.31,
-      "n": 16,
-      "hit": 0.56,
-      "mean": 1.68,
-      "median": 0.68,
-      "worst": -4.13
+      "rho": -0.361,
+      "n": 13,
+      "hit": 0.62,
+      "mean": 2.43,
+      "median": 0.83,
+      "worst": -3.04
      },
      "126d": {
-      "rho": -0.355,
-      "n": 16,
-      "hit": 0.69,
-      "mean": 2.38,
-      "median": 2.55,
-      "worst": -7.69
+      "rho": -0.474,
+      "n": 13,
+      "hit": 0.77,
+      "mean": 3.48,
+      "median": 2.75,
+      "worst": -7.67
      },
-     "mean_r2": 0.76,
+     "mean_r2": 0.75,
      "first": "2021-11-08",
      "last": "2026-10-26",
      "z_now": 1.79,
-     "validated": false,
-     "status": "fail",
-     "label": "n 16 \u00b7 hit 56% \u00b7 +1.68 @63d / +2.38 @126d \u00b7 \u03c1 -0.31"
+     "validated": true,
+     "status": "pass",
+     "label": "n 13 \u00b7 hit 62% \u00b7 +2.43 @63d / +3.48 @126d \u00b7 \u03c1 -0.36"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": -0.218,
-      "n": 14,
-      "hit": 0.71,
-      "mean": 1.33,
-      "median": 1.38,
+      "rho": -0.252,
+      "n": 13,
+      "hit": 0.69,
+      "mean": 1.5,
+      "median": 1.55,
       "worst": -4.87
      },
      "126d": {
-      "rho": -0.37,
-      "n": 14,
-      "hit": 0.79,
-      "mean": 2.94,
-      "median": 2.55,
+      "rho": -0.393,
+      "n": 13,
+      "hit": 0.77,
+      "mean": 3.08,
+      "median": 2.64,
       "worst": -2.41
      },
      "mean_r2": 0.77,
@@ -93,12 +93,12 @@
      "z_now": 0.98,
      "validated": true,
      "status": "pass",
-     "label": "n 14 \u00b7 hit 71% \u00b7 +1.33 @63d / +2.94 @126d \u00b7 \u03c1 -0.22"
+     "label": "n 13 \u00b7 hit 69% \u00b7 +1.50 @63d / +3.08 @126d \u00b7 \u03c1 -0.25"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.602,
+      "rho": -0.588,
       "n": 6,
       "hit": 0.67,
       "mean": 2.8,
@@ -106,7 +106,7 @@
       "worst": -2.59
      },
      "126d": {
-      "rho": -0.861,
+      "rho": -0.842,
       "n": 6,
       "hit": 0.83,
       "mean": 5.86,
@@ -119,12 +119,12 @@
      "z_now": 0.55,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.60"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.59"
     }
    },
    "validated": true,
    "status": "pass",
-   "label": "n 19 \u00b7 hit 74% \u00b7 +2.28 @63d / +2.69 @126d \u00b7 \u03c1 -0.24"
+   "label": "n 19 \u00b7 hit 74% \u00b7 +2.18 @63d / +2.44 @126d \u00b7 \u03c1 -0.23"
   },
   "USDJPY": {
    "kind": "fx",
@@ -780,54 +780,54 @@
     "2y": {
      "n_refits": 54,
      "63d": {
-      "rho": -0.669,
-      "n": 5,
-      "hit": 0.2,
-      "mean": -2.08,
-      "median": -2.38,
-      "worst": -4.1
+      "rho": -0.232,
+      "n": 4,
+      "hit": 0.25,
+      "mean": -1.12,
+      "median": -0.87,
+      "worst": -3.94
      },
      "126d": {
-      "rho": -0.699,
-      "n": 4,
+      "rho": -0.832,
+      "n": 3,
       "hit": 0.0,
-      "mean": -3.81,
-      "median": -3.57,
-      "worst": -7.27
+      "mean": -3.54,
+      "median": -3.72,
+      "worst": -5.04
      },
-     "mean_r2": 0.71,
+     "mean_r2": 0.84,
      "first": "2025-10-22",
      "last": "2026-10-28",
-     "z_now": 2.88,
+     "z_now": 1.93,
      "validated": false,
      "status": "insufficient",
-     "label": "only 5 fades (<10) \u00b7 \u03c1 -0.67"
+     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.23"
     },
     "1y": {
      "n_refits": 106,
      "63d": {
-      "rho": -0.114,
-      "n": 6,
-      "hit": 0.33,
-      "mean": -0.68,
-      "median": -0.89,
-      "worst": -3.94
+      "rho": -0.164,
+      "n": 8,
+      "hit": 0.5,
+      "mean": 0.08,
+      "median": -0.05,
+      "worst": -3.59
      },
      "126d": {
-      "rho": -0.301,
-      "n": 4,
-      "hit": 0.5,
-      "mean": 0.8,
-      "median": 0.02,
-      "worst": -3.72
+      "rho": -0.337,
+      "n": 7,
+      "hit": 0.57,
+      "mean": 0.71,
+      "median": 1.56,
+      "worst": -5.89
      },
-     "mean_r2": 0.6,
+     "mean_r2": 0.76,
      "first": "2024-10-23",
      "last": "2026-10-28",
-     "z_now": 1.86,
+     "z_now": 1.3,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.11"
+     "label": "only 8 fades (<10) \u00b7 \u03c1 -0.16"
     },
     "3y": {
      "n_refits": 2,
@@ -846,7 +846,7 @@
    },
    "validated": false,
    "status": "insufficient",
-   "label": "only 5 fades (<10) \u00b7 \u03c1 -0.67"
+   "label": "only 4 fades (<10) \u00b7 \u03c1 -0.23"
   },
   "USDCHF": {
    "kind": "fx",
