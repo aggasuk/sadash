@@ -1,9 +1,9 @@
 {
- "run_at_utc": "2026-11-05T02:14:57Z",
+ "run_at_utc": "2026-11-05T02:17:26Z",
  "n_feeds": 55,
  "n_flagged": 9,
  "refresh_log": {
-  "ok": 44,
+  "ok": 45,
   "fail": 0,
   "log_age_days": 0.0
  },
@@ -12,7 +12,7 @@
    "file": "data.json",
    "label": "Momentum",
    "status": "ok",
-   "age_days": 0.0,
+   "age_days": 0.01,
    "max_age_days": 2.8,
    "updated": "2026-11-05 10:09",
    "series_date": "2026-11-04",
@@ -55,7 +55,7 @@
    "file": "alerts.json",
    "label": "MA-cross alerts",
    "status": "ok",
-   "age_days": 0.0,
+   "age_days": 0.01,
    "max_age_days": 2.8,
    "updated": "2026-11-05 10:09"
   },
@@ -81,7 +81,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-11-05 10:10"
+   "updated": "2026-11-05 10:17"
   },
   {
    "file": "bottoming_v2.json",
@@ -89,7 +89,7 @@
    "status": "ok",
    "age_days": 0.0,
    "max_age_days": 2.8,
-   "updated": "2026-11-05 10:10"
+   "updated": "2026-11-05 10:17"
   },
   {
    "file": "equity_bottoms.html",
