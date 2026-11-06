@@ -1,27 +1,10 @@
 {
- "_updated": "2026-11-05 10:14",
+ "_updated": "2026-11-06 11:02",
  "created": "2026-08-17",
- "last_update": "2026-11-05",
- "setups_asof": "2026-11-05 10:14",
+ "last_update": "2026-11-06",
+ "setups_asof": "2026-11-06 11:01",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
-  {
-   "key": "bund",
-   "instrument": "Bund 10Y yield",
-   "kind": "rates",
-   "verb": "PAY Bund 10Y / short RX",
-   "units": -2500.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "TREND",
-   "opened": "2026-10-08",
-   "days": 28,
-   "avg": 3.475,
-   "mark": 3.2720000000000002,
-   "unrealised": -50750.0,
-   "realised": 0.0,
-   "score_at_open": 1.0
-  },
   {
    "key": "inr5",
    "instrument": "INR 5Y NDOIS",
@@ -32,10 +15,10 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 53,
+   "days": 54,
    "avg": 6.6738,
-   "mark": 6.68,
-   "unrealised": 1562.0,
+   "mark": 6.559,
+   "unrealised": -28687.0,
    "realised": 11562.0,
    "score_at_open": 1.35
   },
@@ -49,15 +32,30 @@
    "tier": "A",
    "anchor": "VALUE",
    "opened": "2026-10-09",
-   "days": 27,
+   "days": 28,
    "avg": 157.96,
-   "mark": 157.99,
-   "unrealised": -237.0,
+   "mark": 157.88,
+   "unrealised": 633.0,
    "realised": 0.0,
    "score_at_open": 1.0
   }
  ],
  "closed": [
+  {
+   "key": "bund",
+   "kind": "rates",
+   "verb": "PAY Bund 10Y / short RX",
+   "tier": "A",
+   "size": "PROBE",
+   "anchor": "TREND",
+   "opened": "2026-10-08",
+   "closed": "2026-11-06",
+   "entry": 3.475,
+   "exit": 3.241,
+   "pnl": -58500.0,
+   "score": 1.0,
+   "days": 29
+  },
   {
    "key": "jgb",
    "kind": "rates",
@@ -420,17 +418,17 @@
   }
  ],
  "stats": {
-  "n_closed": 24,
+  "n_closed": 25,
   "wins": 12,
-  "realised": -39900.0,
-  "unrealised": -49425.0,
-  "total": -89325.0,
-  "avg_days": 12.8,
+  "realised": -98400.0,
+  "unrealised": -28054.0,
+  "total": -126454.0,
+  "avg_days": 13.4,
   "by_size": {
    "PROBE": {
-    "n": 14,
+    "n": 15,
     "wins": 8,
-    "pnl": -7444.0
+    "pnl": -65944.0
    },
    "FULL": {
     "n": 3,
@@ -455,9 +453,9 @@
     "pnl": 42416.0
    },
    "rates": {
-    "n": 12,
+    "n": 13,
     "wins": 7,
-    "pnl": 6775.0
+    "pnl": -51725.0
    },
    "cmd": {
     "n": 1,
@@ -479,20 +477,28 @@
     "wins": 2,
     "pnl": 66958.0,
     "open_n": 1,
-    "open_pnl": -237.0,
+    "open_pnl": 633.0,
     "open_realised": 0.0
    },
    "TREND": {
-    "n": 5,
+    "n": 6,
     "wins": 3,
-    "pnl": -16925.0,
-    "open_n": 2,
-    "open_pnl": -49188.0,
+    "pnl": -75425.0,
+    "open_n": 1,
+    "open_pnl": -28687.0,
     "open_realised": 11562.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-11-06",
+   "key": "bund",
+   "units": 2500.0,
+   "price": 3.241,
+   "note": "close (dropped off strip)",
+   "anchor": null
+  },
   {
    "date": "2026-10-28",
    "key": "jgb",
@@ -803,14 +809,6 @@
    "units": 10000.0,
    "price": 2.918,
    "note": "close (v2 rebuild - v1 book closed)",
-   "anchor": null
-  },
-  {
-   "date": "2026-09-07",
-   "key": "inr5",
-   "units": 5000.0,
-   "price": 6.484,
-   "note": "close (dropped off strip)",
    "anchor": null
   }
  ]
