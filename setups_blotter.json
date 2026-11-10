@@ -1,8 +1,8 @@
 {
- "_updated": "2026-11-09 10:42",
+ "_updated": "2026-11-10 09:36",
  "created": "2026-08-17",
- "last_update": "2026-11-09",
- "setups_asof": "2026-11-09 10:42",
+ "last_update": "2026-11-10",
+ "setups_asof": "2026-11-10 09:36",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,32 +15,30 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 57,
+   "days": 58,
    "avg": 6.6738,
-   "mark": 6.505,
-   "unrealised": -42188.0,
+   "mark": 6.45,
+   "unrealised": -55937.0,
    "realised": 11562.0,
    "score_at_open": 1.35
-  },
-  {
-   "key": "usdjpy",
-   "instrument": "USDJPY spot",
-   "kind": "fx",
-   "verb": "SELL USDJPY",
-   "units": -1250000.0,
-   "size": "PROBE",
-   "tier": "A",
-   "anchor": "VALUE",
-   "opened": "2026-10-09",
-   "days": 31,
-   "avg": 157.96,
-   "mark": 158.25,
-   "unrealised": -2295.0,
-   "realised": 0.0,
-   "score_at_open": 1.0
   }
  ],
  "closed": [
+  {
+   "key": "usdjpy",
+   "kind": "fx",
+   "verb": "SELL USDJPY",
+   "tier": "A",
+   "size": "PROBE",
+   "anchor": "VALUE",
+   "opened": "2026-10-09",
+   "closed": "2026-11-10",
+   "entry": 157.96,
+   "exit": 158.03,
+   "pnl": -554.0,
+   "score": 1.0,
+   "days": 32
+  },
   {
    "key": "bund",
    "kind": "rates",
@@ -418,17 +416,17 @@
   }
  ],
  "stats": {
-  "n_closed": 25,
+  "n_closed": 26,
   "wins": 12,
-  "realised": -98400.0,
-  "unrealised": -44483.0,
-  "total": -142883.0,
-  "avg_days": 13.4,
+  "realised": -98954.0,
+  "unrealised": -55937.0,
+  "total": -154891.0,
+  "avg_days": 14.1,
   "by_size": {
    "PROBE": {
-    "n": 15,
+    "n": 16,
     "wins": 8,
-    "pnl": -65944.0
+    "pnl": -66498.0
    },
    "FULL": {
     "n": 3,
@@ -448,9 +446,9 @@
     "pnl": -97728.0
    },
    "fx": {
-    "n": 8,
+    "n": 9,
     "wins": 4,
-    "pnl": 42416.0
+    "pnl": 41862.0
    },
    "rates": {
     "n": 13,
@@ -473,11 +471,11 @@
     "open_realised": 0.0
    },
    "VALUE": {
-    "n": 3,
+    "n": 4,
     "wins": 2,
-    "pnl": 66958.0,
-    "open_n": 1,
-    "open_pnl": -2295.0,
+    "pnl": 66404.0,
+    "open_n": 0,
+    "open_pnl": 0.0,
     "open_realised": 0.0
    },
    "TREND": {
@@ -485,12 +483,20 @@
     "wins": 3,
     "pnl": -75425.0,
     "open_n": 1,
-    "open_pnl": -42188.0,
+    "open_pnl": -55937.0,
     "open_realised": 11562.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-11-10",
+   "key": "usdjpy",
+   "units": 1250000.0,
+   "price": 158.03,
+   "note": "close (dropped off strip)",
+   "anchor": null
+  },
   {
    "date": "2026-11-06",
    "key": "bund",
@@ -802,14 +808,6 @@
    "price": 2.918,
    "note": "open A HALF",
    "anchor": "TREND"
-  },
-  {
-   "date": "2026-09-07",
-   "key": "jgb",
-   "units": 10000.0,
-   "price": 2.918,
-   "note": "close (v2 rebuild - v1 book closed)",
-   "anchor": null
   }
  ]
 }
