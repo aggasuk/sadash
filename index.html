@@ -1758,6 +1758,21 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <button class="tab active" data-y="bps">bps chg from spot</button>
         <button class="tab" data-y="yield">yield level</button>
       </div>
+      <span style="font-size:0.75rem;color:var(--text-dim);">Columns:</span>
+      <div class="tabs" id="cta-view-tabs" style="margin-bottom:0;">
+        <button class="tab active" data-v="grid" title="Levels that generate a -2..+2 SD CTA flow over the chosen horizon">flow grid</button>
+        <button class="tab" data-v="yield" title="Yield at which the CTA position crosses zero (flips side) within 1/3/5/10/15 days">flip: yield</button>
+        <button class="tab" data-v="bps" title="bp move from the last close needed to flip the position">flip: bp</button>
+        <button class="tab" data-v="fut" title="Flip level as a futures price (front contract, shifted from its settle)">flip: futures</button>
+        <button class="tab" data-v="prob" title="Probability of touching the flip level within the horizon">flip: prob</button>
+      </div>
+    </div>
+    <div id="cta-flip-note" style="display:none;margin:-4px 0 12px;font-size:12px;color:var(--muted);line-height:1.5;">
+      <b>Flip levels</b> = where the CTA position crosses zero and switches side, if the market gets there within 1/3/5/10/15 days.
+      Green = a short flipping long (CTA buying), red = a long flipping short (selling); shading = probability of touching the level.
+      <b>&#9679; pipeline</b> = flips even at unchanged yields (the level sits on the CTA-friendly side of the close).
+      Futures = front contract, the flip bp applied to its settle via futures duration (ACGB quoted 100 &minus; yield). IRS rows have no futures.
+      The Days-ahead / Type tabs drive the flow grid and the flow columns only.
     </div>
 
     <div style="margin-bottom:14px;font-size:12.5px;color:var(--muted);line-height:1.55;">
@@ -4831,6 +4846,9 @@ window.FVDETAIL = (function() {
   var D = null;            // cta_rates.json
   var H = '5';             // horizon (days ahead)
   var TYPE = 'bps';        // 'bps' | 'yield'
+  var VIEW = 'grid';       // 'grid' | flip view: 'yield' | 'bps' | 'fut' | 'prob'
+  try { VIEW = localStorage.getItem('cta_view') || 'grid'; } catch (e) {}
+  var FLIP_H = ['1', '3', '5', '10', '15'];
   var drillKey = null;
   var aggChart = null, flowChart = null, emFlowChart = null, drillTop = null, drillBot = null;
   var scenDmChart = null, scenEmChart = null;
@@ -4897,6 +4915,32 @@ window.FVDETAIL = (function() {
     return (c.bps > 0 ? '+' : '') + Math.round(c.bps) + 'bp';
   }
 
+  // flip cell: where the position crosses zero within h days
+  function flipCell(m, h) {
+    var c = m.flip && m.flip[h];
+    if (!c || c.bps === null || c.bps === undefined)
+      return '<td style="color:var(--text-dim);" title="no flip within ±6σ over ' + h + 'd">--</td>';
+    if (VIEW === 'fut' && (c.fut_px === undefined || c.fut_px === null))
+      return '<td style="color:var(--text-dim);" title="no futures contract; flip at ' + Number(c.level).toFixed(3) + '% (' +
+        (c.bps > 0 ? '+' : '') + c.bps.toFixed(1) + 'bp)">--</td>';
+    var short = m.pos_dv01 < 0;
+    var pipe = short ? c.bps >= 0 : c.bps <= 0;          // flips even at unchanged yields
+    var rgb = short ? '22,163,74' : '220,38,38';          // short->long = buying; long->short = selling
+    var p = pipe ? 1 : (c.prob || 0);
+    var a = p < 0.1 ? 0.06 : p < 0.25 ? 0.14 : p < 0.5 ? 0.28 : p < 0.75 ? 0.45 : 0.65;
+    var txt;
+    if (VIEW === 'yield') txt = Number(c.level).toFixed(3) + '%';
+    else if (VIEW === 'bps') txt = (c.bps > 0 ? '+' : '') + c.bps.toFixed(1) + 'bp';
+    else if (VIEW === 'prob') txt = pipe ? 'pipe' : Math.round((c.prob || 0) * 100) + '%';
+    else txt = (c.fut_px === undefined || c.fut_px === null) ? '--' : Number(c.fut_px).toFixed(m.fut && m.fut.kind === 'yield' ? 3 : 2);
+    var tip = (short ? 'short flips LONG' : 'long flips SHORT') + ' within ' + h + 'd at ' + Number(c.level).toFixed(3) + '% (' +
+      (c.bps > 0 ? '+' : '') + c.bps.toFixed(1) + 'bp' +
+      (c.fut_px != null && m.fut ? ', ' + m.fut.ticker + ' ' + c.fut_px : '') + ')' +
+      (pipe ? ' — in the pipeline: happens at unchanged yields' : ', P(touch) ' + Math.round((c.prob || 0) * 100) + '%');
+    return '<td style="white-space:nowrap;background:rgba(' + rgb + ',' + a + ');color:' + (a > 0.5 ? '#fff' : 'var(--text)') + ';' +
+      (pipe ? 'font-weight:700;' : '') + '" title="' + tip + '">' + (pipe ? '&#9679; ' : '') + txt + '</td>';
+  }
+
   function expBar(sd) {
     var w = Math.min(Math.abs(sd) / 3, 1) * 34;
     var color = sd >= 0 ? '#16a34a' : '#dc2626';
@@ -4923,7 +4967,9 @@ window.FVDETAIL = (function() {
     var h = '<table class="vol-table"><thead><tr>' +
       '<th style="text-align:left;">Region</th><th style="text-align:left;">Market</th>' +
       '<th>Last</th><th>Exposure SD</th><th>DV01 $m</th><th>Speeds</th>' +
-      '<th>-2SD</th><th>-1SD</th><th>0SD</th><th>+1SD</th><th>+2SD</th>' +
+      (VIEW === 'grid'
+        ? '<th>-2SD</th><th>-1SD</th><th>0SD</th><th>+1SD</th><th>+2SD</th>'
+        : FLIP_H.map(function(x) { return '<th title="flip within ' + x + ' day' + (x === '1' ? '' : 's') + '">flip ' + x + 'd</th>'; }).join('')) +
       '<th title="expected flow over the horizon if yields are unchanged">Flat flow $m</th>' +
       '<th>1SD flow $m</th><th>5d flow $m</th></tr></thead><tbody>';
     var lastReg = null;
@@ -4934,17 +4980,24 @@ window.FVDETAIL = (function() {
       lastReg = m.region;
       h += '<tr class="cta-row" data-key="' + m.key + '" data-em="' + (isEM ? 1 : 0) + '" style="cursor:pointer;">' +
         '<td style="text-align:left;color:var(--text-dim);font-size:0.75rem;">' + reg + '</td>' +
-        '<td style="text-align:left;font-weight:700;white-space:nowrap;">' + m.name + '</td>' +
+        '<td style="text-align:left;font-weight:700;white-space:nowrap;">' + m.name +
+          (VIEW === 'fut' && m.fut ? ' <span style="font-weight:400;color:var(--text-dim);font-size:0.75rem;" title="reference = settle' +
+            (m.fut.settle_dt ? ' ' + m.fut.settle_dt : '') + (m.fut.roll_bp ? ', rolled ' + m.fut.roll_bp + 'bp to the last yield' : '') + '">' +
+            m.fut.ticker + ' ' + Number(m.fut.px).toFixed(m.fut.kind === 'yield' ? 3 : 2) + '</span>' : '') + '</td>' +
         '<td>' + m['yield'].toFixed(2) + '%</td>' +
         '<td>' + expBar(m.exp_sd) + '</td>' +
         '<td style="font-weight:600;color:' + (m.pos_dv01 >= 0 ? '#16a34a' : '#dc2626') + ';">' + fmtM(m.pos_dv01) + '</td>' +
         '<td style="white-space:nowrap;">' + speedStrip(m.speeds) + '</td>';
-      [-2, -1, 0, 1, 2].forEach(function(sd) {
-        var c = th[sd];
-        h += '<td style="white-space:nowrap;' + cellStyle(c) + '"' +
-          (c && c.prob !== null ? ' title="P(touch) ' + Math.round(c.prob * 100) + '%"' : '') + '>' +
-          cellText(c) + '</td>';
-      });
+      if (VIEW === 'grid') {
+        [-2, -1, 0, 1, 2].forEach(function(sd) {
+          var c = th[sd];
+          h += '<td style="white-space:nowrap;' + cellStyle(c) + '"' +
+            (c && c.prob !== null ? ' title="P(touch) ' + Math.round(c.prob * 100) + '%"' : '') + '>' +
+            cellText(c) + '</td>';
+        });
+      } else {
+        FLIP_H.forEach(function(x) { h += flipCell(m, x); });
+      }
       var ff = m.scen_flows && m.scen_flows[H] ? m.scen_flows[H].flat : null;
       h += '<td style="font-weight:700;color:' + (ff === null ? 'var(--text-dim)' : ff >= 0 ? '#16a34a' : '#dc2626') + ';">' +
         (ff === null ? '--' : (ff >= 0 ? '+' : '') + (ff / 1e6).toFixed(2)) + '</td>' +
@@ -5093,6 +5146,20 @@ window.FVDETAIL = (function() {
     t.addEventListener('click', function() {
       H = t.dataset.h;
       document.querySelectorAll('#cta-horizon-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.h === H); });
+      renderAll();
+    });
+  });
+  function syncView() {
+    document.querySelectorAll('#cta-view-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.v === VIEW); });
+    var n = document.getElementById('cta-flip-note');
+    if (n) n.style.display = VIEW === 'grid' ? 'none' : 'block';
+  }
+  syncView();
+  document.querySelectorAll('#cta-view-tabs .tab').forEach(function(t) {
+    t.addEventListener('click', function() {
+      VIEW = t.dataset.v;
+      try { localStorage.setItem('cta_view', VIEW); } catch (e) {}
+      syncView();
       renderAll();
     });
   });
