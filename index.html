@@ -1962,37 +1962,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <header>
       <h1><span>&gt;</span> Cycle Framework</h1>
     </header>
-    <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.6;">
-      Per-currency rate-cycle screen. For each curve / fly / fwd-spread trade, the framework asks:
-      <i>is the curve already pricing what history typically did post first hike, or is there a gap?</i>
-      Toggle the weighting to pick how cycles are blended (similarity to today vs. equal). Toggle <b>+6M view</b> for the longer-horizon cross-check.
-      Use the dropdown in the bottom chart to inspect any trade's history across cycles.
-    </div>
-    <div class="tabs" id="cyclefw-sub-tabs" style="margin-bottom:18px;">
-      <button class="tab active" data-sub="inr">INR</button>
-      <button class="tab" data-sub="krw">KRW</button>
-      <button class="tab" data-sub="eur">EUR</button>
-      <button class="tab" data-sub="nzd">NZD</button>
-    </div>
-    <div class="cyclefw-subpage" id="cyclefw-sub-inr">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_inr.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
-      </div>
-    </div>
-    <div class="cyclefw-subpage" id="cyclefw-sub-krw" style="display:none;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_krw.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
-      </div>
-    </div>
-    <div class="cyclefw-subpage" id="cyclefw-sub-eur" style="display:none;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_eur.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
-      </div>
-    </div>
-    <div class="cyclefw-subpage" id="cyclefw-sub-nzd" style="display:none;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
-        <iframe src="cycle_framework_nzd.html" loading="lazy" style="width:100%;height:2900px;border:0;background:var(--bg);border-radius:8px;"></iframe>
-      </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
+      <iframe id="cyclefw-frame" src="cycle_fw.html" loading="lazy" style="width:100%;height:1400px;border:0;background:var(--bg);border-radius:8px;"></iframe>
     </div>
   </div>
 
@@ -5209,18 +5180,6 @@ window.FVDETAIL = (function() {
     fiscalPages.forEach(p => p.style.display = 'none');
     t.classList.add('active');
     const el = document.getElementById('fiscal-sub-' + t.dataset.sub);
-    if (el) el.style.display = 'block';
-  }));
-
-  // Cycle FW sub-tabs (one per CCY)
-  const cycleTabs = document.querySelectorAll('#cyclefw-sub-tabs .tab');
-  const cyclePages = document.querySelectorAll('.cyclefw-subpage');
-  cycleTabs.forEach(t => t.addEventListener('click', () => {
-    if (t.disabled) return;
-    cycleTabs.forEach(s => s.classList.remove('active'));
-    cyclePages.forEach(p => p.style.display = 'none');
-    t.classList.add('active');
-    const el = document.getElementById('cyclefw-sub-' + t.dataset.sub);
     if (el) el.style.display = 'block';
   }));
 
