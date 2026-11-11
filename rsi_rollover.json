@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10 09:32",
+  "generated": "2026-11-11 09:04",
   "params": {
     "rsi_window": 14,
     "lookback_bars": 10,
@@ -8,77 +8,104 @@
     "os_threshold": 30.0,
     "divergence_window": 14
   },
-  "bearish": [
-    {
-      "ticker": "CO1 Comdty",
-      "category": "equity_commod",
-      "last": 92.04,
-      "rsi_now": 33.4,
-      "rsi_yest": 33.8,
-      "rsi_peak": 70.3,
-      "peak_bars_ago": 7,
-      "drop": 36.9,
-      "divergence": false,
-      "trend": 0.229,
-      "trend_band": "up",
-      "strength": "MODERATE"
-    }
-  ],
+  "bearish": [],
   "bullish": [
+    {
+      "ticker": "TPX Index",
+      "category": "equity_commod",
+      "last": 3919.58,
+      "rsi_now": 46.0,
+      "rsi_yest": 44.0,
+      "rsi_trough": 26.5,
+      "trough_bars_ago": 3,
+      "rise": 19.5,
+      "divergence": false,
+      "trend": -0.116,
+      "trend_band": "flat",
+      "strength": "MODERATE"
+    },
     {
       "ticker": "TWSE Index",
       "category": "equity_commod",
-      "last": 42845.7,
-      "rsi_now": 39.7,
+      "last": 42711.92,
+      "rsi_now": 39.0,
       "rsi_yest": 33.0,
       "rsi_trough": 19.4,
       "trough_bars_ago": 2,
-      "rise": 20.2,
+      "rise": 19.5,
       "divergence": false,
-      "trend": -0.002,
+      "trend": -0.004,
+      "trend_band": "flat",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "XAU Curncy",
+      "category": "equity_commod",
+      "last": 4034.0,
+      "rsi_now": 45.9,
+      "rsi_yest": 45.8,
+      "rsi_trough": 29.3,
+      "trough_bars_ago": 8,
+      "rise": 16.7,
+      "divergence": false,
+      "trend": -0.255,
+      "trend_band": "down",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "GJGB10 Index",
+      "category": "rates",
+      "last": 2.758,
+      "rsi_now": 40.7,
+      "rsi_yest": 31.6,
+      "rsi_trough": 24.4,
+      "trough_bars_ago": 3,
+      "rise": 16.3,
+      "divergence": false,
+      "trend": -0.036,
       "trend_band": "flat",
       "strength": "MODERATE"
     },
     {
       "ticker": "XAG Curncy",
       "category": "equity_commod",
-      "last": 53.4297,
-      "rsi_now": 43.7,
-      "rsi_yest": 43.6,
+      "last": 51.5358,
+      "rsi_now": 38.9,
+      "rsi_yest": 38.9,
       "rsi_trough": 23.9,
-      "trough_bars_ago": 7,
-      "rise": 19.8,
+      "trough_bars_ago": 8,
+      "rise": 15.0,
       "divergence": false,
-      "trend": -0.298,
+      "trend": -0.308,
       "trend_band": "down",
-      "strength": "MODERATE"
-    },
-    {
-      "ticker": "TPX Index",
-      "category": "equity_commod",
-      "last": 3905.47,
-      "rsi_now": 44.9,
-      "rsi_yest": 37.7,
-      "rsi_trough": 26.5,
-      "trough_bars_ago": 2,
-      "rise": 18.4,
-      "divergence": false,
-      "trend": -0.117,
-      "trend_band": "flat",
       "strength": "MODERATE"
     },
     {
       "ticker": "NKY Index",
       "category": "equity_commod",
-      "last": 60156.79,
-      "rsi_now": 38.6,
-      "rsi_yest": 32.5,
+      "last": 60671.47,
+      "rsi_now": 40.6,
+      "rsi_yest": 39.8,
       "rsi_trough": 25.9,
-      "trough_bars_ago": 2,
-      "rise": 12.7,
+      "trough_bars_ago": 3,
+      "rise": 14.7,
       "divergence": false,
-      "trend": -0.162,
+      "trend": -0.168,
       "trend_band": "flat",
+      "strength": "MODERATE"
+    },
+    {
+      "ticker": "KWSWNI5 BGN Curncy",
+      "category": "rates",
+      "last": 3.6975,
+      "rsi_now": 36.7,
+      "rsi_yest": 28.1,
+      "rsi_trough": 27.5,
+      "trough_bars_ago": 3,
+      "rise": 9.3,
+      "divergence": false,
+      "trend": -0.287,
+      "trend_band": "down",
       "strength": "MODERATE"
     }
   ],
@@ -161,7 +188,7 @@
           },
           "10": {
             "n": 11,
-            "mean": -0.23,
+            "mean": -0.28,
             "median": -0.2,
             "hit_rate": 27.3
           },
@@ -199,7 +226,7 @@
             "n": 26,
             "mean": -0.18,
             "median": -0.23,
-            "hit_rate": 15.4
+            "hit_rate": 19.2
           },
           "10": {
             "n": 25,
@@ -209,8 +236,8 @@
           },
           "20": {
             "n": 25,
-            "mean": -0.57,
-            "median": -0.7,
+            "mean": -0.58,
+            "median": -0.73,
             "hit_rate": 12.0
           }
         }
@@ -293,7 +320,7 @@
           },
           "20": {
             "n": 5,
-            "mean": 0.25,
+            "mean": 0.08,
             "median": 0.81,
             "hit_rate": 60.0
           }
@@ -471,29 +498,29 @@
         "bearish": {
           "5": {
             "n": 15,
-            "mean": 0.65,
+            "mean": 0.58,
             "median": 1.5,
-            "hit_rate": 40.0
+            "hit_rate": 46.7
           },
           "10": {
             "n": 15,
-            "mean": 3.68,
+            "mean": 3.75,
             "median": 4.54,
             "hit_rate": 26.7
           },
           "20": {
             "n": 15,
-            "mean": 5.81,
+            "mean": 5.85,
             "median": 5.91,
             "hit_rate": 26.7
           }
         },
         "bullish": {
           "5": {
-            "n": 6,
-            "mean": 1.44,
-            "median": 1.83,
-            "hit_rate": 66.7
+            "n": 7,
+            "mean": 1.14,
+            "median": 0.78,
+            "hit_rate": 57.1
           },
           "10": {
             "n": 5,
@@ -532,10 +559,10 @@
         },
         "bullish": {
           "5": {
-            "n": 4,
-            "mean": 1.49,
-            "median": 3.92,
-            "hit_rate": 75.0
+            "n": 5,
+            "mean": 0.93,
+            "median": 2.35,
+            "hit_rate": 60.0
           },
           "10": {
             "n": 3,
@@ -680,22 +707,22 @@
       "NKY Index": {
         "bearish": {
           "5": {
-            "n": 21,
-            "mean": -0.22,
-            "median": -0.83,
-            "hit_rate": 57.1
+            "n": 20,
+            "mean": -0.59,
+            "median": -1.05,
+            "hit_rate": 60.0
           },
           "10": {
-            "n": 21,
-            "mean": 0.12,
-            "median": -0.9,
-            "hit_rate": 57.1
+            "n": 20,
+            "mean": -0.3,
+            "median": -1.44,
+            "hit_rate": 60.0
           },
           "20": {
-            "n": 21,
-            "mean": -0.18,
-            "median": -0.41,
-            "hit_rate": 52.4
+            "n": 20,
+            "mean": -0.95,
+            "median": -0.44,
+            "hit_rate": 55.0
           }
         },
         "bullish": {
@@ -722,22 +749,22 @@
       "KOSPI Index": {
         "bearish": {
           "5": {
-            "n": 20,
-            "mean": 3.44,
-            "median": 3.61,
-            "hit_rate": 30.0
+            "n": 19,
+            "mean": 3.41,
+            "median": 3.22,
+            "hit_rate": 31.6
           },
           "10": {
-            "n": 20,
-            "mean": 3.36,
-            "median": 2.66,
-            "hit_rate": 40.0
+            "n": 19,
+            "mean": 2.92,
+            "median": 2.39,
+            "hit_rate": 42.1
           },
           "20": {
-            "n": 20,
-            "mean": 6.01,
-            "median": 3.83,
-            "hit_rate": 25.0
+            "n": 19,
+            "mean": 5.25,
+            "median": 3.78,
+            "hit_rate": 26.3
           }
         },
         "bullish": {
@@ -819,7 +846,7 @@
           },
           "20": {
             "n": 27,
-            "mean": 3.55,
+            "mean": 3.54,
             "median": 3.57,
             "hit_rate": 18.5
           }
@@ -939,7 +966,7 @@
           },
           "10": {
             "n": 19,
-            "mean": 0.79,
+            "mean": 0.76,
             "median": 2.86,
             "hit_rate": 42.1
           },
@@ -1016,22 +1043,22 @@
       "HGA Comdty": {
         "bearish": {
           "5": {
-            "n": 11,
-            "mean": 1.35,
-            "median": 2.11,
-            "hit_rate": 27.3
+            "n": 10,
+            "mean": 1.18,
+            "median": 1.8,
+            "hit_rate": 30.0
           },
           "10": {
-            "n": 11,
-            "mean": 1.13,
-            "median": -0.13,
-            "hit_rate": 54.5
+            "n": 10,
+            "mean": 1.0,
+            "median": -0.28,
+            "hit_rate": 60.0
           },
           "20": {
-            "n": 11,
-            "mean": 0.86,
-            "median": 1.2,
-            "hit_rate": 36.4
+            "n": 10,
+            "mean": 0.71,
+            "median": 0.99,
+            "hit_rate": 40.0
           }
         },
         "bullish": {
@@ -1113,7 +1140,7 @@
           },
           "20": {
             "n": 10,
-            "mean": -2.63,
+            "mean": -2.4,
             "median": -3.05,
             "hit_rate": 60.0
           }
@@ -1168,10 +1195,10 @@
             "hit_rate": 0.0
           },
           "10": {
-            "n": 0,
-            "mean": null,
-            "median": null,
-            "hit_rate": null
+            "n": 1,
+            "mean": -2.58,
+            "median": -2.58,
+            "hit_rate": 0.0
           },
           "20": {
             "n": 0,

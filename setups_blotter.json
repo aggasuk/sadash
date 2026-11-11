@@ -1,8 +1,8 @@
 {
- "_updated": "2026-11-10 09:36",
+ "_updated": "2026-11-11 09:09",
  "created": "2026-08-17",
- "last_update": "2026-11-10",
- "setups_asof": "2026-11-10 09:36",
+ "last_update": "2026-11-11",
+ "setups_asof": "2026-11-11 09:09",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [
   {
@@ -15,7 +15,7 @@
    "tier": "A",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 58,
+   "days": 59,
    "avg": 6.6738,
    "mark": 6.45,
    "unrealised": -55937.0,
