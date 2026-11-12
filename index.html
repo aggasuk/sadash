@@ -118,6 +118,15 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
   .snap-card .label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
   .snap-card .val { font-size: 1.25rem; font-weight: 700; margin-top: 2px; }
 
+  /* CTA stat bar: one panel, cells split by hairlines */
+  .cta-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .cta-stats .c { padding: 9px 14px; border-left: 1px solid var(--border); margin-left: -1px; }
+  .cta-stats .k { font-size: 0.64rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  .cta-stats .v { font-size: 1.05rem; font-weight: 700; margin-top: 1px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cta-stats .s { font-size: 0.68rem; color: var(--text-dim); margin-top: 1px; }
+  .cta-stats .v small { font-size: 0.78rem; font-weight: 600; }
+
   /* Chart container */
   .chart-wrap {
     background: var(--surface);
@@ -349,7 +358,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <button class="nav-btn" data-page="fairvalue">Fair Value</button>
     <button class="nav-btn" data-page="curves">Curves</button>
     <button class="nav-btn" data-page="carryroll">Carry &amp; Roll</button>
-    <button class="nav-btn" data-page="cta">CTA Rates</button>
+    <button class="nav-btn" data-page="cta">CTA</button>
     <button class="nav-btn" data-page="studies">Studies</button>
     <button class="nav-btn" data-page="seasonality">Seasonality</button>
     <button class="nav-btn" data-page="cyclefw">Cycle FW</button>
@@ -1737,7 +1746,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <!-- ============ CTA RATES PAGE ============ -->
   <div class="page" id="page-cta">
     <header>
-      <h1><span>&gt;</span> CTA &mdash; Global Trend Tracker</h1>
+      <h1><span>&gt;</span> CTA</h1>
       <div class="updated" id="cta-updated"></div>
     </header>
 
@@ -1748,8 +1757,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
 
     <!-- aggregate strip -->
-    <div id="cta-agg-strip" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;"></div>
-    <div id="cta-px-agg" style="display:none;gap:14px;flex-wrap:wrap;margin-bottom:16px;"></div>
+    <div id="cta-agg-strip"></div>
+    <div id="cta-px-agg" style="display:none;"></div>
 
     <!-- controls -->
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;">
@@ -2431,7 +2440,7 @@ function renderScores(d) {
     sp.speed + ' <b>' + fsig(sp.resp) + '</b> <span style="color:var(--text-dim);">z ' + fsig(sp.z, 1) + ' · ' + (sp.days_since_flip == null ? '—' : sp.days_since_flip + 'd') + '</span></span>').join(' ');
   document.getElementById('scores').innerHTML =
     '<div class="score-card" style="grid-column:1/-1;">' +
-      '<div class="title">Trend score (vol-scaled 3-speed EWMA + 12M anchor · same engine as CTA Rates)</div>' +
+      '<div class="title">Trend score (vol-scaled 3-speed EWMA + 12M anchor · same engine as the CTA page)</div>' +
       '<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;">' +
         '<div style="min-width:160px;"><div style="font-size:2rem;font-weight:800;color:' + col + ';font-variant-numeric:tabular-nums;">' + fsig(tr.score) + '</div>' +
           '<span class="badge ' + (tr.score >= 0.2 ? 'bull' : tr.score <= -0.2 ? 'bear' : 'neutral') + '">' + (tr.band || '') + '</span>' +
@@ -2556,7 +2565,7 @@ function renderMomSummaryCategory(cat, tickers) {
   });
   target.innerHTML =
     '<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:8px;line-height:1.5;">' +
-    'Trend = vol-scaled 3-speed EWMA score in [−1, +1] with a 12M anchor (same engine as CTA Rates); + means the <i>ticker</i> is trending up (yields up for rates). ' +
+    'Trend = vol-scaled 3-speed EWMA score in [−1, +1] with a 12M anchor (same engine as the CTA page); + means the <i>ticker</i> is trending up (yields up for rates). ' +
     '12-Oct-26 review (momentum_review.py, pooled by class, drift removed, block-bootstrap CIs): the score has a modest, real timing edge in <b>rates</b> (unit-vol Sharpe ~0.7 pooled, t≈2; ~+0.14σ next month beyond |score| 0.3 — the 0.3-0.6 and ≥0.6 bands predict alike); FX, equity and commodity trend are statistically indistinguishable from zero on 2015-26 (an 11y Sharpe carries a ±0.6 CI), so the score is context there, never an anchor. Equity <b>strong down</b> persisting is a contrarian state (+0.26σ next month pooled) — shown on the Bottoming scorecard. Crossovers, the indicator table and the exhaustion signals were retired: pooled, they carried nothing. Click a header to sort.</div>' +
     '<table class="vol-table"><thead><tr>' +
     '<th>Ticker</th><th>Last</th>' +
@@ -4998,21 +5007,25 @@ window.FVDETAIL = (function() {
 
   function aggStrip() {
     var a = D.aggregate;
-    var wz = a.whipsaw_z, wzc = Math.abs(wz) >= 2 ? '#dc2626' : Math.abs(wz) >= 1 ? '#ea580c' : 'var(--text)';
-    function card(label, val, sub, color) {
-      return '<div class="chart-wrap" style="padding:10px 16px;min-width:150px;">' +
-        '<div style="font-size:0.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;">' + label + '</div>' +
-        '<div style="font-size:1.25rem;font-weight:800;color:' + (color || 'var(--text)') + ';">' + val + '</div>' +
-        (sub ? '<div style="font-size:0.7rem;color:var(--text-dim);">' + sub + '</div>' : '') + '</div>';
-    }
-    document.getElementById('cta-agg-strip').innerHTML =
-      card('Net duration', '$' + fmtM(a.net_dv01) + 'm/bp', 'shorter than ' + a.pctile_1y.toFixed(0) + '% of past 1y',
-           a.net_dv01 >= 0 ? '#16a34a' : '#dc2626') +
-      card('5d flow', '$' + fmtM(a.flow_5d) + 'm/bp', '10d: $' + fmtM(a.flow_10d) + 'm') +
-      card('Whipsaw z (10d)', (wz > 0 ? '+' : '') + wz.toFixed(1) + 'σ', '|z|>2 = violent reversal', wzc) +
-      card('NA', '$' + fmtM(a.by_region.NA) + 'm', '', a.by_region.NA >= 0 ? '#16a34a' : '#dc2626') +
-      card('Europe', '$' + fmtM(a.by_region.EU) + 'm', '', a.by_region.EU >= 0 ? '#16a34a' : '#dc2626') +
-      card('Asia/Pac', '$' + fmtM(a.by_region.AP) + 'm', '', a.by_region.AP >= 0 ? '#16a34a' : '#dc2626');
+    var wz = a.whipsaw_z, wzc = Math.abs(wz) >= 2 ? '#dc2626' : Math.abs(wz) >= 1 ? '#ea580c' : '';
+    function pn(v) { return v >= 0 ? '#16a34a' : '#dc2626'; }
+    function sm(v) { return (v > 0 ? '+' : v < 0 ? '−' : '') + '$' + Math.abs(v / 1e6).toFixed(1) + 'm'; }
+    function reg(lbl, v) { return '<small style="color:var(--text-dim);font-weight:500;">' + lbl + '</small> <span style="color:' + pn(v) + ';">' + sm(v) + '</span>'; }
+    var r = a.by_region;
+    document.getElementById('cta-agg-strip').innerHTML = statBar([
+      { k: 'Net duration', v: sm(a.net_dv01) + '<small>/bp</small>', c: pn(a.net_dv01),
+        s: (a.net_dv01 < 0 ? 'shorter' : 'longer') + ' than ' + (a.net_dv01 < 0 ? a.pctile_1y : 100 - a.pctile_1y).toFixed(0) + '% of past 1y' },
+      { k: 'Flow 5d / 10d', v: sm(a.flow_5d) + ' <small style="color:var(--text-dim);">/ ' + sm(a.flow_10d) + '</small>', c: pn(a.flow_5d), s: '+ = CTAs buying duration' },
+      { k: 'Whipsaw z (10d)', v: (wz > 0 ? '+' : '') + wz.toFixed(1) + 'σ', c: wzc, s: '|z| > 2 = violent reversal' },
+      { k: 'By region ($/bp)', v: reg('NA', r.NA) + ' &nbsp;' + reg('EU', r.EU) + ' &nbsp;' + reg('AP', r.AP), wide: true }
+    ]);
+  }
+  function statBar(items) {
+    return '<div class="cta-stats">' + items.map(function(it) {
+      return '<div class="c"' + (it.wide ? ' style="grid-column:span 2;"' : '') + '><div class="k">' + it.k + '</div>' +
+        '<div class="v"' + (it.c ? ' style="color:' + it.c + ';"' : '') + '>' + it.v + '</div>' +
+        (it.s ? '<div class="s">' + it.s + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
   }
 
   function scenTable() {
@@ -5207,19 +5220,22 @@ window.FVDETAIL = (function() {
     });
   }
   function pxAgg() {
-    var a = (PX[ASSET] || {}).aggregate || {}, h = '';
-    function tile(k, v, s) { return '<div class="chart-wrap" style="padding:10px 14px;min-width:150px;"><div style="font-size:0.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;">' + k + '</div><div style="font-size:1.25rem;font-weight:700;">' + v + '</div>' + (s ? '<div style="font-size:0.72rem;color:var(--text-dim);">' + s + '</div>' : '') + '</div>'; }
-    function sg(v) { return v == null ? '--' : (v > 0 ? '+' : '') + Number(v).toFixed(0) + '%'; }
+    var a = (PX[ASSET] || {}).aggregate || {}, t = [];
+    function sg(v) { return v == null ? '--' : (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(Number(v)).toFixed(0) + '%'; }
+    function cl(v) { return v == null ? '' : v >= 0 ? '#16a34a' : '#dc2626'; }
     if (ASSET === 'fx') {
-      h += tile('USD length', sg(a.usd_length_pct), 'avg of 18 pairs, % of full risk');
-      h += tile('USD 5d flow', sg(a.usd_flow_5d_pct), '+ = CTAs buying USD');
-      if (a.g10) h += tile('G10 USD length', sg(a.g10.net_pct), a.g10.n_short + ' short ccy / ' + a.g10.n_long + ' long');
-      if (a.asia_em) h += tile('Asia/EM USD length', sg(a.asia_em.net_pct), a.asia_em.n_short + ' short ccy / ' + a.asia_em.n_long + ' long');
+      t.push({ k: 'USD length', v: sg(a.usd_length_pct), c: cl(a.usd_length_pct), s: 'avg of 18 pairs, % of full risk' });
+      t.push({ k: 'USD 5d flow', v: sg(a.usd_flow_5d_pct), c: cl(a.usd_flow_5d_pct), s: '+ = CTAs buying USD' });
+      if (a.g10) t.push({ k: 'G10 USD length', v: sg(a.g10.net_pct), c: cl(a.g10.net_pct), s: a.g10.n_short + ' short ccy / ' + a.g10.n_long + ' long' });
+      if (a.asia_em) t.push({ k: 'Asia/EM USD length', v: sg(a.asia_em.net_pct), c: cl(a.asia_em.net_pct), s: a.asia_em.n_short + ' short ccy / ' + a.asia_em.n_long + ' long' });
     } else {
-      if (a.equity) { h += tile('Equity length', sg(a.equity.net_pct), a.equity.n_long + ' long / ' + a.equity.n_short + ' short'); h += tile('Equity 5d flow', sg(a.equity.flow_5d_pct), 'avg, % of full risk'); }
-      if (a.cmdty) h += tile('Cmdty length', sg(a.cmdty.net_pct), 'copper, Brent, WTI');
+      if (a.equity) {
+        t.push({ k: 'Equity length', v: sg(a.equity.net_pct), c: cl(a.equity.net_pct), s: a.equity.n_long + ' long / ' + a.equity.n_short + ' short' });
+        t.push({ k: 'Equity 5d flow', v: sg(a.equity.flow_5d_pct), c: cl(a.equity.flow_5d_pct), s: 'avg, % of full risk' });
+      }
+      if (a.cmdty) t.push({ k: 'Cmdty length', v: sg(a.cmdty.net_pct), c: cl(a.cmdty.net_pct), s: 'copper, Brent, WTI' });
     }
-    var el = document.getElementById('cta-px-agg'); if (el) el.innerHTML = h;
+    var el = document.getElementById('cta-px-agg'); if (el) el.innerHTML = statBar(t);
   }
   var PX_NOTE = {
     fx: '<b>FX:</b> same trend engine as rates, run on the currency vs USD (USDJPY etc. inverted, so <b>+ = long the currency</b>; DXY row = long USD). ' +
@@ -5234,7 +5250,7 @@ window.FVDETAIL = (function() {
     document.querySelectorAll('#cta-asset-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.a === ASSET); });
     ['cta-agg-strip', 'cta-rates-wrap'].forEach(function(id) { var e = document.getElementById(id); if (e) e.style.display = px ? 'none' : ''; });
     var w = document.getElementById('cta-px-wrap'); if (w) w.style.display = px ? 'block' : 'none';
-    var ag = document.getElementById('cta-px-agg'); if (ag) ag.style.display = px ? 'flex' : 'none';
+    var ag = document.getElementById('cta-px-agg'); if (ag) ag.style.display = px ? 'block' : 'none';
     var ty = document.querySelectorAll('#cta-type-tabs .tab');
     if (ty.length === 2) { ty[0].textContent = px ? '% chg from spot' : 'bps chg from spot'; ty[1].textContent = px ? 'price level' : 'yield level'; }
     var vt = document.querySelector('#cta-view-tabs .tab[data-v="yield"]'); if (vt) vt.textContent = px ? 'flip: level' : 'flip: yield';
