@@ -1,29 +1,26 @@
 {
- "_updated": "2026-11-11 09:09",
+ "_updated": "2026-11-12 09:54",
  "created": "2026-08-17",
- "last_update": "2026-11-11",
- "setups_asof": "2026-11-11 09:09",
+ "last_update": "2026-11-12",
+ "setups_asof": "2026-11-12 09:54",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
- "open": [
+ "open": [],
+ "closed": [
   {
    "key": "inr5",
-   "instrument": "INR 5Y NDOIS",
    "kind": "rates",
    "verb": "PAY INR 5Y",
-   "units": -2500.0,
-   "size": "PROBE",
    "tier": "A",
+   "size": "HALF",
    "anchor": "TREND",
    "opened": "2026-09-13",
-   "days": 59,
-   "avg": 6.6738,
-   "mark": 6.45,
-   "unrealised": -55937.0,
-   "realised": 11562.0,
-   "score_at_open": 1.35
-  }
- ],
- "closed": [
+   "closed": "2026-11-12",
+   "entry": 6.6738,
+   "exit": 6.51,
+   "pnl": -29375.0,
+   "score": 1.35,
+   "days": 60
+  },
   {
    "key": "usdjpy",
    "kind": "fx",
@@ -416,12 +413,12 @@
   }
  ],
  "stats": {
-  "n_closed": 26,
+  "n_closed": 27,
   "wins": 12,
-  "realised": -98954.0,
-  "unrealised": -55937.0,
-  "total": -154891.0,
-  "avg_days": 14.1,
+  "realised": -139891.0,
+  "unrealised": 0,
+  "total": -139891.0,
+  "avg_days": 15.8,
   "by_size": {
    "PROBE": {
     "n": 16,
@@ -434,9 +431,9 @@
     "pnl": 14250.0
    },
    "HALF": {
-    "n": 7,
+    "n": 8,
     "wins": 3,
-    "pnl": -58268.0
+    "pnl": -87643.0
    }
   },
   "by_kind": {
@@ -451,9 +448,9 @@
     "pnl": 41862.0
    },
    "rates": {
-    "n": 13,
+    "n": 14,
     "wins": 7,
-    "pnl": -51725.0
+    "pnl": -81100.0
    },
    "cmd": {
     "n": 1,
@@ -479,16 +476,24 @@
     "open_realised": 0.0
    },
    "TREND": {
-    "n": 6,
+    "n": 7,
     "wins": 3,
-    "pnl": -75425.0,
-    "open_n": 1,
-    "open_pnl": -55937.0,
-    "open_realised": 11562.0
+    "pnl": -104800.0,
+    "open_n": 0,
+    "open_pnl": 0.0,
+    "open_realised": 0.0
    }
   }
  },
  "fills": [
+  {
+   "date": "2026-11-12",
+   "key": "inr5",
+   "units": 2500.0,
+   "price": 6.51,
+   "note": "close (dropped off strip)",
+   "anchor": null
+  },
   {
    "date": "2026-11-10",
    "key": "usdjpy",
@@ -800,14 +805,6 @@
    "price": 1051.52,
    "note": "close (dropped off strip)",
    "anchor": null
-  },
-  {
-   "date": "2026-09-07",
-   "key": "jgb",
-   "units": -5000.0,
-   "price": 2.918,
-   "note": "open A HALF",
-   "anchor": "TREND"
   }
  ]
 }
