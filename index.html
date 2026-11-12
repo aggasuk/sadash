@@ -1737,12 +1737,19 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     <!-- ============ CTA RATES PAGE ============ -->
   <div class="page" id="page-cta">
     <header>
-      <h1><span>&gt;</span> CTA Rates &mdash; Global Bonds Trend Tracker</h1>
+      <h1><span>&gt;</span> CTA &mdash; Global Trend Tracker</h1>
       <div class="updated" id="cta-updated"></div>
     </header>
 
+    <div class="tabs" id="cta-asset-tabs" style="margin-bottom:14px;">
+      <button class="tab active" data-a="rates">Rates</button>
+      <button class="tab" data-a="fx">FX</button>
+      <button class="tab" data-a="eq">Equities &amp; Cmdty</button>
+    </div>
+
     <!-- aggregate strip -->
     <div id="cta-agg-strip" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px;"></div>
+    <div id="cta-px-agg" style="display:none;gap:14px;flex-wrap:wrap;margin-bottom:16px;"></div>
 
     <!-- controls -->
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;">
@@ -1775,6 +1782,13 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       The Days-ahead / Type tabs drive the flow grid and the flow columns only.
     </div>
 
+    <div id="cta-px-wrap" style="display:none;">
+      <div id="cta-px-note" style="margin-bottom:14px;font-size:12.5px;color:var(--muted);line-height:1.55;"></div>
+      <div id="cta-px-table" style="margin-bottom:16px;"></div>
+      <div id="cta-px-drill" class="chart-wrap" style="display:none;padding:12px;margin-bottom:20px;"></div>
+    </div>
+
+    <div id="cta-rates-wrap">
     <div style="margin-bottom:14px;font-size:12.5px;color:var(--muted);line-height:1.55;">
       <b>Model:</b> 3-speed EWMA trend (10/30, 20/60, 40/120; tanh response) + TSMOM anchor (mean of 189&ndash;315d sign windows &mdash; smoothed, no year-ago cliff), vol-scaled.
       <b>+DV01 = long duration.</b> Threshold cells show the level that would generate an x-SD flow over the next N days
@@ -1817,6 +1831,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
     <div id="cta-em-table"></div>
+    </div>
   </div>
 
     <!-- ============ STUDIES PAGE ============ -->
@@ -5098,8 +5113,157 @@ window.FVDETAIL = (function() {
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  /* ---- FX + Equities/Cmdty tabs (cta_fx_eq.json, same engine; 12-Nov-26) ---- */
+  var ASSET = 'rates', PX = null, pxDrill = null;
+  try { ASSET = localStorage.getItem('cta_asset') || 'rates'; } catch (e) {}
+  function fq(v, dp) { return (v === null || v === undefined) ? '--' : Number(v).toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp }); }
+  function pxCellText(c, m) {
+    if (!c || c.bps === null || c.bps === undefined) return '--';
+    if (TYPE === 'yield') return fq(c.fut != null ? c.fut : c.quote, c.fut != null ? (m.kind === 'cmdty' ? 2 : 0) : m.dp);
+    return (c.pct > 0 ? '+' : '') + Number(c.pct).toFixed(2) + '%';
+  }
+  function pxFlipCell(m, h) {
+    var c = m.flip && m.flip[h];
+    if (!c || c.bps === null || c.bps === undefined)
+      return '<td style="color:var(--text-dim);" title="no flip within ±6σ over ' + h + 'd">--</td>';
+    var short = m.pos_dv01 < 0;
+    var pipe = short ? c.bps >= 0 : c.bps <= 0;
+    var rgb = short ? '22,163,74' : '220,38,38';
+    var p = pipe ? 1 : (c.prob || 0);
+    var a = p < 0.1 ? 0.06 : p < 0.25 ? 0.14 : p < 0.5 ? 0.28 : p < 0.75 ? 0.45 : 0.65;
+    var lvlq = fq(c.quote, m.dp), lvlf = c.fut != null ? fq(c.fut, m.kind === 'cmdty' ? 2 : 0) : null;
+    var txt;
+    if (VIEW === 'yield') txt = lvlq;
+    else if (VIEW === 'bps') txt = (c.pct > 0 ? '+' : '') + Number(c.pct).toFixed(2) + '%';
+    else if (VIEW === 'prob') txt = pipe ? 'pipe' : Math.round((c.prob || 0) * 100) + '%';
+    else txt = lvlf || lvlq;
+    var tip = (short ? 'short flips LONG' : 'long flips SHORT') + ' within ' + h + 'd at ' + lvlq +
+      (lvlf ? ' (' + (m.fut ? m.fut.ticker : 'fut') + ' ' + lvlf + ')' : '') + ', ' + (c.pct > 0 ? '+' : '') + c.pct + '% in ' + m.name +
+      (pipe ? ' — in the pipeline: happens at unchanged prices' : ', P(touch) ' + Math.round((c.prob || 0) * 100) + '%');
+    return '<td style="white-space:nowrap;background:rgba(' + rgb + ',' + a + ');color:' + (a > 0.5 ? '#fff' : 'var(--text)') + ';' +
+      (pipe ? 'font-weight:700;' : '') + '" title="' + tip + '">' + (pipe ? '&#9679; ' : '') + txt + '</td>';
+  }
+  function buildPxTable(rows, elId) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var isFx = ASSET === 'fx';
+    var h = '<table class="vol-table"><thead><tr>' +
+      '<th style="text-align:left;">Region</th><th style="text-align:left;">Market</th><th>Last</th>' +
+      '<th title="momentum = position as % of full risk; + = long the asset (FX: long the currency vs USD)">Position % risk</th>' +
+      '<th>Exposure SD</th><th>Speeds</th>' +
+      (VIEW === 'grid' ? '<th>-2SD</th><th>-1SD</th><th>0SD</th><th>+1SD</th><th>+2SD</th>'
+        : FLIP_H.map(function(x) { return '<th>flip ' + x + 'd</th>'; }).join('')) +
+      '<th title="flow over the horizon at unchanged prices, % of full risk">Flat flow %</th><th>1SD flow %</th><th>5d flow %</th>' +
+      (isFx ? '<th title="1M forward carry of long the currency vs USD, % a year (Citi)">Carry %/yr</th>' : '') + '</tr></thead><tbody>';
+    var lastReg = null;
+    rows.forEach(function(m) {
+      var th = {}; (m.thresholds[H] || []).forEach(function(c) { th[c.sd] = c; });
+      var reg = m.region === lastReg ? '' : m.region; lastReg = m.region;
+      var sf = m.scen_flows_pct && m.scen_flows_pct[H] ? m.scen_flows_pct[H].flat : null;
+      var lastTxt = fq(m.quote, m.dp) + (m.fut && VIEW === 'fut' ? ' <span style="color:var(--text-dim);font-size:0.75rem;">' + m.fut.ticker + ' ' + fq(m.fut.px, m.kind === 'cmdty' ? 2 : 0) + '</span>' : '');
+      h += '<tr class="cta-px-row" data-key="' + m.key + '" style="cursor:pointer;">' +
+        '<td style="text-align:left;color:var(--text-dim);font-size:0.75rem;">' + reg + '</td>' +
+        '<td style="text-align:left;font-weight:700;white-space:nowrap;">' + m.name + '</td>' +
+        '<td style="white-space:nowrap;">' + lastTxt + '</td>' +
+        '<td style="font-weight:600;color:' + (m.pos_pct >= 0 ? '#16a34a' : '#dc2626') + ';">' + (m.pos_pct > 0 ? '+' : '') + m.pos_pct.toFixed(0) + '%</td>' +
+        '<td>' + expBar(m.exp_sd) + '</td><td style="white-space:nowrap;">' + speedStrip(m.speeds) + '</td>';
+      if (VIEW === 'grid') {
+        [-2, -1, 0, 1, 2].forEach(function(sd) {
+          var c = th[sd];
+          h += '<td style="white-space:nowrap;' + cellStyle(c) + '"' + (c && c.prob != null ? ' title="P(touch) ' + Math.round(c.prob * 100) + '%"' : '') + '>' + pxCellText(c, m) + '</td>';
+        });
+      } else { FLIP_H.forEach(function(x) { h += pxFlipCell(m, x); }); }
+      h += '<td style="font-weight:700;color:' + (sf === null ? 'var(--text-dim)' : sf >= 0 ? '#16a34a' : '#dc2626') + ';">' + (sf === null ? '--' : (sf > 0 ? '+' : '') + sf.toFixed(1)) + '</td>' +
+        '<td>' + (m.sd_flow_pct && m.sd_flow_pct[H] != null ? m.sd_flow_pct[H].toFixed(1) : '--') + '</td>' +
+        '<td style="color:' + (m.flow_5d_pct >= 0 ? '#16a34a' : '#dc2626') + ';">' + (m.flow_5d_pct > 0 ? '+' : '') + m.flow_5d_pct.toFixed(1) + '</td>' +
+        (isFx ? '<td>' + (m.carry_ann == null ? '--' : (m.carry_ann > 0 ? '+' : '') + m.carry_ann.toFixed(1)) + '</td>' : '') + '</tr>';
+    });
+    el.innerHTML = h + '</tbody></table>';
+    el.querySelectorAll('.cta-px-row').forEach(function(tr) {
+      tr.addEventListener('click', function() { pxDrillShow(tr.dataset.key); });
+    });
+  }
+  function pxDrillShow(key) {
+    var m = (PX[ASSET].markets || []).filter(function(x) { return x.key === key; })[0];
+    var el = document.getElementById('cta-px-drill');
+    if (!m || !el) return;
+    el.style.display = 'block';
+    el.innerHTML = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><b>' + m.name + '</b>' +
+      '<span style="color:var(--text-dim);font-size:0.8rem;">price (left) vs CTA position, % of full risk (right) — 1Y</span>' +
+      '<button id="cta-px-drill-close" style="margin-left:auto;background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:4px;cursor:pointer;">close</button></div>' +
+      '<div style="height:300px;"><canvas id="cta-px-drill-c"></canvas></div>';
+    document.getElementById('cta-px-drill-close').addEventListener('click', function() { el.style.display = 'none'; });
+    if (pxDrill) pxDrill.destroy();
+    pxDrill = new Chart(document.getElementById('cta-px-drill-c'), {
+      type: 'line',
+      data: { labels: m.history.d, datasets: [
+        { label: m.name, data: m.history.q, borderColor: '#60a5fa', pointRadius: 0, borderWidth: 1.5, yAxisID: 'y' },
+        { label: 'CTA position %', data: m.history.pos, borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.12)', fill: true, pointRadius: 0, borderWidth: 1.2, yAxisID: 'y2' }] },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { labels: { color: TICK, boxWidth: 12, font: { size: 10 } } } },
+        scales: { x: { ticks: { color: TICK, maxTicksLimit: 8, font: { size: 9 } }, grid: { display: false } },
+                  y: { ticks: { color: TICK, font: { size: 9 } }, grid: { color: GRID } },
+                  y2: { position: 'right', min: -100, max: 100, ticks: { color: '#f59e0b', font: { size: 9 } }, grid: { display: false } } } }
+    });
+  }
+  function pxAgg() {
+    var a = (PX[ASSET] || {}).aggregate || {}, h = '';
+    function tile(k, v, s) { return '<div class="chart-wrap" style="padding:10px 14px;min-width:150px;"><div style="font-size:0.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;">' + k + '</div><div style="font-size:1.25rem;font-weight:700;">' + v + '</div>' + (s ? '<div style="font-size:0.72rem;color:var(--text-dim);">' + s + '</div>' : '') + '</div>'; }
+    function sg(v) { return v == null ? '--' : (v > 0 ? '+' : '') + Number(v).toFixed(0) + '%'; }
+    if (ASSET === 'fx') {
+      h += tile('USD length', sg(a.usd_length_pct), 'avg of 18 pairs, % of full risk');
+      h += tile('USD 5d flow', sg(a.usd_flow_5d_pct), '+ = CTAs buying USD');
+      if (a.g10) h += tile('G10 USD length', sg(a.g10.net_pct), a.g10.n_short + ' short ccy / ' + a.g10.n_long + ' long');
+      if (a.asia_em) h += tile('Asia/EM USD length', sg(a.asia_em.net_pct), a.asia_em.n_short + ' short ccy / ' + a.asia_em.n_long + ' long');
+    } else {
+      if (a.equity) { h += tile('Equity length', sg(a.equity.net_pct), a.equity.n_long + ' long / ' + a.equity.n_short + ' short'); h += tile('Equity 5d flow', sg(a.equity.flow_5d_pct), 'avg, % of full risk'); }
+      if (a.cmdty) h += tile('Cmdty length', sg(a.cmdty.net_pct), 'copper, Brent, WTI');
+    }
+    var el = document.getElementById('cta-px-agg'); if (el) el.innerHTML = h;
+  }
+  var PX_NOTE = {
+    fx: '<b>FX:</b> same trend engine as rates, run on the currency vs USD (USDJPY etc. inverted, so <b>+ = long the currency</b>; DXY row = long USD). ' +
+        'Trend runs on a <b>carry-adjusted</b> index (Citi 1M forward points), the way CTAs hold futures/forwards. Position and flows are in <b>% of full risk</b> ' +
+        '(no clean street $ tally for CTA FX — compare with Vanda in SD terms). <b>% moves are the currency vs USD</b> (JPY −0.5% = USDJPY up); price levels are in market quotes. <em>Click a row for the chart.</em>',
+    eq: '<b>Equities &amp; commodities:</b> same trend engine on the cash index (levels also shown in the front future via the live basis) and on ' +
+        '<b>roll-adjusted</b> copper/Brent/WTI futures (ratio-adjusted generics, so rolls do not fake a trend). Position and flows in <b>% of full risk</b>. ' +
+        '<em>Click a row for the chart.</em>'
+  };
+  function syncAsset() {
+    var px = ASSET !== 'rates';
+    document.querySelectorAll('#cta-asset-tabs .tab').forEach(function(s) { s.classList.toggle('active', s.dataset.a === ASSET); });
+    ['cta-agg-strip', 'cta-rates-wrap'].forEach(function(id) { var e = document.getElementById(id); if (e) e.style.display = px ? 'none' : ''; });
+    var w = document.getElementById('cta-px-wrap'); if (w) w.style.display = px ? 'block' : 'none';
+    var ag = document.getElementById('cta-px-agg'); if (ag) ag.style.display = px ? 'flex' : 'none';
+    var ty = document.querySelectorAll('#cta-type-tabs .tab');
+    if (ty.length === 2) { ty[0].textContent = px ? '% chg from spot' : 'bps chg from spot'; ty[1].textContent = px ? 'price level' : 'yield level'; }
+    var vt = document.querySelector('#cta-view-tabs .tab[data-v="yield"]'); if (vt) vt.textContent = px ? 'flip: level' : 'flip: yield';
+    var vb = document.querySelector('#cta-view-tabs .tab[data-v="bps"]'); if (vb) vb.textContent = px ? 'flip: %' : 'flip: bp';
+  }
+  function renderPx() {
+    var n = document.getElementById('cta-px-note');
+    if (!PX || !PX[ASSET]) { if (n) n.innerHTML = 'cta_fx_eq.json not loaded yet.'; return; }
+    document.getElementById('cta-updated').textContent = 'Last updated: ' + PX._updated;
+    if (n) n.innerHTML = PX_NOTE[ASSET];
+    pxAgg();
+    buildPxTable(PX[ASSET].markets || [], 'cta-px-table');
+  }
+  document.querySelectorAll('#cta-asset-tabs .tab').forEach(function(t) {
+    t.addEventListener('click', function() {
+      ASSET = t.dataset.a;
+      try { localStorage.setItem('cta_asset', ASSET); } catch (e) {}
+      syncAsset(); renderAll();
+    });
+  });
+  syncAsset();
+  fetch('cta_fx_eq.json?v=' + (window.__FVV || (window.__FVV = Date.now())))
+    .then(function(r) { return r.json(); })
+    .then(function(d) { PX = d; if (ASSET !== 'rates') renderAll(); })
+    .catch(function(e) { var n = document.getElementById('cta-px-note'); if (n) n.innerHTML = 'cta_fx_eq.json failed to load: ' + e; });
+
   var drillIsEM = false;
   function renderAll() {
+    if (ASSET !== 'rates') { renderPx(); return; }
     if (!D) return;
     document.getElementById('cta-updated').textContent = 'Last updated: ' + D._updated;
     aggStrip();
