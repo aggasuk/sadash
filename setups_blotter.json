@@ -1,8 +1,8 @@
 {
- "_updated": "2026-11-12 09:54",
+ "_updated": "2026-11-13 10:41",
  "created": "2026-08-17",
- "last_update": "2026-11-12",
- "setups_asof": "2026-11-12 09:54",
+ "last_update": "2026-11-13",
+ "setups_asof": "2026-11-13 10:41",
  "convention": "FULL = $10k DV01 (rates) / $5m notional (fx, eq, cmd) \u00b7 HALF 0.5x \u00b7 PROBE 0.25x \u00b7 paper, no costs",
  "open": [],
  "closed": [

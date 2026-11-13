@@ -1,1 +1,1 @@
-{"alerts": [], "_updated": "2026-11-12 09:48"}
+{"alerts": [{"ticker": "GJGB10 Index", "type": "trend_flip", "direction": "UP", "score": 0.043, "days_ago": 1, "timestamp": "2026-11-13 10:27"}], "_updated": "2026-11-13 10:27"}
