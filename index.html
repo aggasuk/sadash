@@ -1653,7 +1653,8 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
         NOKSEK = SEK per 1 NOK. Higher = NOK strong vs SEK. NOK is oil-leveraged (Norges Bank pro-cyclical via offshore wealth);
         SEK is industrial / metals / rate-sensitive (Riksbank historically dovish). Expected betas: Brent +, NOK&minus;SEK 2Y rate diff +,
-        log(SPX) + (mild), Copper &minus;.
+        log(SPX) + (mild), log(TTF gas) + (Norway is Europe&rsquo;s largest pipeline-gas supplier). TTF replaced copper 15-Nov-26:
+        copper was pinned to zero and the model read NOKSEK ~5% rich on Brent alone.
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: Brent (CO1) - NOK terms-of-trade</div>
@@ -1668,11 +1669,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div class="fvchart" id="noksek-img-spx"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Copper (HG1) - SEK industrial / cyclical demand</div>
-        <div class="fvchart" id="noksek-img-copper"></div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: log(TTF gas) - NOK gas terms-of-trade</div>
+        <div class="fvchart" id="noksek-img-ttf"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + Copper)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Brent + Rate Diff + log(TTF))</div>
         <div class="fvchart" id="noksek-img-combined"></div>
       </div>
     </div>
@@ -1683,11 +1684,15 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
         <div class="tabs" id="eursek-period-tabs" style="margin-bottom:0;">
           <button class="tab" data-p="6m">6M</button>
-          <button class="tab" data-p="1y">1Y</button>
-          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab active" data-p="1y">1Y</button>
+          <button class="tab" data-p="2y">2Y</button>
           <button class="tab" data-p="3y">3Y</button>
           <button class="tab" data-p="5y">5Y</button>
         </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        EURSEK = SEK per 1 EUR. SEK is the G10 low-yield funder most sensitive to US rates, so the US 2Y was added 15-Nov-26
+        (expected beta +). Read on the <b>1Y</b> window: the out-of-sample fade test passes there and misses narrowly at 2Y.
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 1: log(SPX)</div>
@@ -1702,7 +1707,11 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         <div class="fvchart" id="eursek-img-rates"></div>
       </div>
       <div class="chart-wrap" style="padding:12px;">
-        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: Combined (Rates + log(SPX) + Copper)</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 4: US 2Y (SOFR OIS) - SEK as the US-rates funder</div>
+        <div class="fvchart" id="eursek-img-us2y"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model 5: Combined (Rates + log(SPX) + Copper + US 2Y)</div>
         <div class="fvchart" id="eursek-img-combined"></div>
       </div>
     </div>
@@ -4024,8 +4033,8 @@ window.FVDETAIL = (function() {
     dxy:        { tabsId: "dxy-period-tabs", containers: ["dxy-img-real", "dxy-img-releq", "dxy-img-rates"] },
     thb5y:      { tabsId: "thb5y-period-tabs", containers: ["thb5y-img-combined"] },
     eurnok:     { tabsId: "eurnok-period-tabs", containers: ["eurnok-img-brent", "eurnok-img-rates", "eurnok-img-spx", "eurnok-img-ttf", "eurnok-img-combined"] },
-    noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-copper", "noksek-img-combined"] },
-    eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-combined"] },
+    noksek:     { tabsId: "noksek-period-tabs", containers: ["noksek-img-brent", "noksek-img-rates", "noksek-img-spx", "noksek-img-ttf", "noksek-img-combined"] },
+    eursek:     { tabsId: "eursek-period-tabs", containers: ["eursek-img-spx", "eursek-img-copper", "eursek-img-rates", "eursek-img-us2y", "eursek-img-combined"] },
   };
   var charts = {};       // canvasId -> Chart
   var curPeriod = {};    // subId -> period
