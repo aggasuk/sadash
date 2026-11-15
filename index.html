@@ -352,7 +352,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
   <!-- Top Navigation -->
   <div class="top-nav">
     <button class="nav-btn active" data-page="momentum">Momentum</button>
-    <button class="nav-btn" data-page="setups">Setups</button>
+    <button class="nav-btn" data-page="ideas">Ideas</button>
     <button class="nav-btn" data-page="vol">Vol</button>
     <button class="nav-btn" data-page="citi" style="display:none;">Citi Signals</button>
     <button class="nav-btn" data-page="fairvalue">Fair Value</button>
@@ -418,7 +418,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         One named state per index from two composites. <b>Capitulation</b> (0-1) blends a short, per-index set of
         stress legs (vol, momentum unwind, RSI, drawdown, credit) whose weights were fitted on 2001-13 and tested on
         2013-26; <b>Recovery</b> (0-1) is a fixed set of six tells that the flush is over, asked only inside a
-        capitulation episode. <b>Turning</b> is the buy read; it feeds the Setups tab as the bottoming anchor and
+        capitulation episode. <b>Turning</b> is the buy read; it feeds the Ideas tab as a tested buy signal and
         Capitulation building / Flush, not over as the armed lean. Click a card for the reasoning and what is on now.
         <span id="eqbot-updated"></span>
       </div>
@@ -449,212 +449,14 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
     </div>
   </div>
 
-  <!-- ============ SETUPS PAGE (setups.py → setups.json, setups_blotter.py → setups_blotter.json) ============ -->
-  <div class="page" id="page-setups">
+  <!-- ============ IDEAS PAGE (ideas.py -> ideas.html / ideas.json; replaced Setups 15-Nov-26) ============ -->
+  <div class="page" id="page-ideas">
     <header>
-      <h1><span>&gt;</span> Setups</h1>
-      <div class="updated" id="setups-updated"></div>
+      <h1><span>&gt;</span> Ideas</h1>
     </header>
-    <style>
-    .st-head{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;}
-    .st-chg{font-size:0.72rem;color:var(--text-dim);margin-top:4px;}
-    .st-h2{font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin:18px 0 6px;font-weight:700;}
-    .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;}
-    .st-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
-    .st-card.tA{border-left:4px solid var(--green);}
-    .st-card.tWATCH{border-left:4px solid var(--amber);opacity:.9;}
-    .st-card.tWATCH.noanchor{border-left-color:var(--border);opacity:.7;}
-    .st-card.tAVOID{border-left:4px solid var(--red);opacity:.8;}
-    .st-chead{display:flex;align-items:center;gap:8px;}
-    .st-tier{font-size:0.62rem;font-weight:800;letter-spacing:.08em;color:var(--text-dim);white-space:nowrap;}
-    .tA .st-tier{color:var(--green);}.tWATCH .st-tier{color:var(--amber);}.tAVOID .st-tier{color:var(--red);}
-    .st-verb{font-weight:750;font-size:0.9rem;flex:1;}
-    .st-size{font-size:0.62rem;font-weight:800;background:var(--surface2);border:1px solid var(--border);border-radius:99px;padding:2px 8px;color:var(--text-dim);white-space:nowrap;}
-    .st-why{font-size:0.76rem;color:var(--text-dim);}
-    .st-chips{display:flex;flex-wrap:wrap;gap:5px;}
-    .st-chip{font-size:0.66rem;font-weight:600;border-radius:6px;padding:1px 7px;border:1px solid var(--border);font-variant-numeric:tabular-nums;}
-    .st-chip.ok{color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);}
-    .st-chip.bad{color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent);}
-    .st-chip.mut{color:var(--text-dim);}
-    .st-chip.anchor{border-color:var(--accent);color:var(--accent);font-weight:800;}
-    .st-foot{font-size:0.66rem;color:var(--text-dim);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-    .st-stat{display:inline-flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px;min-width:110px;}
-    .st-stat .l{font-size:0.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);}
-    .st-stat .v{font-size:1.05rem;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
-    .st-toggle{font-size:0.66rem;border:1px solid var(--border);border-radius:99px;padding:2px 9px;cursor:pointer;background:var(--surface);color:var(--text-dim);font-family:inherit;}
-    .st-toggle.on{border-color:var(--accent);color:var(--accent);}
-    .pos{color:var(--green);} .neg{color:var(--red);}
-    </style>
-    <div id="setups-sub-setups">
-    <div id="setups-head" class="st-head">loading…</div>
-    <div id="setups-cards"></div>
-    <div class="st-h2">Score history — held / best direction per cluster (enter ≥1.0, exit &lt;0.5)</div>
-    <div id="setups-hist-toggles" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;"></div>
-    <div class="chart-wrap" style="height:360px;position:relative;"><canvas id="setups-hist-chart"></canvas></div>
-    <div class="st-h2">Paper blotter — every sized card, FULL = $10k DV01 / $5m notional, no costs</div>
-    <div id="setups-blotter"></div>
-    <div class="st-h2">Change log</div>
-    <div id="setups-changelog" style="font-size:0.74rem;color:var(--text-dim);line-height:1.7;"></div>
-    <div id="setups-method" style="font-size:0.7rem;color:var(--text-dim);margin-top:18px;line-height:1.5;"></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;">
+      <iframe id="ideas-frame" src="ideas.html" loading="lazy" style="width:100%;height:1600px;border:0;background:var(--bg);border-radius:8px;"></iframe>
     </div>
-    <script>
-    (function() {
-      var HIST = null, CHART = null, SEL = {};
-      function f2(x) { return x == null ? '—' : (x >= 0 ? '+' : '') + Number(x).toFixed(2); }
-      function money(x) { return x == null ? '—' : (x < 0 ? '−' : '+') + '$' + Math.abs(Math.round(x)).toLocaleString(); }
-      function cls(x) { return x == null ? '' : x > 0 ? 'pos' : x < 0 ? 'neg' : ''; }
-      function chips(parts) {
-        return '<div class="st-chips">' + parts.map(function(p) {
-          return '<span class="st-chip ' + p[2] + '">' + p[0] + ' <b>' + f2(p[1]) + '</b></span>';
-        }).join('') + '</div>';
-      }
-      function why(parts) {
-        var w = parts.map(function(p) { return p[3]; }).filter(Boolean);
-        return w.length ? '<div class="st-why">' + w.join(' · ') + '</div>' : '';
-      }
-      function card(e) {
-        var noanchor = !e.anchor;
-        var head = e.tier === 'A' ? e.verb :
-                   e.tier === 'AVOID' ? 'stand aside — ' + e.label :
-                   noanchor ? e.label + ' — <i>no anchor</i>' : e.verb + ' — <i>not yet</i>';
-        var size = e.size ? e.size + (e.max_size === 'PROBE' && e.tier === 'A' ? ' (cap)' : '') + ' · ' : '';
-        var foot = '';
-        if (e.tier === 'A') foot = 'held ' + (e.days_held == null ? '?' : e.days_held) + 'd since ' + e.since +
-                                    ' · entry ' + f2(e.entry_score) + ' → now ' + f2(e.score) + ' · exits below 0.5 (3 runs, 14d min hold)';
-        else if (e.tier === 'AVOID') foot = 'veto: ' + (e.veto || '');
-        else if (noanchor) foot = 'trend ' + f2(e.trend) + ' (' + (e.cls === 'rates' ? 'below 0.3' : e.cls + ': trend is not an anchor') +
-                                  ') — waits for ' + (e.cls === 'rates' ? 'trend ≥0.3' :
-                                  e.cls === 'fx' ? 'FV ≥1z / EUReka checklist' : 'Bottoming entry / positioning / FV');
-        else foot = 'score ' + f2(e.score) + ' — needs +' + f2(e.needs).replace('+', '') + ' more';
-        if (e.note) foot += ' · ' + e.note;
-        if (e.pending) { var pq = e.pending; foot += ' · <b style="color:var(--amber);">pending ' + pq.action + (pq.size ? ' ' + pq.size : '') + ' ' + pq.n + '/' + pq.need + (pq.hold_block ? ', min hold ' + pq.hold_left + 'd left' : '') + '</b>'; }
-        var other = e.other && Object.keys(e.other).length > 1 ?
-          ' · other side ' + Object.keys(e.other).filter(function(k){ return k !== e.dir; }).map(function(k){ return k + ' ' + f2(e.other[k]); }).join(', ') : '';
-        return '<div class="st-card t' + e.tier + (noanchor ? ' noanchor' : '') + '"><div class="st-chead">' +
-          '<span class="st-tier">' + (e.tier === 'A' ? 'A-SETUP' : e.tier) + '</span>' +
-          '<span class="st-verb">' + head + '</span>' +
-          '<span class="st-size">' + size + (e.score == null ? '—' : f2(e.score)) + '</span></div>' +
-          (e.anchor ? '<div class="st-chips"><span class="st-chip anchor">anchor: ' + e.anchor + '</span></div>' : '') +
-          why(e.parts) + chips(e.parts) +
-          '<div class="st-foot"><span>' + foot + other + '</span></div></div>';
-      }
-      function sec(title, arr, fn) {
-        if (!arr.length) return '';
-        return '<div class="st-h2">' + title + '</div><div class="st-grid">' + arr.map(fn).join('') + '</div>';
-      }
-      function renderCards(d) {
-        var acts = d.cards.filter(function(e){ return e.tier === 'A'; });
-        var avoid = d.cards.filter(function(e){ return e.tier === 'AVOID'; });
-        var watch = d.cards.filter(function(e){ return e.tier === 'WATCH' && e.anchor; });
-        var idle = d.cards.filter(function(e){ return e.tier === 'WATCH' && !e.anchor; });
-        var head = (acts.length ? '<b>' + acts.length + ' setup' + (acts.length === 1 ? '' : 's') + ' on</b>' : '<b>Nothing on.</b>') +
-          ' · ' + watch.length + ' anchored but short of 1.0 · ' + idle.length + ' without an anchor · ' + avoid.length + ' vetoed';
-        var chg = (d.changes && d.changes.length) ? '<div class="st-chg">this run: ' + d.changes.join(' · ') + '</div>' : '';
-        var pnd = (d.pending && d.pending.length) ? '<div class="st-chg">pending: ' + d.pending.join(' · ') + '</div>' : '';
-        document.getElementById('setups-head').innerHTML = head + chg + pnd;
-        document.getElementById('setups-updated').textContent = 'Last updated: ' + (d._updated || '');
-        document.getElementById('setups-cards').innerHTML =
-          sec('On', acts, card) + sec('Stand aside', avoid, card) + sec('Watch — anchored, short of the bar', watch, card) +
-          sec('No anchor — context only', idle, card);
-        document.getElementById('setups-changelog').innerHTML = (d.changelog || []).slice().reverse().map(function(c) {
-          return '<div><span style="color:var(--text-dim);font-variant-numeric:tabular-nums;">' + c.d + '</span> &nbsp;' + c.msg + '</div>';
-        }).join('') || '<div>—</div>';
-        document.getElementById('setups-method').innerHTML = '<b>Method.</b> ' + (d.method || '') +
-          ' <br>v3 12-Oct-26 (momentum_review.py): continuous legs, 3-run confirmation, 14-day minimum hold, CTA flow never an anchor, FX VALUE cards capped at PROBE until the pair passes the out-of-sample fade test, failed FV models at half weight. ' +
-          'v2 07-Sep-26 replaced the crossover backtest; the blotter closed the v1 book then — episodes before 07-Sep-26 are v1.';
-      }
-      var PAL = ['#3b82f6','#22c55e','#ef4444','#f59e0b','#a855f7','#06b6d4','#ec4899','#84cc16','#f97316','#14b8a6','#6366f1','#eab308','#10b981','#f43f5e','#8b5cf6','#0ea5e9'];
-      function renderHist(d) {
-        HIST = d.history || {};
-        var keys = Object.keys(HIST);
-        var byKey = {}; d.cards.forEach(function(c){ byKey[c.key] = c; });
-        keys.sort(function(a, b) { var ta = (byKey[a] || {}).tier === 'A' ? 0 : 1, tb = (byKey[b] || {}).tier === 'A' ? 0 : 1; return ta - tb || a.localeCompare(b); });
-        var tg = document.getElementById('setups-hist-toggles');
-        tg.innerHTML = keys.map(function(k, i) {
-          var c = byKey[k] || {}; SEL[k] = (c.tier === 'A') || (c.cls === 'rates');
-          return '<button class="st-toggle' + (SEL[k] ? ' on' : '') + '" data-k="' + k + '" style="border-color:' + (SEL[k] ? PAL[i % PAL.length] : '') + '">' + (c.label || k) + '</button>';
-        }).join('');
-        tg.querySelectorAll('.st-toggle').forEach(function(b, i) {
-          b.addEventListener('click', function() { SEL[b.dataset.k] = !SEL[b.dataset.k]; b.classList.toggle('on', SEL[b.dataset.k]); b.style.borderColor = SEL[b.dataset.k] ? PAL[i % PAL.length] : ''; draw(keys, byKey); });
-        });
-        draw(keys, byKey);
-      }
-      function draw(keys, byKey) {
-        var dates = {}; keys.forEach(function(k){ (HIST[k] || []).forEach(function(r){ dates[r.d] = 1; }); });
-        var labels = Object.keys(dates).sort();
-        var ds = [];
-        keys.forEach(function(k, i) {
-          if (!SEL[k]) return;
-          var m = {}; (HIST[k] || []).forEach(function(r){ m[r.d] = r; });
-          var vals = labels.map(function(dt) {
-            var r = m[dt]; if (!r) return null;
-            var v = r.dir === 'bull' ? r.bull : r.dir === 'bear' ? r.bear : Math.max(r.bull == null ? -9 : r.bull, r.bear == null ? -9 : r.bear);
-            return (v == null || v === -9) ? null : v;
-          });
-          var lastDir = (HIST[k] || []).length ? HIST[k][HIST[k].length - 1].dir : null;
-          ds.push({ label: (byKey[k] || {}).label || k, data: vals, borderColor: PAL[i % PAL.length], backgroundColor: PAL[i % PAL.length],
-                    borderDash: lastDir === 'bear' ? [5, 4] : [], tension: 0.2, pointRadius: labels.length < 40 ? 3 : 0, spanGaps: true, borderWidth: 1.8 });
-        });
-        var dark = (document.documentElement.getAttribute('data-theme') || 'dark') !== 'light';
-        var grid = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)', txt = dark ? '#94a3b8' : '#475569';
-        ds.push({ label: 'enter 1.0', data: labels.map(function(){ return 1.0; }), borderColor: 'rgba(34,197,94,0.5)', borderDash: [2, 3], pointRadius: 0, borderWidth: 1 });
-        ds.push({ label: 'exit 0.5', data: labels.map(function(){ return 0.5; }), borderColor: 'rgba(239,68,68,0.5)', borderDash: [2, 3], pointRadius: 0, borderWidth: 1 });
-        if (CHART) CHART.destroy();
-        CHART = new Chart(document.getElementById('setups-hist-chart'), { type: 'line', data: { labels: labels, datasets: ds },
-          options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'nearest', intersect: false },
-                     plugins: { legend: { labels: { color: txt, boxWidth: 12, font: { size: 10 } } },
-                                tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': ' + (c.parsed.y == null ? '—' : c.parsed.y.toFixed(2)); } } } },
-                     scales: { x: { ticks: { color: txt, maxTicksLimit: 12, font: { size: 10 } }, grid: { color: grid } },
-                               y: { ticks: { color: txt, font: { size: 10 } }, grid: { color: grid }, title: { display: true, text: 'score (dashed = bear side)', color: txt, font: { size: 10 } } } } } });
-      }
-      function renderBlotter(b) {
-        var el = document.getElementById('setups-blotter');
-        if (!b || !b.stats) { el.innerHTML = '<div style="color:var(--text-dim);font-size:0.78rem;">setups_blotter.json not available</div>'; return; }
-        var s = b.stats;
-        var h = '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">' +
-          '<div class="st-stat"><span class="l">total P&amp;L</span><span class="v ' + cls(s.total) + '">' + money(s.total) + '</span></div>' +
-          '<div class="st-stat"><span class="l">realised</span><span class="v ' + cls(s.realised) + '">' + money(s.realised) + '</span></div>' +
-          '<div class="st-stat"><span class="l">unrealised</span><span class="v ' + cls(s.unrealised) + '">' + money(s.unrealised) + '</span></div>' +
-          '<div class="st-stat"><span class="l">closed episodes</span><span class="v">' + s.n_closed + ' <span style="font-size:0.72rem;color:var(--text-dim);">(' + s.wins + ' wins' + (s.n_closed ? ', ' + Math.round(100 * s.wins / s.n_closed) + '%' : '') + ')</span></span></div>' +
-          '<div class="st-stat"><span class="l">avg hold</span><span class="v">' + (s.avg_days == null ? '—' : s.avg_days + 'd') + '</span></div>';
-        ['FULL', 'HALF', 'PROBE'].forEach(function(k) { var v = (s.by_size || {})[k]; if (!v) return;
-          h += '<div class="st-stat"><span class="l">' + k + '</span><span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">' + v.wins + '/' + v.n + '</span></span></div>'; });
-        Object.keys(s.by_kind || {}).forEach(function(k) { var v = s.by_kind[k];
-          h += '<div class="st-stat"><span class="l">' + k + '</span><span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">' + v.wins + '/' + v.n + '</span></span></div>'; });
-        h += '</div>';
-        // by anchor — which justification is making or losing the money (closed realised; open marked separately)
-        var ba = s.by_anchor || {};
-        if (Object.keys(ba).length) {
-          h += '<div class="st-h2" style="margin-top:4px;">By anchor</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">';
-          Object.keys(ba).sort().forEach(function(k) { var v = ba[k];
-            h += '<div class="st-stat" style="border-color:' + (k === 'v1' ? 'var(--border)' : 'var(--accent)') + ';"><span class="l">' + k + '</span>' +
-                 '<span class="v ' + cls(v.pnl) + '">' + money(v.pnl) + ' <span style="font-size:0.72rem;color:var(--text-dim);">closed ' + v.wins + '/' + v.n + '</span></span>' +
-                 (v.open_n ? '<span style="font-size:0.7rem;color:var(--text-dim);">open ' + v.open_n + ': <span class="' + cls(v.open_pnl) + '">' + money(v.open_pnl) + '</span>' +
-                   (v.open_realised ? ' · cut <span class="' + cls(v.open_realised) + '">' + money(v.open_realised) + '</span>' : '') + '</span>' : '') + '</div>'; });
-          h += '</div>';
-        }
-        h += '<div class="ind-section" style="margin-bottom:14px;"><h3>Open paper positions</h3><table class="vol-table"><thead><tr><th>key</th><th>instrument</th><th>position</th><th>size</th><th>anchor</th><th>opened</th><th>days</th><th>avg</th><th>mark</th><th>unrealised</th><th>realised</th></tr></thead><tbody>';
-        (b.open || []).forEach(function(r) {
-          var pos = r.kind === 'rates' ? (r.units >= 0 ? '+' : '') + Math.round(r.units).toLocaleString() + ' $/bp' : (r.units >= 0 ? '+' : '') + (r.units / 1e6).toFixed(2) + 'm USD';
-          h += '<tr><td>' + r.key + '</td><td style="text-align:left;">' + r.instrument + '<div style="font-size:0.66rem;color:var(--text-dim);">' + (r.verb || '') + '</div></td><td>' + pos + '</td><td>' + (r.size || '') + '</td><td><span class="st-chip ' + (r.anchor && r.anchor !== 'v1' ? 'anchor' : 'mut') + '">' + (r.anchor || 'v1') + '</span></td><td>' + r.opened + '</td><td>' + r.days + '</td><td>' + r.avg + '</td><td>' + (r.mark == null ? '—' : r.mark) + '</td><td class="' + cls(r.unrealised) + '">' + money(r.unrealised) + '</td><td class="' + cls(r.realised) + '">' + money(r.realised) + '</td></tr>';
-        });
-        if (!(b.open || []).length) h += '<tr><td colspan="11" style="color:var(--text-dim);">flat</td></tr>';
-        h += '</tbody></table></div>';
-        h += '<div class="ind-section"><h3>Closed episodes (latest 25)</h3><table class="vol-table"><thead><tr><th>opened</th><th>closed</th><th>days</th><th>key</th><th>trade</th><th>size</th><th>anchor</th><th>entry</th><th>exit</th><th>P&amp;L</th></tr></thead><tbody>';
-        (b.closed || []).slice(0, 25).forEach(function(e) {
-          h += '<tr><td>' + e.opened + '</td><td>' + e.closed + '</td><td>' + e.days + '</td><td>' + e.key + '</td><td style="text-align:left;">' + (e.verb || '') + '</td><td>' + (e.size || '') + '</td><td><span class="st-chip ' + (e.anchor && e.anchor !== 'v1' ? 'anchor' : 'mut') + '">' + (e.anchor || 'v1') + '</span></td><td>' + e.entry + '</td><td>' + e.exit + '</td><td class="' + cls(e.pnl) + '">' + money(e.pnl) + '</td></tr>';
-        });
-        h += '</tbody></table></div>';
-        h += '<div style="font-size:0.68rem;color:var(--text-dim);margin-top:6px;">' + (b.convention || '') + ' · started ' + (b.created || '') + ' · last update ' + (b.last_update || '') + '</div>';
-        el.innerHTML = h;
-      }
-      // this block runs before the shared bust() helper is defined further down — local equivalent
-      var _b = function(u) { return u + '?v=' + Date.now(); };
-      fetch(_b('setups.json')).then(function(r){ return r.json(); }).then(function(d) { renderCards(d); renderHist(d); })
-        .catch(function(e) { document.getElementById('setups-head').innerHTML = 'setups.json not available'; });
-      fetch(_b('setups_blotter.json')).then(function(r){ return r.json(); }).then(renderBlotter).catch(function(){ renderBlotter(null); });
-    })();
-    </script>
   </div>
 
   <!-- ============ VOL PAGE (FX + Equity + Rates combined) ============ -->
@@ -1263,7 +1065,7 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
         The residual is THB term premium vs the policy path plus US spillover; yield above FV = CHEAP.
         <b>No 5Y window</b>: Citi THOR history starts Mar-2021 and a 5y fit is dominated by 2021-22, when the BoT
         lagged the Fed (USD beta pins to 0, residual half-life ~190d). USDTHB and gold tested and left out.
-        Not out-of-sample fade-tested — a read, not a Setups anchor.
+        Not out-of-sample fade-tested — a read; untested on the Ideas tab.
       </div>
       <div class="chart-wrap" style="padding:12px;">
         <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">THB 1Y (BoT path) + USD SOFR 5Y</div>
