@@ -1,5 +1,5 @@
 {
- "_updated": "2026-11-17 10:29",
+ "_updated": "2026-11-18 09:24",
  "config": {
   "horizons": [
    "1W",
@@ -19,8 +19,8 @@
    "key": "NDX",
    "name": "NASDAQ-100",
    "sample_start": "2001-01-02",
-   "sample_end": "2026-11-16",
-   "n_days": 6507,
+   "sample_end": "2026-11-17",
+   "n_days": 6508,
    "arm_thr": 0.385,
    "mode": "v2-turning",
    "low_conviction": false,
@@ -38,36 +38,39 @@
    "baseline": {
     "1W": {
      "mean": 0.24,
-     "median": 0.47,
+     "median": 0.46,
      "hit": 57.0,
-     "n": 6502
+     "n": 6503
     },
     "1M": {
      "mean": 1.0,
      "median": 1.56,
      "hit": 63.0,
-     "n": 6486
+     "n": 6487
     },
     "3M": {
      "mean": 3.18,
      "median": 4.25,
      "hit": 69.0,
-     "n": 6444
+     "n": 6445
     },
     "6M": {
      "mean": 6.64,
      "median": 8.84,
      "hit": 75.0,
-     "n": 6381
+     "n": 6382
     }
    },
    "snapshot": {
-    "date": "2026-11-16",
-    "px": 27197.0,
-    "score": 0.399,
+    "date": "2026-11-17",
+    "px": 27002.0,
+    "score": 0.519,
     "cap_max": 1.0,
     "on": [
      "VXN 1y-90pct",
+     "VIX/VIX3M>1",
+     "VVIX/VIX low",
+     "PutCall 1y-90pct",
      "MTUM dd<=-10%"
     ],
     "recent_events": [],
@@ -76,15 +79,15 @@
     "entry_active_10d": false,
     "armed_new": false,
     "entry_today": false,
-    "v1_score": 2,
+    "v1_score": 5,
     "v1_cap_max": 9,
-    "v1_armed": false,
+    "v1_armed": true,
     "state": "Flush, not over",
     "state_since": "2026-11-05",
-    "state_days": 8,
+    "state_days": 9,
     "turn_from": null,
-    "cap": 0.399,
-    "rec": 0.157,
+    "cap": 0.519,
+    "rec": 0.063,
     "state_changed": false,
     "prev_state": "Flush, not over"
    },
@@ -128,44 +131,6 @@
      "is_cap": true
     },
     {
-     "signal": "MTUM dd<=-10%",
-     "n": 41,
-     "first": "2015-08-24",
-     "last": "2026-10-19",
-     "1W": {
-      "n": 41,
-      "mean": 1.77,
-      "median": 1.82,
-      "hit": 66.0,
-      "excess": 1.53
-     },
-     "1M": {
-      "n": 40,
-      "mean": 2.87,
-      "median": 4.29,
-      "hit": 68.0,
-      "excess": 1.87
-     },
-     "3M": {
-      "n": 38,
-      "mean": 8.17,
-      "median": 8.97,
-      "hit": 76.0,
-      "excess": 4.99
-     },
-     "6M": {
-      "n": 37,
-      "mean": 13.69,
-      "median": 16.95,
-      "hit": 76.0,
-      "excess": 7.05
-     },
-     "t_3M": 4.01,
-     "mae_mean": -5.76,
-     "mae_worst": -24.07,
-     "is_cap": true
-    },
-    {
      "signal": "VIX>30",
      "n": 53,
      "first": "2001-03-12",
@@ -201,6 +166,44 @@
      "t_3M": 4.61,
      "mae_mean": -7.45,
      "mae_worst": -39.22,
+     "is_cap": true
+    },
+    {
+     "signal": "MTUM dd<=-10%",
+     "n": 42,
+     "first": "2015-08-24",
+     "last": "2026-11-17",
+     "1W": {
+      "n": 41,
+      "mean": 1.77,
+      "median": 1.82,
+      "hit": 66.0,
+      "excess": 1.53
+     },
+     "1M": {
+      "n": 41,
+      "mean": 2.59,
+      "median": 3.99,
+      "hit": 66.0,
+      "excess": 1.59
+     },
+     "3M": {
+      "n": 39,
+      "mean": 7.75,
+      "median": 8.91,
+      "hit": 74.0,
+      "excess": 4.57
+     },
+     "6M": {
+      "n": 37,
+      "mean": 13.69,
+      "median": 16.95,
+      "hit": 76.0,
+      "excess": 7.05
+     },
+     "t_3M": 3.82,
+     "mae_mean": -5.85,
+     "mae_worst": -24.07,
      "is_cap": true
     },
     {
@@ -970,14 +973,14 @@
      "mean": 4.75,
      "median": 4.74,
      "hit": 69.0,
-     "excess": 4.04
+     "excess": 4.05
     },
     "6M": {
      "n": 44,
      "mean": 8.71,
      "median": 10.71,
      "hit": 70.0,
-     "excess": 5.94
+     "excess": 5.95
     },
     "first": "2001-01-30",
     "last": "2026-08-04"
@@ -986,9 +989,9 @@
     "key": "NDX",
     "name": "NASDAQ-100",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-11-16",
-    "n_days": 6507,
-    "split_date": "2013-12-09",
+    "sample_end": "2026-11-17",
+    "n_days": 6508,
+    "split_date": "2013-12-10",
     "rationale": "NDX capitulation is read as a momentum-factor unwind plus a vol event: MTUM's drawdown from its 1y high carries the most weight (it starts in 2013, so its weight is set on 2013-19 and tested on 2020-26), with the absolute VIX level, daily RSI14, the equity put/call percentile and the index's own drawdown confirming. VXN percentile, VRP, VIX term structure, VVIX/VIX, HY OAS and the trend score all test positive alone but add nothing to this combination in-sample, so they are out. Capitulation building is the top decile of the composite in 2001-13, Flush the top 2%.",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -1014,11 +1017,11 @@
      "cap_pct_flush_is": 0.0224
     },
     "cap_weights": {
-     "mtum_dd": 0.30302175457937813,
-     "rsi14": 0.26087380398451154,
-     "vix_level": 0.23374799707092733,
-     "putcall_pct": 0.10818211049953659,
-     "dd_1y": 0.09417433386564635
+     "mtum_dd": 0.305433204168391,
+     "rsi14": 0.25989025458571374,
+     "vix_level": 0.23294490694212303,
+     "putcall_pct": 0.10783427475049312,
+     "dd_1y": 0.09389735955327921
     },
     "rec_weights": {
      "iv_off_peak": 0.16666666666666666,
@@ -1034,31 +1037,31 @@
       "label": "MTUM drawdown from 1y high (-5% -> -20%)",
       "starts": "2013-07-12",
       "is_": {
-       "n_on": 39,
-       "lift": 5.74,
-       "excess": 11.08,
-       "on_off": 11.63,
-       "on_share": 0.0232,
-       "on_off_1m": 3.09,
-       "mae_on": -4.47,
+       "n_on": 40,
+       "lift": 5.78,
+       "excess": 11.32,
+       "on_off": 11.87,
+       "on_share": 0.0238,
+       "on_off_1m": 3.3,
+       "mae_on": -4.45,
        "mae_off": -4.62,
-       "mae_gain": 0.15
+       "mae_gain": 0.17
       },
       "oos": {
-       "n_on": 372,
-       "lift": 1.8,
-       "excess": 3.96,
-       "on_off": 4.69,
-       "on_share": 0.2301,
-       "on_off_1m": 1.89,
-       "mae_on": -7.84,
+       "n_on": 371,
+       "lift": 1.79,
+       "excess": 3.92,
+       "on_off": 4.65,
+       "on_share": 0.2294,
+       "on_off_1m": 1.86,
+       "mae_on": -7.86,
        "mae_off": -5.08,
-       "mae_gain": -2.76
+       "mae_gain": -2.78
       },
       "note": "weights from own first half (leg starts late)",
-      "split": "2020-03-12",
+      "split": "2020-03-13",
       "status": "kept",
-      "weight": 0.303
+      "weight": 0.305
      },
      {
       "leg": "rsi14",
@@ -1072,14 +1075,14 @@
        "on_share": 0.0176,
        "on_off_1m": 5.27,
        "mae_on": -9.87,
-       "mae_off": -7.6,
-       "mae_gain": -2.27
+       "mae_off": -7.59,
+       "mae_gain": -2.28
       },
       "oos": {
        "n_on": 34,
        "lift": 2.32,
        "excess": 7.29,
-       "on_off": 7.38,
+       "on_off": 7.39,
        "on_share": 0.0107,
        "on_off_1m": 2.36,
        "mae_on": -5.5,
@@ -1087,9 +1090,9 @@
        "mae_gain": -0.21
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
-      "weight": 0.261
+      "weight": 0.26
      },
      {
       "leg": "vix_level",
@@ -1100,7 +1103,7 @@
        "lift": 2.52,
        "excess": 8.66,
        "on_off": 9.62,
-       "on_share": 0.1018,
+       "on_share": 0.1017,
        "on_off_1m": 3.76,
        "mae_on": -8.57,
        "mae_off": -7.7,
@@ -1114,13 +1117,13 @@
        "on_share": 0.0301,
        "on_off_1m": 5.94,
        "mae_on": -3.51,
-       "mae_off": -5.34,
-       "mae_gain": 1.83
+       "mae_off": -5.35,
+       "mae_gain": 1.84
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
-      "weight": 0.234
+      "weight": 0.233
      },
      {
       "leg": "putcall_pct",
@@ -1134,8 +1137,8 @@
        "on_share": 0.1305,
        "on_off_1m": 2.07,
        "mae_on": -8.01,
-       "mae_off": -6.96,
-       "mae_gain": -1.05
+       "mae_off": -6.95,
+       "mae_gain": -1.06
       },
       "oos": {
        "n_on": 457,
@@ -1145,11 +1148,11 @@
        "on_share": 0.1432,
        "on_off_1m": 1.08,
        "mae_on": -6.28,
-       "mae_off": -5.12,
-       "mae_gain": -1.16
+       "mae_off": -5.13,
+       "mae_gain": -1.15
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
       "weight": 0.108
      },
@@ -1162,7 +1165,7 @@
        "lift": 1.84,
        "excess": 2.36,
        "on_off": 3.02,
-       "on_share": 0.2818,
+       "on_share": 0.2817,
        "on_off_1m": 1.31,
        "mae_on": -13.16,
        "mae_off": -4.96,
@@ -1170,17 +1173,17 @@
       },
       "oos": {
        "n_on": 311,
-       "lift": 2.56,
+       "lift": 2.55,
        "excess": 5.87,
        "on_off": 6.52,
        "on_share": 0.0975,
        "on_off_1m": 3.16,
        "mae_on": -7.02,
-       "mae_off": -5.1,
-       "mae_gain": -1.92
+       "mae_off": -5.11,
+       "mae_gain": -1.91
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
       "weight": 0.094
      },
@@ -1201,18 +1204,18 @@
       },
       "oos": {
        "n_on": 535,
-       "lift": 2.34,
+       "lift": 2.33,
        "excess": 3.28,
        "on_off": 3.96,
        "on_share": 0.1677,
        "on_off_1m": 1.77,
        "mae_on": -7.2,
-       "mae_off": -4.9,
-       "mae_gain": -2.3
+       "mae_off": -4.91,
+       "mae_gain": -2.29
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (31.64 vs 31.09)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (31.65 vs 31.10)",
       "weight": 0.0
      },
      {
@@ -1233,8 +1236,8 @@
       "oos": {
        "n_on": 513,
        "lift": 2.42,
-       "excess": 4.37,
-       "on_off": 5.23,
+       "excess": 4.38,
+       "on_off": 5.24,
        "on_share": 0.1608,
        "on_off_1m": 2.13,
        "mae_on": -5.81,
@@ -1242,8 +1245,8 @@
        "mae_gain": -0.62
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (22.44 vs 33.75)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (22.44 vs 33.76)",
       "weight": 0.0
      },
      {
@@ -1252,10 +1255,10 @@
       "starts": "2002-01-07",
       "is_": {
        "n_on": 298,
-       "lift": 2.51,
+       "lift": 2.52,
        "excess": 7.1,
        "on_off": 7.85,
-       "on_share": 0.0993,
+       "on_share": 0.0992,
        "on_off_1m": 0.74,
        "mae_on": -13.25,
        "mae_off": -5.89,
@@ -1273,8 +1276,8 @@
        "mae_gain": 0.29
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (31.41 vs 31.09)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (31.42 vs 31.10)",
       "weight": 0.0
      },
      {
@@ -1294,18 +1297,18 @@
       },
       "oos": {
        "n_on": 90,
-       "lift": 3.98,
+       "lift": 3.97,
        "excess": 10.28,
        "on_off": 10.6,
        "on_share": 0.0282,
-       "on_off_1m": 4.16,
+       "on_off_1m": 4.15,
        "mae_on": -5.69,
        "mae_off": -5.28,
        "mae_gain": -0.41
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (27.21 vs 31.09)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (27.22 vs 31.10)",
       "weight": 0.0
      },
      {
@@ -1331,12 +1334,12 @@
        "on_share": 0.0179,
        "on_off_1m": 1.17,
        "mae_on": -2.85,
-       "mae_off": -5.33,
-       "mae_gain": 2.48
+       "mae_off": -5.34,
+       "mae_gain": 2.49
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (24.79 vs 31.09)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (24.80 vs 31.10)",
       "weight": 0.0
      },
      {
@@ -1348,7 +1351,7 @@
        "lift": 2.09,
        "excess": 2.6,
        "on_off": 3.15,
-       "on_share": 0.1806,
+       "on_share": 0.1805,
        "on_off_1m": 0.56,
        "mae_on": -9.55,
        "mae_off": -5.63,
@@ -1357,17 +1360,17 @@
       "oos": {
        "n_on": 479,
        "lift": 2.77,
-       "excess": 5.26,
-       "on_off": 6.21,
+       "excess": 5.27,
+       "on_off": 6.22,
        "on_share": 0.1501,
        "on_off_1m": 2.48,
        "mae_on": -6.51,
-       "mae_off": -5.07,
-       "mae_gain": -1.44
+       "mae_off": -5.08,
+       "mae_gain": -1.43
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (30.88 vs 31.09)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (30.89 vs 31.10)",
       "weight": 0.0
      },
      {
@@ -1375,8 +1378,8 @@
       "path": [
        {
         "leg": "mtum_dd",
-        "obj": 1.46,
-        "excess": 1.46,
+        "obj": 1.43,
+        "excess": 1.43,
         "lift": 1.0
        },
        {
@@ -1387,19 +1390,19 @@
        },
        {
         "leg": "vix_level",
-        "obj": 31.09,
+        "obj": 31.1,
         "excess": 10.57,
         "lift": 2.94
        },
        {
         "leg": "putcall_pct",
-        "obj": 33.75,
+        "obj": 33.76,
         "excess": 11.71,
         "lift": 2.88
        },
        {
         "leg": "dd_1y",
-        "obj": 35.71,
+        "obj": 35.72,
         "excess": 11.75,
         "lift": 3.04
        }
@@ -1425,17 +1428,17 @@
        "lag_median": 12.5
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 13,
+       "n_ep": 12,
+       "n_fired": 12,
        "fire_share": 1.0,
-       "timed_share": 0.38,
-       "lift": 0.96,
-       "mae_on": -8.21,
-       "mae_flush": -6.33,
-       "mae_gain": -1.88,
-       "exc_on": 1.6,
-       "exc_flush": 5.26,
-       "false_over": 0.5,
+       "timed_share": 0.42,
+       "lift": 1.05,
+       "mae_on": -7.34,
+       "mae_flush": -5.19,
+       "mae_gain": -2.15,
+       "exc_on": 1.55,
+       "exc_flush": 6.27,
+       "false_over": 0.45,
        "lag_median": 3.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: pruned: adds nothing out of sample",
@@ -1459,17 +1462,17 @@
        "lag_median": 6.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 12,
+       "n_ep": 12,
+       "n_fired": 11,
        "fire_share": 0.92,
-       "timed_share": 0.5,
-       "lift": 1.25,
-       "mae_on": -6.63,
-       "mae_flush": -6.33,
-       "mae_gain": -0.29,
-       "exc_on": 4.44,
-       "exc_flush": 5.26,
-       "false_over": 0.58,
+       "timed_share": 0.55,
+       "lift": 1.37,
+       "mae_on": -6.11,
+       "mae_flush": -5.19,
+       "mae_gain": -0.92,
+       "exc_on": 4.64,
+       "exc_flush": 6.27,
+       "false_over": 0.55,
        "lag_median": 8.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -1493,18 +1496,18 @@
        "lag_median": 13.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 12,
+       "n_ep": 12,
+       "n_fired": 11,
        "fire_share": 0.92,
-       "timed_share": 0.5,
-       "lift": 1.25,
-       "mae_on": -7.15,
-       "mae_flush": -6.33,
-       "mae_gain": -0.82,
-       "exc_on": 2.74,
-       "exc_flush": 5.26,
-       "false_over": 0.67,
-       "lag_median": 9.5
+       "timed_share": 0.55,
+       "lift": 1.37,
+       "mae_on": -6.69,
+       "mae_flush": -5.19,
+       "mae_gain": -1.5,
+       "exc_on": 2.79,
+       "exc_flush": 6.27,
+       "false_over": 0.64,
+       "lag_median": 9.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
@@ -1527,18 +1530,18 @@
        "lag_median": 11.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 12,
+       "n_ep": 12,
+       "n_fired": 11,
        "fire_share": 0.92,
-       "timed_share": 0.58,
-       "lift": 1.46,
-       "mae_on": -7.82,
-       "mae_flush": -6.33,
-       "mae_gain": -1.49,
-       "exc_on": 2.6,
-       "exc_flush": 5.26,
-       "false_over": 0.67,
-       "lag_median": 11.0
+       "timed_share": 0.64,
+       "lift": 1.6,
+       "mae_on": -7.29,
+       "mae_flush": -5.19,
+       "mae_gain": -2.1,
+       "exc_on": 2.92,
+       "exc_flush": 6.27,
+       "false_over": 0.64,
+       "lag_median": 10.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
@@ -1561,18 +1564,18 @@
        "lag_median": 24.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 6,
-       "fire_share": 0.46,
-       "timed_share": 0.67,
-       "lift": 1.67,
-       "mae_on": -9.37,
-       "mae_flush": -13.67,
-       "mae_gain": 4.3,
-       "exc_on": 5.32,
-       "exc_flush": -1.0,
-       "false_over": 0.83,
-       "lag_median": 21.0
+       "n_ep": 12,
+       "n_fired": 5,
+       "fire_share": 0.42,
+       "timed_share": 0.8,
+       "lift": 2.01,
+       "mae_on": -7.79,
+       "mae_flush": -12.63,
+       "mae_gain": 4.84,
+       "exc_on": 6.34,
+       "exc_flush": -0.07,
+       "false_over": 0.8,
+       "lag_median": 22.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
       "weight": 0.167
@@ -1595,17 +1598,17 @@
        "lag_median": 1.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 13,
+       "n_ep": 12,
+       "n_fired": 12,
        "fire_share": 1.0,
-       "timed_share": 0.38,
-       "lift": 0.96,
-       "mae_on": -6.06,
-       "mae_flush": -6.33,
-       "mae_gain": 0.27,
-       "exc_on": 4.26,
-       "exc_flush": 5.26,
-       "false_over": 0.33,
+       "timed_share": 0.42,
+       "lift": 1.05,
+       "mae_on": -4.89,
+       "mae_flush": -5.19,
+       "mae_gain": 0.3,
+       "exc_on": 5.18,
+       "exc_flush": 6.27,
+       "false_over": 0.27,
        "lag_median": 3.0
       },
       "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
@@ -1629,17 +1632,17 @@
        "lag_median": 5.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 12,
+       "n_ep": 12,
+       "n_fired": 11,
        "fire_share": 0.92,
-       "timed_share": 0.42,
-       "lift": 1.04,
-       "mae_on": -8.25,
-       "mae_flush": -6.33,
-       "mae_gain": -1.92,
+       "timed_share": 0.45,
+       "lift": 1.14,
+       "mae_on": -7.38,
+       "mae_flush": -5.19,
+       "mae_gain": -2.19,
        "exc_on": 2.19,
-       "exc_flush": 5.26,
-       "false_over": 0.58,
+       "exc_flush": 6.27,
+       "false_over": 0.55,
        "lag_median": 4.0
       },
       "status": "not in set: fires in most flushes but gains ~0 in-sample \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -1663,17 +1666,17 @@
        "lag_median": 3.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 13,
+       "n_ep": 12,
+       "n_fired": 12,
        "fire_share": 1.0,
-       "timed_share": 0.38,
-       "lift": 0.96,
-       "mae_on": -6.49,
-       "mae_flush": -6.33,
-       "mae_gain": -0.16,
-       "exc_on": 4.62,
-       "exc_flush": 5.26,
-       "false_over": 0.5,
+       "timed_share": 0.42,
+       "lift": 1.05,
+       "mae_on": -5.72,
+       "mae_flush": -5.19,
+       "mae_gain": -0.53,
+       "exc_on": 4.58,
+       "exc_flush": 6.27,
+       "false_over": 0.45,
        "lag_median": 3.0
       },
       "status": "not in set: no drawdown gain over buying the flush in either half \u2014 evidence: gain > 0 both halves",
@@ -1697,18 +1700,18 @@
        "lag_median": 4.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 12,
+       "n_ep": 12,
+       "n_fired": 11,
        "fire_share": 0.92,
-       "timed_share": 0.42,
-       "lift": 1.04,
-       "mae_on": -8.46,
-       "mae_flush": -7.13,
-       "mae_gain": -1.34,
-       "exc_on": 2.39,
-       "exc_flush": 4.39,
-       "false_over": 0.55,
-       "lag_median": 4.5
+       "timed_share": 0.45,
+       "lift": 1.14,
+       "mae_on": -7.58,
+       "mae_flush": -5.95,
+       "mae_gain": -1.63,
+       "exc_on": 2.63,
+       "exc_flush": 5.41,
+       "false_over": 0.5,
+       "lag_median": 4.0
       },
       "status": "not in set: no drawdown gain in either half; fires on the first bounce \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
       "weight": 0.0
@@ -1731,18 +1734,18 @@
        "lag_median": 20.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 11,
-       "fire_share": 0.85,
-       "timed_share": 0.82,
-       "lift": 2.04,
-       "mae_on": -5.36,
-       "mae_flush": -6.52,
-       "mae_gain": 1.16,
-       "exc_on": 0.89,
-       "exc_flush": 4.75,
-       "false_over": 0.36,
-       "lag_median": 32.0
+       "n_ep": 12,
+       "n_fired": 10,
+       "fire_share": 0.83,
+       "timed_share": 0.9,
+       "lift": 2.26,
+       "mae_on": -4.62,
+       "mae_flush": -5.28,
+       "mae_gain": 0.66,
+       "exc_on": 1.57,
+       "exc_flush": 5.81,
+       "false_over": 0.3,
+       "lag_median": 20.0
       },
       "status": "not in set: median lag ~30 td after the flush \u2014 too late to be a turning read \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
@@ -1765,18 +1768,18 @@
        "lag_median": 5.0
       },
       "oos": {
-       "n_ep": 13,
-       "n_fired": 5,
-       "fire_share": 0.38,
-       "timed_share": 0.4,
-       "lift": 1.0,
-       "mae_on": -7.88,
-       "mae_flush": -14.0,
-       "mae_gain": 6.12,
-       "exc_on": 7.79,
-       "exc_flush": -2.62,
-       "false_over": 0.6,
-       "lag_median": 17.0
+       "n_ep": 12,
+       "n_fired": 4,
+       "fire_share": 0.33,
+       "timed_share": 0.5,
+       "lift": 1.25,
+       "mae_on": -6.5,
+       "mae_flush": -12.78,
+       "mae_gain": 6.27,
+       "exc_on": 8.04,
+       "exc_flush": -1.86,
+       "false_over": 0.5,
+       "lag_median": 19.5
       },
       "status": "not in set: fires in a quarter of flushes; lift below 1 in-sample \u2014 evidence: gain > 0 both halves",
       "weight": 0.0
@@ -2417,18 +2420,18 @@
         "median": 3.17,
         "mean": 1.45,
         "excess": 1.65,
-        "t": 1.01
+        "t": 1.02
        },
        "3M": {
         "n": 34,
         "hit": 68.0,
         "median": 9.04,
         "mean": 3.74,
-        "excess": 3.57,
+        "excess": 3.58,
         "t": 1.84,
         "ci95": [
          -0.5,
-         7.46
+         7.47
         ]
        },
        "6M": {
@@ -2504,7 +2507,7 @@
         "hit": 62.0,
         "median": 1.83,
         "mean": 2.34,
-        "excess": 1.76,
+        "excess": 1.77,
         "t": 0.66
        },
        "3M": {
@@ -2512,11 +2515,11 @@
         "hit": 77.0,
         "median": 10.43,
         "mean": 8.38,
-        "excess": 5.71,
-        "t": 2.36,
+        "excess": 5.72,
+        "t": 2.37,
         "ci95": [
-         1.5,
-         10.59
+         1.52,
+         10.62
         ]
        },
        "6M": {
@@ -2524,8 +2527,8 @@
         "hit": 75.0,
         "median": 10.22,
         "mean": 10.13,
-        "excess": 3.95,
-        "t": 1.2
+        "excess": 3.96,
+        "t": 1.21
        },
        "mae_mean": -5.42,
        "mae_worst": -18.9
@@ -2534,8 +2537,8 @@
      "Flush, not over": {
       "all": {
        "n": 25,
-       "days": 410,
-       "near_low_share": 0.561,
+       "days": 411,
+       "near_low_share": 0.56,
        "first": "2001-04-03",
        "last": "2026-11-05",
        "last5": [
@@ -2622,8 +2625,8 @@
       },
       "oos": {
        "n": 11,
-       "days": 175,
-       "near_low_share": 0.497,
+       "days": 176,
+       "near_low_share": 0.494,
        "first": "2015-08-24",
        "last": "2026-11-05",
        "last5": [
@@ -2692,7 +2695,7 @@
         "hit": 69.0,
         "median": 4.74,
         "mean": 4.75,
-        "excess": 4.04,
+        "excess": 4.05,
         "t": 2.32,
         "ci95": [
          0.39,
@@ -2704,8 +2707,8 @@
         "hit": 70.0,
         "median": 10.71,
         "mean": 8.71,
-        "excess": 5.94,
-        "t": 2.97
+        "excess": 5.95,
+        "t": 2.98
        },
        "mae_mean": -9.17,
        "mae_worst": -48.97
@@ -2772,7 +2775,7 @@
         "hit": 61.0,
         "median": 1.49,
         "mean": 1.96,
-        "excess": 1.25,
+        "excess": 1.26,
         "t": 0.8
        },
        "3M": {
@@ -2780,11 +2783,11 @@
         "hit": 72.0,
         "median": 6.95,
         "mean": 7.05,
-        "excess": 3.95,
-        "t": 1.6,
+        "excess": 3.96,
+        "t": 1.61,
         "ci95": [
-         -1.75,
-         9.31
+         -1.74,
+         9.32
         ]
        },
        "6M": {
@@ -2792,8 +2795,8 @@
         "hit": 82.0,
         "median": 15.91,
         "mean": 14.11,
-        "excess": 5.9,
-        "t": 2.24
+        "excess": 5.91,
+        "t": 2.25
        },
        "mae_mean": -7.29,
        "mae_worst": -20.52
@@ -2866,10 +2869,10 @@
          "median": 4.56,
          "mean": 3.62,
          "excess": 1.63,
-         "t": 0.74,
+         "t": 0.75,
          "ci95": [
-          -2.39,
-          5.58
+          -2.38,
+          5.59
          ]
         },
         "6M": {
@@ -2877,8 +2880,8 @@
          "hit": 68.0,
          "median": 10.34,
          "mean": 5.74,
-         "excess": 1.4,
-         "t": 0.58
+         "excess": 1.41,
+         "t": 0.59
         },
         "mae_mean": -10.07,
         "mae_worst": -48.97
@@ -3011,7 +3014,7 @@
       "is_excess": 4.91,
       "oos_n": 16,
       "oos_hit": 75.0,
-      "oos_excess": 5.54,
+      "oos_excess": 5.55,
       "is_mae": -10.8,
       "oos_mae": -6.24
      },
@@ -3022,7 +3025,7 @@
       "is_excess": 5.02,
       "oos_n": 20,
       "oos_hit": 65.0,
-      "oos_excess": 4.01,
+      "oos_excess": 4.02,
       "is_mae": -9.97,
       "oos_mae": -7.01
      },
@@ -3033,7 +3036,7 @@
       "is_excess": 4.1,
       "oos_n": 18,
       "oos_hit": 72.0,
-      "oos_excess": 3.95,
+      "oos_excess": 3.96,
       "is_mae": -10.42,
       "oos_mae": -7.29
      },
@@ -3044,7 +3047,7 @@
       "is_excess": 2.39,
       "oos_n": 18,
       "oos_hit": 78.0,
-      "oos_excess": 4.24,
+      "oos_excess": 4.25,
       "is_mae": -11.81,
       "oos_mae": -6.49
      },
@@ -3055,7 +3058,7 @@
       "is_excess": 2.48,
       "oos_n": 16,
       "oos_hit": 75.0,
-      "oos_excess": 3.3,
+      "oos_excess": 3.31,
       "is_mae": -9.93,
       "oos_mae": -5.98
      }
@@ -3078,7 +3081,7 @@
         "hit": 72.0,
         "median": 3.68,
         "mean": 2.76,
-        "excess": 2.55,
+        "excess": 2.56,
         "t": 2.55
        },
        "3M": {
@@ -3099,7 +3102,7 @@
         "median": 12.26,
         "mean": 8.23,
         "excess": 4.75,
-        "t": 2.13
+        "t": 2.14
        },
        "mae_mean": -6.94,
        "mae_worst": -38.28
@@ -3162,7 +3165,7 @@
         "hit": 80.0,
         "median": 5.12,
         "mean": 4.44,
-        "excess": 3.47,
+        "excess": 3.48,
         "t": 2.64
        },
        "3M": {
@@ -3170,11 +3173,11 @@
         "hit": 73.0,
         "median": 7.93,
         "mean": 5.89,
-        "excess": 2.22,
-        "t": 0.95,
+        "excess": 2.23,
+        "t": 0.96,
         "ci95": [
-         -2.02,
-         6.61
+         -2.01,
+         6.62
         ]
        },
        "6M": {
@@ -3182,7 +3185,7 @@
         "hit": 86.0,
         "median": 14.44,
         "mean": 13.89,
-        "excess": 5.28,
+        "excess": 5.3,
         "t": 1.92
        },
        "mae_mean": -4.62,
@@ -3192,8 +3195,8 @@
      "or_vrp_vix30_mtum": {
       "all": {
        "n": 58,
-       "days": 1113,
-       "near_low_share": 0.429,
+       "days": 1114,
+       "near_low_share": 0.428,
        "first": "2001-03-12",
        "last": "2026-10-14",
        "last5": [
@@ -3208,19 +3211,19 @@
         "hit": 67.0,
         "median": 2.87,
         "mean": 2.18,
-        "excess": 1.29,
-        "t": 1.43
+        "excess": 1.3,
+        "t": 1.44
        },
        "3M": {
-        "n": 56,
-        "hit": 86.0,
-        "median": 7.66,
-        "mean": 7.7,
-        "excess": 4.63,
-        "t": 3.57,
+        "n": 57,
+        "hit": 84.0,
+        "median": 7.6,
+        "mean": 7.42,
+        "excess": 4.28,
+        "t": 3.24,
         "ci95": [
-         2.4,
-         7.13
+         1.81,
+         7.03
         ]
        },
        "6M": {
@@ -3228,10 +3231,10 @@
         "hit": 85.0,
         "median": 13.53,
         "mean": 11.42,
-        "excess": 5.15,
-        "t": 3.34
+        "excess": 5.16,
+        "t": 3.35
        },
-       "mae_mean": -6.05,
+       "mae_mean": -6.12,
        "mae_worst": -39.22
       },
       "is": {
@@ -3280,8 +3283,8 @@
       },
       "oos": {
        "n": 31,
-       "days": 637,
-       "near_low_share": 0.377,
+       "days": 638,
+       "near_low_share": 0.376,
        "first": "2014-10-15",
        "last": "2026-10-14",
        "last5": [
@@ -3296,19 +3299,19 @@
         "hit": 71.0,
         "median": 3.23,
         "mean": 2.76,
-        "excess": 1.07,
-        "t": 0.85
+        "excess": 1.08,
+        "t": 0.86
        },
        "3M": {
-        "n": 29,
-        "hit": 90.0,
-        "median": 7.73,
-        "mean": 9.08,
-        "excess": 3.57,
-        "t": 2.51,
+        "n": 30,
+        "hit": 87.0,
+        "median": 7.66,
+        "mean": 8.51,
+        "excess": 2.95,
+        "t": 1.95,
         "ci95": [
-         0.76,
-         6.75
+         -0.16,
+         6.42
         ]
        },
        "6M": {
@@ -3316,10 +3319,10 @@
         "hit": 89.0,
         "median": 14.74,
         "mean": 13.29,
-        "excess": 2.64,
+        "excess": 2.65,
         "t": 1.18
        },
-       "mae_mean": -4.74,
+       "mae_mean": -4.9,
        "mae_worst": -17.1
       },
       "legs": [
@@ -3355,7 +3358,7 @@
         "hit": 69.0,
         "median": 4.74,
         "mean": 4.75,
-        "excess": 4.04,
+        "excess": 4.05,
         "t": 2.32,
         "ci95": [
          0.39,
@@ -3367,8 +3370,8 @@
         "hit": 70.0,
         "median": 10.71,
         "mean": 8.71,
-        "excess": 5.94,
-        "t": 2.97
+        "excess": 5.95,
+        "t": 2.98
        },
        "mae_mean": -9.17,
        "mae_worst": -48.97
@@ -3435,7 +3438,7 @@
         "hit": 61.0,
         "median": 1.49,
         "mean": 1.96,
-        "excess": 1.25,
+        "excess": 1.26,
         "t": 0.8
        },
        "3M": {
@@ -3443,11 +3446,11 @@
         "hit": 72.0,
         "median": 6.95,
         "mean": 7.05,
-        "excess": 3.95,
-        "t": 1.6,
+        "excess": 3.96,
+        "t": 1.61,
         "ci95": [
-         -1.75,
-         9.31
+         -1.74,
+         9.32
         ]
        },
        "6M": {
@@ -3455,8 +3458,8 @@
         "hit": 82.0,
         "median": 15.91,
         "mean": 14.11,
-        "excess": 5.9,
-        "t": 2.24
+        "excess": 5.91,
+        "t": 2.25
        },
        "mae_mean": -7.29,
        "mae_worst": -20.52
@@ -3529,10 +3532,10 @@
          "median": 4.56,
          "mean": 3.62,
          "excess": 1.63,
-         "t": 0.74,
+         "t": 0.75,
          "ci95": [
-          -2.39,
-          5.58
+          -2.38,
+          5.59
          ]
         },
         "6M": {
@@ -3540,8 +3543,8 @@
          "hit": 68.0,
          "median": 10.34,
          "mean": 5.74,
-         "excess": 1.4,
-         "t": 0.58
+         "excess": 1.41,
+         "t": 0.59
         },
         "mae_mean": -10.07,
         "mae_worst": -48.97
@@ -3658,47 +3661,47 @@
      }
     },
     "snapshot": {
-     "date": "2026-11-16",
-     "px": 27197.2,
+     "date": "2026-11-17",
+     "px": 27001.8,
      "state": "Flush, not over",
      "state_since": "2026-11-05",
-     "state_days": 8,
+     "state_days": 9,
      "turn_from": null,
-     "cap": 0.399,
-     "rec": 0.157,
+     "cap": 0.519,
+     "rec": 0.063,
      "rec_meaningful": true,
-     "cap_1d": 0.329,
-     "cap_5d": 0.329,
+     "cap_1d": 0.477,
+     "cap_5d": 0.423,
      "legs": [
       {
        "leg": "mtum_dd",
        "label": "MTUM drawdown from 1y high (-5% -> -20%)",
-       "weight": 0.303,
+       "weight": 0.305,
        "value": 1.0
       },
       {
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
-       "weight": 0.261,
-       "value": 0.12
+       "weight": 0.26,
+       "value": 0.18
       },
       {
        "leg": "vix_level",
        "label": "VIX level (20 -> 45)",
-       "weight": 0.234,
-       "value": 0.12
+       "weight": 0.233,
+       "value": 0.22
       },
       {
        "leg": "putcall_pct",
        "label": "Equity put/call, 1y percentile (above 75th)",
        "weight": 0.108,
-       "value": 0.0
+       "value": 0.7
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.094,
-       "value": 0.39
+       "value": 0.43
       }
      ],
      "tells": [
@@ -3706,7 +3709,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.167,
-       "value": 0.36
+       "value": 0.2
       },
       {
        "tell": "rv_down",
@@ -3718,7 +3721,7 @@
        "tell": "vix_term_back",
        "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
        "weight": 0.167,
-       "value": 0.58
+       "value": 0.18
       },
       {
        "tell": "reclaim_20",
@@ -3739,7 +3742,7 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.16): the buy read. Episode ends with no entry once capitulation has been below 0.28 (now 0.40) for 20 days.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.06): the buy read. Episode ends with no entry once capitulation has been below 0.28 (now 0.52) for 20 days.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
@@ -3747,7 +3750,7 @@
      "last_turn_from": "Capitulation building",
      "arm_thr": 0.385,
      "mode": "v2-turning",
-     "score": 0.399,
+     "score": 0.519,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -3837,8 +3840,8 @@
    "key": "SPX",
    "name": "S&P 500",
    "sample_start": "2001-01-02",
-   "sample_end": "2026-11-16",
-   "n_days": 6507,
+   "sample_end": "2026-11-17",
+   "n_days": 6508,
    "arm_thr": 0.33,
    "mode": "v2-turning",
    "low_conviction": false,
@@ -3858,33 +3861,37 @@
      "mean": 0.16,
      "median": 0.32,
      "hit": 58.0,
-     "n": 6502
+     "n": 6503
     },
     "1M": {
      "mean": 0.68,
      "median": 1.26,
      "hit": 64.0,
-     "n": 6486
+     "n": 6487
     },
     "3M": {
      "mean": 2.08,
      "median": 3.22,
      "hit": 69.0,
-     "n": 6444
+     "n": 6445
     },
     "6M": {
      "mean": 4.26,
      "median": 5.74,
      "hit": 72.0,
-     "n": 6381
+     "n": 6382
     }
    },
    "snapshot": {
-    "date": "2026-11-16",
-    "px": 7417.0,
-    "score": 0.444,
+    "date": "2026-11-17",
+    "px": 7341.0,
+    "score": 0.55,
     "cap_max": 1.0,
     "on": [
+     "VIX 1y-90pct",
+     "VIX/VIX3M>1",
+     "VVIX/VIX low",
+     "PutCall 1y-90pct",
      "MTUM dd<=-10%"
     ],
     "recent_events": [],
@@ -3893,15 +3900,15 @@
     "entry_active_10d": false,
     "armed_new": false,
     "entry_today": false,
-    "v1_score": 1,
+    "v1_score": 5,
     "v1_cap_max": 9,
-    "v1_armed": false,
+    "v1_armed": true,
     "state": "Flush, not over",
     "state_since": "2026-11-05",
-    "state_days": 8,
+    "state_days": 9,
     "turn_from": null,
-    "cap": 0.444,
-    "rec": 0.188,
+    "cap": 0.55,
+    "rec": 0.061,
     "state_changed": false,
     "prev_state": "Flush, not over"
    },
@@ -3946,9 +3953,9 @@
     },
     {
      "signal": "MTUM dd<=-10%",
-     "n": 41,
+     "n": 42,
      "first": "2015-08-24",
-     "last": "2026-10-19",
+     "last": "2026-11-17",
      "1W": {
       "n": 41,
       "mean": 1.37,
@@ -3957,18 +3964,18 @@
       "excess": 1.21
      },
      "1M": {
-      "n": 40,
-      "mean": 1.91,
-      "median": 3.38,
-      "hit": 62.0,
-      "excess": 1.23
+      "n": 41,
+      "mean": 1.76,
+      "median": 3.34,
+      "hit": 61.0,
+      "excess": 1.08
      },
      "3M": {
-      "n": 38,
-      "mean": 5.35,
-      "median": 5.78,
-      "hit": 79.0,
-      "excess": 3.27
+      "n": 39,
+      "mean": 5.09,
+      "median": 5.5,
+      "hit": 77.0,
+      "excess": 3.01
      },
      "6M": {
       "n": 37,
@@ -3977,7 +3984,7 @@
       "hit": 84.0,
       "excess": 4.41
      },
-     "t_3M": 3.9,
+     "t_3M": 3.74,
      "mae_mean": -4.8,
      "mae_worst": -24.89,
      "is_cap": true
@@ -4786,7 +4793,7 @@
     ],
     "mae_mean": -6.03,
     "mae_worst": -29.58,
-    "t_3M": 2.2,
+    "t_3M": 2.21,
     "ci95_3M": [
      0.23,
      4.08
@@ -4810,7 +4817,7 @@
      "mean": 5.11,
      "median": 6.12,
      "hit": 67.0,
-     "excess": 3.73
+     "excess": 3.74
     },
     "first": "2001-01-30",
     "last": "2026-08-04"
@@ -4819,9 +4826,9 @@
     "key": "SPX",
     "name": "S&P 500",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-11-16",
-    "n_days": 6507,
-    "split_date": "2013-12-09",
+    "sample_end": "2026-11-17",
+    "n_days": 6508,
+    "split_date": "2013-12-10",
     "rationale": "SPX uses the same frame as NDX: MTUM drawdown and RSI14 lead, the VIX level and VIX's 1y percentile follow. Drawdown and the trend score were dropped as redundant with the VIX level (r 0.7-0.8), term structure and VVIX as redundant with the VIX percentile; put/call, HY OAS and VRP add nothing to the combination. SPX flushes are rare by construction (top 2% of composite days in 2001-13).",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
     "series_used": {
@@ -4847,10 +4854,10 @@
      "cap_pct_flush_is": 0.0203
     },
     "cap_weights": {
-     "mtum_dd": 0.32085443591404933,
-     "rsi14": 0.2908605844130789,
-     "vix_level": 0.2048317080149468,
-     "own_vol_pct": 0.18345327165792497
+     "mtum_dd": 0.32266562450243896,
+     "rsi14": 0.29001114536743533,
+     "vix_level": 0.20432208664437596,
+     "own_vol_pct": 0.18300114348574986
     },
     "rec_weights": {
      "iv_off_peak": 0.16666666666666666,
@@ -4866,31 +4873,31 @@
       "label": "MTUM drawdown from 1y high (-5% -> -20%)",
       "starts": "2013-07-12",
       "is_": {
-       "n_on": 39,
-       "lift": 8.47,
-       "excess": 9.25,
-       "on_off": 9.96,
-       "on_share": 0.0232,
-       "on_off_1m": 3.12,
-       "mae_on": -4.54,
+       "n_on": 40,
+       "lift": 8.52,
+       "excess": 9.37,
+       "on_off": 10.09,
+       "on_share": 0.0238,
+       "on_off_1m": 3.3,
+       "mae_on": -4.67,
        "mae_off": -4.49,
-       "mae_gain": -0.05
+       "mae_gain": -0.18
       },
       "oos": {
-       "n_on": 372,
-       "lift": 3.06,
-       "excess": 2.17,
-       "on_off": 2.19,
-       "on_share": 0.2301,
-       "on_off_1m": 1.16,
-       "mae_on": -6.17,
+       "n_on": 371,
+       "lift": 3.07,
+       "excess": 2.14,
+       "on_off": 2.16,
+       "on_share": 0.2294,
+       "on_off_1m": 1.14,
+       "mae_on": -6.16,
        "mae_off": -3.52,
-       "mae_gain": -2.65
+       "mae_gain": -2.64
       },
       "note": "weights from own first half (leg starts late)",
-      "split": "2020-03-12",
+      "split": "2020-03-13",
       "status": "kept",
-      "weight": 0.321
+      "weight": 0.323
      },
      {
       "leg": "rsi14",
@@ -4911,7 +4918,7 @@
        "n_on": 51,
        "lift": 2.95,
        "excess": 5.45,
-       "on_off": 5.54,
+       "on_off": 5.55,
        "on_share": 0.016,
        "on_off_1m": 1.96,
        "mae_on": -5.9,
@@ -4919,9 +4926,9 @@
        "mae_gain": -1.53
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
-      "weight": 0.291
+      "weight": 0.29
      },
      {
       "leg": "vix_level",
@@ -4932,11 +4939,11 @@
        "lift": 4.12,
        "excess": 4.26,
        "on_off": 4.73,
-       "on_share": 0.1018,
+       "on_share": 0.1017,
        "on_off_1m": 1.4,
        "mae_on": -10.01,
-       "mae_off": -5.61,
-       "mae_gain": -4.4
+       "mae_off": -5.6,
+       "mae_gain": -4.41
       },
       "oos": {
        "n_on": 96,
@@ -4944,15 +4951,15 @@
        "excess": 8.93,
        "on_off": 9.21,
        "on_share": 0.0301,
-       "on_off_1m": 5.01,
+       "on_off_1m": 5.0,
        "mae_on": -4.25,
        "mae_off": -4.4,
        "mae_gain": 0.15
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
-      "weight": 0.205
+      "weight": 0.204
      },
      {
       "leg": "own_vol_pct",
@@ -4981,7 +4988,7 @@
        "mae_gain": -0.83
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "kept",
       "weight": 0.183
      },
@@ -5012,7 +5019,7 @@
        "mae_gain": 0.52
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "pruned: redundant with vix_level (r=0.79)",
       "weight": 0.0
      },
@@ -5043,8 +5050,8 @@
        "mae_gain": -2.23
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (26.60 vs 27.82)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (26.60 vs 27.83)",
       "weight": 0.0
      },
      {
@@ -5074,8 +5081,8 @@
        "mae_gain": -1.08
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (26.71 vs 27.82)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (26.72 vs 27.83)",
       "weight": 0.0
      },
      {
@@ -5105,7 +5112,7 @@
        "mae_gain": 0.95
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "pruned: redundant with vix_level (r=0.71)",
       "weight": 0.0
      },
@@ -5127,7 +5134,7 @@
       "oos": {
        "n_on": 90,
        "lift": 4.75,
-       "excess": 7.13,
+       "excess": 7.14,
        "on_off": 7.35,
        "on_share": 0.0282,
        "on_off_1m": 3.11,
@@ -5136,7 +5143,7 @@
        "mae_gain": -2.23
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "pruned: redundant with own_vol_pct (r=0.72)",
       "weight": 0.0
      },
@@ -5167,8 +5174,8 @@
        "mae_gain": 1.43
       },
       "note": null,
-      "split": "2013-12-09",
-      "status": "pruned: no gain in combination (26.76 vs 27.82)",
+      "split": "2013-12-10",
+      "status": "pruned: no gain in combination (26.77 vs 27.83)",
       "weight": 0.0
      },
      {
@@ -5180,7 +5187,7 @@
        "lift": 2.65,
        "excess": 1.99,
        "on_off": 2.42,
-       "on_share": 0.1806,
+       "on_share": 0.1805,
        "on_off_1m": 0.48,
        "mae_on": -9.82,
        "mae_off": -5.65,
@@ -5198,7 +5205,7 @@
        "mae_gain": -1.36
       },
       "note": null,
-      "split": "2013-12-09",
+      "split": "2013-12-10",
       "status": "pruned: redundant with own_vol_pct (r=0.75)",
       "weight": 0.0
      },
@@ -5207,8 +5214,8 @@
       "path": [
        {
         "leg": "mtum_dd",
-        "obj": 0.17,
-        "excess": 0.17,
+        "obj": 0.15,
+        "excess": 0.15,
         "lift": 1.0
        },
        {
@@ -5225,9 +5232,9 @@
        },
        {
         "leg": "own_vol_pct",
-        "obj": 27.82,
+        "obj": 27.83,
         "excess": 5.83,
-        "lift": 4.77
+        "lift": 4.78
        }
       ]
      }
@@ -5259,7 +5266,7 @@
        "mae_on": -5.46,
        "mae_flush": -5.3,
        "mae_gain": -0.16,
-       "exc_on": 0.88,
+       "exc_on": 0.89,
        "exc_flush": 1.48,
        "false_over": 0.35,
        "lag_median": 3.5
@@ -5294,7 +5301,7 @@
        "mae_flush": -6.02,
        "mae_gain": 1.17,
        "exc_on": 2.43,
-       "exc_flush": 0.91,
+       "exc_flush": 0.92,
        "false_over": 0.33,
        "lag_median": 9.0
       },
@@ -5327,7 +5334,7 @@
        "mae_on": -4.23,
        "mae_flush": -5.3,
        "mae_gain": 1.07,
-       "exc_on": 1.75,
+       "exc_on": 1.76,
        "exc_flush": 1.48,
        "false_over": 0.35,
        "lag_median": 13.0
@@ -5361,7 +5368,7 @@
        "mae_on": -4.8,
        "mae_flush": -5.3,
        "mae_gain": 0.5,
-       "exc_on": 0.89,
+       "exc_on": 0.9,
        "exc_flush": 1.48,
        "false_over": 0.35,
        "lag_median": 11.0
@@ -5429,7 +5436,7 @@
        "mae_on": -3.49,
        "mae_flush": -5.3,
        "mae_gain": 1.8,
-       "exc_on": 2.38,
+       "exc_on": 2.39,
        "exc_flush": 1.48,
        "false_over": 0.24,
        "lag_median": 3.5
@@ -5463,7 +5470,7 @@
        "mae_on": -5.8,
        "mae_flush": -5.3,
        "mae_gain": -0.51,
-       "exc_on": 0.6,
+       "exc_on": 0.61,
        "exc_flush": 1.48,
        "false_over": 0.41,
        "lag_median": 4.0
@@ -5497,7 +5504,7 @@
        "mae_on": -5.27,
        "mae_flush": -5.3,
        "mae_gain": 0.03,
-       "exc_on": 1.61,
+       "exc_on": 1.62,
        "exc_flush": 1.48,
        "false_over": 0.35,
        "lag_median": 4.5
@@ -5531,7 +5538,7 @@
        "mae_on": -6.63,
        "mae_flush": -8.56,
        "mae_gain": 1.94,
-       "exc_on": 2.26,
+       "exc_on": 2.27,
        "exc_flush": 0.01,
        "false_over": 0.6,
        "lag_median": 6.0
@@ -5565,7 +5572,7 @@
        "mae_on": -3.68,
        "mae_flush": -5.3,
        "mae_gain": 1.61,
-       "exc_on": 0.49,
+       "exc_on": 0.5,
        "exc_flush": 1.48,
        "false_over": 0.24,
        "lag_median": 11.0
@@ -5595,7 +5602,7 @@
        "n_fired": 4,
        "fire_share": 0.22,
        "timed_share": 0.5,
-       "lift": 1.58,
+       "lift": 1.59,
        "mae_on": -7.26,
        "mae_flush": -10.55,
        "mae_gain": 3.28,
@@ -5842,7 +5849,7 @@
       "depth": -10.2,
       "rally_3m": 8.0,
       "rally_to_next": 13.6,
-      "cap_max_15d": 0.58,
+      "cap_max_15d": 0.57,
       "flushed": false,
       "caught": true,
       "lag_td": 8,
@@ -5906,7 +5913,7 @@
       "depth": -13.0,
       "rally_3m": 11.1,
       "rally_to_next": 11.1,
-      "cap_max_15d": 0.7,
+      "cap_max_15d": 0.71,
       "flushed": true,
       "caught": true,
       "lag_td": 7,
@@ -6046,7 +6053,7 @@
         "t": 2.37,
         "ci95": [
          0.28,
-         4.15
+         4.16
         ]
        },
        "6M": {
@@ -6055,7 +6062,7 @@
         "median": 6.86,
         "mean": 3.81,
         "excess": 2.3,
-        "t": 2.09
+        "t": 2.1
        },
        "mae_mean": -6.69,
        "mae_worst": -36.91
@@ -6122,7 +6129,7 @@
         "hit": 68.0,
         "median": 3.1,
         "mean": 1.57,
-        "excess": 0.88,
+        "excess": 0.89,
         "t": 0.59
        },
        "3M": {
@@ -6130,11 +6137,11 @@
         "hit": 77.0,
         "median": 6.13,
         "mean": 4.38,
-        "excess": 1.73,
+        "excess": 1.74,
         "t": 1.37,
         "ci95": [
          -0.81,
-         4.06
+         4.07
         ]
        },
        "6M": {
@@ -6143,7 +6150,7 @@
         "median": 11.19,
         "mean": 8.35,
         "excess": 2.52,
-        "t": 1.45
+        "t": 1.46
        },
        "mae_mean": -5.4,
        "mae_worst": -28.48
@@ -6152,8 +6159,8 @@
      "Flush, not over": {
       "all": {
        "n": 24,
-       "days": 381,
-       "near_low_share": 0.538,
+       "days": 382,
+       "near_low_share": 0.537,
        "first": "2001-03-22",
        "last": "2026-11-05",
        "last5": [
@@ -6240,8 +6247,8 @@
       },
       "oos": {
        "n": 12,
-       "days": 204,
-       "near_low_share": 0.554,
+       "days": 205,
+       "near_low_share": 0.551,
        "first": "2015-08-24",
        "last": "2026-11-05",
        "last5": [
@@ -6311,7 +6318,7 @@
         "median": 4.81,
         "mean": 2.62,
         "excess": 2.27,
-        "t": 2.2,
+        "t": 2.21,
         "ci95": [
          0.23,
          4.08
@@ -6322,7 +6329,7 @@
         "hit": 67.0,
         "median": 6.12,
         "mean": 5.11,
-        "excess": 3.73,
+        "excess": 3.74,
         "t": 2.96
        },
        "mae_mean": -6.03,
@@ -6390,7 +6397,7 @@
         "hit": 59.0,
         "median": 1.96,
         "mean": 1.56,
-        "excess": 0.93,
+        "excess": 0.94,
         "t": 0.94
        },
        "3M": {
@@ -6399,9 +6406,9 @@
         "median": 5.23,
         "mean": 4.45,
         "excess": 2.1,
-        "t": 1.57,
+        "t": 1.58,
         "ci95": [
-         -0.78,
+         -0.77,
          4.57
         ]
        },
@@ -6411,7 +6418,7 @@
         "median": 10.04,
         "mean": 8.47,
         "excess": 2.83,
-        "t": 1.89
+        "t": 1.9
        },
        "mae_mean": -4.87,
        "mae_worst": -16.88
@@ -6476,15 +6483,15 @@
          "median": 2.04,
          "mean": 2.01,
          "excess": 1.44,
-         "t": 2.06
+         "t": 2.07
         },
         "3M": {
          "n": 28,
          "hit": 68.0,
          "median": 5.22,
          "mean": 3.49,
-         "excess": 1.36,
-         "t": 1.11,
+         "excess": 1.37,
+         "t": 1.12,
          "ci95": [
           -0.95,
           3.44
@@ -6495,7 +6502,7 @@
          "hit": 74.0,
          "median": 6.26,
          "mean": 5.07,
-         "excess": 0.95,
+         "excess": 0.96,
          "t": 0.68
         },
         "mae_mean": -3.95,
@@ -6689,7 +6696,7 @@
       "is_excess": 1.04,
       "oos_n": 24,
       "oos_hit": 67.0,
-      "oos_excess": 1.82,
+      "oos_excess": 1.83,
       "is_mae": -8.43,
       "oos_mae": -3.87
      }
@@ -6816,7 +6823,7 @@
         "hit": 80.0,
         "median": 10.25,
         "mean": 10.67,
-        "excess": 6.16,
+        "excess": 6.17,
         "t": 3.43
        },
        "mae_mean": -4.92,
@@ -6826,8 +6833,8 @@
      "or_vrp_vix30_mtum": {
       "all": {
        "n": 62,
-       "days": 1139,
-       "near_low_share": 0.426,
+       "days": 1140,
+       "near_low_share": 0.425,
        "first": "2001-03-12",
        "last": "2026-10-14",
        "last5": [
@@ -6842,19 +6849,19 @@
         "hit": 68.0,
         "median": 2.98,
         "mean": 1.32,
-        "excess": 0.81,
+        "excess": 0.82,
         "t": 1.18
        },
        "3M": {
-        "n": 60,
-        "hit": 78.0,
-        "median": 5.44,
-        "mean": 4.14,
-        "excess": 2.43,
-        "t": 2.8,
+        "n": 61,
+        "hit": 77.0,
+        "median": 5.29,
+        "mean": 3.99,
+        "excess": 2.24,
+        "t": 2.55,
         "ci95": [
-         0.52,
-         4.56
+         0.35,
+         4.33
         ]
        },
        "6M": {
@@ -6862,10 +6869,10 @@
         "hit": 76.0,
         "median": 8.68,
         "mean": 6.62,
-        "excess": 3.02,
+        "excess": 3.03,
         "t": 2.77
        },
-       "mae_mean": -5.42,
+       "mae_mean": -5.41,
        "mae_worst": -36.91
       },
       "is": {
@@ -6914,8 +6921,8 @@
       },
       "oos": {
        "n": 32,
-       "days": 657,
-       "near_low_share": 0.414,
+       "days": 658,
+       "near_low_share": 0.413,
        "first": "2014-10-15",
        "last": "2026-10-14",
        "last5": [
@@ -6931,18 +6938,18 @@
         "median": 3.34,
         "mean": 1.46,
         "excess": 0.35,
-        "t": 0.35
+        "t": 0.36
        },
        "3M": {
-        "n": 30,
-        "hit": 87.0,
-        "median": 6.18,
-        "mean": 5.78,
-        "excess": 2.01,
-        "t": 2.23,
+        "n": 31,
+        "hit": 84.0,
+        "median": 6.13,
+        "mean": 5.44,
+        "excess": 1.64,
+        "t": 1.72,
         "ci95": [
-         0.3,
-         3.93
+         -0.35,
+         3.72
         ]
        },
        "6M": {
@@ -6951,9 +6958,9 @@
         "median": 10.8,
         "mean": 9.18,
         "excess": 1.65,
-        "t": 1.05
+        "t": 1.06
        },
-       "mae_mean": -4.27,
+       "mae_mean": -4.29,
        "mae_worst": -24.89
       },
       "legs": [
@@ -6990,7 +6997,7 @@
         "median": 4.81,
         "mean": 2.62,
         "excess": 2.27,
-        "t": 2.2,
+        "t": 2.21,
         "ci95": [
          0.23,
          4.08
@@ -7001,7 +7008,7 @@
         "hit": 67.0,
         "median": 6.12,
         "mean": 5.11,
-        "excess": 3.73,
+        "excess": 3.74,
         "t": 2.96
        },
        "mae_mean": -6.03,
@@ -7069,7 +7076,7 @@
         "hit": 59.0,
         "median": 1.96,
         "mean": 1.56,
-        "excess": 0.93,
+        "excess": 0.94,
         "t": 0.94
        },
        "3M": {
@@ -7078,9 +7085,9 @@
         "median": 5.23,
         "mean": 4.45,
         "excess": 2.1,
-        "t": 1.57,
+        "t": 1.58,
         "ci95": [
-         -0.78,
+         -0.77,
          4.57
         ]
        },
@@ -7090,7 +7097,7 @@
         "median": 10.04,
         "mean": 8.47,
         "excess": 2.83,
-        "t": 1.89
+        "t": 1.9
        },
        "mae_mean": -4.87,
        "mae_worst": -16.88
@@ -7155,15 +7162,15 @@
          "median": 2.04,
          "mean": 2.01,
          "excess": 1.44,
-         "t": 2.06
+         "t": 2.07
         },
         "3M": {
          "n": 28,
          "hit": 68.0,
          "median": 5.22,
          "mean": 3.49,
-         "excess": 1.36,
-         "t": 1.11,
+         "excess": 1.37,
+         "t": 1.12,
          "ci95": [
           -0.95,
           3.44
@@ -7174,7 +7181,7 @@
          "hit": 74.0,
          "median": 6.26,
          "mean": 5.07,
-         "excess": 0.95,
+         "excess": 0.96,
          "t": 0.68
         },
         "mae_mean": -3.95,
@@ -7308,41 +7315,41 @@
      }
     },
     "snapshot": {
-     "date": "2026-11-16",
-     "px": 7416.6,
+     "date": "2026-11-17",
+     "px": 7340.5,
      "state": "Flush, not over",
      "state_since": "2026-11-05",
-     "state_days": 8,
+     "state_days": 9,
      "turn_from": null,
-     "cap": 0.444,
-     "rec": 0.188,
+     "cap": 0.55,
+     "rec": 0.061,
      "rec_meaningful": true,
-     "cap_1d": 0.321,
-     "cap_5d": 0.362,
+     "cap_1d": 0.445,
+     "cap_5d": 0.337,
      "legs": [
       {
        "leg": "mtum_dd",
        "label": "MTUM drawdown from 1y high (-5% -> -20%)",
-       "weight": 0.321,
+       "weight": 0.323,
        "value": 1.0
       },
       {
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
-       "weight": 0.291,
-       "value": 0.0
+       "weight": 0.29,
+       "value": 0.14
       },
       {
        "leg": "vix_level",
        "label": "VIX level (20 -> 45)",
-       "weight": 0.205,
-       "value": 0.12
+       "weight": 0.204,
+       "value": 0.22
       },
       {
        "leg": "own_vol_pct",
        "label": "Own implied vol, 1y percentile (stress above 75th)",
        "weight": 0.183,
-       "value": 0.54
+       "value": 0.78
       }
      ],
      "tells": [
@@ -7350,7 +7357,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.167,
-       "value": 0.55
+       "value": 0.19
       },
       {
        "tell": "rv_down",
@@ -7362,7 +7369,7 @@
        "tell": "vix_term_back",
        "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
        "weight": 0.167,
-       "value": 0.58
+       "value": 0.18
       },
       {
        "tell": "reclaim_20",
@@ -7383,7 +7390,7 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.19): the buy read. Episode ends with no entry once capitulation has been below 0.23 (now 0.44) for 20 days.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.06): the buy read. Episode ends with no entry once capitulation has been below 0.23 (now 0.55) for 20 days.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
@@ -7391,7 +7398,7 @@
      "last_turn_from": "Capitulation building",
      "arm_thr": 0.33,
      "mode": "v2-turning",
-     "score": 0.444,
+     "score": 0.55,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -7485,8 +7492,8 @@
    "key": "NKY",
    "name": "Nikkei 225",
    "sample_start": "2001-01-04",
-   "sample_end": "2026-11-17",
-   "n_days": 6336,
+   "sample_end": "2026-11-18",
+   "n_days": 6337,
    "arm_thr": 0.451,
    "mode": "v2-turning",
    "low_conviction": false,
@@ -7501,35 +7508,34 @@
      "mean": 0.17,
      "median": 0.33,
      "hit": 55.0,
-     "n": 6331
+     "n": 6332
     },
     "1M": {
-     "mean": 0.7,
+     "mean": 0.69,
      "median": 1.01,
      "hit": 58.0,
-     "n": 6315
+     "n": 6316
     },
     "3M": {
      "mean": 2.18,
      "median": 1.9,
      "hit": 57.0,
-     "n": 6273
+     "n": 6274
     },
     "6M": {
      "mean": 4.53,
      "median": 3.36,
      "hit": 59.0,
-     "n": 6210
+     "n": 6211
     }
    },
    "snapshot": {
-    "date": "2026-11-17",
-    "px": 58948.0,
-    "score": 0.323,
+    "date": "2026-11-18",
+    "px": 59247.0,
+    "score": 0.276,
     "cap_max": 1.0,
     "on": [
-     "dd<=-15%",
-     "VNKY 1y-90pct"
+     "dd<=-15%"
     ],
     "recent_events": [],
     "armed": true,
@@ -7537,15 +7543,15 @@
     "entry_active_10d": false,
     "armed_new": false,
     "entry_today": false,
-    "v1_score": 2,
+    "v1_score": 1,
     "v1_cap_max": 4,
-    "v1_armed": true,
+    "v1_armed": false,
     "state": "Capitulation building",
     "state_since": "2026-11-06",
-    "state_days": 8,
+    "state_days": 9,
     "turn_from": null,
-    "cap": 0.323,
-    "rec": 0.167,
+    "cap": 0.276,
+    "rec": 0.115,
     "state_changed": false,
     "prev_state": "Capitulation building"
    },
@@ -7567,7 +7573,7 @@
       "mean": 1.87,
       "median": 3.42,
       "hit": 68.0,
-      "excess": 1.17
+      "excess": 1.18
      },
      "3M": {
       "n": 19,
@@ -7605,7 +7611,7 @@
       "mean": 2.12,
       "median": -0.03,
       "hit": 50.0,
-      "excess": 1.42
+      "excess": 1.43
      },
      "3M": {
       "n": 28,
@@ -7643,7 +7649,7 @@
       "mean": 0.61,
       "median": 3.44,
       "hit": 61.0,
-      "excess": -0.09
+      "excess": -0.08
      },
      "3M": {
       "n": 31,
@@ -7681,7 +7687,7 @@
       "mean": 0.89,
       "median": 1.67,
       "hit": 59.0,
-      "excess": 0.19
+      "excess": 0.2
      },
      "3M": {
       "n": 76,
@@ -7719,7 +7725,7 @@
       "mean": 1.21,
       "median": 1.61,
       "hit": 63.0,
-      "excess": 0.51
+      "excess": 0.52
      },
      "3M": {
       "n": 97,
@@ -7757,7 +7763,7 @@
       "mean": 1.39,
       "median": 1.31,
       "hit": 60.0,
-      "excess": 0.69
+      "excess": 0.7
      },
      "3M": {
       "n": 63,
@@ -7795,7 +7801,7 @@
       "mean": 1.88,
       "median": 2.28,
       "hit": 65.0,
-      "excess": 1.18
+      "excess": 1.19
      },
      "3M": {
       "n": 40,
@@ -7835,7 +7841,7 @@
       "mean": -0.67,
       "median": -0.36,
       "hit": 48.0,
-      "excess": -1.37
+      "excess": -1.36
      },
      "3M": {
       "n": 65,
@@ -7872,7 +7878,7 @@
       "mean": 0.19,
       "median": -0.12,
       "hit": 48.0,
-      "excess": -0.51
+      "excess": -0.5
      },
      "3M": {
       "n": 63,
@@ -7909,7 +7915,7 @@
       "mean": 0.59,
       "median": 2.15,
       "hit": 65.0,
-      "excess": -0.11
+      "excess": -0.1
      },
      "3M": {
       "n": 20,
@@ -7947,7 +7953,7 @@
      "mean": 1.6,
      "median": 2.57,
      "hit": 66.0,
-     "excess": 0.9
+     "excess": 0.91
     },
     "3M": {
      "n": 56,
@@ -7986,7 +7992,7 @@
       "mean": 0.93,
       "median": -0.02,
       "hit": 48.0,
-      "excess": 0.23
+      "excess": 0.24
      },
      "3M": {
       "n": 27,
@@ -8024,7 +8030,7 @@
       "mean": 0.36,
       "median": -0.21,
       "hit": 46.0,
-      "excess": -0.34
+      "excess": -0.33
      },
      "3M": {
       "n": 36,
@@ -8063,7 +8069,7 @@
      "mean": 0.22,
      "median": 1.03,
      "hit": 60.0,
-     "excess": -0.48
+     "excess": -0.47
     },
     "3M": {
      "n": 10,
@@ -8102,7 +8108,7 @@
      "mean": 0.32,
      "median": 1.49,
      "hit": 55.0,
-     "excess": -0.38
+     "excess": -0.37
     },
     "3M": {
      "n": 55,
@@ -8239,8 +8245,8 @@
     "key": "NKY",
     "name": "Nikkei 225",
     "sample_start": "2001-01-04",
-    "sample_end": "2026-11-17",
-    "n_days": 6336,
+    "sample_end": "2026-11-18",
+    "n_days": 6337,
     "split_date": "2013-11-26",
     "rationale": "Nikkei has no positioning series, so capitulation is price-and-vol: the strong-down trend score, RSI14 and VNKY's 1y percentile share the weight, drawdown confirms. US VIX and HY OAS were tested and do not help in-sample \u2014 Japan's 2001-13 bears were local. Nikkei is the weakest market for this read: Turning's 3M excess is positive but its 2001-13 record is poor (a 12-year bear with repeated false bottoms).",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
@@ -8356,11 +8362,11 @@
       },
       "oos": {
        "n_on": 435,
-       "lift": 2.51,
-       "excess": 3.77,
-       "on_off": 4.5,
+       "lift": 2.5,
+       "excess": 3.79,
+       "on_off": 4.52,
        "on_share": 0.1401,
-       "on_off_1m": 2.02,
+       "on_off_1m": 2.03,
        "mae_on": -5.04,
        "mae_off": -6.06,
        "mae_gain": 1.02
@@ -8387,9 +8393,9 @@
       },
       "oos": {
        "n_on": 323,
-       "lift": 2.85,
+       "lift": 2.84,
        "excess": 3.54,
-       "on_off": 4.06,
+       "on_off": 4.07,
        "on_share": 0.104,
        "on_off_1m": 2.41,
        "mae_on": -4.17,
@@ -8480,9 +8486,9 @@
       },
       "oos": {
        "n_on": 83,
-       "lift": 3.4,
-       "excess": 6.5,
-       "on_off": 6.78,
+       "lift": 3.39,
+       "excess": 6.51,
+       "on_off": 6.79,
        "on_share": 0.0267,
        "on_off_1m": 1.88,
        "mae_on": -7.34,
@@ -8511,14 +8517,14 @@
       },
       "oos": {
        "n_on": 73,
-       "lift": 1.68,
+       "lift": 1.67,
        "excess": 4.71,
-       "on_off": 4.92,
+       "on_off": 4.93,
        "on_share": 0.0235,
        "on_off_1m": 1.83,
        "mae_on": -5.18,
-       "mae_off": -5.93,
-       "mae_gain": 0.75
+       "mae_off": -5.94,
+       "mae_gain": 0.76
       },
       "note": null,
       "split": "2013-11-26",
@@ -8578,7 +8584,7 @@
        "n_fired": 13,
        "fire_share": 1.0,
        "timed_share": 0.38,
-       "lift": 0.77,
+       "lift": 0.78,
        "mae_on": -6.61,
        "mae_flush": -8.23,
        "mae_gain": 1.62,
@@ -8646,7 +8652,7 @@
        "n_fired": 12,
        "fire_share": 0.92,
        "timed_share": 0.58,
-       "lift": 1.17,
+       "lift": 1.18,
        "mae_on": -4.58,
        "mae_flush": -8.23,
        "mae_gain": 3.65,
@@ -8714,7 +8720,7 @@
        "n_fired": 13,
        "fire_share": 1.0,
        "timed_share": 0.23,
-       "lift": 0.46,
+       "lift": 0.47,
        "mae_on": -4.35,
        "mae_flush": -8.23,
        "mae_gain": 3.88,
@@ -8748,7 +8754,7 @@
        "n_fired": 13,
        "fire_share": 1.0,
        "timed_share": 0.38,
-       "lift": 0.77,
+       "lift": 0.78,
        "mae_on": -6.93,
        "mae_flush": -8.23,
        "mae_gain": 1.3,
@@ -8782,7 +8788,7 @@
        "n_fired": 13,
        "fire_share": 1.0,
        "timed_share": 0.38,
-       "lift": 0.77,
+       "lift": 0.78,
        "mae_on": -6.81,
        "mae_flush": -8.23,
        "mae_gain": 1.41,
@@ -9611,8 +9617,8 @@
      "Capitulation building": {
       "all": {
        "n": 33,
-       "days": 241,
-       "near_low_share": 0.411,
+       "days": 242,
+       "near_low_share": 0.409,
        "first": "2001-03-01",
        "last": "2026-11-06",
        "last5": [
@@ -9699,8 +9705,8 @@
       },
       "oos": {
        "n": 11,
-       "days": 54,
-       "near_low_share": 0.37,
+       "days": 55,
+       "near_low_share": 0.364,
        "first": "2014-10-17",
        "last": "2026-11-06",
        "last5": [
@@ -10279,11 +10285,11 @@
         "hit": 56.0,
         "median": 0.64,
         "mean": 2.77,
-        "excess": 1.7,
+        "excess": 1.71,
         "t": 1.27,
         "ci95": [
-         -0.91,
-         4.26
+         -0.9,
+         4.27
         ]
        },
        "6M": {
@@ -10292,7 +10298,7 @@
         "median": 4.13,
         "mean": 5.98,
         "excess": 3.84,
-        "t": 2.37
+        "t": 2.38
        },
        "mae_mean": -5.7,
        "mae_worst": -18.08
@@ -10355,19 +10361,19 @@
         "hit": 56.0,
         "median": 0.48,
         "mean": 1.49,
-        "excess": 0.52,
-        "t": 0.34
+        "excess": 0.53,
+        "t": 0.35
        },
        "3M": {
         "n": 17,
         "hit": 59.0,
         "median": 0.66,
         "mean": 1.95,
-        "excess": -1.27,
-        "t": -0.73,
+        "excess": -1.25,
+        "t": -0.72,
         "ci95": [
-         -4.74,
-         2.07
+         -4.73,
+         2.09
         ]
        },
        "6M": {
@@ -10375,8 +10381,8 @@
         "hit": 50.0,
         "median": 1.11,
         "mean": 6.62,
-        "excess": 0.17,
-        "t": 0.09
+        "excess": 0.18,
+        "t": 0.1
        },
        "mae_mean": -5.55,
        "mae_worst": -15.15
@@ -10490,7 +10496,7 @@
         "median": 2.17,
         "mean": 2.44,
         "excess": 1.55,
-        "t": 1.01
+        "t": 1.02
        },
        "3M": {
         "n": 25,
@@ -10498,10 +10504,10 @@
         "median": 5.56,
         "mean": 6.97,
         "excess": 3.12,
-        "t": 2.13,
+        "t": 2.14,
         "ci95": [
-         0.58,
-         6.13
+         0.59,
+         6.14
         ]
        },
        "6M": {
@@ -10509,7 +10515,7 @@
         "hit": 88.0,
         "median": 9.9,
         "mean": 12.96,
-        "excess": 4.11,
+        "excess": 4.12,
         "t": 2.48
        },
        "mae_mean": -5.08,
@@ -10819,7 +10825,7 @@
     },
     "baseline": {
      "1M": {
-      "mean": 0.7,
+      "mean": 0.69,
       "hit": 58.0
      },
      "3M": {
@@ -10832,41 +10838,41 @@
      }
     },
     "snapshot": {
-     "date": "2026-11-17",
-     "px": 58955.6,
+     "date": "2026-11-18",
+     "px": 59206.7,
      "state": "Capitulation building",
      "state_since": "2026-11-06",
-     "state_days": 8,
+     "state_days": 9,
      "turn_from": null,
-     "cap": 0.323,
-     "rec": 0.167,
+     "cap": 0.276,
+     "rec": 0.115,
      "rec_meaningful": true,
-     "cap_1d": 0.13,
-     "cap_5d": 0.174,
+     "cap_1d": 0.319,
+     "cap_5d": 0.122,
      "legs": [
       {
        "leg": "trend_dn",
        "label": "Trend score strong-down (-0.2 -> -0.8)",
        "weight": 0.304,
-       "value": 0.03
+       "value": 0.06
       },
       {
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.286,
-       "value": 0.17
+       "value": 0.1
       },
       {
        "leg": "own_vol_pct",
        "label": "Own implied vol, 1y percentile (stress above 75th)",
        "weight": 0.269,
-       "value": 0.63
+       "value": 0.51
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.141,
-       "value": 0.68
+       "value": 0.66
       }
      ],
      "tells": [
@@ -10874,7 +10880,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.2,
-       "value": 0.26
+       "value": 0.4
       },
       {
        "tell": "rv_down",
@@ -10886,7 +10892,7 @@
        "tell": "vix_term_back",
        "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
        "weight": 0.2,
-       "value": 0.58
+       "value": 0.18
       },
       {
        "tell": "reclaim_20",
@@ -10901,7 +10907,7 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.17): the buy read, from a dip rather than a flush. Flush, not over if the capitulation composite reaches 0.59 (now 0.32); back to Normal once it has been below 0.35 for 20 days without a turn.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.12): the buy read, from a dip rather than a flush. Flush, not over if the capitulation composite reaches 0.59 (now 0.28); back to Normal once it has been below 0.35 for 20 days without a turn.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
@@ -10909,7 +10915,7 @@
      "last_turn_from": "Flush, not over",
      "arm_thr": 0.451,
      "mode": "v2-turning",
-     "score": 0.323,
+     "score": 0.276,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -10934,7 +10940,7 @@
      "mean": 0.36,
      "median": -0.21,
      "hit": 46.0,
-     "excess": -0.34
+     "excess": -0.33
     },
     "3M": {
      "n": 36,
@@ -11000,8 +11006,8 @@
    "key": "KOSPI2",
    "name": "KOSPI 200",
    "sample_start": "2001-01-02",
-   "sample_end": "2026-11-17",
-   "n_days": 6382,
+   "sample_end": "2026-11-18",
+   "n_days": 6383,
    "arm_thr": 0.301,
    "mode": "v2-turning",
    "low_conviction": false,
@@ -11019,31 +11025,31 @@
      "mean": 0.25,
      "median": 0.35,
      "hit": 55.0,
-     "n": 6377
+     "n": 6378
     },
     "1M": {
      "mean": 1.05,
      "median": 1.03,
      "hit": 58.0,
-     "n": 6361
+     "n": 6362
     },
     "3M": {
      "mean": 3.4,
      "median": 2.36,
      "hit": 62.0,
-     "n": 6319
+     "n": 6320
     },
     "6M": {
      "mean": 7.47,
-     "median": 3.49,
+     "median": 3.48,
      "hit": 59.0,
-     "n": 6256
+     "n": 6257
     }
    },
    "snapshot": {
-    "date": "2026-11-17",
-    "px": 779.0,
-    "score": 0.507,
+    "date": "2026-11-18",
+    "px": 784.0,
+    "score": 0.49,
     "cap_max": 1.0,
     "on": [
      "dd<=-15%",
@@ -11067,10 +11073,10 @@
     "v1_armed": true,
     "state": "Flush, not over",
     "state_since": "2026-10-13",
-    "state_days": 26,
+    "state_days": 27,
     "turn_from": null,
-    "cap": 0.507,
-    "rec": 0.289,
+    "cap": 0.49,
+    "rec": 0.156,
     "state_changed": false,
     "prev_state": "Flush, not over"
    },
@@ -11347,11 +11353,11 @@
      "first": "2001-04-03",
      "last": "2026-11-11",
      "1W": {
-      "n": 59,
-      "mean": 0.99,
-      "median": 1.42,
-      "hit": 63.0,
-      "excess": 0.74
+      "n": 60,
+      "mean": 0.87,
+      "median": 1.36,
+      "hit": 62.0,
+      "excess": 0.62
      },
      "1M": {
       "n": 59,
@@ -11386,10 +11392,10 @@
      "last": "2026-11-10",
      "1W": {
       "n": 92,
-      "mean": -0.25,
+      "mean": -0.26,
       "median": -0.07,
       "hit": 49.0,
-      "excess": -0.5
+      "excess": -0.51
      },
      "1M": {
       "n": 91,
@@ -11445,10 +11451,10 @@
      },
      "6M": {
       "n": 103,
-      "mean": 8.36,
+      "mean": 8.35,
       "median": 4.87,
       "hit": 62.0,
-      "excess": 0.89
+      "excess": 0.88
      },
      "t_3M": 3.61,
      "mae_mean": -6.5,
@@ -11592,10 +11598,10 @@
      },
      "3M": {
       "n": 9,
-      "mean": 4.17,
+      "mean": 4.08,
       "median": 7.21,
       "hit": 78.0,
-      "excess": 0.77
+      "excess": 0.68
      },
      "6M": {
       "n": 7,
@@ -11604,9 +11610,9 @@
       "hit": 71.0,
       "excess": 13.62
      },
-     "t_3M": 0.75,
-     "mae_mean": -7.16,
-     "mae_worst": -27.34
+     "t_3M": 0.73,
+     "mae_mean": -7.24,
+     "mae_worst": -28.05
     },
     {
      "signal": "MACD+ <200dma",
@@ -11934,10 +11940,10 @@
     },
     "3M": {
      "n": 8,
-     "mean": 3.83,
+     "mean": 3.73,
      "median": 8.24,
      "hit": 75.0,
-     "excess": 0.43
+     "excess": 0.33
     },
     "6M": {
      "n": 6,
@@ -11946,9 +11952,9 @@
      "hit": 67.0,
      "excess": 12.84
     },
-    "t_3M": 0.61,
-    "mae_mean": -7.57,
-    "mae_worst": -27.34,
+    "t_3M": 0.59,
+    "mae_mean": -7.66,
+    "mae_worst": -28.05,
     "kind": "flow-gated"
    },
    "composite_primary": {
@@ -12049,31 +12055,31 @@
     ],
     "mae_mean": -8.04,
     "mae_worst": -40.94,
-    "t_3M": 1.4,
+    "t_3M": 1.41,
     "ci95_3M": [
-     -2.16,
-     9.13
+     -2.14,
+     9.18
     ],
     "1M": {
      "n": 44,
      "mean": 1.56,
      "median": 3.11,
      "hit": 59.0,
-     "excess": 0.58
+     "excess": 0.59
     },
     "3M": {
      "n": 44,
      "mean": 7.31,
      "median": 4.92,
      "hit": 66.0,
-     "excess": 3.59
+     "excess": 3.61
     },
     "6M": {
      "n": 42,
      "mean": 12.56,
      "median": 6.9,
      "hit": 67.0,
-     "excess": 4.93
+     "excess": 4.96
     },
     "first": "2001-02-14",
     "last": "2026-08-12"
@@ -12082,8 +12088,8 @@
     "key": "KOSPI2",
     "name": "KOSPI 200",
     "sample_start": "2001-01-02",
-    "sample_end": "2026-11-17",
-    "n_days": 6382,
+    "sample_end": "2026-11-18",
+    "n_days": 6383,
     "split_date": "2013-11-14",
     "rationale": "Korea is read on its OWN tape, not global vol: the VKOSPI level, the one-day crash flush, RSI14 and the strong-down trend score share the weight; drawdown, VRP, KRW stress and the foreign-flow washout were candidates and add nothing to the mix. The VIX / HY OAS-led set was tried first and catches almost none of Korea's 10-15% local dips (2 of 13); the local set catches 5 of 13 and more of the deep lows at the same hit rate. The old flow trigger was tested as a recovery tell and fires in too few episodes to measure, so it is not in the composite.",
     "rationale_recovery": "ONE recovery set for all indices, FIXED by reasoning and equal-weighted, not fitted: implied vol off its 20d peak and realized vol compressing (the fear is leaving the tape), VIX term structure back below one (the front is no longer bid), price back above the 20dma, the trend score turning up from strong-down, and the put/call ratio off its peak (US only). Turning = at least half of them on inside a capitulation episode (from a dip or from a flush; the card says which). Why fixed: with 5-16 flushed episodes per index per half a fitted set flipped with every change to the episode definition, and the pooled evidence is one-sided in time \u2014 in the long 2001-02 and 2008-09 bears no tell beat simply buying the flush, while in 2013-26 each of these cut the 63d drawdown by 3-7 points against the episode onset. MACD turn and the 2d rally gain nothing in either half; reclaim of the 50dma is right but ~30 days late; RSI divergence fires in a quarter of flushes; the Korea flow trigger fires in 3 flushes in 25 years.",
@@ -12138,15 +12144,15 @@
        "mae_gain": -2.22
       },
       "oos": {
-       "n_on": 193,
-       "lift": 2.73,
-       "excess": 1.99,
-       "on_off": 2.15,
-       "on_share": 0.0617,
-       "on_off_1m": 2.47,
-       "mae_on": -12.92,
+       "n_on": 194,
+       "lift": 2.74,
+       "excess": 1.96,
+       "on_off": 2.12,
+       "on_share": 0.062,
+       "on_off_1m": 2.46,
+       "mae_on": -13.01,
        "mae_off": -5.52,
-       "mae_gain": -7.4
+       "mae_gain": -7.49
       },
       "note": null,
       "split": "2013-11-14",
@@ -12170,14 +12176,14 @@
       },
       "oos": {
        "n_on": 132,
-       "lift": 3.27,
-       "excess": 2.29,
-       "on_off": 2.42,
+       "lift": 3.26,
+       "excess": 2.46,
+       "on_off": 2.6,
        "on_share": 0.0422,
-       "on_off_1m": -0.04,
+       "on_off_1m": 0.0,
        "mae_on": -12.14,
-       "mae_off": -5.7,
-       "mae_gain": -6.44
+       "mae_off": -5.71,
+       "mae_gain": -6.43
       },
       "note": null,
       "split": "2013-11-14",
@@ -12201,7 +12207,7 @@
       },
       "oos": {
        "n_on": 110,
-       "lift": 2.78,
+       "lift": 2.77,
        "excess": 4.24,
        "on_off": 4.42,
        "on_share": 0.0352,
@@ -12238,8 +12244,8 @@
        "on_share": 0.1547,
        "on_off_1m": 2.53,
        "mae_on": -4.85,
-       "mae_off": -6.18,
-       "mae_gain": 1.33
+       "mae_off": -6.19,
+       "mae_gain": 1.34
       },
       "note": null,
       "split": "2013-11-14",
@@ -12262,15 +12268,15 @@
        "mae_gain": -2.68
       },
       "oos": {
-       "n_on": 581,
+       "n_on": 582,
        "lift": 2.7,
-       "excess": 0.73,
-       "on_off": 0.93,
-       "on_share": 0.1857,
-       "on_off_1m": 1.33,
-       "mae_on": -6.47,
+       "excess": 0.67,
+       "on_off": 0.86,
+       "on_share": 0.186,
+       "on_off_1m": 1.32,
+       "mae_on": -6.52,
        "mae_off": -5.86,
-       "mae_gain": -0.61
+       "mae_gain": -0.66
       },
       "note": null,
       "split": "2013-11-14",
@@ -12293,15 +12299,15 @@
        "mae_gain": -0.19
       },
       "oos": {
-       "n_on": 340,
-       "lift": 3.03,
-       "excess": -0.96,
-       "on_off": -1.04,
-       "on_share": 0.1087,
-       "on_off_1m": 2.24,
-       "mae_on": -9.07,
+       "n_on": 341,
+       "lift": 3.04,
+       "excess": -0.99,
+       "on_off": -1.08,
+       "on_share": 0.109,
+       "on_off_1m": 2.23,
+       "mae_on": -9.14,
        "mae_off": -5.6,
-       "mae_gain": -3.47
+       "mae_gain": -3.54
       },
       "note": null,
       "split": "2013-11-14",
@@ -12325,10 +12331,10 @@
       },
       "oos": {
        "n_on": 410,
-       "lift": 1.1,
-       "excess": 0.8,
-       "on_off": 0.95,
-       "on_share": 0.1311,
+       "lift": 1.09,
+       "excess": 0.82,
+       "on_off": 0.97,
+       "on_share": 0.131,
        "on_off_1m": -0.6,
        "mae_on": -6.89,
        "mae_off": -5.84,
@@ -12357,13 +12363,13 @@
       "oos": {
        "n_on": 599,
        "lift": 1.89,
-       "excess": 2.04,
-       "on_off": 2.56,
-       "on_share": 0.1915,
-       "on_off_1m": 0.58,
+       "excess": 2.1,
+       "on_off": 2.63,
+       "on_share": 0.1914,
+       "on_off_1m": 0.6,
        "mae_on": -8.16,
-       "mae_off": -5.45,
-       "mae_gain": -2.71
+       "mae_off": -5.46,
+       "mae_gain": -2.7
       },
       "note": null,
       "split": "2013-11-14",
@@ -12387,14 +12393,14 @@
       },
       "oos": {
        "n_on": 103,
-       "lift": 1.98,
-       "excess": 3.91,
-       "on_off": 4.07,
+       "lift": 1.97,
+       "excess": 3.98,
+       "on_off": 4.15,
        "on_share": 0.0329,
-       "on_off_1m": 3.23,
+       "on_off_1m": 3.25,
        "mae_on": -7.52,
-       "mae_off": -5.92,
-       "mae_gain": -1.6
+       "mae_off": -5.93,
+       "mae_gain": -1.59
       },
       "note": null,
       "split": "2013-11-14",
@@ -12458,8 +12464,8 @@
        "mae_on": -5.21,
        "mae_flush": -3.15,
        "mae_gain": -2.05,
-       "exc_on": 5.67,
-       "exc_flush": 7.62,
+       "exc_on": 5.68,
+       "exc_flush": 7.64,
        "false_over": 0.37,
        "lag_median": 3.0
       },
@@ -12492,8 +12498,8 @@
        "mae_on": -3.8,
        "mae_flush": -3.15,
        "mae_gain": -0.65,
-       "exc_on": 5.54,
-       "exc_flush": 7.62,
+       "exc_on": 5.55,
+       "exc_flush": 7.64,
        "false_over": 0.42,
        "lag_median": 8.0
       },
@@ -12522,12 +12528,12 @@
        "n_fired": 19,
        "fire_share": 1.0,
        "timed_share": 0.47,
-       "lift": 1.07,
+       "lift": 1.06,
        "mae_on": -4.27,
        "mae_flush": -3.15,
        "mae_gain": -1.11,
-       "exc_on": 5.33,
-       "exc_flush": 7.62,
+       "exc_on": 5.35,
+       "exc_flush": 7.64,
        "false_over": 0.37,
        "lag_median": 10.0
       },
@@ -12594,8 +12600,8 @@
        "mae_on": -2.17,
        "mae_flush": -3.15,
        "mae_gain": 0.98,
-       "exc_on": 7.52,
-       "exc_flush": 7.62,
+       "exc_on": 7.54,
+       "exc_flush": 7.64,
        "false_over": 0.26,
        "lag_median": 0.0
       },
@@ -12628,8 +12634,8 @@
        "mae_on": -4.39,
        "mae_flush": -3.15,
        "mae_gain": -1.24,
-       "exc_on": 5.89,
-       "exc_flush": 7.62,
+       "exc_on": 5.9,
+       "exc_flush": 7.64,
        "false_over": 0.32,
        "lag_median": 4.0
       },
@@ -12662,8 +12668,8 @@
        "mae_on": -2.89,
        "mae_flush": -3.61,
        "mae_gain": 0.72,
-       "exc_on": 5.87,
-       "exc_flush": 9.5,
+       "exc_on": 5.9,
+       "exc_flush": 9.52,
        "false_over": 0.31,
        "lag_median": 19.0
       },
@@ -12685,12 +12691,12 @@
        "n_fired": 4,
        "fire_share": 0.21,
        "timed_share": 0.75,
-       "lift": 1.69,
+       "lift": 1.68,
        "mae_on": -6.81,
        "mae_flush": -6.56,
        "mae_gain": -0.25,
-       "exc_on": -5.92,
-       "exc_flush": 14.92,
+       "exc_on": -5.84,
+       "exc_flush": 14.99,
        "false_over": 0.25,
        "lag_median": 28.0
       },
@@ -12719,12 +12725,12 @@
        "n_fired": 19,
        "fire_share": 1.0,
        "timed_share": 0.47,
-       "lift": 1.07,
+       "lift": 1.06,
        "mae_on": -4.36,
        "mae_flush": -3.15,
        "mae_gain": -1.2,
-       "exc_on": 4.66,
-       "exc_flush": 7.62,
+       "exc_on": 4.67,
+       "exc_flush": 7.64,
        "false_over": 0.32,
        "lag_median": 3.0
       },
@@ -12757,8 +12763,8 @@
        "mae_on": -5.89,
        "mae_flush": -4.42,
        "mae_gain": -1.46,
-       "exc_on": 7.44,
-       "exc_flush": 9.83,
+       "exc_on": 7.47,
+       "exc_flush": 9.86,
        "false_over": 0.4,
        "lag_median": 3.5
       },
@@ -12787,12 +12793,12 @@
        "n_fired": 14,
        "fire_share": 0.74,
        "timed_share": 0.57,
-       "lift": 1.29,
+       "lift": 1.28,
        "mae_on": -2.75,
        "mae_flush": -3.54,
        "mae_gain": 0.79,
-       "exc_on": 5.2,
-       "exc_flush": 9.64,
+       "exc_on": 5.22,
+       "exc_flush": 9.66,
        "false_over": 0.21,
        "lag_median": 17.5
       },
@@ -12821,12 +12827,12 @@
        "n_fired": 4,
        "fire_share": 0.21,
        "timed_share": 0.75,
-       "lift": 1.69,
+       "lift": 1.68,
        "mae_on": 0.2,
        "mae_flush": 0.81,
        "mae_gain": -0.61,
        "exc_on": 10.35,
-       "exc_flush": 18.67,
+       "exc_flush": 18.74,
        "false_over": 0.0,
        "lag_median": 0.0
       },
@@ -13669,7 +13675,7 @@
         "median": 2.5,
         "mean": 0.96,
         "excess": -0.1,
-        "t": -0.05
+        "t": -0.04
        },
        "3M": {
         "n": 15,
@@ -13698,8 +13704,8 @@
      "Flush, not over": {
       "all": {
        "n": 31,
-       "days": 555,
-       "near_low_share": 0.578,
+       "days": 556,
+       "near_low_share": 0.577,
        "first": "2001-01-10",
        "last": "2026-10-13",
        "last5": [
@@ -13714,19 +13720,19 @@
         "hit": 71.0,
         "median": 4.69,
         "mean": 3.98,
-        "excess": 3.07,
-        "t": 2.43
+        "excess": 3.08,
+        "t": 2.44
        },
        "3M": {
         "n": 30,
         "hit": 73.0,
         "median": 8.52,
         "mean": 10.83,
-        "excess": 7.31,
-        "t": 2.33,
+        "excess": 7.34,
+        "t": 2.34,
         "ci95": [
-         0.62,
-         14.9
+         0.63,
+         14.97
         ]
        },
        "6M": {
@@ -13734,8 +13740,8 @@
         "hit": 72.0,
         "median": 9.09,
         "mean": 14.56,
-        "excess": 7.21,
-        "t": 1.97
+        "excess": 7.25,
+        "t": 1.99
        },
        "mae_mean": -7.38,
        "mae_worst": -32.73
@@ -13786,8 +13792,8 @@
       },
       "oos": {
        "n": 12,
-       "days": 213,
-       "near_low_share": 0.592,
+       "days": 214,
+       "near_low_share": 0.589,
        "first": "2015-08-21",
        "last": "2026-10-13",
        "last5": [
@@ -13802,19 +13808,19 @@
         "hit": 58.0,
         "median": 4.34,
         "mean": 1.59,
-        "excess": 0.0,
-        "t": 0.0
+        "excess": 0.03,
+        "t": 0.01
        },
        "3M": {
         "n": 11,
         "hit": 73.0,
         "median": 4.91,
         "mean": 14.7,
-        "excess": 8.72,
-        "t": 1.29,
+        "excess": 8.8,
+        "t": 1.3,
         "ci95": [
-         -6.28,
-         23.73
+         -6.19,
+         23.87
         ]
        },
        "6M": {
@@ -13822,8 +13828,8 @@
         "hit": 80.0,
         "median": 9.67,
         "mean": 16.25,
-        "excess": 3.94,
-        "t": 1.53
+        "excess": 4.08,
+        "t": 1.57
        },
        "mae_mean": -7.47,
        "mae_worst": -32.73
@@ -13848,19 +13854,19 @@
         "hit": 59.0,
         "median": 3.11,
         "mean": 1.56,
-        "excess": 0.58,
-        "t": 0.5
+        "excess": 0.59,
+        "t": 0.51
        },
        "3M": {
         "n": 44,
         "hit": 66.0,
         "median": 4.92,
         "mean": 7.31,
-        "excess": 3.59,
-        "t": 1.4,
+        "excess": 3.61,
+        "t": 1.41,
         "ci95": [
-         -2.16,
-         9.13
+         -2.14,
+         9.18
         ]
        },
        "6M": {
@@ -13868,8 +13874,8 @@
         "hit": 67.0,
         "median": 6.9,
         "mean": 12.56,
-        "excess": 4.93,
-        "t": 2.02
+        "excess": 4.96,
+        "t": 2.03
        },
        "mae_mean": -8.04,
        "mae_worst": -40.94
@@ -13936,19 +13942,19 @@
         "hit": 68.0,
         "median": 4.53,
         "mean": 1.63,
-        "excess": 0.16,
-        "t": 0.09
+        "excess": 0.17,
+        "t": 0.1
        },
        "3M": {
         "n": 22,
         "hit": 64.0,
         "median": 5.32,
         "mean": 8.61,
-        "excess": 3.15,
-        "t": 0.77,
+        "excess": 3.2,
+        "t": 0.78,
         "ci95": [
-         -5.87,
-         11.8
+         -5.82,
+         11.89
         ]
        },
        "6M": {
@@ -13956,8 +13962,8 @@
         "hit": 75.0,
         "median": 7.93,
         "mean": 17.88,
-        "excess": 6.62,
-        "t": 2.6
+        "excess": 6.68,
+        "t": 2.63
        },
        "mae_mean": -7.21,
        "mae_worst": -40.94
@@ -13979,19 +13985,19 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.41,
-         "t": 0.25
+         "excess": 0.42,
+         "t": 0.26
         },
         "3M": {
          "n": 29,
          "hit": 62.0,
          "median": 4.73,
          "mean": 7.95,
-         "excess": 3.61,
-         "t": 0.97,
+         "excess": 3.65,
+         "t": 0.99,
          "ci95": [
-          -4.21,
-          12.14
+          -4.17,
+          12.2
          ]
         },
         "6M": {
@@ -13999,8 +14005,8 @@
          "hit": 59.0,
          "median": 6.41,
          "mean": 12.2,
-         "excess": 4.13,
-         "t": 1.24
+         "excess": 4.18,
+         "t": 1.26
         },
         "mae_mean": -10.04,
         "mae_worst": -40.94
@@ -14173,7 +14179,7 @@
       "is_excess": 1.53,
       "oos_n": 21,
       "oos_hit": 71.0,
-      "oos_excess": 8.35,
+      "oos_excess": 8.38,
       "is_mae": -10.17,
       "oos_mae": -3.55
      },
@@ -14184,7 +14190,7 @@
       "is_excess": 1.55,
       "oos_n": 24,
       "oos_hit": 62.0,
-      "oos_excess": 2.51,
+      "oos_excess": 2.57,
       "is_mae": -10.57,
       "oos_mae": -6.8
      },
@@ -14195,7 +14201,7 @@
       "is_excess": 4.03,
       "oos_n": 22,
       "oos_hit": 64.0,
-      "oos_excess": 3.15,
+      "oos_excess": 3.2,
       "is_mae": -8.86,
       "oos_mae": -7.21
      },
@@ -14206,7 +14212,7 @@
       "is_excess": 4.22,
       "oos_n": 22,
       "oos_hit": 64.0,
-      "oos_excess": 2.58,
+      "oos_excess": 2.62,
       "is_mae": -8.5,
       "oos_mae": -5.14
      },
@@ -14215,11 +14221,11 @@
       "is_n": 14,
       "is_hit": 64.0,
       "is_excess": 2.23,
-      "oos_n": 19,
-      "oos_hit": 74.0,
-      "oos_excess": 5.45,
+      "oos_n": 20,
+      "oos_hit": 70.0,
+      "oos_excess": 3.04,
       "is_mae": -9.93,
-      "oos_mae": -4.5
+      "oos_mae": -5.77
      }
     ],
     "compare": {
@@ -14240,19 +14246,19 @@
         "hit": 62.0,
         "median": 5.5,
         "mean": 3.62,
-        "excess": 1.68,
-        "t": 0.74
+        "excess": 1.69,
+        "t": 0.75
        },
        "3M": {
         "n": 8,
         "hit": 75.0,
         "median": 8.24,
-        "mean": 3.83,
-        "excess": -4.17,
+        "mean": 3.73,
+        "excess": -4.19,
         "t": -0.54,
         "ci95": [
-         -24.62,
-         11.29
+         -24.67,
+         11.28
         ]
        },
        "6M": {
@@ -14263,8 +14269,8 @@
         "excess": 3.94,
         "t": 1.11
        },
-       "mae_mean": -7.57,
-       "mae_worst": -27.34
+       "mae_mean": -7.66,
+       "mae_worst": -28.05
       },
       "is": {
        "n": 3,
@@ -14322,18 +14328,18 @@
         "hit": 60.0,
         "median": 3.42,
         "mean": 3.44,
-        "excess": -0.88,
-        "t": -0.41
+        "excess": -0.86,
+        "t": -0.4
        },
        "3M": {
         "n": 5,
         "hit": 60.0,
         "median": 14.03,
-        "mean": 1.98,
-        "excess": -13.98,
+        "mean": 1.83,
+        "excess": -14.01,
         "t": -1.41,
         "ci95": [
-         -37.91,
+         -38.0,
          2.76
         ]
        },
@@ -14345,8 +14351,8 @@
         "excess": -0.9,
         "t": -0.21
        },
-       "mae_mean": -9.9,
-       "mae_worst": -27.34
+       "mae_mean": -10.05,
+       "mae_worst": -28.05
       }
      },
      "or_vrp_vix30_mtum": {
@@ -14368,19 +14374,19 @@
         "hit": 51.0,
         "median": 0.29,
         "mean": 0.16,
-        "excess": -1.03,
-        "t": -0.86
+        "excess": -1.02,
+        "t": -0.85
        },
        "3M": {
         "n": 57,
         "hit": 65.0,
         "median": 4.31,
         "mean": 5.15,
-        "excess": 0.96,
-        "t": 0.56,
+        "excess": 0.98,
+        "t": 0.57,
         "ci95": [
-         -3.37,
-         5.15
+         -3.3,
+         4.9
         ]
        },
        "6M": {
@@ -14388,8 +14394,8 @@
         "hit": 59.0,
         "median": 5.13,
         "mean": 9.64,
-        "excess": 0.96,
-        "t": 0.5
+        "excess": 0.99,
+        "t": 0.52
        },
        "mae_mean": -8.87,
        "mae_worst": -40.94
@@ -14423,8 +14429,8 @@
         "excess": 0.18,
         "t": 0.07,
         "ci95": [
-         -4.86,
-         5.51
+         -4.78,
+         5.33
         ]
        },
        "6M": {
@@ -14456,19 +14462,19 @@
         "hit": 63.0,
         "median": 2.33,
         "mean": 1.16,
-        "excess": -0.29,
-        "t": -0.17
+        "excess": -0.28,
+        "t": -0.16
        },
        "3M": {
         "n": 30,
         "hit": 63.0,
         "median": 4.31,
         "mean": 7.19,
-        "excess": 1.67,
-        "t": 0.68,
+        "excess": 1.71,
+        "t": 0.7,
         "ci95": [
-         -4.81,
-         7.13
+         -4.74,
+         7.18
         ]
        },
        "6M": {
@@ -14476,8 +14482,8 @@
         "hit": 69.0,
         "median": 8.84,
         "mean": 12.87,
-        "excess": 0.93,
-        "t": 0.32
+        "excess": 1.0,
+        "t": 0.34
        },
        "mae_mean": -7.57,
        "mae_worst": -40.94
@@ -14506,19 +14512,19 @@
         "hit": 59.0,
         "median": 3.11,
         "mean": 1.56,
-        "excess": 0.58,
-        "t": 0.5
+        "excess": 0.59,
+        "t": 0.51
        },
        "3M": {
         "n": 44,
         "hit": 66.0,
         "median": 4.92,
         "mean": 7.31,
-        "excess": 3.59,
-        "t": 1.4,
+        "excess": 3.61,
+        "t": 1.41,
         "ci95": [
-         -2.16,
-         9.13
+         -2.14,
+         9.18
         ]
        },
        "6M": {
@@ -14526,8 +14532,8 @@
         "hit": 67.0,
         "median": 6.9,
         "mean": 12.56,
-        "excess": 4.93,
-        "t": 2.02
+        "excess": 4.96,
+        "t": 2.03
        },
        "mae_mean": -8.04,
        "mae_worst": -40.94
@@ -14594,19 +14600,19 @@
         "hit": 68.0,
         "median": 4.53,
         "mean": 1.63,
-        "excess": 0.16,
-        "t": 0.09
+        "excess": 0.17,
+        "t": 0.1
        },
        "3M": {
         "n": 22,
         "hit": 64.0,
         "median": 5.32,
         "mean": 8.61,
-        "excess": 3.15,
-        "t": 0.77,
+        "excess": 3.2,
+        "t": 0.78,
         "ci95": [
-         -5.87,
-         11.8
+         -5.82,
+         11.89
         ]
        },
        "6M": {
@@ -14614,8 +14620,8 @@
         "hit": 75.0,
         "median": 7.93,
         "mean": 17.88,
-        "excess": 6.62,
-        "t": 2.6
+        "excess": 6.68,
+        "t": 2.63
        },
        "mae_mean": -7.21,
        "mae_worst": -40.94
@@ -14637,19 +14643,19 @@
          "hit": 59.0,
          "median": 4.78,
          "mean": 1.45,
-         "excess": 0.41,
-         "t": 0.25
+         "excess": 0.42,
+         "t": 0.26
         },
         "3M": {
          "n": 29,
          "hit": 62.0,
          "median": 4.73,
          "mean": 7.95,
-         "excess": 3.61,
-         "t": 0.97,
+         "excess": 3.65,
+         "t": 0.99,
          "ci95": [
-          -4.21,
-          12.14
+          -4.17,
+          12.2
          ]
         },
         "6M": {
@@ -14657,8 +14663,8 @@
          "hit": 59.0,
          "median": 6.41,
          "mean": 12.2,
-         "excess": 4.13,
-         "t": 1.24
+         "excess": 4.18,
+         "t": 1.26
         },
         "mae_mean": -10.04,
         "mae_worst": -40.94
@@ -14815,17 +14821,17 @@
      }
     },
     "snapshot": {
-     "date": "2026-11-17",
-     "px": 778.8,
+     "date": "2026-11-18",
+     "px": 783.8,
      "state": "Flush, not over",
      "state_since": "2026-10-13",
-     "state_days": 26,
+     "state_days": 27,
      "turn_from": null,
-     "cap": 0.507,
-     "rec": 0.289,
+     "cap": 0.49,
+     "rec": 0.156,
      "rec_meaningful": true,
-     "cap_1d": 0.487,
-     "cap_5d": 0.601,
+     "cap_1d": 0.517,
+     "cap_5d": 0.564,
      "legs": [
       {
        "leg": "vkospi_level",
@@ -14843,13 +14849,13 @@
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.231,
-       "value": 0.28
+       "value": 0.2
       },
       {
        "leg": "trend_dn",
        "label": "Trend score strong-down (-0.2 -> -0.8)",
        "weight": 0.231,
-       "value": 0.14
+       "value": 0.16
       }
      ],
      "tells": [
@@ -14857,19 +14863,19 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.2,
-       "value": 0.5
+       "value": 0.32
       },
       {
        "tell": "rv_down",
        "label": "Realized vol (10d) off its 20d peak (10% -> 40%)",
        "weight": 0.2,
-       "value": 0.37
+       "value": 0.28
       },
       {
        "tell": "vix_term_back",
        "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
        "weight": 0.2,
-       "value": 0.58
+       "value": 0.18
       },
       {
        "tell": "reclaim_20",
@@ -14884,7 +14890,7 @@
        "value": 0.0
       }
      ],
-     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.29): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.51) for 20 days.",
+     "next_state": "Turning when the recovery composite reaches 0.50 (now 0.16): the buy read. Episode ends with no entry once capitulation has been below 0.20 (now 0.49) for 20 days.",
      "armed": true,
      "entry_today": false,
      "entry_active_10d": false,
@@ -14892,7 +14898,7 @@
      "last_turn_from": "Flush, not over",
      "arm_thr": 0.301,
      "mode": "v2-turning",
-     "score": 0.507,
+     "score": 0.49,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -14921,10 +14927,10 @@
     },
     "3M": {
      "n": 8,
-     "mean": 3.83,
+     "mean": 3.73,
      "median": 8.24,
      "hit": 75.0,
-     "excess": 0.43
+     "excess": 0.33
     },
     "6M": {
      "n": 6,
@@ -14933,9 +14939,9 @@
      "hit": 67.0,
      "excess": 12.84
     },
-    "t_3M": 0.61,
-    "mae_mean": -7.57,
-    "mae_worst": -27.34,
+    "t_3M": 0.59,
+    "mae_mean": -7.66,
+    "mae_worst": -28.05,
     "mode": "flow",
     "low_conviction": false,
     "entry_dates": [
@@ -14992,8 +14998,8 @@
    },
    "snapshot": {
     "date": "2026-11-17",
-    "px": 40590.0,
-    "score": 0.219,
+    "px": 40092.0,
+    "score": 0.276,
     "cap_max": 1.0,
     "on": [
      "dd<=-15%"
@@ -15011,8 +15017,8 @@
     "state_since": "2025-05-08",
     "state_days": 374,
     "turn_from": null,
-    "cap": 0.219,
-    "rec": 0.226,
+    "cap": 0.276,
+    "rec": 0.073,
     "state_changed": false,
     "prev_state": "Normal"
    },
@@ -15579,8 +15585,8 @@
     "mae_worst": -35.29,
     "t_3M": 2.77,
     "ci95_3M": [
-     2.43,
-     12.71
+     2.45,
+     12.92
     ],
     "1M": {
      "n": 26,
@@ -16930,8 +16936,8 @@
         "excess": 3.15,
         "t": 1.14,
         "ci95": [
-         -1.66,
-         7.65
+         -1.64,
+         7.62
         ]
        },
        "6M": {
@@ -16975,7 +16981,7 @@
         "t": 0.57,
         "ci95": [
          -4.74,
-         10.54
+         10.17
         ]
        },
        "6M": {
@@ -17018,8 +17024,8 @@
         "excess": 3.85,
         "t": 1.62,
         "ci95": [
-         -0.91,
-         8.47
+         -1.02,
+         8.31
         ]
        },
        "6M": {
@@ -17064,8 +17070,8 @@
         "excess": 7.3,
         "t": 2.44,
         "ci95": [
-         0.79,
-         13.28
+         0.78,
+         13.01
         ]
        },
        "6M": {
@@ -17108,8 +17114,8 @@
         "excess": 9.18,
         "t": 2.18,
         "ci95": [
-         -0.16,
-         16.82
+         -0.06,
+         16.84
         ]
        },
        "6M": {
@@ -17153,7 +17159,7 @@
         "t": 1.37,
         "ci95": [
          -0.11,
-         6.97
+         6.88
         ]
        },
        "6M": {
@@ -17198,8 +17204,8 @@
         "excess": 7.69,
         "t": 2.77,
         "ci95": [
-         2.43,
-         12.71
+         2.45,
+         12.92
         ]
        },
        "6M": {
@@ -17242,8 +17248,8 @@
         "excess": 9.69,
         "t": 2.2,
         "ci95": [
-         1.55,
-         17.33
+         1.66,
+         17.67
         ]
        },
        "6M": {
@@ -17286,8 +17292,8 @@
         "excess": 4.96,
         "t": 1.87,
         "ci95": [
-         0.08,
-         10.19
+         0.25,
+         10.08
         ]
        },
        "6M": {
@@ -17329,8 +17335,8 @@
          "excess": 7.54,
          "t": 1.95,
          "ci95": [
-          -0.2,
-          14.75
+          -0.37,
+          14.47
          ]
         },
         "6M": {
@@ -17371,8 +17377,8 @@
          "excess": 7.98,
          "t": 2.22,
          "ci95": [
-          2.2,
-          15.38
+          2.26,
+          14.88
          ]
         },
         "6M": {
@@ -17554,8 +17560,8 @@
         "excess": 5.66,
         "t": 2.04,
         "ci95": [
-         0.49,
-         11.56
+         0.26,
+         11.63
         ]
        },
        "6M": {
@@ -17596,8 +17602,8 @@
         "excess": 9.44,
         "t": 2.08,
         "ci95": [
-         0.24,
-         18.28
+         0.62,
+         18.42
         ]
        },
        "6M": {
@@ -17638,8 +17644,8 @@
         "excess": 1.12,
         "t": 0.51,
         "ci95": [
-         -3.14,
-         5.2
+         -3.05,
+         5.21
         ]
        },
        "6M": {
@@ -17684,8 +17690,8 @@
         "excess": 2.54,
         "t": 1.14,
         "ci95": [
-         -1.87,
-         7.23
+         -1.74,
+         7.28
         ]
        },
        "6M": {
@@ -17728,8 +17734,8 @@
         "excess": 1.71,
         "t": 0.48,
         "ci95": [
-         -5.34,
-         9.04
+         -5.05,
+         9.19
         ]
        },
        "6M": {
@@ -17772,8 +17778,8 @@
         "excess": 3.62,
         "t": 1.53,
         "ci95": [
-         -0.84,
-         8.6
+         -1.06,
+         8.56
         ]
        },
        "6M": {
@@ -17821,8 +17827,8 @@
         "excess": 7.69,
         "t": 2.77,
         "ci95": [
-         2.43,
-         12.71
+         2.45,
+         12.92
         ]
        },
        "6M": {
@@ -17865,8 +17871,8 @@
         "excess": 9.69,
         "t": 2.2,
         "ci95": [
-         1.55,
-         17.33
+         1.66,
+         17.67
         ]
        },
        "6M": {
@@ -17909,8 +17915,8 @@
         "excess": 4.96,
         "t": 1.87,
         "ci95": [
-         0.08,
-         10.19
+         0.25,
+         10.08
         ]
        },
        "6M": {
@@ -17952,8 +17958,8 @@
          "excess": 7.54,
          "t": 1.95,
          "ci95": [
-          -0.2,
-          14.75
+          -0.37,
+          14.47
          ]
         },
         "6M": {
@@ -17994,8 +18000,8 @@
          "excess": 7.98,
          "t": 2.22,
          "ci95": [
-          2.2,
-          15.38
+          2.26,
+          14.88
          ]
         },
         "6M": {
@@ -18084,13 +18090,13 @@
     },
     "snapshot": {
      "date": "2026-11-17",
-     "px": 40563.1,
+     "px": 40092.1,
      "state": "Normal",
      "state_since": "2025-05-08",
      "state_days": 374,
      "turn_from": null,
-     "cap": 0.219,
-     "rec": 0.226,
+     "cap": 0.276,
+     "rec": 0.073,
      "rec_meaningful": false,
      "cap_1d": 0.197,
      "cap_5d": 0.1,
@@ -18099,7 +18105,7 @@
        "leg": "vix_level",
        "label": "VIX level (20 -> 45)",
        "weight": 0.351,
-       "value": 0.12
+       "value": 0.22
       },
       {
        "leg": "trend_dn",
@@ -18111,13 +18117,13 @@
        "leg": "rsi14",
        "label": "RSI14 daily (40 -> 20)",
        "weight": 0.207,
-       "value": 0.23
+       "value": 0.29
       },
       {
        "leg": "dd_1y",
        "label": "Drawdown from 1y high (-5% -> -25%)",
        "weight": 0.192,
-       "value": 0.68
+       "value": 0.73
       }
      ],
      "tells": [
@@ -18125,7 +18131,7 @@
        "tell": "iv_off_peak",
        "label": "Implied vol off its 20d peak (5% -> 30%)",
        "weight": 0.2,
-       "value": 0.55
+       "value": 0.19
       },
       {
        "tell": "rv_down",
@@ -18137,7 +18143,7 @@
        "tell": "vix_term_back",
        "label": "VIX/VIX3M back below 1 (1.03 -> 0.97)",
        "weight": 0.2,
-       "value": 0.58
+       "value": 0.18
       },
       {
        "tell": "reclaim_20",
@@ -18152,7 +18158,7 @@
        "value": 0.0
       }
      ],
-     "next_state": "Capitulation building when the capitulation composite reaches 0.47 (now 0.22).",
+     "next_state": "Capitulation building when the capitulation composite reaches 0.47 (now 0.28).",
      "armed": false,
      "entry_today": false,
      "entry_active_10d": false,
@@ -18160,7 +18166,7 @@
      "last_turn_from": "Flush, not over",
      "arm_thr": 0.47,
      "mode": "v2-turning",
-     "score": 0.219,
+     "score": 0.276,
      "cap_max": 1.0,
      "armed_new": false,
      "state_changed": false,
@@ -18262,16 +18268,16 @@
      "lag_median": 8.5
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 73,
+     "n_ep": 72,
+     "n_fired": 72,
      "fire_share": 1.0,
-     "timed_share": 0.37,
-     "lift": 0.9,
-     "mae_on": -5.95,
-     "mae_flush": -5.85,
-     "mae_gain": -0.1,
-     "exc_on": 3.82,
-     "exc_flush": 4.43,
+     "timed_share": 0.38,
+     "lift": 0.91,
+     "mae_on": -5.78,
+     "mae_flush": -5.66,
+     "mae_gain": -0.12,
+     "exc_on": 3.85,
+     "exc_flush": 4.58,
      "false_over": 0.41,
      "lag_median": 3.0
     },
@@ -18297,17 +18303,17 @@
      "lag_median": 7.0
     },
     "oos": {
-     "n_ep": 31,
-     "n_fired": 27,
+     "n_ep": 30,
+     "n_fired": 26,
      "fire_share": 0.87,
-     "timed_share": 0.33,
-     "lift": 0.95,
-     "mae_on": -5.64,
-     "mae_flush": -6.16,
-     "mae_gain": 0.52,
-     "exc_on": 3.32,
-     "exc_flush": 2.84,
-     "false_over": 0.44,
+     "timed_share": 0.35,
+     "lift": 0.99,
+     "mae_on": -5.39,
+     "mae_flush": -5.67,
+     "mae_gain": 0.28,
+     "exc_on": 3.37,
+     "exc_flush": 3.18,
+     "false_over": 0.42,
      "lag_median": 8.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -18332,17 +18338,17 @@
      "lag_median": 13.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 70,
+     "n_ep": 72,
+     "n_fired": 69,
      "fire_share": 0.96,
      "timed_share": 0.49,
-     "lift": 1.18,
-     "mae_on": -4.87,
-     "mae_flush": -5.85,
-     "mae_gain": 0.99,
-     "exc_on": 3.43,
-     "exc_flush": 4.43,
-     "false_over": 0.47,
+     "lift": 1.2,
+     "mae_on": -4.76,
+     "mae_flush": -5.66,
+     "mae_gain": 0.91,
+     "exc_on": 3.45,
+     "exc_flush": 4.58,
+     "false_over": 0.46,
      "lag_median": 12.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
@@ -18367,17 +18373,17 @@
      "lag_median": 10.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 70,
+     "n_ep": 72,
+     "n_fired": 69,
      "fire_share": 0.96,
-     "timed_share": 0.41,
-     "lift": 1.01,
-     "mae_on": -5.62,
-     "mae_flush": -5.85,
-     "mae_gain": 0.23,
-     "exc_on": 2.91,
-     "exc_flush": 4.43,
-     "false_over": 0.46,
+     "timed_share": 0.42,
+     "lift": 1.02,
+     "mae_on": -5.5,
+     "mae_flush": -5.66,
+     "mae_gain": 0.16,
+     "exc_on": 2.97,
+     "exc_flush": 4.58,
+     "false_over": 0.45,
      "lag_median": 10.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
@@ -18402,18 +18408,18 @@
      "lag_median": 17.5
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 40,
-     "fire_share": 0.55,
-     "timed_share": 0.7,
-     "lift": 1.7,
-     "mae_on": -4.56,
-     "mae_flush": -9.31,
-     "mae_gain": 4.75,
-     "exc_on": 4.64,
-     "exc_flush": 1.31,
-     "false_over": 0.4,
-     "lag_median": 19.5
+     "n_ep": 72,
+     "n_fired": 39,
+     "fire_share": 0.54,
+     "timed_share": 0.72,
+     "lift": 1.75,
+     "mae_on": -4.23,
+     "mae_flush": -9.06,
+     "mae_gain": 4.83,
+     "exc_on": 4.75,
+     "exc_flush": 1.49,
+     "false_over": 0.38,
+     "lag_median": 20.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
     "weight": 0.167
@@ -18437,17 +18443,17 @@
      "lag_median": 2.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 73,
+     "n_ep": 72,
+     "n_fired": 72,
      "fire_share": 1.0,
      "timed_share": 0.29,
-     "lift": 0.7,
-     "mae_on": -3.94,
-     "mae_flush": -5.85,
-     "mae_gain": 1.91,
-     "exc_on": 4.8,
-     "exc_flush": 4.43,
-     "false_over": 0.33,
+     "lift": 0.71,
+     "mae_on": -3.73,
+     "mae_flush": -5.66,
+     "mae_gain": 1.94,
+     "exc_on": 4.96,
+     "exc_flush": 4.58,
+     "false_over": 0.32,
      "lag_median": 1.0
     },
     "status": "in set (fixed, equal weight) \u2014 evidence: gain > 0 both halves",
@@ -18472,17 +18478,17 @@
      "lag_median": 6.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 71,
+     "n_ep": 72,
+     "n_fired": 70,
      "fire_share": 0.97,
-     "timed_share": 0.39,
-     "lift": 0.96,
-     "mae_on": -6.2,
-     "mae_flush": -5.85,
-     "mae_gain": -0.34,
-     "exc_on": 3.04,
-     "exc_flush": 4.43,
-     "false_over": 0.47,
+     "timed_share": 0.4,
+     "lift": 0.97,
+     "mae_on": -6.03,
+     "mae_flush": -5.66,
+     "mae_gain": -0.37,
+     "exc_on": 3.06,
+     "exc_flush": 4.58,
+     "false_over": 0.46,
      "lag_median": 4.0
     },
     "status": "not in set: fires in most flushes but gains ~0 in-sample \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -18515,8 +18521,8 @@
      "mae_on": -2.89,
      "mae_flush": -3.61,
      "mae_gain": 0.72,
-     "exc_on": 5.87,
-     "exc_flush": 9.5,
+     "exc_on": 5.9,
+     "exc_flush": 9.52,
      "false_over": 0.31,
      "lag_median": 19.0
     },
@@ -18539,12 +18545,12 @@
      "n_fired": 4,
      "fire_share": 0.21,
      "timed_share": 0.75,
-     "lift": 1.69,
+     "lift": 1.68,
      "mae_on": -6.81,
      "mae_flush": -6.56,
      "mae_gain": -0.25,
-     "exc_on": -5.92,
-     "exc_flush": 14.92,
+     "exc_on": -5.84,
+     "exc_flush": 14.99,
      "false_over": 0.25,
      "lag_median": 28.0
     },
@@ -18570,16 +18576,16 @@
      "lag_median": 3.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 73,
+     "n_ep": 72,
+     "n_fired": 72,
      "fire_share": 1.0,
-     "timed_share": 0.34,
-     "lift": 0.83,
-     "mae_on": -5.52,
-     "mae_flush": -5.85,
-     "mae_gain": 0.34,
-     "exc_on": 4.02,
-     "exc_flush": 4.43,
+     "timed_share": 0.35,
+     "lift": 0.85,
+     "mae_on": -5.38,
+     "mae_flush": -5.66,
+     "mae_gain": 0.28,
+     "exc_on": 4.01,
+     "exc_flush": 4.58,
      "false_over": 0.41,
      "lag_median": 4.0
     },
@@ -18605,17 +18611,17 @@
      "lag_median": 6.0
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 51,
-     "fire_share": 0.7,
-     "timed_share": 0.41,
-     "lift": 1.0,
-     "mae_on": -6.31,
-     "mae_flush": -7.29,
-     "mae_gain": 0.98,
-     "exc_on": 4.25,
-     "exc_flush": 4.13,
-     "false_over": 0.51,
+     "n_ep": 72,
+     "n_fired": 50,
+     "fire_share": 0.69,
+     "timed_share": 0.42,
+     "lift": 1.02,
+     "mae_on": -6.08,
+     "mae_flush": -7.05,
+     "mae_gain": 0.97,
+     "exc_on": 4.34,
+     "exc_flush": 4.34,
+     "false_over": 0.5,
      "lag_median": 4.0
     },
     "status": "not in set: no drawdown gain in either half; fires on the first bounce \u2014 evidence: pruned: <= 0 in-sample (no drawdown gain vs buying the episode onset)",
@@ -18640,17 +18646,17 @@
      "lag_median": 24.5
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 59,
+     "n_ep": 72,
+     "n_fired": 58,
      "fire_share": 0.81,
-     "timed_share": 0.56,
-     "lift": 1.36,
-     "mae_on": -3.99,
-     "mae_flush": -6.33,
-     "mae_gain": 2.35,
-     "exc_on": 1.81,
-     "exc_flush": 4.48,
-     "false_over": 0.29,
+     "timed_share": 0.57,
+     "lift": 1.38,
+     "mae_on": -3.84,
+     "mae_flush": -6.12,
+     "mae_gain": 2.28,
+     "exc_on": 1.95,
+     "exc_flush": 4.67,
+     "false_over": 0.28,
      "lag_median": 19.0
     },
     "status": "not in set: median lag ~30 td after the flush \u2014 too late to be a turning read \u2014 evidence: gain > 0 both halves",
@@ -18675,18 +18681,18 @@
      "lag_median": 4.5
     },
     "oos": {
-     "n_ep": 73,
-     "n_fired": 21,
-     "fire_share": 0.29,
-     "timed_share": 0.48,
-     "lift": 1.16,
-     "mae_on": -5.35,
-     "mae_flush": -8.27,
-     "mae_gain": 2.92,
-     "exc_on": 6.38,
-     "exc_flush": 3.6,
-     "false_over": 0.5,
-     "lag_median": 17.0
+     "n_ep": 72,
+     "n_fired": 20,
+     "fire_share": 0.28,
+     "timed_share": 0.5,
+     "lift": 1.22,
+     "mae_on": -4.92,
+     "mae_flush": -7.73,
+     "mae_gain": 2.81,
+     "exc_on": 6.36,
+     "exc_flush": 4.08,
+     "false_over": 0.47,
+     "lag_median": 17.5
     },
     "status": "not in set: fires in a quarter of flushes; lift below 1 in-sample \u2014 evidence: gain > 0 both halves",
     "weight": 0.0

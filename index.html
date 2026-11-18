@@ -811,6 +811,38 @@ function cvar(n){return getComputedStyle(document.documentElement).getPropertyVa
       </div>
     </div>
 
+    <!-- ── XLF sub-page (US financials — grouped under Equities tab, added 17-Nov-26) ── -->
+    <div class="fv-subpage" id="fv-sub-xlf" style="display:none;">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:0.75rem;color:var(--text-dim);">Regression window:</span>
+        <div class="tabs" id="xlf-period-tabs" style="margin-bottom:0;">
+          <button class="tab" data-p="6m">6M</button>
+          <button class="tab" data-p="1y">1Y</button>
+          <button class="tab active" data-p="2y">2Y</button>
+          <button class="tab" data-p="3y">3Y</button>
+          <button class="tab" data-p="5y">5Y</button>
+        </div>
+      </div>
+      <div style="margin-bottom:18px; font-size:13px; color:var(--text-dim); line-height:1.5;">
+        <b>XLF (US Financials)</b> — market + rates + credit fair value, sign-constrained.
+        <b>Model A</b> = log SPW (S&amp;P equal-weight) + HY OAS. <b>Model B</b> = log SPW + UST 2s10s + UST 10Y + HY OAS (FV of record).
+        Signs: SPW +, steeper curve + (NIM), higher 10Y +, wider HY OAS &minus;. Equal-weight beats cap-weighted SPX as the market driver (weekly R&sup2; 0.83 vs 0.68; SPX reads XLF ~3pt richer in a tech-only unwind). XLF moves ~1.05&times; SPW week to week;
+        HY OAS is the strongest macro driver, while the curve and 10Y effects have faded to ~0 in weekly changes since 2024.
+        XLF <i>relative</i> to SPX does not fit (R&sup2; &asymp; 0), so this is a level model with the market inside it. Price index, not total return.
+        <br><b style="color:var(--red);">Fails the out-of-sample fade test</b> (2Y: 11 fades, 55% hit, &minus;0.1% at 63d; 1Y worse) &mdash;
+        read it as a level, never a fade signal. Long-history regimes (1990-2026, vs SPX over 3M): bear steepener +1.2% (64% hit),
+        bear flattener &minus;0.6%, HY OAS +50bp &minus;2.0%; banks lagged in all five hiking cycles, XLF only in the two that broke (2000, 2023).
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model A: SPW + HY OAS</div>
+        <div class="fvchart" id="xlf-img-modelA"></div>
+      </div>
+      <div class="chart-wrap" style="padding:12px;">
+        <div style="font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Model B: SPW + 2s10s + 10Y + HY OAS (sign-constrained)</div>
+        <div class="fvchart" id="xlf-img-modelB"></div>
+      </div>
+    </div>
+
     <!-- ── TPNBNK sub-page ── -->
     <div class="fv-subpage" id="fv-sub-tpnbnk" style="display:none;">
       <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;">
@@ -3184,7 +3216,7 @@ window.FV_NAV = (function() {
   }
 
   // Equity index FV assets — TPNBNK lives here, CL1 grouped here too (commodities sub-page). Add new equity-FV assets to this list.
-  var EQUITIES_ASSETS = ['TPNBNK', 'TPNBANK', 'CL1', 'CO1', 'XAG'];
+  var EQUITIES_ASSETS = ['TPNBNK', 'TPNBANK', 'CL1', 'CO1', 'XAG', 'XLF'];
   function isEquities(asset) {
     var a = (asset || '').toUpperCase();
     return EQUITIES_ASSETS.indexOf(a) !== -1;
@@ -3494,6 +3526,7 @@ window.FV_NAV = (function() {
     fetch('cl1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('co1_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     fetch('xag_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
+    fetch('xlf_fv_summary.json?v=' + (window.__FVV||(window.__FVV=Date.now()))).then(function(r) { return r.json(); }).catch(function() { return null; }),
     ]).then(function(results) {
       FV_DATA = results.filter(Boolean);
       window.FV_DATA = FV_DATA;
@@ -3816,6 +3849,7 @@ window.FVDETAIL = (function() {
     cl1:        { tabsId: "cl1-period-tabs", containers: ["cl1-img-modelA", "cl1-img-modelB"] },
     co1:        { tabsId: "co1-period-tabs", containers: ["co1-img-modelA", "co1-img-modelB"] },
     xag:        { tabsId: "xag-period-tabs", containers: ["xag-img-modelA", "xag-img-modelB"] },
+    xlf:        { tabsId: "xlf-period-tabs", containers: ["xlf-img-modelA", "xlf-img-modelB"] },
     tpnbnk:     { tabsId: "tpnbnk-period-tabs", containers: ["tpnbnk-img-modelA", "tpnbnk-img-modelB"] },
     eurusd:     { tabsId: "fv-period-tabs", containers: ["fv-img-realrate", "fv-img-tot", "fv-img-btpbund", "fv-img-combined"] },
     usdjpy:     { tabsId: "usdjpy-period-tabs", containers: ["usdjpy-img-rr2", "usdjpy-img-nom10", "usdjpy-img-jgb530", "usdjpy-img-combined"] },
