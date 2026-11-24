@@ -1,5 +1,5 @@
 {
- "_updated": "2026-11-22 10:39",
+ "_updated": "2026-11-24 09:54",
  "method": "Added 12-Oct-26 (momentum/setups review). The FV suite had only ever been\nvalidated on NOKSEK / EURSEK / AUDNZD (one of three worked), and none of the\npairs Setups actually anchors on (EURUSD, USDJPY, AUDUSD, USDTHB) had been\ntested. This makes the test a feed: setups.py caps a VALUE-anchored FX card at\nPROBE until its pair passes here.",
  "criteria": {
   "fade_z": 1.5,
@@ -20,111 +20,111 @@
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.255,
+      "rho": -0.251,
       "n": 20,
-      "hit": 0.75,
-      "mean": 2.38,
-      "median": 1.38,
-      "worst": -4.87
+      "hit": 0.55,
+      "mean": 0.81,
+      "median": 0.2,
+      "worst": -5.37
      },
      "126d": {
-      "rho": -0.35,
+      "rho": -0.353,
       "n": 18,
-      "hit": 0.61,
-      "mean": 2.44,
-      "median": 1.95,
-      "worst": -7.67
+      "hit": 0.56,
+      "mean": 1.98,
+      "median": 2.09,
+      "worst": -7.4
      },
      "mean_r2": 0.67,
-     "first": "2020-11-30",
-     "last": "2026-11-16",
-     "z_now": -2.41,
-     "validated": true,
-     "status": "pass",
-     "label": "n 20 \u00b7 hit 75% \u00b7 +2.38 @63d / +2.44 @126d \u00b7 \u03c1 -0.26"
+     "first": "2020-12-01",
+     "last": "2026-11-17",
+     "z_now": -2.44,
+     "validated": false,
+     "status": "fail",
+     "label": "n 20 \u00b7 hit 55% \u00b7 +0.81 @63d / +1.98 @126d \u00b7 \u03c1 -0.25"
     },
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.372,
-      "n": 13,
-      "hit": 0.62,
-      "mean": 2.75,
-      "median": 1.67,
-      "worst": -3.04
+      "rho": -0.359,
+      "n": 14,
+      "hit": 0.57,
+      "mean": 2.52,
+      "median": 1.55,
+      "worst": -2.82
      },
      "126d": {
-      "rho": -0.512,
-      "n": 12,
-      "hit": 0.83,
-      "mean": 4.41,
-      "median": 3.0,
-      "worst": -2.66
+      "rho": -0.505,
+      "n": 13,
+      "hit": 0.77,
+      "mean": 3.92,
+      "median": 2.52,
+      "worst": -1.96
      },
      "mean_r2": 0.75,
-     "first": "2021-11-29",
-     "last": "2026-11-16",
-     "z_now": 0.48,
-     "validated": true,
-     "status": "pass",
-     "label": "n 13 \u00b7 hit 62% \u00b7 +2.75 @63d / +4.41 @126d \u00b7 \u03c1 -0.37"
+     "first": "2021-11-30",
+     "last": "2026-11-17",
+     "z_now": 0.4,
+     "validated": false,
+     "status": "fail",
+     "label": "n 14 \u00b7 hit 57% \u00b7 +2.52 @63d / +3.92 @126d \u00b7 \u03c1 -0.36"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": -0.271,
-      "n": 14,
-      "hit": 0.71,
-      "mean": 1.84,
-      "median": 1.81,
-      "worst": -4.87
+      "rho": -0.266,
+      "n": 13,
+      "hit": 0.62,
+      "mean": 1.23,
+      "median": 1.96,
+      "worst": -6.14
      },
      "126d": {
-      "rho": -0.422,
-      "n": 13,
-      "hit": 0.77,
-      "mean": 3.08,
-      "median": 2.64,
-      "worst": -2.41
+      "rho": -0.423,
+      "n": 12,
+      "hit": 0.75,
+      "mean": 2.62,
+      "median": 2.19,
+      "worst": -2.16
      },
      "mean_r2": 0.77,
-     "first": "2022-11-28",
-     "last": "2026-11-16",
-     "z_now": 0.18,
+     "first": "2022-11-29",
+     "last": "2026-11-17",
+     "z_now": 0.12,
      "validated": true,
      "status": "pass",
-     "label": "n 14 \u00b7 hit 71% \u00b7 +1.84 @63d / +3.08 @126d \u00b7 \u03c1 -0.27"
+     "label": "n 13 \u00b7 hit 62% \u00b7 +1.23 @63d / +2.62 @126d \u00b7 \u03c1 -0.27"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.683,
-      "n": 6,
-      "hit": 0.83,
-      "mean": 3.13,
-      "median": 2.25,
-      "worst": -1.49
+      "rho": -0.706,
+      "n": 7,
+      "hit": 0.71,
+      "mean": 2.64,
+      "median": 1.19,
+      "worst": -2.19
      },
      "126d": {
-      "rho": -0.833,
-      "n": 6,
-      "hit": 0.83,
-      "mean": 5.63,
-      "median": 5.79,
-      "worst": -0.57
+      "rho": -0.862,
+      "n": 7,
+      "hit": 0.86,
+      "mean": 4.67,
+      "median": 2.56,
+      "worst": -1.86
      },
      "mean_r2": 0.8,
-     "first": "2024-11-25",
-     "last": "2026-11-16",
-     "z_now": -0.23,
+     "first": "2024-11-26",
+     "last": "2026-11-17",
+     "z_now": -0.27,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.68"
+     "label": "only 7 fades (<10) \u00b7 \u03c1 -0.71"
     }
    },
-   "validated": true,
-   "status": "pass",
-   "label": "n 20 \u00b7 hit 75% \u00b7 +2.38 @63d / +2.44 @126d \u00b7 \u03c1 -0.26"
+   "validated": false,
+   "status": "fail",
+   "label": "n 20 \u00b7 hit 55% \u00b7 +0.81 @63d / +1.98 @126d \u00b7 \u03c1 -0.25"
   },
   "USDJPY": {
    "kind": "fx",
@@ -134,111 +134,111 @@
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": -0.542,
-      "n": 6,
-      "hit": 0.67,
-      "mean": 2.62,
-      "median": 3.67,
-      "worst": -0.54
+      "rho": -0.537,
+      "n": 7,
+      "hit": 0.71,
+      "mean": 2.72,
+      "median": 3.7,
+      "worst": -0.78
      },
      "126d": {
-      "rho": -0.762,
+      "rho": -0.763,
       "n": 6,
       "hit": 0.83,
-      "mean": 4.15,
-      "median": 5.0,
-      "worst": -2.47
+      "mean": 4.23,
+      "median": 5.02,
+      "worst": -2.14
      },
      "mean_r2": 0.88,
-     "first": "2024-11-25",
-     "last": "2026-11-20",
-     "z_now": 0.79,
+     "first": "2024-11-26",
+     "last": "2026-11-23",
+     "z_now": 0.8,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.54"
+     "label": "only 7 fades (<10) \u00b7 \u03c1 -0.54"
     },
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.086,
+      "rho": -0.094,
       "n": 18,
-      "hit": 0.22,
-      "mean": -2.57,
-      "median": -1.68,
-      "worst": -13.06
+      "hit": 0.28,
+      "mean": -1.13,
+      "median": -1.33,
+      "worst": -12.77
      },
      "126d": {
-      "rho": -0.125,
-      "n": 17,
-      "hit": 0.29,
-      "mean": -3.3,
-      "median": -2.79,
-      "worst": -18.92
+      "rho": -0.136,
+      "n": 18,
+      "hit": 0.33,
+      "mean": -2.17,
+      "median": -2.91,
+      "worst": -19.48
      },
      "mean_r2": 0.43,
-     "first": "2020-11-30",
-     "last": "2026-11-20",
-     "z_now": -0.22,
+     "first": "2020-12-01",
+     "last": "2026-11-23",
+     "z_now": -0.11,
      "validated": false,
      "status": "fail",
-     "label": "n 18 \u00b7 hit 22% \u00b7 -2.57 @63d / -3.30 @126d \u00b7 \u03c1 -0.09"
+     "label": "n 18 \u00b7 hit 28% \u00b7 -1.13 @63d / -2.17 @126d \u00b7 \u03c1 -0.09"
     },
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": -0.164,
-      "n": 17,
-      "hit": 0.47,
-      "mean": -1.6,
-      "median": -1.48,
-      "worst": -14.8
+      "rho": -0.15,
+      "n": 19,
+      "hit": 0.53,
+      "mean": 0.0,
+      "median": 1.82,
+      "worst": -12.28
      },
      "126d": {
-      "rho": -0.156,
-      "n": 16,
-      "hit": 0.38,
-      "mean": -2.19,
-      "median": -1.76,
-      "worst": -17.34
+      "rho": -0.145,
+      "n": 18,
+      "hit": 0.61,
+      "mean": -0.16,
+      "median": 1.57,
+      "worst": -17.44
      },
      "mean_r2": 0.5,
-     "first": "2021-11-29",
-     "last": "2026-11-20",
-     "z_now": 0.15,
+     "first": "2021-11-30",
+     "last": "2026-11-23",
+     "z_now": 0.1,
      "validated": false,
      "status": "fail",
-     "label": "n 17 \u00b7 hit 47% \u00b7 -1.60 @63d / -2.19 @126d \u00b7 \u03c1 -0.16"
+     "label": "n 19 \u00b7 hit 53% \u00b7 +0.00 @63d / -0.16 @126d \u00b7 \u03c1 -0.15"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": -0.413,
-      "n": 13,
-      "hit": 0.62,
-      "mean": 1.38,
-      "median": 1.59,
-      "worst": -5.09
+      "rho": -0.388,
+      "n": 12,
+      "hit": 0.58,
+      "mean": 1.13,
+      "median": 2.94,
+      "worst": -4.79
      },
      "126d": {
-      "rho": -0.603,
-      "n": 12,
-      "hit": 0.67,
-      "mean": 1.96,
-      "median": 2.77,
-      "worst": -8.15
+      "rho": -0.585,
+      "n": 11,
+      "hit": 0.82,
+      "mean": 2.67,
+      "median": 3.25,
+      "worst": -8.81
      },
      "mean_r2": 0.62,
-     "first": "2022-11-28",
-     "last": "2026-11-20",
-     "z_now": 0.79,
-     "validated": true,
-     "status": "pass",
-     "label": "n 13 \u00b7 hit 62% \u00b7 +1.38 @63d / +1.96 @126d \u00b7 \u03c1 -0.41"
+     "first": "2022-11-29",
+     "last": "2026-11-23",
+     "z_now": 0.8,
+     "validated": false,
+     "status": "fail",
+     "label": "n 12 \u00b7 hit 58% \u00b7 +1.13 @63d / +2.67 @126d \u00b7 \u03c1 -0.39"
     }
    },
    "validated": false,
    "status": "insufficient",
-   "label": "only 6 fades (<10) \u00b7 \u03c1 -0.54"
+   "label": "only 7 fades (<10) \u00b7 \u03c1 -0.54"
   },
   "EURNOK": {
    "kind": "fx",
@@ -248,111 +248,111 @@
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": -0.22,
+      "rho": -0.214,
       "n": 13,
       "hit": 0.69,
-      "mean": 0.27,
-      "median": 1.42,
-      "worst": -6.19
+      "mean": 1.22,
+      "median": 0.71,
+      "worst": -5.12
      },
      "126d": {
-      "rho": -0.127,
-      "n": 13,
-      "hit": 0.46,
-      "mean": 0.68,
-      "median": -0.08,
-      "worst": -3.61
+      "rho": -0.134,
+      "n": 12,
+      "hit": 0.5,
+      "mean": 1.52,
+      "median": 0.2,
+      "worst": -3.4
      },
      "mean_r2": 0.59,
-     "first": "2021-11-29",
-     "last": "2026-11-20",
-     "z_now": -2.96,
+     "first": "2021-11-30",
+     "last": "2026-11-23",
+     "z_now": -2.25,
      "validated": true,
      "status": "pass",
-     "label": "n 13 \u00b7 hit 69% \u00b7 +0.27 @63d / +0.68 @126d \u00b7 \u03c1 -0.22"
+     "label": "n 13 \u00b7 hit 69% \u00b7 +1.22 @63d / +1.52 @126d \u00b7 \u03c1 -0.21"
     },
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.379,
-      "n": 16,
-      "hit": 0.75,
-      "mean": 0.42,
-      "median": 1.17,
-      "worst": -8.46
+      "rho": -0.391,
+      "n": 15,
+      "hit": 0.6,
+      "mean": 0.92,
+      "median": 0.71,
+      "worst": -7.86
      },
      "126d": {
-      "rho": -0.243,
-      "n": 15,
-      "hit": 0.47,
-      "mean": 0.18,
-      "median": -0.08,
-      "worst": -5.64
+      "rho": -0.26,
+      "n": 14,
+      "hit": 0.57,
+      "mean": 1.2,
+      "median": 0.43,
+      "worst": -3.4
      },
      "mean_r2": 0.55,
-     "first": "2020-11-30",
-     "last": "2026-11-20",
-     "z_now": -2.54,
+     "first": "2020-12-01",
+     "last": "2026-11-23",
+     "z_now": -1.68,
      "validated": true,
      "status": "pass",
-     "label": "n 16 \u00b7 hit 75% \u00b7 +0.42 @63d / +0.18 @126d \u00b7 \u03c1 -0.38"
+     "label": "n 15 \u00b7 hit 60% \u00b7 +0.92 @63d / +1.20 @126d \u00b7 \u03c1 -0.39"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": 0.102,
-      "n": 11,
-      "hit": 0.55,
-      "mean": -1.14,
-      "median": 0.35,
-      "worst": -6.19
+      "rho": 0.091,
+      "n": 13,
+      "hit": 0.46,
+      "mean": -1.22,
+      "median": -0.3,
+      "worst": -7.86
      },
      "126d": {
-      "rho": 0.277,
-      "n": 10,
-      "hit": 0.3,
-      "mean": -0.86,
-      "median": -0.77,
-      "worst": -3.61
+      "rho": 0.275,
+      "n": 11,
+      "hit": 0.36,
+      "mean": -0.24,
+      "median": -1.02,
+      "worst": -3.4
      },
      "mean_r2": 0.62,
-     "first": "2022-11-28",
-     "last": "2026-11-20",
-     "z_now": -1.59,
+     "first": "2022-11-29",
+     "last": "2026-11-23",
+     "z_now": -1.49,
      "validated": false,
      "status": "fail",
-     "label": "n 11 \u00b7 hit 55% \u00b7 -1.14 @63d / -0.86 @126d \u00b7 \u03c1 +0.10"
+     "label": "n 13 \u00b7 hit 46% \u00b7 -1.22 @63d / -0.24 @126d \u00b7 \u03c1 +0.09"
     },
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": 0.229,
-      "n": 3,
-      "hit": 0.33,
-      "mean": 0.28,
-      "median": -0.08,
-      "worst": -0.4
-     },
-     "126d": {
-      "rho": 0.488,
+      "rho": 0.268,
       "n": 3,
       "hit": 0.67,
-      "mean": 0.77,
-      "median": 0.54,
-      "worst": -0.41
+      "mean": 0.2,
+      "median": 0.35,
+      "worst": -0.83
      },
-     "mean_r2": 0.35,
-     "first": "2024-11-25",
-     "last": "2026-11-20",
-     "z_now": 0.38,
+     "126d": {
+      "rho": 0.464,
+      "n": 3,
+      "hit": 0.67,
+      "mean": 1.21,
+      "median": 1.57,
+      "worst": -1.08
+     },
+     "mean_r2": 0.36,
+     "first": "2024-11-26",
+     "last": "2026-11-23",
+     "z_now": 0.37,
      "validated": false,
      "status": "insufficient",
-     "label": "only 3 fades (<10) \u00b7 \u03c1 +0.23"
+     "label": "only 3 fades (<10) \u00b7 \u03c1 +0.27"
     }
    },
    "validated": true,
    "status": "pass",
-   "label": "n 13 \u00b7 hit 69% \u00b7 +0.27 @63d / +0.68 @126d \u00b7 \u03c1 -0.22"
+   "label": "n 13 \u00b7 hit 69% \u00b7 +1.22 @63d / +1.52 @126d \u00b7 \u03c1 -0.21"
   },
   "NOKSEK": {
    "kind": "fx",
@@ -362,111 +362,111 @@
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": -0.478,
-      "n": 13,
-      "hit": 0.92,
-      "mean": 2.24,
-      "median": 2.19,
-      "worst": -4.93
-     },
-     "126d": {
-      "rho": -0.535,
+      "rho": -0.435,
       "n": 12,
       "hit": 0.92,
-      "mean": 3.79,
-      "median": 3.86,
-      "worst": -1.93
+      "mean": 2.78,
+      "median": 2.57,
+      "worst": -4.97
+     },
+     "126d": {
+      "rho": -0.532,
+      "n": 11,
+      "hit": 0.91,
+      "mean": 3.84,
+      "median": 3.25,
+      "worst": -0.83
      },
      "mean_r2": 0.65,
-     "first": "2021-11-29",
-     "last": "2026-11-20",
-     "z_now": 0.57,
+     "first": "2021-11-30",
+     "last": "2026-11-23",
+     "z_now": 0.38,
      "validated": true,
      "status": "pass",
-     "label": "n 13 \u00b7 hit 92% \u00b7 +2.24 @63d / +3.79 @126d \u00b7 \u03c1 -0.48"
+     "label": "n 12 \u00b7 hit 92% \u00b7 +2.78 @63d / +3.84 @126d \u00b7 \u03c1 -0.43"
     },
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.361,
+      "rho": -0.337,
       "n": 18,
       "hit": 0.78,
-      "mean": 1.93,
-      "median": 2.13,
-      "worst": -5.4
+      "mean": 1.79,
+      "median": 2.18,
+      "worst": -4.72
      },
      "126d": {
-      "rho": -0.406,
+      "rho": -0.405,
       "n": 17,
       "hit": 0.71,
-      "mean": 2.83,
-      "median": 3.82,
-      "worst": -4.06
+      "mean": 2.24,
+      "median": 2.0,
+      "worst": -6.65
      },
      "mean_r2": 0.58,
-     "first": "2020-11-30",
-     "last": "2026-11-20",
-     "z_now": 0.45,
+     "first": "2020-12-01",
+     "last": "2026-11-23",
+     "z_now": 0.24,
      "validated": true,
      "status": "pass",
-     "label": "n 18 \u00b7 hit 78% \u00b7 +1.93 @63d / +2.83 @126d \u00b7 \u03c1 -0.36"
+     "label": "n 18 \u00b7 hit 78% \u00b7 +1.79 @63d / +2.24 @126d \u00b7 \u03c1 -0.34"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": -0.447,
-      "n": 9,
-      "hit": 0.89,
-      "mean": 2.7,
-      "median": 3.08,
-      "worst": -3.06
+      "rho": -0.41,
+      "n": 10,
+      "hit": 0.9,
+      "mean": 2.73,
+      "median": 2.72,
+      "worst": -3.5
      },
      "126d": {
-      "rho": -0.409,
-      "n": 9,
-      "hit": 0.89,
-      "mean": 3.58,
-      "median": 2.1,
-      "worst": -2.97
+      "rho": -0.413,
+      "n": 10,
+      "hit": 0.9,
+      "mean": 3.59,
+      "median": 3.07,
+      "worst": -2.85
      },
      "mean_r2": 0.66,
-     "first": "2022-11-28",
-     "last": "2026-11-20",
-     "z_now": 1.67,
-     "validated": false,
-     "status": "insufficient",
-     "label": "only 9 fades (<10) \u00b7 \u03c1 -0.45"
+     "first": "2022-11-29",
+     "last": "2026-11-23",
+     "z_now": 1.77,
+     "validated": true,
+     "status": "pass",
+     "label": "n 10 \u00b7 hit 90% \u00b7 +2.73 @63d / +3.59 @126d \u00b7 \u03c1 -0.41"
     },
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": -0.074,
-      "n": 6,
-      "hit": 0.5,
-      "mean": 1.57,
-      "median": 1.27,
-      "worst": -3.06
-     },
-     "126d": {
-      "rho": -0.187,
+      "rho": -0.037,
       "n": 6,
       "hit": 0.67,
-      "mean": 2.03,
-      "median": 1.41,
-      "worst": -4.14
+      "mean": 0.97,
+      "median": 1.19,
+      "worst": -3.5
+     },
+     "126d": {
+      "rho": -0.161,
+      "n": 6,
+      "hit": 0.67,
+      "mean": 1.88,
+      "median": 1.08,
+      "worst": -3.22
      },
      "mean_r2": 0.6,
-     "first": "2024-11-25",
-     "last": "2026-11-20",
-     "z_now": 0.78,
+     "first": "2024-11-26",
+     "last": "2026-11-23",
+     "z_now": 0.85,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.07"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.04"
     }
    },
    "validated": true,
    "status": "pass",
-   "label": "n 13 \u00b7 hit 92% \u00b7 +2.24 @63d / +3.79 @126d \u00b7 \u03c1 -0.48"
+   "label": "n 12 \u00b7 hit 92% \u00b7 +2.78 @63d / +3.84 @126d \u00b7 \u03c1 -0.43"
   },
   "EURSEK": {
    "kind": "fx",
@@ -476,111 +476,111 @@
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.277,
+      "rho": -0.288,
       "n": 21,
-      "hit": 0.62,
-      "mean": 0.36,
-      "median": 1.25,
-      "worst": -4.85
+      "hit": 0.71,
+      "mean": 0.42,
+      "median": 1.52,
+      "worst": -4.88
      },
      "126d": {
-      "rho": -0.375,
+      "rho": -0.381,
       "n": 20,
-      "hit": 0.65,
-      "mean": 0.71,
-      "median": 1.38,
-      "worst": -5.33
+      "hit": 0.7,
+      "mean": 1.15,
+      "median": 1.09,
+      "worst": -3.22
      },
      "mean_r2": 0.6,
-     "first": "2020-11-30",
-     "last": "2026-11-20",
-     "z_now": -0.75,
+     "first": "2020-12-01",
+     "last": "2026-11-23",
+     "z_now": -0.77,
      "validated": true,
      "status": "pass",
-     "label": "n 21 \u00b7 hit 62% \u00b7 +0.36 @63d / +0.71 @126d \u00b7 \u03c1 -0.28"
+     "label": "n 21 \u00b7 hit 71% \u00b7 +0.42 @63d / +1.15 @126d \u00b7 \u03c1 -0.29"
     },
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": -0.279,
+      "rho": -0.281,
       "n": 12,
-      "hit": 0.58,
-      "mean": 0.17,
-      "median": 0.47,
-      "worst": -4.32
+      "hit": 0.5,
+      "mean": -0.24,
+      "median": -0.08,
+      "worst": -3.94
      },
      "126d": {
-      "rho": -0.42,
+      "rho": -0.434,
       "n": 12,
-      "hit": 0.67,
-      "mean": 0.89,
-      "median": 2.22,
-      "worst": -5.33
+      "hit": 0.75,
+      "mean": 1.14,
+      "median": 2.39,
+      "worst": -6.09
      },
      "mean_r2": 0.67,
-     "first": "2021-11-29",
-     "last": "2026-11-20",
-     "z_now": -1.75,
+     "first": "2021-11-30",
+     "last": "2026-11-23",
+     "z_now": -1.74,
      "validated": false,
      "status": "fail",
-     "label": "n 12 \u00b7 hit 58% \u00b7 +0.17 @63d / +0.89 @126d \u00b7 \u03c1 -0.28"
+     "label": "n 12 \u00b7 hit 50% \u00b7 -0.24 @63d / +1.14 @126d \u00b7 \u03c1 -0.28"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": -0.272,
+      "rho": -0.26,
       "n": 6,
       "hit": 0.33,
-      "mean": 0.12,
-      "median": -0.36,
-      "worst": -4.32
+      "mean": -0.63,
+      "median": -1.57,
+      "worst": -3.94
      },
      "126d": {
-      "rho": -0.392,
+      "rho": -0.378,
       "n": 6,
-      "hit": 0.5,
-      "mean": -0.05,
-      "median": -0.51,
-      "worst": -5.33
+      "hit": 0.67,
+      "mean": -0.24,
+      "median": 1.55,
+      "worst": -6.09
      },
      "mean_r2": 0.76,
-     "first": "2022-11-28",
-     "last": "2026-11-20",
-     "z_now": -1.12,
+     "first": "2022-11-29",
+     "last": "2026-11-23",
+     "z_now": -1.16,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.27"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.26"
     },
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": -0.537,
+      "rho": -0.518,
       "n": 1,
       "hit": 1.0,
-      "mean": 1.92,
-      "median": 1.92,
-      "worst": 1.92
+      "mean": 2.32,
+      "median": 2.32,
+      "worst": 2.32
      },
      "126d": {
-      "rho": -0.738,
+      "rho": -0.722,
       "n": 1,
       "hit": 1.0,
-      "mean": 4.13,
-      "median": 4.13,
-      "worst": 4.13
+      "mean": 4.68,
+      "median": 4.68,
+      "worst": 4.68
      },
      "mean_r2": 0.86,
-     "first": "2024-11-25",
-     "last": "2026-11-20",
-     "z_now": -0.59,
+     "first": "2024-11-26",
+     "last": "2026-11-23",
+     "z_now": -0.61,
      "validated": false,
      "status": "insufficient",
-     "label": "only 1 fades (<10) \u00b7 \u03c1 -0.54"
+     "label": "only 1 fades (<10) \u00b7 \u03c1 -0.52"
     }
    },
    "validated": true,
    "status": "pass",
-   "label": "n 21 \u00b7 hit 62% \u00b7 +0.36 @63d / +0.71 @126d \u00b7 \u03c1 -0.28"
+   "label": "n 21 \u00b7 hit 71% \u00b7 +0.42 @63d / +1.15 @126d \u00b7 \u03c1 -0.29"
   },
   "EURGBP": {
    "kind": "fx",
@@ -666,111 +666,111 @@
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.208,
+      "rho": -0.216,
       "n": 14,
-      "hit": 0.64,
-      "mean": 0.0,
-      "median": 0.35,
-      "worst": -5.46
+      "hit": 0.57,
+      "mean": 0.06,
+      "median": 0.5,
+      "worst": -5.83
      },
      "126d": {
-      "rho": -0.15,
+      "rho": -0.181,
       "n": 14,
-      "hit": 0.43,
-      "mean": -0.44,
-      "median": -0.38,
-      "worst": -9.77
+      "hit": 0.64,
+      "mean": -0.07,
+      "median": 1.12,
+      "worst": -8.84
      },
      "mean_r2": 0.42,
-     "first": "2021-11-29",
-     "last": "2026-11-16",
-     "z_now": -0.85,
+     "first": "2021-11-30",
+     "last": "2026-11-17",
+     "z_now": -0.88,
      "validated": false,
      "status": "fail",
-     "label": "n 14 \u00b7 hit 64% \u00b7 +0.00 @63d / -0.44 @126d \u00b7 \u03c1 -0.21"
+     "label": "n 14 \u00b7 hit 57% \u00b7 +0.06 @63d / -0.07 @126d \u00b7 \u03c1 -0.22"
     },
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.157,
-      "n": 21,
-      "hit": 0.57,
-      "mean": 0.23,
-      "median": 0.42,
-      "worst": -5.55
+      "rho": -0.153,
+      "n": 19,
+      "hit": 0.47,
+      "mean": 0.08,
+      "median": -0.39,
+      "worst": -5.28
      },
      "126d": {
-      "rho": -0.013,
-      "n": 21,
-      "hit": 0.43,
-      "mean": -0.8,
-      "median": -1.18,
-      "worst": -8.75
+      "rho": -0.027,
+      "n": 19,
+      "hit": 0.47,
+      "mean": -0.55,
+      "median": -0.32,
+      "worst": -8.97
      },
      "mean_r2": 0.55,
-     "first": "2020-11-30",
-     "last": "2026-11-16",
-     "z_now": 0.51,
+     "first": "2020-12-01",
+     "last": "2026-11-17",
+     "z_now": 0.4,
      "validated": false,
      "status": "fail",
-     "label": "n 21 \u00b7 hit 57% \u00b7 +0.23 @63d / -0.80 @126d \u00b7 \u03c1 -0.16"
+     "label": "n 19 \u00b7 hit 47% \u00b7 +0.08 @63d / -0.55 @126d \u00b7 \u03c1 -0.15"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": 0.006,
+      "rho": 0.007,
       "n": 10,
-      "hit": 0.7,
-      "mean": -0.01,
-      "median": 1.09,
-      "worst": -8.21
+      "hit": 0.6,
+      "mean": -0.05,
+      "median": 1.16,
+      "worst": -8.15
      },
      "126d": {
-      "rho": 0.113,
+      "rho": 0.104,
       "n": 10,
-      "hit": 0.5,
-      "mean": -1.11,
-      "median": 0.29,
-      "worst": -12.09
+      "hit": 0.7,
+      "mean": 0.36,
+      "median": 2.12,
+      "worst": -6.83
      },
-     "mean_r2": 0.41,
-     "first": "2022-11-28",
-     "last": "2026-11-16",
-     "z_now": -0.54,
+     "mean_r2": 0.42,
+     "first": "2022-11-29",
+     "last": "2026-11-17",
+     "z_now": -0.58,
      "validated": false,
      "status": "fail",
-     "label": "n 10 \u00b7 hit 70% \u00b7 -0.01 @63d / -1.11 @126d \u00b7 \u03c1 +0.01"
+     "label": "n 10 \u00b7 hit 60% \u00b7 -0.05 @63d / +0.36 @126d \u00b7 \u03c1 +0.01"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.572,
+      "rho": -0.553,
       "n": 5,
       "hit": 0.8,
-      "mean": 2.8,
-      "median": 2.79,
-      "worst": -1.61
+      "mean": 2.5,
+      "median": 3.05,
+      "worst": -1.84
      },
      "126d": {
-      "rho": -0.615,
+      "rho": -0.651,
       "n": 5,
       "hit": 0.8,
-      "mean": 4.17,
-      "median": 5.48,
-      "worst": -1.24
+      "mean": 4.64,
+      "median": 5.39,
+      "worst": -0.6
      },
      "mean_r2": 0.23,
-     "first": "2024-11-25",
-     "last": "2026-11-16",
-     "z_now": -0.47,
+     "first": "2024-11-26",
+     "last": "2026-11-17",
+     "z_now": -0.5,
      "validated": false,
      "status": "insufficient",
-     "label": "only 5 fades (<10) \u00b7 \u03c1 -0.57"
+     "label": "only 5 fades (<10) \u00b7 \u03c1 -0.55"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 14 \u00b7 hit 64% \u00b7 +0.00 @63d / -0.44 @126d \u00b7 \u03c1 -0.21"
+   "label": "n 14 \u00b7 hit 57% \u00b7 +0.06 @63d / -0.07 @126d \u00b7 \u03c1 -0.22"
   },
   "AUDNZD": {
    "kind": "fx",
@@ -780,7 +780,7 @@
     "2y": {
      "n_refits": 57,
      "63d": {
-      "rho": -0.248,
+      "rho": -0.233,
       "n": 4,
       "hit": 0.25,
       "mean": -1.12,
@@ -801,12 +801,12 @@
      "z_now": 2.38,
      "validated": false,
      "status": "insufficient",
-     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.25"
+     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.23"
     },
     "1y": {
      "n_refits": 109,
      "63d": {
-      "rho": -0.159,
+      "rho": -0.156,
       "n": 8,
       "hit": 0.5,
       "mean": 0.08,
@@ -846,7 +846,7 @@
    },
    "validated": false,
    "status": "insufficient",
-   "label": "only 4 fades (<10) \u00b7 \u03c1 -0.25"
+   "label": "only 4 fades (<10) \u00b7 \u03c1 -0.23"
   },
   "USDCHF": {
    "kind": "fx",
@@ -856,111 +856,111 @@
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.102,
-      "n": 12,
-      "hit": 0.42,
-      "mean": 0.73,
-      "median": -1.78,
-      "worst": -4.06
+      "rho": -0.079,
+      "n": 13,
+      "hit": 0.38,
+      "mean": -0.17,
+      "median": -0.29,
+      "worst": -3.51
      },
      "126d": {
-      "rho": -0.059,
-      "n": 12,
-      "hit": 0.42,
-      "mean": 0.18,
-      "median": -1.5,
-      "worst": -5.77
+      "rho": -0.02,
+      "n": 13,
+      "hit": 0.31,
+      "mean": -1.01,
+      "median": -2.63,
+      "worst": -6.24
      },
      "mean_r2": 0.57,
-     "first": "2021-11-29",
-     "last": "2026-11-16",
-     "z_now": -0.26,
+     "first": "2021-11-30",
+     "last": "2026-11-17",
+     "z_now": -0.14,
      "validated": false,
      "status": "fail",
-     "label": "n 12 \u00b7 hit 42% \u00b7 +0.73 @63d / +0.18 @126d \u00b7 \u03c1 -0.10"
+     "label": "n 13 \u00b7 hit 38% \u00b7 -0.17 @63d / -1.01 @126d \u00b7 \u03c1 -0.08"
     },
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.193,
+      "rho": -0.176,
       "n": 16,
       "hit": 0.56,
-      "mean": 1.4,
-      "median": 0.81,
-      "worst": -3.46
+      "mean": 0.8,
+      "median": 0.69,
+      "worst": -4.09
      },
      "126d": {
-      "rho": -0.056,
+      "rho": -0.041,
       "n": 15,
-      "hit": 0.47,
-      "mean": 0.76,
-      "median": -0.53,
-      "worst": -7.36
+      "hit": 0.4,
+      "mean": 0.41,
+      "median": -0.43,
+      "worst": -6.7
      },
      "mean_r2": 0.58,
-     "first": "2020-11-30",
-     "last": "2026-11-16",
-     "z_now": 1.01,
+     "first": "2020-12-01",
+     "last": "2026-11-17",
+     "z_now": 1.24,
      "validated": false,
      "status": "fail",
-     "label": "n 16 \u00b7 hit 56% \u00b7 +1.40 @63d / +0.76 @126d \u00b7 \u03c1 -0.19"
+     "label": "n 16 \u00b7 hit 56% \u00b7 +0.80 @63d / +0.41 @126d \u00b7 \u03c1 -0.18"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": -0.286,
-      "n": 10,
-      "hit": 0.7,
-      "mean": 1.24,
-      "median": 0.86,
-      "worst": -2.79
+      "rho": -0.28,
+      "n": 8,
+      "hit": 0.62,
+      "mean": 0.96,
+      "median": 0.73,
+      "worst": -2.65
      },
      "126d": {
-      "rho": -0.307,
-      "n": 10,
+      "rho": -0.277,
+      "n": 8,
       "hit": 0.5,
-      "mean": 1.37,
-      "median": 0.59,
-      "worst": -5.17
+      "mean": 0.8,
+      "median": 0.15,
+      "worst": -5.25
      },
      "mean_r2": 0.56,
-     "first": "2022-11-28",
-     "last": "2026-11-16",
-     "z_now": -0.42,
-     "validated": true,
-     "status": "pass",
-     "label": "n 10 \u00b7 hit 70% \u00b7 +1.24 @63d / +1.37 @126d \u00b7 \u03c1 -0.29"
+     "first": "2022-11-29",
+     "last": "2026-11-17",
+     "z_now": -0.29,
+     "validated": false,
+     "status": "insufficient",
+     "label": "only 8 fades (<10) \u00b7 \u03c1 -0.28"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.261,
+      "rho": -0.238,
       "n": 3,
       "hit": 0.67,
-      "mean": 2.74,
-      "median": 0.83,
-      "worst": -1.3
+      "mean": 2.76,
+      "median": 0.86,
+      "worst": -1.32
      },
      "126d": {
-      "rho": -0.401,
+      "rho": -0.371,
       "n": 3,
       "hit": 0.67,
-      "mean": 6.35,
-      "median": 6.77,
-      "worst": -0.67
+      "mean": 6.67,
+      "median": 7.13,
+      "worst": -0.33
      },
      "mean_r2": 0.64,
-     "first": "2024-11-25",
-     "last": "2026-11-16",
-     "z_now": 0.99,
+     "first": "2024-11-26",
+     "last": "2026-11-17",
+     "z_now": 1.0,
      "validated": false,
      "status": "insufficient",
-     "label": "only 3 fades (<10) \u00b7 \u03c1 -0.26"
+     "label": "only 3 fades (<10) \u00b7 \u03c1 -0.24"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 12 \u00b7 hit 42% \u00b7 +0.73 @63d / +0.18 @126d \u00b7 \u03c1 -0.10"
+   "label": "n 13 \u00b7 hit 38% \u00b7 -0.17 @63d / -1.01 @126d \u00b7 \u03c1 -0.08"
   },
   "USDSEK": {
    "kind": "fx",
@@ -970,111 +970,111 @@
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": 0.042,
+      "rho": 0.047,
       "n": 16,
       "hit": 0.31,
-      "mean": -0.65,
-      "median": -1.65,
-      "worst": -5.91
+      "mean": -0.82,
+      "median": -2.5,
+      "worst": -5.81
      },
      "126d": {
-      "rho": 0.053,
+      "rho": 0.049,
       "n": 16,
-      "hit": 0.31,
-      "mean": -1.86,
-      "median": -2.84,
-      "worst": -8.74
+      "hit": 0.44,
+      "mean": -0.97,
+      "median": -1.13,
+      "worst": -9.83
      },
      "mean_r2": 0.61,
-     "first": "2021-11-29",
-     "last": "2026-11-20",
-     "z_now": 0.64,
+     "first": "2021-11-30",
+     "last": "2026-11-23",
+     "z_now": 0.59,
      "validated": false,
      "status": "fail",
-     "label": "n 16 \u00b7 hit 31% \u00b7 -0.65 @63d / -1.86 @126d \u00b7 \u03c1 +0.04"
+     "label": "n 16 \u00b7 hit 31% \u00b7 -0.82 @63d / -0.97 @126d \u00b7 \u03c1 +0.05"
     },
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.17,
+      "rho": -0.174,
       "n": 21,
-      "hit": 0.38,
-      "mean": 0.44,
-      "median": -0.44,
-      "worst": -6.9
+      "hit": 0.48,
+      "mean": 0.65,
+      "median": -0.02,
+      "worst": -8.22
      },
      "126d": {
-      "rho": -0.042,
+      "rho": -0.048,
       "n": 20,
-      "hit": 0.5,
-      "mean": 1.23,
-      "median": -0.55,
-      "worst": -6.92
+      "hit": 0.6,
+      "mean": 1.42,
+      "median": 1.23,
+      "worst": -7.14
      },
      "mean_r2": 0.63,
-     "first": "2020-11-30",
-     "last": "2026-11-20",
-     "z_now": 1.6,
+     "first": "2020-12-01",
+     "last": "2026-11-23",
+     "z_now": 1.53,
      "validated": false,
      "status": "fail",
-     "label": "n 21 \u00b7 hit 38% \u00b7 +0.44 @63d / +1.23 @126d \u00b7 \u03c1 -0.17"
+     "label": "n 21 \u00b7 hit 48% \u00b7 +0.65 @63d / +1.42 @126d \u00b7 \u03c1 -0.17"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": 0.029,
+      "rho": 0.05,
       "n": 11,
-      "hit": 0.36,
-      "mean": 0.24,
-      "median": -1.41,
-      "worst": -4.92
+      "hit": 0.18,
+      "mean": -1.6,
+      "median": -2.79,
+      "worst": -4.73
      },
      "126d": {
-      "rho": 0.105,
+      "rho": 0.114,
       "n": 10,
-      "hit": 0.4,
-      "mean": -0.12,
-      "median": -2.32,
-      "worst": -7.91
+      "hit": 0.2,
+      "mean": -2.74,
+      "median": -4.67,
+      "worst": -6.6
      },
      "mean_r2": 0.67,
-     "first": "2022-11-28",
-     "last": "2026-11-20",
-     "z_now": 0.78,
+     "first": "2022-11-29",
+     "last": "2026-11-23",
+     "z_now": 1.01,
      "validated": false,
      "status": "fail",
-     "label": "n 11 \u00b7 hit 36% \u00b7 +0.24 @63d / -0.12 @126d \u00b7 \u03c1 +0.03"
+     "label": "n 11 \u00b7 hit 18% \u00b7 -1.60 @63d / -2.74 @126d \u00b7 \u03c1 +0.05"
     },
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": 0.518,
+      "rho": 0.544,
       "n": 6,
-      "hit": 0.17,
-      "mean": -1.92,
-      "median": -2.76,
-      "worst": -3.11
+      "hit": 0.33,
+      "mean": -1.55,
+      "median": -2.01,
+      "worst": -3.51
      },
      "126d": {
       "rho": 0.567,
       "n": 5,
-      "hit": 0.2,
-      "mean": -3.08,
-      "median": -3.95,
-      "worst": -6.02
+      "hit": 0.0,
+      "mean": -3.75,
+      "median": -2.86,
+      "worst": -6.65
      },
      "mean_r2": 0.71,
-     "first": "2024-11-25",
-     "last": "2026-11-20",
-     "z_now": 0.85,
+     "first": "2024-11-26",
+     "last": "2026-11-23",
+     "z_now": 1.08,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 +0.52"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 +0.54"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 16 \u00b7 hit 31% \u00b7 -0.65 @63d / -1.86 @126d \u00b7 \u03c1 +0.04"
+   "label": "n 16 \u00b7 hit 31% \u00b7 -0.82 @63d / -0.97 @126d \u00b7 \u03c1 +0.05"
   },
   "USDCAD": {
    "kind": "fx",
@@ -1084,111 +1084,111 @@
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.182,
-      "n": 11,
-      "hit": 0.55,
-      "mean": 0.26,
-      "median": 0.57,
-      "worst": -6.17
+      "rho": -0.161,
+      "n": 12,
+      "hit": 0.58,
+      "mean": -0.1,
+      "median": 0.49,
+      "worst": -5.36
      },
      "126d": {
       "rho": -0.146,
-      "n": 11,
-      "hit": 0.55,
-      "mean": -0.32,
-      "median": 0.67,
-      "worst": -5.5
+      "n": 12,
+      "hit": 0.5,
+      "mean": -0.22,
+      "median": 0.07,
+      "worst": -5.12
      },
      "mean_r2": 0.6,
-     "first": "2021-11-29",
-     "last": "2026-11-16",
-     "z_now": 0.52,
+     "first": "2021-11-30",
+     "last": "2026-11-17",
+     "z_now": 0.62,
      "validated": false,
      "status": "fail",
-     "label": "n 11 \u00b7 hit 55% \u00b7 +0.26 @63d / -0.32 @126d \u00b7 \u03c1 -0.18"
+     "label": "n 12 \u00b7 hit 58% \u00b7 -0.10 @63d / -0.22 @126d \u00b7 \u03c1 -0.16"
     },
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.122,
-      "n": 16,
-      "hit": 0.38,
-      "mean": -0.4,
-      "median": -0.77,
-      "worst": -5.54
+      "rho": -0.111,
+      "n": 18,
+      "hit": 0.5,
+      "mean": -0.09,
+      "median": 0.26,
+      "worst": -5.36
      },
      "126d": {
-      "rho": -0.052,
-      "n": 16,
-      "hit": 0.44,
-      "mean": -1.12,
-      "median": -1.36,
-      "worst": -5.85
+      "rho": -0.06,
+      "n": 17,
+      "hit": 0.41,
+      "mean": -0.9,
+      "median": -0.9,
+      "worst": -6.49
      },
      "mean_r2": 0.47,
-     "first": "2020-11-30",
-     "last": "2026-11-16",
-     "z_now": 1.25,
+     "first": "2020-12-01",
+     "last": "2026-11-17",
+     "z_now": 1.38,
      "validated": false,
      "status": "fail",
-     "label": "n 16 \u00b7 hit 38% \u00b7 -0.40 @63d / -1.12 @126d \u00b7 \u03c1 -0.12"
+     "label": "n 18 \u00b7 hit 50% \u00b7 -0.09 @63d / -0.90 @126d \u00b7 \u03c1 -0.11"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": -0.373,
-      "n": 5,
-      "hit": 0.8,
-      "mean": 2.15,
-      "median": 1.91,
-      "worst": -1.59
+      "rho": -0.363,
+      "n": 6,
+      "hit": 0.67,
+      "mean": 1.06,
+      "median": 0.94,
+      "worst": -1.91
      },
      "126d": {
-      "rho": -0.423,
-      "n": 5,
-      "hit": 1.0,
-      "mean": 2.46,
-      "median": 2.01,
-      "worst": 0.55
+      "rho": -0.417,
+      "n": 6,
+      "hit": 0.83,
+      "mean": 2.4,
+      "median": 2.1,
+      "worst": -0.04
      },
      "mean_r2": 0.68,
-     "first": "2022-11-28",
-     "last": "2026-11-16",
-     "z_now": 0.92,
+     "first": "2022-11-29",
+     "last": "2026-11-17",
+     "z_now": 0.99,
      "validated": false,
      "status": "insufficient",
-     "label": "only 5 fades (<10) \u00b7 \u03c1 -0.37"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.36"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.271,
+      "rho": -0.218,
       "n": 2,
       "hit": 0.5,
-      "mean": 0.16,
-      "median": 0.16,
-      "worst": -1.59
+      "mean": -0.36,
+      "median": -0.36,
+      "worst": -1.91
      },
      "126d": {
-      "rho": -0.364,
+      "rho": -0.373,
       "n": 2,
-      "hit": 1.0,
-      "mean": 1.28,
-      "median": 1.28,
-      "worst": 0.55
+      "hit": 0.5,
+      "mean": 0.4,
+      "median": 0.4,
+      "worst": -0.04
      },
      "mean_r2": 0.77,
-     "first": "2024-11-25",
-     "last": "2026-11-16",
-     "z_now": 0.69,
+     "first": "2024-11-26",
+     "last": "2026-11-17",
+     "z_now": 0.76,
      "validated": false,
      "status": "insufficient",
-     "label": "only 2 fades (<10) \u00b7 \u03c1 -0.27"
+     "label": "only 2 fades (<10) \u00b7 \u03c1 -0.22"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 11 \u00b7 hit 55% \u00b7 +0.26 @63d / -0.32 @126d \u00b7 \u03c1 -0.18"
+   "label": "n 12 \u00b7 hit 58% \u00b7 -0.10 @63d / -0.22 @126d \u00b7 \u03c1 -0.16"
   },
   "USDTHB": {
    "kind": "fx",
@@ -1198,7 +1198,7 @@
     "2y": {
      "n_refits": 54,
      "63d": {
-      "rho": -0.14,
+      "rho": -0.131,
       "n": 2,
       "hit": 0.0,
       "mean": -2.03,
@@ -1219,12 +1219,12 @@
      "z_now": 0.98,
      "validated": false,
      "status": "insufficient",
-     "label": "only 2 fades (<10) \u00b7 \u03c1 -0.14"
+     "label": "only 2 fades (<10) \u00b7 \u03c1 -0.13"
     },
     "1y": {
      "n_refits": 106,
      "63d": {
-      "rho": -0.07,
+      "rho": -0.06,
       "n": 6,
       "hit": 0.5,
       "mean": 0.45,
@@ -1245,7 +1245,7 @@
      "z_now": -1.49,
      "validated": false,
      "status": "insufficient",
-     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.07"
+     "label": "only 6 fades (<10) \u00b7 \u03c1 -0.06"
     },
     "3y": {
      "n_refits": 2,
@@ -1264,7 +1264,7 @@
    },
    "validated": false,
    "status": "insufficient",
-   "label": "only 2 fades (<10) \u00b7 \u03c1 -0.14"
+   "label": "only 2 fades (<10) \u00b7 \u03c1 -0.13"
   },
   "USDZAR": {
    "kind": "fx",
@@ -1274,103 +1274,103 @@
     "2y": {
      "n_refits": 260,
      "63d": {
-      "rho": -0.254,
+      "rho": -0.261,
       "n": 11,
-      "hit": 0.64,
-      "mean": 1.06,
-      "median": 2.51,
-      "worst": -7.29
+      "hit": 0.82,
+      "mean": 2.46,
+      "median": 2.66,
+      "worst": -5.9
      },
      "126d": {
-      "rho": -0.246,
-      "n": 10,
-      "hit": 0.6,
-      "mean": 2.13,
-      "median": 1.29,
-      "worst": -8.59
+      "rho": -0.225,
+      "n": 11,
+      "hit": 0.73,
+      "mean": 2.35,
+      "median": 4.39,
+      "worst": -8.6
      },
      "mean_r2": 0.58,
-     "first": "2021-11-29",
-     "last": "2026-11-16",
-     "z_now": 0.54,
+     "first": "2021-11-30",
+     "last": "2026-11-17",
+     "z_now": 0.29,
      "validated": true,
      "status": "pass",
-     "label": "n 11 \u00b7 hit 64% \u00b7 +1.06 @63d / +2.13 @126d \u00b7 \u03c1 -0.25"
+     "label": "n 11 \u00b7 hit 82% \u00b7 +2.46 @63d / +2.35 @126d \u00b7 \u03c1 -0.26"
     },
     "1y": {
      "n_refits": 312,
      "63d": {
-      "rho": -0.218,
-      "n": 15,
-      "hit": 0.73,
-      "mean": 1.46,
-      "median": 2.24,
-      "worst": -7.29
+      "rho": -0.217,
+      "n": 13,
+      "hit": 0.62,
+      "mean": 0.3,
+      "median": 1.6,
+      "worst": -5.9
      },
      "126d": {
-      "rho": -0.305,
-      "n": 14,
-      "hit": 0.79,
-      "mean": 2.8,
-      "median": 2.53,
-      "worst": -8.59
+      "rho": -0.274,
+      "n": 13,
+      "hit": 0.62,
+      "mean": 1.65,
+      "median": 0.59,
+      "worst": -8.6
      },
      "mean_r2": 0.61,
-     "first": "2020-11-30",
-     "last": "2026-11-16",
-     "z_now": -0.37,
+     "first": "2020-12-01",
+     "last": "2026-11-17",
+     "z_now": -0.7,
      "validated": true,
      "status": "pass",
-     "label": "n 15 \u00b7 hit 73% \u00b7 +1.46 @63d / +2.80 @126d \u00b7 \u03c1 -0.22"
+     "label": "n 13 \u00b7 hit 62% \u00b7 +0.30 @63d / +1.65 @126d \u00b7 \u03c1 -0.22"
     },
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": 0.123,
-      "n": 9,
-      "hit": 0.78,
-      "mean": 2.53,
-      "median": 2.14,
-      "worst": -4.81
+      "rho": 0.105,
+      "n": 7,
+      "hit": 0.57,
+      "mean": 1.14,
+      "median": 1.07,
+      "worst": -5.9
      },
      "126d": {
-      "rho": 0.204,
-      "n": 9,
-      "hit": 0.67,
-      "mean": 3.27,
-      "median": 2.94,
-      "worst": -3.82
+      "rho": 0.229,
+      "n": 7,
+      "hit": 0.57,
+      "mean": 2.42,
+      "median": 2.98,
+      "worst": -6.17
      },
      "mean_r2": 0.54,
-     "first": "2022-11-28",
-     "last": "2026-11-16",
-     "z_now": 0.42,
+     "first": "2022-11-29",
+     "last": "2026-11-17",
+     "z_now": 0.22,
      "validated": false,
      "status": "insufficient",
-     "label": "only 9 fades (<10) \u00b7 \u03c1 +0.12"
+     "label": "only 7 fades (<10) \u00b7 \u03c1 +0.10"
     },
     "5y": {
      "n_refits": 104,
      "63d": {
-      "rho": -0.639,
+      "rho": -0.643,
       "n": 2,
       "hit": 1.0,
-      "mean": 7.04,
-      "median": 7.04,
-      "worst": 2.54
+      "mean": 7.64,
+      "median": 7.64,
+      "worst": 3.56
      },
      "126d": {
-      "rho": -0.787,
+      "rho": -0.802,
       "n": 2,
       "hit": 1.0,
-      "mean": 8.64,
-      "median": 8.64,
-      "worst": 4.33
+      "mean": 9.97,
+      "median": 9.97,
+      "worst": 6.23
      },
      "mean_r2": 0.56,
-     "first": "2024-11-25",
-     "last": "2026-11-16",
-     "z_now": 0.14,
+     "first": "2024-11-26",
+     "last": "2026-11-17",
+     "z_now": 0.08,
      "validated": false,
      "status": "insufficient",
      "label": "only 2 fades (<10) \u00b7 \u03c1 -0.64"
@@ -1378,7 +1378,7 @@
    },
    "validated": true,
    "status": "pass",
-   "label": "n 11 \u00b7 hit 64% \u00b7 +1.06 @63d / +2.13 @126d \u00b7 \u03c1 -0.25"
+   "label": "n 11 \u00b7 hit 82% \u00b7 +2.46 @63d / +2.35 @126d \u00b7 \u03c1 -0.26"
   },
   "DXY": {
    "kind": "fx",
@@ -1388,111 +1388,111 @@
     "2y": {
      "n_refits": 261,
      "63d": {
-      "rho": -0.055,
+      "rho": -0.031,
       "n": 8,
       "hit": 0.5,
-      "mean": 0.03,
-      "median": -0.12,
-      "worst": -3.85
+      "mean": -0.47,
+      "median": -0.75,
+      "worst": -5.03
      },
      "126d": {
-      "rho": -0.119,
+      "rho": -0.111,
       "n": 8,
       "hit": 0.5,
-      "mean": 0.63,
-      "median": 0.08,
-      "worst": -7.28
+      "mean": 0.09,
+      "median": 0.53,
+      "worst": -6.9
      },
      "mean_r2": 0.53,
-     "first": "2021-11-29",
-     "last": "2026-11-19",
-     "z_now": 1.2,
+     "first": "2021-11-30",
+     "last": "2026-11-20",
+     "z_now": 1.29,
      "validated": false,
      "status": "insufficient",
-     "label": "only 8 fades (<10) \u00b7 \u03c1 -0.06"
+     "label": "only 8 fades (<10) \u00b7 \u03c1 -0.03"
     },
     "1y": {
      "n_refits": 313,
      "63d": {
-      "rho": -0.22,
+      "rho": -0.195,
       "n": 13,
-      "hit": 0.69,
-      "mean": 1.11,
-      "median": 1.14,
-      "worst": -6.84
+      "hit": 0.54,
+      "mean": -0.14,
+      "median": 0.74,
+      "worst": -7.98
      },
      "126d": {
-      "rho": -0.277,
+      "rho": -0.265,
       "n": 12,
       "hit": 0.58,
-      "mean": 2.92,
-      "median": 2.11,
-      "worst": -5.32
+      "mean": 1.08,
+      "median": 1.01,
+      "worst": -9.93
      },
      "mean_r2": 0.43,
-     "first": "2020-11-30",
-     "last": "2026-11-19",
-     "z_now": 2.57,
-     "validated": true,
-     "status": "pass",
-     "label": "n 13 \u00b7 hit 69% \u00b7 +1.11 @63d / +2.92 @126d \u00b7 \u03c1 -0.22"
+     "first": "2020-12-01",
+     "last": "2026-11-20",
+     "z_now": 2.64,
+     "validated": false,
+     "status": "fail",
+     "label": "n 13 \u00b7 hit 54% \u00b7 -0.14 @63d / +1.08 @126d \u00b7 \u03c1 -0.20"
     },
     "3y": {
      "n_refits": 209,
      "63d": {
-      "rho": -0.14,
+      "rho": -0.097,
       "n": 4,
       "hit": 0.5,
-      "mean": 0.07,
-      "median": 0.26,
-      "worst": -2.02
+      "mean": -0.06,
+      "median": -0.12,
+      "worst": -2.39
      },
      "126d": {
-      "rho": -0.035,
+      "rho": -0.012,
       "n": 4,
-      "hit": 0.5,
-      "mean": 0.73,
-      "median": 0.08,
-      "worst": -1.4
+      "hit": 0.25,
+      "mean": 0.54,
+      "median": -0.67,
+      "worst": -1.47
      },
      "mean_r2": 0.59,
-     "first": "2022-11-28",
-     "last": "2026-11-19",
-     "z_now": 0.96,
+     "first": "2022-11-29",
+     "last": "2026-11-20",
+     "z_now": 1.06,
      "validated": false,
      "status": "insufficient",
-     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.14"
+     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.10"
     },
     "5y": {
      "n_refits": 105,
      "63d": {
-      "rho": -0.261,
-      "n": 3,
-      "hit": 0.33,
-      "mean": -0.5,
-      "median": -0.48,
-      "worst": -2.02
+      "rho": -0.233,
+      "n": 4,
+      "hit": 0.5,
+      "mean": -0.06,
+      "median": -0.12,
+      "worst": -2.39
      },
      "126d": {
-      "rho": -0.355,
-      "n": 3,
-      "hit": 0.33,
-      "mean": -0.41,
-      "median": -1.07,
-      "worst": -1.4
+      "rho": -0.351,
+      "n": 4,
+      "hit": 0.25,
+      "mean": 0.54,
+      "median": -0.67,
+      "worst": -1.47
      },
      "mean_r2": 0.73,
-     "first": "2024-11-25",
-     "last": "2026-11-19",
-     "z_now": 0.43,
+     "first": "2024-11-26",
+     "last": "2026-11-20",
+     "z_now": 0.51,
      "validated": false,
      "status": "insufficient",
-     "label": "only 3 fades (<10) \u00b7 \u03c1 -0.26"
+     "label": "only 4 fades (<10) \u00b7 \u03c1 -0.23"
     }
    },
    "validated": false,
    "status": "insufficient",
-   "label": "only 8 fades (<10) \u00b7 \u03c1 -0.06"
+   "label": "only 8 fades (<10) \u00b7 \u03c1 -0.03"
   },
   "USDEGP": {
    "kind": "fx",
@@ -1500,7 +1500,7 @@
    "setups_window": "2y",
    "windows": {
     "2y": {
-     "n_refits": 264,
+     "n_refits": 265,
      "63d": {
       "rho": 0.107,
       "n": 15,
@@ -1519,14 +1519,14 @@
      },
      "mean_r2": 0.13,
      "first": "2021-12-08",
-     "last": "2026-11-16",
-     "z_now": 1.82,
+     "last": "2026-11-23",
+     "z_now": 2.64,
      "validated": false,
      "status": "fail",
      "label": "n 15 \u00b7 hit 13% \u00b7 -4.15 @63d / -10.54 @126d \u00b7 \u03c1 +0.11"
     },
     "1y": {
-     "n_refits": 317,
+     "n_refits": 318,
      "63d": {
       "rho": 0.234,
       "n": 12,
@@ -1545,14 +1545,14 @@
      },
      "mean_r2": 0.17,
      "first": "2020-12-09",
-     "last": "2026-11-16",
-     "z_now": 2.74,
+     "last": "2026-11-23",
+     "z_now": 3.62,
      "validated": false,
      "status": "fail",
      "label": "n 12 \u00b7 hit 42% \u00b7 -4.10 @63d / -7.71 @126d \u00b7 \u03c1 +0.23"
     },
     "3y": {
-     "n_refits": 211,
+     "n_refits": 212,
      "63d": {
       "rho": 0.107,
       "n": 12,
@@ -1571,14 +1571,14 @@
      },
      "mean_r2": 0.03,
      "first": "2022-12-06",
-     "last": "2026-11-16",
-     "z_now": 0.81,
+     "last": "2026-11-23",
+     "z_now": 0.97,
      "validated": false,
      "status": "fail",
      "label": "n 12 \u00b7 hit 17% \u00b7 -2.47 @63d / -6.67 @126d \u00b7 \u03c1 +0.11"
     },
     "5y": {
-     "n_refits": 104,
+     "n_refits": 105,
      "63d": {
       "rho": -0.527,
       "n": 4,
@@ -1597,8 +1597,8 @@
      },
      "mean_r2": 0.01,
      "first": "2024-12-09",
-     "last": "2026-11-16",
-     "z_now": 1.17,
+     "last": "2026-11-23",
+     "z_now": 1.22,
      "validated": false,
      "status": "insufficient",
      "label": "only 4 fades (<10) \u00b7 \u03c1 -0.53"
@@ -1614,7 +1614,7 @@
    "setups_window": "3y",
    "windows": {
     "3y": {
-     "n_refits": 204,
+     "n_refits": 205,
      "63d": {
       "rho": -0.149,
       "n": 8,
@@ -1633,14 +1633,14 @@
      },
      "mean_r2": 0.92,
      "first": "2023-01-02",
-     "last": "2026-11-16",
-     "z_now": 1.32,
+     "last": "2026-11-23",
+     "z_now": 0.7,
      "validated": false,
      "status": "insufficient",
      "label": "only 8 fades (<10) \u00b7 \u03c1 -0.15"
     },
     "1y": {
-     "n_refits": 308,
+     "n_refits": 309,
      "63d": {
       "rho": -0.057,
       "n": 21,
@@ -1659,14 +1659,14 @@
      },
      "mean_r2": 0.86,
      "first": "2021-01-05",
-     "last": "2026-11-16",
-     "z_now": 2.14,
+     "last": "2026-11-23",
+     "z_now": 0.47,
      "validated": false,
      "status": "fail",
      "label": "n 21 \u00b7 hit 52% \u00b7 +4.58 @63d / +3.47 @126d \u00b7 \u03c1 -0.06"
     },
     "2y": {
-     "n_refits": 256,
+     "n_refits": 257,
      "63d": {
       "rho": -0.136,
       "n": 9,
@@ -1685,8 +1685,8 @@
      },
      "mean_r2": 0.89,
      "first": "2022-01-04",
-     "last": "2026-11-16",
-     "z_now": 1.94,
+     "last": "2026-11-23",
+     "z_now": 0.83,
      "validated": false,
      "status": "insufficient",
      "label": "only 9 fades (<10) \u00b7 \u03c1 -0.14"
@@ -1790,7 +1790,7 @@
    "setups_window": "3y",
    "windows": {
     "3y": {
-     "n_refits": 215,
+     "n_refits": 216,
      "63d": {
       "rho": -0.35,
       "n": 14,
@@ -1809,14 +1809,14 @@
      },
      "mean_r2": 0.94,
      "first": "2022-12-05",
-     "last": "2026-11-16",
-     "z_now": 1.03,
+     "last": "2026-11-23",
+     "z_now": 0.14,
      "validated": false,
      "status": "fail",
      "label": "n 14 \u00b7 hit 50% \u00b7 -0.52 @63d / -5.11 @126d \u00b7 \u03c1 -0.35"
     },
     "1y": {
-     "n_refits": 324,
+     "n_refits": 325,
      "63d": {
       "rho": -0.104,
       "n": 21,
@@ -1835,14 +1835,14 @@
      },
      "mean_r2": 0.88,
      "first": "2020-12-02",
-     "last": "2026-11-16",
-     "z_now": 1.77,
+     "last": "2026-11-23",
+     "z_now": 0.52,
      "validated": false,
      "status": "fail",
      "label": "n 21 \u00b7 hit 57% \u00b7 +1.97 @63d / +8.72 @126d \u00b7 \u03c1 -0.10"
     },
     "2y": {
-     "n_refits": 269,
+     "n_refits": 270,
      "63d": {
       "rho": -0.263,
       "n": 17,
@@ -1861,8 +1861,8 @@
      },
      "mean_r2": 0.92,
      "first": "2021-12-03",
-     "last": "2026-11-16",
-     "z_now": 1.26,
+     "last": "2026-11-23",
+     "z_now": 0.33,
      "validated": true,
      "status": "pass",
      "label": "n 17 \u00b7 hit 65% \u00b7 +6.10 @63d / +2.73 @126d \u00b7 \u03c1 -0.26"
@@ -1880,85 +1880,85 @@
     "2y": {
      "n_refits": 270,
      "63d": {
-      "rho": 0.159,
-      "n": 13,
-      "hit": 0.31,
-      "mean": -4.26,
-      "median": -1.29,
-      "worst": -14.7
+      "rho": 0.191,
+      "n": 15,
+      "hit": 0.2,
+      "mean": -4.6,
+      "median": -4.92,
+      "worst": -22.37
      },
      "126d": {
-      "rho": 0.179,
-      "n": 12,
-      "hit": 0.42,
-      "mean": -6.11,
-      "median": -12.74,
-      "worst": -30.5
+      "rho": 0.199,
+      "n": 14,
+      "hit": 0.36,
+      "mean": -6.82,
+      "median": -4.62,
+      "worst": -31.19
      },
      "mean_r2": 0.83,
-     "first": "2021-11-26",
-     "last": "2026-11-18",
-     "z_now": -1.63,
+     "first": "2021-11-29",
+     "last": "2026-11-19",
+     "z_now": -1.61,
      "validated": false,
      "status": "fail",
-     "label": "n 13 \u00b7 hit 31% \u00b7 -4.26 @63d / -6.11 @126d \u00b7 \u03c1 +0.16"
+     "label": "n 15 \u00b7 hit 20% \u00b7 -4.60 @63d / -6.82 @126d \u00b7 \u03c1 +0.19"
     },
     "1y": {
      "n_refits": 325,
      "63d": {
-      "rho": -0.069,
-      "n": 19,
-      "hit": 0.47,
-      "mean": -0.56,
-      "median": -0.04,
-      "worst": -21.07
+      "rho": -0.07,
+      "n": 18,
+      "hit": 0.44,
+      "mean": -4.37,
+      "median": -2.69,
+      "worst": -24.17
      },
      "126d": {
-      "rho": -0.082,
-      "n": 18,
-      "hit": 0.56,
-      "mean": -0.16,
-      "median": 1.54,
-      "worst": -36.4
+      "rho": -0.075,
+      "n": 17,
+      "hit": 0.47,
+      "mean": -3.45,
+      "median": -3.07,
+      "worst": -39.35
      },
      "mean_r2": 0.73,
-     "first": "2020-11-25",
-     "last": "2026-11-18",
+     "first": "2020-11-26",
+     "last": "2026-11-19",
      "z_now": -1.25,
      "validated": false,
      "status": "fail",
-     "label": "n 19 \u00b7 hit 47% \u00b7 -0.56 @63d / -0.16 @126d \u00b7 \u03c1 -0.07"
+     "label": "n 18 \u00b7 hit 44% \u00b7 -4.37 @63d / -3.45 @126d \u00b7 \u03c1 -0.07"
     },
     "3y": {
      "n_refits": 216,
      "63d": {
-      "rho": 0.049,
-      "n": 13,
-      "hit": 0.46,
-      "mean": 0.09,
-      "median": -0.04,
-      "worst": -14.47
+      "rho": 0.079,
+      "n": 11,
+      "hit": 0.36,
+      "mean": -3.09,
+      "median": -3.62,
+      "worst": -22.37
      },
      "126d": {
-      "rho": -0.15,
-      "n": 12,
-      "hit": 0.75,
-      "mean": 7.1,
-      "median": 10.19,
-      "worst": -27.93
+      "rho": -0.122,
+      "n": 10,
+      "hit": 0.8,
+      "mean": 8.57,
+      "median": 15.79,
+      "worst": -31.19
      },
      "mean_r2": 0.9,
-     "first": "2022-11-28",
-     "last": "2026-11-18",
-     "z_now": -1.77,
+     "first": "2022-11-29",
+     "last": "2026-11-19",
+     "z_now": -1.74,
      "validated": false,
      "status": "fail",
-     "label": "n 13 \u00b7 hit 46% \u00b7 +0.09 @63d / +7.10 @126d \u00b7 \u03c1 +0.05"
+     "label": "n 11 \u00b7 hit 36% \u00b7 -3.09 @63d / +8.57 @126d \u00b7 \u03c1 +0.08"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 13 \u00b7 hit 31% \u00b7 -4.26 @63d / -6.11 @126d \u00b7 \u03c1 +0.16"
+   "label": "n 15 \u00b7 hit 20% \u00b7 -4.60 @63d / -6.82 @126d \u00b7 \u03c1 +0.19"
   },
   "CL1": {
    "kind": "eq",
@@ -1976,20 +1976,20 @@
       "worst": -35.3
      },
      "126d": {
-      "rho": -0.027,
+      "rho": -0.029,
       "n": 18,
       "hit": 0.44,
-      "mean": 2.31,
+      "mean": 2.56,
       "median": -1.99,
       "worst": -31.49
      },
      "mean_r2": 0.74,
      "first": "2020-12-09",
      "last": "2026-11-25",
-     "z_now": 0.97,
+     "z_now": 0.47,
      "validated": false,
      "status": "fail",
-     "label": "n 18 \u00b7 hit 39% \u00b7 -3.54 @63d / +2.31 @126d \u00b7 \u03c1 +0.06"
+     "label": "n 18 \u00b7 hit 39% \u00b7 -3.54 @63d / +2.56 @126d \u00b7 \u03c1 +0.06"
     },
     "2y": {
      "n_refits": 260,
@@ -2002,7 +2002,7 @@
       "worst": -42.43
      },
      "126d": {
-      "rho": -0.16,
+      "rho": -0.162,
       "n": 13,
       "hit": 0.54,
       "mean": 3.58,
@@ -2012,7 +2012,7 @@
      "mean_r2": 0.68,
      "first": "2021-12-08",
      "last": "2026-11-25",
-     "z_now": 1.34,
+     "z_now": 0.74,
      "validated": false,
      "status": "fail",
      "label": "n 14 \u00b7 hit 50% \u00b7 +1.22 @63d / +3.58 @126d \u00b7 \u03c1 -0.14"
@@ -2020,7 +2020,7 @@
     "3y": {
      "n_refits": 208,
      "63d": {
-      "rho": -0.021,
+      "rho": -0.022,
       "n": 10,
       "hit": 0.4,
       "mean": -2.95,
@@ -2028,7 +2028,7 @@
       "worst": -35.3
      },
      "126d": {
-      "rho": -0.06,
+      "rho": -0.062,
       "n": 10,
       "hit": 0.4,
       "mean": 2.32,
@@ -2038,7 +2038,7 @@
      "mean_r2": 0.63,
      "first": "2022-12-07",
      "last": "2026-11-25",
-     "z_now": 1.07,
+     "z_now": 0.58,
      "validated": false,
      "status": "fail",
      "label": "n 10 \u00b7 hit 40% \u00b7 -2.95 @63d / +2.32 @126d \u00b7 \u03c1 -0.02"
@@ -2046,7 +2046,7 @@
    },
    "validated": false,
    "status": "fail",
-   "label": "n 18 \u00b7 hit 39% \u00b7 -3.54 @63d / +2.31 @126d \u00b7 \u03c1 +0.06"
+   "label": "n 18 \u00b7 hit 39% \u00b7 -3.54 @63d / +2.56 @126d \u00b7 \u03c1 +0.06"
   },
   "XLF": {
    "kind": "eq",
@@ -2056,85 +2056,85 @@
     "2y": {
      "n_refits": 251,
      "63d": {
-      "rho": 0.2,
-      "n": 12,
-      "hit": 0.42,
-      "mean": -2.43,
-      "median": -2.74,
-      "worst": -16.85
+      "rho": 0.214,
+      "n": 11,
+      "hit": 0.55,
+      "mean": -0.12,
+      "median": 1.51,
+      "worst": -13.56
      },
      "126d": {
-      "rho": 0.149,
-      "n": 11,
-      "hit": 0.36,
-      "mean": -1.41,
-      "median": -5.11,
-      "worst": -14.11
+      "rho": 0.173,
+      "n": 10,
+      "hit": 0.6,
+      "mean": 2.79,
+      "median": 5.28,
+      "worst": -6.54
      },
      "mean_r2": 0.93,
-     "first": "2021-11-26",
-     "last": "2026-11-19",
-     "z_now": 0.85,
+     "first": "2021-11-29",
+     "last": "2026-11-20",
+     "z_now": 0.77,
      "validated": false,
      "status": "fail",
-     "label": "n 12 \u00b7 hit 42% \u00b7 -2.43 @63d / -1.41 @126d \u00b7 \u03c1 +0.20"
+     "label": "n 11 \u00b7 hit 55% \u00b7 -0.12 @63d / +2.79 @126d \u00b7 \u03c1 +0.21"
     },
     "1y": {
      "n_refits": 301,
      "63d": {
-      "rho": 0.037,
-      "n": 17,
-      "hit": 0.29,
-      "mean": -1.6,
-      "median": -1.69,
-      "worst": -10.44
+      "rho": 0.053,
+      "n": 19,
+      "hit": 0.26,
+      "mean": -3.13,
+      "median": -2.87,
+      "worst": -18.4
      },
      "126d": {
-      "rho": 0.029,
-      "n": 16,
-      "hit": 0.38,
-      "mean": -3.23,
-      "median": -4.19,
-      "worst": -19.48
+      "rho": 0.057,
+      "n": 18,
+      "hit": 0.44,
+      "mean": -3.04,
+      "median": -3.96,
+      "worst": -23.28
      },
      "mean_r2": 0.86,
-     "first": "2020-11-30",
-     "last": "2026-11-19",
-     "z_now": 0.85,
+     "first": "2020-12-01",
+     "last": "2026-11-20",
+     "z_now": 0.93,
      "validated": false,
      "status": "fail",
-     "label": "n 17 \u00b7 hit 29% \u00b7 -1.60 @63d / -3.23 @126d \u00b7 \u03c1 +0.04"
+     "label": "n 19 \u00b7 hit 26% \u00b7 -3.13 @63d / -3.04 @126d \u00b7 \u03c1 +0.05"
     },
     "3y": {
      "n_refits": 200,
      "63d": {
-      "rho": 0.023,
-      "n": 9,
-      "hit": 0.67,
-      "mean": 2.14,
-      "median": 3.48,
-      "worst": -9.95
-     },
-     "126d": {
-      "rho": 0.082,
+      "rho": 0.03,
       "n": 8,
       "hit": 0.62,
-      "mean": 3.41,
-      "median": 4.74,
-      "worst": -11.91
+      "mean": 1.39,
+      "median": 5.0,
+      "worst": -16.65
+     },
+     "126d": {
+      "rho": 0.103,
+      "n": 8,
+      "hit": 0.75,
+      "mean": 2.71,
+      "median": 5.45,
+      "worst": -19.47
      },
      "mean_r2": 0.95,
-     "first": "2022-12-01",
-     "last": "2026-11-19",
-     "z_now": 1.21,
+     "first": "2022-12-02",
+     "last": "2026-11-20",
+     "z_now": 1.32,
      "validated": false,
      "status": "insufficient",
-     "label": "only 9 fades (<10) \u00b7 \u03c1 +0.02"
+     "label": "only 8 fades (<10) \u00b7 \u03c1 +0.03"
     }
    },
    "validated": false,
    "status": "fail",
-   "label": "n 12 \u00b7 hit 42% \u00b7 -2.43 @63d / -1.41 @126d \u00b7 \u03c1 +0.20"
+   "label": "n 11 \u00b7 hit 55% \u00b7 -0.12 @63d / +2.79 @126d \u00b7 \u03c1 +0.21"
   }
  }
 }
